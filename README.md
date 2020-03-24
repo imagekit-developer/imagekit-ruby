@@ -1,6 +1,7 @@
 # Imagekit
 
 [![Ruby Test](https://github.com/imagekit-developer/imagekit-ruby/workflows/Ruby%20Test/badge.svg)](https://github.com/imagekit-developer/imagekit-ruby)
+[![Gem Version](https://badge.fury.io/rb/imagekit-sdk.svg)](https://badge.fury.io/rb/imagekit-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 

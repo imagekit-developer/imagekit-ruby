@@ -7,8 +7,8 @@ require "imagekit/sdk/version"
 Gem::Specification.new do |spec|
   spec.name        = "imagekit-sdk"
   spec.version     = Imagekit::Sdk::VERSION
-  spec.authors     = ["Asif Mohammad Mollah"]
-  spec.email       = ["admin@mrasif.in"]
+  spec.authors     = ["Imagekit.io"]
+  spec.email       = ["support@imagekit.io"]
   spec.homepage    = "https://imagekit.io"
   spec.summary     = "Automate image optimization on rails platforms."
   spec.description = "Automate image optimization on rails platforms."
