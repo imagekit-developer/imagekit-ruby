@@ -11,3 +11,5 @@ test/dummy/tmp/
 public/uploads/
 config/master.key
 .DS_Store
+Gemfile.lock
+**/Gemfile.lock
