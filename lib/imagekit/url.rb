@@ -7,6 +7,7 @@ require "openssl"
 require_relative "./utils/formatter"
 require_relative "./constants/defaults"
 require_relative "./constants/supported_transformation"
+require_relative "./sdk/version.rb"
 
 class Url
   def initialize(request_obj)
@@ -220,4 +221,8 @@ class Url
       str.chomp("/")
     end
   end
+
+  # class Imagekit
+
+  # end
 end
