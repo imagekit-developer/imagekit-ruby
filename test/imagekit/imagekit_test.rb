@@ -211,5 +211,20 @@ RSpec.describe "FileUploadTest" do
       resp = SUT.phash_distance("f06830ca9f1e3e90", "f06830ca9f1e3e90")
       expect(resp).to eq(0)
     end
+
+    it "test_generate_url_with_path" do
+      # request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+      # url_obj = Url.new(request_obj)
+
+      SUT = ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+  
+      options = {path: "/default-image.jpg",
+        url_endpoint: @url_endpoint,
+        transformation: [{height: 300, width: 400}],
+      }
+      url = SUT.url(options)
+  
+      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+    end
   
   end
