@@ -16,5 +16,5 @@ bundle exec rake
 
 **3. To build gem**
 ```shell
-gem build imagekit-sdk.gemspec
+gem build imagekit.gemspec
 ```
