@@ -3,7 +3,7 @@
 require "base64"
 require "rest-client"
 require "json"
-require_relative "constants/defaults"
+require_relative "./constants/defaults"
 
 # ImageKitRequest requests and sends data from server
 class ImageKitRequest

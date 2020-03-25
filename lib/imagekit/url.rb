@@ -4,9 +4,9 @@
 
 require "cgi"
 require "openssl"
-require_relative "utils/formatter"
-require_relative "constants/defaults"
-require_relative "constants/supported_transformation"
+require_relative "./utils/formatter"
+require_relative "./constants/defaults"
+require_relative "./constants/supported_transformation"
 
 class Url
   def initialize(request_obj)

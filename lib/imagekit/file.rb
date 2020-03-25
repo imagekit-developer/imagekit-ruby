@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "constants/errors"
-require_relative "constants/file"
-require_relative "constants/url"
+require_relative "./constants/errors"
+require_relative "./constants/file"
+require_relative "./constants/url"
 
-require_relative "utils/formatter"
+require_relative "./utils/formatter"
 
 class ImageKitFile
   # This File class holds file related operations like
