@@ -5,7 +5,7 @@ require "imagekit/sdk/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "imagekitio-ruby"
+  spec.name        = "imagekitio"
   spec.version     = Imagekit::Sdk::VERSION
   spec.authors     = ["ImageKit.io team"]
   spec.email       = ["developer@imagekit.io"]

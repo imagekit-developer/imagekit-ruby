@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :imagekit_sdk do
+# task :imagekitio do
 #   # Task goes here
 # end

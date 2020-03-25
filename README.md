@@ -1,7 +1,7 @@
 # Imagekit
 
 [![Ruby Test](https://github.com/imagekit-developer/imagekit-ruby/workflows/Ruby%20Test/badge.svg)](https://github.com/imagekit-developer/imagekit-ruby)
-[![Gem Version](https://badge.fury.io/rb/imagekit-sdk.svg)](https://badge.fury.io/rb/imagekit-sdk)
+[![Gem Version](https://badge.fury.io/rb/imagekitio.svg)](https://badge.fury.io/rb/imagekitio)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
@@ -20,7 +20,7 @@ rails new <your_application_name> -d <database_name>
 Add this dependency to your application's Gemfile:
 
 ```ruby
-gem 'imagekit-sdk'
+gem 'imagekitio'
 ```
 
 And then execute:
@@ -29,7 +29,7 @@ $ bundle install
 ```
 Or install it yourself as:
 ```
-$ gem install imagekit-sdk
+$ gem install imagekitio
 ```
 ## Usage
 
@@ -470,7 +470,7 @@ git clone `https://github.com/imagekit-developer/imagekit-gem
 ```
 **2. Go to sample project directory**
 ```bash
-cd sample/example_with_rails
+cd sample/rails_app
 ```
 **3. Write imagekit configuration in `config/environments/development.rb`**
 ```ruby
