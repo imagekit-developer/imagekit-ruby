@@ -176,7 +176,7 @@ RSpec.describe "TestGenerateUrl" do
 
     url = url_obj.generate_url(options)
     
-    expect(url).to eq("https://ik.imagekit.io/ldt7znpgpjs/test_YhNhoRxWt.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&tr=h-300,w-400,f-jpg,pr-true,e-sharpen,e-contrast-1:rt-90&ik-s=fa1d442759426cabcc110621ec0ae8cd68435410")
+    expect(url).to eq("https://ik.imagekit.io/ldt7znpgpjs/test_YhNhoRxWt.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&tr=h-300,w-400,f-jpg,pr-true,e-sharpen,e-contrast-1:rt-90&ik-s=9222f92f7d608c7b6d5363ffbd262566812780ba")
 
   end
 
@@ -210,7 +210,7 @@ RSpec.describe "TestGenerateUrl" do
 
     url = url_obj.generate_url(options)
 
-    expect(url).to eq("https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&ik-s=4193d2b9955e95996f7910b04eadb720a8b33eb8")
+    expect(url).to eq("https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&ik-s=f04da6ccaeda8f0c554818ef6f4531b6f5d7de06")
   end
 
   it "test_url_with_invalid_args_returns_as_it_is" do
@@ -261,7 +261,7 @@ RSpec.describe "TestGenerateUrl" do
                signed: true,}
     url = url_obj.generate_url(options)
 
-    expect(url).to eq("https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&ik-s=7fdac67e014d3ecb913b21931525e4b26dfd254c")
+    expect(url).to eq("https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&ik-s=82874e9bb072055fe37c6d561a054782d3d5f929")
   end
   
   it "test_url_with_signed_with_seconds" do
