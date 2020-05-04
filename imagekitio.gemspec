@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rest-client', '~> 2.1', ">=2.1"
 
   # spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency "rails", "~> 5.2.0", ">= 5.2.0"
 end
