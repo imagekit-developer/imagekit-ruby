@@ -5,6 +5,25 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
+Rails SDK for [ImageKit](https://imagekit.io/) that implements the new APIs and interface for performing different file operations.
+
+ImageKit is a complete image optimization and transformation solution that comes with and
+[image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your
+existing infrastructure - storage like AWS s3, web servers, your CDN, and custom domain names, allowing you to deliver
+optimize images in minutes with minimal code changes.
+
+Table of contents -
+ * [Installation](#Installation)
+ * [Initialization](#Initialization)
+ * [URL Generation](#URL-generation)
+ * [File Upload](#File-Upload)
+ * [File Management](#File-Management)
+ * [Utility Functions](#Utility-functions)
+ * [Sample applications](#Sample-Application)
+ * [Support](#Support)
+ * [Links](#Links)
+
+
 ## Installation
 
 If you want to create new rails application, then use this command
@@ -31,25 +50,6 @@ Or install it yourself as:
 ```
 $ gem install imagekitio
 ```
-## Usage
-
-Rails SDK for [ImageKit](https://imagekit.io/) that implements the new APIs and interface for performing different file operations.
-
-ImageKit is a complete image optimization and transformation solution that comes with and
-[image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your
-existing infrastructure - storage like AWS s3, web servers, your CDN, and custom domain names, allowing you to deliver
-optimize images in minutes with minimal code changes.
-
-Table of contents -
- * [Installation](#Installation)
- * [Initialization](#Initialization)
- * [URL Generation](#URL-generation)
- * [File Upload](#File-Upload)
- * [File Management](#File-Management)
- * [Utility Functions](#Utility-functions)
- * [Support](#Support)
- * [Links](#Links)
-
 
 ## Initialization
 
@@ -92,8 +92,6 @@ end
 def store_dir
     "your_directory/"
 end
-
-
 ```
 
 Then you need to modify your model. for example- if your model name is employee then do these changes
@@ -103,7 +101,6 @@ class Employee < ApplicationRecord
     attr_accessor :avatar
     mount_uploader :avatar, AvatarUploader
 end
-
 ```
 
 Get image url:
@@ -465,7 +462,7 @@ imagekitio.phash_distance('a4a65595ac94518b', '7838873e791f8400')
 # output: 37 (dissimilar images)
 ```
 
-## Sample Code Instruction
+## Sample Application
 There are two sample apps:
 * [Rails application using Carrierwave](#Instructions-for-rails-application)
 * [Plain ruby application](#Instructions-for-ruby-application)
@@ -499,7 +496,6 @@ This sample project are using Sqlite3 database. If you are getting `sqlite3` gem
 ```ruby
 bundle exec rake db:migrate
 ```
-This sample project is using Sqlite3 database. If you are getting `sqlite3` gem installation error, then install sqlite3 first then again run `bundle install`.
 
 **6. Run your application**
 ```ruby
