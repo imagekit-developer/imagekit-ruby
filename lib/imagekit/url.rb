@@ -80,7 +80,7 @@ class Url
     end
     transformation_str = transformation_to_str(options[:transformation]).chomp("/")
 
-    if transformation_str
+    unless transformation_str.blank?
       if (transformation_position == Default::QUERY_TRANSFORMATION_POSITION) || src_param_used_for_url == true
         result_url_hash[:query] = "#{Default::TRANSFORMATION_PARAMETER}=#{transformation_str}"
         query_params[:tr]=transformation_str
