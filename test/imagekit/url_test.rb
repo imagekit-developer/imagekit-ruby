@@ -19,6 +19,18 @@ RSpec.describe "TestGenerateUrl" do
     expect(request_obj.private_key).to eq(@private_key)
   end
   
+  it "test_generate_url_without_transformations" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {path: "/default-image.jpg",
+      url_endpoint: @url_endpoint,
+    }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://imagekit.io/your-imgekit-id/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+  end
+
   it "test_generate_url_with_path" do
     request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
     url_obj = Url.new(request_obj)
