@@ -18,8 +18,12 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rake
-    - name: Upload coverage to codecov
+    - name: Upload code coverage reports to codecov
+    - uses: codecov/codecov-action@v1
       with:
-        CODECOV_TOKEN: 58fd7bff-e88e-4f23-b940-811b12f20dcf
-      run: |
-        bash <(curl -s https://codecov.io/bash)
+        token: 58fd7bff-e88e-4f23-b940-811b12f20dcf # not required for public repos
+        # file: ./coverage.xml # optional
+        # files: ./coverage1.xml,./coverage2.xml # optional
+        # flags: unittests # optional
+        # name: codecov-umbrella # optional
+        # fail_ci_if_error: true # optional (default = false)
