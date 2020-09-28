@@ -19,7 +19,7 @@ jobs:
           bundle install --jobs 4 --retry 3
           bundle exec rake
       - name: Upload code coverage reports to codecov
-      - uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v1
         with:
           token: 58fd7bff-e88e-4f23-b940-811b12f20dcf # not required for public repos
           # file: ./coverage.xml # optional
