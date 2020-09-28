@@ -21,3 +21,5 @@ jobs:
     - name: Upload coverage to codecov
       run: |
         bash <(curl -s https://codecov.io/bash)
+      with:
+        CODECOV_TOKEN: 58fd7bff-e88e-4f23-b940-811b12f20dcf
