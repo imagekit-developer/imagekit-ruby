@@ -20,3 +20,4 @@ gem "minitest", "~> 5.0"
 gem "rspec"
 
 gem 'codecov', require: false, group: 'test'
+gem 'webmock', require: false, group: 'test'
