@@ -1,6 +1,6 @@
 # ImageKit Test
-require "rspec/autorun"
 require_relative './helper'
+require "rspec/autorun"
 
 RSpec.describe "FileUploadTest" do
     it "test_upload_with_valid_expected_success" do
@@ -149,6 +149,30 @@ RSpec.describe "FileUploadTest" do
   
       expect(resp[:code]).to eq(200)
     end
+
+    it "test_get_metadata_from_remote_url_succeeds" do
+      request_obj = double
+      allow(ImageKitRequest)
+        .to receive(:new)
+        .with(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+        .and_return(request_obj)
+  
+      allow(request_obj)
+        .to receive(:create_headers)
+        .and_return({})
+  
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+        .and_return({code: 200, body: {}})
+  
+      SUT = ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      SUT.set_ik_request(request_obj)
+
+      resp = SUT.get_remote_file_url_metadata("http://example.com/fakefileurl")
+  
+      expect(@ac[:url]).to eq("https://api.imagekit.io/v1/metadata?url=http://example.com/fakefileurl")
+      expect(resp[:code]).to eq(200)
+    end
   
     it "test_purge_file_cache_valid_expected_success" do
       # test for get_purge_file_cache
@@ -208,8 +232,21 @@ RSpec.describe "FileUploadTest" do
       SUT = ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
       SUT.set_ik_request(request_obj)
   
-      resp = SUT.phash_distance("f06830ca9f1e3e90", "f06830ca9f1e3e90")
-      expect(resp).to eq(0)
+      expect {
+        SUT.phash_distance("f06830ca9f1e3e90", "RANDOM")
+    }.to raise_error(ArgumentError)
+    end
+
+    it "test_phash_distance_fails_if_argument_missing" do
+  
+      request_obj = double
+  
+      SUT = ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      SUT.set_ik_request(request_obj)
+  
+      expect {
+        SUT.phash_distance("f06830ca9f1e3e90", "  ")
+      }.to raise_error(NameError)
     end
 
     it "test_generate_url_with_path" do
@@ -226,5 +263,15 @@ RSpec.describe "FileUploadTest" do
   
       expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
     end
+
+    it "get_authentication_params_test_with_hard_coded_params" do
+      SUT = ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      # SUT.set_ik_request(request_obj)
+
+      result=SUT.get_authentication_parameters('your_token',1582269249)
+      expect('your_token').to eq(result[:token])
+      expect(nil).not_to eq(result[:expire])
+      expect('2b6b30751172436abba7dd9e71aa9dc9410684ce').to eq(result[:signature])
+  end
   
   end

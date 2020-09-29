@@ -92,8 +92,7 @@ module ImageKit
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
-
-      unless first && second
+      if first.to_s.strip == "" || second.to_s.strip == ""
         raise ArgumentError, Error::MISSING_PHASH_VALUE
       end
       hamming_distance(first, second)
@@ -105,4 +104,3 @@ module ImageKit
     end
   end
 end
-

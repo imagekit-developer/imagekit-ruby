@@ -1,4 +1,13 @@
+ENV["CODECOV_TOKEN"] = "58fd7bff-e88e-4f23-b940-811b12f20dcf"
+
+require 'simplecov'
+SimpleCov.start 'rails'
+
+# require 'codecov'
+# SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
 require 'base64'
+require 'webmock/rspec'
 require_relative '../../lib/imagekit/imagekit.rb'
 require_relative "../../lib/imagekit/resource"
 require_relative "../../lib/imagekit/file"
