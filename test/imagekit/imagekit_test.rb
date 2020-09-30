@@ -265,13 +265,13 @@ RSpec.describe "FileUploadTest" do
     end
 
     it "get_authentication_params_test_with_hard_coded_params" do
-      SUT = ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      SUT = ImageKit::ImageKitClient.new('private_key_test', PUBLIC_KEY, URL_ENDPOINT)
       # SUT.set_ik_request(request_obj)
 
       result=SUT.get_authentication_parameters('your_token',1582269249)
       expect('your_token').to eq(result[:token])
       expect(nil).not_to eq(result[:expire])
-      expect('2b6b30751172436abba7dd9e71aa9dc9410684ce').to eq(result[:signature])
+      expect('e71bcd6031016b060d349d212e23e85c791decdd').to eq(result[:signature])
   end
   
   end
