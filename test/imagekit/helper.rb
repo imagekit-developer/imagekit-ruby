@@ -1,10 +1,7 @@
-# Insert token for imagekitio/imagekit-ruby repo's token from codecov
-# ENV["CODECOV_TOKEN"] = ""
 
 require 'simplecov'
 SimpleCov.start 'rails'
 
-# uncomment once the correct token has been placed in first line
 require 'codecov'
 SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
