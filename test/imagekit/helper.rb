@@ -5,8 +5,8 @@ require 'simplecov'
 SimpleCov.start 'rails'
 
 # uncomment once the correct token has been placed in first line
-# require 'codecov'
-# SimpleCov.formatter = SimpleCov::Formatter::Codecov
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 require 'base64'
 require 'webmock/rspec'
