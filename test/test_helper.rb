@@ -1,6 +1,5 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
-ENV["CODECOV_TOKEN"] = "58fd7bff-e88e-4f23-b940-811b12f20dcf"
 
 require_relative "../test/dummy/config/environment"
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
