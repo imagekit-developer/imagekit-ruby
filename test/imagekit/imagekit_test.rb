@@ -4,18 +4,46 @@ require "rspec/autorun"
 
 RSpec.describe "FileUploadTest" do
 
-    it "test_initialization_with_parameters_missing" do
+    it "test_initialization_with_private_key_missing" do
       request_obj = double
       expect {
         ImageKit::ImageKitClient.new("  ", PUBLIC_KEY, URL_ENDPOINT)
-    }.to raise_error(ArgumentError)
+    }.to raise_error(ArgumentError, MISSING_PRIVATE_KEY)
     end
 
-    it "test_initialization_with_non_string_parameters" do
+    it "test_initialization_with_non_string_private_key" do
       request_obj = double
       expect {
         ImageKit::ImageKitClient.new({RANDOM: "RANDOM"}, PUBLIC_KEY, URL_ENDPOINT)
-    }.to raise_error(ArgumentError)
+    }.to raise_error(ArgumentError, MISSING_PRIVATE_KEY)
+    end
+
+    it "test_initialization_with_public_key_missing" do
+      request_obj = double
+      expect {
+        ImageKit::ImageKitClient.new(PRIVATE_KEY, "   ", URL_ENDPOINT)
+    }.to raise_error(ArgumentError, MISSING_PUBLIC_KEY)
+    end
+
+    it "test_initialization_with_non_string_public_key" do
+      request_obj = double
+      expect {
+        ImageKit::ImageKitClient.new(PRIVATE_KEY, {RANDOM: "RANDOM"}, URL_ENDPOINT)
+    }.to raise_error(ArgumentError, MISSING_PUBLIC_KEY)
+    end
+
+    it "test_initialization_with_url_endpoint_missing" do
+      request_obj = double
+      expect {
+        ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, "  ")
+    }.to raise_error(ArgumentError, MISSING_URL_ENDPOINT)
+    end
+
+    it "test_initialization_with_non_string_url_endpoint" do
+      request_obj = double
+      expect {
+        ImageKit::ImageKitClient.new(PRIVATE_KEY, PUBLIC_KEY, {RANDOM: "RANDOM"})
+    }.to raise_error(ArgumentError, MISSING_URL_ENDPOINT)
     end
 
     it "test_upload_with_valid_expected_success" do
