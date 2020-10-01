@@ -16,6 +16,15 @@ module ImageKit
     attr_reader :file
 
     def initialize(private_key, public_key, url_endpoint, transformation_pos = nil, options = nil)
+      
+      unless(private_key.is_a?(String) && public_key.is_a?(String) && url_endpoint.is_a?(String))
+        raise ArgumentError, "ImageKit Parameters should be valid string"
+      end
+      
+      unless(private_key.to_s.strip.length != 0 && public_key.to_s.strip.length != 0 && url_endpoint.to_s.strip.length != 0)
+        raise ArgumentError, "ImageKit Parameters cannot be blank"
+      end
+
       @private_key = private_key
       @public_key = public_key
       @url_endpoint = url_endpoint

@@ -3,6 +3,21 @@ require_relative './helper'
 require "rspec/autorun"
 
 RSpec.describe "FileUploadTest" do
+
+    it "test_initialization_with_parameters_missing" do
+      request_obj = double
+      expect {
+        ImageKit::ImageKitClient.new("  ", PUBLIC_KEY, URL_ENDPOINT)
+    }.to raise_error(ArgumentError)
+    end
+
+    it "test_initialization_with_non_string_parameters" do
+      request_obj = double
+      expect {
+        ImageKit::ImageKitClient.new({RANDOM: "RANDOM"}, PUBLIC_KEY, URL_ENDPOINT)
+    }.to raise_error(ArgumentError)
+    end
+
     it "test_upload_with_valid_expected_success" do
       request_obj = double
       allow(ImageKitRequest)
