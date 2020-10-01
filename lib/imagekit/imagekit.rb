@@ -16,6 +16,17 @@ module ImageKit
     attr_reader :file
 
     def initialize(private_key, public_key, url_endpoint, transformation_pos = nil, options = nil)
+
+      unless(private_key.is_a?(String) && private_key.to_s.strip.length != 0)
+        raise ArgumentError, MISSING_PRIVATE_KEY
+      end
+      unless(public_key.is_a?(String) && public_key.to_s.strip.length != 0)
+        raise ArgumentError, MISSING_PUBLIC_KEY
+      end
+      unless(url_endpoint.is_a?(String) && url_endpoint.to_s.strip.length != 0)
+        raise ArgumentError, MISSING_URL_ENDPOINT
+      end
+
       @private_key = private_key
       @public_key = public_key
       @url_endpoint = url_endpoint
@@ -92,8 +103,7 @@ module ImageKit
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
-
-      unless first && second
+      if first.to_s.strip == "" || second.to_s.strip == ""
         raise ArgumentError, Error::MISSING_PHASH_VALUE
       end
       hamming_distance(first, second)
@@ -105,4 +115,3 @@ module ImageKit
     end
   end
 end
-
