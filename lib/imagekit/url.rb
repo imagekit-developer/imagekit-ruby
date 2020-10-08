@@ -154,8 +154,6 @@ class Url
           transformation[i][key] = transformation[i][key].gsub("/", "@@")
         end
 
-        transformation[i][key] = ERB::Util.url_encode(transformation[i][key]) if transform_key == "ot" || transform_key == "otf"
-
         if transformation[i][key] == "-"
           parsed_transform_step.push(transform_key)
         else
