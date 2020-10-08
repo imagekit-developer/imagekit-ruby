@@ -33,7 +33,7 @@ SUPPORTED_TRANS = {
   'overlay_text_font_family': "otf",
   'overlay_text_encoded': "ote",
   'overlay_text_color': "otc",
-  'overlay_text_width': "otw".
+  'overlay_text_width': "otw",
   'overlay_text_background': "otbg",
   'overlay_text_padding': "otp",
   'overlay_text_inner_alignment': "otia",
