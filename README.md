@@ -63,7 +63,7 @@ config.imagekit={
 }
 ```
 
-You can create a carrierwave uploader in order to attach pictures to your database objects as their attributes. To upload images without designating them as database attributes, read the section on File Upload below.
+You can create a carrierwave uploader in order to attach pictures to your database objects as their attributes. To upload images without designating them as database attributes, skip to [this section](https://github.com/imagekit-developer/imagekit-ruby#file-upload).
 ```bash
 rails g uploader <Uploading_attribute_name>
 # For example if you want to create uploader for Avatar attribute then use
