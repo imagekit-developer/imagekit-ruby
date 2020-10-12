@@ -63,7 +63,7 @@ config.imagekit={
 }
 ```
 
-You need to create an uploader to manage file. To create an uploader, use this command inside the project directory.
+You can create a carrierwave uploader in order to attach pictures to your database objects as their attributes. To upload images without designating them as database attributes, read the section on File Upload below.
 ```bash
 rails g uploader <Uploading_attribute_name>
 # For example if you want to create uploader for Avatar attribute then use
@@ -312,6 +312,7 @@ transformation code from ImageKit docs as the name when using in the `url` funct
 | original | orig |
 
 ## File Upload
+This method can be used to directly upload images to your ImageKit Media Library, without giving it the designation of an attribute of any database object.
 
 The SDK provides a simple interface using the `.upload()` method to upload files to the ImageKit Media library. It
 accepts all the parameters supported by the [ImageKit Upload API](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
