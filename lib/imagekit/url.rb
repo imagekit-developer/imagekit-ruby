@@ -152,6 +152,11 @@ class Url
         transform_key = SUPPORTED_TRANS.fetch(key, nil)
         transform_key ||= key
 
+        if transform_key == "oi" || transform_key == "di"
+          transformation[i][key][0] = "" if transformation[i][key][0] == "/"
+          transformation[i][key] = transformation[i][key].gsub("/", "@@")
+        end
+
         if transformation[i][key] == "-"
           parsed_transform_step.push(transform_key)
         else
