@@ -69,3 +69,9 @@ MISSING_PHASH_VALUE = {'message': "Missing pHash value",
                        'help': "Please pass two pHash values",}
 UNEQUAL_STRING_LENGTH = {'message': "Unequal pHash string length",
                          'help': "For distance calculation, the two pHash strings must have equal length",}
+
+MISSING_PRIVATE_KEY = "ImageKit private key missing"
+
+MISSING_PUBLIC_KEY = "ImageKit public key missing"
+
+MISSING_URL_ENDPOINT = "ImageKit URL Endpoint missing. Default URL Endpoint: https://ik.imagekit.io/<YOUR_IMAGEKIT_ID>/"

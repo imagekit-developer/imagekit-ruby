@@ -1,5 +1,5 @@
-require "rspec/autorun"
 require_relative './helper'
+require "rspec/autorun"
 
 RSpec.describe "FormatterTest" do
     it "snake_to_camel_test" do

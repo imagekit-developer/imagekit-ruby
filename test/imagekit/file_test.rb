@@ -1,5 +1,5 @@
-require "rspec/autorun"
 require_relative './helper'
+require "rspec/autorun"
 
 RSpec.describe "FileUploadTest" do
   it "test_upload_with_valid_expected_success_without_tags_and_remote_url" do
@@ -122,6 +122,27 @@ RSpec.describe "FileUploadTest" do
     
     expect(upload[:code]).to eq(200)
 
+  end
+
+  it "test_upload_fails_on_invalid_options" do
+    request_obj = double
+    allow(ImageKitRequest)
+      .to receive(:new)
+      .with(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      .and_return(request_obj)
+
+    allow(request_obj)
+      .to receive(:create_headers)
+      .and_return({})
+
+    allow(request_obj)
+      .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+      .and_return({code: 401, message: nil})
+
+    SUT = ImageKitFile.new(request_obj)
+    expect{
+      SUT.upload("fake_file.jpg", "fake_name", { invalid_option: "invalid_option" })
+    }.to raise_error(ArgumentError)
   end
 
   it "test_upload_fails_on_unauthenticated_request" do
@@ -504,7 +525,75 @@ RSpec.describe "TestUpdateFileDetails" do
     expect(resp[:code]).to eq(200)
     expect(resp[:body]).to eq(options)
   end
+
+  it "test_update_file_details_fails_missing_arguments" do
+    options = {}
+    request_obj = double
+    allow(ImageKitRequest)
+      .to receive(:new)
+      .with(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      .and_return(request_obj)
+
+    allow(request_obj)
+      .to receive(:create_headers)
+      .and_return({})
+
+    allow(request_obj)
+      .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+      .and_return({code: 200, body: options})
+
+    SUT = ImageKitFile.new(request_obj)
+    expect { 
+      SUT.update_details("file_id", options)
+  }.to raise_error(ArgumentError)
+  end
+
+  it "test_update_file_details_fails_tags_not_an_array" do
+    options = {tags: "RANDOM_TEXT", "custom_coordinates": "10,10,100,100"}
+    request_obj = double
+    allow(ImageKitRequest)
+      .to receive(:new)
+      .with(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      .and_return(request_obj)
+
+    allow(request_obj)
+      .to receive(:create_headers)
+      .and_return({})
+
+    allow(request_obj)
+      .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+      .and_return({code: 200, body: options})
+
+    SUT = ImageKitFile.new(request_obj)
+    expect { 
+      SUT.update_details("file_id", options)
+  }.to raise_error(ArgumentError)
+  end
+
+  it "test_update_file_details_fails_custom_coordinates_not_a_string" do
+    options = {"custom_coordinates": %w[random]}
+    request_obj = double
+    allow(ImageKitRequest)
+      .to receive(:new)
+      .with(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      .and_return(request_obj)
+
+    allow(request_obj)
+      .to receive(:create_headers)
+      .and_return({})
+
+    allow(request_obj)
+      .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+      .and_return({code: 200, body: options})
+
+    SUT = ImageKitFile.new(request_obj)
+    expect { 
+      SUT.update_details("file_id", options)
+  }.to raise_error(ArgumentError)
+  end
 end
+
+
 
 
 RSpec.describe "TestBatchDelete" do
@@ -605,7 +694,27 @@ RSpec.describe "TestGetRemoteFileURLMetaData" do
     
     expect(@ac[:url]).to eq("https://api.imagekit.io/v1/metadata?url=http://example.com/fakefileurl")
     expect(resp[:code]).to eq(401)
+  end
 
+  it "test_get_metadata_from_remote_url_fails_on_blank_url" do
+    request_obj = double
+    allow(ImageKitRequest)
+      .to receive(:new)
+      .with(PRIVATE_KEY, PUBLIC_KEY, URL_ENDPOINT)
+      .and_return(request_obj)
+
+    allow(request_obj)
+      .to receive(:create_headers)
+      .and_return({})
+
+    allow(request_obj)
+      .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+      .and_return({code: 401, body: {}})
+
+    SUT = ImageKitFile.new(request_obj)
+    expect {
+      SUT.get_metadata_from_remote_url("")
+  }.to raise_error(ArgumentError)
   end
 
   it "test_get_metadata_from_remote_url_succeeds" do

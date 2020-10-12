@@ -1,5 +1,5 @@
-require "rspec/autorun"
 require_relative "./helper"
+require "rspec/autorun"
 
 RSpec.configure do |config|
   config.before(:each) do
@@ -19,6 +19,18 @@ RSpec.describe "TestGenerateUrl" do
     expect(request_obj.private_key).to eq(@private_key)
   end
   
+  it "test_generate_url_without_transformations" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {path: "/default-image.jpg",
+      url_endpoint: @url_endpoint,
+    }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://imagekit.io/your-imgekit-id/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+  end
+
   it "test_generate_url_with_path" do
     request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
     url_obj = Url.new(request_obj)
@@ -189,12 +201,12 @@ RSpec.describe "TestGenerateUrl" do
     url_obj = Url.new(request_obj)
 
     options = {path: "/default-image.jpg",
-      query_parameters: {"v": "123"},
+      query_parameters: {"v": "123", "blank_parameter": ""},
       transformation: [{height: 300, width: 400}]
     }
     url = url_obj.generate_url(options)
     
-    expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&v=123")
+    expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&v=123&blank_parameter")
   end
 
   it "test_generate_url_with_src_checking_query_param_added" do
