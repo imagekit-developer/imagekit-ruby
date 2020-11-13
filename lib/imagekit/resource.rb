@@ -39,7 +39,7 @@ class ImageKitRequest
                                      payload: payload).execute
 
       if (resp.code >= 200) && (resp.code < 204)
-        if (resp.headers[:content_type] == "application/json")
+        if (resp.headers[:content_type].include? "application/json")
           response[:response] = JSON.parse(resp.body.to_s)
         else
           raise =RestClient::ExceptionWithResponse
