@@ -33,9 +33,6 @@ module CarrierWave
 
           def retrieve_from_cache!(identifier)
               CarrierWave::SanitizedFile.new(::File.expand_path(uploader.cache_path(identifier), uploader.root))
-              resp=@client.get(identifier)
-            # binding.pry
-              IKFile.new(resp)
           end
 
           def delete_dir!(path)

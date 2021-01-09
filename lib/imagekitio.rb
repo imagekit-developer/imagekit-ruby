@@ -42,7 +42,7 @@ module CarrierWave
           if self.file!=nil
             base64=Base64.encode64(::File.open(self.file.file, "rb").read)
             resp=@imagekit.upload_file(open(self.file.file,'rb'),self.file.filename,@options)
-            ::File.delete(self.file.file)
+            # ::File.delete(self.file.file)
             res=resp[:response].to_json
             if res!="null"
               res
