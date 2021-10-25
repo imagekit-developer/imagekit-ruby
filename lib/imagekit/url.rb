@@ -71,8 +71,6 @@ class Url
         parts=part.split("=")
         if parts.length==2
           query_params[parts[0]]=parts[1]
-        else
-          query_params[parts[0]]=""
         end
       end
     end
@@ -81,7 +79,7 @@ class Url
     end
     transformation_str = transformation_to_str(options[:transformation]).chomp("/")
 
-    if transformation_str
+    unless transformation_str.nil? || transformation_str.strip.empty?
       if (transformation_position == Default::QUERY_TRANSFORMATION_POSITION) || src_param_used_for_url == true
         result_url_hash[:query] = "#{Default::TRANSFORMATION_PARAMETER}=#{transformation_str}"
         query_params[:tr]=transformation_str
@@ -95,25 +93,30 @@ class Url
     result_url_hash[:path] = result_url_hash[:path].chomp("/")
     result_url_hash[:scheme] ||= "https"
 
+    query_param_arr = []
+    query_param_arr.push("ik-sdk-version=ruby-"+Imagekit::Sdk::VERSION)
+    query_params.each do |key, value|
+      if value.to_s == ""
+        query_param_arr.push(key.to_s)
+      else
+        query_param_arr.push(key.to_s + "=" + value.to_s)
+      end
+    end
+
+    query_param_str = query_param_arr.join("&")
+    result_url_hash[:query] = query_param_str
 
     # Signature String and Timestamp
     # We can do this only for URLs that are created using urlEndpoint and path parameter
     # because we need to know the endpoint to be able to remove it from the URL to create a signature
     # for the remaining. With the src parameter, we would not know the "pattern" in the URL
-    query_param_arr = []
-    query_param_arr.push("ik-sdk-version=ruby-"+Imagekit::Sdk::VERSION)
     if options[:signed] && !(options[:src])
       intermediate_url = result_url_hash.fetch(:scheme, "") + "://" + result_url_hash.fetch(:host, "") + result_url_hash.fetch(:path, "")
       if result_url_hash[:query]!=nil && result_url_hash[:query]!=""
         intermediate_url += result_url_hash.fetch(:query, "")
       end
     end
-    query_params.each do |key, value|
-      query_param_arr.push(key.to_s + "=" + value.to_s)
-    end
 
-    query_param_str = query_param_arr.join("&")
-    result_url_hash[:query] = query_param_str
     url=hash_to_url(result_url_hash)
     if options[:signed]
       private_key = options[:private_key]
@@ -149,6 +152,11 @@ class Url
       transformation[i].keys.each do |key|
         transform_key = SUPPORTED_TRANS.fetch(key, nil)
         transform_key ||= key
+
+        if transform_key == "oi" || transform_key == "di"
+          transformation[i][key][0] = "" if transformation[i][key][0] == "/"
+          transformation[i][key] = transformation[i][key].gsub("/", "@@")
+        end
 
         if transformation[i][key] == "-"
           parsed_transform_step.push(transform_key)

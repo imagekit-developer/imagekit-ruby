@@ -1,5 +1,6 @@
-require "rspec/autorun"
 require_relative './helper'
+require "rspec/autorun"
+
 RSpec.describe "CalculationTest" do
 
     it "is_valid_hex_with_valid_hex" do
@@ -56,5 +57,11 @@ RSpec.describe "CalculationTest" do
         expect(nil).not_to eq(result[:token])
         expect(nil).not_to eq(result[:expire])
         expect('my_signature').to eq(result[:signature])
+    end
+
+    it "get_authenticated_params_test_with_nil_private_key" do
+        allow(OpenSSL::HMAC).to receive(:hexdigest).and_return('my_signature')
+        result=get_authenticated_params('your_token', 1582269249, nil)
+        expect(result).to eq(nil)
     end
 end

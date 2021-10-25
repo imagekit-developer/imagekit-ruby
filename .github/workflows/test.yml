@@ -8,13 +8,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby 2.6
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.6.x
-    - name: Build and test with Rake
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        bundle exec rake
+      - uses: actions/checkout@v2
+      - name: Set up Ruby 2.6
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+      - name: Build and test with Rake
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          bundle exec rake
+      # - name: Upload code coverage reports to codecov
+      #   uses: codecov/codecov-action@v1
+      #   with:
+      #     token: 58fd7bff-e88e-4f23-b940-811b12f20dcf # not required for public repos
+      #     # file: ./coverage.xml # optional
+      #     # files: ./coverage1.xml,./coverage2.xml # optional
+      #     # flags: unittests # optional
+      #     # name: codecov-umbrella # optional
+      #     # fail_ci_if_error: true # optional (default = false)

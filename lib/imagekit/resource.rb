@@ -38,11 +38,12 @@ class ImageKitRequest
                                      headers: headers,
                                      payload: payload).execute
 
-
-      if resp.code == 404
-        raise RestClient::ExceptionWithResponse
-      elsif (resp.code >= 200) && (resp.code < 204)
-        response[:response] = JSON.parse(resp.body.to_s)
+      if (resp.code >= 200) && (resp.code < 204)
+        if (resp.headers[:content_type].include? "application/json")
+          response[:response] = JSON.parse(resp.body.to_s)
+        else
+          raise =RestClient::ExceptionWithResponse
+        end
       elsif resp.code == 204
         response[:response] = {'success': true}
       end
