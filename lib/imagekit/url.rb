@@ -3,6 +3,7 @@
 # Url holds url generation method
 
 require "cgi"
+require "addressable/uri"
 require "openssl"
 require_relative "./utils/formatter"
 require_relative "./constants/defaults"
@@ -46,16 +47,16 @@ class Url
     result_url_hash = {'host': "", 'path': "", 'query': ""}
     existing_query=nil
     if path != ""
-      parsed_url = URI.parse(path)
+      parsed_url = Addressable::URI.parse(path)
       existing_query=parsed_url.query
-      parsed_host = URI(url_endpoint)
+      parsed_host = Addressable::URI.parse(url_endpoint)
       result_url_hash[:scheme] = parsed_host.scheme
 
       # making sure single '/' at end
       result_url_hash[:host] = parsed_host.host.to_s.chomp("/") + parsed_host.path.chomp("/") + "/"
       result_url_hash[:path] = trim_slash(parsed_url.path)
     else
-      parsed_url = URI.parse(src)
+      parsed_url = Addressable::URI.parse(src)
       existing_query=parsed_url.query
       host = parsed_url.host
       result_url_hash[:userinfo] = parsed_url.userinfo if parsed_url.userinfo
