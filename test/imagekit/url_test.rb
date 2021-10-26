@@ -43,6 +43,19 @@ RSpec.describe "TestGenerateUrl" do
 
     expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
   end
+
+  it "test_generate_url_with_path_with_special_characters" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
+      url_endpoint: @url_endpoint,
+      transformation: [{height: 300, width: 400}],
+    }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/γειασας/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+  end
   
   it "test_generate_url_without_slash" do
     request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
@@ -54,6 +67,19 @@ RSpec.describe "TestGenerateUrl" do
     url = url_obj.generate_url(options)
 
     expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+  end
+
+  it "test_generate_url_with_path_without_slash_with_special_characters" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {path: "γειασας/Fjällräven_KnSJwp87u6q.png",
+      url_endpoint: @url_endpoint,
+      transformation: [{height: 300, width: 400}],
+    }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/γειασας/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
   end
   
   it "test_generate_url_with_override_url_endpoint_without_slash" do
@@ -67,6 +93,18 @@ RSpec.describe "TestGenerateUrl" do
 
     expect(url).to eq("https://ik.imagekit.io/your_override_imagekit_id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
   end
+
+  it "test_generate_url_with_override_url_endpoint_without_slash_with_special_characters" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+    options = {path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
+      url_endpoint: "https://ik.imagekit.io/your_override_imagekit_id",
+      transformation: [{height: 300, width: 400}],
+    }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://ik.imagekit.io/your_override_imagekit_id/tr:h-300,w-400/γειασας/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+  end
   
   it "test_generate_url_with_override_url_endpoint_with_slash" do
     request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
@@ -79,6 +117,30 @@ RSpec.describe "TestGenerateUrl" do
     url = url_obj.generate_url(options)
 
     expect(url).to eq("https://ik.imagekit.io/your_override_imagekit_id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+  end
+
+  it "test_generate_url_with_override_url_endpoint_with_slash_with_special_characters" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+    options = {path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
+      url_endpoint: "https://ik.imagekit.io/your_override_imagekit_id/",
+      transformation: [{height: 300, width: 400}],
+    }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://ik.imagekit.io/your_override_imagekit_id/tr:h-300,w-400/γειασας/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
+  end
+
+  it "test_generate_url_with_override_url_endpoint_with_special_characters" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+    options = {path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
+      url_endpoint: "https://www.Fjällräven.com/your_override_imagekit_id/",
+      transformation: [{height: 300, width: 400}],
+    }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://www.Fjällräven.com/your_override_imagekit_id/tr:h-300,w-400/γειασας/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}")
   end
 
   it "test_generate_url_with_new_transformation_parameters" do
@@ -195,6 +257,20 @@ RSpec.describe "TestGenerateUrl" do
 
     expect(url).to eq("https://imagekit.io/your-imgekit-id/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&tr=h-300,w-400")
   end
+
+  it "test_generate_url_with_special_characters_transformation_parameters_setted_to_query" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
+      url_endpoint: @url_endpoint,
+      transformation: [{height: 300, width: 400}],
+      transformation_position: "query",
+     }
+    url = url_obj.generate_url(options)
+
+    expect(url).to eq("https://imagekit.io/your-imgekit-id/γειασας/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&tr=h-300,w-400")
+  end
   
   it "test_generate_url_with_query_parameters" do
     request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
@@ -207,6 +283,19 @@ RSpec.describe "TestGenerateUrl" do
     url = url_obj.generate_url(options)
     
     expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&v=123&blank_parameter")
+  end
+
+  it "test_generate_url_with_query_parameters_with_special_characters" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {path: "/default-image.jpg",
+      query_parameters: {"γειασας": "γειασας"},
+      transformation: [{height: 300, width: 400}]
+    }
+    url = url_obj.generate_url(options)
+    
+    expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&γειασας=γειασας")
   end
 
   it "test_generate_url_with_src_checking_query_param_added" do
@@ -256,6 +345,27 @@ RSpec.describe "TestGenerateUrl" do
 
   end
 
+  it "test_generate_url_with_src_with_special_characters" do
+    # Test url generation with src param
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {src: "https://www.Fjällräve.com/γειασας/Fjällräven_KnSJwp87u6q.png",
+      transformation: [{height: "300",
+                        width: "400",
+                        format: "jpg",
+                        progressive: "true",
+                        effect_sharpen: "-",
+                        effect_contrast: "1",},
+                       {rotation: 90},],
+      transformation_position: "query"}
+
+    url = url_obj.generate_url(options)
+    
+    expect(url).to eq("https://www.Fjällräve.com/γειασας/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&tr=h-300,w-400,f-jpg,pr-true,e-sharpen,e-contrast-1:rt-90")
+
+  end
+
   it "test_generate_url_with_src_and_query_parameters_is_path" do
     request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
     url_obj = Url.new(request_obj)
@@ -287,6 +397,20 @@ RSpec.describe "TestGenerateUrl" do
     url = url_obj.generate_url(options)
 
     expect(url).to include("https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&ik-s=")
+  end
+
+  it "test_generate_url_with_path_and_signed_with_special_characters" do
+    request_obj=ImageKitRequest.new(@private_key,@public_key,@url_endpoint)
+    url_obj = Url.new(request_obj)
+
+    options = {path: "/Fjällräven_KnSJwp87u6q.png",
+      url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
+      transformation: [{height: "300", width: "400"}],
+      signed: true,}
+
+    url = url_obj.generate_url(options)
+
+    expect(url).to include("https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{Imagekit::Sdk::VERSION}&ik-s=")
   end
 
   it "test_url_with_invalid_args_returns_as_it_is" do
