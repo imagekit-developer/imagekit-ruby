@@ -6,7 +6,7 @@ module CarrierWave
         def initialize(identifier)
           @identifier=JSON.parse(identifier)
           ik_config=Rails.application.config.imagekit
-          @imagekit=ImageKit::ImageKitClient.new(ik_config[:private_key],ik_config[:public_key],ik_config[:url_endpoint])
+          @imagekit=ImageKitIo::Client.new(ik_config[:private_key], ik_config[:public_key], ik_config[:url_endpoint])
         end
 
         # Duck-type methods for CarrierWave::SanitizedFile. 

@@ -2,17 +2,16 @@
 
 $VERBOSE = nil
 
-require_relative "./resource"
+require_relative "./request"
 require_relative "./file"
 require_relative "./url"
 require_relative "./utils/calculation"
 
-module ImageKit
-  class Error < StandardError
-  end
+module ImageKitIo
+  # ImageKitIo class holds each method will be used by user
+  class Client
+    include Utils::Calculation
 
-  # ImageKit class holds each method will be used by user
-  class ImageKitClient
     attr_reader :file
 
     def initialize(private_key, public_key, url_endpoint, transformation_pos = nil, options = nil)
@@ -33,8 +32,8 @@ module ImageKit
       @transformation_position = transformation_pos
       @options = options
 
-      @ik_req = ImageKitRequest.new(private_key, public_key, url_endpoint)
-      @file = ImageKitFile.new(@ik_req)
+      @ik_req = Request.new(private_key, public_key, url_endpoint)
+      @file = File.new(@ik_req)
       @url_obj = Url.new(@ik_req)
 
     end
@@ -85,7 +84,7 @@ module ImageKit
     end
 
     def purge_file_cache(file_url)
-      # Purge cache from ImageKit server by file_url
+      # Purge cache from ImageKitIo server by file_url
       @file.purge_cache(file_url)
     end
 

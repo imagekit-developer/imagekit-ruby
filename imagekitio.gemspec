@@ -1,13 +1,13 @@
 $:.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
-require "imagekit/sdk/version"
+require "imagekitio/sdk/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
   spec.name        = "imagekitio"
-  spec.version     = Imagekit::Sdk::VERSION
-  spec.authors     = ["ImageKit.io team"]
+  spec.version     = ImageKitIo::Sdk::VERSION
+  spec.authors     = ["ImageKitIo.io team"]
   spec.email       = ["developer@imagekit.io"]
   spec.homepage    = "https://imagekit.io"
   spec.summary     = "Automate image optimization on rails platforms."

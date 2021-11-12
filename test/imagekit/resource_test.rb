@@ -6,7 +6,7 @@ RSpec.configure do |config|
     @private_key = PRIVATE_KEY
     @public_key = PUBLIC_KEY
     @url_endpoint = URL_ENDPOINT
-    @request_obj = ImageKitRequest.new(@private_key, @public_key, @url_endpoint)
+    @request_obj = Request.new(@private_key, @public_key, @url_endpoint)
     stub_request(:get, "https://www.examplenonjson.com").to_return(status: 200, body: "", headers: {content_type: "text/html"})
     stub_request(:get, "https://www.examplejson.com").to_return(body: '{"example_key": "example_value"}', headers: {content_type: "application/json"})
     stub_request(:get, "https://www.examplenotfound.com").to_return(status: 404)
@@ -18,9 +18,9 @@ RSpec.configure do |config|
   end
 end
 
-RSpec.describe "TestImageKitRequest" do
+RSpec.describe "TestRequest" do
   it "test_request_init" do
-    request_obj = ImageKitRequest.new(@private_key, @public_key, @url_endpoint)
+    request_obj = Request.new(@private_key, @public_key, @url_endpoint)
 
     expect(request_obj.private_key).to eq(@private_key)
   end

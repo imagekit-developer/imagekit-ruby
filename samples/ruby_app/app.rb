@@ -1,5 +1,5 @@
-require_relative "../../lib/imagekit/sdk/version"
-require_relative "../../lib/imagekit/imagekit"
+require_relative "../../lib/imagekitio/sdk/version"
+require_relative "../../lib/imagekitio/client"
 require "base64"
 
 private_key = ""
@@ -8,7 +8,7 @@ url_endpoint = ""
 # dummy image url
 url = "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
 
-imagekitio = ImageKit::ImageKitClient.new(private_key, public_key, url_endpoint)
+imagekitio = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
 
 # URL generation using image path and image hostname
 gen_url = imagekitio.url({path: "/default-image.jpg",
@@ -40,7 +40,7 @@ print("-------------------------------------")
 
 
 # Uploading image from file
-file = open("sample.jpg", "rb")
+file = File.open("./sample.jpg", "rb")
 upload = imagekitio.upload_file(file, "testing.jpg", {
     response_fields: 'tags,customCoordinates,isPrivateFile,metadata',
     tags: %w[abc def],
