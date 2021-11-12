@@ -14,3 +14,10 @@ config/master.key
 .DS_Store
 Gemfile.lock
 **/Gemfile.lock
+.idea/*
+.rakeTasks
+.idea/.gitignore
+.idea/imagekit-ruby.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
