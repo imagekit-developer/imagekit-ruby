@@ -3,6 +3,7 @@ require "imagekitio/railtie"
 require 'carrierwave'
 require 'base64'
 
+require_relative './imagekitio/constant'
 require_relative './imagekitio/base'
 require_relative './imagekitio/configurable'
 require_relative './imagekitio/client'

@@ -21,6 +21,10 @@ module ImageKitIo
           require_relative '../active_storage/active_storage'
         end
       end
+
+      def constants
+        config.constants
+      end
     end
 
     class Configuration
@@ -29,6 +33,10 @@ module ImageKitIo
 
       def service
         @service&.to_sym || :carrierwave
+      end
+
+      def constants
+        @constants ||= ImageKitIo::Constant
       end
     end
   end

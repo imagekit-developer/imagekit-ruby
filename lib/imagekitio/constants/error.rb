@@ -1,3 +1,4 @@
+require 'byebug'
 module ImageKitIo
   module Constants
     module Error
@@ -57,21 +58,6 @@ module ImageKitIo
         '': "Unequal pHash string length",
         help: "For distance calculation, the two pHash strings must have equal length",
       }
-
-      MISSING_UPLOAD_FILE_PARAMETER = {'message': "Missing file parameter for upload",
-                                       'help': "",}
-      MISSING_UPLOAD_FILENAME_PARAM = {
-        'message': "Missing fileName parameter for upload",
-        'help': "",
-      }
-
-      INVALID_PHASH_VALUE = {'message': "Invalid pHash value",
-                             'help': "Both pHash strings must be valid hexadecimal numbers",}
-
-      MISSING_PHASH_VALUE = {'message': "Missing pHash value",
-                             'help': "Please pass two pHash values",}
-      UNEQUAL_STRING_LENGTH = {'message': "Unequal pHash string length",
-                               'help': "For distance calculation, the two pHash strings must have equal length",}
 
       MISSING_PRIVATE_KEY = "ImageKitIo private key missing"
 

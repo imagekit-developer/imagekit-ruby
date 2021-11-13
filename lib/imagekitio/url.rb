@@ -6,14 +6,11 @@ require "cgi"
 require "addressable/uri"
 require "openssl"
 require_relative "./utils/formatter"
-require_relative "constants/default"
-require_relative "constants/supported_transformation"
 require_relative "sdk/version.rb"
 
 module ImageKitIo
   class Url
-    include Constants::Default
-    include Constants::SupportedTransformation
+    include Constantable
 
     def initialize(request_obj)
       @req_obj = request_obj
@@ -21,7 +18,7 @@ module ImageKitIo
 
     def generate_url(options)
       if options.key? :src
-        options[:transformation_position] = TRANSFORMATION_POSITION
+        options[:transformation_position] = constants::TRANSFORMATION_POSITION
       end
       extended_options = extend_url_options(options)
       build_url(extended_options)
@@ -35,12 +32,12 @@ module ImageKitIo
       url_endpoint = options.fetch(:url_endpoint, "")
       transformation_position = options[:transformation_position]
 
-      unless VALID_TRANSFORMATION_POSITION.include? transformation_position
-        raise ArgumentError, INVALID_TRANSFORMATION_POS
+      unless constants::VALID_TRANSFORMATION_POSITION.include? transformation_position
+        raise ArgumentError, constants::INVALID_TRANSFORMATION_POS
       end
 
       src_param_used_for_url = false
-      if (src != "") || (transformation_position == QUERY_TRANSFORMATION_POSITION)
+      if (src != "") || (transformation_position == constants::QUERY_TRANSFORMATION_POSITION)
         src_param_used_for_url = true
       end
 
@@ -84,11 +81,11 @@ module ImageKitIo
       transformation_str = transformation_to_str(options[:transformation]).chomp("/")
 
       unless transformation_str.nil? || transformation_str.strip.empty?
-        if (transformation_position == QUERY_TRANSFORMATION_POSITION) || src_param_used_for_url == true
-          result_url_hash[:query] = "#{TRANSFORMATION_PARAMETER}=#{transformation_str}"
+        if (transformation_position == constants::QUERY_TRANSFORMATION_POSITION) || src_param_used_for_url == true
+          result_url_hash[:query] = "#{constants::TRANSFORMATION_PARAMETER}=#{transformation_str}"
           query_params[:tr]=transformation_str
         else
-          result_url_hash[:path] = "#{TRANSFORMATION_PARAMETER}:#{transformation_str}/#{result_url_hash[:path]}"
+          result_url_hash[:path] = "#{constants::TRANSFORMATION_PARAMETER}:#{transformation_str}/#{result_url_hash[:path]}"
         end
 
       end
@@ -127,10 +124,10 @@ module ImageKitIo
         expire_seconds = options[:expire_seconds]
         expire_timestamp = get_signature_timestamp(expire_seconds)
         url_signature = get_signature(private_key, url, url_endpoint, expire_timestamp)
-        query_param_arr.push(SIGNATURE_PARAMETER + "=" + url_signature)
+        query_param_arr.push(constants::SIGNATURE_PARAMETER + "=" + url_signature)
 
-        if expire_timestamp && (expire_timestamp != TIMESTAMP)
-          query_param_arr.push(TIMESTAMP_PARAMETER + "=" + expire_timestamp.to_s)
+        if expire_timestamp && (expire_timestamp != constants::TIMESTAMP)
+          query_param_arr.push(constants::TIMESTAMP_PARAMETER + "=" + expire_timestamp.to_s)
         end
 
         query_param_str = query_param_arr.join("&")
@@ -154,7 +151,7 @@ module ImageKitIo
         parsed_transform_step = []
 
         transformation[i].keys.each do |key|
-          transform_key = SUPPORTED_TRANS.fetch(key, nil)
+          transform_key = constants::SUPPORTED_TRANS.fetch(key, nil)
           transform_key ||= key
 
           if transform_key == "oi" || transform_key == "di"
@@ -165,12 +162,12 @@ module ImageKitIo
           if transformation[i][key] == "-"
             parsed_transform_step.push(transform_key)
           else
-            parsed_transform_step.push("#{transform_key}#{TRANSFORM_KEY_VALUE_DELIMITER}#{transformation[i][key]}")
+            parsed_transform_step.push("#{transform_key}#{constants::TRANSFORM_KEY_VALUE_DELIMITER}#{transformation[i][key]}")
           end
         end
-        parsed_transforms.push(parsed_transform_step.join(TRANSFORM_DELIMITER))
+        parsed_transforms.push(parsed_transform_step.join(constants::TRANSFORM_DELIMITER))
       end
-      parsed_transforms.join(CHAIN_TRANSFORM_DELIMITER)
+      parsed_transforms.join(constants::CHAIN_TRANSFORM_DELIMITER)
     end
 
     def get_signature_timestamp(seconds)
@@ -179,7 +176,7 @@ module ImageKitIo
       # signature time stamp
 
       if seconds.to_i == 0
-        DEFAULT_TIMESTAMP
+        constants::DEFAULT_TIMESTAMP
       else
         DateTime.now.strftime("%s").to_i + seconds.to_i
       end
@@ -189,7 +186,7 @@ module ImageKitIo
       # creates signature(hashed hex key) and returns from
       # private_key, url, url_endpoint and expiry_timestamp
       if expiry_timestamp==0
-        expiry_timestamp=DEFAULT_TIMESTAMP
+        expiry_timestamp=constants::DEFAULT_TIMESTAMP
       end
       if url_endpoint[url_endpoint.length-1]!="/"
         url_endpoint+="/"

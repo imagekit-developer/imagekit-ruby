@@ -3,19 +3,19 @@
 require "base64"
 require "rest-client"
 require "json"
-require_relative "./constants/default"
 
 # Request requests and sends data from server
 module ImageKitIo
   class Request
-    include Constants::Default
+    include Constantable
+
     attr_reader :private_key, :public_key, :url_endpoint, :transformation_position, :options
 
     def initialize(private_key, public_key, url_endpoint, transformation_position = nil, options = nil)
       @private_key = private_key
       @public_key = public_key
       @url_endpoint = url_endpoint
-      @transformation_position = transformation_position || TRANSFORMATION_POSITION
+      @transformation_position = transformation_position || constants::TRANSFORMATION_POSITION
       @options = options || {}
     end
 
