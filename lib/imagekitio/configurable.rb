@@ -11,6 +11,15 @@ module ImageKitIo
 
       def configure
         yield config
+        initialize_service
+      end
+
+      def initialize_service
+        if config.service == :carrierwave
+          require_relative '../carrierwave/carrierwave'
+        elsif config.service == :active_storage
+          require_relative '../active_storage/active_storage'
+        end
       end
     end
 
@@ -19,7 +28,7 @@ module ImageKitIo
       attr_accessor :public_key, :private_key, :url_endpoint, :service
 
       def service
-        @service.to_sym || :carrierwave
+        @service&.to_sym || :carrierwave
       end
     end
   end
