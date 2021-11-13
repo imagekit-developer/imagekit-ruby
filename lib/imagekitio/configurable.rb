@@ -15,7 +15,12 @@ module ImageKitIo
     end
 
     class Configuration
-      attr_accessor :public_key, :private_key, :url_endpoint
+      AVAILABLE_SERVICE = [:carrierwave, :active_storage]
+      attr_accessor :public_key, :private_key, :url_endpoint, :service
+
+      def service
+        @service.to_sym || :carrierwave
+      end
     end
   end
 end

@@ -1,16 +1,17 @@
-module CarrierWave
+module ImageKitIo
+  module CarrierWave
     module Storage
       class IKFile
         # Initialize as required.
-        
+
         def initialize(identifier)
           @identifier=JSON.parse(identifier)
           @imagekit = ImageKitIo.client
         end
 
-        # Duck-type methods for CarrierWave::SanitizedFile. 
+        # Duck-type methods for CarrierWave::SanitizedFile.
         def content_type
-            "image/jpg"
+          "image/jpg"
         end
         def public_url
           @identifier['url']
@@ -46,4 +47,5 @@ module CarrierWave
 
     end
 
+  end
 end

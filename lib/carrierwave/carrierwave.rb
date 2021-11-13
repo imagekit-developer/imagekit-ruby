@@ -2,17 +2,22 @@ require_relative './storage/imagekit_store'
 require_relative './storage/ik_file'
 require_relative './support/uri_filename'
 
-module CarrierWave
-  module Uploader
-    class Base
+module ImageKitIo
+  module CarrierWave
+    def self.included(base)
+      base.include InstanceMethods
+      base.class_eval do
+        configure do |config|
+          config.storage_engines[:imagekit_store] = 'ImageKitIo::CarrierWave::Storage::ImageKitStore'
+        end
+      end
+      base.storage :imagekit_store
+    end
 
+    module InstanceMethods
       def initialize(*)
         @imagekit = ImageKitIo.client
         @options = {}
-      end
-
-      configure do |config|
-        config.storage_engines[:imagekit_store] = 'CarrierWave::Storage::ImageKitStore'
       end
 
       def filename
@@ -70,7 +75,5 @@ module CarrierWave
         store_dir = nil
       end
     end
-
   end
-
 end
