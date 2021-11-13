@@ -9,4 +9,4 @@ require_relative "./imagekitio/request"
 require_relative "./imagekitio/file"
 require_relative "./imagekitio/url"
 require_relative "./imagekitio/utils/calculation"
-
+require_relative './imagekitio/configuration'
