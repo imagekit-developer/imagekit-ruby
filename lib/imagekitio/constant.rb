@@ -18,5 +18,17 @@ module ImageKitIo
     include Constants::File
     include Constants::SupportedTransformation
     include Constants::URL
+
+    class << self
+      def method_missing(symbol, *args)
+        method_name = symbol.to_s.gsub('=', '')
+        if self.const_defined? method_name
+          return self.const_get(method_name) unless args.present?
+          self.const_set(method_name, args.first)
+        else
+          super
+        end
+      end
+    end
   end
 end

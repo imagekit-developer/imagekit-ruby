@@ -15,7 +15,7 @@ module ImageKitIo
       @private_key = private_key
       @public_key = public_key
       @url_endpoint = url_endpoint
-      @transformation_position = transformation_position || constants::TRANSFORMATION_POSITION
+      @transformation_position = transformation_position || constants.TRANSFORMATION_POSITION
       @options = options || {}
     end
 

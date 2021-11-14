@@ -15,8 +15,8 @@ module ImageKitIo
     def upload(file, file_name, options)
       # uploads files with required arguments
       # supports bot url and binary
-      raise ArgumentError, constants::MISSING_UPLOAD_FILE_PARAMETER unless file
-      raise ArgumentError, constants::MISSING_UPLOAD_FILE_PARAMETER unless file_name
+      raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file
+      raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file_name
       options = validate_upload_options(options || {})
       if options.is_a?(FalseClass)
         raise ArgumentError, "Invalid Upload option"
@@ -24,7 +24,7 @@ module ImageKitIo
         headers = @req_obj.create_headers
         payload = {multipart: true, file: file, fileName: file_name}.merge(options)
 
-        url = "#{constants::BASE_URL}#{constants::UPLOAD}"
+        url = "#{constants.BASE_URL}#{constants.UPLOAD}"
         @req_obj.request("post", url, headers, payload)
       end
     end
@@ -33,15 +33,15 @@ module ImageKitIo
       # Update file detail by file_id and options
 
       unless (options.key? :tags) || (options.key? :custom_coordinates)
-        raise ArgumentError, constants::UPDATE_DATA_MISSING
+        raise ArgumentError, constants.UPDATE_DATA_MISSING
       end
       unless options.fetch(:tags, []).is_a?(Array)
-        raise ArgumentError, constants::UPDATE_DATA_TAGS_INVALID
+        raise ArgumentError, constants.UPDATE_DATA_TAGS_INVALID
       end
       unless options.fetch(:custom_coordinates, "").is_a?(String)
-        raise ArgumentError, constants::UPDATE_DATA_COORDS_INVALID
+        raise ArgumentError, constants.UPDATE_DATA_COORDS_INVALID
       end
-      url = "#{constants::BASE_URL}/#{file_id}/details/"
+      url = "#{constants.BASE_URL}/#{file_id}/details/"
       headers = @req_obj.create_headers
       payload = request_formatter(options)
       @req_obj.request("patch", url, headers, payload.to_json)
@@ -51,7 +51,7 @@ module ImageKitIo
       #  returns list of files on ImageKitIo Server
       #  :options dictionary of options
       formatted_options = request_formatter(options)
-      raise KeyError(constants::LIST_FILES_INPUT_MISSING) unless formatted_options.is_a?(Hash)
+      raise KeyError(constants.LIST_FILES_INPUT_MISSING) unless formatted_options.is_a?(Hash)
       url = BASE_URL
       headers = @req_obj.create_headers.update({params: options})
       @req_obj.request("get", url, headers, options)
@@ -102,7 +102,7 @@ module ImageKitIo
       if remote_file_url == ""
         raise ArgumentError, "remote_file_url is required"
       end
-      url = "#{constants::REMOTE_METADATA_FULL_URL}?url=#{remote_file_url}"
+      url = "#{constants.REMOTE_METADATA_FULL_URL}?url=#{remote_file_url}"
       @req_obj.request("get", url, @req_obj.create_headers)
     end
 
@@ -115,7 +115,7 @@ module ImageKitIo
 
       response_list = []
       options.each do |key, val|
-        if constants::VALID_UPLOAD_OPTIONS.include?(key.to_s)
+        if constants.VALID_UPLOAD_OPTIONS.include?(key.to_s)
           if val.is_a?(Array)
             val = val.join(",")
           end
