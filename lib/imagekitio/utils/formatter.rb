@@ -1,6 +1,8 @@
 module ImageKitIo
   module Utils
     module Formatter
+
+      module_function
       def snake_to_camel(word)
         word_list = word.split("_")
         result = []

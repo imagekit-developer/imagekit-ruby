@@ -1,4 +1,3 @@
-require 'byebug'
 module ImageKitIo
   module Constants
     module Error

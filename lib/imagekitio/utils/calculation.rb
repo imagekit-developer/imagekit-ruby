@@ -6,6 +6,8 @@ module ImageKitIo
     module Calculation
       DEFAULT_TIME_DIFF = 60 * 30
 
+      module_function
+
       def is_valid_hex(hex_string)
         # checks if hexadecimal value is valid or not
         /^[[:xdigit:]]+$/ === hex_string

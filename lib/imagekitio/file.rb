@@ -52,33 +52,33 @@ module ImageKitIo
       #  :options dictionary of options
       formatted_options = request_formatter(options)
       raise KeyError(constants.LIST_FILES_INPUT_MISSING) unless formatted_options.is_a?(Hash)
-      url = BASE_URL
+      url = constants.BASE_URL
       headers = @req_obj.create_headers.update({params: options})
       @req_obj.request("get", url, headers, options)
     end
 
     def details(file_identifier)
       # Get detail of file by file_identifier
-      url = "#{BASE_URL}/#{file_identifier}/details/"
+      url = "#{constants.BASE_URL}/#{file_identifier}/details/"
       headers = @req_obj.create_headers
       @req_obj.request("get", url, headers)
     end
 
     def get_metadata(file_id)
       # Get metadata of a file by file_id
-      url = "#{BASE_URL}/#{file_id}/metadata"
+      url = "#{constants.BASE_URL}/#{file_id}/metadata"
       @req_obj.request("get", url, @req_obj.create_headers)
     end
 
     def delete(file_id)
       # Delete a file_id by file_id
-      url = "#{BASE_URL}/#{file_id}"
+      url = "#{constants.BASE_URL}/#{file_id}"
       headers = @req_obj.create_headers
       @req_obj.request("delete", url, headers)
     end
 
     def batch_delete(file_ids)
-      url = "#{BASE_URL}#{BULK_FILE_DELETE}"
+      url = "#{constants.BASE_URL}#{constants.BULK_FILE_DELETE}"
       payload = {'fileIds': file_ids}
       @req_obj.request("post", url, @req_obj.create_headers, payload.to_json)
     end
@@ -87,14 +87,14 @@ module ImageKitIo
 
       # purges cache from server by file_url
 
-      url = "#{BASE_URL}/purge"
+      url = "#{constants.BASE_URL}/purge"
       payload = {'url': file_url}
       @req_obj.request("post", url, @req_obj.create_headers, payload)
     end
 
     def purge_cache_status(request_id)
       # This function is to get cache_status
-      url = "#{BASE_URL}/purge/#{request_id}"
+      url = "#{constants.BASE_URL}/purge/#{request_id}"
       @req_obj.request("get", url, @req_obj.create_headers)
     end
 
