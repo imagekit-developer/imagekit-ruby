@@ -2,6 +2,9 @@ require_relative "./spec_helper"
 require "rspec/autorun"
 
 RSpec.describe ImageKitIo::Url do
+  let(:request_obj) { ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint) }
+  let(:url_obj) { ImageKitIo::Url.new(request_obj) }
+
   before(:each) do
     @private_key = 'private_key_xyz'
     @public_key = 'public_key_xyz'
@@ -9,13 +12,10 @@ RSpec.describe ImageKitIo::Url do
   end
   describe "TestGenerateUrl" do
     it "test_request_init" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
       expect(request_obj.private_key).to eq(@private_key)
     end
 
     it "test_generate_url_without_transformations" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -26,8 +26,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_path" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -39,8 +37,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_path_with_special_characters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
                   url_endpoint: @url_endpoint,
@@ -52,8 +48,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_without_slash" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
       options = { path: "default-image.jpg",
                   url_endpoint: @url_endpoint,
                   transformation: [{ height: 300, width: 400 }],
@@ -64,8 +58,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_path_without_slash_with_special_characters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "γειασας/Fjällräven_KnSJwp87u6q.png",
                   url_endpoint: @url_endpoint,
@@ -77,8 +69,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_override_url_endpoint_without_slash" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
       options = { path: "/default-image.jpg",
                   url_endpoint: "https://ik.imagekit.io/your_override_imagekit_id",
                   transformation: [{ height: 300, width: 400 }],
@@ -89,8 +79,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_override_url_endpoint_without_slash_with_special_characters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
       options = { path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
                   url_endpoint: "https://ik.imagekit.io/your_override_imagekit_id",
                   transformation: [{ height: 300, width: 400 }],
@@ -101,8 +89,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_override_url_endpoint_with_slash" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   url_endpoint: "https://ik.imagekit.io/your_override_imagekit_id/",
@@ -114,8 +100,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_override_url_endpoint_with_slash_with_special_characters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
       options = { path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
                   url_endpoint: "https://ik.imagekit.io/your_override_imagekit_id/",
                   transformation: [{ height: 300, width: 400 }],
@@ -126,8 +110,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_override_url_endpoint_with_special_characters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
       options = { path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
                   url_endpoint: "https://www.Fjällräven.com/your_override_imagekit_id/",
                   transformation: [{ height: 300, width: 400 }],
@@ -138,8 +120,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_new_transformation_parameters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -150,8 +130,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_should_have_ik_sdk_version" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -162,8 +140,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_should_have_transformation_parameters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -227,8 +203,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_chained_transformation" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -239,8 +213,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_transformation_parameters_setted_to_query" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -253,8 +225,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_special_characters_transformation_parameters_setted_to_query" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/γειασας/Fjällräven_KnSJwp87u6q.png",
                   url_endpoint: @url_endpoint,
@@ -267,8 +237,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_query_parameters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   query_parameters: { "v": "123", "blank_parameter": "" },
@@ -280,8 +248,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_query_parameters_with_special_characters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   query_parameters: { "γειασας": "γειασας" },
@@ -293,8 +259,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_src_checking_query_param_added" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { src: "https://ik.imagekit.io/ldt7znpgpjs/test_YhNhoRxWt.jpg?another=abc&xyz=888",
                   transformation: [{ height: "300", width: "400", }],
@@ -306,8 +270,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_path_checking_query_param_added" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/test_YhNhoRxWt.jpg?another=abc&xyz=888",
                   transformation: [{ height: "300", width: "400", }],
@@ -320,8 +282,6 @@ RSpec.describe ImageKitIo::Url do
 
     it "test_generate_url_with_src" do
       # Test url generation with src param
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { src: "https://ik.imagekit.io/ldt7znpgpjs/test_YhNhoRxWt.jpg",
                   transformation: [{ height: "300",
@@ -341,8 +301,6 @@ RSpec.describe ImageKitIo::Url do
 
     it "test_generate_url_with_src_with_special_characters" do
       # Test url generation with src param
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { src: "https://www.Fjällräve.com/γειασας/Fjällräven_KnSJwp87u6q.png",
                   transformation: [{ height: "300",
@@ -361,8 +319,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_src_and_query_parameters_is_path" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { src: "https://ik.imagekit.io/ldt7znpgpjs/test_YhNhoRxWt.jpg",
                   transformation: [{ height: "300",
@@ -380,8 +336,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_path_and_signed" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
@@ -394,8 +348,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_generate_url_with_path_and_signed_with_special_characters" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/Fjällräven_KnSJwp87u6q.png",
                   url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
@@ -408,8 +360,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_url_with_invalid_args_returns_as_it_is" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -421,8 +371,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_url_without_path_and_src_should_return_empty" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { url_endpoint: @url_endpoint,
                   transformation: { height: "300", width: 400 },
@@ -433,8 +381,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_url_with_invalid_trans_pos" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       options = { path: "/default-image.jpg",
                   url_endpoint: @url_endpoint,
@@ -472,8 +418,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_get_signature_with_100_expire_seconds" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       url = "https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png"
       signature = url_obj.get_signature("private_key_test", url, "https://test-domain.com/test-endpoint/", 100)
@@ -481,8 +425,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_get_signature_expect_without_expire_seconds" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       url = "https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png"
       signature = url_obj.get_signature("private_key_test", url, "https://test-domain.com/test-endpoint/", 0)
@@ -491,8 +433,6 @@ RSpec.describe ImageKitIo::Url do
     end
 
     it "test_get_signature_expect_without_expire_seconds_without_slash" do
-      request_obj = ImageKitIo::Request.new(@private_key, @public_key, @url_endpoint)
-      url_obj = ImageKitIo::Url.new(request_obj)
 
       url = "https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png"
       signature = url_obj.get_signature("private_key_test", url, "https://test-domain.com/test-endpoint", 0)
