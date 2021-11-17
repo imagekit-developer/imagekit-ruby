@@ -8,11 +8,17 @@ module ActiveStorageBlobExtension
       # as an argument. But the imagekit.io needs fileId to destroy the file which can be get from the metadata.
       # So first destroy the remote file and then destroy the local blob record.
       def remove_imagekit_file
-        ActiveStorage::Service::ImageKitIoService.delete_ik_file(self)
+        service.class.delete_ik_file(self)
       end
 
       def remote_file_exist?
         service.exist?(self.key)
+      end
+
+      def remote_file
+        return false unless remote_file_exist?
+
+        service.class.remote_file(self)
       end
     end
   end
@@ -26,7 +32,15 @@ module ActiveStorage
   class Service::ImageKitIoService < Service
     class << self
       def delete_ik_file(blob)
-        ImageKiIo::ActiveStorage::IKFile.new(blob.metadata).delete
+        ik_file(blob).delete
+      end
+
+      def remote_file(blob)
+        ik_file(blob)
+      end
+
+      def ik_file(blob)
+        self.new.send(:ik_file).new(blob.metadata)
       end
     end
 
@@ -67,14 +81,7 @@ module ActiveStorage
     end
 
     def exist?(key)
-      ik_file = image_kit_file(key)
-      ik_client = client
-      details = ik_client.get_file_details(ik_file.file_id)
-      if details[:response].present?
-        true
-      else
-        false
-      end
+      image_kit_file(key).exist?
     end
 
     def url_for_direct_upload(key, expires_in:, content_type:, content_length:, checksum:)

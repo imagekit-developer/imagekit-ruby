@@ -51,6 +51,13 @@ module ImageKiIo
       def file_id
         identifier['fileId']
       end
+
+      def exist?
+        details = @imagekit.get_file_details(file_id)
+        return false if details[:error].present?
+
+        true
+      end
     end
   end
 end
