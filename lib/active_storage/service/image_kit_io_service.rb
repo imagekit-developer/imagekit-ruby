@@ -10,9 +10,14 @@ module ActiveStorageBlobExtension
       def remove_imagekit_file
         ActiveStorage::Service::ImageKitIoService.delete_ik_file(self)
       end
+
+      def remote_file_exist?
+        service.exist?(self.key)
+      end
     end
   end
 end
+
 Rails.application.config.to_prepare do
   ActiveStorage::Blob.send :include, ::ActiveStorageBlobExtension
 end
@@ -40,14 +45,13 @@ module ActiveStorage
     end
 
     def download(key, &block)
-      # improve implementation with block
       instrument :download, key: key do
         image_kit_file(key)
       end
     end
 
     def download_chunk(key, range)
-      byebug
+      puts 'Not implemented download_chunk'
     end
 
     def delete(key)
@@ -59,26 +63,30 @@ module ActiveStorage
 
     def delete_prefixed(prefix)
       # delete the variants files
+      puts 'Not implemented delete_prefixed'
     end
 
     def exist?(key)
-      byebug
-
+      ik_file = image_kit_file(key)
+      ik_client = client
+      details = ik_client.get_file_details(ik_file.file_id)
+      if details[:response].present?
+        true
+      else
+        false
+      end
     end
 
     def url_for_direct_upload(key, expires_in:, content_type:, content_length:, checksum:)
-      byebug
-
+      puts 'Not implemented url_for_direct_upload'
     end
 
     def headers_for_direct_upload(key, current_type:, **options)
-      byebug
-
+      puts 'Not implemented header_for_direct_upload'
     end
 
     def path_for(key)
-      byebug
-
+      image_kit_file(key).path
     end
 
     def url(key, filename: nil, content_type: '', **options)

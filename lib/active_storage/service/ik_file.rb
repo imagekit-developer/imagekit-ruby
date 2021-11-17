@@ -1,13 +1,15 @@
 module ImageKiIo
   module ActiveStorage
     class IKFile
+      attr_accessor :identifier
+
       def initialize(identifier)
         @identifier = identifier
         @imagekit = ImageKitIo.client
       end
 
       def url
-        @identifier['url']
+        identifier['url']
       end
 
       def delete
@@ -18,9 +20,36 @@ module ImageKiIo
         end
       end
 
-      private
+      def file_type
+        identifier['fileType']
+      end
+
+      def thumbnail_url
+        identifier['thumbnailUrl']
+      end
+
+      def filename
+        identifier['name']
+      end
+
+      def size
+        identifier['size']
+      end
+
+      def path
+        identifier['filePath']
+      end
+
+      def height
+        identifier['height']
+      end
+
+      def width
+        identifier['width']
+      end
+
       def file_id
-        @identifier['fileId']
+        identifier['fileId']
       end
     end
   end
