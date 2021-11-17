@@ -59,8 +59,14 @@ module ActiveStorage
     end
 
     def download(key, &block)
-      instrument :download, key: key do
-        image_kit_file(key)
+      if block_given?
+        instrument :stream_file, key: key do
+          stream_file(key, &block)
+        end
+      else
+        instrument :download, key: key do
+          image_kit_file(key)
+        end
       end
     end
 
@@ -130,6 +136,16 @@ module ActiveStorage
 
     def ik_file
       ImageKiIo::ActiveStorage::IKFile
+    end
+
+    def stream_file(key, &download_block)
+      file_obj = image_kit_file(key)
+      block = proc { |response|
+        response.read_body do |chunk|
+          download_block.call(chunk) if download_block.present?
+        end
+      }
+      client.stream_file(file_obj.url, &block)
     end
   end
 end

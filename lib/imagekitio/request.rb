@@ -55,5 +55,21 @@ module ImageKitIo
       end
       response
     end
+
+    def request_stream(method, url, headers: nil, payload: nil, **options, &block)
+      headers ||= create_headers
+      response = { response: nil, error: nil }
+      begin
+        RestClient::Request.execute(method: method,
+                                    url: url,
+                                    headers: headers,
+                                    payload: payload,
+                                    **options,
+                                    block_response: block
+                                    )
+      rescue RestClient::ExceptionWithResponse => err
+        err.http_code == 404 ? response[:error] = {'message': err.response.to_s} : JSON.parse(err.response)
+      end
+    end
   end
 end

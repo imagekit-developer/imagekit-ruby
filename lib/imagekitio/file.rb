@@ -106,6 +106,13 @@ module ImageKitIo
       @req_obj.request("get", url, @req_obj.create_headers)
     end
 
+    def stream_file(remote_file_url, &block)
+      if remote_file_url == ''
+        raise ArgumentError, 'remote_file_url is required'
+      end
+      @req_obj.request_stream('get', remote_file_url, headers: @req_obj.create_headers, &block)
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,

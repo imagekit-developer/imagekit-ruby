@@ -96,6 +96,9 @@ module ImageKitIo
       @file.get_metadata_from_remote_url(remote_file_url)
     end
 
+    def stream_file(file_url, &block)
+      @file.stream_file(file_url, &block)
+    end
     # Get metadata from remote_file_url
     # param remote_file_url: url string of remote file
 
