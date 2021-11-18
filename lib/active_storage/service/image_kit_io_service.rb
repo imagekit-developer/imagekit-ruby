@@ -47,6 +47,8 @@ end
 
 module ActiveStorage
   class Service::ImageKitIoService < Service
+    include ImageKitIo::Constantable
+
     class << self
       def delete_ik_file(blob)
         ik_file(blob).delete
@@ -107,12 +109,21 @@ module ActiveStorage
       image_kit_file(key).exist?
     end
 
-    def url_for_direct_upload(key, expires_in:, content_type:, content_length:, checksum:)
-      puts 'Not implemented url_for_direct_upload'
+    def url_for_direct_upload(key, **options)
+      instrument :url, key: key do |payload|
+        options.delete(:content_length)
+        options.delete(:checksum)
+        url = "#{constants.BASE_URL}#{constants.UPLOAD}"
+        generated_url = client.url(src: url)
+        payload[:url] = generated_url
+        generated_url
+      end
     end
 
-    def headers_for_direct_upload(key, current_type:, **options)
-      puts 'Not implemented header_for_direct_upload'
+    def headers_for_direct_upload(key, content_type:, checksum:, **options)
+      {
+        'Content-Type' => content_type
+      }
     end
 
     def path_for(key)
