@@ -1,5 +1,16 @@
 require_relative './ik_file'
 
+# Overwrite the ActiveStorage::Downloader's open method and remove the file integrity check constraint method verify_integrity_of
+class DownloaderExtension < ::ActiveStorage::Downloader
+  def open(key, checksum:, name: "ActiveStorage-", tmpdir: nil)
+    open_tempfile(name, tmpdir) do |file|
+      download key, file
+      # verify_integrity_of file, checksum: checksum
+      yield file
+    end
+  end
+end
+
 module ActiveStorageBlobExtension
   def self.included(base)
     base.class_eval do
@@ -104,6 +115,10 @@ module ActiveStorage
 
     def url(key, filename: nil, content_type: '', **options)
       image_kit_file(key).url
+    end
+
+    def open(*args, **options, &block)
+      DownloaderExtension.new(self).open(*args, **options, &block)
     end
 
     private
