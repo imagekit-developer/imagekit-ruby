@@ -107,7 +107,7 @@ module ImageKitIo
     end
 
     def stream_file(remote_file_url, &block)
-      if remote_file_url == ''
+      if remote_file_url == '' || remote_file_url.nil?
         raise ArgumentError, 'remote_file_url is required'
       end
       @req_obj.request_stream('get', remote_file_url, headers: @req_obj.create_headers, &block)

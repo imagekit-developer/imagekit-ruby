@@ -14,6 +14,7 @@ end
 module ActiveStorageBlobExtension
   def self.included(base)
     base.class_eval do
+      before_update :check_metadata
       before_destroy :remove_imagekit_file
       # ActiveRecord::Blob class first destroy the record data and then calls the service.delete method with key
       # as an argument. But the imagekit.io needs fileId to destroy the file which can be get from the metadata.
@@ -30,6 +31,11 @@ module ActiveStorageBlobExtension
         return false unless remote_file_exist?
 
         service.class.remote_file(self)
+      end
+
+      # Needs to reload the record to reflect updated remote meta data.
+      def check_metadata
+        self.reload
       end
     end
   end
@@ -64,7 +70,7 @@ module ActiveStorage
         blob = storage_blob(key)
         response = client.upload_file(io, blob.filename.to_s)
         if response[:error].nil?
-          blob.update(metadata: response[:response])
+          blob.update_columns(metadata: response[:response].transform_keys(&:to_sym))
         end
       end
     end
