@@ -3,6 +3,7 @@ require_relative './constants/error'
 require_relative './constants/file'
 require_relative './constants/supported_transformation'
 require_relative './constants/url'
+require_relative './configurable'
 
 module ImageKitIo
   module Constantable

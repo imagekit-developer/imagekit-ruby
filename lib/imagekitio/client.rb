@@ -6,6 +6,8 @@ require_relative "./request"
 require_relative "./file"
 require_relative "./url"
 require_relative "./utils/calculation"
+require_relative './constant'
+require_relative './configurable'
 
 module ImageKitIo
   # ImageKitIo class holds each method will be used by user

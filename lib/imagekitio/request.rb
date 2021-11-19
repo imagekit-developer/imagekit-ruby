@@ -3,7 +3,7 @@
 require "base64"
 require "rest-client"
 require "json"
-
+require_relative './constant'
 # Request requests and sends data from server
 module ImageKitIo
   class Request

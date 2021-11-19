@@ -1,4 +1,4 @@
-require "imagekitio/railtie"
+require "imagekitio/railtie" if defined? Rails
 
 require 'carrierwave'
 require 'base64'
