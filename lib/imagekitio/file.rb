@@ -178,6 +178,15 @@ module ImageKitIo
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
+    def delete_folder(folder_path)
+      if folder_path == '' || folder_path.nil?
+        raise ArgumentError, 'folder_path is required'
+      end
+      url = "#{constants.BASE_URL}/folder"
+      payload = { 'folderPath': folder_path }
+      @req_obj.request('delete', url, @req_obj.create_headers, payload)
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,

@@ -132,6 +132,10 @@ module ImageKitIo
       @file.create_folder(folder_name, parent_folder_path)
     end
 
+    def delete_folder(folder_path)
+      @file.delete_folder(folder_path)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
