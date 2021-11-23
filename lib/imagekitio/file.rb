@@ -164,9 +164,18 @@ module ImageKitIo
       if file_path == '' || file_path.nil? || new_file_name == '' || new_file_name.nil?
         raise ArgumentError, 'parameters required'
       end
-      url = "#{constans.BASE_URL}/rename"
+      url = "#{constants.BASE_URL}/rename"
       payload = { 'filePath': file_path, 'newFileName': new_file_name }.merge(request_formatter(options))
       @req_obj.request('put', url, @req_obj.create_headers, payload)
+    end
+
+    def create_folder(folder_name, parent_folder_path)
+      if folder_name == '' || folder_name.nil?
+        raise ArgumentError, 'folder_name is required'
+      end
+      url = "#{constants.BASE_URL}/folder"
+      payload = { 'folderName': folder_name, 'parentFolderPath': parent_folder_path }
+      @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
     def validate_upload_options(options)

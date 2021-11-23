@@ -128,6 +128,10 @@ module ImageKitIo
       @file.rename(file_path, new_file_name, **options)
     end
 
+    def create_folder(folder_name, parent_folder_path)
+      @file.create_folder(folder_name, parent_folder_path)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
