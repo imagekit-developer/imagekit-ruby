@@ -148,6 +148,12 @@ module ImageKitIo
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
+    def move(source_file_path, destination_path)
+      url = "#{constants.BASE_URL}/move"
+      payload = { 'sourceFilePath': source_file_path, 'destinationPath': destination_path }
+      @req_obj.request('post', url, @req_obj.create_headers, payload)
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,
