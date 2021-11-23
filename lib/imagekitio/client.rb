@@ -140,6 +140,10 @@ module ImageKitIo
       @file.copy_folder(source_folder_path, destination_path)
     end
 
+    def move_folder(source_folder_path, destination_path)
+      @file.move_folder(source_folder_path, destination_path)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images

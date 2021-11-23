@@ -196,6 +196,15 @@ module ImageKitIo
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
+    def move_folder(source_folder_path, destination_path)
+      if source_folder_path == '' || source_folder_path.nil? || destination_path == '' || destination_path.nil?
+        raise ArgumentError, 'parameters required'
+      end
+      url = "#{constants.BULK_BASE_URL}/moveFolderr"
+      payload = { 'sourceFolderPath': source_folder_path, 'destinationPath': destination_path }
+      @req_obj.request('post', url, @req_obj.create_headers, payload)
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,
