@@ -232,6 +232,12 @@ module ImageKitIo
       @req_obj.request('get', url, @req_obj.create_headers, payload)
     end
 
+    def update_custom_metadata(id, label, schema)
+      url = "#{constants.API_BASE_URL}/customMetadataFields/#{id}"
+      payload = { 'label': label, 'schema': schema }
+      @req_obj.request('patch', url, @req_obj.create_headers, payload)
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,

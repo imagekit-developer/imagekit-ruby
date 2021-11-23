@@ -152,8 +152,12 @@ module ImageKitIo
       @file.create_custom_metadata(name, label, schema)
     end
 
-    def get_custom_metadata(options = {})
+    def get_custom_metadata_fields(options = {})
       @file.get_custom_metadata(options)
+    end
+
+    def update_custom_metadata_fields(id, label, schema)
+      @file.update_custom_metadata(id, label, schema)
     end
 
     def phash_distance(first, second)
