@@ -116,6 +116,10 @@ module ImageKitIo
       @file.batch_ai_tags_remove(file_ids, ai_tags)
     end
 
+    def copy_file(source_file_path, destination_path)
+      @file.copy(source_file_path, destination_path)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
