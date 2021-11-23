@@ -20,16 +20,26 @@ module ImageKitIo
     #           { 'name' => 'remove-bg', 'options' => { 'add_shadow' => true } },
     #           { 'name' => 'google-auto-tagging', 'minConfidence' => 80 }
     #         ]
+    #  - `custom_metadata` should be hash
+    #     eg: option['custom_metadata'] = {
+    #            "SKU": "VS882HJ2JD",
+    #            "price": 599.99,
+    #            "brand": "H&M",
+    #            "discount": 30
+    #         }
     def upload(file, file_name, options)
       raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file
       raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file_name
+      if !options['extensions'].nil? && options['extensions'].is_a?(Array)
+        options['extensions'] = options['extensions'].to_json
+      end
+      if !options['custom_metadata'].nil? && options['custom_metadata'].is_a?(Hash)
+        options['custom_metadata'] = options['custom_metadata'].to_json
+      end
       options = validate_upload_options(options || {})
       if options.is_a?(FalseClass)
         raise ArgumentError, "Invalid Upload option"
       else
-        if !options['extensions'].nil? && options['extensions'].is_a?(Array)
-          options['extensions'] = options['extensions'].to_json
-        end
         headers = @req_obj.create_headers
         payload = {multipart: true, file: file, fileName: file_name}.merge(options)
 
