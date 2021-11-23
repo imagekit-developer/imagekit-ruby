@@ -143,15 +143,30 @@ module ImageKitIo
     end
 
     def copy(source_file_path, destination_path)
+      if source_file_path == '' || source_file_path.nil? || destination_path == '' || destination_path.nil?
+        raise ArgumentError, 'parameters required'
+      end
       url = "#{constants.BASE_URL}/copy"
       payload = { 'sourceFilePath': source_file_path, 'destinationPath': destination_path }
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
     def move(source_file_path, destination_path)
+      if source_file_path == '' || source_file_path.nil? || destination_path == '' || destination_path.nil?
+        raise ArgumentError, 'parameters required'
+      end
       url = "#{constants.BASE_URL}/move"
       payload = { 'sourceFilePath': source_file_path, 'destinationPath': destination_path }
       @req_obj.request('post', url, @req_obj.create_headers, payload)
+    end
+
+    def rename(file_path, new_file_name, **options)
+      if file_path == '' || file_path.nil? || new_file_name == '' || new_file_name.nil?
+        raise ArgumentError, 'parameters required'
+      end
+      url = "#{constans.BASE_URL}/rename"
+      payload = { 'filePath': file_path, 'newFileName': new_file_name }.merge(request_formatter(options))
+      @req_obj.request('put', url, @req_obj.create_headers, payload)
     end
 
     def validate_upload_options(options)

@@ -124,6 +124,10 @@ module ImageKitIo
       @file.move(source_file_path, destination_path)
     end
 
+    def rename_file(file_path, new_file_name, **options)
+      @file.rename(file_path, new_file_name, **options)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
