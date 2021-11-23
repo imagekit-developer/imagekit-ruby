@@ -144,6 +144,10 @@ module ImageKitIo
       @file.move_folder(source_folder_path, destination_path)
     end
 
+    def bulk_job_status(job_id)
+      @file.job_status(job_id)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
