@@ -148,6 +148,10 @@ module ImageKitIo
       @file.job_status(job_id)
     end
 
+    def create_custom_metadata_fields(name, label, schema)
+      @file.create_custom_metadata_fields(name, label, schema)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images

@@ -8,6 +8,7 @@ module ImageKitIo
       UPLOAD = "/upload"
       REMOTE_METADATA_FULL_URL = "https://api.imagekit.io/v1/metadata"
       BULK_BASE_URL = 'https://api.imagekit.io/v1/bulkJobs'
+      API_BASE_URL = 'https://api.imagekit.io/v1/'
     end
   end
 end

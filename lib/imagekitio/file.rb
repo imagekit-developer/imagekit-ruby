@@ -214,6 +214,18 @@ module ImageKitIo
       @req_obj.request('get', url, @req_obj.create_headers, payload)
     end
 
+    def create_custom_metadata(name, label, schema)
+      if name == '' || name.nil? || label == '' || label.nil? || schema == '' || schema.nil?
+        raise ArgumentError, 'parameters required'
+      end
+      unless schema.is_a?(Hash)
+        raise ArgumentError, 'schema must be hash object'
+      end
+      url = "#{constants.API_BASE_URL}/customMetadataFields"
+      payload = { 'name': name, 'label': label, 'schema': schema }
+      @req_obj.request('post', url, @req_obj.create_headers, payload)
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,
