@@ -238,6 +238,11 @@ module ImageKitIo
       @req_obj.request('patch', url, @req_obj.create_headers, payload)
     end
 
+    def delete_custom_metadata(id)
+      url = "#{constants.API_BASE_URL}/customMetadataFields/#{id}"
+      @req_obj.request('delete', url, @req_obj.create_headers)
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,

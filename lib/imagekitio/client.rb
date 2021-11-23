@@ -160,6 +160,10 @@ module ImageKitIo
       @file.update_custom_metadata(id, label, schema)
     end
 
+    def delete_custom_metadata_fields(id)
+      @file.delete_custom_metadata(id)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
