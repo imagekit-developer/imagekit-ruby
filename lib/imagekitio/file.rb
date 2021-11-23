@@ -124,6 +124,13 @@ module ImageKitIo
       @req_obj.request_stream('get', remote_file_url, headers: @req_obj.create_headers, &block)
     end
 
+    def bulk_tags_add(file_ids, tags)
+      url = "#{constants.BASE_URL}/addTags"
+      payload = { 'fileIds': file_ids, tags: tags }
+      @req_obj.request('post', url, @req_obj.create_headers, payload)
+
+    end
+
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,

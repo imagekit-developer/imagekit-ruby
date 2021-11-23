@@ -94,6 +94,8 @@ module ImageKitIo
       @file.purge_cache_status(request_id.to_s)
     end
 
+    # Get metadata from remote_file_url
+    # param remote_file_url: url string of remote file
     def get_remote_file_url_metadata(remote_file_url = "")
       @file.get_metadata_from_remote_url(remote_file_url)
     end
@@ -101,8 +103,10 @@ module ImageKitIo
     def stream_file(file_url, &block)
       @file.stream_file(file_url, &block)
     end
-    # Get metadata from remote_file_url
-    # param remote_file_url: url string of remote file
+
+    def bulk_tags_add(file_ids = [], tags = [])
+      @file.batch_tags_add(file_ids, tags)
+    end
 
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
