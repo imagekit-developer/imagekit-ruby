@@ -126,13 +126,19 @@ module ImageKitIo
 
     def batch_tags_add(file_ids, tags)
       url = "#{constants.BASE_URL}/addTags"
-      payload = { 'fileIds': file_ids, tags: tags }
+      payload = { 'fileIds': file_ids, 'tags': tags }
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
     def batch_tags_remove(file_ids, tags)
       url = "#{constants.BASE_URL}/removeTags"
-      payload = { 'fileIds': file_ids, tags: tags }
+      payload = { 'fileIds': file_ids, 'tags': tags }
+      @req_obj.request('post', url, @req_obj.create_headers, payload)
+    end
+
+    def batch_ai_tags_remove(file_ids, ai_tags)
+      url = "#{constants.BASE_URL}/removeAITags"
+      payload = { 'fileIds': file_ids, 'AITags': ai_tags }
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 

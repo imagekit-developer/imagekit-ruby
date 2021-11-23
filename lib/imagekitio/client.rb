@@ -112,6 +112,10 @@ module ImageKitIo
       @file.batch_tags_remove(file_ids, tags)
     end
 
+    def bulk_ai_tags_remove(file_ids = [], ai_tags = [])
+      @file.batch_ai_tags_remove(file_ids, ai_tags)
+    end
+
     def phash_distance(first, second)
       # Get hamming distance between two phash(image hash) to check
       # similarity between images
