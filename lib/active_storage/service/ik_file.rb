@@ -25,7 +25,7 @@ module ImageKiIo
       end
 
       def thumbnail_url
-        identifier['thumbnailUrl']
+        identifier['thumbnail']
       end
 
       def filename
@@ -57,6 +57,54 @@ module ImageKiIo
         return false if details[:error].present?
 
         true
+      end
+
+      def type
+        identifier['type']
+      end
+
+      def tags
+        identifier['tags']
+      end
+
+      def ai_tags
+        identifier['AITags']
+      end
+
+      def is_private?
+        identifier['isPrivateFile']
+      end
+
+      def custom_coordinates
+        identifier['customCoordinates']
+      end
+
+      def mime
+        identifier['mime']
+      end
+
+      def alpha?
+        identifier['hasAlpha']
+      end
+
+      def custom_metadata
+        identifier['customMetadata']
+      end
+
+      def embedded_metadata
+        identifier['embeddedMetadata']
+      end
+
+      def created_at
+        identifier['createdAt']
+      end
+
+      def updated_at
+        identifier['updatedAt']
+      end
+
+      def extension_status
+        identifier['extensionStatus']
       end
     end
   end
