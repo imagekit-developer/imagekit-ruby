@@ -1,3 +1,5 @@
+require 'json'
+
 module ImageKitIo
   module Utils
     module Formatter
@@ -31,6 +33,14 @@ module ImageKitIo
           result[snake_to_camel(key.to_s)] = val
         end
         result
+      end
+
+      def format_to_json(options, key, expected_class)
+        val = options[key]
+        if !val.nil? && val.is_a?(expected_class)
+          options[key] = options[key].to_json
+        end
+        options
       end
     end
   end

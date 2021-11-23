@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require_relative "utils/formatter"
-require 'json'
-
+require 'byebug'
 module ImageKitIo
   class File
     include Utils::Formatter
@@ -30,12 +29,9 @@ module ImageKitIo
     def upload(file, file_name, options)
       raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file
       raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file_name
-      if !options['extensions'].nil? && options['extensions'].is_a?(Array)
-        options['extensions'] = options['extensions'].to_json
-      end
-      if !options['custom_metadata'].nil? && options['custom_metadata'].is_a?(Hash)
-        options['custom_metadata'] = options['custom_metadata'].to_json
-      end
+
+      options = format_to_json(options, :extensions, Array)
+      options = format_to_json(options, :custom_metadata, Hash)
       options = validate_upload_options(options || {})
       if options.is_a?(FalseClass)
         raise ArgumentError, "Invalid Upload option"
