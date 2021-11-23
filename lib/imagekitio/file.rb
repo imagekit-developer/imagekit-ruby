@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require_relative "utils/formatter"
+require 'json'
 
 module ImageKitIo
   class File
@@ -12,15 +13,23 @@ module ImageKitIo
       @req_obj = req_obj
     end
 
+    # uploads files with required arguments, supports bot url and binary
+    # Options types:
+    #  - `extensions` should be array of hash
+    #     eg: option['extension'] = [
+    #           { 'name' => 'remove-bg', 'options' => { 'add_shadow' => true } },
+    #           { 'name' => 'google-auto-tagging', 'minConfidence' => 80 }
+    #         ]
     def upload(file, file_name, options)
-      # uploads files with required arguments
-      # supports bot url and binary
       raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file
       raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file_name
       options = validate_upload_options(options || {})
       if options.is_a?(FalseClass)
         raise ArgumentError, "Invalid Upload option"
       else
+        if !options['extensions'].nil? && options['extensions'].is_a?(Array)
+          options['extensions'] = options['extensions'].to_json
+        end
         headers = @req_obj.create_headers
         payload = {multipart: true, file: file, fileName: file_name}.merge(options)
 
