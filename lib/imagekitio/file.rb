@@ -46,10 +46,6 @@ module ImageKitIo
 
     def update_details(file_id, options)
       # Update file detail by file_id and options
-
-      unless (options.key? :tags) || (options.key? :custom_coordinates)
-        raise ArgumentError, constants.UPDATE_DATA_MISSING
-      end
       unless options.fetch(:tags, []).is_a?(Array)
         raise ArgumentError, constants.UPDATE_DATA_TAGS_INVALID
       end
