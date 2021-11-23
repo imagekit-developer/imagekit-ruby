@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require_relative "utils/formatter"
-require 'byebug'
+
 module ImageKitIo
   class File
     include Utils::Formatter
@@ -68,8 +68,8 @@ module ImageKitIo
       formatted_options = request_formatter(options)
       raise KeyError(constants.LIST_FILES_INPUT_MISSING) unless formatted_options.is_a?(Hash)
       url = constants.BASE_URL
-      headers = @req_obj.create_headers.update({params: options})
-      @req_obj.request("get", url, headers, options)
+      headers = @req_obj.create_headers.update({params: formatted_options})
+      @req_obj.request("get", url, headers, formatted_options)
     end
 
     def details(file_identifier)
