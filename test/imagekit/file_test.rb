@@ -740,5 +740,242 @@ RSpec.describe ImageKitIo::File do
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/metadata?url=http://example.com/fakefileurl")
       expect(resp[:code]).to eq(200)
     end
+
+    context 'batch tags' do
+      let!(:req_obj) { double }
+      let(:file_ids) { %[file_id_1 file_id_2] }
+
+      before do
+        allow(ImageKitIo::Request)
+          .to receive(:new)
+                .with(private_key, public_key, url_endpoint)
+                .and_return(req_obj)
+        allow(req_obj)
+          .to receive(:create_headers)
+                .and_return({})
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 200, body: { successfullyUpdatedFileIds: file_ids }})
+        @sut = ImageKitIo::File.new(req_obj)
+      end
+
+      it 'test_add_batch_tags' do
+        resp = @sut.add_batch_tags(file_ids, ['custom_tag'])
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/addTags")
+        expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"tags\":[\"custom_tag\"]}")
+        expect(resp[:code]).to eq(200)
+      end
+
+      it 'test_remove_batch_tags' do
+        resp = @sut.remove_batch_tags(file_ids, ['custom_tag_remove'])
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/removeTags")
+        expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"tags\":[\"custom_tag_remove\"]}")
+        expect(resp[:code]).to eq(200)
+      end
+
+      it 'test_remove_batch_ai_tags' do
+        resp = @sut.remove_batch_ai_tags(file_ids, ['custom_ai_tag'])
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/removeAITags")
+        expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"AITags\":[\"custom_ai_tag\"]}")
+        expect(resp[:code]).to eq(200)
+      end
+    end
+
+    context 'copy' do
+      let!(:req_obj) { double }
+      before do
+        allow(ImageKitIo::Request)
+          .to receive(:new)
+                .with(private_key, public_key, url_endpoint)
+                .and_return(req_obj)
+        allow(req_obj)
+          .to receive(:create_headers)
+                .and_return({})
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 200, body: { success: true }})
+        @sut = ImageKitIo::File.new(req_obj)
+      end
+
+      it 'raises error when parameter not provided' do
+        expect {
+          @sut.copy('', nil)
+        }.to raise_error(ArgumentError)
+
+      end
+
+      it 'test_copy' do
+        source_file = 'test/dummy.png'
+        destination_path = '/my_image'
+        resp = @sut.copy(source_file, destination_path)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/copy")
+        expect(@ac[:payload]).to eq({:sourceFilePath=>"test/dummy.png", :destinationPath=>"/my_image"})
+        expect(resp[:code]).to eq(200)
+      end
+    end
+
+    context 'move' do
+      let!(:req_obj) { double }
+      before do
+        allow(ImageKitIo::Request)
+          .to receive(:new)
+                .with(private_key, public_key, url_endpoint)
+                .and_return(req_obj)
+        allow(req_obj)
+          .to receive(:create_headers)
+                .and_return({})
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 200, body: { success: true }})
+        @sut = ImageKitIo::File.new(req_obj)
+      end
+
+      it 'raises error when parameter not provided' do
+        expect {
+          @sut.move('', nil)
+        }.to raise_error(ArgumentError)
+
+      end
+
+      it 'test_move' do
+        source_file = 'test/dummy.png'
+        destination_path = '/my_image'
+        resp = @sut.move(source_file, destination_path)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/move")
+        expect(@ac[:payload]).to eq({:sourceFilePath=>"test/dummy.png", :destinationPath=>"/my_image"})
+        expect(resp[:code]).to eq(200)
+      end
+    end
+
+    context 'rename' do
+      let!(:req_obj) { double }
+      before do
+        allow(ImageKitIo::Request)
+          .to receive(:new)
+                .with(private_key, public_key, url_endpoint)
+                .and_return(req_obj)
+        allow(req_obj)
+          .to receive(:create_headers)
+                .and_return({})
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 200, body: { success: true }})
+        @sut = ImageKitIo::File.new(req_obj)
+      end
+
+      it 'raises error when parameter not provided' do
+        expect {
+          @sut.rename('', nil)
+        }.to raise_error(ArgumentError)
+
+      end
+
+      it 'test_move' do
+        source_file = 'test/dummy.png'
+        new_name = 'my_image.png'
+        resp = @sut.rename(source_file, new_name)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/rename")
+        expect(@ac[:payload]).to eq({:filePath=>"test/dummy.png", :newFileName=>"my_image.png"})
+        expect(@ac[:method]).to eq('put')
+        expect(resp[:code]).to eq(200)
+      end
+    end
+
+    context 'folder' do
+      let!(:req_obj) { double }
+      before do
+        allow(ImageKitIo::Request)
+          .to receive(:new)
+                .with(private_key, public_key, url_endpoint)
+                .and_return(req_obj)
+        allow(req_obj)
+          .to receive(:create_headers)
+                .and_return({})
+      end
+
+      it 'raises error when parameter not provided' do
+        @sut = ImageKitIo::File.new(req_obj)
+        expect {
+          @sut.create_folder('', nil)
+        }.to raise_error(ArgumentError)
+      end
+
+      it 'test_create_folder' do
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 201, body: { success: true }})
+        @sut = ImageKitIo::File.new(req_obj)
+        folder_name = 'test_folder'
+        parent_folder = ''
+        resp = @sut.create_folder(folder_name, parent_folder)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/folder")
+        expect(@ac[:payload]).to eq("{\"folderName\":\"test_folder\",\"parentFolderPath\":\"\"}")
+        expect(@ac[:method]).to eq('post')
+        expect(resp[:code]).to eq(201)
+      end
+
+      it 'test_delete_folder' do
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 204, body: { success: true }})
+        @sut = ImageKitIo::File.new(req_obj)
+        folder_path = 'test_folder'
+        resp = @sut.delete_folder(folder_path)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/folder")
+        expect(@ac[:method]).to eq('delete')
+        expect(resp[:success]).to be(true)
+      end
+
+      it 'test_copy_folder' do
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 200, body: { jobId: '123456' }})
+        @sut = ImageKitIo::File.new(req_obj)
+        source_folder = 'my_folder'
+        destination_path = 'copied'
+        resp = @sut.copy_folder(source_folder, destination_path)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/bulkJobs/copyFolder")
+        expect(@ac[:method]).to eq('post')
+        expect(@ac[:payload]).to eq({:sourceFolderPath=>"my_folder", :destinationPath=>"copied"})
+        expect(resp[:body][:jobId]).to eq('123456')
+      end
+
+      it 'test_move_folder' do
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 200, body: { jobId: '123456' }})
+        @sut = ImageKitIo::File.new(req_obj)
+        source_folder = 'my_folder/inside_folder'
+        destination_path = 'moved/inside_another_folder'
+        resp = @sut.move_folder(source_folder, destination_path)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/bulkJobs/moveFolder")
+        expect(@ac[:method]).to eq('post')
+        expect(@ac[:payload]).to eq({:sourceFolderPath=>"my_folder/inside_folder", :destinationPath=>"moved/inside_another_folder"})
+        expect(resp[:body][:jobId]).to eq('123456')
+      end
+    end
+
+    it 'test_job_status' do
+      req_obj = double
+      job_id = '619e038e20b7ef03efc4eeb9'
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(req_obj)
+      allow(req_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      response_body = {"jobId"=> job_id, "type"=>"MOVE_FOLDER", "status"=>"Completed"}
+      allow(req_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+              .and_return({code: 200, body: response_body })
+      @sut = ImageKitIo::File.new(req_obj)
+      resp = @sut.job_status(job_id)
+      expect(@ac[:url]).to eq("https://api.imagekit.io/v1/bulkJobs/#{job_id}")
+      expect(@ac[:method]).to eq('get')
+      expect(@ac[:payload]).to eq({ :jobId => job_id})
+      expect(resp[:body]['jobId']).to eq(job_id)
+      expect(resp[:body]['status']).to eq('Completed')
+    end
   end
 end
