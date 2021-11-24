@@ -124,21 +124,21 @@ module ImageKitIo
       @req_obj.request_stream('get', remote_file_url, headers: @req_obj.create_headers, &block)
     end
 
-    def batch_tags_add(file_ids, tags)
+    def add_batch_tags(file_ids, tags)
       url = "#{constants.BASE_URL}/addTags"
-      payload = { 'fileIds': file_ids, 'tags': tags }
+      payload = { 'fileIds': file_ids, 'tags': tags }.to_json
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
-    def batch_tags_remove(file_ids, tags)
+    def remove_batch_tags(file_ids, tags)
       url = "#{constants.BASE_URL}/removeTags"
-      payload = { 'fileIds': file_ids, 'tags': tags }
+      payload = { 'fileIds': file_ids, 'tags': tags }.to_json
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
-    def batch_ai_tags_remove(file_ids, ai_tags)
+    def remove_batch_ai_tags(file_ids, ai_tags)
       url = "#{constants.BASE_URL}/removeAITags"
-      payload = { 'fileIds': file_ids, 'AITags': ai_tags }
+      payload = { 'fileIds': file_ids, 'AITags': ai_tags }.to_json
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
@@ -173,8 +173,8 @@ module ImageKitIo
       if folder_name == '' || folder_name.nil?
         raise ArgumentError, 'folder_name is required'
       end
-      url = "#{constants.BASE_URL}/folder"
-      payload = { 'folderName': folder_name, 'parentFolderPath': parent_folder_path }
+      url = "#{constants.API_BASE_URL}/folder"
+      payload = { 'folderName': folder_name, 'parentFolderPath': parent_folder_path }.to_json
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
@@ -182,7 +182,7 @@ module ImageKitIo
       if folder_path == '' || folder_path.nil?
         raise ArgumentError, 'folder_path is required'
       end
-      url = "#{constants.BASE_URL}/folder"
+      url = "#{constants.API_BASE_URL}/folder"
       payload = { 'folderPath': folder_path }
       @req_obj.request('delete', url, @req_obj.create_headers, payload)
     end
@@ -222,7 +222,7 @@ module ImageKitIo
         raise ArgumentError, 'schema must be hash object'
       end
       url = "#{constants.API_BASE_URL}/customMetadataFields"
-      payload = { 'name': name, 'label': label, 'schema': schema }
+      payload = { 'name': name, 'label': label, 'schema': schema }.to_json
       @req_obj.request('post', url, @req_obj.create_headers, payload)
     end
 
@@ -234,8 +234,10 @@ module ImageKitIo
 
     def update_custom_metadata(id, label, schema)
       url = "#{constants.API_BASE_URL}/customMetadataFields/#{id}"
-      payload = { 'label': label, 'schema': schema }
-      @req_obj.request('patch', url, @req_obj.create_headers, payload)
+      payload = {}
+      payload = payload.merge({ 'label': label }) unless label.nil?
+      payload = payload.merge({ 'schema': label }) unless schema.nil?
+      @req_obj.request('patch', url, @req_obj.create_headers, payload.to_json)
     end
 
     def delete_custom_metadata(id)

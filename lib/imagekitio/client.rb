@@ -104,16 +104,16 @@ module ImageKitIo
       @file.stream_file(file_url, &block)
     end
 
-    def bulk_tags_add(file_ids = [], tags = [])
-      @file.batch_tags_add(file_ids, tags)
+    def add_bulk_tags(file_ids = [], tags = [])
+      @file.add_batch_tags(file_ids, tags)
     end
 
-    def bulk_tags_remove(file_ids = [], tags = [])
-      @file.batch_tags_remove(file_ids, tags)
+    def remove_bulk_tags(file_ids = [], tags = [])
+      @file.remove_batch_tags(file_ids, tags)
     end
 
-    def bulk_ai_tags_remove(file_ids = [], ai_tags = [])
-      @file.batch_ai_tags_remove(file_ids, ai_tags)
+    def remove_bulk_ai_tags(file_ids = [], ai_tags = [])
+      @file.remove_batch_ai_tags(file_ids, ai_tags)
     end
 
     def copy_file(source_file_path, destination_path)
@@ -128,7 +128,7 @@ module ImageKitIo
       @file.rename(file_path, new_file_name, **options)
     end
 
-    def create_folder(folder_name, parent_folder_path)
+    def create_folder(folder_name, parent_folder_path = "/")
       @file.create_folder(folder_name, parent_folder_path)
     end
 
@@ -156,7 +156,7 @@ module ImageKitIo
       @file.get_custom_metadata(options)
     end
 
-    def update_custom_metadata_fields(id, label, schema)
+    def update_custom_metadata_fields(id, label: nil, schema: nil)
       @file.update_custom_metadata(id, label, schema)
     end
 
