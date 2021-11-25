@@ -123,6 +123,15 @@ class Employee < ApplicationRecord
   has_one_attached :avatar
 end
 ```
+
+Get image url:
+```ruby
+# If @employee is an object of your model that has data.
+
+# To get the original image url, use
+@employee.avatar.url
+```
+
 Now lets configure active_storage as a service for the imagekitio. 
 
 First add `:active_storage` in initializer file.
