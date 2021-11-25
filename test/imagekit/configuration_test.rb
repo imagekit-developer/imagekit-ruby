@@ -5,6 +5,9 @@ RSpec.describe ImageKitIo::Configurable do
   let(:configurable_obj) { Class.new.send :include, ImageKitIo::Configurable}
 
   describe 'Configuration' do
+    after do
+      configurable_obj.config.constants.BASE_URL = "https://api.imagekit.io/v1/files"
+    end
     it 'configure with the keys' do
       configurable_obj.configure do |config|
         config.public_key = 'public_key_123'
