@@ -36,6 +36,7 @@ module ImageKitIo
       end
 
       def format_to_json(options, key, expected_class)
+        options ||= {}
         val = options[key]
         if !val.nil? && val.is_a?(expected_class)
           options[key] = options[key].to_json
