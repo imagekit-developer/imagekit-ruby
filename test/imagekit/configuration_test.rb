@@ -5,9 +5,6 @@ RSpec.describe ImageKitIo::Configurable do
   let(:configurable_obj) { Class.new.send :include, ImageKitIo::Configurable}
 
   describe 'Configuration' do
-    after do
-      configurable_obj.config.constants.BASE_URL = "https://api.imagekit.io/v1/files"
-    end
     it 'configure with the keys' do
       configurable_obj.configure do |config|
         config.public_key = 'public_key_123'
@@ -34,12 +31,12 @@ RSpec.describe ImageKitIo::Configurable do
       end
 
       it "supports customization" do
-        constants.BASE_URL = 'imagekit.io'
-        expect(constants.BASE_URL).to eq('imagekit.io')
+        constants.TIMESTAMP = '88888'
+        expect(constants.TIMESTAMP).to eq('88888')
         configurable_obj.configure do |config|
-          config.constants.BASE_URL = 'api.imagekit.io'
+          config.constants.TIMESTAMP = '5555'
         end
-        expect(configurable_obj.constants.BASE_URL).to eq('api.imagekit.io')
+        expect(configurable_obj.constants.TIMESTAMP).to eq('5555')
       end
     end
 
