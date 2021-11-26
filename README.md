@@ -20,6 +20,7 @@ Table of contents -
  * [File Management](#File-Management)
  * [Utility Functions](#Utility-functions)
  * [Sample applications](#Sample-Application)
+ * [Upgrade to 2.0.0](#Upgrade)
  * [Support](#Support)
  * [Links](#Links)
 
@@ -651,6 +652,16 @@ There are two sample apps:
 * Plain ruby application
 
 Please see the sample applications in [here](https://github.com/imagekit-samples/quickstart).
+
+## Upgrade to 2.0.0
+
+Application using variants of version 1.0 needs following changes in order to use version 2.0.0:
+
+- Remove config from environment file to initializer file as described [here](#Initialization).
+- Include `ImageKitIo::CarrierWave` in uploader class(for Carrierwave).
+- Remove `storage :imagekit_store` config from uploader.
+- Rename class `ImageKit::ImageKitClient` to `ImageKitIo::Client`
+- Rename class `ImageKitIo::ImageKitRequest` to `ImageKitIo::Request`
 
 ## Support
 For any feedback or to report any issues or general implementation support, please reach out to [support@imagekit.io](mailto:support@imagekit.io)
