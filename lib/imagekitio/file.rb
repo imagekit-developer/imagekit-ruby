@@ -213,43 +213,6 @@ module ImageKitIo
       @req_obj.request('get', url, @req_obj.create_headers, payload)
     end
 
-    def create_custom_metadata(name, label, schema)
-      if name == '' || name.nil? || label == '' || label.nil? || schema == '' || schema.nil?
-        raise ArgumentError, 'parameters required'
-      end
-      unless schema.is_a?(Hash)
-        raise ArgumentError, 'schema must be hash object'
-      end
-      url = "#{constants.API_BASE_URL}/customMetadataFields"
-      payload = { 'name': name, 'label': label, 'schema': schema }.to_json
-      @req_obj.request('post', url, @req_obj.create_headers, payload)
-    end
-
-    def get_custom_metadata(options = {})
-      url = "#{constants.API_BASE_URL}/customMetadataFields"
-      payload = request_formatter(options)
-      @req_obj.request('get', url, @req_obj.create_headers, payload)
-    end
-
-    def update_custom_metadata(id, label, schema)
-      if id == '' || id.nil?
-        raise ArgumentError, 'id is required'
-      end
-      url = "#{constants.API_BASE_URL}/customMetadataFields/#{id}"
-      payload = {}
-      payload = payload.merge({ 'label': label }) unless label.nil?
-      payload = payload.merge({ 'schema': label }) unless schema.nil?
-      @req_obj.request('patch', url, @req_obj.create_headers, payload.to_json)
-    end
-
-    def delete_custom_metadata(id)
-      if id == '' || id.nil?
-        raise ArgumentError, 'id is required'
-      end
-      url = "#{constants.API_BASE_URL}/customMetadataFields/#{id}"
-      @req_obj.request('delete', url, @req_obj.create_headers)
-    end
-
     def validate_upload_options(options)
 
       #  Validates upload value, checks if params are valid,

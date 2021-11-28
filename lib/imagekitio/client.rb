@@ -8,6 +8,7 @@ require_relative "./url"
 require_relative "./utils/calculation"
 require_relative './constant'
 require_relative './configurable'
+require_relative './custom_metadata_field'
 
 module ImageKitIo
   # ImageKitIo class holds each method will be used by user
@@ -15,7 +16,7 @@ module ImageKitIo
     include Utils::Calculation
     include Constantable
 
-    attr_reader :file
+    attr_reader :file, :custom_metadata_fields
 
     def initialize(private_key, public_key, url_endpoint, transformation_pos = nil, options = nil)
       unless(private_key.is_a?(String) && private_key.to_s.strip.length != 0)
@@ -37,7 +38,7 @@ module ImageKitIo
       @ik_req = Request.new(private_key, public_key, url_endpoint)
       @file = File.new(@ik_req)
       @url_obj = Url.new(@ik_req)
-
+      @custom_metadata_fields = CustomMetaDataField.new(@ik_req)
     end
 
     def set_ik_request(ik_req)
@@ -146,22 +147,6 @@ module ImageKitIo
 
     def bulk_job_status(job_id)
       @file.job_status(job_id)
-    end
-
-    def create_custom_metadata_fields(name, label, schema)
-      @file.create_custom_metadata(name, label, schema)
-    end
-
-    def get_custom_metadata_fields(options = {})
-      @file.get_custom_metadata(options)
-    end
-
-    def update_custom_metadata_fields(id, label: nil, schema: nil)
-      @file.update_custom_metadata(id, label, schema)
-    end
-
-    def delete_custom_metadata_fields(id)
-      @file.delete_custom_metadata(id)
     end
 
     def phash_distance(first, second)

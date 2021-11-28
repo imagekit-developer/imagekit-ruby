@@ -51,7 +51,11 @@ module ImageKitIo
         end
 
       rescue RestClient::ExceptionWithResponse => err
-        err.http_code == 404 ? response[:error] = {'message': err.response.to_s} : JSON.parse(err.response)
+        response[:error] = if err.http_code == 404
+                             {'message': err.response.to_s}
+                           else
+                             JSON.parse(err.response)
+                           end
       end
       response
     end
