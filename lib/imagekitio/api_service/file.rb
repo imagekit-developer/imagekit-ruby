@@ -28,7 +28,7 @@ module ImageKitIo
       #            "brand": "H&M",
       #            "discount": 30
       #         }
-      def upload(file, file_name, options)
+      def upload(file: nil, file_name: nil, **options)
         raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file
         raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file_name
 
@@ -46,7 +46,7 @@ module ImageKitIo
         end
       end
 
-      def update_details(file_id, options)
+      def update_details(file_id: nil, **options)
         unless options.fetch(:tags, []).is_a?(Array)
           raise ArgumentError, constants.UPDATE_DATA_TAGS_INVALID
         end
@@ -55,71 +55,84 @@ module ImageKitIo
         end
         url = "#{constants.BASE_URL}/#{file_id}/details/"
         headers = @req_obj.create_headers
-        payload = request_formatter(options)
+        payload = request_formatter(options || {})
         @req_obj.request("patch", url, headers, payload.to_json)
       end
 
-      def list(options)
+      def list(**options)
         #  returns list of files on ImageKitIo Server
         #  :options dictionary of options
-        formatted_options = request_formatter(options)
+        formatted_options = request_formatter(options || {})
         raise KeyError(constants.LIST_FILES_INPUT_MISSING) unless formatted_options.is_a?(Hash)
         url = constants.BASE_URL
         headers = @req_obj.create_headers.update({params: formatted_options})
         @req_obj.request("get", url, headers, formatted_options)
       end
 
-      def details(file_identifier)
+      def details(file_identifier: nil)
         # Get detail of file by file_identifier
+        if file_identifier == "" || file_identifier.nil?
+          raise ArgumentError, "file_identifier is required"
+        end
         url = "#{constants.BASE_URL}/#{file_identifier}/details/"
         headers = @req_obj.create_headers
         @req_obj.request("get", url, headers)
       end
 
-      def get_metadata(file_id)
+      def get_metadata(file_id: nil)
         # Get metadata of a file by file_id
+        if file_id == "" || file_id.nil?
+          raise ArgumentError, "file_id is required"
+        end
         url = "#{constants.BASE_URL}/#{file_id}/metadata"
         @req_obj.request("get", url, @req_obj.create_headers)
       end
 
-      def delete(file_id)
+      def delete(file_id: nil)
         # Delete a file_id by file_id
+        if file_id == "" || file_id.nil?
+          raise ArgumentError, "file_id is required"
+        end
         url = "#{constants.BASE_URL}/#{file_id}"
         headers = @req_obj.create_headers
         @req_obj.request("delete", url, headers)
       end
 
-      def purge_cache(file_url)
-
+      def purge_cache(file_url: nil)
         # purges cache from server by file_url
-
+        if file_url == "" || file_url.nil?
+          raise ArgumentError, "file_url is required"
+        end
         url = "#{constants.BASE_URL}/purge"
         payload = {'url': file_url}
         @req_obj.request("post", url, @req_obj.create_headers, payload)
       end
 
-      def purge_cache_status(request_id)
+      def purge_cache_status(request_id: nil)
         # This function is to get cache_status
+        if request_id == "" || request_id.nil?
+          raise ArgumentError, "remote_file_url is required"
+        end
         url = "#{constants.BASE_URL}/purge/#{request_id}"
         @req_obj.request("get", url, @req_obj.create_headers)
       end
 
-      def get_metadata_from_remote_url(remote_file_url)
-        if remote_file_url == ""
+      def get_metadata_from_remote_url(remote_file_url: nil)
+        if remote_file_url == "" || remote_file_url.nil?
           raise ArgumentError, "remote_file_url is required"
         end
         url = "#{constants.REMOTE_METADATA_FULL_URL}?url=#{remote_file_url}"
         @req_obj.request("get", url, @req_obj.create_headers)
       end
 
-      def stream_file(remote_file_url, &block)
+      def stream_file(remote_file_url: nil, &block)
         if remote_file_url == '' || remote_file_url.nil?
           raise ArgumentError, 'remote_file_url is required'
         end
         @req_obj.request_stream('get', remote_file_url, headers: @req_obj.create_headers, &block)
       end
 
-      def copy(source_file_path, destination_path)
+      def copy(source_file_path: nil, destination_path: nil)
         if source_file_path == '' || source_file_path.nil? || destination_path == '' || destination_path.nil?
           raise ArgumentError, 'parameters required'
         end
@@ -128,7 +141,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def move(source_file_path, destination_path)
+      def move(source_file_path: nil, destination_path: nil)
         if source_file_path == '' || source_file_path.nil? || destination_path == '' || destination_path.nil?
           raise ArgumentError, 'parameters required'
         end
@@ -137,7 +150,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def rename(file_path, new_file_name, **options)
+      def rename(file_path: nil, new_file_name: nil, **options)
         if file_path == '' || file_path.nil? || new_file_name == '' || new_file_name.nil?
           raise ArgumentError, 'parameters required'
         end

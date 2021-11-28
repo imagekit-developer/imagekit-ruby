@@ -14,7 +14,7 @@ module ImageKiIo
 
       def delete
         begin
-          @imagekit.delete_file(file_id)
+          @imagekit.delete_file(file_id: file_id)
         rescue
           file_id
         end
@@ -53,7 +53,7 @@ module ImageKiIo
       end
 
       def exist?
-        details = @imagekit.get_file_details(file_id)
+        details = @imagekit.get_file_details(file_id: file_id)
         return false if details[:error].present?
 
         true

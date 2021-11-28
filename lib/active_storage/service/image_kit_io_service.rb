@@ -71,7 +71,7 @@ if defined? Rails
       def upload(key, io, checksum: nil, **options)
         instrument :upload, key: key, checksum: checksum do
           blob = storage_blob(key)
-          response = client.upload_file(io, blob.filename.to_s)
+          response = client.upload_file(file: io, file_name: blob.filename.to_s)
           if response[:error].nil?
             blob.update_columns(metadata: response[:response].transform_keys(&:to_sym))
           end
@@ -178,7 +178,7 @@ if defined? Rails
             download_block.call(chunk) if download_block.present?
           end
         }
-        client.stream_file(file_obj.url, &block)
+        client.stream_file(file_url: file_obj.url, &block)
       end
     end
   end

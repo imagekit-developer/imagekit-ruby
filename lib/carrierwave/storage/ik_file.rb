@@ -33,7 +33,7 @@ module ImageKitIo
         def delete
           # file_id=@identifier['fileId']
           begin
-            @imagekit.delete_file(fileId)
+            @imagekit.delete_file(file_id: fileId)
           rescue
             fileId
           end

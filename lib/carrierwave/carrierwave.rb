@@ -36,8 +36,7 @@ module ImageKitIo
         end
 
         if self.file != nil
-          base64 = Base64.encode64(::File.open(self.file.file, "rb").read)
-          resp = @imagekit.upload_file(open(self.file.file, 'rb'), self.file.filename, @options)
+          resp = @imagekit.upload_file(file: open(self.file.file, 'rb'), file_name: self.file.filename, options: @options)
           # ::File.delete(self.file.file)
           res = resp[:response].to_json
           if res != "null"

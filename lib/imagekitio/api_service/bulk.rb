@@ -9,16 +9,16 @@ module ImageKitIo
         @req_obj = req_obj
       end
 
-      def job_status(id)
-        if id == '' || id.nil?
-          raise ArgumentError, 'Job id is required'
+      def job_status(job_id: nil)
+        if job_id == '' || job_id.nil?
+          raise ArgumentError, 'job_id is required'
         end
-        url = "#{constants.BULK_BASE_URL}/#{id}"
-        payload = { 'jobId': id }
+        url = "#{constants.BULK_BASE_URL}/#{job_id}"
+        payload = { 'jobId': job_id }
         @req_obj.request('get', url, @req_obj.create_headers, payload)
       end
 
-      def add_tags(file_ids = [], tags = [])
+      def add_tags(file_ids: [], tags: [])
         if file_ids.empty? || tags.empty?
           raise ArgumentError, 'Parameters are required'
         end
@@ -27,7 +27,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def remove_tags(file_ids = [], tags = [])
+      def remove_tags(file_ids: [], tags: [])
         if file_ids.empty? || tags.empty?
           raise ArgumentError, 'Parameters are required'
         end
@@ -36,7 +36,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def remove_ai_tags(file_ids = [], ai_tags = [])
+      def remove_ai_tags(file_ids: [], ai_tags: [])
         if file_ids.empty? || ai_tags.empty?
           raise ArgumentError, 'Parameters are required'
         end
@@ -45,7 +45,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def remove_files(file_ids = [])
+      def remove_files(file_ids: [])
         if file_ids.empty?
           raise ArgumentError, 'File ids are required'
         end

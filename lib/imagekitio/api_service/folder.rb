@@ -9,7 +9,7 @@ module ImageKitIo
         @req_obj = req_obj
       end
 
-      def create(folder_name, parent_folder_path)
+      def create(folder_name: nil, parent_folder_path: nil)
         if folder_name == '' || folder_name.nil?
           raise ArgumentError, 'folder_name is required'
         end
@@ -18,7 +18,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def delete(folder_path)
+      def delete(folder_path: nil)
         if folder_path == '' || folder_path.nil?
           raise ArgumentError, 'folder_path is required'
         end
@@ -27,7 +27,7 @@ module ImageKitIo
         @req_obj.request('delete', url, @req_obj.create_headers, payload)
       end
 
-      def copy(source_folder_path, destination_path)
+      def copy(source_folder_path: nil, destination_path: nil)
         if source_folder_path == '' || source_folder_path.nil? || destination_path == '' || destination_path.nil?
           raise ArgumentError, 'Parameters required'
         end
@@ -36,7 +36,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def move(source_folder_path, destination_path)
+      def move(source_folder_path: nil, destination_path: nil)
         if source_folder_path == '' || source_folder_path.nil? || destination_path == '' || destination_path.nil?
           raise ArgumentError, 'Parameters required'
         end
