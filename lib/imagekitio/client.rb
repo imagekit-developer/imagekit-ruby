@@ -3,12 +3,13 @@
 $VERBOSE = nil
 
 require_relative "./request"
-require_relative "./file"
 require_relative "./url"
 require_relative "./utils/calculation"
 require_relative './constant'
 require_relative './configurable'
-require_relative './custom_metadata_field'
+require_relative './api_service/custom_metadata_field'
+require_relative './api_service/folder'
+require_relative './api_service/file'
 
 module ImageKitIo
   # ImageKitIo class holds each method will be used by user
@@ -16,7 +17,7 @@ module ImageKitIo
     include Utils::Calculation
     include Constantable
 
-    attr_reader :file, :custom_metadata_fields
+    attr_reader :file, :custom_metadata_field, :folder
 
     def initialize(private_key, public_key, url_endpoint, transformation_pos = nil, options = nil)
       unless(private_key.is_a?(String) && private_key.to_s.strip.length != 0)
@@ -36,9 +37,10 @@ module ImageKitIo
       @options = options
 
       @ik_req = Request.new(private_key, public_key, url_endpoint)
-      @file = File.new(@ik_req)
       @url_obj = Url.new(@ik_req)
-      @custom_metadata_fields = CustomMetaDataField.new(@ik_req)
+      @file = ApiService::File.new(@ik_req)
+      @custom_metadata_field = ApiService::CustomMetaDataField.new(@ik_req)
+      @folder = ApiService::Folder.new(@ik_req)
     end
 
     def set_ik_request(ik_req)
@@ -130,23 +132,39 @@ module ImageKitIo
     end
 
     def create_folder(folder_name, parent_folder_path = "/")
-      @file.create_folder(folder_name, parent_folder_path)
+      @folder.create(folder_name, parent_folder_path)
     end
 
     def delete_folder(folder_path)
-      @file.delete_folder(folder_path)
+      @folder.delete(folder_path)
     end
 
     def copy_folder(source_folder_path, destination_path)
-      @file.copy_folder(source_folder_path, destination_path)
+      @folder.copy(source_folder_path, destination_path)
     end
 
     def move_folder(source_folder_path, destination_path)
-      @file.move_folder(source_folder_path, destination_path)
+      @folder.move(source_folder_path, destination_path)
     end
 
     def bulk_job_status(job_id)
       @file.job_status(job_id)
+    end
+
+    def create_custom_metadata_field(name, label, schema)
+      @custom_metadata_field.create(name, label, schema)
+    end
+
+    def get_custom_metadata_field(options = {})
+      @custom_metadata_field.list(options)
+    end
+
+    def update_custom_metadata_field(id, label: nil, schema: nil)
+      @custom_metadata_field.update(id, label, schema)
+    end
+
+    def delete_custom_metadata_field(id)
+      @custom_metadata_field.delete(id)
     end
 
     def phash_distance(first, second)

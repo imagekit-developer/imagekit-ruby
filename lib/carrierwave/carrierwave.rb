@@ -1,3 +1,4 @@
+require 'carrierwave'
 require_relative './storage/imagekit_store'
 require_relative './storage/ik_file'
 require_relative './support/uri_filename'
