@@ -3,7 +3,7 @@ require_relative '../constant'
 
 module ImageKitIo
   module ApiService
-    class CustomMetaDataField
+    class CustomMetadataField
       include Utils::OptionValidator
       include Constantable
 

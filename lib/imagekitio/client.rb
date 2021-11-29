@@ -40,7 +40,7 @@ module ImageKitIo
       @ik_req = Request.new(private_key, public_key, url_endpoint)
       @url_obj = Url.new(@ik_req)
       @file_service = ApiService::File.new(@ik_req)
-      @custom_metadata_field_service = ApiService::CustomMetaDataField.new(@ik_req)
+      @custom_metadata_field_service = ApiService::CustomMetadataField.new(@ik_req)
       @folder_service = ApiService::Folder.new(@ik_req)
       @bulk_service = ApiService::Bulk.new(@ik_req)
     end
@@ -55,7 +55,7 @@ module ImageKitIo
       @url_obj.generate_url(options)
     end
 
-    def upload_file(file: nil, file_name: nil, options: {})
+    def upload_file(file: nil, file_name: nil, **options)
       # upload file to imagekit server
       @file_service.upload(file: file, file_name: file_name, **options)
     end

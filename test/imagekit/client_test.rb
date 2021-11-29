@@ -69,7 +69,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      upload = SUT.upload_file("fakefile.jpg", "fake", {})
+      upload = SUT.upload_file(file: "fakefile.jpg", file_name: "fake")
 
       expect(upload[:code]).to eq(200)
     end
@@ -95,7 +95,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      file_list = SUT.list_files({})
+      file_list = SUT.list_files
 
       expect(file_list[:code]).to eq(200)
     end
@@ -118,7 +118,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      file_detail = SUT.get_file_details("http://example.com/fake.jpg")
+      file_detail = SUT.get_file_details(file_id: "http://example.com/fake.jpg")
 
       expect(file_detail[:code]).to eq(200)
     end
@@ -142,8 +142,8 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      upload = SUT.update_file_details("fake_id", {tags: ["image_tag"],
-                                                   custom_coordinates: "10,10,100, 100", })
+      upload = SUT.update_file_details(file_id: "fake_id", tags: ["image_tag"],
+                                                   custom_coordinates: "10,10,100, 100")
 
       expect(upload[:code]).to eq(200)
     end
@@ -168,7 +168,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      delete_resp = SUT.delete_file("fake_id",)
+      delete_resp = SUT.delete_file(file_id: "fake_id")
 
       expect(delete_resp[:code]).to eq(200)
     end
@@ -193,7 +193,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      resp = SUT.get_file_metadata("fake_id",)
+      resp = SUT.get_file_metadata(file_id: "fake_id")
 
       expect(resp[:code]).to eq(200)
     end
@@ -216,7 +216,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      resp = SUT.get_remote_file_url_metadata("http://example.com/fakefileurl")
+      resp = SUT.get_remote_file_url_metadata(remote_file_url: "http://example.com/fakefileurl")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/metadata?url=http://example.com/fakefileurl")
       expect(resp[:code]).to eq(200)
@@ -242,7 +242,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      resp = SUT.purge_file_cache("http://example.com/fake.jpg")
+      resp = SUT.purge_file_cache(file_url: "http://example.com/fake.jpg")
 
       expect(resp[:code]).to eq(200)
     end
@@ -267,7 +267,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      resp = SUT.purge_file_cache_status("fake_id")
+      resp = SUT.purge_file_cache_status(request_id: "fake_id")
 
       expect(resp[:code]).to eq(200)
     end

@@ -4,6 +4,7 @@ module ImageKitIo
   module Utils
     module OptionValidator
       include Formatter
+      include Constantable
 
       module_function
 

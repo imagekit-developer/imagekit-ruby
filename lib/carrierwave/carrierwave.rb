@@ -36,7 +36,7 @@ module ImageKitIo
         end
 
         if self.file != nil
-          resp = @imagekit.upload_file(file: open(self.file.file, 'rb'), file_name: self.file.filename, options: @options)
+          resp = @imagekit.upload_file(file: open(self.file.file, 'rb'), file_name: self.file.filename, **@options)
           # ::File.delete(self.file.file)
           res = resp[:response].to_json
           if res != "null"
