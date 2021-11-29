@@ -161,6 +161,8 @@ module ImageKitIo
 
           if transformation[i][key] == "-"
             parsed_transform_step.push(transform_key)
+          elsif transform_key == 'raw'
+            parsed_transform_step.push(transformation[i][key])
           else
             parsed_transform_step.push("#{transform_key}#{constants.TRANSFORM_KEY_VALUE_DELIMITER}#{transformation[i][key]}")
           end

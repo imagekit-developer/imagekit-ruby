@@ -57,6 +57,7 @@ module ImageKitIo
         'effect_contrast': "e-contrast",
         'effect_gray': "e-grayscale",
         'original': "orig",
+        'raw': 'raw',
       }
     end
   end
