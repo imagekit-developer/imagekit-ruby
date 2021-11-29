@@ -171,13 +171,13 @@ imagekitio = ImageKitIo.client
 image_url = imagekitio.url({
     path: "/default-image.jpg",
     url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
-    transformation: [{height: "300", width: "400"}]
+    transformation: [{height: "300", width: "400", raw: 'ar-4-3,q-40'}]
 })
 ```
 
 The result in a URL like
 ```
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg
+https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400,ar-4-3,q-40/default-image.jpg
 ```
 
 **2.Using full image URL**
@@ -361,9 +361,11 @@ Simple usage
 
 ```ruby
 imagekitio.upload_file(
-    file = "<url|base_64|binary>", # required
-    file_name= "my_file_name.jpg",  # required
-    options= {response_fields: 'isPrivateFile, tags', tags: %w[abc def], use_unique_file_name: true,}
+    file: "<url|base_64|binary>", # required
+    file_name: "my_file_name.jpg",  # required
+    response_fields: 'isPrivateFile, tags',
+    tags: %w[abc def],
+    use_unique_file_name: true
 )
 
 ```
@@ -390,20 +392,20 @@ imagekitio.list_files({skip: 0, limit: 5})
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details)
 
 ```ruby
-imagekitio.get_file_details(file_id)
+imagekitio.get_file_details(file_id: 'file_id_xyz')
 ```
 
 **3. Get File Metadata**
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
 ```ruby
-imagekit.get_file_metadata(file_id)
+imagekit.get_file_metadata(file_id: 'file_id_xyz')
 ```
 
 **3. Get File Metadata from remote url**
 Accepts the remote file url and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url)
 
 ```ruby
-imagekit.get_remote_file_url_metadata(remote_file_url)
+imagekit.get_remote_file_url_metadata(remote_file_url: "https://ik.imagekit.io/demo/tr:w-100/default-image.jpg")
 ```
 
 **4. Update File Details**
@@ -412,10 +414,11 @@ The first argument to the `update_field_details` method is the file ID, and a se
 parameters to be updated.
 
 ```ruby
-imagekitio.update_file_details(file_id, {
+imagekitio.update_file_details(
+    file_id: 'file_id_xyz',
     tags: ["image_tag"],
     custom_coordinates: "10,10,100, 100"
-})
+)
 ```
 
 **5. Copy File**
@@ -423,7 +426,7 @@ imagekitio.update_file_details(file_id, {
 Copy file from one path to another path using the source file path and the destination path as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-file)
 
 ```ruby
-imagekitio.copy_file('/path/to/file.jpg', '/folder/to/copy/into')
+imagekitio.copy_file(source_file_path: '/path/to/file.jpg', destination_path: '/folder/to/copy/into')
 ```
 
 **6. Move File**
@@ -431,7 +434,7 @@ imagekitio.copy_file('/path/to/file.jpg', '/folder/to/copy/into')
 Move file from one folder to another folder using the source file path and destination path as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-file)
 
 ```ruby
-imagekitio.move_file('/path/to/file.jpg', '/folder/to/move/into/')
+imagekitio.move_file(source_file_path: '/path/to/file.jpg', destination_path: '/folder/to/move/into/')
 ```
 
 **7. Rename File**
@@ -439,14 +442,18 @@ imagekitio.move_file('/path/to/file.jpg', '/folder/to/move/into/')
 Rename file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/rename-file)
 
 ```ruby
-imagekitio.rename_file('/path/to/old-file-name.jpg', 'new-file-name.jpg')
+imagekitio.rename_file(
+  file_path: '/path/to/old-file-name.jpg',
+  new_file_name: 'new-file-name.jpg',
+  purge_cache: true #optional
+)
 ```
 
 **8. Delete file**
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file). The method accepts the file ID of the file that has to be deleted.
 
 ```ruby
-imagekitio.delete_file(file_id)
+imagekitio.delete_file(file_id: file_id)
 ```
 
 **9. Bulk File Delete by IDs**
@@ -454,7 +461,7 @@ Delete a file as per the [API documentation here](https://docs.imagekit.io/api-r
 deleted.
 
 ```ruby
-imagekitio.bulk_file_delete(["file_id1", "file_id2"])
+imagekitio.delete_bulk_files(file_ids: ["file_id1", "file_id2"])
 ```
 
 **10. Purge Cache**
@@ -462,7 +469,7 @@ Programmatically issue a cache clear request as per the [API documentation here]
 Accepts the full URL of the file for which the cache has to be cleared.
 
 ```ruby
-imagekitio.purge_file_cache(full_url)
+imagekitio.purge_file_cache(file_url: 'https://ik.imagekit.io/demo/logo-white_SJwqB4Nfe.png')
 ```
 **11. Purge Cache Status**
 
@@ -470,7 +477,7 @@ Get the purge cache request status using the request ID returned when a purge ca
 [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
 
 ```ruby
-imagekitio.get_purge_file_cache_status(cache_request_id)
+imagekitio.purge_file_cache_status(request_id: cache_request_id)
 ```
 
 **12. Stream Large File**
@@ -491,15 +498,15 @@ end
 Add multiple tags on multiple files using array of file ids and array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk)
 
 ```ruby
-imagekitio.add_bulk_tags(['id_1', 'id_2'], ['custom_tags', 'image', 'favourite'])
+imagekitio.add_bulk_tags(file_ids: ['id_1', 'id_2'], tags: ['custom_tags', 'image', 'favourite'])
 ``` 
 
-**14. Remove Bulk Tags**
+**14. Delete Bulk Tags**
 
 Remove multiple tags from multiple files using array of file ids and array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk)
 
 ```ruby
-imagekitio.remove_bulk_tags(['id_1', 'id_2'], ['custom_tags', 'image'])
+imagekitio.delete_bulk_tags(file_ids: ['id_1', 'id_2'], tags: ['custom_tags', 'image'])
 ```
 
 **15. Create Folder**
@@ -507,7 +514,10 @@ imagekitio.remove_bulk_tags(['id_1', 'id_2'], ['custom_tags', 'image'])
 Create folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/create-folder)
 
 ```ruby
-imagekitio.create_folder('new_folder', 'source/folder/path')
+imagekitio.create_folder(
+  folder_name: 'new_folder',
+  parent_folder_path: 'source/folder/path' #optional
+)
 ```
 
 
@@ -516,7 +526,7 @@ imagekitio.create_folder('new_folder', 'source/folder/path')
 Copy folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-folder)
 
 ```ruby
-imagekitio.copy_folder('/folder/to/copy', '/folder/to/copy/into')
+imagekitio.copy_folder(source_folder_path: '/folder/to/copy', destination_path: '/folder/to/copy/into')
 ```
 
 **17. Move Folder**
@@ -524,7 +534,7 @@ imagekitio.copy_folder('/folder/to/copy', '/folder/to/copy/into')
 Move folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-folder)
 
 ```ruby
-imagekitio.move_folder('/folder/to/move', '/folder/to/move/into/')
+imagekitio.move_folder(source_folder_path: '/folder/to/move', destination_path: '/folder/to/move/into/')
 ```
 
 **18. Delete Folder**
@@ -532,7 +542,7 @@ imagekitio.move_folder('/folder/to/move', '/folder/to/move/into/')
 Delete folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-folder)
 
 ```ruby
-imagekitio.delete_folder('folder/to/delete')
+imagekitio.delete_folder(folder_path: 'folder/to/delete')
 ```
 
 **19. Bulk Job Status**
@@ -540,7 +550,7 @@ imagekitio.delete_folder('folder/to/delete')
 Get the bulk job status as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status)
 
 ```ruby
-imagekitio.bulk_job_status('job_id')
+imagekitio.bulk_job_status(job_id: 'job_id_xyz')
 ```
 
 **20. Create Custom Metadata Fields**
@@ -549,10 +559,10 @@ Create custom metadata fields as per the [API documentation here](https://docs.i
 
 ```ruby
 
-imagekitio.create_custom_metadata_fields(
-    'price', 
-    'price_label', 
-    {
+imagekitio.create_custom_metadata_field(
+    name: 'price',
+    label: 'price_label',
+    schema: {
       type: 'Number',
       minValue: 100,
       maxValue: 300
@@ -565,7 +575,9 @@ imagekitio.create_custom_metadata_fields(
 Get the custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
 ```ruby
-imagekitio.get_custom_metadata_fields
+imagekitio.get_custom_metadata_field(
+  includeDeleted: true #optional
+)
 ```
 
 **22. Update Custom Metadata Fields**
@@ -573,7 +585,7 @@ imagekitio.get_custom_metadata_fields
 Update custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field)
 
 ```ruby
-imagekitio.update_custom_metadata_fields('file_id', label: 'custom-price', schema: nil)
+imagekitio.update_custom_metadata_field(id: 'file_id_xyz', label: 'custom-price', schema: nil)
 ```
 
 **23. Delete Custom Metadata Fields**
@@ -581,7 +593,7 @@ imagekitio.update_custom_metadata_fields('file_id', label: 'custom-price', schem
 Delete custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field)
 
 ```ruby
-imagekitio.delete_custom_metadata_fields('file_id')
+imagekitio.delete_custom_metadata_field(id: 'file_id_xyz')
 ```
 
 
@@ -646,7 +658,7 @@ imagekitio.phash_distance('a4a65595ac94518b', '7838873e791f8400')
 ```
 
 ## Sample Application
-There are two sample apps:
+There are three sample apps:
 * Rails application using Carrierwave
 * Rails application using ActiveStorage
 * Plain ruby application
