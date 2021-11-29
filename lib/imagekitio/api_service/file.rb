@@ -40,7 +40,6 @@ module ImageKitIo
         else
           headers = @req_obj.create_headers
           payload = {multipart: true, file: file, fileName: file_name}.merge(options)
-
           url = "#{constants.BASE_URL}#{constants.UPLOAD}"
           @req_obj.request("post", url, headers, payload)
         end
@@ -155,7 +154,7 @@ module ImageKitIo
           raise ArgumentError, 'parameters required'
         end
         url = "#{constants.BASE_URL}/rename"
-        payload = { 'filePath': file_path, 'newFileName': new_file_name }.merge(request_formatter(options))
+        payload = { 'filePath': file_path, 'newFileName': new_file_name }.merge(request_formatter(options)).to_json
         @req_obj.request('put', url, @req_obj.create_headers, payload)
       end
     end

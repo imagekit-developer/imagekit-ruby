@@ -107,6 +107,60 @@ RSpec.describe ImageKitIo::ApiService::File do
 
     end
 
+    it "test_upload_with_valid_expected_success_with_extensions" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      @ac={}
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({code: 200})
+      SUT = file_api_service.new(request_obj)
+      upload = SUT.upload(file: "./fake_file.jpg", file_name: "my_file_name", extensions: [
+        {
+          name: 'remove-bg',
+          options: {
+            add_shadow: true
+          }
+        }
+      ])
+      expect(@ac[:payload]['extensions']).to eq("[{\"name\":\"remove-bg\",\"options\":{\"add_shadow\":true}}]")
+      expect(upload[:code]).to eq(200)
+    end
+
+    it "test_upload_with_valid_expected_success_with_customMetadata" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      @ac={}
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({code: 200})
+      SUT = file_api_service.new(request_obj)
+      upload = SUT.upload(
+        file: "./fake_file.jpg",
+        file_name: "my_file_name",
+        custom_metadata: {
+          brand: 'Nike',
+          color: 'red'
+        }
+      )
+      expect(@ac[:payload]['customMetadata']).to eq("{\"brand\":\"Nike\",\"color\":\"red\"}")
+      expect(upload[:code]).to eq(200)
+    end
+
     it "test_upload_with_valid_expected_success" do
       request_obj = double
       allow(ImageKitIo::Request)
@@ -597,6 +651,58 @@ RSpec.describe ImageKitIo::ApiService::File do
         SUT.update_details(file_id: "file_id", **options)
       }.to raise_error(ArgumentError)
     end
+
+    it "test_update_file_details_expected_success_with_extensions" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      @ac={}
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({code: 200})
+      SUT = file_api_service.new(request_obj)
+      upload = SUT.update_details(file_id: "file_id_xyz", extensions: [
+        {
+          'name': 'google-auto-tagging',
+          'maxTags': 5,
+          'minConfidence': 95
+        }
+      ])
+      expect(@ac[:payload]).to eq("{\"extensions\":[{\"name\":\"google-auto-tagging\",\"maxTags\":5,\"minConfidence\":95}]}")
+      expect(upload[:code]).to eq(200)
+    end
+
+    it "test_update_with_valid_expected_success_with_customMetadata" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      @ac={}
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({code: 200})
+      SUT = file_api_service.new(request_obj)
+      upload = SUT.update_details(
+        file_id: "file_id_xyz",
+        custom_metadata: {
+          brand: 'Nike',
+          color: 'red'
+        }
+      )
+      expect(@ac[:payload]).to eq("{\"customMetadata\":{\"brand\":\"Nike\",\"color\":\"red\"}}")
+      expect(upload[:code]).to eq(200)
+    end
   end
 
   describe 'TestGetRemoteFileURLMetaData' do
@@ -755,12 +861,12 @@ RSpec.describe ImageKitIo::ApiService::File do
 
     end
 
-    it 'test_move' do
+    it 'test_rename' do
       source_file = 'test/dummy.png'
       new_name = 'my_image.png'
       resp = @sut.rename(file_path: source_file, new_file_name: new_name)
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/rename")
-      expect(@ac[:payload]).to eq({:filePath=>"test/dummy.png", :newFileName=>"my_image.png"})
+      expect(@ac[:payload]).to eq("{\"filePath\":\"test/dummy.png\",\"newFileName\":\"my_image.png\"}")
       expect(@ac[:method]).to eq('put')
       expect(resp[:code]).to eq(200)
     end

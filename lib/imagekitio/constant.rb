@@ -24,7 +24,8 @@ module ImageKitIo
       def method_missing(symbol, *args)
         method_name = symbol.to_s.gsub('=', '')
         if self.const_defined? method_name
-          return self.const_get(method_name) unless args.present?
+          return self.const_get(method_name) if args.empty?
+
           self.const_set(method_name, args.first)
         else
           super
