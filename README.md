@@ -576,7 +576,7 @@ Get the custom metadata fields as per the [API documentation here](https://docs.
 
 ```ruby
 imagekitio.get_custom_metadata_field(
-  includeDeleted: true #optional
+  include_deleted: true #optional
 )
 ```
 
