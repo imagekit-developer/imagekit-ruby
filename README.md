@@ -509,7 +509,15 @@ Remove multiple tags from multiple files using array of file ids and array of ta
 imagekitio.delete_bulk_tags(file_ids: ['id_1', 'id_2'], tags: ['custom_tags', 'image'])
 ```
 
-**15. Create Folder**
+**15. Delete Bulk Ai Tags**
+
+Delete bulk ai tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk)
+
+```ruby
+imagekitio.delete_bulk_ai_tags(file_ids: ['id_1', 'id_2'], ai_tags: ['custom_ai_tags'])
+```
+
+**16. Create Folder**
 
 Create folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/create-folder)
 
@@ -521,7 +529,7 @@ imagekitio.create_folder(
 ```
 
 
-**16. Copy Folder**
+**17. Copy Folder**
 
 Copy folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-folder)
 
@@ -529,7 +537,7 @@ Copy folder as per the [API documentation here](https://docs.imagekit.io/api-ref
 imagekitio.copy_folder(source_folder_path: '/folder/to/copy', destination_path: '/folder/to/copy/into')
 ```
 
-**17. Move Folder**
+**18. Move Folder**
 
 Move folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-folder)
 
@@ -537,7 +545,7 @@ Move folder as per the [API documentation here](https://docs.imagekit.io/api-ref
 imagekitio.move_folder(source_folder_path: '/folder/to/move', destination_path: '/folder/to/move/into/')
 ```
 
-**18. Delete Folder**
+**19. Delete Folder**
 
 Delete folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-folder)
 
@@ -545,7 +553,7 @@ Delete folder as per the [API documentation here](https://docs.imagekit.io/api-r
 imagekitio.delete_folder(folder_path: 'folder/to/delete')
 ```
 
-**19. Bulk Job Status**
+**20. Bulk Job Status**
 
 Get the bulk job status as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status)
 
@@ -553,7 +561,7 @@ Get the bulk job status as per the [API documentation here](https://docs.imageki
 imagekitio.bulk_job_status(job_id: 'job_id_xyz')
 ```
 
-**20. Create Custom Metadata Fields**
+**21. Create Custom Metadata Fields**
 
 Create custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field)
 
@@ -570,7 +578,7 @@ imagekitio.create_custom_metadata_field(
 )
 ```
 
-**21. Get Custom Metadata Fields**
+**22. Get Custom Metadata Fields**
 
 Get the custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
@@ -580,7 +588,7 @@ imagekitio.get_custom_metadata_field(
 )
 ```
 
-**22. Update Custom Metadata Fields**
+**23. Update Custom Metadata Fields**
 
 Update custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field)
 
@@ -588,7 +596,7 @@ Update custom metadata fields as per the [API documentation here](https://docs.i
 imagekitio.update_custom_metadata_field(id: 'file_id_xyz', label: 'custom-price', schema: nil)
 ```
 
-**23. Delete Custom Metadata Fields**
+**24. Delete Custom Metadata Fields**
 
 Delete custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field)
 

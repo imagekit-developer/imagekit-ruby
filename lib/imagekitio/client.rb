@@ -129,7 +129,7 @@ module ImageKitIo
       @bulk_service.remove_tags(file_ids: file_ids, tags: tags)
     end
 
-    def remove_bulk_ai_tags(file_ids: [], ai_tags: [])
+    def delete_bulk_ai_tags(file_ids: [], ai_tags: [])
       @bulk_service.remove_ai_tags(file_ids: file_ids, ai_tags: ai_tags)
     end
 
