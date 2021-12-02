@@ -61,6 +61,13 @@ RSpec.describe ImageKitIo::ApiService::CustomMetadataField do
       expect(resp[:body]).to eq([success_response])
     end
 
+    it 'raises error when parameter not provided on update_custom_metadata' do
+      @sut = custom_metadata_service.new(req_obj)
+      expect {
+        @sut.update(id: nil, label: 'test_label', schema: '')
+      }.to raise_error(ArgumentError)
+    end
+
     it 'test_update_custom_metadata' do
       metadata_id = "619e667320b7ef03efc5d850"
       allow(req_obj)
@@ -71,6 +78,13 @@ RSpec.describe ImageKitIo::ApiService::CustomMetadataField do
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/customMetadataFields/#{metadata_id}")
       expect(@ac[:method]).to eq('patch')
       expect(resp[:body]).to eq({"id"=>metadata_id, "name"=>"price1", "label"=>"price1", "schema"=>{"type"=>"Number", "minValue"=>100, "maxValue"=>300}} )
+    end
+
+    it 'raises error when parameter not provided on update_custom_metadata' do
+      @sut = custom_metadata_service.new(req_obj)
+      expect {
+        @sut.delete
+      }.to raise_error(ArgumentError)
     end
 
     it 'test_delete_custom_metadata' do

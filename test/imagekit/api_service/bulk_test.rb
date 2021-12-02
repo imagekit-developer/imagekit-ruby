@@ -102,25 +102,49 @@ RSpec.describe ImageKitIo::ApiService::Bulk do
       @sut = bulk_api_service.new(req_obj)
     end
 
-    it 'test_add_tags' do
-      resp = @sut.add_tags(file_ids: file_ids, tags: ['custom_tag'])
-      expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/addTags")
-      expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"tags\":[\"custom_tag\"]}")
-      expect(resp[:code]).to eq(200)
+    context 'add_tags' do
+      it 'raises error on empty parameters' do
+        expect {
+          @sut.add_tags
+        }.to raise_error(ArgumentError)
+      end
+
+      it 'test_add_tags' do
+        resp = @sut.add_tags(file_ids: file_ids, tags: ['custom_tag'])
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/addTags")
+        expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"tags\":[\"custom_tag\"]}")
+        expect(resp[:code]).to eq(200)
+      end
     end
 
-    it 'test_remove_tags' do
-      resp = @sut.remove_tags(file_ids: file_ids, tags: ['custom_tag_remove'])
-      expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/removeTags")
-      expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"tags\":[\"custom_tag_remove\"]}")
-      expect(resp[:code]).to eq(200)
+    context 'remove_tags' do
+      it 'raises error on empty parameters' do
+        expect {
+          @sut.remove_tags
+        }.to raise_error(ArgumentError)
+      end
+
+      it 'test_remove_tags' do
+        resp = @sut.remove_tags(file_ids: file_ids, tags: ['custom_tag_remove'])
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/removeTags")
+        expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"tags\":[\"custom_tag_remove\"]}")
+        expect(resp[:code]).to eq(200)
+      end
     end
 
-    it 'test_remove_ai_tags' do
-      resp = @sut.remove_ai_tags(file_ids: file_ids, ai_tags: ['custom_ai_tag'])
-      expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/removeAITags")
-      expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"AITags\":[\"custom_ai_tag\"]}")
-      expect(resp[:code]).to eq(200)
+    context 'remove_ai_tags' do
+      it 'raises error on empty parameters' do
+        expect {
+          @sut.remove_ai_tags
+        }.to raise_error(ArgumentError)
+      end
+
+      it 'test_remove_ai_tags' do
+        resp = @sut.remove_ai_tags(file_ids: file_ids, ai_tags: ['custom_ai_tag'])
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/removeAITags")
+        expect(@ac[:payload]).to eq("{\"fileIds\":\"file_id_1 file_id_2\",\"AITags\":[\"custom_ai_tag\"]}")
+        expect(resp[:code]).to eq(200)
+      end
     end
   end
 

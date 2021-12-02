@@ -512,6 +512,25 @@ RSpec.describe ImageKitIo::ApiService::File do
 
     end
 
+    it 'raises error when parameter not provided' do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({code: 200, body: {}})
+
+      SUT = file_api_service.new(request_obj)
+      expect {
+        SUT.get_metadata
+      }.to raise_error(ArgumentError)
+    end
+
     it "test_get_metadata_succeeds" do
       request_obj = double
       allow(ImageKitIo::Request)
@@ -869,6 +888,41 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(@ac[:payload]).to eq("{\"filePath\":\"test/dummy.png\",\"newFileName\":\"my_image.png\"}")
       expect(@ac[:method]).to eq('put')
       expect(resp[:code]).to eq(200)
+    end
+  end
+
+  context 'stream file' do
+    let!(:req_obj) { double }
+
+    before do
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(req_obj)
+      allow(req_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      allow(req_obj)
+        .to receive(:request_stream){|method,url,headers, &block| @ac={method: method, url: url, headers: headers, block: block}}
+              .and_return({code: 200, body: { success: true }})
+      @sut = file_api_service.new(req_obj)
+    end
+
+    it 'raises error when parameter not provided' do
+      expect {
+        @sut.stream_file
+      }.to raise_error(ArgumentError)
+    end
+
+    it 'test_stream_file' do
+      remote_file_url = 'https://ik.imagekit.io/kcdfvxhgfkn/testing_Hx_I_Ys_c.jpg'
+      block = proc {
+        puts 'block given'
+      }
+      @sut.stream_file(remote_file_url: remote_file_url, &block)
+
+      expect(@ac[:block].is_a?(Proc)).to be(true)
+      expect(@ac[:url]).to eq(remote_file_url)
     end
   end
 end

@@ -31,7 +31,7 @@ module ImageKitIo
     end
 
     # request method communicates with server
-    def request(method, url, headers = nil, payload = nil)
+    def request(method, url, headers = create_headers, payload = nil)
       headers ||= create_headers
       response = {response: nil, error: nil}
       begin
