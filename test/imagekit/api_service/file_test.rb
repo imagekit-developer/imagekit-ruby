@@ -889,6 +889,13 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(@ac[:method]).to eq('put')
       expect(resp[:code]).to eq(200)
     end
+
+    it 'test_rename with the option purge_cache' do
+      source_file = 'test/dummy.png'
+      new_name = 'my_image.png'
+      resp = @sut.rename(file_path: source_file, new_file_name: new_name, purge_cache: true)
+      expect(@ac[:payload]).to eq("{\"filePath\":\"test/dummy.png\",\"newFileName\":\"my_image.png\",\"purgeCache\":true}")
+    end
   end
 
   context 'stream file' do
