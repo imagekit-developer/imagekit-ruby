@@ -346,6 +346,7 @@ transformation code from ImageKit docs as the name when using the `url` function
 | effectContrast | e-contrast |
 | effectGray | e-grayscale |
 | original | orig |
+| raw | `replaced by the parameter value` |
 
 ## File Upload
 This method can be used to directly upload images to your ImageKit Media Library without giving it the designation of an attribute of any database object.
