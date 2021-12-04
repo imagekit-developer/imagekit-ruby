@@ -18,7 +18,7 @@ module ImageKitIo
     include Utils::Calculation
     include Constantable
 
-    attr_reader :file, :custom_metadata_field, :folder
+    attr_reader :file_service, :custom_metadata_field_service, :folder_service, :bulk_service
 
     def initialize(private_key, public_key, url_endpoint, transformation_pos = nil, options = nil)
       unless(private_key.is_a?(String) && private_key.to_s.strip.length != 0)
@@ -157,7 +157,7 @@ module ImageKitIo
       @custom_metadata_field_service.create(name: name, label: label, schema: schema)
     end
 
-    def get_custom_metadata_field(options = {})
+    def get_custom_metadata_fields(options = {})
       @custom_metadata_field_service.list(**options)
     end
 

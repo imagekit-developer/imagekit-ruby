@@ -18,7 +18,7 @@ module ImageKitIo
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
-      def delete(folder_path: nil)
+    def delete(folder_path: nil)
         if folder_path == '' || folder_path.nil?
           raise ArgumentError, 'folder_path is required'
         end

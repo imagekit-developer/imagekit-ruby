@@ -175,7 +175,7 @@ imagekitio = ImageKitIo.client
 image_url = imagekitio.url({
     path: "/default-image.jpg",
     url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
-    transformation: [{height: "300", width: "400", raw: 'ar-4-3,q-40'}]
+    transformation: [{height: "300", width: "400", raw: "ar-4-3,q-40"}]
 })
 ```
 
@@ -429,7 +429,7 @@ parameters to be updated.
 
 ```ruby
 imagekitio.update_file_details(
-    file_id: 'file_id_xyz',
+    file_id: '598821f949c0a938d57563bd',
     tags: ["image_tag"],
     custom_coordinates: "10,10,100, 100"
 )
@@ -617,7 +617,7 @@ imagekitio.create_custom_metadata_field(
 Get the custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
 ```ruby
-imagekitio.get_custom_metadata_field(
+imagekitio.get_custom_metadata_fields(
    include_deleted: true #optional
 )
 ```
@@ -629,7 +629,7 @@ Update custom metadata fields as per the [API documentation here](https://docs.i
 ```ruby
 imagekitio.update_custom_metadata_field(
     id: '5e21880d5efe355febd4bccd', #field_id
-    label: 'custom-price',
+    label: 'custom-price', #Either label or schema or both should be given
     schema: nil
 )
 ```
