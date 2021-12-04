@@ -18,7 +18,7 @@ module ImageKitIo
       # Options types:
       #  - `extensions` should be array of hash
       #     eg: option['extension'] = [
-      #           { 'name' => 'remove-bg', 'options' => { 'add_shadow' => true } },
+      #           { 'name' => 'remove-bg', 'options' => { 'add_shadow' => 'true' } },
       #           { 'name' => 'google-auto-tagging', 'minConfidence' => 80 }
       #         ]
       #  - `custom_metadata` should be hash
