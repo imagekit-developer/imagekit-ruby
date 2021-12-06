@@ -62,8 +62,8 @@ ImageKitIo.configure do |config|
 end
 ```
 #### CarrierWave
-You can create a carrierwave uploader in order to attach pictures to your database objects as their attributes. To upload images without designating them as database attributes, skip to [this section](https://github.com/imagekit-developer/imagekit-ruby#file-upload).
-(make sure to add service `:carrierwave` as shown in [initialization section](#Initialization))
+You can create a CarrierWave uploader to attach pictures to your database objects as their attributes. Skip to [this section](https://github.com/imagekit-developer/imagekit-ruby#file-upload) to upload images without designating them as database attributes. Make sure to add service `:carrierwave` as shown in [initialization section](#initialization).
+
 ```bash
 rails g uploader <Uploading_attribute_name>
 # For example, if you want to create an uploader for Avatar attribute, then use
@@ -137,7 +137,7 @@ Get image url:
 @employee.avatar.url
 ```
 
-Now lets configure active_storage as a service for the imagekitio. 
+Now, let's configure active_storage as a service for the imagekitio. 
 
 First add `:active_storage` in initializer file.
 
@@ -155,7 +155,7 @@ imagekitio:
 
 ## Usage
 
-You can use this Ruby SDK for three different kinds of methods - URL generation, file upload, and file management.
+You can use this Ruby SDK for three different methods - URL generation, file upload, and file management.
 
 The usage of the SDK has been explained below.
 
@@ -185,8 +185,7 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400,ar-4-3,q-40/defa
 ```
 
 **2.Using full image URL**
-This method allows you to add transformation parameters to an existing, complete URL that is already mapped to ImageKit
-using `src` parameter. This method should be used if you have the complete image URL mapped to ImageKit stored in your
+This method allows you to add transformation parameters to an existing, complete URL already mapped to ImageKit using the `src` parameter. This method should be used if you have the complete image URL mapped to ImageKit stored in your
 database.
 
 
@@ -213,7 +212,7 @@ The `.url()` method accepts the following parameters
 | src                     | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation.                                                                                                                                                                                                                                                                                                                                            |
 | transformation          | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as different objects of the array. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
 | transformation_position | Optional. The default value is `path` that places the transformation string as a path parameter in the URL. It can also be specified as `query`, which adds the transformation string as the query parameter `tr` in the URL. If you use `src` parameter to create the URL, then the transformation string is always added as a query parameter.                                                                                                                                                                                                                                                  |
-| query_parameters        | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameter to your URLs.                                                                                                                                                                                                                                                                                                                                            |
+| query_parameters        | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs.                                                                                                                                                                                                                                                                                                                                            |
 | signed                  | Optional. Boolean. Default is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you are creating the URL with the `url_endpoint` and `path` parameters and not with the `src` parameter.                                                                                                                                                                                                                                                                                                             |
 | expire_seconds          | Optional. Integer. Meant to be used along with the `signed` parameter to specify the time in seconds from now when the URL should expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                                                                                                                                                                                                 |
 
@@ -289,8 +288,10 @@ https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&i
 
 The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations).
 The SDK gives a name to each transformation parameter, making the code simpler, making the code simpler, and readable.
-If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, then use the
-transformation code from ImageKit docs as the name when using the `url` function.
+
+If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, then use the transformation code from ImageKit docs as the name when using the `url` function.
+
+If you want to generate transformations in your application and add them to the URL as it is, use the `raw` parameter.
 
 | Supported Transformation Name | Translates to parameter |
 |-------------------------------|-------------------------|
@@ -489,7 +490,7 @@ imagekitio.delete_bulk_files(
 ```
 
 **10. Purge Cache**
-Programmatically issue a cache clear request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache).
+Programmatically issue a clear cache request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache).
 Accepts the full URL of the file for which the cache has to be cleared.
 
 ```ruby
@@ -510,7 +511,7 @@ imagekitio.purge_file_cache_status(
 
 **12. Add Bulk Tags**
 
-Add multiple tags on multiple files using array of file ids and array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk)
+Add multiple tags on multiple files using an array of file ids and an array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk)
 
 ```ruby
 imagekitio.add_bulk_tags(
@@ -521,7 +522,7 @@ imagekitio.add_bulk_tags(
 
 **13. Delete Bulk Tags**
 
-Remove multiple tags from multiple files using array of file ids and array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk)
+Remove multiple tags from multiple files using an array of file ids and an array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk)
 
 ```ruby
 imagekitio.delete_bulk_tags(
@@ -651,7 +652,7 @@ We have included the following commonly used utility functions in this package.
 
 **Authentication parameter generation**
 
-In case you are looking to implement client-side file upload, you are going to need a `token`, `expiry` timestamp, and a valid `signature` for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
+If you are looking to implement client-side file upload, you will need a `token`, `expiry` timestamp, and a valid `signature` for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
 
 _Note: The Private API Key should never be exposed in any client-side code. You must always generate these authentication parameters on the server-side_
 
@@ -677,7 +678,7 @@ value of an image in the response. You can use this value to find a duplicate ne
 the distance between the two images.
 
 
-This SDK exposes the `phash_distance` function to calculate the distance between two pHash value. It accepts two pHash hexadecimal
+This SDK exposes the `phash_distance` function to calculate the distance between two pHash values. It accepts two pHash hexadecimal
 strings and returns a numeric value indicative of the level of difference between the two images.
 
 ```ruby
@@ -707,6 +708,7 @@ imagekitio.phash_distance('a4a65595ac94518b', '7838873e791f8400')
 
 ## Sample Application
 There are three sample apps:
+
 * Rails application using Carrierwave
 * Rails application using ActiveStorage
 * Plain ruby application
@@ -715,7 +717,7 @@ Please see the sample applications in [here](https://github.com/imagekit-samples
 
 ## Upgrade to 2.0.0
 
-Application using variants of version 1.0 needs following changes in order to use version 2.0.0:
+If you are upgrading to 2.0.0 from version 1.x, make the following changes  in your application:
 
 - Remove config from environment file to initializer file as described [here](#Initialization).
 - Include `ImageKitIo::CarrierWave` in uploader class(for Carrierwave).
