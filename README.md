@@ -13,14 +13,14 @@ ImageKit gem for Ruby on Rails that allows you to use real-time [image resizing]
 Table of contents -
  * [Installation](#Installation)
  * [Initialization](#Initialization)
-    - [CarrierWave](#Carrierwave-config)
-    - [ActiveStorage](#ActiveStorage-config)
+    - [CarrierWave](#Carrierwave)
+    - [ActiveStorage](#activeStorage)
  * [URL Generation](#URL-generation)
  * [File Upload](#File-Upload)
  * [File Management](#File-Management)
  * [Utility Functions](#Utility-functions)
  * [Sample applications](#Sample-Application)
- * [Upgrade to 2.0.0](#Upgrade)
+ * [Upgrade to 2.0.0](#upgrade-to-2.0.0)
  * [Support](#Support)
  * [Links](#Links)
 
