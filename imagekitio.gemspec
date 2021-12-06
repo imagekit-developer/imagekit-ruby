@@ -1,12 +1,12 @@
 $:.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
-require "imagekit/sdk/version"
+require "imagekitio/sdk/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
   spec.name        = "imagekitio"
-  spec.version     = Imagekit::Sdk::VERSION
+  spec.version     = ImageKitIo::Sdk::VERSION
   spec.authors     = ["ImageKit.io team"]
   spec.email       = ["developer@imagekit.io"]
   spec.homepage    = "https://imagekit.io"
@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'carrierwave', '>= 0.7', '< 2.2'
   spec.add_dependency 'rest-client', '~> 2.1', ">=2.1"
   spec.add_dependency 'addressable', '~> 2.8'
-
+  spec.add_dependency 'activestorage', '>= 5.2.0'
   # spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "rails", "~> 5.2.0", ">= 5.2.0"
 end

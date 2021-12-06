@@ -13,11 +13,14 @@ ImageKit gem for Ruby on Rails that allows you to use real-time [image resizing]
 Table of contents -
  * [Installation](#Installation)
  * [Initialization](#Initialization)
+    - [CarrierWave](#Carrierwave-config)
+    - [ActiveStorage](#ActiveStorage-config)
  * [URL Generation](#URL-generation)
  * [File Upload](#File-Upload)
  * [File Management](#File-Management)
  * [Utility Functions](#Utility-functions)
  * [Sample applications](#Sample-Application)
+ * [Upgrade to 2.0.0](#Upgrade)
  * [Support](#Support)
  * [Links](#Links)
 
@@ -45,18 +48,22 @@ $ gem install imagekitio
 
 ## Initialization
 
-Add this configuration to `config/environments/development.rb` and `config/environments/production.rb`
-
+Create a new file `config/initializers/imagekitio.rb` then add the configuration.
 ```ruby
-config.imagekit={
-  private_key: "<your-private-key>",
-  public_key: "<your-public-key>",
-  url_endpoint: "<endpoint-url>"
-}
+ImageKitIo.configure do |config|
+  if Rails.env.development?
+    config.public_key = '<your-public-key>'
+    config.private_key = '<your-private-key>'
+    config.url_endpoint = '<endpoint-url>'
+  end
+  config.service = :carrierwave
+  #config.service = :active_storage
+  #config.constants.MISSING_PRIVATE_KEY = 'custom error message'
+end
 ```
-
+#### CarrierWave
 You can create a carrierwave uploader in order to attach pictures to your database objects as their attributes. To upload images without designating them as database attributes, skip to [this section](https://github.com/imagekit-developer/imagekit-ruby#file-upload).
-
+(make sure to add service `:carrierwave` as shown in [initialization section](#Initialization))
 ```bash
 rails g uploader <Uploading_attribute_name>
 # For example, if you want to create an uploader for Avatar attribute, then use
@@ -66,8 +73,8 @@ rails g uploader Avatar
 
 After that, you need to edit your generated uploader and make the following changes:
 ```ruby
-# Set store as imagekit_store
-storage :imagekit_store
+# include this module inside the top of the uploader class
+include ImageKitIo::CarrierWave
 
 # If you want to add uploading options, then create this method inside the uploader file as an example
 
@@ -103,10 +110,48 @@ Get image url:
 # To get the original image url, use
 @employee.avatar.url
 
+# To get the file metadata
+@employee.avatar.metadata
+
+
 # And to get transformed url use
 # options is a transformation options
 @employee.avatar.url_with(options)
 ```
+
+#### ActiveStorage
+
+Once you [install](https://guides.rubyonrails.org/active_storage_overview.html#setup) the active_storage gem, then any model can have the attachment using `has_one_attached` or `has_many_attached` like below:
+
+```ruby
+class Employee < ApplicationRecord
+  has_one_attached :avatar
+end
+```
+
+Get image url:
+```ruby
+# If @employee is an object of your model that has data.
+
+# To get the original image url, use
+@employee.avatar.url
+```
+
+Now lets configure active_storage as a service for the imagekitio. 
+
+First add `:active_storage` in initializer file.
+
+```ruby
+config.service = :active_storage
+``` 
+
+Then add the imagekitio service in the `storage.yml` file:
+
+```ruby
+imagekitio:
+    service: ImageKitIo
+```
+
 
 ## Usage
 
@@ -126,16 +171,17 @@ about paths with different kinds of origins.
 
 
 ```ruby
+imagekitio = ImageKitIo.client
 image_url = imagekitio.url({
     path: "/default-image.jpg",
     url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
-    transformation: [{height: "300", width: "400"}]
+    transformation: [{height: "300", width: "400", raw: "ar-4-3,q-40"}]
 })
 ```
 
 The result in a URL like
 ```
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg
+https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400,ar-4-3,q-40/default-image.jpg
 ```
 
 **2.Using full image URL**
@@ -304,6 +350,7 @@ transformation code from ImageKit docs as the name when using the `url` function
 | effectContrast | e-contrast |
 | effectGray | e-grayscale |
 | original | orig |
+| raw | `replaced by the parameter value` |
 
 ## File Upload
 This method can be used to directly upload images to your ImageKit Media Library without giving it the designation of an attribute of any database object.
@@ -319,9 +366,11 @@ Simple usage
 
 ```ruby
 imagekitio.upload_file(
-    file = "<url|base_64|binary>", # required
-    file_name= "my_file_name.jpg",  # required
-    options= {response_fields: 'isPrivateFile, tags', tags: %w[abc def], use_unique_file_name: true,}
+    file: "<url|base_64|binary>", # required
+    file_name: "my_file_name.jpg",  # required
+    response_fields: 'isPrivateFile, tags',
+    tags: %w[abc def],
+    use_unique_file_name: true
 )
 
 ```
@@ -342,26 +391,35 @@ in the [documentation here](https://docs.imagekit.io/api-reference/media-api/lis
 correct values to get the results.
 
 ```ruby
-imagekitio.list_files({skip: 0, limit: 5})
+imagekitio.list_files(
+    skip: 0,
+    limit: 5
+)
 ```
 **2. Get File Details**
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details)
 
 ```ruby
-imagekitio.get_file_details(file_id)
+imagekitio.get_file_details(
+    file_id: '598821f949c0a938d57563bd'
+)
 ```
 
 **3. Get File Metadata**
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
 ```ruby
-imagekit.get_file_metadata(file_id)
+imagekit.get_file_metadata(
+    file_id: '598821f949c0a938d57563bd'
+)
 ```
 
 **3. Get File Metadata from remote url**
 Accepts the remote file url and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url)
 
 ```ruby
-imagekit.get_remote_file_url_metadata(remote_file_url)
+imagekit.get_remote_file_url_metadata(
+    remote_file_url: "https://ik.imagekit.io/demo/tr:w-100/default-image.jpg"
+)
 ```
 
 **4. Update File Details**
@@ -370,42 +428,222 @@ The first argument to the `update_field_details` method is the file ID, and a se
 parameters to be updated.
 
 ```ruby
-imagekitio.update_file_details(file_id, {
+imagekitio.update_file_details(
+    file_id: '598821f949c0a938d57563bd',
     tags: ["image_tag"],
     custom_coordinates: "10,10,100, 100"
-})
+)
 ```
 
-**6. Delete file**
+**5. Copy File**
+
+Copy file from one path to another path using the source file path and the destination path as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-file)
+
+```ruby
+imagekitio.copy_file(
+    source_file_path: '/path/to/file.jpg',
+    destination_path: '/folder/to/copy/into'
+)
+```
+
+**6. Move File**
+
+Move file from one folder to another folder using the source file path and destination path as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-file)
+
+```ruby
+imagekitio.move_file(
+    source_file_path: '/path/to/file.jpg',
+    destination_path: '/folder/to/move/into/'
+)
+```
+
+**7. Rename File**
+
+Rename file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/rename-file)
+
+```ruby
+imagekitio.rename_file(
+    file_path: '/path/to/old-file-name.jpg',
+    new_file_name: 'new-file-name.jpg',
+    purge_cache: true #optional
+)
+```
+
+**8. Delete file**
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file). The method accepts the file ID of the file that has to be deleted.
 
 ```ruby
-imagekitio.delete_file(file_id)
+imagekitio.delete_file(
+    file_id: '598821f949c0a938d57563bd'
+)
 ```
 
-**6. Bulk File Delete by IDs**
+**9. Bulk File Delete by IDs**
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk). The method accepts a list of file IDs of files that has to be
 deleted.
 
 ```ruby
-imagekitio.bulk_file_delete(["file_id1", "file_id2"])
+imagekitio.delete_bulk_files(
+    file_ids: ["598821f949c0a938d57563bd", "598821f949c0a938d57543bd"]
+)
 ```
 
-**6. Purge Cache**
-Programmatically issue a cache clear request as pet the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache).
+**10. Purge Cache**
+Programmatically issue a cache clear request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache).
 Accepts the full URL of the file for which the cache has to be cleared.
 
 ```ruby
-imagekitio.purge_file_cache(full_url)
+imagekitio.purge_file_cache(
+    file_url: 'https://ik.imagekit.io/demo/logo-white_SJwqB4Nfe.png'
+)
 ```
-**7. Purge Cache Status**
+**11. Purge Cache Status**
 
-Get the purge cache request status using the request ID returned when a purge cache request gets submitted as pet the
+Get the purge cache request status using the request ID returned when a purge cache request gets submitted as per the
 [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
 
 ```ruby
-imagekitio.get_purge_file_cache_status(cache_request_id)
+imagekitio.purge_file_cache_status(
+    request_id: '598821f949c0a938d57543bd'
+)
 ```
+
+**12. Add Bulk Tags**
+
+Add multiple tags on multiple files using array of file ids and array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk)
+
+```ruby
+imagekitio.add_bulk_tags(
+    file_ids: ['598821f949c0a938d57543bd', '598921f949c0a938d57543bd'],
+    tags: ['custom_tags', 'image', 'favourite']
+)
+``` 
+
+**13. Delete Bulk Tags**
+
+Remove multiple tags from multiple files using array of file ids and array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk)
+
+```ruby
+imagekitio.delete_bulk_tags(
+    file_ids: ['598821f949c0a938d57543bd', '598921f949c0a938d57543bd'],
+    tags: ['custom_tags', 'image']
+)
+```
+
+**14. Delete Bulk Ai Tags**
+
+Delete bulk ai tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk)
+
+```ruby
+imagekitio.delete_bulk_ai_tags(
+    file_ids: ['598821f949c0a938d57543bd', '598921f949c0a938d57543bd'],
+    ai_tags: ['custom_ai_tags']
+)
+```
+
+**15. Create Folder**
+
+Create folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/create-folder)
+
+```ruby
+imagekitio.create_folder(
+    folder_name: 'new_folder',
+    parent_folder_path: 'source/folder/path' #optional
+)
+```
+
+
+**16. Copy Folder**
+
+Copy folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-folder)
+
+```ruby
+imagekitio.copy_folder(
+    source_folder_path: '/folder/to/copy',
+    destination_path: '/folder/to/copy/into'
+)
+```
+
+**17. Move Folder**
+
+Move folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-folder)
+
+```ruby
+imagekitio.move_folder(
+    source_folder_path: '/folder/to/move',
+    destination_path: '/folder/to/move/into/'
+)
+```
+
+**18. Delete Folder**
+
+Delete folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-folder)
+
+```ruby
+imagekitio.delete_folder(
+    folder_path: 'folder/to/delete'
+)
+```
+
+**19. Bulk Job Status**
+
+Get the bulk job status as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status)
+
+```ruby
+imagekitio.bulk_job_status(
+    job_id: '5e21880d5efe355febd4cccd'
+)
+```
+
+**20. Create Custom Metadata Fields**
+
+Create custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field)
+
+```ruby
+
+imagekitio.create_custom_metadata_field(
+    name: 'price',
+    label: 'price_label',
+    schema: {
+      'type': 'Number',
+      'minValue': 100,
+      'maxValue': 300
+    }
+)
+```
+
+**21. Get Custom Metadata Fields**
+
+Get the custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
+
+```ruby
+imagekitio.get_custom_metadata_fields(
+   include_deleted: true #optional
+)
+```
+
+**22. Update Custom Metadata Fields**
+
+Update custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field)
+
+```ruby
+imagekitio.update_custom_metadata_field(
+    id: '5e21880d5efe355febd4bccd', #field_id
+    label: 'custom-price', #Either label or schema or both should be given
+    schema: nil
+)
+```
+
+**23. Delete Custom Metadata Fields**
+
+Delete custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field)
+
+```ruby
+imagekitio.delete_custom_metadata_field(
+    id: '5e21880d5efe355febd4bccd' #field_id
+)
+```
+
 
 ## Utility functions
 
@@ -468,52 +706,22 @@ imagekitio.phash_distance('a4a65595ac94518b', '7838873e791f8400')
 ```
 
 ## Sample Application
-There are two sample apps:
-* [Rails application using Carrierwave](#Instructions-for-rails-application)
-* [Plain ruby application](#Instructions-for-ruby-application)
+There are three sample apps:
+* Rails application using Carrierwave
+* Rails application using ActiveStorage
+* Plain ruby application
 
-### Instructions for a rails application
-This is under [samples/rails_app](https://github.com/imagekit-developer/imagekit-ruby/blob/master/samples/rails_app) directory. Follow the instructions below to set up a rails application.
+Please see the sample applications in [here](https://github.com/imagekit-samples/quickstart).
 
-**1. Clone git repository**
-```bash
-git clone `https://github.com/imagekit-developer/imagekit-gem
-```
-**2. Go to sample project directory**
-```bash
-cd sample/rails_app
-```
-**3. Write imagekit configuration in `config/environments/development.rb`**
-```ruby
-config.imagekit={
-  private_key: "<your-private-key>",
-  public_key: "<your-public-key>",
-  url_endpoint: "<endpoint-url>"
-}
-```
-**4. Install dependency**
-```ruby
-bundle install
-```
-This sample project is using the Sqlite3 database. If you are getting `sqlite3` gem installation error, then install sqlite3 first, then again run `bundle install`.
+## Upgrade to 2.0.0
 
-**5. Migrate the database**
-```ruby
-bundle exec rake db:migrate
-```
+Application using variants of version 1.0 needs following changes in order to use version 2.0.0:
 
-**6. Run your application**
-```ruby
-rails s
-```
-It will run on your default rails port [3000].
-Sample Application URL: http://localhost:3000/posts/
-
-### Instructions for ruby application
-Run following command under [samples/ruby_app](https://github.com/imagekit-developer/imagekit-ruby/blob/master/samples/ruby_app) directory
-```ruby
-ruby app.rb
-```
+- Remove config from environment file to initializer file as described [here](#Initialization).
+- Include `ImageKitIo::CarrierWave` in uploader class(for Carrierwave).
+- Remove `storage :imagekit_store` config from uploader.
+- Rename class `ImageKit::ImageKitClient` to `ImageKitIo::Client`
+- Rename class `ImageKitIo::ImageKitRequest` to `ImageKitIo::Request`
 
 ## Support
 For any feedback or to report any issues or general implementation support, please reach out to [support@imagekit.io](mailto:support@imagekit.io)

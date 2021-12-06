@@ -14,10 +14,13 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 # gem 'carrierwave', '~> 2.0'
-gem "minitest", "~> 5.0"
 # gem "rake", "~> 12.0"
 # gem "rest-client", "~>2.1"
-gem "rspec"
 
-gem 'codecov', require: false, group: 'test'
-gem 'webmock', require: false, group: 'test'
+group :test do
+  gem "minitest", "~> 5.0"
+  gem "rspec"
+  gem 'codecov'
+  gem 'webmock'
+  gem 'byebug'
+end

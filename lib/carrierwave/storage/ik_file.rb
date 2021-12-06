@@ -1,17 +1,17 @@
-module CarrierWave
+module ImageKitIo
+  module CarrierWave
     module Storage
       class IKFile
         # Initialize as required.
-        
+
         def initialize(identifier)
           @identifier=JSON.parse(identifier)
-          ik_config=Rails.application.config.imagekit
-          @imagekit=ImageKit::ImageKitClient.new(ik_config[:private_key],ik_config[:public_key],ik_config[:url_endpoint])
+          @imagekit = ImageKitIo.client
         end
 
-        # Duck-type methods for CarrierWave::SanitizedFile. 
+        # Duck-type methods for CarrierWave::SanitizedFile.
         def content_type
-            "image/jpg"
+          "image/jpg"
         end
         def public_url
           @identifier['url']
@@ -33,7 +33,7 @@ module CarrierWave
         def delete
           # file_id=@identifier['fileId']
           begin
-            @imagekit.delete_file(fileId)
+            @imagekit.delete_file(file_id: fileId)
           rescue
             fileId
           end
@@ -47,4 +47,5 @@ module CarrierWave
 
     end
 
+  end
 end
