@@ -52,9 +52,9 @@ Create a new file `config/initializers/imagekitio.rb` then add the configuration
 ```ruby
 ImageKitIo.configure do |config|
   if Rails.env.development?
-    config.public_key = '<your-public-key>'
-    config.private_key = '<your-private-key>'
-    config.url_endpoint = '<endpoint-url>'
+    config.public_key = 'your_public_api_key'
+    config.private_key = 'your_private_api_key'
+    config.url_endpoint = 'https://ik.imagekit.io/your_imagekit_id/'
   end
   config.service = :carrierwave
   #config.service = :active_storage
