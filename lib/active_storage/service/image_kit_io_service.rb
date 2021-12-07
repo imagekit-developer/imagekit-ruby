@@ -132,7 +132,7 @@ if defined? Rails
       end
 
       def url(key, filename: nil, content_type: '', **options)
-        image_kit_file(key).url
+        generate_url(key, filename: filename, content_type: content_type, path: image_kit_file(key).path, **options)
       end
 
       def open(*args, **options, &block)
@@ -141,13 +141,14 @@ if defined? Rails
 
       private
 
-      def private_url(key, expires_in:, filename:, disposition:, content_type:, **)
-        generate_url(key, expires_in: expires_in, filename: filename, disposition: disposition, content_type: content_type)
+      def private_url(key, expires_in:, filename:, disposition:, content_type:, **options)
+        generate_url(key, expires_in: expires_in, filename: filename, disposition: disposition, content_type: content_type, path: image_kit_file(key).path, **options)
       end
 
-      def generate_url(key, expires_in:, filename:, content_type:, disposition:)
-        filename = '/' + filename.to_s if filename.is_a? ActiveStorage::Filename
-        client.url(path: filename, url_endpoint: config.url_endpoint)
+      def generate_url(key, expires_in:, filename:, content_type:, disposition:, **options)
+        # filename = filename.to_s if filename.is_a? ActiveStorage::Filename
+        # options[:filename] = filename if filename
+        client.url(url_endpoint: config.url_endpoint, **options)
       end
 
       def client
