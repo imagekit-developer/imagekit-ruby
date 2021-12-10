@@ -20,7 +20,7 @@ Table of contents -
  * [File Management](#File-Management)
  * [Utility Functions](#Utility-functions)
  * [Sample applications](#Sample-Application)
- * [Upgrade to 2.0.0](#upgrade-to-2.0.0)
+ * [Upgrade to 2.x](#upgrade-to-2.x)
  * [Support](#Support)
  * [Links](#Links)
 
@@ -715,9 +715,9 @@ There are three sample apps:
 
 Please see the sample applications in [here](https://github.com/imagekit-samples/quickstart).
 
-## Upgrade to 2.0.0
+## Upgrade to 2.x
 
-If you are upgrading to 2.0.0 from version 1.x, make the following changes  in your application:
+If you are upgrading to 2.x from version 1.x, make the following changes  in your application:
 
 - Remove config from environment file to initializer file as described [here](#Initialization).
 - Include `ImageKitIo::CarrierWave` in uploader class(for Carrierwave).
