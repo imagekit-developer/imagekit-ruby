@@ -69,7 +69,7 @@ RSpec.describe ImageKitIo::Client do
       SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
       SUT.set_ik_request(request_obj)
 
-      upload = SUT.upload_file(file: "fakefile.jpg", file_name: "fake")
+      upload = SUT.upload_file(file: "fakefile.jpg", file_name: "fake", content_type: 'image/jpeg')
 
       expect(upload[:code]).to eq(200)
     end

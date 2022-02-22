@@ -33,6 +33,7 @@ module ImageKitIo
         raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file
         raise ArgumentError, constants.MISSING_UPLOAD_FILE_PARAMETER unless file_name
 
+        content_type = options.delete(:content_type)
         options = format_to_json(options, :extensions, Array)
         options = format_to_json(options, :custom_metadata, Hash)
         options = validate_upload_options(options || {})
@@ -40,7 +41,6 @@ module ImageKitIo
           raise ArgumentError, "Invalid Upload option"
         else
           headers = @req_obj.create_headers
-          content_type = options.delete(:content_type)
           if(content_type && image_format?(content_type))
             payload = { multipart: true, file: file, fileName: file_name }.merge(options)
           else
