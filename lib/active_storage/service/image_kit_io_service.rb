@@ -74,6 +74,8 @@ if defined? Rails
           response = client.upload_file(file: io, file_name: blob.filename.to_s, content_type: blob.content_type)
           if response[:error].nil?
             blob.update_columns(metadata: response[:response].transform_keys(&:to_sym))
+          else
+            raise Exception.new response[:error]
           end
         end
       end

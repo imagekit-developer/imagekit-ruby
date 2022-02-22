@@ -42,6 +42,9 @@ module ImageKitIo
           http.use_ssl = (uri.scheme == 'https')
           req = Net::HTTP::Post::Multipart.new uri.path, payload, headers
           resp = http.request(req)
+          if resp.code.to_i == 400
+            raise RestClient::ExceptionWithResponse, OpenStruct.new(http_code: 400, body: resp.body)
+          end
         else
           resp = RestClient::Request.new(method: method,
                                          url: url,
@@ -63,7 +66,7 @@ module ImageKitIo
         response[:error] = if err.http_code == 404
                              {'message': err.response.to_s}
                            else
-                             JSON.parse(err.response)
+                             err.response.is_a?(OpenStruct) ? JSON.parse(err.response.body) : JSON.parse(err.response)
                            end
       end
       response
