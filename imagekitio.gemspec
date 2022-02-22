@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rest-client', '~> 2.1', ">=2.1"
   spec.add_dependency 'addressable', '~> 2.8'
   spec.add_dependency 'activestorage', '>= 5.2.0'
-  # spec.add_development_dependency "sqlite3"
+  spec.add_dependency 'multipart-post', '>= 2.1.0'
   spec.add_development_dependency "rails", "~> 5.2.0", ">= 5.2.0"
 end

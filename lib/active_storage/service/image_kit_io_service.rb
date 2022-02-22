@@ -3,7 +3,7 @@ require_relative './ik_file'
 if defined? Rails
   # Overwrite the ActiveStorage::Downloader's open method and remove the file integrity check constraint method verify_integrity_of
   class DownloaderExtension < ::ActiveStorage::Downloader
-    def open(key, checksum:, name: "ActiveStorage-", tmpdir: nil)
+    def open(key, checksum:, name: "ActiveStorage-", tmpdir: nil, **options)
       open_tempfile(name, tmpdir) do |file|
         download key, file
         # verify_integrity_of file, checksum: checksum
@@ -71,7 +71,7 @@ if defined? Rails
       def upload(key, io, checksum: nil, **options)
         instrument :upload, key: key, checksum: checksum do
           blob = storage_blob(key)
-          response = client.upload_file(file: io, file_name: blob.filename.to_s)
+          response = client.upload_file(file: io, file_name: blob.filename.to_s, content_type: blob.content_type)
           if response[:error].nil?
             blob.update_columns(metadata: response[:response].transform_keys(&:to_sym))
           end

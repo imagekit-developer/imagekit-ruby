@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require_relative '../constant'
 require_relative '../utils/option_validator'
+require 'net/http/post/multipart'
 
 module ImageKitIo
   module ApiService
@@ -39,7 +40,16 @@ module ImageKitIo
           raise ArgumentError, "Invalid Upload option"
         else
           headers = @req_obj.create_headers
-          payload = {multipart: true, file: file, fileName: file_name}.merge(options)
+          content_type = options.delete(:content_type)
+          if(content_type && image_format?(content_type))
+            payload = { multipart: true, file: file, fileName: file_name }.merge(options)
+          else
+            payload =  {
+              'file' => ::UploadIO.new(file, content_type, file_name),
+              'fileName' => file_name
+            }
+          end
+          payload.merge!(options)
           url = "#{constants.BASE_URL}#{constants.UPLOAD}"
           @req_obj.request("post", url, headers, payload)
         end
@@ -156,6 +166,12 @@ module ImageKitIo
         url = "#{constants.BASE_URL}/rename"
         payload = { 'filePath': file_path, 'newFileName': new_file_name }.merge(request_formatter(options)).to_json
         @req_obj.request('put', url, @req_obj.create_headers, payload)
+      end
+
+
+      private
+      def image_format?(type)
+        %(image/jpeg image/bmp image/apng image/avif image/gif image/ief image/svg+xml image/tiff image/x-icon image/rgb image/webp).include?(type)
       end
     end
   end
