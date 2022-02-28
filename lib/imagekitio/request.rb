@@ -34,7 +34,7 @@ module ImageKitIo
     # request method communicates with server
     def request(method, url, headers = create_headers, payload = nil)
       headers ||= create_headers
-      response = {response: nil, error: nil}
+      response = {}
       begin
         if(method.downcase.to_sym == :post)
           uri = URI.parse(url)
@@ -43,7 +43,7 @@ module ImageKitIo
           req = Net::HTTP::Post::Multipart.new uri.path, payload, headers
           resp = http.request(req)
           if resp.code.to_i == 400
-            raise RestClient::ExceptionWithResponse, OpenStruct.new(http_code: 400, body: resp.body)
+            raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 400, body: resp.body)
           end
         else
           resp = RestClient::Request.new(method: method,
@@ -56,14 +56,14 @@ module ImageKitIo
           if (content_type.include? "application/json")
             response[:response] = JSON.parse(resp.body.to_s)
           else
-            raise =RestClient::ExceptionWithResponse
+            raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 404, body: resp.body)
           end
         elsif resp.code.to_i == 204
           response[:response] = {'success': true}
         end
 
       rescue RestClient::ExceptionWithResponse => err
-        response[:error] = if err.http_code == 404
+        response[:error] = if err.http_code.to_i == 404
                              {'message': err.response.to_s}
                            else
                              err.response.is_a?(OpenStruct) ? JSON.parse(err.response.body) : JSON.parse(err.response)
