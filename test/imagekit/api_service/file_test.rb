@@ -76,7 +76,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       file = open("test/imagekit/dummy_data/sample.jpg", "rb")
       upload = SUT.upload(file: file, file_name: "my_file_name")
       expect(@ac[:payload].keys).to eq([:multipart, :file, :fileName])
-      expect(@ac[:payload][:file]).to eq(file)
+      expect(@ac[:payload][:file].io).to eq(file)
       expect(@ac[:payload][:fileName]).to eq('my_file_name')
       expect(upload[:code]).to eq(200)
 

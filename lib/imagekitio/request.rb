@@ -3,6 +3,7 @@
 require "base64"
 require "rest-client"
 require "json"
+require 'net/http/post/multipart'
 require_relative './constant'
 # Request requests and sends data from server
 module ImageKitIo
@@ -33,28 +34,39 @@ module ImageKitIo
     # request method communicates with server
     def request(method, url, headers = create_headers, payload = nil)
       headers ||= create_headers
-      response = {response: nil, error: nil}
+      response = {}
       begin
-        resp = RestClient::Request.new(method: method,
-                                       url: url,
-                                       headers: headers,
-                                       payload: payload).execute
-
-        if (resp.code >= 200) && (resp.code < 204)
-          if (resp.headers[:content_type].include? "application/json")
+        if(method.downcase.to_sym == :post)
+          uri = URI.parse(url)
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.use_ssl = (uri.scheme == 'https')
+          req = Net::HTTP::Post::Multipart.new uri.path, payload, headers
+          resp = http.request(req)
+          if resp.code.to_i == 400
+            raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 400, body: resp.body)
+          end
+        else
+          resp = RestClient::Request.new(method: method,
+                                         url: url,
+                                         headers: headers,
+                                         payload: payload).execute
+        end
+        if (resp.code.to_i >= 200) && (resp.code.to_i < 204)
+          content_type = resp.respond_to?(:headers) ? resp.headers[:content_type] : resp.content_type
+          if (content_type.include? "application/json")
             response[:response] = JSON.parse(resp.body.to_s)
           else
-            raise =RestClient::ExceptionWithResponse
+            raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 404, body: resp.body)
           end
-        elsif resp.code == 204
+        elsif resp.code.to_i == 204
           response[:response] = {'success': true}
         end
 
       rescue RestClient::ExceptionWithResponse => err
-        response[:error] = if err.http_code == 404
+        response[:error] = if err.http_code.to_i == 404
                              {'message': err.response.to_s}
                            else
-                             JSON.parse(err.response)
+                             err.response.is_a?(OpenStruct) ? JSON.parse(err.response.body) : JSON.parse(err.response)
                            end
       end
       response
