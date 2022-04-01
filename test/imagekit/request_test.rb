@@ -65,5 +65,18 @@ RSpec.describe ImageKitIo::Request do
       expect(response).to_not have_key(:error)
       expect(response).to have_key(:response)
     end
+
+    it 'test_request_method_JSON_success_with_multipart_post' do
+      stub_request(:post, 'https://www.exampleservererror/upload').to_return(status: 200, body: '{"id": "1"}', headers: {content_type: 'application/json'})
+      response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: true })
+      expect(response).to_not have_key(:error)
+      expect(response).to have_key(:response)
+    end
+
+    it 'test_request_method_non_JSON_fail_with_multipart_post' do
+      stub_request(:post, 'https://www.exampleservererror/upload').to_return(status: 400, body: '{"message": "Server failed"}', headers: {content_type: 'application/json'})
+      response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: true })
+      expect(response).to have_key(:error)
+    end
   end
 end
