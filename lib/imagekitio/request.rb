@@ -36,7 +36,7 @@ module ImageKitIo
       headers ||= create_headers
       response = {}
       begin
-        if(method.downcase.to_sym == :post)
+        if(method.downcase.to_sym == :post && payload.is_a?(Hash) && payload[:multipart])
           uri = URI.parse(url)
           http = Net::HTTP.new(uri.host, uri.port)
           http.use_ssl = (uri.scheme == 'https')
