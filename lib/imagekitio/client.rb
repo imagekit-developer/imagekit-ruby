@@ -65,6 +65,22 @@ module ImageKitIo
       @file_service.list(**options)
     end
 
+    def file_versions(file_id: nil)
+      @file_service.get_file_versions(file_id: file_id)
+    end
+
+    def file_version_detail(file_id: nil, version_id: nil)
+      @file_service.get_file_version_detail(file_id: file_id, version_id: version_id)
+    end
+
+    def delete_file_version(file_id: nil, version_id: nil)
+      @file_service.delete_file_version(file_id: file_id, version_id: version_id)
+    end
+
+    def restore_file_version(file_id: nil, version_id: nil)
+      @file_service.restore_file_version(file_id: file_id, version_id: version_id)
+    end
+
     def get_file_details(file_id: nil)
       # Get file detail by file-id or file_url
       @file_service.details(file_identifier: file_id)

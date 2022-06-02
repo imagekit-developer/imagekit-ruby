@@ -45,6 +45,9 @@ module ImageKitIo
           if resp.code.to_i == 400
             raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 400, body: resp.body)
           end
+          if resp.code.to_i == 403
+            raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 403, body: resp.body)
+          end
         else
           resp = RestClient::Request.new(method: method,
                                          url: url,
