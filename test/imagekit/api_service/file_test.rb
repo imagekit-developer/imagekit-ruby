@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-
+require 'pry'
 RSpec.describe ImageKitIo::ApiService::File do
   let(:file_api_service) { described_class }
   let(:config) { ImageKitIo.config }
@@ -272,6 +272,121 @@ RSpec.describe ImageKitIo::ApiService::File do
       resp = SUT.list("skip": 0, "limit": 10)
       expect(@ac[:payload].to_json).to eq("{\"skip\":0,\"limit\":10}")
       expect(resp[:code]).to eq(200)
+    end
+  end
+
+  describe 'FileVersionDetailTest' do
+    let(:success_response) {
+      "{\"fileId\":\"my_file_id\",\"name\":\"cat1.jpg\",\"size\":102117,\"versionInfo\":{\"id\":\"my_file_id\",\"name\":\"Version 2\"},\"filePath\":\"/cat1.jpg\",\"url\":\"https://ik.imagekit.io/app_id/cat1.jpg\",\"fileType\":\"image\",\"height\":700,\"width\":1050,\"thumbnailUrl\":\"https://ik.imagekit.io/app_id/tr:n-ik_ml_thumbnail/cat1.jpg\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"isPrivateFile\":true,\"customCoordinates\":null,\"metadata\":{\"height\":700,\"width\":1050,\"size\":70842,\"format\":\"jpg\",\"hasColorProfile\":false,\"quality\":0,\"density\":72,\"hasTransparency\":false,\"exif\":{},\"pHash\":\"90249d9b1fc74367\"}}"
+    }
+    it 'test_get_file_version_detail_succeeds_with_id' do
+      request_client = double
+      allow_any_instance_of(ImageKitIo::Request)
+        .to receive(:create_headers)
+              .and_return({})
+      allow(RestClient::Request)
+        .to receive(:new)
+              .and_return(request_client)
+      allow(request_client)
+        .to receive(:execute)
+              .and_return(OpenStruct.new(code: 200,
+                                         body:  success_response,
+                                         content_type: "application/json"
+      ))
+
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      resp = SUT.get_file_version_detail(file_id: "my_file_id", version_id: 'my_file_id')
+      expect(resp).to_not have_key(:error)
+      expect(resp[:response]).to have_key('versionInfo')
+      expect(resp[:response]['versionInfo']['id']).to eq('my_file_id')
+    end
+  end
+
+  describe 'FileVersionsTest' do
+    let(:success_response) {
+      "[{\"type\":\"file\",\"name\":\"cat1.jpg\",\"createdAt\":\"2022-06-02T11:50:44.402Z\",\"updatedAt\":\"2022-06-14T15:44:12.300Z\",\"fileId\":\"my_file_id\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"versionInfo\":{\"id\":\"my_file_id\",\"name\":\"Version 2\"},\"embeddedMetadata\":{\"DateCreated\":\"2022-06-14T15:44:12.299Z\",\"DateTimeCreated\":\"2022-06-14T15:44:12.299Z\"},\"customCoordinates\":null,\"customMetadata\":{},\"isPrivateFile\":true,\"url\":\"https://ik.imagekit.io/app_id/cat1.jpg\",\"thumbnail\":\"https://ik.imagekit.io/app_id/tr:n-ik_ml_thumbnail/cat1.jpg\",\"fileType\":\"image\",\"filePath\":\"/cat1.jpg\",\"height\":700,\"width\":1050,\"size\":102117,\"hasAlpha\":false,\"mime\":\"image/jpeg\"},{\"type\":\"file-version\",\"name\":\"cat1.jpg\",\"createdAt\":\"2022-06-14T15:44:10.910Z\",\"updatedAt\":\"2022-06-14T15:44:11.372Z\",\"fileId\":\"my_file_id\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"versionInfo\":{\"id\":\"my_file_second_version_id\",\"name\":\"Version 1\"},\"embeddedMetadata\":{\"DateCreated\":\"2022-06-02T11:50:45.537Z\",\"DateTimeCreated\":\"2022-06-02T11:50:45.540Z\"},\"customCoordinates\":null,\"customMetadata\":{},\"isPrivateFile\":true,\"url\":\"https://ik.imagekit.io/app_id/cat1.jpg?ik-obj-version=ik_version_id\",\"thumbnail\":\"https://ik.imagekit.io/app_id/tr:n-ik_ml_thumbnail/cat1.jpg?ik-obj-version=ik_version_id\",\"fileType\":\"image\",\"filePath\":\"/cat1.jpg\",\"height\":700,\"width\":1050,\"size\":102117,\"hasAlpha\":false,\"mime\":\"image/jpeg\"}]"
+    }
+    it 'test_get_file_versions_succeeds_with_id' do
+      request_client = double
+      allow_any_instance_of(ImageKitIo::Request)
+        .to receive(:create_headers)
+              .and_return({})
+      allow(RestClient::Request)
+        .to receive(:new)
+              .and_return(request_client)
+      allow(request_client)
+        .to receive(:execute)
+              .and_return(OpenStruct.new(code: 200,
+                                         body:  success_response,
+                                         content_type: "application/json"
+              ))
+
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      resp = SUT.get_file_versions(file_id: "my_file_id")
+      expect(resp).to_not have_key(:error)
+      expect(resp[:response]).to be_an_instance_of(Array)
+      expect(resp[:response].length).to eq(2)
+      expect(resp[:response][0]['versionInfo']['id']).to eq('my_file_id')
+      expect(resp[:response][0]['versionInfo']['name']).to eq('Version 2')
+      expect(resp[:response][1]['versionInfo']['id']).to eq('my_file_second_version_id')
+      expect(resp[:response][1]['versionInfo']['name']).to eq('Version 1')
+    end
+  end
+
+  describe 'RestoreFileVersionTest' do
+    let(:success_response) {
+      "{\"type\":\"file\",\"name\":\"cat1.jpg\",\"createdAt\":\"2022-06-02T11:50:44.402Z\",\"updatedAt\":\"2022-06-14T16:20:06.258Z\",\"fileId\":\"my_file_id\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"versionInfo\":{\"id\":\"my_second_version\",\"name\":\"Version 2\"},\"embeddedMetadata\":{\"DateCreated\":\"2022-06-02T11:50:45.537Z\",\"DateTimeCreated\":\"2022-06-02T11:50:45.540Z\"},\"customCoordinates\":null,\"customMetadata\":{},\"isPrivateFile\":true,\"url\":\"https://ik.imagekit.io/app_id/cat1.jpg\",\"thumbnail\":\"https://ik.imagekit.io/app_id/tr:n-ik_ml_thumbnail/cat1.jpg\",\"fileType\":\"image\",\"filePath\":\"/cat1.jpg\",\"height\":700,\"width\":1050,\"size\":102117,\"hasAlpha\":false,\"mime\":\"image/jpeg\"}"
+    }
+    it 'test_restore_file_version_succeeds_with_id' do
+      request_client = double
+      allow_any_instance_of(ImageKitIo::Request)
+        .to receive(:create_headers)
+              .and_return({})
+      allow(RestClient::Request)
+        .to receive(:new)
+              .and_return(request_client)
+      allow(request_client)
+        .to receive(:execute)
+              .and_return(OpenStruct.new(code: 200,
+                                         body:  success_response,
+                                         content_type: "application/json"
+              ))
+
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      resp = SUT.restore_file_version(file_id: "my_file_id", version_id: 'my_second_version')
+      expect(resp).to_not have_key(:error)
+      expect(resp[:response]['versionInfo']['id']).to eq('my_second_version')
+      expect(resp[:response]['versionInfo']['name']).to eq('Version 2')
+    end
+  end
+
+  describe 'DeleteFileVersionTest' do
+    let(:success_response) {
+      "{\"success\":true}"
+    }
+    it 'test_restore_file_version_succeeds_with_id' do
+      request_client = double
+      allow_any_instance_of(ImageKitIo::Request)
+        .to receive(:create_headers)
+              .and_return({})
+      allow(RestClient::Request)
+        .to receive(:new)
+              .and_return(request_client)
+      allow(request_client)
+        .to receive(:execute)
+              .and_return(OpenStruct.new(code: 200,
+                                         body:  success_response,
+                                         content_type: "application/json"
+              ))
+
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      resp = SUT.delete_file_version(file_id: "my_file_id", version_id: 'my_second_version')
+      expect(resp).to_not have_key(:error)
+      expect(resp[:response]['success']).to eq(true)
     end
   end
 

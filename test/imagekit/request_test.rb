@@ -78,5 +78,12 @@ RSpec.describe ImageKitIo::Request do
       response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: true })
       expect(response).to have_key(:error)
     end
+
+    it 'test_request_method_403' do
+      stub_request(:post, 'https://www.exampleservererror/upload').to_return(status: 403, body: "{\"message\":\"Your account cannot be authenticated.\",\"help\":\"For support kindly contact us at support@imagekit.io .\"}", headers: {content_type: 'application/json'})
+      response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: true })
+      expect(response).to have_key(:error)
+      expect(response[:error]).to eq({"message"=>"Your account cannot be authenticated.", "help"=>"For support kindly contact us at support@imagekit.io ."})
+    end
   end
 end
