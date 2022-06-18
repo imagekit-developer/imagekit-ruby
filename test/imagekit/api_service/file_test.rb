@@ -301,6 +301,13 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(resp[:response]).to have_key('versionInfo')
       expect(resp[:response]['versionInfo']['id']).to eq('my_file_id')
     end
+
+    it 'test_get_file_version_detail_failed_without_id' do
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      expect{SUT.get_file_version_detail}.to raise_error(ArgumentError)
+      expect{SUT.get_file_version_detail(file_id: 'new_file_id')}.to raise_error(ArgumentError)
+    end
   end
 
   describe 'FileVersionsTest' do
@@ -333,6 +340,12 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(resp[:response][1]['versionInfo']['id']).to eq('my_file_second_version_id')
       expect(resp[:response][1]['versionInfo']['name']).to eq('Version 1')
     end
+
+    it 'test_get_file_version_failed_without_id' do
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      expect{SUT.get_file_versions}.to raise_error(ArgumentError)
+    end
   end
 
   describe 'RestoreFileVersionTest' do
@@ -361,6 +374,13 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(resp[:response]['versionInfo']['id']).to eq('my_second_version')
       expect(resp[:response]['versionInfo']['name']).to eq('Version 2')
     end
+
+    it 'test_restore_file_version_failed_without_id' do
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      expect{SUT.restore_file_version}.to raise_error(ArgumentError)
+      expect{SUT.restore_file_version(file_id: 'new_file_id')}.to raise_error(ArgumentError)
+    end
   end
 
   describe 'DeleteFileVersionTest' do
@@ -387,6 +407,13 @@ RSpec.describe ImageKitIo::ApiService::File do
       resp = SUT.delete_file_version(file_id: "my_file_id", version_id: 'my_second_version')
       expect(resp).to_not have_key(:error)
       expect(resp[:response]['success']).to eq(true)
+    end
+
+    it 'test_delete_file_version_failed_without_id' do
+      imagekit_request = ImageKitIo::Request.new(private_key, public_key, url_endpoint)
+      SUT = file_api_service.new(imagekit_request)
+      expect{SUT.delete_file_version}.to raise_error(ArgumentError)
+      expect{SUT.delete_file_version(file_id: 'new_file_id')}.to raise_error(ArgumentError)
     end
   end
 
