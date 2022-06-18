@@ -42,17 +42,19 @@ module ImageKitIo
           http.use_ssl = (uri.scheme == 'https')
           req = Net::HTTP::Post::Multipart.new uri.path, payload, headers
           resp = http.request(req)
-          if resp.code.to_i == 400
-            raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 400, body: resp.body)
-          end
-          if resp.code.to_i == 403
-            raise RestClient::ExceptionWithResponse, OpenStruct.new(code: 403, body: resp.body)
+          response[:headers] = resp.to_hash
+          response[:raw_body] = resp.body
+          resp_c = resp.code.to_i
+          if [400, 403].include?(resp_c)
+            raise RestClient::ExceptionWithResponse, OpenStruct.new({ body: resp.body, code: resp_c })
           end
         else
           resp = RestClient::Request.new(method: method,
                                          url: url,
                                          headers: headers,
                                          payload: payload).execute
+          response[:headers] = resp.raw_headers
+          response[:raw_body] = resp.body
         end
         if (resp.code.to_i >= 200) && (resp.code.to_i < 204)
           content_type = resp.respond_to?(:headers) ? resp.headers[:content_type] : resp.content_type
