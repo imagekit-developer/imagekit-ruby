@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-require 'pry'
+
 RSpec.describe ImageKitIo::ApiService::File do
   let(:file_api_service) { described_class }
   let(:config) { ImageKitIo.config }

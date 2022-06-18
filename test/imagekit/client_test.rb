@@ -100,6 +100,90 @@ RSpec.describe ImageKitIo::Client do
       expect(file_list[:code]).to eq(200)
     end
 
+    it "test_file_versions_with_valid_expected_success" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+
+      allow(request_obj)
+        .to receive(:request)
+              .and_return({code: 200})
+
+      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
+      resp = SUT.file_versions(file_id: 'my_new_file_id')
+
+      expect(resp[:code]).to eq(200)
+    end
+
+    it "test_file_version_detail_with_valid_expected_success" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+
+      allow(request_obj)
+        .to receive(:request)
+              .and_return({code: 200})
+
+      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
+      resp = SUT.file_version_detail(file_id: 'my_new_file_id', version_id: 'my_file_version_id')
+
+      expect(resp[:code]).to eq(200)
+    end
+
+    it "test_delete_file_version_with_valid_expected_success" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+
+      allow(request_obj)
+        .to receive(:request)
+              .and_return({code: 200})
+
+      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
+      resp = SUT.delete_file_version(file_id: 'my_new_file_id', version_id: 'my_file_version_id')
+
+      expect(resp[:code]).to eq(200)
+    end
+
+    it "test_restore_file_version_with_valid_expected_success" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+
+      allow(request_obj)
+        .to receive(:request)
+              .and_return({code: 200})
+
+      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
+      resp = SUT.restore_file_version(file_id: 'my_new_file_id', version_id: 'my_file_version_id')
+
+      expect(resp[:code]).to eq(200)
+    end
+
     it "test_get_file_details_with_valid_expected_success" do
       request_obj = double
       allow(ImageKitIo::Request)
