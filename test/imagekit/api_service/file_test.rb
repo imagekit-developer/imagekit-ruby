@@ -963,8 +963,8 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/copy")
       expect(@ac[:payload]).to eq("{\"sourceFilePath\":\"test/dummy.png\",\"destinationPath\":\"/my_image\",\"includeFileVersions\":false}")
       expect(resp[:code]).to eq(200)
-      resp = @sut.copy(source_file_path: source_file, destination_path: destination_path, include_folder_versions: true)
-      expect(@ac[:payload]).to eq("{\"sourceFilePath\":\"test/dummy.png\",\"destinationPath\":\"/my_image\",\"includeFileVersions\":false}")
+      resp = @sut.copy(source_file_path: source_file, destination_path: destination_path, include_file_versions: true)
+      expect(@ac[:payload]).to eq("{\"sourceFilePath\":\"test/dummy.png\",\"destinationPath\":\"/my_image\",\"includeFileVersions\":true}")
       expect(resp[:code]).to eq(200)
     end
   end
