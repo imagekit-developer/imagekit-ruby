@@ -27,12 +27,12 @@ module ImageKitIo
         @req_obj.request('delete', url, @req_obj.create_headers, payload)
       end
 
-      def copy(source_folder_path: nil, destination_path: nil)
+      def copy(source_folder_path: nil, destination_path: nil, include_file_versions: false)
         if source_folder_path == '' || source_folder_path.nil? || destination_path == '' || destination_path.nil?
           raise ArgumentError, 'Parameters required'
         end
         url = "#{constants.BULK_BASE_URL}/copyFolder"
-        payload = { 'sourceFolderPath': source_folder_path, 'destinationPath': destination_path }
+        payload = { 'sourceFolderPath': source_folder_path, 'destinationPath': destination_path, 'includeFileVersions': include_file_versions }.to_json
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 

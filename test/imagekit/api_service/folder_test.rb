@@ -82,7 +82,7 @@ RSpec.describe ImageKitIo::ApiService::Folder do
         resp = @sut.copy(source_folder_path: source_folder, destination_path: destination_path)
         expect(@ac[:url]).to eq("https://api.imagekit.io/v1/bulkJobs/copyFolder")
         expect(@ac[:method]).to eq('post')
-        expect(@ac[:payload]).to eq({:sourceFolderPath=>"my_folder", :destinationPath=>"copied"})
+        expect(@ac[:payload]).to eq("{\"sourceFolderPath\":\"my_folder\",\"destinationPath\":\"copied\",\"includeFileVersions\":false}")
         expect(resp[:body][:jobId]).to eq('123456')
       end
     end

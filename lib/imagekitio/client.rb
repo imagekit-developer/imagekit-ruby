@@ -120,8 +120,8 @@ module ImageKitIo
       @file_service.stream_file(remote_file_url: file_url, &block)
     end
 
-    def copy_file(source_file_path: nil, destination_path: nil)
-      @file_service.copy(source_file_path: source_file_path, destination_path: destination_path)
+    def copy_file(source_file_path: nil, destination_path: nil, include_file_versions: false)
+      @file_service.copy(source_file_path: source_file_path, destination_path: destination_path, include_file_versions: include_file_versions)
     end
 
     def move_file(source_file_path: nil, destination_path: nil)
@@ -161,8 +161,8 @@ module ImageKitIo
       @folder_service.delete(folder_path: folder_path)
     end
 
-    def copy_folder(source_folder_path: nil, destination_path: nil)
-      @folder_service.copy(source_folder_path: source_folder_path, destination_path: destination_path)
+    def copy_folder(source_folder_path: nil, destination_path: nil, include_file_versions: false)
+      @folder_service.copy(source_folder_path: source_folder_path, destination_path: destination_path, include_file_versions: include_file_versions)
     end
 
     def move_folder(source_folder_path: nil, destination_path: nil)

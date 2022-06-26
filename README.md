@@ -443,7 +443,8 @@ Copy file from one path to another path using the source file path and the desti
 ```ruby
 imagekitio.copy_file(
     source_file_path: '/path/to/file.jpg',
-    destination_path: '/folder/to/copy/into'
+    destination_path: '/folder/to/copy/into',
+    include_file_versions: true #default false
 )
 ```
 
@@ -604,7 +605,8 @@ Copy folder as per the [API documentation here](https://docs.imagekit.io/api-ref
 ```ruby
 imagekitio.copy_folder(
     source_folder_path: '/folder/to/copy',
-    destination_path: '/folder/to/copy/into'
+    destination_path: '/folder/to/copy/into',
+    include_file_versions: true #default false
 )
 ```
 

@@ -49,6 +49,7 @@ module ImageKitIo
             raise RestClient::ExceptionWithResponse, OpenStruct.new({ body: resp.body, code: resp_c })
           end
         else
+          RestClient.log = STDOUT
           resp = RestClient::Request.new(method: method,
                                          url: url,
                                          headers: headers,

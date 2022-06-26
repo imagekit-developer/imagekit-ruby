@@ -183,12 +183,12 @@ module ImageKitIo
         @req_obj.request_stream('get', remote_file_url, headers: @req_obj.create_headers, &block)
       end
 
-      def copy(source_file_path: nil, destination_path: nil)
+      def copy(source_file_path: nil, destination_path: nil, include_file_versions: false)
         if source_file_path == '' || source_file_path.nil? || destination_path == '' || destination_path.nil?
           raise ArgumentError, 'parameters required'
         end
         url = "#{constants.BASE_URL}/copy"
-        payload = { 'sourceFilePath': source_file_path, 'destinationPath': destination_path }
+        payload = { 'sourceFilePath': source_file_path, 'destinationPath': destination_path, 'includeFileVersions': include_file_versions }.to_json
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 
