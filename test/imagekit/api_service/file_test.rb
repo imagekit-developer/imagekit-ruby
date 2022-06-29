@@ -22,14 +22,14 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
 
       SUT = file_api_service.new(request_obj)
 
       upload = SUT.upload(file: "http://remotefiles.com/fake_file.jpg", file_name: "my_file_name")
       expect(@ac[:payload].to_json).to eq("{\"multipart\":true,\"file\":\"http://remotefiles.com/fake_file.jpg\",\"fileName\":\"my_file_name\"}")
 
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
 
     end
 
@@ -46,14 +46,14 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
 
       SUT = file_api_service.new(request_obj)
       base64="f06830ca9f1e3e90"
       upload = SUT.upload(file: base64, file_name: "my_file_name")
       expect(@ac[:payload].to_json).to eq("{\"multipart\":true,\"file\":\"#{base64}\",\"fileName\":\"my_file_name\"}")
       expect(ImageKitIo::Utils::Calculation.is_valid_hex(base64)).to eq(true)
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
 
     end
 
@@ -70,7 +70,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
 
       SUT = file_api_service.new(request_obj)
       file = open("test/imagekit/dummy_data/sample.jpg", "rb")
@@ -78,7 +78,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(@ac[:payload].keys).to eq([:multipart, :file, :fileName])
       expect(@ac[:payload][:file].io).to eq(file)
       expect(@ac[:payload][:fileName]).to eq('my_file_name')
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
 
     end
 
@@ -95,7 +95,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
 
       SUT = file_api_service.new(request_obj)
 
@@ -103,7 +103,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       expect(@ac[:payload].to_json).to eq("{\"multipart\":true,\"file\":\"./fake_file.jpg\",\"fileName\":\"my_file_name\",\"customCoordinates\":\"10, 10, 100, 100\"}")
 
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
 
     end
 
@@ -120,7 +120,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
       SUT = file_api_service.new(request_obj)
       upload = SUT.upload(file: "./fake_file.jpg", file_name: "my_file_name", extensions: [
         {
@@ -131,7 +131,7 @@ RSpec.describe ImageKitIo::ApiService::File do
         }
       ])
       expect(@ac[:payload]['extensions']).to eq("[{\"name\":\"remove-bg\",\"options\":{\"add_shadow\":true}}]")
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
     end
 
     it "test_upload_with_valid_expected_success_with_customMetadata" do
@@ -147,7 +147,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
       SUT = file_api_service.new(request_obj)
       upload = SUT.upload(
         file: "./fake_file.jpg",
@@ -158,7 +158,7 @@ RSpec.describe ImageKitIo::ApiService::File do
         }
       )
       expect(@ac[:payload]['customMetadata']).to eq("{\"brand\":\"Nike\",\"color\":\"red\"}")
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
     end
 
     it "test_upload_with_valid_expected_success" do
@@ -174,7 +174,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
 
       SUT = file_api_service.new(request_obj)
 
@@ -182,7 +182,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       expect(@ac[:payload].to_json).to eq("{\"multipart\":true,\"file\":\"./fake_file.jpg\",\"fileName\":\"my_file_name\",\"responseFields\":\"is_private_file,tags\",\"tags\":\"abc,def\",\"useUniqueFileName\":\"false\"}")
 
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
 
     end
 
@@ -199,7 +199,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, message: nil})
+              .and_return({status_code: 401, message: nil})
 
       SUT = file_api_service.new(request_obj)
       expect{
@@ -220,13 +220,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, message: nil})
+              .and_return({status_code: 401, message: nil})
 
       SUT = file_api_service.new(request_obj)
       upload = SUT.upload(file: "fake_file.jpg", file_name: "fake_name")
       expect(@ac[:payload][:file]).to eq("fake_file.jpg")
       expect(@ac[:payload][:fileName]).to eq("fake_name")
-      expect(upload[:code]).to eq(401)
+      expect(upload[:status_code]).to eq(401)
     end
   end
 
@@ -244,13 +244,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401})
+              .and_return({status_code: 401})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.list("skip": 0, "limit": 10)
 
       expect(@ac[:payload].to_json).to eq("{\"skip\":0,\"limit\":10}")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
     end
 
     it "test_list_files_succeeds_with_basic_request" do
@@ -266,12 +266,12 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body:[]})
+              .and_return({status_code: 200, body:[]})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.list("skip": 0, "limit": 10)
       expect(@ac[:payload].to_json).to eq("{\"skip\":0,\"limit\":10}")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
     end
   end
 
@@ -446,13 +446,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body:{message: "Unauthorized request!"}})
+              .and_return({status_code: 401, body:{message: "Unauthorized request!"}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.details(file_identifier: "demo-file-id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/demo-file-id/details/")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
       expect(resp[:body][:message]).to eq("Unauthorized request!")
     end
 
@@ -469,12 +469,12 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {fileId: "demo-file-id"}})
+              .and_return({status_code: 200, body: {fileId: "demo-file-id"}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.details(file_identifier: "demo-file-id")
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/demo-file-id/details/")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
     end
   end
 
@@ -492,14 +492,14 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body: {fileId: "demo-file-id"}})
+              .and_return({status_code: 401, body: {fileId: "demo-file-id"}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.delete(file_id: "demo-file-id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/demo-file-id")
       expect(@ac[:method]).to eq("delete")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
     end
 
     it "test_file_delete_fails_on_item_not_found" do
@@ -515,14 +515,14 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 204, body: {fileId: "demo-file-id"}})
+              .and_return({status_code: 204, body: {fileId: "demo-file-id"}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.delete(file_id: "demo-file-id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/demo-file-id")
       expect(@ac[:method]).to eq("delete")
-      expect(resp[:code]).to eq(204)
+      expect(resp[:status_code]).to eq(204)
     end
 
     it "test_file_delete_succeeds" do
@@ -538,14 +538,14 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {fileId: "demo-file-id"}})
+              .and_return({status_code: 200, body: {fileId: "demo-file-id"}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.delete(file_id: "demo-file-id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/demo-file-id")
       expect(@ac[:method]).to eq("delete")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
 
     end
   end
@@ -564,13 +564,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body: {}})
+              .and_return({status_code: 401, body: {}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.purge_cache(file_url: "file_url")
 
       expect(@ac[:payload].to_json).to eq("{\"url\":\"file_url\"}")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
     end
 
     it "test_purge_cache_succeeds" do
@@ -586,13 +586,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {requestId:"requestId"}})
+              .and_return({status_code: 200, body: {requestId:"requestId"}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.purge_cache(file_url: "file_url")
 
       expect(@ac[:payload].to_json).to eq("{\"url\":\"file_url\"}")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
       expect(resp[:body][:requestId]).to eq("requestId")
     end
   end
@@ -611,13 +611,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body: {}})
+              .and_return({status_code: 401, body: {}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.purge_cache_status(request_id: "request-id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/purge/request-id")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
 
     end
 
@@ -634,13 +634,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {status: "Complete"}})
+              .and_return({status_code: 200, body: {status: "Complete"}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.purge_cache_status(request_id: "request-id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/purge/request-id")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
       expect(resp[:body][:status]).to eq("Complete")
     end
   end
@@ -659,13 +659,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body: {}})
+              .and_return({status_code: 401, body: {}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.get_metadata(file_id: "file_id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/file_id/metadata")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
 
     end
 
@@ -680,7 +680,7 @@ RSpec.describe ImageKitIo::ApiService::File do
               .and_return({})
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {}})
+              .and_return({status_code: 200, body: {}})
 
       SUT = file_api_service.new(request_obj)
       expect {
@@ -701,13 +701,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {}})
+              .and_return({status_code: 200, body: {}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.get_metadata(file_id: "file_id")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/file_id/metadata")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
     end
   end
 
@@ -728,12 +728,12 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body: {}})
+              .and_return({status_code: 401, body: {}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.update_details(file_id: "file_id", **options)
       expect(@ac[:payload]).to eq("{\"tags\":[\"tag1\",\"tag2\"],\"customCoordinates\":\"10,10,100,100\"}")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
 
     end
 
@@ -751,14 +751,14 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: options})
+              .and_return({status_code: 200, body: options})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.update_details(file_id: "file_id", **options)
 
       expect(JSON.parse(@ac[:payload])['tags']).to eq(options[:tags])
       expect(JSON.parse(@ac[:payload])['customCoordinates']).to eq(options[:custom_coordinates])
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
       expect(resp[:body]).to eq(options)
     end
 
@@ -776,7 +776,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: options})
+              .and_return({status_code: 200, body: options})
 
       SUT = file_api_service.new(request_obj)
       expect {
@@ -798,7 +798,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: options})
+              .and_return({status_code: 200, body: options})
 
       SUT = file_api_service.new(request_obj)
       expect {
@@ -820,7 +820,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: options})
+              .and_return({status_code: 200, body: options})
 
       SUT = file_api_service.new(request_obj)
       expect {
@@ -841,7 +841,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
       SUT = file_api_service.new(request_obj)
       upload = SUT.update_details(file_id: "file_id_xyz", extensions: [
         {
@@ -851,7 +851,7 @@ RSpec.describe ImageKitIo::ApiService::File do
         }
       ])
       expect(@ac[:payload]).to eq("{\"extensions\":[{\"name\":\"google-auto-tagging\",\"maxTags\":5,\"minConfidence\":95}]}")
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
     end
 
     it "test_update_with_valid_expected_success_with_customMetadata" do
@@ -867,7 +867,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       @ac={}
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200})
+              .and_return({status_code: 200})
       SUT = file_api_service.new(request_obj)
       upload = SUT.update_details(
         file_id: "file_id_xyz",
@@ -877,7 +877,7 @@ RSpec.describe ImageKitIo::ApiService::File do
         }
       )
       expect(@ac[:payload]).to eq("{\"customMetadata\":{\"brand\":\"Nike\",\"color\":\"red\"}}")
-      expect(upload[:code]).to eq(200)
+      expect(upload[:status_code]).to eq(200)
     end
   end
 
@@ -895,13 +895,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body: {}})
+              .and_return({status_code: 401, body: {}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.get_metadata_from_remote_url(remote_file_url: "http://example.com/fakefileurl")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/metadata?url=http://example.com/fakefileurl")
-      expect(resp[:code]).to eq(401)
+      expect(resp[:status_code]).to eq(401)
     end
 
     it "test_get_metadata_from_remote_url_fails_on_blank_url" do
@@ -917,7 +917,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 401, body: {}})
+              .and_return({status_code: 401, body: {}})
 
       SUT = file_api_service.new(request_obj)
       expect {
@@ -938,13 +938,13 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       allow(request_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {}})
+              .and_return({status_code: 200, body: {}})
 
       SUT = file_api_service.new(request_obj)
       resp = SUT.get_metadata_from_remote_url(remote_file_url: "http://example.com/fakefileurl")
 
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/metadata?url=http://example.com/fakefileurl")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
     end
   end
 
@@ -960,7 +960,7 @@ RSpec.describe ImageKitIo::ApiService::File do
               .and_return({})
       allow(req_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-              .and_return({code: 200, body: { success: true }})
+              .and_return({status_code: 200, body: { success: true }})
       @sut = file_api_service.new(req_obj)
     end
 
@@ -977,10 +977,10 @@ RSpec.describe ImageKitIo::ApiService::File do
       resp = @sut.copy(source_file_path: source_file, destination_path: destination_path)
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/copy")
       expect(@ac[:payload]).to eq("{\"sourceFilePath\":\"test/dummy.png\",\"destinationPath\":\"/my_image\",\"includeFileVersions\":false}")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
       resp = @sut.copy(source_file_path: source_file, destination_path: destination_path, include_file_versions: true)
       expect(@ac[:payload]).to eq("{\"sourceFilePath\":\"test/dummy.png\",\"destinationPath\":\"/my_image\",\"includeFileVersions\":true}")
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
     end
   end
 
@@ -996,7 +996,7 @@ RSpec.describe ImageKitIo::ApiService::File do
               .and_return({})
       allow(req_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-              .and_return({code: 200, body: { success: true }})
+              .and_return({status_code: 200, body: { success: true }})
       @sut = file_api_service.new(req_obj)
     end
 
@@ -1013,7 +1013,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       resp = @sut.move(source_file_path: source_file, destination_path: destination_path)
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/move")
       expect(@ac[:payload]).to eq({:sourceFilePath=>"test/dummy.png", :destinationPath=>"/my_image"})
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
     end
   end
 
@@ -1029,7 +1029,7 @@ RSpec.describe ImageKitIo::ApiService::File do
               .and_return({})
       allow(req_obj)
         .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-              .and_return({code: 200, body: { success: true }})
+              .and_return({status_code: 200, body: { success: true }})
       @sut = file_api_service.new(req_obj)
     end
 
@@ -1047,7 +1047,7 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(@ac[:url]).to eq("https://api.imagekit.io/v1/files/rename")
       expect(@ac[:payload]).to eq("{\"filePath\":\"test/dummy.png\",\"newFileName\":\"my_image.png\"}")
       expect(@ac[:method]).to eq('put')
-      expect(resp[:code]).to eq(200)
+      expect(resp[:status_code]).to eq(200)
     end
 
     it 'test_rename with the option purge_cache' do
@@ -1071,7 +1071,7 @@ RSpec.describe ImageKitIo::ApiService::File do
               .and_return({})
       allow(req_obj)
         .to receive(:request_stream){|method,url,headers, &block| @ac={method: method, url: url, headers: headers, block: block}}
-              .and_return({code: 200, body: { success: true }})
+              .and_return({status_code: 200, body: { success: true }})
       @sut = file_api_service.new(req_obj)
     end
 

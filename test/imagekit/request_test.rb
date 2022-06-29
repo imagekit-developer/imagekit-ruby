@@ -86,7 +86,7 @@ RSpec.describe ImageKitIo::Request do
       expect(response[:error]).to eq({"message"=>"Your account cannot be authenticated.", "help"=>"For support kindly contact us at support@imagekit.io ."})
       expect(response[:headers]).to eq({"content-type"=>["application/json"]})
       expect(response[:raw_body]).to eq("{\"message\":\"Your account cannot be authenticated.\",\"help\":\"For support kindly contact us at support@imagekit.io .\"}")
-      expect(response[:status]).to eq("403")
+      expect(response[:status_code]).to eq("403")
     end
 
     it 'test_response_headers' do

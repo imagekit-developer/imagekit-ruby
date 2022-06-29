@@ -51,7 +51,7 @@ module ImageKitIo
           response[:headers] = resp.raw_headers
         end
         response[:raw_body] = resp.body
-        response[:status] = resp.code
+        response[:status_code] = resp.code
         resp_c = resp.code.to_i
         if [400, 403].include?(resp_c)
           raise RestClient::ExceptionWithResponse, OpenStruct.new({ body: resp.body, code: resp_c, headers: response[:headers] })
@@ -68,7 +68,7 @@ module ImageKitIo
         end
 
       rescue RestClient::ExceptionWithResponse => err
-        response[:status] = err.http_code if response[:status].nil?
+        response[:status_code] = err.http_code if response[:status_code].nil?
         response[:headers] = err.http_headers if response[:headers].nil?
         response[:error] = if err.http_code.to_i == 404
                              {'message': err.response.to_s}

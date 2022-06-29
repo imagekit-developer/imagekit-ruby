@@ -690,7 +690,7 @@ imagekitio.delete_custom_metadata_field(
 )
 ```
 
-**28. Response hash**
+## Access request-id, other response headers and HTTP status code
 
 Each file management function returns a hash with response, error, status, headers, raw_body keys with respective values.
 
@@ -704,57 +704,21 @@ upload = imagekitio.upload_file(
     use_unique_file_name: false,
     is_private_file: true
 )
-puts upload
-
-***** Success Output *****
-
-    {:headers=>
-      {"access-control-allow-origin"=>["*"],
-       "x-ik-requestid"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
-       "content-type"=>["application/json; charset=utf-8"],
-       "content-length"=>["611"],
-       "etag"=>["W/\"859-GOeZiRFGOZERjHBgRUhG0EGcODs\""],
-       "date"=>["Wed, 29 Jun 2022 07:04:33 GMT"],
-       "x-request-id"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
-       "connection"=>["close"]},
-     :raw_body=>
-      "{\"fileId\":\"62bjf980rb886bd691b86760\",\"name\":\"default.jpg\",\"size\":102117,\"versionInfo\":{\"id\":\"62bjf980rb886bd691b86760\",\"name\":\"Version 1\"},\"filePath\":\"/test/default.jpg\",\"url\":\"https://ik.imagekit.io/46865sdf6sdf/test/default.jpg\",\"fileType\":\"image\",\"height\":700,\"width\":1050,\"thumbnailUrl\":\"https://ik.imagekit.io/46865sdf6sdf/tr:n-ik_ml_thumbnail/test/default.jpg\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"isPrivateFile\":true,\"customCoordinates\":null,\"metadata\":{\"height\":700,\"width\":1050,\"size\":102117,\"format\":\"jpg\",\"hasColorProfile\":true,\"quality\":0,\"density\":72,\"hasTransparency\":false,\"exif\":{},\"pHash\":\"90249d9b1fc74367\"}}",
-     :status=>"200",
-     :response=>
-      {"fileId"=>"62bjf980rb886bd691b86760",
-       "name"=>"default.jpg",
-       "size"=>102117,
-       "versionInfo"=>{"id"=>"62bbf980fb877bd691b86760", "name"=>"Version 1"},
-       "filePath"=>"/test/default.jpg",
-       "url"=>"https://ik.imagekit.io/46865sdf6sdf/test/default.jpg",
-       "fileType"=>"image",
-       "height"=>700,
-       "width"=>1050,
-       "thumbnailUrl"=>"https://ik.imagekit.io/46865sdf6sdf/tr:n-ik_ml_thumbnail/test/default.jpg",
-       "tags"=>["abc", "def"],
-       "AITags"=>nil,
-       "isPrivateFile"=>true,
-       "customCoordinates"=>nil,
-       "metadata"=>{"height"=>700, "width"=>1050, "size"=>102117, "format"=>"jpg", "hasColorProfile"=>true, "quality"=>0, "density"=>72, "hasTransparency"=>false, "exif"=>{}, "pHash"=>"90249d9b1fc74367"}
-      }
-    }
-
-
-*** Error Output ***
-
-    {:headers=>
-      {"access-control-allow-origin"=>["*"],
-       "x-ik-requestid"=>["e8j51c37-d859-8794-b7f8-5370r27d96ec"],
-       "content-type"=>["application/json; charset=utf-8"],
-       "content-length"=>["143"],
-       "etag"=>["W/\"8f-UcD10NytfppO0fARK0FR+M8L68c\""],
-       "date"=>["Wed, 29 Jun 2022 07:23:33 GMT"],
-       "x-request-id"=>["e8j51c37-d859-8794-b7f8-5370r27d96ec"],
-       "connection"=>["close"]},
-     :raw_body=>"{\"message\":\"Your request contains invalid value for customMetadata parameter.\",\"help\":\"For support kindly contact us at support@imagekit.io .\"}",
-     :status=>"400",
-     :error=>{"message"=>"Your request contains invalid value for customMetadata parameter.", "help"=>"For support kindly contact us at support@imagekit.io ."}
-    }
+puts upload[:status] # 200
+puts upload[:headers]
+#   {
+#        "access-control-allow-origin"=>["*"],
+#         "x-ik-requestid"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
+#         "content-type"=>["application/json; charset=utf-8"],
+#         "content-length"=>["611"],
+#         "etag"=>["W/\"859-GOeZiRFGOZERjHBgRUhG0EGcODs\""],
+#         "date"=>["Wed, 29 Jun 2022 07:04:33 GMT"],
+#         "x-request-id"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
+#         "connection"=>["close"]
+#   }
+#
+puts upload[:raw_body]
+# "{\"fileId\":\"62bjf980rb886bd691b86760\",\"name\":\"default.jpg\",\"size\":102117,\"versionInfo\":{\"id\":\"62bjf980rb886bd691b86760\",\"name\":\"Version 1\"},\"filePath\":\"/test/default.jpg\",\"url\":\"https://ik.imagekit.io/46865sdf6sdf/test/default.jpg\",\"fileType\":\"image\",\"height\":700,\"width\":1050,\"thumbnailUrl\":\"https://ik.imagekit.io/46865sdf6sdf/tr:n-ik_ml_thumbnail/test/default.jpg\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"isPrivateFile\":true,\"customCoordinates\":null,\"metadata\":{\"height\":700,\"width\":1050,\"size\":102117,\"format\":\"jpg\",\"hasColorProfile\":true,\"quality\":0,\"density\":72,\"hasTransparency\":false,\"exif\":{},\"pHash\":\"90249d9b1fc74367\"}}"
 ```
 
 ## Utility functions

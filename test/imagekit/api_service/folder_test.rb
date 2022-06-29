@@ -31,7 +31,7 @@ RSpec.describe ImageKitIo::ApiService::Folder do
       it 'test_create_folder' do
         allow(req_obj)
           .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-                .and_return({code: 201, body: { success: true }})
+                .and_return({status_code: 201, body: { success: true }})
         @sut = folder_api_service.new(req_obj)
         folder_name = 'test_folder'
         parent_folder = ''
@@ -39,7 +39,7 @@ RSpec.describe ImageKitIo::ApiService::Folder do
         expect(@ac[:url]).to eq("https://api.imagekit.io/v1/folder")
         expect(@ac[:payload]).to eq("{\"folderName\":\"test_folder\",\"parentFolderPath\":\"\"}")
         expect(@ac[:method]).to eq('post')
-        expect(resp[:code]).to eq(201)
+        expect(resp[:status_code]).to eq(201)
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe ImageKitIo::ApiService::Folder do
       it 'test_delete_folder' do
         allow(req_obj)
           .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-                .and_return({code: 204, body: { success: true }})
+                .and_return({status_code: 204, body: { success: true }})
         @sut = folder_api_service.new(req_obj)
         folder_path = 'test_folder'
         resp = @sut.delete(folder_path: folder_path)
@@ -75,7 +75,7 @@ RSpec.describe ImageKitIo::ApiService::Folder do
       it 'test_copy_folder' do
         allow(req_obj)
           .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-                .and_return({code: 200, body: { jobId: '123456' }})
+                .and_return({status_code: 200, body: { jobId: '123456' }})
         @sut = folder_api_service.new(req_obj)
         source_folder = 'my_folder'
         destination_path = 'copied'
@@ -89,7 +89,7 @@ RSpec.describe ImageKitIo::ApiService::Folder do
       it 'test_copy_folder_with_include_versions_parameter' do
         allow(req_obj)
           .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-                .and_return({code: 200, body: { jobId: '123456' }})
+                .and_return({status_code: 200, body: { jobId: '123456' }})
         @sut = folder_api_service.new(req_obj)
         source_folder = 'my_folder'
         destination_path = 'copied'
@@ -112,7 +112,7 @@ RSpec.describe ImageKitIo::ApiService::Folder do
       it 'test_move_folder' do
         allow(req_obj)
           .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
-                .and_return({code: 200, body: { jobId: '123456' }})
+                .and_return({status_code: 200, body: { jobId: '123456' }})
         @sut = folder_api_service.new(req_obj)
         source_folder = 'my_folder/inside_folder'
         destination_path = 'moved/inside_another_folder'
