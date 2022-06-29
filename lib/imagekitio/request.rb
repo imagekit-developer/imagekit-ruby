@@ -43,19 +43,18 @@ module ImageKitIo
           req = Net::HTTP::Post::Multipart.new uri.path, payload, headers
           resp = http.request(req)
           response[:headers] = resp.to_hash
-          response[:raw_body] = resp.body
-          resp_c = resp.code.to_i
-          if [400, 403].include?(resp_c)
-            raise RestClient::ExceptionWithResponse, OpenStruct.new({ body: resp.body, code: resp_c })
-          end
         else
-          RestClient.log = STDOUT
           resp = RestClient::Request.new(method: method,
                                          url: url,
                                          headers: headers,
                                          payload: payload).execute
           response[:headers] = resp.raw_headers
-          response[:raw_body] = resp.body
+        end
+        response[:raw_body] = resp.body
+        response[:status] = resp.code
+        resp_c = resp.code.to_i
+        if [400, 403].include?(resp_c)
+          raise RestClient::ExceptionWithResponse, OpenStruct.new({ body: resp.body, code: resp_c, headers: response[:headers] })
         end
         if (resp.code.to_i >= 200) && (resp.code.to_i < 204)
           content_type = resp.respond_to?(:headers) ? resp.headers[:content_type] : resp.content_type
@@ -69,6 +68,8 @@ module ImageKitIo
         end
 
       rescue RestClient::ExceptionWithResponse => err
+        response[:status] = err.http_code if response[:status].nil?
+        response[:headers] = err.http_headers if response[:headers].nil?
         response[:error] = if err.http_code.to_i == 404
                              {'message': err.response.to_s}
                            else

@@ -85,6 +85,20 @@ RSpec.describe ImageKitIo::ApiService::Folder do
         expect(@ac[:payload]).to eq("{\"sourceFolderPath\":\"my_folder\",\"destinationPath\":\"copied\",\"includeFileVersions\":false}")
         expect(resp[:body][:jobId]).to eq('123456')
       end
+
+      it 'test_copy_folder_with_include_versions_parameter' do
+        allow(req_obj)
+          .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload: payload}}
+                .and_return({code: 200, body: { jobId: '123456' }})
+        @sut = folder_api_service.new(req_obj)
+        source_folder = 'my_folder'
+        destination_path = 'copied'
+        resp = @sut.copy(source_folder_path: source_folder, destination_path: destination_path, include_file_versions: true)
+        expect(@ac[:url]).to eq("https://api.imagekit.io/v1/bulkJobs/copyFolder")
+        expect(@ac[:method]).to eq('post')
+        expect(@ac[:payload]).to eq("{\"sourceFolderPath\":\"my_folder\",\"destinationPath\":\"copied\",\"includeFileVersions\":true}")
+        expect(resp[:body][:jobId]).to eq('123456')
+      end
     end
 
     context 'move' do
