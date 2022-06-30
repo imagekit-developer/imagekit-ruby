@@ -75,6 +75,51 @@ module ImageKitIo
         @req_obj.request("get", url, headers, formatted_options)
       end
 
+      def get_file_versions(file_id: nil)
+        if file_id == '' || file_id.nil?
+          raise ArgumentError, 'file_id is required'
+        end
+        url = "#{constants.BASE_URL}/#{file_id}/versions"
+        headers = @req_obj.create_headers
+        @req_obj.request('get', url, headers)
+      end
+
+      def get_file_version_detail(file_id: nil, version_id: nil)
+        if file_id == "" || file_id.nil?
+          raise ArgumentError, "file_id is required"
+        end
+        if version_id == "" || version_id.nil?
+          raise ArgumentError, "version_id is required"
+        end
+        url = "#{constants.BASE_URL}/#{file_id}/versions/#{version_id}"
+        headers = @req_obj.create_headers
+        @req_obj.request('get', url, headers)
+      end
+
+      def delete_file_version(file_id: nil, version_id: nil)
+        if file_id == "" || file_id.nil?
+          raise ArgumentError, "file_id is required"
+        end
+        if version_id == "" || version_id.nil?
+          raise ArgumentError, "version_id is required"
+        end
+        url = "#{constants.BASE_URL}/#{file_id}/versions/#{version_id}"
+        headers = @req_obj.create_headers
+        @req_obj.request('delete', url, headers)
+      end
+
+      def restore_file_version(file_id: nil, version_id: nil)
+        if file_id == "" || file_id.nil?
+          raise ArgumentError, "file_id is required"
+        end
+        if version_id == "" || version_id.nil?
+          raise ArgumentError, "version_id is required"
+        end
+        url = "#{constants.BASE_URL}/#{file_id}/versions/#{version_id}/restore"
+        headers = @req_obj.create_headers
+        @req_obj.request('put', url, headers)
+      end
+
       def details(file_identifier: nil)
         # Get detail of file by file_identifier
         if file_identifier == "" || file_identifier.nil?
@@ -138,12 +183,12 @@ module ImageKitIo
         @req_obj.request_stream('get', remote_file_url, headers: @req_obj.create_headers, &block)
       end
 
-      def copy(source_file_path: nil, destination_path: nil)
+      def copy(source_file_path: nil, destination_path: nil, include_file_versions: false)
         if source_file_path == '' || source_file_path.nil? || destination_path == '' || destination_path.nil?
           raise ArgumentError, 'parameters required'
         end
         url = "#{constants.BASE_URL}/copy"
-        payload = { 'sourceFilePath': source_file_path, 'destinationPath': destination_path }
+        payload = { 'sourceFilePath': source_file_path, 'destinationPath': destination_path, 'includeFileVersions': include_file_versions }.to_json
         @req_obj.request('post', url, @req_obj.create_headers, payload)
       end
 

@@ -443,7 +443,8 @@ Copy file from one path to another path using the source file path and the desti
 ```ruby
 imagekitio.copy_file(
     source_file_path: '/path/to/file.jpg',
-    destination_path: '/folder/to/copy/into'
+    destination_path: '/folder/to/copy/into',
+    include_file_versions: true #default false
 )
 ```
 
@@ -470,7 +471,8 @@ imagekitio.rename_file(
 )
 ```
 
-**8. Delete file**
+**8. Delete File**
+
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file). The method accepts the file ID of the file that has to be deleted.
 
 ```ruby
@@ -478,8 +480,50 @@ imagekitio.delete_file(
     file_id: '598821f949c0a938d57563bd'
 )
 ```
+**9. File versions**
 
-**9. Bulk File Delete by IDs**
+Get all file versions as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions). The method accepts the file ID of the file.
+
+```ruby
+imagekitio.file_versions(
+    file_id: '598821f949c0a938d57563bd'
+)
+```
+**10. File version details**
+
+Get all file version detail as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details). The method accepts the file ID and version ID of the file.
+
+```ruby
+imagekitio.file_version_detail(
+    file_id: '598821f949c0a938d57563bd',
+    version_id: '846321f949c0a938d57567ty'
+)
+```
+
+**11. Delete file version**
+
+Delete file version as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file-version). The method accepts the file ID and version ID of the file.
+
+```ruby
+imagekitio.delete_file_version(
+    file_id: '598821f949c0a938d57563bd',
+    version_id: '846321f949c0a938d57567ty'
+)
+```
+
+**12. Restore file version**
+
+Restore deleted file version as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/restore-file-version). The method accepts the file ID and version ID of the file.
+
+```ruby
+imagekitio.restore_file_version(
+    file_id: '598821f949c0a938d57563bd',
+    version_id: '846321f949c0a938d57567ty'
+)
+```
+
+**13. Bulk File Delete by IDs**
+
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk). The method accepts a list of file IDs of files that has to be
 deleted.
 
@@ -489,7 +533,7 @@ imagekitio.delete_bulk_files(
 )
 ```
 
-**10. Purge Cache**
+**14. Purge Cache**
 Programmatically issue a clear cache request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache).
 Accepts the full URL of the file for which the cache has to be cleared.
 
@@ -498,7 +542,7 @@ imagekitio.purge_file_cache(
     file_url: 'https://ik.imagekit.io/demo/logo-white_SJwqB4Nfe.png'
 )
 ```
-**11. Purge Cache Status**
+**15. Purge Cache Status**
 
 Get the purge cache request status using the request ID returned when a purge cache request gets submitted as per the
 [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
@@ -509,7 +553,7 @@ imagekitio.purge_file_cache_status(
 )
 ```
 
-**12. Add Bulk Tags**
+**16. Add Bulk Tags**
 
 Add multiple tags on multiple files using an array of file ids and an array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk)
 
@@ -520,7 +564,7 @@ imagekitio.add_bulk_tags(
 )
 ``` 
 
-**13. Delete Bulk Tags**
+**17. Delete Bulk Tags**
 
 Remove multiple tags from multiple files using an array of file ids and an array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk)
 
@@ -531,7 +575,7 @@ imagekitio.delete_bulk_tags(
 )
 ```
 
-**14. Delete Bulk Ai Tags**
+**18. Delete Bulk Ai Tags**
 
 Delete bulk ai tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk)
 
@@ -542,7 +586,7 @@ imagekitio.delete_bulk_ai_tags(
 )
 ```
 
-**15. Create Folder**
+**19. Create Folder**
 
 Create folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/create-folder)
 
@@ -554,18 +598,19 @@ imagekitio.create_folder(
 ```
 
 
-**16. Copy Folder**
+**20. Copy Folder**
 
 Copy folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-folder)
 
 ```ruby
 imagekitio.copy_folder(
     source_folder_path: '/folder/to/copy',
-    destination_path: '/folder/to/copy/into'
+    destination_path: '/folder/to/copy/into',
+    include_file_versions: true #default false
 )
 ```
 
-**17. Move Folder**
+**21. Move Folder**
 
 Move folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-folder)
 
@@ -576,7 +621,7 @@ imagekitio.move_folder(
 )
 ```
 
-**18. Delete Folder**
+**22. Delete Folder**
 
 Delete folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-folder)
 
@@ -586,7 +631,7 @@ imagekitio.delete_folder(
 )
 ```
 
-**19. Bulk Job Status**
+**23. Bulk Job Status**
 
 Get the bulk job status as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status)
 
@@ -596,7 +641,7 @@ imagekitio.bulk_job_status(
 )
 ```
 
-**20. Create Custom Metadata Fields**
+**24. Create Custom Metadata Fields**
 
 Create custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field)
 
@@ -613,7 +658,7 @@ imagekitio.create_custom_metadata_field(
 )
 ```
 
-**21. Get Custom Metadata Fields**
+**25. Get Custom Metadata Fields**
 
 Get the custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
@@ -623,7 +668,7 @@ imagekitio.get_custom_metadata_fields(
 )
 ```
 
-**22. Update Custom Metadata Fields**
+**26. Update Custom Metadata Fields**
 
 Update custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field)
 
@@ -635,7 +680,7 @@ imagekitio.update_custom_metadata_field(
 )
 ```
 
-**23. Delete Custom Metadata Fields**
+**27. Delete Custom Metadata Fields**
 
 Delete custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field)
 
@@ -645,6 +690,36 @@ imagekitio.delete_custom_metadata_field(
 )
 ```
 
+## Access request-id, other response headers and HTTP status code
+
+Each file management function returns a hash with response, error, status, headers, raw_body keys with respective values.
+
+```ruby
+upload = imagekitio.upload_file(
+    file: file,
+    file_name:  "default.jpg",
+    folder: '/test',
+    response_fields: 'tags,customCoordinates,isPrivateFile,metadata',
+    tags: %w[abc def],
+    use_unique_file_name: false,
+    is_private_file: true
+)
+puts upload[:status] # 200
+puts upload[:headers]
+#   {
+#        "access-control-allow-origin"=>["*"],
+#         "x-ik-requestid"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
+#         "content-type"=>["application/json; charset=utf-8"],
+#         "content-length"=>["611"],
+#         "etag"=>["W/\"859-GOeZiRFGOZERjHBgRUhG0EGcODs\""],
+#         "date"=>["Wed, 29 Jun 2022 07:04:33 GMT"],
+#         "x-request-id"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
+#         "connection"=>["close"]
+#   }
+#
+puts upload[:raw_body]
+# "{\"fileId\":\"62bjf980rb886bd691b86760\",\"name\":\"default.jpg\",\"size\":102117,\"versionInfo\":{\"id\":\"62bjf980rb886bd691b86760\",\"name\":\"Version 1\"},\"filePath\":\"/test/default.jpg\",\"url\":\"https://ik.imagekit.io/46865sdf6sdf/test/default.jpg\",\"fileType\":\"image\",\"height\":700,\"width\":1050,\"thumbnailUrl\":\"https://ik.imagekit.io/46865sdf6sdf/tr:n-ik_ml_thumbnail/test/default.jpg\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"isPrivateFile\":true,\"customCoordinates\":null,\"metadata\":{\"height\":700,\"width\":1050,\"size\":102117,\"format\":\"jpg\",\"hasColorProfile\":true,\"quality\":0,\"density\":72,\"hasTransparency\":false,\"exif\":{},\"pHash\":\"90249d9b1fc74367\"}}"
+```
 
 ## Utility functions
 

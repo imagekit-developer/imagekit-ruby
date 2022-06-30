@@ -78,5 +78,33 @@ RSpec.describe ImageKitIo::Request do
       response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: true })
       expect(response).to have_key(:error)
     end
+
+    it 'test_request_method_403' do
+      stub_request(:post, 'https://www.exampleservererror/upload').to_return(status: 403, body: "{\"message\":\"Your account cannot be authenticated.\",\"help\":\"For support kindly contact us at support@imagekit.io .\"}", headers: {content_type: 'application/json'})
+      response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: true })
+      expect(response).to have_key(:error)
+      expect(response[:error]).to eq({"message"=>"Your account cannot be authenticated.", "help"=>"For support kindly contact us at support@imagekit.io ."})
+      expect(response[:headers]).to eq({"content-type"=>["application/json"]})
+      expect(response[:raw_body]).to eq("{\"message\":\"Your account cannot be authenticated.\",\"help\":\"For support kindly contact us at support@imagekit.io .\"}")
+      expect(response[:status_code]).to eq("403")
+    end
+
+    it 'test_response_headers' do
+      stub_request(:post, 'https://www.exampleservererror/upload').to_return(status: 200, body: "{\"message\":\"Success.\"}", headers: {"strict-transport-security"=>["max-age=15552000"],
+                                                                                                                                        "x-ik-requestid"=>["39e19bd4-c9c3-4025-453e-a13e6a412aa0"],
+                                                                                                                                        "content-type"=>["application/json; charset=utf-8"],
+                                                                                                                                        "x-request-id"=>["39e19bd4-c9c3-4025-a043-a13e6a412aa0"]})
+      response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: true })
+      expect(response[:headers]).to eq({"strict-transport-security"=>["max-age=15552000"],
+                                        "x-ik-requestid"=>["39e19bd4-c9c3-4025-453e-a13e6a412aa0"],
+                                        "content-type"=>["application/json; charset=utf-8"],
+                                        "x-request-id"=>["39e19bd4-c9c3-4025-a043-a13e6a412aa0"]})
+    end
+
+    it 'test_response_raw_body' do
+      stub_request(:post, 'https://www.exampleservererror/upload').to_return(status: 200, body: "{\"message\":\"Success.\"}", headers: {"strict-transport-security"=>["max-age=15552000"], "content-type"=>["application/json; charset=utf-8"]})
+      response = @request_obj.request(:post, 'https://www.exampleservererror/upload', nil, { multipart: false })
+      expect(response[:raw_body]).to eq("{\"message\":\"Success.\"}")
+    end
   end
 end
