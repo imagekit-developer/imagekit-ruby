@@ -8,7 +8,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
-ImageKit gem for Ruby on Rails that allows you to use real-time [image resizing](https://docs.imagekit.io/features/image-transformations), [optimization](https://docs.imagekit.io/features/image-optimization), and [file uploading](https://docs.imagekit.io/api-reference/upload-file-api/).
+Ruby on Rails gem for [ImageKit](https://imagekit.io/) implements the new APIs and interface for different file operations.
+
+ImageKit is complete media storage, optimization, and transformation solution that comes with an [image and video CDN](https://imagekit.io/features/imagekit-infrastructure). It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
 Table of contents -
  * [Installation](#Installation)
@@ -155,20 +157,17 @@ imagekitio:
 
 ## Usage
 
-You can use this Ruby SDK for three different methods - URL generation, file upload, and file management.
+You can use this Ruby SDK for three different methods - URL generation, file upload, and media management operations. The usage of the SDK has been explained below.
 
-The usage of the SDK has been explained below.
+* `URL Generation`
+* `File Upload`
+* `File Management`
 
 ## URL generation
 
 **1. Using Image path and image hostname or endpoint**
 
-This method allows you to create a URL using the path where the image exists and the URL
-endpoint(url_endpoint) you want to use to access the image. You can refer to the documentation
-[here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints
-in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand
-about paths with different kinds of origins.
-
+This method allows you to create an URL to access a file using the relative file path and the ImageKit URL endpoint (`urlEndpoint`). The file can be an image, video or any other static file supported by ImageKit.
 
 ```ruby
 imagekitio = ImageKitIo.client
@@ -185,8 +184,7 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400,ar-4-3,q-40/defa
 ```
 
 **2.Using full image URL**
-This method allows you to add transformation parameters to an existing, complete URL already mapped to ImageKit using the `src` parameter. This method should be used if you have the complete image URL mapped to ImageKit stored in your
-database.
+This method allows you to add transformation parameters to an absolute URL. For example, if you have configured a custom CNAME and have absolute asset URLs in your database or CMS, you will often need this.
 
 
 ```ruby
@@ -286,8 +284,7 @@ https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&i
 
 **List of transformations**
 
-The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations).
-The SDK gives a name to each transformation parameter, making the code simpler, making the code simpler, and readable.
+The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations). The SDK gives a name to each transformation parameter, making the code simpler, making the code simpler, and readable.
 
 If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, then use the transformation code from ImageKit docs as the name when using the `url` function.
 
@@ -385,7 +382,7 @@ be `None`.
 The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api)
 to manage your files. This also returns `error` and `result`. The `error` will be `None` if API succeeds.
 
-**1. List & Search Files**
+**List & Search Files**
 
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified
 in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#list-and-search-file-api) can be passed with the
@@ -397,7 +394,7 @@ imagekitio.list_files(
     limit: 5
 )
 ```
-**2. Get File Details**
+**Get File Details**
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details)
 
 ```ruby
@@ -406,7 +403,7 @@ imagekitio.get_file_details(
 )
 ```
 
-**3. Get File Metadata**
+**Get File Metadata**
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
 ```ruby
 imagekit.get_file_metadata(
@@ -414,7 +411,7 @@ imagekit.get_file_metadata(
 )
 ```
 
-**3. Get File Metadata from remote url**
+**Get File Metadata from remote url**
 Accepts the remote file url and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url)
 
 ```ruby
@@ -423,7 +420,7 @@ imagekit.get_remote_file_url_metadata(
 )
 ```
 
-**4. Update File Details**
+**Update File Details**
 Update parameters associated with the file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details).
 The first argument to the `update_field_details` method is the file ID, and a second argument is an object with the
 parameters to be updated.
@@ -436,7 +433,7 @@ imagekitio.update_file_details(
 )
 ```
 
-**5. Copy File**
+**Copy File**
 
 Copy file from one path to another path using the source file path and the destination path as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-file)
 
@@ -448,7 +445,7 @@ imagekitio.copy_file(
 )
 ```
 
-**6. Move File**
+**Move File**
 
 Move file from one folder to another folder using the source file path and destination path as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-file)
 
@@ -459,7 +456,7 @@ imagekitio.move_file(
 )
 ```
 
-**7. Rename File**
+**Rename File**
 
 Rename file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/rename-file)
 
@@ -471,7 +468,7 @@ imagekitio.rename_file(
 )
 ```
 
-**8. Delete File**
+**Delete File**
 
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file). The method accepts the file ID of the file that has to be deleted.
 
@@ -480,7 +477,7 @@ imagekitio.delete_file(
     file_id: '598821f949c0a938d57563bd'
 )
 ```
-**9. File versions**
+**File versions**
 
 Get all file versions as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions). The method accepts the file ID of the file.
 
@@ -489,7 +486,7 @@ imagekitio.file_versions(
     file_id: '598821f949c0a938d57563bd'
 )
 ```
-**10. File version details**
+**File version details**
 
 Get all file version detail as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details). The method accepts the file ID and version ID of the file.
 
@@ -500,7 +497,7 @@ imagekitio.file_version_detail(
 )
 ```
 
-**11. Delete file version**
+**Delete file version**
 
 Delete file version as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file-version). The method accepts the file ID and version ID of the file.
 
@@ -511,7 +508,7 @@ imagekitio.delete_file_version(
 )
 ```
 
-**12. Restore file version**
+**Restore file version**
 
 Restore deleted file version as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/restore-file-version). The method accepts the file ID and version ID of the file.
 
@@ -522,7 +519,7 @@ imagekitio.restore_file_version(
 )
 ```
 
-**13. Bulk File Delete by IDs**
+**Bulk File Delete by IDs**
 
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk). The method accepts a list of file IDs of files that has to be
 deleted.
@@ -533,7 +530,7 @@ imagekitio.delete_bulk_files(
 )
 ```
 
-**14. Purge Cache**
+**Purge Cache**
 Programmatically issue a clear cache request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache).
 Accepts the full URL of the file for which the cache has to be cleared.
 
@@ -542,7 +539,7 @@ imagekitio.purge_file_cache(
     file_url: 'https://ik.imagekit.io/demo/logo-white_SJwqB4Nfe.png'
 )
 ```
-**15. Purge Cache Status**
+**Purge Cache Status**
 
 Get the purge cache request status using the request ID returned when a purge cache request gets submitted as per the
 [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
@@ -553,7 +550,7 @@ imagekitio.purge_file_cache_status(
 )
 ```
 
-**16. Add Bulk Tags**
+**Add Bulk Tags**
 
 Add multiple tags on multiple files using an array of file ids and an array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk)
 
@@ -564,7 +561,7 @@ imagekitio.add_bulk_tags(
 )
 ``` 
 
-**17. Delete Bulk Tags**
+**Delete Bulk Tags**
 
 Remove multiple tags from multiple files using an array of file ids and an array of tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk)
 
@@ -575,7 +572,7 @@ imagekitio.delete_bulk_tags(
 )
 ```
 
-**18. Delete Bulk Ai Tags**
+**Delete Bulk AI Tags**
 
 Delete bulk ai tags as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk)
 
@@ -586,7 +583,7 @@ imagekitio.delete_bulk_ai_tags(
 )
 ```
 
-**19. Create Folder**
+**Create Folder**
 
 Create folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/create-folder)
 
@@ -598,7 +595,7 @@ imagekitio.create_folder(
 ```
 
 
-**20. Copy Folder**
+**Copy Folder**
 
 Copy folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-folder)
 
@@ -610,7 +607,7 @@ imagekitio.copy_folder(
 )
 ```
 
-**21. Move Folder**
+**Move Folder**
 
 Move folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/move-folder)
 
@@ -621,7 +618,7 @@ imagekitio.move_folder(
 )
 ```
 
-**22. Delete Folder**
+**Delete Folder**
 
 Delete folder as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-folder)
 
@@ -631,7 +628,7 @@ imagekitio.delete_folder(
 )
 ```
 
-**23. Bulk Job Status**
+**Bulk Job Status**
 
 Get the bulk job status as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status)
 
@@ -641,7 +638,7 @@ imagekitio.bulk_job_status(
 )
 ```
 
-**24. Create Custom Metadata Fields**
+**Create a custom metadata field**
 
 Create custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field)
 
@@ -658,7 +655,7 @@ imagekitio.create_custom_metadata_field(
 )
 ```
 
-**25. Get Custom Metadata Fields**
+**Get Custom Metadata Fields**
 
 Get the custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
@@ -668,7 +665,7 @@ imagekitio.get_custom_metadata_fields(
 )
 ```
 
-**26. Update Custom Metadata Fields**
+**Update Custom Metadata Fields**
 
 Update custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field)
 
@@ -680,7 +677,7 @@ imagekitio.update_custom_metadata_field(
 )
 ```
 
-**27. Delete Custom Metadata Fields**
+**Delete Custom Metadata Fields**
 
 Delete custom metadata fields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field)
 
@@ -692,7 +689,7 @@ imagekitio.delete_custom_metadata_field(
 
 ## Access request-id, other response headers and HTTP status code
 
-Each file management function returns a hash with response, error, status, headers, raw_body keys with respective values.
+Each media management function returns a hash with `response`, `error`, `status_code`, `headers`, `raw_body` keys with respective values.
 
 ```ruby
 upload = imagekitio.upload_file(
@@ -704,8 +701,9 @@ upload = imagekitio.upload_file(
     use_unique_file_name: false,
     is_private_file: true
 )
-puts upload[:status] # 200
+puts upload[:status_code] # 200
 puts upload[:headers]
+
 #   {
 #        "access-control-allow-origin"=>["*"],
 #         "x-ik-requestid"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
@@ -716,7 +714,8 @@ puts upload[:headers]
 #         "x-request-id"=>["6963194e-014f-8945-b05a-bdb0e088f1bd"],
 #         "connection"=>["close"]
 #   }
-#
+
+
 puts upload[:raw_body]
 # "{\"fileId\":\"62bjf980rb886bd691b86760\",\"name\":\"default.jpg\",\"size\":102117,\"versionInfo\":{\"id\":\"62bjf980rb886bd691b86760\",\"name\":\"Version 1\"},\"filePath\":\"/test/default.jpg\",\"url\":\"https://ik.imagekit.io/46865sdf6sdf/test/default.jpg\",\"fileType\":\"image\",\"height\":700,\"width\":1050,\"thumbnailUrl\":\"https://ik.imagekit.io/46865sdf6sdf/tr:n-ik_ml_thumbnail/test/default.jpg\",\"tags\":[\"abc\",\"def\"],\"AITags\":null,\"isPrivateFile\":true,\"customCoordinates\":null,\"metadata\":{\"height\":700,\"width\":1050,\"size\":102117,\"format\":\"jpg\",\"hasColorProfile\":true,\"quality\":0,\"density\":72,\"hasTransparency\":false,\"exif\":{},\"pHash\":\"90249d9b1fc74367\"}}"
 ```
