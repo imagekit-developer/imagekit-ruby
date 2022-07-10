@@ -46,40 +46,31 @@ module ImageKitIo
       end
 
       result_url_hash = {'host': "", 'path': "", 'query': ""}
-      existing_query=nil
+      parsed_host = Addressable::URI.parse(url_endpoint)
+      existing_query = nil
       if path != ""
         parsed_url = Addressable::URI.parse(path)
-        existing_query=parsed_url.query
-        parsed_host = Addressable::URI.parse(url_endpoint)
-        result_url_hash[:scheme] = parsed_host.scheme
-
         # making sure single '/' at end
         result_url_hash[:host] = parsed_host.host.to_s.chomp("/") + parsed_host.path.chomp("/") + "/"
-        result_url_hash[:path] = trim_slash(parsed_url.path)
+        path_without_query = Addressable::URI.parse(path)
+        path_without_query.fragment = path_without_query.query = nil
+        result_url_hash[:path] = path_without_query.hostname.nil? ? trim_slash(path_without_query.to_s) : CGI.escape(trim_slash(path_without_query.to_s))
       else
         parsed_url = Addressable::URI.parse(src)
-        existing_query=parsed_url.query
-        host = parsed_url.host
         result_url_hash[:userinfo] = parsed_url.userinfo if parsed_url.userinfo
-        result_url_hash[:host] = host
-        result_url_hash[:scheme] = parsed_url.scheme
+        result_url_hash[:host] = parsed_url.host
         result_url_hash[:path] = parsed_url.path
         src_param_used_for_url = true
       end
+
+      existing_query = parsed_url.query
+      result_url_hash[:scheme] = parsed_host.scheme
       query_params = {}
-      if existing_query!=nil
-        existing_query.split("&").each do |part|
-          parts=part.split("=")
-          if parts.length==2
-            query_params[parts[0]]=parts[1]
-          end
-        end
-      end
+      query_params = CGI.parse(existing_query).reject {|k, v| v.empty? }.transform_values(&:first) unless existing_query.nil?
       options.fetch(:query_parameters, {}).each do |key, value|
-        query_params[key]=value
+        query_params[key] = value
       end
       transformation_str = transformation_to_str(options[:transformation]).chomp("/")
-
       unless transformation_str.nil? || transformation_str.strip.empty?
         if (transformation_position == constants.QUERY_TRANSFORMATION_POSITION) || src_param_used_for_url == true
           result_url_hash[:query] = "#{constants.TRANSFORMATION_PARAMETER}=#{transformation_str}"
@@ -87,11 +78,10 @@ module ImageKitIo
         else
           result_url_hash[:path] = "#{constants.TRANSFORMATION_PARAMETER}:#{transformation_str}/#{result_url_hash[:path]}"
         end
-
       end
 
       result_url_hash[:host] = result_url_hash[:host].to_s.reverse.chomp("/").reverse
-      result_url_hash[:path] = result_url_hash[:path].chomp("/")
+      result_url_hash[:path] = result_url_hash[:path].chomp("/") unless result_url_hash[:path].nil?
       result_url_hash[:scheme] ||= "https"
 
       query_param_arr = []
@@ -103,22 +93,9 @@ module ImageKitIo
           query_param_arr.push(key.to_s + "=" + value.to_s)
         end
       end
-
       query_param_str = query_param_arr.join("&")
       result_url_hash[:query] = query_param_str
-
-      # Signature String and Timestamp
-      # We can do this only for URLs that are created using urlEndpoint and path parameter
-      # because we need to know the endpoint to be able to remove it from the URL to create a signature
-      # for the remaining. With the src parameter, we would not know the "pattern" in the URL
-      if options[:signed] && !(options[:src])
-        intermediate_url = result_url_hash.fetch(:scheme, "") + "://" + result_url_hash.fetch(:host, "") + result_url_hash.fetch(:path, "")
-        if result_url_hash[:query]!=nil && result_url_hash[:query]!=""
-          intermediate_url += result_url_hash.fetch(:query, "")
-        end
-      end
-
-      url=hash_to_url(result_url_hash)
+      url = hash_to_url(result_url_hash)
       if options[:signed]
         private_key = options[:private_key]
         expire_seconds = options[:expire_seconds]
@@ -129,7 +106,6 @@ module ImageKitIo
         if expire_timestamp && (expire_timestamp != constants.TIMESTAMP)
           query_param_arr.push(constants.TIMESTAMP_PARAMETER + "=" + expire_timestamp.to_s)
         end
-
         query_param_str = query_param_arr.join("&")
         result_url_hash[:query] = query_param_str
 

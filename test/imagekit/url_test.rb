@@ -259,6 +259,16 @@ RSpec.describe ImageKitIo::Url do
       expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{ImageKitIo::Sdk::VERSION}&γειασας=γειασας")
     end
 
+    it 'test_generate_url_with_absolute_path' do
+      options = { path: "https://example.com/external-image.jpg",
+                  query_parameters: { "γειασας": "γειασας" },
+                  transformation: [{ height: 300, width: 400 }]
+      }
+      url = url_obj.generate_url(options)
+
+      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/https%3A%2F%2Fexample.com%2Fexternal-image.jpg?ik-sdk-version=ruby-#{ImageKitIo::Sdk::VERSION}&γειασας=γειασας")
+    end
+
     it "test_generate_url_with_src_checking_query_param_added" do
 
       options = { src: "https://ik.imagekit.io/ldt7znpgpjs/test_YhNhoRxWt.jpg?another=abc&xyz=888",
@@ -358,6 +368,19 @@ RSpec.describe ImageKitIo::Url do
       url = url_obj.generate_url(options)
 
       expect(url).to include("https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/Fjällräven_KnSJwp87u6q.png?ik-sdk-version=ruby-#{ImageKitIo::Sdk::VERSION}&ik-s=")
+    end
+
+    it 'test_generate_url_with_absolute_path_and_signed' do
+      allow(url_obj).to receive(:get_signature_timestamp).with(5) { 100 }
+      options = { path: "https://example.com/external-image.jpg",
+                  query_parameters: { "γειασας": "γειασας" },
+                  transformation: [{ height: 300, width: 400 }],
+                  signed: true,
+                  expire_seconds: 5
+      }
+      url = url_obj.generate_url(options)
+
+      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/https%3A%2F%2Fexample.com%2Fexternal-image.jpg?ik-sdk-version=ruby-#{ImageKitIo::Sdk::VERSION}&γειασας=γειασας&ik-s=e2fff55e07b923b1f0f0d484dfd966367d6d65bc&ik-t=100")
     end
 
     it "test_url_with_invalid_args_returns_as_it_is" do
