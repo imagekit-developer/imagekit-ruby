@@ -380,7 +380,7 @@ RSpec.describe ImageKitIo::Url do
       }
       url = url_obj.generate_url(options)
 
-      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/https%3A%2F%2Fexample.com%2Fexternal-image.jpg?ik-sdk-version=ruby-#{ImageKitIo::Sdk::VERSION}&γειασας=γειασας&ik-s=1ce525443b5ea4f1e66e8e89d585a8c95ae043c2&ik-t=100")
+      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/https%3A%2F%2Fexample.com%2Fexternal-image.jpg?ik-sdk-version=ruby-#{ImageKitIo::Sdk::VERSION}&γειασας=γειασας&ik-s=e2fff55e07b923b1f0f0d484dfd966367d6d65bc&ik-t=100")
     end
 
     it "test_url_with_invalid_args_returns_as_it_is" do
