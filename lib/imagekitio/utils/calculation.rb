@@ -27,6 +27,7 @@ module ImageKitIo
         # return authenticated param
         default_expire = DateTime.now.strftime("%s").to_i + DEFAULT_TIME_DIFF
         token ||= SecureRandom.uuid
+        expire ||= default_expire
 
         auth_params = {'token': token, 'expire': expire, 'signature': ""}
         unless private_key
@@ -35,7 +36,7 @@ module ImageKitIo
 
         signature = OpenSSL::HMAC.hexdigest("SHA1", private_key, token.to_s + expire.to_s)
         auth_params[:token] = token
-        auth_params[:expire] = expire || default_expire
+        auth_params[:expire] = expire
         auth_params[:signature] = signature
         auth_params
       end
