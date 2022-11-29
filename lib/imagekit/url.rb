@@ -93,7 +93,9 @@ class Url
     result_url_hash[:scheme] ||= "https"
 
     query_param_arr = []
-    query_param_arr.push("ik-sdk-version=ruby-"+Imagekit::Sdk::VERSION)
+    # We're commenting this one out as we're migrating our old urls and we don't 
+    # want to lose on SEO
+    # query_param_arr.push("ik-sdk-version=ruby-"+Imagekit::Sdk::VERSION)
     query_params.each do |key, value|
       if value.to_s == ""
         query_param_arr.push(key.to_s)
