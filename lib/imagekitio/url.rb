@@ -85,7 +85,6 @@ module ImageKitIo
       result_url_hash[:scheme] ||= "https"
 
       query_param_arr = []
-      query_param_arr.push("ik-sdk-version=ruby-"+ImageKitIo::Sdk::VERSION)
       query_params.each do |key, value|
         if value.to_s == ""
           query_param_arr.push(key.to_s)
