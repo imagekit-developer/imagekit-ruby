@@ -393,7 +393,7 @@ RSpec.describe ImageKitIo::Client do
       }
       url = SUT.url(options)
 
-      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg?ik-sdk-version=ruby-#{ImageKitIo::Sdk::VERSION}")
+      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg")
     end
 
     it "get_authentication_params_test_with_hard_coded_params" do
