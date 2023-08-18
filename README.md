@@ -13,18 +13,18 @@ Ruby on Rails gem for [ImageKit](https://imagekit.io/) implements the new APIs a
 ImageKit is complete media storage, optimization, and transformation solution that comes with an [image and video CDN](https://imagekit.io/features/imagekit-infrastructure). It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
 Table of contents -
- * [Installation](#Installation)
- * [Initialization](#Initialization)
-    - [CarrierWave](#Carrierwave)
-    - [ActiveStorage](#activeStorage)
- * [URL Generation](#URL-generation)
- * [File Upload](#File-Upload)
- * [File Management](#File-Management)
- * [Utility Functions](#Utility-functions)
- * [Sample applications](#Sample-Application)
- * [Upgrade to 2.x](#upgrade-to-2.x)
- * [Support](#Support)
- * [Links](#Links)
+ * [Installation](#installation)
+ * [Initialization](#initialization)
+    - [CarrierWave](#carrierwave)
+    - [ActiveStorage](#activestorage)
+ * [URL Generation](#url-generation)
+ * [File Upload](#file-upload)
+ * [File Management](#file-management)
+ * [Utility Functions](#utility-functions)
+ * [Sample applications](#sample-application)
+ * [Upgrade to 2.x](#upgrade-to-2x)
+ * [Support](#support)
+ * [Links](#links)
 
 
 # Quick start guide
