@@ -1,4 +1,8 @@
-require 'carrierwave'
+begin
+  require 'carrierwave'
+rescue LoadError
+  puts "Add gem 'carrierwave' to use this service"
+end
 require_relative './storage/imagekit_store'
 require_relative './storage/ik_file'
 require_relative './support/uri_filename'
