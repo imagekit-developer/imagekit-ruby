@@ -291,6 +291,7 @@ For example:
 ```ruby
 image_url = imagekit.url({
     path: "/default-image",
+    url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
     transformation: [{
         height: "300",
         width: "400",
