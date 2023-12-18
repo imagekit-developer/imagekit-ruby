@@ -282,6 +282,27 @@ image_url = imagekit.url({
 https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1567358667&ik-s=f2c7cdacbe7707b71a83d49cf1c6110e3d701054
 ```
 
+**4. Adding overlays to images**
+
+ImageKit.io allows you to add [text](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#add-text-over-image) and [image overlay](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#add-images-over-image) dynamically.
+
+For example:
+
+```ruby
+image_url = imagekit.url({
+    path: "/default-image",
+    transformation: [{
+        height: "300",
+        width: "400",
+        raw: "l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end"
+    }],
+})
+```
+**Sample Result URL**
+```
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end/default-image.jpg
+```
+
 **List of transformations**
 
 The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations). The SDK gives a name to each transformation parameter, making the code simpler, making the code simpler, and readable.
@@ -308,34 +329,6 @@ If you want to generate transformations in your application and add them to the 
 | rotation | rt |
 | blur | bl |
 | named | n |
-| overlayX | ox |
-| overlayY | oy |
-| overlayFocus | ofo |
-| overlayHeight | oh |
-| overlayWidth | ow |
-| overlayImage | oi |
-| overlayImageTrim | oit |
-| overlayImageAspectRatio | oiar |
-| overlayImageBackground | oibg |
-| overlayImageBorder | oib |
-| overlayImageDPR | oidpr |
-| overlayImageQuality | oiq |
-| overlayImageCropping | oic |
-| overlayImageTrim | oit |
-| overlayText | ot |
-| overlayTextFontSize | ots |
-| overlayTextFontFamily | otf |
-| overlayTextColor | otc |
-| overlayTextTransparency | oa |
-| overlayAlpha | oa |
-| overlayTextTypography | ott |
-| overlayBackground | obg |
-| overlayTextEncoded | ote |
-| overlayTextWidth | otw |
-| overlayTextBackground | otbg |
-| overlayTextPadding | otp |
-| overlayTextInnerAlignment | otia |
-| overlayRadius | or |
 | progressive | pr |
 | lossless | lo |
 | trim | t |
