@@ -248,7 +248,7 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       upload = SUT.upload(file: "./fake_file.jpg", file_name: "my_file_name", transformation: { pre: 'l-text,i-Imagekit,fs-50,l-end', post: [{type: 'transformation', value: 'w-100'}]})
 
-      expect(@ac[:payload]['transformation'].to_json).to eq("{\"pre\":\"l-text,i-Imagekit,fs-50,l-end\",\"post\":[{\"type\":\"transformation\",\"value\":\"w-100\"}]}")
+      expect(@ac[:payload]['transformation']).to eq("{\"pre\":\"l-text,i-Imagekit,fs-50,l-end\",\"post\":[{\"type\":\"transformation\",\"value\":\"w-100\"}]}")
 
       expect(upload[:status_code]).to eq(200)
 
