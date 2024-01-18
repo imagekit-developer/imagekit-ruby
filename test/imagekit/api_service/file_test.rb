@@ -228,6 +228,31 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(@ac[:payload][:fileName]).to eq("fake_name")
       expect(upload[:status_code]).to eq(401)
     end
+
+    it "test_upload_with_valid_expected_success_with_transformation" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      @ac={}
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({status_code: 200})
+
+      SUT = file_api_service.new(request_obj)
+
+      upload = SUT.upload(file: "./fake_file.jpg", file_name: "my_file_name", transformation: { pre: 'l-text,i-Imagekit,fs-50,l-end', post: [{type: 'transformation', value: 'b-10'}]})
+
+      expect(@ac[:payload].to_json).to eq("{\"multipart\":true,\"file\":\"./fake_file.jpg\",\"fileName\":\"my_file_name\",\"transformation\":"{\"pre\":\"l-text,i-Imagekit,fs-50,l-end\",\"post\":[{\"type\":\"transformation\",\"value\":\"w-100\"}]}"}")
+
+      expect(upload[:status_code]).to eq(200)
+
+    end
   end
 
   describe 'FileListTest' do

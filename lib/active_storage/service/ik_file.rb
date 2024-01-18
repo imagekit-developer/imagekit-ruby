@@ -106,6 +106,10 @@ module ImageKiIo
       def extension_status
         identifier['extensionStatus']
       end
+
+      def transformation
+        identifier['transformation']
+      end
     end
   end
 end

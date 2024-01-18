@@ -36,6 +36,7 @@ module ImageKitIo
         content_type = options.delete(:content_type) || ''
         options = format_to_json(options, :extensions, Array)
         options = format_to_json(options, :custom_metadata, Hash)
+        options = format_to_json(options, :transformation, Hash)
         options = validate_upload_options(options || {})
         if options.is_a?(FalseClass)
           raise ArgumentError, "Invalid Upload option"
