@@ -56,6 +56,8 @@ module ImageKitIo
         'effect_usm': "e-usm",
         'effect_contrast': "e-contrast",
         'effect_gray': "e-grayscale",
+        'effect_shadow': "e-shadow",
+        'effect_gradient': "e-gradient",
         'original': "orig",
         'raw': 'raw',
       }
