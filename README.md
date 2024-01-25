@@ -13,6 +13,7 @@ Ruby on Rails gem for [ImageKit](https://imagekit.io/) implements the new APIs a
 ImageKit is complete media storage, optimization, and transformation solution that comes with an [image and video CDN](https://imagekit.io/features/imagekit-infrastructure). It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
 Table of contents -
+ * [Changelog](#changelog)
  * [Installation](#installation)
  * [Initialization](#initialization)
     - [CarrierWave](#carrierwave)
@@ -29,6 +30,13 @@ Table of contents -
 
 # Quick start guide
 Get started with [official quick start guide](https://docs.imagekit.io/getting-started/quickstart-guides/ruby-on-rails) for integrating ImageKit in Ruby on Rails.
+
+## Changelog
+### SDK Version 3.0.0
+#### Breaking changes
+**1. Overlay syntax update**
+* In version 3.0.0, we've removed the old overlay syntax parameters such as `oi`, `ot`, `obg`, and [more](https://docs.imagekit.io/features/image-transformations/overlay). These parameters are deprecated and will start returning errors when used in URLs. Please migrate to the new Layers syntax that supports overlay nesting, provides better positional control, and allows more transformations at the layer level. You can start with [examples](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#examples) to learn quickly.
+* You can migrate to the new Layers syntax using the `raw` transformation parameter.
 
 ## Installation
 
