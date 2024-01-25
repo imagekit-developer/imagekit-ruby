@@ -9,13 +9,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby 3.0
+      - name: Set up Ruby 2.6
         uses: ruby/setup-ruby@v1.126.0
         with:
-          ruby-version: 3.0.0
+          ruby-version: 2.6.5
       - name: Build and test with Rake
         run: |
-          gem install bundler
+          gem install bundler -v 2.4.22
           bundle install --jobs 4 --retry 3
           bundle exec rake
       # - name: Upload code coverage reports to codecov
