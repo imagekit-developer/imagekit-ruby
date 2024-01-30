@@ -28,7 +28,7 @@ Table of contents -
 
 
 # Quick start guide
-Get started with [official quick start guide](https://docs.imagekit.io/getting-started/quickstart-guides/ruby-on-rails) for integrating ImageKit in Ruby on Rails.
+Get started with [official quick start guide](https://docs.imagekit.io/getting-started/quickstart-guides/ruby-guides) for integrating ImageKit in Ruby on Rails.
 
 ## Installation
 
