@@ -13,6 +13,7 @@ Ruby on Rails gem for [ImageKit](https://imagekit.io/) implements the new APIs a
 ImageKit is complete media storage, optimization, and transformation solution that comes with an [image and video CDN](https://imagekit.io/features/imagekit-infrastructure). It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
 Table of contents -
+ * [Changelog](#changelog)
  * [Installation](#installation)
  * [Initialization](#initialization)
     - [CarrierWave](#carrierwave)
@@ -29,6 +30,13 @@ Table of contents -
 
 # Quick start guide
 Get started with [official quick start guide](https://docs.imagekit.io/getting-started/quickstart-guides/ruby-guides) for integrating ImageKit in Ruby on Rails.
+
+## Changelog
+### SDK Version 3.0.0
+#### Breaking changes
+**1. Overlay syntax update**
+* In version 3.0.0, we've removed the old overlay syntax parameters for transformations, such as `oi`, `ot`, `obg`, and [more](https://docs.imagekit.io/features/image-transformations/overlay). These parameters are deprecated and will start returning errors when used in URLs. Please migrate to the new layers syntax that supports overlay nesting, provides better positional control, and allows more transformations at the layer level. You can start with [examples](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#examples) to learn quickly.
+* You can migrate to the new layers syntax using the `raw` transformation parameter.
 
 ## Installation
 
@@ -352,6 +360,29 @@ image_url = imagekit.url({
 https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end/img/sample-video.mp4
 ```
 
+**5. Arithmetic expressions in transformations**
+
+ImageKit allows use of [arithmetic expressions](https://docs.imagekit.io/features/arithmetic-expressions-in-transformations) in certain dimension and position-related parameters, making media transformations more flexible and dynamic.
+
+For example:
+
+```ruby
+image_url = imagekit.url({
+    path: "/default-image.jpg",
+    url_endpoint: "https://ik.imagekit.io/your_imagekit_id/endpoint/",
+    transformation: [{
+        width: "iw_div_4",
+        height: "ih_div_2",
+        border: "cw_mul_0.05_yellow"
+    }]
+});
+```
+
+**Sample Result URL**
+```
+https://ik.imagekit.io/your_imagekit_id/default-image.jpg?tr=w-iw_div_4,h-ih_div_2,b-cw_mul_0.05_yellow
+```
+
 **List of transformations**
 
 The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations). The SDK gives a name to each transformation parameter, making the code simpler, making the code simpler, and readable.
@@ -364,10 +395,10 @@ If you want to generate transformations in your application and add them to the 
 |-------------------------------|-------------------------|
 | height | h |
 | width | w |
-| aspectRatio | ar |
+| aspect_ratio | ar |
 | quality | q |
 | crop | c |
-| cropMode | cm |
+| crop_mode | cm |
 | x | x |
 | y | y |
 | focus | fo |
@@ -382,13 +413,15 @@ If you want to generate transformations in your application and add them to the 
 | lossless | lo |
 | trim | t |
 | metadata | md |
-| colorProfile | cp |
-| defaultImage | di |
+| color_profile | cp |
+| default_image | di |
 | dpr | dpr |
-| effectSharpen | e-sharpen |
-| effectUSM | e-usm |
-| effectContrast | e-contrast |
-| effectGray | e-grayscale |
+| effect_sharpen | e-sharpen |
+| effect_usm | e-usm |
+| effect_contrast | e-contrast |
+| effect_gray | e-grayscale |
+| effect_shadow | e-shadow |
+| effect_gradient | e-gradient |
 | original | orig |
 | raw | `replaced by the parameter value` |
 
