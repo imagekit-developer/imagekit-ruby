@@ -443,7 +443,16 @@ imagekitio.upload_file(
     file_name: "my_file_name.jpg",  # required
     response_fields: 'isPrivateFile, tags',
     tags: %w[abc def],
-    use_unique_file_name: true
+    use_unique_file_name: true,
+    transformation: {
+        pre: 'l-text,i-Imagekit,fs-50,l-end',
+        post: [
+            {
+                type: 'transformation',
+                value: 'w-100'
+            }
+        ]
+    }
 )
 
 ```
