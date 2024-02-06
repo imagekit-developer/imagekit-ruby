@@ -1,7 +1,7 @@
 name: Ruby Gem
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
