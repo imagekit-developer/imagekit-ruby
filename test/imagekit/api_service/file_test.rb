@@ -253,6 +253,31 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(upload[:status_code]).to eq(200)
 
     end
+
+    it "test_upload_with_checks" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      @ac={}
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({status_code: 200})
+
+      SUT = file_api_service.new(request_obj)
+
+      upload = SUT.upload(file: "./fake_file.jpg", file_name: "my_file_name", checks: '"file.size" < "1mb"')
+
+      expect(@ac[:payload]['checks']).to eq('"file.size" < "1mb"')
+      
+      expect(upload[:status_code]).to eq(200)
+
+    end
   end
 
   describe 'FileListTest' do

@@ -452,7 +452,8 @@ imagekitio.upload_file(
                 value: 'w-100'
             }
         ]
-    }
+    },
+    checks: "'request.folder' : '/'" # To run server side checks before uploading files. Notice the quotes around file.size and 1mb.
 )
 
 ```
