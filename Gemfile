@@ -20,7 +20,7 @@ gemspec
 group :test do
   gem "minitest", "~> 5.0"
   gem "rspec"
-  gem 'codecov'
+  # gem 'codecov'
   gem 'webmock'
   gem 'byebug'
 end
