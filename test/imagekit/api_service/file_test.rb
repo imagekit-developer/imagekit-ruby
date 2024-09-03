@@ -278,6 +278,32 @@ RSpec.describe ImageKitIo::ApiService::File do
       expect(upload[:status_code]).to eq(200)
 
     end
+    
+    it "test_upload_with_is_published" do
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+      @ac={}
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({status_code: 200})
+
+      SUT = file_api_service.new(request_obj)
+
+      upload = SUT.upload(file: "./fake_file.jpg", file_name: "my_file_name", is_published: true )
+
+      expect(@ac[:payload]['isPublished']).to eq("true")
+      
+      expect(upload[:status_code]).to eq(200)
+
+    end
+
   end
 
   describe 'FileListTest' do
@@ -808,6 +834,31 @@ RSpec.describe ImageKitIo::ApiService::File do
 
       expect(JSON.parse(@ac[:payload])['tags']).to eq(options[:tags])
       expect(JSON.parse(@ac[:payload])['customCoordinates']).to eq(options[:custom_coordinates])
+      expect(resp[:status_code]).to eq(200)
+      expect(resp[:body]).to eq(options)
+    end
+
+    it "test_update_file_publication_status" do
+      options = { publish: { isPublished: true, includeFileVersions: true }}
+      request_obj = double
+      allow(ImageKitIo::Request)
+        .to receive(:new)
+              .with(private_key, public_key, url_endpoint)
+              .and_return(request_obj)
+
+      allow(request_obj)
+        .to receive(:create_headers)
+              .and_return({})
+
+      allow(request_obj)
+        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
+              .and_return({status_code: 200, body: options})
+
+      SUT = file_api_service.new(request_obj)
+      resp = SUT.update_details(file_id: "file_id", **options)
+
+      expect(JSON.parse(@ac[:payload])['publish']['isPublished']).to eq(options[:publish][:isPublished])
+      expect(JSON.parse(@ac[:payload])['publish']['isPublished']).to eq(options[:publish][:includeFileVersions])
       expect(resp[:status_code]).to eq(200)
       expect(resp[:body]).to eq(options)
     end

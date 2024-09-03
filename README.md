@@ -454,6 +454,7 @@ imagekitio.upload_file(
         ]
     },
     checks: "'request.folder' : '/'" # To run server side checks before uploading files. Notice the quotes around file.size and 1mb.
+    is_published: true
 )
 
 ```
@@ -480,6 +481,7 @@ imagekitio.list_files(
 )
 ```
 **Get File Details**
+
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details)
 
 ```ruby
@@ -489,6 +491,7 @@ imagekitio.get_file_details(
 ```
 
 **Get File Metadata**
+
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
 ```ruby
 imagekit.get_file_metadata(
@@ -497,6 +500,7 @@ imagekit.get_file_metadata(
 ```
 
 **Get File Metadata from remote url**
+
 Accepts the remote file url and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url)
 
 ```ruby
@@ -506,6 +510,7 @@ imagekit.get_remote_file_url_metadata(
 ```
 
 **Update File Details**
+
 Update parameters associated with the file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details).
 The first argument to the `update_field_details` method is the file ID, and a second argument is an object with the
 parameters to be updated.
@@ -515,6 +520,21 @@ imagekitio.update_file_details(
     file_id: '598821f949c0a938d57563bd',
     tags: ["image_tag"],
     custom_coordinates: "10,10,100, 100"
+)
+```
+
+
+**Update publish status**
+
+If `publish` is included in the update options, no other parameters are allowed. If any are present, an error will be returned: `Your request cannot contain any other parameters when publish is present`.
+
+```ruby
+imagekitio.update_file_details(
+    file_id: '598821f949c0a938d57563bd',
+    publish:{
+      isPublished: true,
+      includeFileVersions: true
+    }
 )
 ```
 
