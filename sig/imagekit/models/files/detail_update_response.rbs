@@ -1,0 +1,284 @@
+module Imagekit
+  module Models
+    module Files
+      type detail_update_response =
+        {
+          ai_tags: ::Array[Imagekit::Models::Files::DetailUpdateResponse::AITag]?,
+          created_at: String,
+          custom_coordinates: String?,
+          custom_metadata: top,
+          extension_status: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus,
+          file_id: String,
+          file_path: String,
+          file_type: String,
+          has_alpha: bool,
+          height: Float,
+          is_private_file: bool,
+          is_published: bool,
+          mime: String,
+          name: String,
+          size: Float,
+          tags: ::Array[String]?,
+          thumbnail: String,
+          type: String,
+          updated_at: String,
+          url: String,
+          version_info: Imagekit::Models::Files::DetailUpdateResponse::VersionInfo,
+          width: Float
+        }
+
+      class DetailUpdateResponse < Imagekit::Internal::Type::BaseModel
+        attr_accessor ai_tags: ::Array[Imagekit::Models::Files::DetailUpdateResponse::AITag]?
+
+        attr_reader created_at: String?
+
+        def created_at=: (String) -> String
+
+        attr_accessor custom_coordinates: String?
+
+        attr_reader custom_metadata: top?
+
+        def custom_metadata=: (top) -> top
+
+        attr_reader extension_status: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus?
+
+        def extension_status=: (
+          Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus
+        ) -> Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus
+
+        attr_reader file_id: String?
+
+        def file_id=: (String) -> String
+
+        attr_reader file_path: String?
+
+        def file_path=: (String) -> String
+
+        attr_reader file_type: String?
+
+        def file_type=: (String) -> String
+
+        attr_reader has_alpha: bool?
+
+        def has_alpha=: (bool) -> bool
+
+        attr_reader height: Float?
+
+        def height=: (Float) -> Float
+
+        attr_reader is_private_file: bool?
+
+        def is_private_file=: (bool) -> bool
+
+        attr_reader is_published: bool?
+
+        def is_published=: (bool) -> bool
+
+        attr_reader mime: String?
+
+        def mime=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader size: Float?
+
+        def size=: (Float) -> Float
+
+        attr_accessor tags: ::Array[String]?
+
+        attr_reader thumbnail: String?
+
+        def thumbnail=: (String) -> String
+
+        attr_reader type: String?
+
+        def type=: (String) -> String
+
+        attr_reader updated_at: String?
+
+        def updated_at=: (String) -> String
+
+        attr_reader url: String?
+
+        def url=: (String) -> String
+
+        attr_reader version_info: Imagekit::Models::Files::DetailUpdateResponse::VersionInfo?
+
+        def version_info=: (
+          Imagekit::Models::Files::DetailUpdateResponse::VersionInfo
+        ) -> Imagekit::Models::Files::DetailUpdateResponse::VersionInfo
+
+        attr_reader width: Float?
+
+        def width=: (Float) -> Float
+
+        def initialize: (
+          ?ai_tags: ::Array[Imagekit::Models::Files::DetailUpdateResponse::AITag]?,
+          ?created_at: String,
+          ?custom_coordinates: String?,
+          ?custom_metadata: top,
+          ?extension_status: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus,
+          ?file_id: String,
+          ?file_path: String,
+          ?file_type: String,
+          ?has_alpha: bool,
+          ?height: Float,
+          ?is_private_file: bool,
+          ?is_published: bool,
+          ?mime: String,
+          ?name: String,
+          ?size: Float,
+          ?tags: ::Array[String]?,
+          ?thumbnail: String,
+          ?type: String,
+          ?updated_at: String,
+          ?url: String,
+          ?version_info: Imagekit::Models::Files::DetailUpdateResponse::VersionInfo,
+          ?width: Float
+        ) -> void
+
+        def to_hash: -> {
+          ai_tags: ::Array[Imagekit::Models::Files::DetailUpdateResponse::AITag]?,
+          created_at: String,
+          custom_coordinates: String?,
+          custom_metadata: top,
+          extension_status: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus,
+          file_id: String,
+          file_path: String,
+          file_type: String,
+          has_alpha: bool,
+          height: Float,
+          is_private_file: bool,
+          is_published: bool,
+          mime: String,
+          name: String,
+          size: Float,
+          tags: ::Array[String]?,
+          thumbnail: String,
+          type: String,
+          updated_at: String,
+          url: String,
+          version_info: Imagekit::Models::Files::DetailUpdateResponse::VersionInfo,
+          width: Float
+        }
+
+        type ai_tag = { confidence: Float, name: String, source: String }
+
+        class AITag < Imagekit::Internal::Type::BaseModel
+          attr_reader confidence: Float?
+
+          def confidence=: (Float) -> Float
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          attr_reader source: String?
+
+          def source=: (String) -> String
+
+          def initialize: (
+            ?confidence: Float,
+            ?name: String,
+            ?source: String
+          ) -> void
+
+          def to_hash: -> { confidence: Float, name: String, source: String }
+        end
+
+        type extension_status =
+          {
+            aws_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::aws_auto_tagging,
+            google_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::google_auto_tagging,
+            remove_bg: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::remove_bg
+          }
+
+        class ExtensionStatus < Imagekit::Internal::Type::BaseModel
+          attr_reader aws_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::aws_auto_tagging?
+
+          def aws_auto_tagging=: (
+            Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::aws_auto_tagging
+          ) -> Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::aws_auto_tagging
+
+          attr_reader google_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::google_auto_tagging?
+
+          def google_auto_tagging=: (
+            Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::google_auto_tagging
+          ) -> Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::google_auto_tagging
+
+          attr_reader remove_bg: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::remove_bg?
+
+          def remove_bg=: (
+            Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::remove_bg
+          ) -> Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::remove_bg
+
+          def initialize: (
+            ?aws_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::aws_auto_tagging,
+            ?google_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::google_auto_tagging,
+            ?remove_bg: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::remove_bg
+          ) -> void
+
+          def to_hash: -> {
+            aws_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::aws_auto_tagging,
+            google_auto_tagging: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::google_auto_tagging,
+            remove_bg: Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::remove_bg
+          }
+
+          type aws_auto_tagging = :success | :pending | :failed
+
+          module AwsAutoTagging
+            extend Imagekit::Internal::Type::Enum
+
+            SUCCESS: :success
+            PENDING: :pending
+            FAILED: :failed
+
+            def self?.values: -> ::Array[Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::aws_auto_tagging]
+          end
+
+          type google_auto_tagging = :success | :pending | :failed
+
+          module GoogleAutoTagging
+            extend Imagekit::Internal::Type::Enum
+
+            SUCCESS: :success
+            PENDING: :pending
+            FAILED: :failed
+
+            def self?.values: -> ::Array[Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::google_auto_tagging]
+          end
+
+          type remove_bg = :success | :pending | :failed
+
+          module RemoveBg
+            extend Imagekit::Internal::Type::Enum
+
+            SUCCESS: :success
+            PENDING: :pending
+            FAILED: :failed
+
+            def self?.values: -> ::Array[Imagekit::Models::Files::DetailUpdateResponse::ExtensionStatus::remove_bg]
+          end
+        end
+
+        type version_info = { id: String, name: String }
+
+        class VersionInfo < Imagekit::Internal::Type::BaseModel
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (?id: String, ?name: String) -> void
+
+          def to_hash: -> { id: String, name: String }
+        end
+      end
+    end
+  end
+end

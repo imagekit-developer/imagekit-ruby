@@ -1,0 +1,1741 @@
+module Imagekit
+  module Models
+    type file_upload_v2_response =
+      {
+        ai_tags: ::Array[Imagekit::Models::FileUploadV2Response::AITag]?,
+        audio_codec: String,
+        bit_rate: Integer,
+        custom_coordinates: String?,
+        custom_metadata: top,
+        duration: Integer,
+        embedded_metadata: Imagekit::Models::FileUploadV2Response::EmbeddedMetadata,
+        extension_status: Imagekit::Models::FileUploadV2Response::ExtensionStatus,
+        file_id: String,
+        file_path: String,
+        file_type: String,
+        height: Float,
+        is_private_file: bool,
+        is_published: bool,
+        metadata: Imagekit::Models::FileUploadV2Response::Metadata,
+        name: String,
+        size: Float,
+        tags: ::Array[String]?,
+        thumbnail_url: String,
+        url: String,
+        version_info: Imagekit::Models::FileUploadV2Response::VersionInfo,
+        video_codec: String,
+        width: Float
+      }
+
+    class FileUploadV2Response < Imagekit::Internal::Type::BaseModel
+      attr_accessor ai_tags: ::Array[Imagekit::Models::FileUploadV2Response::AITag]?
+
+      attr_reader audio_codec: String?
+
+      def audio_codec=: (String) -> String
+
+      attr_reader bit_rate: Integer?
+
+      def bit_rate=: (Integer) -> Integer
+
+      attr_accessor custom_coordinates: String?
+
+      attr_reader custom_metadata: top?
+
+      def custom_metadata=: (top) -> top
+
+      attr_reader duration: Integer?
+
+      def duration=: (Integer) -> Integer
+
+      attr_reader embedded_metadata: Imagekit::Models::FileUploadV2Response::EmbeddedMetadata?
+
+      def embedded_metadata=: (
+        Imagekit::Models::FileUploadV2Response::EmbeddedMetadata
+      ) -> Imagekit::Models::FileUploadV2Response::EmbeddedMetadata
+
+      attr_reader extension_status: Imagekit::Models::FileUploadV2Response::ExtensionStatus?
+
+      def extension_status=: (
+        Imagekit::Models::FileUploadV2Response::ExtensionStatus
+      ) -> Imagekit::Models::FileUploadV2Response::ExtensionStatus
+
+      attr_reader file_id: String?
+
+      def file_id=: (String) -> String
+
+      attr_reader file_path: String?
+
+      def file_path=: (String) -> String
+
+      attr_reader file_type: String?
+
+      def file_type=: (String) -> String
+
+      attr_reader height: Float?
+
+      def height=: (Float) -> Float
+
+      attr_reader is_private_file: bool?
+
+      def is_private_file=: (bool) -> bool
+
+      attr_reader is_published: bool?
+
+      def is_published=: (bool) -> bool
+
+      attr_reader metadata: Imagekit::Models::FileUploadV2Response::Metadata?
+
+      def metadata=: (
+        Imagekit::Models::FileUploadV2Response::Metadata
+      ) -> Imagekit::Models::FileUploadV2Response::Metadata
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader size: Float?
+
+      def size=: (Float) -> Float
+
+      attr_accessor tags: ::Array[String]?
+
+      attr_reader thumbnail_url: String?
+
+      def thumbnail_url=: (String) -> String
+
+      attr_reader url: String?
+
+      def url=: (String) -> String
+
+      attr_reader version_info: Imagekit::Models::FileUploadV2Response::VersionInfo?
+
+      def version_info=: (
+        Imagekit::Models::FileUploadV2Response::VersionInfo
+      ) -> Imagekit::Models::FileUploadV2Response::VersionInfo
+
+      attr_reader video_codec: String?
+
+      def video_codec=: (String) -> String
+
+      attr_reader width: Float?
+
+      def width=: (Float) -> Float
+
+      def initialize: (
+        ?ai_tags: ::Array[Imagekit::Models::FileUploadV2Response::AITag]?,
+        ?audio_codec: String,
+        ?bit_rate: Integer,
+        ?custom_coordinates: String?,
+        ?custom_metadata: top,
+        ?duration: Integer,
+        ?embedded_metadata: Imagekit::Models::FileUploadV2Response::EmbeddedMetadata,
+        ?extension_status: Imagekit::Models::FileUploadV2Response::ExtensionStatus,
+        ?file_id: String,
+        ?file_path: String,
+        ?file_type: String,
+        ?height: Float,
+        ?is_private_file: bool,
+        ?is_published: bool,
+        ?metadata: Imagekit::Models::FileUploadV2Response::Metadata,
+        ?name: String,
+        ?size: Float,
+        ?tags: ::Array[String]?,
+        ?thumbnail_url: String,
+        ?url: String,
+        ?version_info: Imagekit::Models::FileUploadV2Response::VersionInfo,
+        ?video_codec: String,
+        ?width: Float
+      ) -> void
+
+      def to_hash: -> {
+        ai_tags: ::Array[Imagekit::Models::FileUploadV2Response::AITag]?,
+        audio_codec: String,
+        bit_rate: Integer,
+        custom_coordinates: String?,
+        custom_metadata: top,
+        duration: Integer,
+        embedded_metadata: Imagekit::Models::FileUploadV2Response::EmbeddedMetadata,
+        extension_status: Imagekit::Models::FileUploadV2Response::ExtensionStatus,
+        file_id: String,
+        file_path: String,
+        file_type: String,
+        height: Float,
+        is_private_file: bool,
+        is_published: bool,
+        metadata: Imagekit::Models::FileUploadV2Response::Metadata,
+        name: String,
+        size: Float,
+        tags: ::Array[String]?,
+        thumbnail_url: String,
+        url: String,
+        version_info: Imagekit::Models::FileUploadV2Response::VersionInfo,
+        video_codec: String,
+        width: Float
+      }
+
+      type ai_tag = { confidence: Float, name: String, source: String }
+
+      class AITag < Imagekit::Internal::Type::BaseModel
+        attr_reader confidence: Float?
+
+        def confidence=: (Float) -> Float
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader source: String?
+
+        def source=: (String) -> String
+
+        def initialize: (
+          ?confidence: Float,
+          ?name: String,
+          ?source: String
+        ) -> void
+
+        def to_hash: -> { confidence: Float, name: String, source: String }
+      end
+
+      type embedded_metadata =
+        {
+          about_cv_term_cv_id: String,
+          about_cv_term_id: String,
+          about_cv_term_name: String,
+          about_cv_term_refined_about: String,
+          additional_model_information: String,
+          application_record_version: Integer,
+          artist: String,
+          artwork_circa_date_created: String,
+          artwork_content_description: String,
+          artwork_contribution_description: String,
+          artwork_copyright_notice: String,
+          artwork_copyright_owner_id: String,
+          artwork_copyright_owner_name: String,
+          artwork_creator: ::Array[String],
+          artwork_creator_id: ::Array[String],
+          artwork_date_created: Time,
+          artwork_licensor_id: String,
+          artwork_licensor_name: String,
+          artwork_physical_description: String,
+          artwork_source: String,
+          artwork_source_inventory_no: String,
+          artwork_source_inv_url: String,
+          artwork_style_period: ::Array[String],
+          artwork_title: String,
+          authors_position: String,
+          byline: String,
+          byline_title: String,
+          caption: String,
+          caption_abstract: String,
+          caption_writer: String,
+          city: String,
+          color_space: String,
+          components_configuration: String,
+          copyright: String,
+          copyright_notice: String,
+          copyright_owner_id: ::Array[String],
+          copyright_owner_name: ::Array[String],
+          country: String,
+          country_code: String,
+          country_primary_location_code: String,
+          country_primary_location_name: String,
+          creator: String,
+          creator_address: String,
+          creator_city: String,
+          creator_country: String,
+          creator_postal_code: String,
+          creator_region: String,
+          creator_work_email: String,
+          creator_work_telephone: String,
+          creator_work_url: String,
+          credit: String,
+          date_created: Time,
+          date_time_created: Time,
+          date_time_original: Time,
+          description: String,
+          digital_image_guid: String,
+          digital_source_type: String,
+          embedded_encoded_rights_expr: String,
+          embedded_encoded_rights_expr_lang_id: String,
+          embedded_encoded_rights_expr_type: String,
+          event: String,
+          exif_version: String,
+          flashpix_version: String,
+          genre_cv_id: String,
+          genre_cv_term_id: String,
+          genre_cv_term_name: String,
+          genre_cv_term_refined_about: String,
+          headline: String,
+          image_creator_id: String,
+          image_creator_image_id: String,
+          image_creator_name: String,
+          image_description: String,
+          image_region_boundary_h: ::Array[Float],
+          image_region_boundary_rx: ::Array[Float],
+          image_region_boundary_shape: ::Array[String],
+          image_region_boundary_unit: ::Array[String],
+          image_region_boundary_vertices_x: ::Array[Float],
+          image_region_boundary_vertices_y: ::Array[Float],
+          image_region_boundary_w: ::Array[Float],
+          image_region_boundary_x: ::Array[Float],
+          image_region_boundary_y: ::Array[Float],
+          image_region_ctype_identifier: ::Array[String],
+          image_region_ctype_name: ::Array[String],
+          image_region_id: ::Array[String],
+          image_region_name: ::Array[String],
+          image_region_organisation_in_image_name: ::Array[String],
+          image_region_person_in_image: ::Array[String],
+          image_region_role_identifier: ::Array[String],
+          image_region_role_name: ::Array[String],
+          image_supplier_id: String,
+          image_supplier_image_id: String,
+          image_supplier_name: String,
+          instructions: String,
+          intellectual_genre: String,
+          keywords: ::Array[String],
+          licensor_city: ::Array[String],
+          licensor_country: ::Array[String],
+          licensor_email: ::Array[String],
+          licensor_extended_address: ::Array[String],
+          licensor_id: ::Array[String],
+          licensor_name: ::Array[String],
+          licensor_postal_code: ::Array[String],
+          licensor_region: ::Array[String],
+          licensor_street_address: ::Array[String],
+          :licensor_telephone1 => ::Array[String],
+          :licensor_telephone2 => ::Array[String],
+          licensor_url: ::Array[String],
+          linked_encoded_rights_expr: String,
+          linked_encoded_rights_expr_lang_id: String,
+          linked_encoded_rights_expr_type: String,
+          location: String,
+          location_created_city: String,
+          location_created_country_code: String,
+          location_created_country_name: String,
+          location_created_gps_altitude: String,
+          location_created_gps_latitude: String,
+          location_created_gps_longitude: String,
+          location_created_location_id: String,
+          location_created_location_name: String,
+          location_created_province_state: String,
+          location_created_sublocation: String,
+          location_created_world_region: String,
+          location_shown_city: ::Array[String],
+          location_shown_country_code: ::Array[String],
+          location_shown_country_name: ::Array[String],
+          location_shown_gps_altitude: ::Array[String],
+          location_shown_gps_latitude: ::Array[String],
+          location_shown_gps_longitude: ::Array[String],
+          location_shown_location_id: ::Array[String],
+          location_shown_location_name: ::Array[String],
+          location_shown_province_state: ::Array[String],
+          location_shown_sublocation: ::Array[String],
+          location_shown_world_region: ::Array[String],
+          max_avail_height: Float,
+          max_avail_width: Float,
+          model_age: ::Array[Float],
+          model_release_id: ::Array[String],
+          object_attribute_reference: String,
+          object_name: String,
+          offset_time_original: String,
+          organisation_in_image_code: ::Array[String],
+          organisation_in_image_name: ::Array[String],
+          orientation: String,
+          original_transmission_reference: String,
+          person_in_image: ::Array[String],
+          person_in_image_cv_term_cv_id: ::Array[String],
+          person_in_image_cv_term_id: ::Array[String],
+          person_in_image_cv_term_name: ::Array[String],
+          person_in_image_cv_term_refined_about: ::Array[String],
+          person_in_image_description: ::Array[String],
+          person_in_image_id: ::Array[String],
+          person_in_image_name: ::Array[String],
+          product_in_image_description: ::Array[String],
+          product_in_image_gtin: ::Array[Float],
+          product_in_image_name: ::Array[String],
+          property_release_id: ::Array[String],
+          province_state: String,
+          rating: Integer,
+          registry_entry_role: ::Array[String],
+          registry_item_id: ::Array[String],
+          registry_organisation_id: ::Array[String],
+          resolution_unit: String,
+          rights: String,
+          scene: ::Array[String],
+          source: String,
+          special_instructions: String,
+          state: String,
+          subject: ::Array[String],
+          subject_code: ::Array[String],
+          subject_reference: ::Array[String],
+          sublocation: String,
+          time_created: String,
+          title: String,
+          transmission_reference: String,
+          usage_terms: String,
+          web_statement: String,
+          writer: String,
+          writer_editor: String,
+          x_resolution: Float,
+          y_resolution: Float
+        }
+
+      class EmbeddedMetadata < Imagekit::Internal::Type::BaseModel
+        attr_reader about_cv_term_cv_id: String?
+
+        def about_cv_term_cv_id=: (String) -> String
+
+        attr_reader about_cv_term_id: String?
+
+        def about_cv_term_id=: (String) -> String
+
+        attr_reader about_cv_term_name: String?
+
+        def about_cv_term_name=: (String) -> String
+
+        attr_reader about_cv_term_refined_about: String?
+
+        def about_cv_term_refined_about=: (String) -> String
+
+        attr_reader additional_model_information: String?
+
+        def additional_model_information=: (String) -> String
+
+        attr_reader application_record_version: Integer?
+
+        def application_record_version=: (Integer) -> Integer
+
+        attr_reader artist: String?
+
+        def artist=: (String) -> String
+
+        attr_reader artwork_circa_date_created: String?
+
+        def artwork_circa_date_created=: (String) -> String
+
+        attr_reader artwork_content_description: String?
+
+        def artwork_content_description=: (String) -> String
+
+        attr_reader artwork_contribution_description: String?
+
+        def artwork_contribution_description=: (String) -> String
+
+        attr_reader artwork_copyright_notice: String?
+
+        def artwork_copyright_notice=: (String) -> String
+
+        attr_reader artwork_copyright_owner_id: String?
+
+        def artwork_copyright_owner_id=: (String) -> String
+
+        attr_reader artwork_copyright_owner_name: String?
+
+        def artwork_copyright_owner_name=: (String) -> String
+
+        attr_reader artwork_creator: ::Array[String]?
+
+        def artwork_creator=: (::Array[String]) -> ::Array[String]
+
+        attr_reader artwork_creator_id: ::Array[String]?
+
+        def artwork_creator_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader artwork_date_created: Time?
+
+        def artwork_date_created=: (Time) -> Time
+
+        attr_reader artwork_licensor_id: String?
+
+        def artwork_licensor_id=: (String) -> String
+
+        attr_reader artwork_licensor_name: String?
+
+        def artwork_licensor_name=: (String) -> String
+
+        attr_reader artwork_physical_description: String?
+
+        def artwork_physical_description=: (String) -> String
+
+        attr_reader artwork_source: String?
+
+        def artwork_source=: (String) -> String
+
+        attr_reader artwork_source_inventory_no: String?
+
+        def artwork_source_inventory_no=: (String) -> String
+
+        attr_reader artwork_source_inv_url: String?
+
+        def artwork_source_inv_url=: (String) -> String
+
+        attr_reader artwork_style_period: ::Array[String]?
+
+        def artwork_style_period=: (::Array[String]) -> ::Array[String]
+
+        attr_reader artwork_title: String?
+
+        def artwork_title=: (String) -> String
+
+        attr_reader authors_position: String?
+
+        def authors_position=: (String) -> String
+
+        attr_reader byline: String?
+
+        def byline=: (String) -> String
+
+        attr_reader byline_title: String?
+
+        def byline_title=: (String) -> String
+
+        attr_reader caption: String?
+
+        def caption=: (String) -> String
+
+        attr_reader caption_abstract: String?
+
+        def caption_abstract=: (String) -> String
+
+        attr_reader caption_writer: String?
+
+        def caption_writer=: (String) -> String
+
+        attr_reader city: String?
+
+        def city=: (String) -> String
+
+        attr_reader color_space: String?
+
+        def color_space=: (String) -> String
+
+        attr_reader components_configuration: String?
+
+        def components_configuration=: (String) -> String
+
+        attr_reader copyright: String?
+
+        def copyright=: (String) -> String
+
+        attr_reader copyright_notice: String?
+
+        def copyright_notice=: (String) -> String
+
+        attr_reader copyright_owner_id: ::Array[String]?
+
+        def copyright_owner_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader copyright_owner_name: ::Array[String]?
+
+        def copyright_owner_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader country: String?
+
+        def country=: (String) -> String
+
+        attr_reader country_code: String?
+
+        def country_code=: (String) -> String
+
+        attr_reader country_primary_location_code: String?
+
+        def country_primary_location_code=: (String) -> String
+
+        attr_reader country_primary_location_name: String?
+
+        def country_primary_location_name=: (String) -> String
+
+        attr_reader creator: String?
+
+        def creator=: (String) -> String
+
+        attr_reader creator_address: String?
+
+        def creator_address=: (String) -> String
+
+        attr_reader creator_city: String?
+
+        def creator_city=: (String) -> String
+
+        attr_reader creator_country: String?
+
+        def creator_country=: (String) -> String
+
+        attr_reader creator_postal_code: String?
+
+        def creator_postal_code=: (String) -> String
+
+        attr_reader creator_region: String?
+
+        def creator_region=: (String) -> String
+
+        attr_reader creator_work_email: String?
+
+        def creator_work_email=: (String) -> String
+
+        attr_reader creator_work_telephone: String?
+
+        def creator_work_telephone=: (String) -> String
+
+        attr_reader creator_work_url: String?
+
+        def creator_work_url=: (String) -> String
+
+        attr_reader credit: String?
+
+        def credit=: (String) -> String
+
+        attr_reader date_created: Time?
+
+        def date_created=: (Time) -> Time
+
+        attr_reader date_time_created: Time?
+
+        def date_time_created=: (Time) -> Time
+
+        attr_reader date_time_original: Time?
+
+        def date_time_original=: (Time) -> Time
+
+        attr_reader description: String?
+
+        def description=: (String) -> String
+
+        attr_reader digital_image_guid: String?
+
+        def digital_image_guid=: (String) -> String
+
+        attr_reader digital_source_type: String?
+
+        def digital_source_type=: (String) -> String
+
+        attr_reader embedded_encoded_rights_expr: String?
+
+        def embedded_encoded_rights_expr=: (String) -> String
+
+        attr_reader embedded_encoded_rights_expr_lang_id: String?
+
+        def embedded_encoded_rights_expr_lang_id=: (String) -> String
+
+        attr_reader embedded_encoded_rights_expr_type: String?
+
+        def embedded_encoded_rights_expr_type=: (String) -> String
+
+        attr_reader event: String?
+
+        def event=: (String) -> String
+
+        attr_reader exif_version: String?
+
+        def exif_version=: (String) -> String
+
+        attr_reader flashpix_version: String?
+
+        def flashpix_version=: (String) -> String
+
+        attr_reader genre_cv_id: String?
+
+        def genre_cv_id=: (String) -> String
+
+        attr_reader genre_cv_term_id: String?
+
+        def genre_cv_term_id=: (String) -> String
+
+        attr_reader genre_cv_term_name: String?
+
+        def genre_cv_term_name=: (String) -> String
+
+        attr_reader genre_cv_term_refined_about: String?
+
+        def genre_cv_term_refined_about=: (String) -> String
+
+        attr_reader headline: String?
+
+        def headline=: (String) -> String
+
+        attr_reader image_creator_id: String?
+
+        def image_creator_id=: (String) -> String
+
+        attr_reader image_creator_image_id: String?
+
+        def image_creator_image_id=: (String) -> String
+
+        attr_reader image_creator_name: String?
+
+        def image_creator_name=: (String) -> String
+
+        attr_reader image_description: String?
+
+        def image_description=: (String) -> String
+
+        attr_reader image_region_boundary_h: ::Array[Float]?
+
+        def image_region_boundary_h=: (::Array[Float]) -> ::Array[Float]
+
+        attr_reader image_region_boundary_rx: ::Array[Float]?
+
+        def image_region_boundary_rx=: (::Array[Float]) -> ::Array[Float]
+
+        attr_reader image_region_boundary_shape: ::Array[String]?
+
+        def image_region_boundary_shape=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_boundary_unit: ::Array[String]?
+
+        def image_region_boundary_unit=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_boundary_vertices_x: ::Array[Float]?
+
+        def image_region_boundary_vertices_x=: (
+          ::Array[Float]
+        ) -> ::Array[Float]
+
+        attr_reader image_region_boundary_vertices_y: ::Array[Float]?
+
+        def image_region_boundary_vertices_y=: (
+          ::Array[Float]
+        ) -> ::Array[Float]
+
+        attr_reader image_region_boundary_w: ::Array[Float]?
+
+        def image_region_boundary_w=: (::Array[Float]) -> ::Array[Float]
+
+        attr_reader image_region_boundary_x: ::Array[Float]?
+
+        def image_region_boundary_x=: (::Array[Float]) -> ::Array[Float]
+
+        attr_reader image_region_boundary_y: ::Array[Float]?
+
+        def image_region_boundary_y=: (::Array[Float]) -> ::Array[Float]
+
+        attr_reader image_region_ctype_identifier: ::Array[String]?
+
+        def image_region_ctype_identifier=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_ctype_name: ::Array[String]?
+
+        def image_region_ctype_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_id: ::Array[String]?
+
+        def image_region_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_name: ::Array[String]?
+
+        def image_region_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_organisation_in_image_name: ::Array[String]?
+
+        def image_region_organisation_in_image_name=: (
+          ::Array[String]
+        ) -> ::Array[String]
+
+        attr_reader image_region_person_in_image: ::Array[String]?
+
+        def image_region_person_in_image=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_role_identifier: ::Array[String]?
+
+        def image_region_role_identifier=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_region_role_name: ::Array[String]?
+
+        def image_region_role_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader image_supplier_id: String?
+
+        def image_supplier_id=: (String) -> String
+
+        attr_reader image_supplier_image_id: String?
+
+        def image_supplier_image_id=: (String) -> String
+
+        attr_reader image_supplier_name: String?
+
+        def image_supplier_name=: (String) -> String
+
+        attr_reader instructions: String?
+
+        def instructions=: (String) -> String
+
+        attr_reader intellectual_genre: String?
+
+        def intellectual_genre=: (String) -> String
+
+        attr_reader keywords: ::Array[String]?
+
+        def keywords=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_city: ::Array[String]?
+
+        def licensor_city=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_country: ::Array[String]?
+
+        def licensor_country=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_email: ::Array[String]?
+
+        def licensor_email=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_extended_address: ::Array[String]?
+
+        def licensor_extended_address=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_id: ::Array[String]?
+
+        def licensor_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_name: ::Array[String]?
+
+        def licensor_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_postal_code: ::Array[String]?
+
+        def licensor_postal_code=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_region: ::Array[String]?
+
+        def licensor_region=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_street_address: ::Array[String]?
+
+        def licensor_street_address=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_telephone1: ::Array[String]?
+
+        def licensor_telephone1=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_telephone2: ::Array[String]?
+
+        def licensor_telephone2=: (::Array[String]) -> ::Array[String]
+
+        attr_reader licensor_url: ::Array[String]?
+
+        def licensor_url=: (::Array[String]) -> ::Array[String]
+
+        attr_reader linked_encoded_rights_expr: String?
+
+        def linked_encoded_rights_expr=: (String) -> String
+
+        attr_reader linked_encoded_rights_expr_lang_id: String?
+
+        def linked_encoded_rights_expr_lang_id=: (String) -> String
+
+        attr_reader linked_encoded_rights_expr_type: String?
+
+        def linked_encoded_rights_expr_type=: (String) -> String
+
+        attr_reader location: String?
+
+        def location=: (String) -> String
+
+        attr_reader location_created_city: String?
+
+        def location_created_city=: (String) -> String
+
+        attr_reader location_created_country_code: String?
+
+        def location_created_country_code=: (String) -> String
+
+        attr_reader location_created_country_name: String?
+
+        def location_created_country_name=: (String) -> String
+
+        attr_reader location_created_gps_altitude: String?
+
+        def location_created_gps_altitude=: (String) -> String
+
+        attr_reader location_created_gps_latitude: String?
+
+        def location_created_gps_latitude=: (String) -> String
+
+        attr_reader location_created_gps_longitude: String?
+
+        def location_created_gps_longitude=: (String) -> String
+
+        attr_reader location_created_location_id: String?
+
+        def location_created_location_id=: (String) -> String
+
+        attr_reader location_created_location_name: String?
+
+        def location_created_location_name=: (String) -> String
+
+        attr_reader location_created_province_state: String?
+
+        def location_created_province_state=: (String) -> String
+
+        attr_reader location_created_sublocation: String?
+
+        def location_created_sublocation=: (String) -> String
+
+        attr_reader location_created_world_region: String?
+
+        def location_created_world_region=: (String) -> String
+
+        attr_reader location_shown_city: ::Array[String]?
+
+        def location_shown_city=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_country_code: ::Array[String]?
+
+        def location_shown_country_code=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_country_name: ::Array[String]?
+
+        def location_shown_country_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_gps_altitude: ::Array[String]?
+
+        def location_shown_gps_altitude=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_gps_latitude: ::Array[String]?
+
+        def location_shown_gps_latitude=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_gps_longitude: ::Array[String]?
+
+        def location_shown_gps_longitude=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_location_id: ::Array[String]?
+
+        def location_shown_location_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_location_name: ::Array[String]?
+
+        def location_shown_location_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_province_state: ::Array[String]?
+
+        def location_shown_province_state=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_sublocation: ::Array[String]?
+
+        def location_shown_sublocation=: (::Array[String]) -> ::Array[String]
+
+        attr_reader location_shown_world_region: ::Array[String]?
+
+        def location_shown_world_region=: (::Array[String]) -> ::Array[String]
+
+        attr_reader max_avail_height: Float?
+
+        def max_avail_height=: (Float) -> Float
+
+        attr_reader max_avail_width: Float?
+
+        def max_avail_width=: (Float) -> Float
+
+        attr_reader model_age: ::Array[Float]?
+
+        def model_age=: (::Array[Float]) -> ::Array[Float]
+
+        attr_reader model_release_id: ::Array[String]?
+
+        def model_release_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader object_attribute_reference: String?
+
+        def object_attribute_reference=: (String) -> String
+
+        attr_reader object_name: String?
+
+        def object_name=: (String) -> String
+
+        attr_reader offset_time_original: String?
+
+        def offset_time_original=: (String) -> String
+
+        attr_reader organisation_in_image_code: ::Array[String]?
+
+        def organisation_in_image_code=: (::Array[String]) -> ::Array[String]
+
+        attr_reader organisation_in_image_name: ::Array[String]?
+
+        def organisation_in_image_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader orientation: String?
+
+        def orientation=: (String) -> String
+
+        attr_reader original_transmission_reference: String?
+
+        def original_transmission_reference=: (String) -> String
+
+        attr_reader person_in_image: ::Array[String]?
+
+        def person_in_image=: (::Array[String]) -> ::Array[String]
+
+        attr_reader person_in_image_cv_term_cv_id: ::Array[String]?
+
+        def person_in_image_cv_term_cv_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader person_in_image_cv_term_id: ::Array[String]?
+
+        def person_in_image_cv_term_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader person_in_image_cv_term_name: ::Array[String]?
+
+        def person_in_image_cv_term_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader person_in_image_cv_term_refined_about: ::Array[String]?
+
+        def person_in_image_cv_term_refined_about=: (
+          ::Array[String]
+        ) -> ::Array[String]
+
+        attr_reader person_in_image_description: ::Array[String]?
+
+        def person_in_image_description=: (::Array[String]) -> ::Array[String]
+
+        attr_reader person_in_image_id: ::Array[String]?
+
+        def person_in_image_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader person_in_image_name: ::Array[String]?
+
+        def person_in_image_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader product_in_image_description: ::Array[String]?
+
+        def product_in_image_description=: (::Array[String]) -> ::Array[String]
+
+        attr_reader product_in_image_gtin: ::Array[Float]?
+
+        def product_in_image_gtin=: (::Array[Float]) -> ::Array[Float]
+
+        attr_reader product_in_image_name: ::Array[String]?
+
+        def product_in_image_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader property_release_id: ::Array[String]?
+
+        def property_release_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader province_state: String?
+
+        def province_state=: (String) -> String
+
+        attr_reader rating: Integer?
+
+        def rating=: (Integer) -> Integer
+
+        attr_reader registry_entry_role: ::Array[String]?
+
+        def registry_entry_role=: (::Array[String]) -> ::Array[String]
+
+        attr_reader registry_item_id: ::Array[String]?
+
+        def registry_item_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader registry_organisation_id: ::Array[String]?
+
+        def registry_organisation_id=: (::Array[String]) -> ::Array[String]
+
+        attr_reader resolution_unit: String?
+
+        def resolution_unit=: (String) -> String
+
+        attr_reader rights: String?
+
+        def rights=: (String) -> String
+
+        attr_reader scene: ::Array[String]?
+
+        def scene=: (::Array[String]) -> ::Array[String]
+
+        attr_reader source: String?
+
+        def source=: (String) -> String
+
+        attr_reader special_instructions: String?
+
+        def special_instructions=: (String) -> String
+
+        attr_reader state: String?
+
+        def state=: (String) -> String
+
+        attr_reader subject: ::Array[String]?
+
+        def subject=: (::Array[String]) -> ::Array[String]
+
+        attr_reader subject_code: ::Array[String]?
+
+        def subject_code=: (::Array[String]) -> ::Array[String]
+
+        attr_reader subject_reference: ::Array[String]?
+
+        def subject_reference=: (::Array[String]) -> ::Array[String]
+
+        attr_reader sublocation: String?
+
+        def sublocation=: (String) -> String
+
+        attr_reader time_created: String?
+
+        def time_created=: (String) -> String
+
+        attr_reader title: String?
+
+        def title=: (String) -> String
+
+        attr_reader transmission_reference: String?
+
+        def transmission_reference=: (String) -> String
+
+        attr_reader usage_terms: String?
+
+        def usage_terms=: (String) -> String
+
+        attr_reader web_statement: String?
+
+        def web_statement=: (String) -> String
+
+        attr_reader writer: String?
+
+        def writer=: (String) -> String
+
+        attr_reader writer_editor: String?
+
+        def writer_editor=: (String) -> String
+
+        attr_reader x_resolution: Float?
+
+        def x_resolution=: (Float) -> Float
+
+        attr_reader y_resolution: Float?
+
+        def y_resolution=: (Float) -> Float
+
+        def initialize: (
+          ?about_cv_term_cv_id: String,
+          ?about_cv_term_id: String,
+          ?about_cv_term_name: String,
+          ?about_cv_term_refined_about: String,
+          ?additional_model_information: String,
+          ?application_record_version: Integer,
+          ?artist: String,
+          ?artwork_circa_date_created: String,
+          ?artwork_content_description: String,
+          ?artwork_contribution_description: String,
+          ?artwork_copyright_notice: String,
+          ?artwork_copyright_owner_id: String,
+          ?artwork_copyright_owner_name: String,
+          ?artwork_creator: ::Array[String],
+          ?artwork_creator_id: ::Array[String],
+          ?artwork_date_created: Time,
+          ?artwork_licensor_id: String,
+          ?artwork_licensor_name: String,
+          ?artwork_physical_description: String,
+          ?artwork_source: String,
+          ?artwork_source_inventory_no: String,
+          ?artwork_source_inv_url: String,
+          ?artwork_style_period: ::Array[String],
+          ?artwork_title: String,
+          ?authors_position: String,
+          ?byline: String,
+          ?byline_title: String,
+          ?caption: String,
+          ?caption_abstract: String,
+          ?caption_writer: String,
+          ?city: String,
+          ?color_space: String,
+          ?components_configuration: String,
+          ?copyright: String,
+          ?copyright_notice: String,
+          ?copyright_owner_id: ::Array[String],
+          ?copyright_owner_name: ::Array[String],
+          ?country: String,
+          ?country_code: String,
+          ?country_primary_location_code: String,
+          ?country_primary_location_name: String,
+          ?creator: String,
+          ?creator_address: String,
+          ?creator_city: String,
+          ?creator_country: String,
+          ?creator_postal_code: String,
+          ?creator_region: String,
+          ?creator_work_email: String,
+          ?creator_work_telephone: String,
+          ?creator_work_url: String,
+          ?credit: String,
+          ?date_created: Time,
+          ?date_time_created: Time,
+          ?date_time_original: Time,
+          ?description: String,
+          ?digital_image_guid: String,
+          ?digital_source_type: String,
+          ?embedded_encoded_rights_expr: String,
+          ?embedded_encoded_rights_expr_lang_id: String,
+          ?embedded_encoded_rights_expr_type: String,
+          ?event: String,
+          ?exif_version: String,
+          ?flashpix_version: String,
+          ?genre_cv_id: String,
+          ?genre_cv_term_id: String,
+          ?genre_cv_term_name: String,
+          ?genre_cv_term_refined_about: String,
+          ?headline: String,
+          ?image_creator_id: String,
+          ?image_creator_image_id: String,
+          ?image_creator_name: String,
+          ?image_description: String,
+          ?image_region_boundary_h: ::Array[Float],
+          ?image_region_boundary_rx: ::Array[Float],
+          ?image_region_boundary_shape: ::Array[String],
+          ?image_region_boundary_unit: ::Array[String],
+          ?image_region_boundary_vertices_x: ::Array[Float],
+          ?image_region_boundary_vertices_y: ::Array[Float],
+          ?image_region_boundary_w: ::Array[Float],
+          ?image_region_boundary_x: ::Array[Float],
+          ?image_region_boundary_y: ::Array[Float],
+          ?image_region_ctype_identifier: ::Array[String],
+          ?image_region_ctype_name: ::Array[String],
+          ?image_region_id: ::Array[String],
+          ?image_region_name: ::Array[String],
+          ?image_region_organisation_in_image_name: ::Array[String],
+          ?image_region_person_in_image: ::Array[String],
+          ?image_region_role_identifier: ::Array[String],
+          ?image_region_role_name: ::Array[String],
+          ?image_supplier_id: String,
+          ?image_supplier_image_id: String,
+          ?image_supplier_name: String,
+          ?instructions: String,
+          ?intellectual_genre: String,
+          ?keywords: ::Array[String],
+          ?licensor_city: ::Array[String],
+          ?licensor_country: ::Array[String],
+          ?licensor_email: ::Array[String],
+          ?licensor_extended_address: ::Array[String],
+          ?licensor_id: ::Array[String],
+          ?licensor_name: ::Array[String],
+          ?licensor_postal_code: ::Array[String],
+          ?licensor_region: ::Array[String],
+          ?licensor_street_address: ::Array[String],
+          ?licensor_telephone1: ::Array[String],
+          ?licensor_telephone2: ::Array[String],
+          ?licensor_url: ::Array[String],
+          ?linked_encoded_rights_expr: String,
+          ?linked_encoded_rights_expr_lang_id: String,
+          ?linked_encoded_rights_expr_type: String,
+          ?location: String,
+          ?location_created_city: String,
+          ?location_created_country_code: String,
+          ?location_created_country_name: String,
+          ?location_created_gps_altitude: String,
+          ?location_created_gps_latitude: String,
+          ?location_created_gps_longitude: String,
+          ?location_created_location_id: String,
+          ?location_created_location_name: String,
+          ?location_created_province_state: String,
+          ?location_created_sublocation: String,
+          ?location_created_world_region: String,
+          ?location_shown_city: ::Array[String],
+          ?location_shown_country_code: ::Array[String],
+          ?location_shown_country_name: ::Array[String],
+          ?location_shown_gps_altitude: ::Array[String],
+          ?location_shown_gps_latitude: ::Array[String],
+          ?location_shown_gps_longitude: ::Array[String],
+          ?location_shown_location_id: ::Array[String],
+          ?location_shown_location_name: ::Array[String],
+          ?location_shown_province_state: ::Array[String],
+          ?location_shown_sublocation: ::Array[String],
+          ?location_shown_world_region: ::Array[String],
+          ?max_avail_height: Float,
+          ?max_avail_width: Float,
+          ?model_age: ::Array[Float],
+          ?model_release_id: ::Array[String],
+          ?object_attribute_reference: String,
+          ?object_name: String,
+          ?offset_time_original: String,
+          ?organisation_in_image_code: ::Array[String],
+          ?organisation_in_image_name: ::Array[String],
+          ?orientation: String,
+          ?original_transmission_reference: String,
+          ?person_in_image: ::Array[String],
+          ?person_in_image_cv_term_cv_id: ::Array[String],
+          ?person_in_image_cv_term_id: ::Array[String],
+          ?person_in_image_cv_term_name: ::Array[String],
+          ?person_in_image_cv_term_refined_about: ::Array[String],
+          ?person_in_image_description: ::Array[String],
+          ?person_in_image_id: ::Array[String],
+          ?person_in_image_name: ::Array[String],
+          ?product_in_image_description: ::Array[String],
+          ?product_in_image_gtin: ::Array[Float],
+          ?product_in_image_name: ::Array[String],
+          ?property_release_id: ::Array[String],
+          ?province_state: String,
+          ?rating: Integer,
+          ?registry_entry_role: ::Array[String],
+          ?registry_item_id: ::Array[String],
+          ?registry_organisation_id: ::Array[String],
+          ?resolution_unit: String,
+          ?rights: String,
+          ?scene: ::Array[String],
+          ?source: String,
+          ?special_instructions: String,
+          ?state: String,
+          ?subject: ::Array[String],
+          ?subject_code: ::Array[String],
+          ?subject_reference: ::Array[String],
+          ?sublocation: String,
+          ?time_created: String,
+          ?title: String,
+          ?transmission_reference: String,
+          ?usage_terms: String,
+          ?web_statement: String,
+          ?writer: String,
+          ?writer_editor: String,
+          ?x_resolution: Float,
+          ?y_resolution: Float
+        ) -> void
+
+        def to_hash: -> {
+          about_cv_term_cv_id: String,
+          about_cv_term_id: String,
+          about_cv_term_name: String,
+          about_cv_term_refined_about: String,
+          additional_model_information: String,
+          application_record_version: Integer,
+          artist: String,
+          artwork_circa_date_created: String,
+          artwork_content_description: String,
+          artwork_contribution_description: String,
+          artwork_copyright_notice: String,
+          artwork_copyright_owner_id: String,
+          artwork_copyright_owner_name: String,
+          artwork_creator: ::Array[String],
+          artwork_creator_id: ::Array[String],
+          artwork_date_created: Time,
+          artwork_licensor_id: String,
+          artwork_licensor_name: String,
+          artwork_physical_description: String,
+          artwork_source: String,
+          artwork_source_inventory_no: String,
+          artwork_source_inv_url: String,
+          artwork_style_period: ::Array[String],
+          artwork_title: String,
+          authors_position: String,
+          byline: String,
+          byline_title: String,
+          caption: String,
+          caption_abstract: String,
+          caption_writer: String,
+          city: String,
+          color_space: String,
+          components_configuration: String,
+          copyright: String,
+          copyright_notice: String,
+          copyright_owner_id: ::Array[String],
+          copyright_owner_name: ::Array[String],
+          country: String,
+          country_code: String,
+          country_primary_location_code: String,
+          country_primary_location_name: String,
+          creator: String,
+          creator_address: String,
+          creator_city: String,
+          creator_country: String,
+          creator_postal_code: String,
+          creator_region: String,
+          creator_work_email: String,
+          creator_work_telephone: String,
+          creator_work_url: String,
+          credit: String,
+          date_created: Time,
+          date_time_created: Time,
+          date_time_original: Time,
+          description: String,
+          digital_image_guid: String,
+          digital_source_type: String,
+          embedded_encoded_rights_expr: String,
+          embedded_encoded_rights_expr_lang_id: String,
+          embedded_encoded_rights_expr_type: String,
+          event: String,
+          exif_version: String,
+          flashpix_version: String,
+          genre_cv_id: String,
+          genre_cv_term_id: String,
+          genre_cv_term_name: String,
+          genre_cv_term_refined_about: String,
+          headline: String,
+          image_creator_id: String,
+          image_creator_image_id: String,
+          image_creator_name: String,
+          image_description: String,
+          image_region_boundary_h: ::Array[Float],
+          image_region_boundary_rx: ::Array[Float],
+          image_region_boundary_shape: ::Array[String],
+          image_region_boundary_unit: ::Array[String],
+          image_region_boundary_vertices_x: ::Array[Float],
+          image_region_boundary_vertices_y: ::Array[Float],
+          image_region_boundary_w: ::Array[Float],
+          image_region_boundary_x: ::Array[Float],
+          image_region_boundary_y: ::Array[Float],
+          image_region_ctype_identifier: ::Array[String],
+          image_region_ctype_name: ::Array[String],
+          image_region_id: ::Array[String],
+          image_region_name: ::Array[String],
+          image_region_organisation_in_image_name: ::Array[String],
+          image_region_person_in_image: ::Array[String],
+          image_region_role_identifier: ::Array[String],
+          image_region_role_name: ::Array[String],
+          image_supplier_id: String,
+          image_supplier_image_id: String,
+          image_supplier_name: String,
+          instructions: String,
+          intellectual_genre: String,
+          keywords: ::Array[String],
+          licensor_city: ::Array[String],
+          licensor_country: ::Array[String],
+          licensor_email: ::Array[String],
+          licensor_extended_address: ::Array[String],
+          licensor_id: ::Array[String],
+          licensor_name: ::Array[String],
+          licensor_postal_code: ::Array[String],
+          licensor_region: ::Array[String],
+          licensor_street_address: ::Array[String],
+          :licensor_telephone1 => ::Array[String],
+          :licensor_telephone2 => ::Array[String],
+          licensor_url: ::Array[String],
+          linked_encoded_rights_expr: String,
+          linked_encoded_rights_expr_lang_id: String,
+          linked_encoded_rights_expr_type: String,
+          location: String,
+          location_created_city: String,
+          location_created_country_code: String,
+          location_created_country_name: String,
+          location_created_gps_altitude: String,
+          location_created_gps_latitude: String,
+          location_created_gps_longitude: String,
+          location_created_location_id: String,
+          location_created_location_name: String,
+          location_created_province_state: String,
+          location_created_sublocation: String,
+          location_created_world_region: String,
+          location_shown_city: ::Array[String],
+          location_shown_country_code: ::Array[String],
+          location_shown_country_name: ::Array[String],
+          location_shown_gps_altitude: ::Array[String],
+          location_shown_gps_latitude: ::Array[String],
+          location_shown_gps_longitude: ::Array[String],
+          location_shown_location_id: ::Array[String],
+          location_shown_location_name: ::Array[String],
+          location_shown_province_state: ::Array[String],
+          location_shown_sublocation: ::Array[String],
+          location_shown_world_region: ::Array[String],
+          max_avail_height: Float,
+          max_avail_width: Float,
+          model_age: ::Array[Float],
+          model_release_id: ::Array[String],
+          object_attribute_reference: String,
+          object_name: String,
+          offset_time_original: String,
+          organisation_in_image_code: ::Array[String],
+          organisation_in_image_name: ::Array[String],
+          orientation: String,
+          original_transmission_reference: String,
+          person_in_image: ::Array[String],
+          person_in_image_cv_term_cv_id: ::Array[String],
+          person_in_image_cv_term_id: ::Array[String],
+          person_in_image_cv_term_name: ::Array[String],
+          person_in_image_cv_term_refined_about: ::Array[String],
+          person_in_image_description: ::Array[String],
+          person_in_image_id: ::Array[String],
+          person_in_image_name: ::Array[String],
+          product_in_image_description: ::Array[String],
+          product_in_image_gtin: ::Array[Float],
+          product_in_image_name: ::Array[String],
+          property_release_id: ::Array[String],
+          province_state: String,
+          rating: Integer,
+          registry_entry_role: ::Array[String],
+          registry_item_id: ::Array[String],
+          registry_organisation_id: ::Array[String],
+          resolution_unit: String,
+          rights: String,
+          scene: ::Array[String],
+          source: String,
+          special_instructions: String,
+          state: String,
+          subject: ::Array[String],
+          subject_code: ::Array[String],
+          subject_reference: ::Array[String],
+          sublocation: String,
+          time_created: String,
+          title: String,
+          transmission_reference: String,
+          usage_terms: String,
+          web_statement: String,
+          writer: String,
+          writer_editor: String,
+          x_resolution: Float,
+          y_resolution: Float
+        }
+      end
+
+      type extension_status =
+        {
+          aws_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::aws_auto_tagging,
+          google_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::google_auto_tagging,
+          remove_bg: Imagekit::Models::FileUploadV2Response::ExtensionStatus::remove_bg
+        }
+
+      class ExtensionStatus < Imagekit::Internal::Type::BaseModel
+        attr_reader aws_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::aws_auto_tagging?
+
+        def aws_auto_tagging=: (
+          Imagekit::Models::FileUploadV2Response::ExtensionStatus::aws_auto_tagging
+        ) -> Imagekit::Models::FileUploadV2Response::ExtensionStatus::aws_auto_tagging
+
+        attr_reader google_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::google_auto_tagging?
+
+        def google_auto_tagging=: (
+          Imagekit::Models::FileUploadV2Response::ExtensionStatus::google_auto_tagging
+        ) -> Imagekit::Models::FileUploadV2Response::ExtensionStatus::google_auto_tagging
+
+        attr_reader remove_bg: Imagekit::Models::FileUploadV2Response::ExtensionStatus::remove_bg?
+
+        def remove_bg=: (
+          Imagekit::Models::FileUploadV2Response::ExtensionStatus::remove_bg
+        ) -> Imagekit::Models::FileUploadV2Response::ExtensionStatus::remove_bg
+
+        def initialize: (
+          ?aws_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::aws_auto_tagging,
+          ?google_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::google_auto_tagging,
+          ?remove_bg: Imagekit::Models::FileUploadV2Response::ExtensionStatus::remove_bg
+        ) -> void
+
+        def to_hash: -> {
+          aws_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::aws_auto_tagging,
+          google_auto_tagging: Imagekit::Models::FileUploadV2Response::ExtensionStatus::google_auto_tagging,
+          remove_bg: Imagekit::Models::FileUploadV2Response::ExtensionStatus::remove_bg
+        }
+
+        type aws_auto_tagging = :success | :pending | :failed
+
+        module AwsAutoTagging
+          extend Imagekit::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekit::Models::FileUploadV2Response::ExtensionStatus::aws_auto_tagging]
+        end
+
+        type google_auto_tagging = :success | :pending | :failed
+
+        module GoogleAutoTagging
+          extend Imagekit::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekit::Models::FileUploadV2Response::ExtensionStatus::google_auto_tagging]
+        end
+
+        type remove_bg = :success | :pending | :failed
+
+        module RemoveBg
+          extend Imagekit::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekit::Models::FileUploadV2Response::ExtensionStatus::remove_bg]
+        end
+      end
+
+      type metadata =
+        {
+          audio_codec: String,
+          bit_rate: Integer,
+          density: Integer,
+          duration: Integer,
+          exif: Imagekit::Models::FileUploadV2Response::Metadata::Exif,
+          format_: String,
+          has_color_profile: bool,
+          has_transparency: bool,
+          height: Integer,
+          p_hash: String,
+          quality: Integer,
+          size: Integer,
+          video_codec: String,
+          width: Integer
+        }
+
+      class Metadata < Imagekit::Internal::Type::BaseModel
+        attr_reader audio_codec: String?
+
+        def audio_codec=: (String) -> String
+
+        attr_reader bit_rate: Integer?
+
+        def bit_rate=: (Integer) -> Integer
+
+        attr_reader density: Integer?
+
+        def density=: (Integer) -> Integer
+
+        attr_reader duration: Integer?
+
+        def duration=: (Integer) -> Integer
+
+        attr_reader exif: Imagekit::Models::FileUploadV2Response::Metadata::Exif?
+
+        def exif=: (
+          Imagekit::Models::FileUploadV2Response::Metadata::Exif
+        ) -> Imagekit::Models::FileUploadV2Response::Metadata::Exif
+
+        attr_reader format_: String?
+
+        def format_=: (String) -> String
+
+        attr_reader has_color_profile: bool?
+
+        def has_color_profile=: (bool) -> bool
+
+        attr_reader has_transparency: bool?
+
+        def has_transparency=: (bool) -> bool
+
+        attr_reader height: Integer?
+
+        def height=: (Integer) -> Integer
+
+        attr_reader p_hash: String?
+
+        def p_hash=: (String) -> String
+
+        attr_reader quality: Integer?
+
+        def quality=: (Integer) -> Integer
+
+        attr_reader size: Integer?
+
+        def size=: (Integer) -> Integer
+
+        attr_reader video_codec: String?
+
+        def video_codec=: (String) -> String
+
+        attr_reader width: Integer?
+
+        def width=: (Integer) -> Integer
+
+        def initialize: (
+          ?audio_codec: String,
+          ?bit_rate: Integer,
+          ?density: Integer,
+          ?duration: Integer,
+          ?exif: Imagekit::Models::FileUploadV2Response::Metadata::Exif,
+          ?format_: String,
+          ?has_color_profile: bool,
+          ?has_transparency: bool,
+          ?height: Integer,
+          ?p_hash: String,
+          ?quality: Integer,
+          ?size: Integer,
+          ?video_codec: String,
+          ?width: Integer
+        ) -> void
+
+        def to_hash: -> {
+          audio_codec: String,
+          bit_rate: Integer,
+          density: Integer,
+          duration: Integer,
+          exif: Imagekit::Models::FileUploadV2Response::Metadata::Exif,
+          format_: String,
+          has_color_profile: bool,
+          has_transparency: bool,
+          height: Integer,
+          p_hash: String,
+          quality: Integer,
+          size: Integer,
+          video_codec: String,
+          width: Integer
+        }
+
+        type exif =
+          {
+            exif: Imagekit::ExifDetails,
+            gps: Imagekit::Gps,
+            image: Imagekit::ExifImage,
+            interoperability: Imagekit::Interoperability,
+            makernote: ::Hash[Symbol, top],
+            thumbnail: Imagekit::Thumbnail
+          }
+
+        class Exif < Imagekit::Internal::Type::BaseModel
+          attr_reader exif: Imagekit::ExifDetails?
+
+          def exif=: (Imagekit::ExifDetails) -> Imagekit::ExifDetails
+
+          attr_reader gps: Imagekit::Gps?
+
+          def gps=: (Imagekit::Gps) -> Imagekit::Gps
+
+          attr_reader image: Imagekit::ExifImage?
+
+          def image=: (Imagekit::ExifImage) -> Imagekit::ExifImage
+
+          attr_reader interoperability: Imagekit::Interoperability?
+
+          def interoperability=: (
+            Imagekit::Interoperability
+          ) -> Imagekit::Interoperability
+
+          attr_reader makernote: ::Hash[Symbol, top]?
+
+          def makernote=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+          attr_reader thumbnail: Imagekit::Thumbnail?
+
+          def thumbnail=: (Imagekit::Thumbnail) -> Imagekit::Thumbnail
+
+          def initialize: (
+            ?exif: Imagekit::ExifDetails,
+            ?gps: Imagekit::Gps,
+            ?image: Imagekit::ExifImage,
+            ?interoperability: Imagekit::Interoperability,
+            ?makernote: ::Hash[Symbol, top],
+            ?thumbnail: Imagekit::Thumbnail
+          ) -> void
+
+          def to_hash: -> {
+            exif: Imagekit::ExifDetails,
+            gps: Imagekit::Gps,
+            image: Imagekit::ExifImage,
+            interoperability: Imagekit::Interoperability,
+            makernote: ::Hash[Symbol, top],
+            thumbnail: Imagekit::Thumbnail
+          }
+        end
+      end
+
+      type version_info = { id: String, name: String }
+
+      class VersionInfo < Imagekit::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?id: String, ?name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
+    end
+  end
+end

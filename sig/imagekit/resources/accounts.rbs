@@ -1,0 +1,13 @@
+module Imagekit
+  module Resources
+    class Accounts
+      def get_usage: (
+        end_date: Date,
+        start_date: Date,
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::AccountGetUsageResponse
+
+      def initialize: (client: Imagekit::Client) -> void
+    end
+  end
+end

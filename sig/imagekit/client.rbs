@@ -1,0 +1,39 @@
+module Imagekit
+  class Client < Imagekit::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader private_api_key: String
+
+    attr_reader password: String?
+
+    attr_reader custom_metadata_fields: Imagekit::Resources::CustomMetadataFields
+
+    attr_reader files: Imagekit::Resources::Files
+
+    attr_reader folder: Imagekit::Resources::Folder
+
+    attr_reader bulk_jobs: Imagekit::Resources::BulkJobs
+
+    attr_reader accounts: Imagekit::Resources::Accounts
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def base_url_overridden?: -> bool
+
+    def initialize: (
+      ?private_api_key: String?,
+      ?password: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

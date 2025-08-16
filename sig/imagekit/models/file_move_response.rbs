@@ -1,0 +1,5 @@
+module Imagekit
+  module Models
+    FileMoveResponse: Imagekit::Internal::Type::Converter
+  end
+end

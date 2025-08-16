@@ -1,0 +1,152 @@
+module Imagekit
+  module Models
+    type custom_metadata_field_update_params =
+      {
+        label: String,
+        schema: Imagekit::CustomMetadataFieldUpdateParams::Schema
+      }
+      & Imagekit::Internal::Type::request_parameters
+
+    class CustomMetadataFieldUpdateParams < Imagekit::Internal::Type::BaseModel
+      extend Imagekit::Internal::Type::RequestParameters::Converter
+      include Imagekit::Internal::Type::RequestParameters
+
+      attr_reader label: String?
+
+      def label=: (String) -> String
+
+      attr_reader schema: Imagekit::CustomMetadataFieldUpdateParams::Schema?
+
+      def schema=: (
+        Imagekit::CustomMetadataFieldUpdateParams::Schema
+      ) -> Imagekit::CustomMetadataFieldUpdateParams::Schema
+
+      def initialize: (
+        ?label: String,
+        ?schema: Imagekit::CustomMetadataFieldUpdateParams::Schema,
+        ?request_options: Imagekit::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        label: String,
+        schema: Imagekit::CustomMetadataFieldUpdateParams::Schema,
+        request_options: Imagekit::RequestOptions
+      }
+
+      type schema =
+        {
+          default_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::default_value,
+          is_value_required: bool,
+          max_length: Float,
+          max_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::max_value,
+          min_length: Float,
+          min_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::min_value,
+          select_options: ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::select_option]
+        }
+
+      class Schema < Imagekit::Internal::Type::BaseModel
+        attr_reader default_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::default_value?
+
+        def default_value=: (
+          Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::default_value
+        ) -> Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::default_value
+
+        attr_reader is_value_required: bool?
+
+        def is_value_required=: (bool) -> bool
+
+        attr_reader max_length: Float?
+
+        def max_length=: (Float) -> Float
+
+        attr_reader max_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::max_value?
+
+        def max_value=: (
+          Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::max_value
+        ) -> Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::max_value
+
+        attr_reader min_length: Float?
+
+        def min_length=: (Float) -> Float
+
+        attr_reader min_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::min_value?
+
+        def min_value=: (
+          Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::min_value
+        ) -> Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::min_value
+
+        attr_reader select_options: ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::select_option]?
+
+        def select_options=: (
+          ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::select_option]
+        ) -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::select_option]
+
+        def initialize: (
+          ?default_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::default_value,
+          ?is_value_required: bool,
+          ?max_length: Float,
+          ?max_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::max_value,
+          ?min_length: Float,
+          ?min_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::min_value,
+          ?select_options: ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::select_option]
+        ) -> void
+
+        def to_hash: -> {
+          default_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::default_value,
+          is_value_required: bool,
+          max_length: Float,
+          max_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::max_value,
+          min_length: Float,
+          min_value: Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::min_value,
+          select_options: ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::select_option]
+        }
+
+        type default_value =
+          String
+          | Float
+          | bool
+          | ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::DefaultValue::union_member3]
+
+        module DefaultValue
+          extend Imagekit::Internal::Type::Union
+
+          type union_member3 = String | Float | bool
+
+          module UnionMember3
+            extend Imagekit::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::DefaultValue::union_member3]
+          end
+
+          def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::default_value]
+
+          UnionMember3Array: Imagekit::Internal::Type::Converter
+        end
+
+        type max_value = String | Float
+
+        module MaxValue
+          extend Imagekit::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::max_value]
+        end
+
+        type min_value = String | Float
+
+        module MinValue
+          extend Imagekit::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::min_value]
+        end
+
+        type select_option = String | Float | bool
+
+        module SelectOption
+          extend Imagekit::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateParams::Schema::select_option]
+        end
+      end
+    end
+  end
+end

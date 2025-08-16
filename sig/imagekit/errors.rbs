@@ -1,0 +1,110 @@
+module Imagekit
+  module Errors
+    class Error < StandardError
+      attr_accessor cause: StandardError?
+    end
+
+    class ConversionError < Imagekit::Errors::Error
+      def cause: -> StandardError?
+
+      def initialize: (
+        on: Class,
+        method: Symbol,
+        target: top,
+        value: top,
+        ?cause: StandardError?
+      ) -> void
+    end
+
+    class APIError < Imagekit::Errors::Error
+      attr_accessor url: URI::Generic
+
+      attr_accessor status: Integer?
+
+      attr_accessor body: top?
+
+      def initialize: (
+        url: URI::Generic,
+        ?status: Integer?,
+        ?body: Object?,
+        ?request: nil,
+        ?response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class APIConnectionError < Imagekit::Errors::APIError
+      def initialize: (
+        url: URI::Generic,
+        ?status: nil,
+        ?body: nil,
+        ?request: nil,
+        ?response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class APITimeoutError < Imagekit::Errors::APIConnectionError
+      def initialize: (
+        url: URI::Generic,
+        ?status: nil,
+        ?body: nil,
+        ?request: nil,
+        ?response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class APIStatusError < Imagekit::Errors::APIError
+      def self.for: (
+        url: URI::Generic,
+        status: Integer,
+        body: Object?,
+        request: nil,
+        response: nil,
+        ?message: String?
+      ) -> instance
+
+      def initialize: (
+        url: URI::Generic,
+        status: Integer,
+        body: Object?,
+        request: nil,
+        response: nil,
+        ?message: String?
+      ) -> void
+    end
+
+    class BadRequestError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: 400
+    end
+
+    class AuthenticationError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: 401
+    end
+
+    class PermissionDeniedError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: 403
+    end
+
+    class NotFoundError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: 404
+    end
+
+    class ConflictError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: 409
+    end
+
+    class UnprocessableEntityError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: 422
+    end
+
+    class RateLimitError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: 429
+    end
+
+    class InternalServerError < Imagekit::Errors::APIStatusError
+      HTTP_STATUS: Range[Integer]
+    end
+  end
+end

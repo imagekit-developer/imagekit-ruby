@@ -1,0 +1,57 @@
+module Imagekit
+  module Models
+    type thumbnail =
+      {
+        compression: Integer,
+        resolution_unit: Integer,
+        thumbnail_length: Integer,
+        thumbnail_offset: Integer,
+        x_resolution: Integer,
+        y_resolution: Integer
+      }
+
+    class Thumbnail < Imagekit::Internal::Type::BaseModel
+      attr_reader compression: Integer?
+
+      def compression=: (Integer) -> Integer
+
+      attr_reader resolution_unit: Integer?
+
+      def resolution_unit=: (Integer) -> Integer
+
+      attr_reader thumbnail_length: Integer?
+
+      def thumbnail_length=: (Integer) -> Integer
+
+      attr_reader thumbnail_offset: Integer?
+
+      def thumbnail_offset=: (Integer) -> Integer
+
+      attr_reader x_resolution: Integer?
+
+      def x_resolution=: (Integer) -> Integer
+
+      attr_reader y_resolution: Integer?
+
+      def y_resolution=: (Integer) -> Integer
+
+      def initialize: (
+        ?compression: Integer,
+        ?resolution_unit: Integer,
+        ?thumbnail_length: Integer,
+        ?thumbnail_offset: Integer,
+        ?x_resolution: Integer,
+        ?y_resolution: Integer
+      ) -> void
+
+      def to_hash: -> {
+        compression: Integer,
+        resolution_unit: Integer,
+        thumbnail_length: Integer,
+        thumbnail_offset: Integer,
+        x_resolution: Integer,
+        y_resolution: Integer
+      }
+    end
+  end
+end

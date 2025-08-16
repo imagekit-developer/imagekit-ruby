@@ -1,0 +1,85 @@
+module Imagekit
+  module Models
+    type file_list_params =
+      {
+        file_type: String,
+        limit: String,
+        path: String,
+        search_query: String,
+        skip: String,
+        sort: String,
+        type: Imagekit::Models::FileListParams::type_
+      }
+      & Imagekit::Internal::Type::request_parameters
+
+    class FileListParams < Imagekit::Internal::Type::BaseModel
+      extend Imagekit::Internal::Type::RequestParameters::Converter
+      include Imagekit::Internal::Type::RequestParameters
+
+      attr_reader file_type: String?
+
+      def file_type=: (String) -> String
+
+      attr_reader limit: String?
+
+      def limit=: (String) -> String
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader search_query: String?
+
+      def search_query=: (String) -> String
+
+      attr_reader skip: String?
+
+      def skip=: (String) -> String
+
+      attr_reader sort: String?
+
+      def sort=: (String) -> String
+
+      attr_reader type: Imagekit::Models::FileListParams::type_?
+
+      def type=: (
+        Imagekit::Models::FileListParams::type_
+      ) -> Imagekit::Models::FileListParams::type_
+
+      def initialize: (
+        ?file_type: String,
+        ?limit: String,
+        ?path: String,
+        ?search_query: String,
+        ?skip: String,
+        ?sort: String,
+        ?type: Imagekit::Models::FileListParams::type_,
+        ?request_options: Imagekit::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file_type: String,
+        limit: String,
+        path: String,
+        search_query: String,
+        skip: String,
+        sort: String,
+        type: Imagekit::Models::FileListParams::type_,
+        request_options: Imagekit::RequestOptions
+      }
+
+      type type_ = :file | :"file-version" | :folder | :all
+
+      module Type
+        extend Imagekit::Internal::Type::Enum
+
+        FILE: :file
+        FILE_VERSION: :"file-version"
+        FOLDER: :folder
+        ALL: :all
+
+        def self?.values: -> ::Array[Imagekit::Models::FileListParams::type_]
+      end
+    end
+  end
+end

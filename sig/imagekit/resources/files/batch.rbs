@@ -1,0 +1,14 @@
+module Imagekit
+  module Resources
+    class Files
+      class Batch
+        def delete: (
+          file_ids: ::Array[String],
+          ?request_options: Imagekit::request_opts
+        ) -> Imagekit::Models::Files::BatchDeleteResponse
+
+        def initialize: (client: Imagekit::Client) -> void
+      end
+    end
+  end
+end

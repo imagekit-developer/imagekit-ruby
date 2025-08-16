@@ -1,0 +1,5 @@
+module Imagekit
+  module Models
+    CustomMetadataFieldDeleteResponse: Imagekit::Internal::Type::Converter
+  end
+end

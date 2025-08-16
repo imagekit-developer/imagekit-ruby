@@ -1,0 +1,15 @@
+module Imagekit
+  module Models
+    type bulk_job_copy_folder_response = { job_id: String }
+
+    class BulkJobCopyFolderResponse < Imagekit::Internal::Type::BaseModel
+      attr_reader job_id: String?
+
+      def job_id=: (String) -> String
+
+      def initialize: (?job_id: String) -> void
+
+      def to_hash: -> { job_id: String }
+    end
+  end
+end

@@ -1,0 +1,3 @@
+module Imagekit
+  VERSION: String
+end

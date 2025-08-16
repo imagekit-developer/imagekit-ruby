@@ -1,0 +1,53 @@
+module Imagekit
+  class AccountGetUsageParams = Imagekit::Models::AccountGetUsageParams
+
+  class BulkJobCopyFolderParams = Imagekit::Models::BulkJobCopyFolderParams
+
+  class BulkJobMoveFolderParams = Imagekit::Models::BulkJobMoveFolderParams
+
+  class BulkJobRetrieveStatusParams = Imagekit::Models::BulkJobRetrieveStatusParams
+
+  class CustomMetadataFieldCreateParams = Imagekit::Models::CustomMetadataFieldCreateParams
+
+  class CustomMetadataFieldDeleteParams = Imagekit::Models::CustomMetadataFieldDeleteParams
+
+  class CustomMetadataFieldListParams = Imagekit::Models::CustomMetadataFieldListParams
+
+  class CustomMetadataFieldUpdateParams = Imagekit::Models::CustomMetadataFieldUpdateParams
+
+  class ExifDetails = Imagekit::Models::ExifDetails
+
+  class ExifImage = Imagekit::Models::ExifImage
+
+  class FileAddTagsParams = Imagekit::Models::FileAddTagsParams
+
+  class FileCopyParams = Imagekit::Models::FileCopyParams
+
+  class FileDeleteParams = Imagekit::Models::FileDeleteParams
+
+  class FileListParams = Imagekit::Models::FileListParams
+
+  class FileMoveParams = Imagekit::Models::FileMoveParams
+
+  class FileRemoveAITagsParams = Imagekit::Models::FileRemoveAITagsParams
+
+  class FileRemoveTagsParams = Imagekit::Models::FileRemoveTagsParams
+
+  class FileRenameParams = Imagekit::Models::FileRenameParams
+
+  module Files = Imagekit::Models::Files
+
+  class FileUploadV1Params = Imagekit::Models::FileUploadV1Params
+
+  class FileUploadV2Params = Imagekit::Models::FileUploadV2Params
+
+  class FolderCreateParams = Imagekit::Models::FolderCreateParams
+
+  class FolderDeleteParams = Imagekit::Models::FolderDeleteParams
+
+  class Gps = Imagekit::Models::Gps
+
+  class Interoperability = Imagekit::Models::Interoperability
+
+  class Thumbnail = Imagekit::Models::Thumbnail
+end

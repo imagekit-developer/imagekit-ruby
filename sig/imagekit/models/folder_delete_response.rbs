@@ -1,0 +1,5 @@
+module Imagekit
+  module Models
+    FolderDeleteResponse: Imagekit::Internal::Type::Converter
+  end
+end

@@ -1,0 +1,120 @@
+module Imagekit
+  module Resources
+    class Files
+      attr_reader details: Imagekit::Resources::Files::Details
+
+      attr_reader batch: Imagekit::Resources::Files::Batch
+
+      attr_reader versions: Imagekit::Resources::Files::Versions
+
+      attr_reader purge: Imagekit::Resources::Files::Purge
+
+      attr_reader metadata: Imagekit::Resources::Files::Metadata
+
+      def list: (
+        ?file_type: String,
+        ?limit: String,
+        ?path: String,
+        ?search_query: String,
+        ?skip: String,
+        ?sort: String,
+        ?type: Imagekit::Models::FileListParams::type_,
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::file_list_response
+
+      def delete: (
+        String file_id,
+        ?request_options: Imagekit::request_opts
+      ) -> nil
+
+      def add_tags: (
+        file_ids: ::Array[String],
+        tags: ::Array[String],
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::FileAddTagsResponse
+
+      def copy: (
+        destination_path: String,
+        source_file_path: String,
+        ?include_file_versions: bool,
+        ?request_options: Imagekit::request_opts
+      ) -> top
+
+      def move: (
+        destination_path: String,
+        source_file_path: String,
+        ?request_options: Imagekit::request_opts
+      ) -> top
+
+      def remove_ai_tags: (
+        ai_tags: ::Array[String],
+        file_ids: ::Array[String],
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::FileRemoveAITagsResponse
+
+      def remove_tags: (
+        file_ids: ::Array[String],
+        tags: ::Array[String],
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::FileRemoveTagsResponse
+
+      def rename: (
+        file_path: String,
+        new_file_name: String,
+        ?purge_cache: bool,
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::FileRenameResponse
+
+      def upload_v1: (
+        file: String,
+        file_name: String,
+        ?token: String,
+        ?checks: String,
+        ?custom_coordinates: String,
+        ?custom_metadata: String,
+        ?expire: String,
+        ?extensions: String,
+        ?folder: String,
+        ?is_private_file: Imagekit::Models::FileUploadV1Params::is_private_file,
+        ?is_published: Imagekit::Models::FileUploadV1Params::is_published,
+        ?overwrite_ai_tags: Imagekit::Models::FileUploadV1Params::overwrite_ai_tags,
+        ?overwrite_custom_metadata: Imagekit::Models::FileUploadV1Params::overwrite_custom_metadata,
+        ?overwrite_file: String,
+        ?overwrite_tags: Imagekit::Models::FileUploadV1Params::overwrite_tags,
+        ?public_key: String,
+        ?response_fields: String,
+        ?signature: String,
+        ?tags: String,
+        ?transformation: String,
+        ?use_unique_file_name: Imagekit::Models::FileUploadV1Params::use_unique_file_name,
+        ?webhook_url: String,
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::FileUploadV1Response
+
+      def upload_v2: (
+        file: String,
+        file_name: String,
+        ?token: String,
+        ?checks: String,
+        ?custom_coordinates: String,
+        ?custom_metadata: String,
+        ?extensions: String,
+        ?folder: String,
+        ?is_private_file: Imagekit::Models::FileUploadV2Params::is_private_file,
+        ?is_published: Imagekit::Models::FileUploadV2Params::is_published,
+        ?overwrite_ai_tags: Imagekit::Models::FileUploadV2Params::overwrite_ai_tags,
+        ?overwrite_custom_metadata: Imagekit::Models::FileUploadV2Params::overwrite_custom_metadata,
+        ?overwrite_file: String,
+        ?overwrite_tags: Imagekit::Models::FileUploadV2Params::overwrite_tags,
+        ?response_fields: String,
+        ?tags: String,
+        ?transformation: String,
+        ?use_unique_file_name: Imagekit::Models::FileUploadV2Params::use_unique_file_name,
+        ?webhook_url: String,
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::FileUploadV2Response
+
+      def initialize: (client: Imagekit::Client) -> void
+    end
+  end
+end

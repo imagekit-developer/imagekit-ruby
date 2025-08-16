@@ -1,0 +1,23 @@
+module Imagekit
+  module Models
+    type folder_delete_params =
+      { folder_path: String } & Imagekit::Internal::Type::request_parameters
+
+    class FolderDeleteParams < Imagekit::Internal::Type::BaseModel
+      extend Imagekit::Internal::Type::RequestParameters::Converter
+      include Imagekit::Internal::Type::RequestParameters
+
+      attr_accessor folder_path: String
+
+      def initialize: (
+        folder_path: String,
+        ?request_options: Imagekit::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        folder_path: String,
+        request_options: Imagekit::RequestOptions
+      }
+    end
+  end
+end

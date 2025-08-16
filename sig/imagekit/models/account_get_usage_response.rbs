@@ -1,0 +1,50 @@
+module Imagekit
+  module Models
+    type account_get_usage_response =
+      {
+        bandwidth_bytes: Integer,
+        extension_units_count: Integer,
+        media_library_storage_bytes: Integer,
+        original_cache_storage_bytes: Integer,
+        video_processing_units_count: Integer
+      }
+
+    class AccountGetUsageResponse < Imagekit::Internal::Type::BaseModel
+      attr_reader bandwidth_bytes: Integer?
+
+      def bandwidth_bytes=: (Integer) -> Integer
+
+      attr_reader extension_units_count: Integer?
+
+      def extension_units_count=: (Integer) -> Integer
+
+      attr_reader media_library_storage_bytes: Integer?
+
+      def media_library_storage_bytes=: (Integer) -> Integer
+
+      attr_reader original_cache_storage_bytes: Integer?
+
+      def original_cache_storage_bytes=: (Integer) -> Integer
+
+      attr_reader video_processing_units_count: Integer?
+
+      def video_processing_units_count=: (Integer) -> Integer
+
+      def initialize: (
+        ?bandwidth_bytes: Integer,
+        ?extension_units_count: Integer,
+        ?media_library_storage_bytes: Integer,
+        ?original_cache_storage_bytes: Integer,
+        ?video_processing_units_count: Integer
+      ) -> void
+
+      def to_hash: -> {
+        bandwidth_bytes: Integer,
+        extension_units_count: Integer,
+        media_library_storage_bytes: Integer,
+        original_cache_storage_bytes: Integer,
+        video_processing_units_count: Integer
+      }
+    end
+  end
+end

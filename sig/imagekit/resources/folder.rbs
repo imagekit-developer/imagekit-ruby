@@ -1,0 +1,18 @@
+module Imagekit
+  module Resources
+    class Folder
+      def create: (
+        folder_name: String,
+        parent_folder_path: String,
+        ?request_options: Imagekit::request_opts
+      ) -> top
+
+      def delete: (
+        folder_path: String,
+        ?request_options: Imagekit::request_opts
+      ) -> top
+
+      def initialize: (client: Imagekit::Client) -> void
+    end
+  end
+end

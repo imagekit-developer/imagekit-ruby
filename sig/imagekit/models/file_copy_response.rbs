@@ -1,0 +1,5 @@
+module Imagekit
+  module Models
+    FileCopyResponse: Imagekit::Internal::Type::Converter
+  end
+end

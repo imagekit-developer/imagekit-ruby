@@ -1,0 +1,7 @@
+module Imagekit
+  module Models
+    module Files
+      VersionDeleteResponse: Imagekit::Internal::Type::Converter
+    end
+  end
+end
