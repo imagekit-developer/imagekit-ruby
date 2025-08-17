@@ -29,14 +29,20 @@ module Imagekit
     # @return [Imagekit::Resources::Files]
     attr_reader :files
 
-    # @return [Imagekit::Resources::Folder]
-    attr_reader :folder
+    # @return [Imagekit::Resources::Assets]
+    attr_reader :assets
 
-    # @return [Imagekit::Resources::BulkJobs]
-    attr_reader :bulk_jobs
+    # @return [Imagekit::Resources::Cache]
+    attr_reader :cache
+
+    # @return [Imagekit::Resources::Folders]
+    attr_reader :folders
 
     # @return [Imagekit::Resources::Accounts]
     attr_reader :accounts
+
+    # @return [Imagekit::Resources::Beta]
+    attr_reader :beta
 
     # @api private
     #
@@ -100,9 +106,11 @@ module Imagekit
 
       @custom_metadata_fields = Imagekit::Resources::CustomMetadataFields.new(client: self)
       @files = Imagekit::Resources::Files.new(client: self)
-      @folder = Imagekit::Resources::Folder.new(client: self)
-      @bulk_jobs = Imagekit::Resources::BulkJobs.new(client: self)
+      @assets = Imagekit::Resources::Assets.new(client: self)
+      @cache = Imagekit::Resources::Cache.new(client: self)
+      @folders = Imagekit::Resources::Folders.new(client: self)
       @accounts = Imagekit::Resources::Accounts.new(client: self)
+      @beta = Imagekit::Resources::Beta.new(client: self)
     end
   end
 end

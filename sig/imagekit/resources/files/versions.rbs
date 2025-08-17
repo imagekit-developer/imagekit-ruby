@@ -2,12 +2,6 @@ module Imagekit
   module Resources
     class Files
       class Versions
-        def retrieve: (
-          String version_id,
-          file_id: String,
-          ?request_options: Imagekit::request_opts
-        ) -> Imagekit::Models::Files::VersionRetrieveResponse
-
         def list: (
           String file_id,
           ?request_options: Imagekit::request_opts
@@ -18,6 +12,12 @@ module Imagekit
           file_id: String,
           ?request_options: Imagekit::request_opts
         ) -> top
+
+        def get: (
+          String version_id,
+          file_id: String,
+          ?request_options: Imagekit::request_opts
+        ) -> Imagekit::Models::Files::VersionGetResponse
 
         def restore: (
           String version_id,

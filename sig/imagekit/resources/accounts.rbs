@@ -1,11 +1,11 @@
 module Imagekit
   module Resources
     class Accounts
-      def get_usage: (
-        end_date: Date,
-        start_date: Date,
-        ?request_options: Imagekit::request_opts
-      ) -> Imagekit::Models::AccountGetUsageResponse
+      attr_reader usage: Imagekit::Resources::Accounts::Usage
+
+      attr_reader origins: Imagekit::Resources::Accounts::Origins
+
+      attr_reader url_endpoints: Imagekit::Resources::Accounts::URLEndpoints
 
       def initialize: (client: Imagekit::Client) -> void
     end

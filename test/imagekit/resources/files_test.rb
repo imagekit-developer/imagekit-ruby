@@ -3,13 +3,40 @@
 require_relative "../test_helper"
 
 class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
-  def test_list
+  def test_update
     skip("Prism tests are disabled")
 
-    response = @image_kit.files.list
+    response = @image_kit.files.update("fileId")
 
     assert_pattern do
-      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileListResponseItem])
+      response => Imagekit::Models::FileUpdateResponse
+    end
+
+    assert_pattern do
+      response => {
+        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileUpdateResponse::AITag]) | nil,
+        created_at: String | nil,
+        custom_coordinates: String | nil,
+        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
+        extension_status: Imagekit::Models::FileUpdateResponse::ExtensionStatus | nil,
+        file_id: String | nil,
+        file_path: String | nil,
+        file_type: String | nil,
+        has_alpha: Imagekit::Internal::Type::Boolean | nil,
+        height: Float | nil,
+        is_private_file: Imagekit::Internal::Type::Boolean | nil,
+        is_published: Imagekit::Internal::Type::Boolean | nil,
+        mime: String | nil,
+        name: String | nil,
+        size: Float | nil,
+        tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
+        thumbnail: String | nil,
+        type: String | nil,
+        updated_at: String | nil,
+        url: String | nil,
+        version_info: Imagekit::Models::FileUpdateResponse::VersionInfo | nil,
+        width: Float | nil
+      }
     end
   end
 
@@ -20,26 +47,6 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
 
     assert_pattern do
       response => nil
-    end
-  end
-
-  def test_add_tags_required_params
-    skip("Prism tests are disabled")
-
-    response =
-      @image_kit.files.add_tags(
-        file_ids: %w[598821f949c0a938d57563bd 598821f949c0a938d57563be],
-        tags: %w[t-shirt round-neck sale2019]
-      )
-
-    assert_pattern do
-      response => Imagekit::Models::FileAddTagsResponse
-    end
-
-    assert_pattern do
-      response => {
-        successfully_updated_file_ids: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil
-      }
     end
   end
 
@@ -54,6 +61,42 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
     end
   end
 
+  def test_get
+    skip("Prism tests are disabled")
+
+    response = @image_kit.files.get("fileId")
+
+    assert_pattern do
+      response => Imagekit::Models::FileGetResponse
+    end
+
+    assert_pattern do
+      response => {
+        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileGetResponse::AITag]) | nil,
+        created_at: String | nil,
+        custom_coordinates: String | nil,
+        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
+        file_id: String | nil,
+        file_path: String | nil,
+        file_type: String | nil,
+        has_alpha: Imagekit::Internal::Type::Boolean | nil,
+        height: Float | nil,
+        is_private_file: Imagekit::Internal::Type::Boolean | nil,
+        is_published: Imagekit::Internal::Type::Boolean | nil,
+        mime: String | nil,
+        name: String | nil,
+        size: Float | nil,
+        tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
+        thumbnail: String | nil,
+        type: String | nil,
+        updated_at: String | nil,
+        url: String | nil,
+        version_info: Imagekit::Models::FileGetResponse::VersionInfo | nil,
+        width: Float | nil
+      }
+    end
+  end
+
   def test_move_required_params
     skip("Prism tests are disabled")
 
@@ -62,46 +105,6 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
 
     assert_pattern do
       response => Imagekit::Internal::Type::Unknown
-    end
-  end
-
-  def test_remove_ai_tags_required_params
-    skip("Prism tests are disabled")
-
-    response =
-      @image_kit.files.remove_ai_tags(
-        ai_tags: %w[t-shirt round-neck sale2019],
-        file_ids: %w[598821f949c0a938d57563bd 598821f949c0a938d57563be]
-      )
-
-    assert_pattern do
-      response => Imagekit::Models::FileRemoveAITagsResponse
-    end
-
-    assert_pattern do
-      response => {
-        successfully_updated_file_ids: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil
-      }
-    end
-  end
-
-  def test_remove_tags_required_params
-    skip("Prism tests are disabled")
-
-    response =
-      @image_kit.files.remove_tags(
-        file_ids: %w[598821f949c0a938d57563bd 598821f949c0a938d57563be],
-        tags: %w[t-shirt round-neck sale2019]
-      )
-
-    assert_pattern do
-      response => Imagekit::Models::FileRemoveTagsResponse
-    end
-
-    assert_pattern do
-      response => {
-        successfully_updated_file_ids: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil
-      }
     end
   end
 
@@ -121,84 +124,38 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
     end
   end
 
-  def test_upload_v1_required_params
+  def test_upload_required_params
     skip("Prism tests are disabled")
 
-    response =
-      @image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
+    response = @image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
 
     assert_pattern do
-      response => Imagekit::Models::FileUploadV1Response
+      response => Imagekit::Models::FileUploadResponse
     end
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileUploadV1Response::AITag]) | nil,
+        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileUploadResponse::AITag]) | nil,
         audio_codec: String | nil,
         bit_rate: Integer | nil,
         custom_coordinates: String | nil,
         custom_metadata: Imagekit::Internal::Type::Unknown | nil,
         duration: Integer | nil,
-        embedded_metadata: Imagekit::Models::FileUploadV1Response::EmbeddedMetadata | nil,
-        extension_status: Imagekit::Models::FileUploadV1Response::ExtensionStatus | nil,
+        embedded_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
+        extension_status: Imagekit::Models::FileUploadResponse::ExtensionStatus | nil,
         file_id: String | nil,
         file_path: String | nil,
         file_type: String | nil,
         height: Float | nil,
         is_private_file: Imagekit::Internal::Type::Boolean | nil,
         is_published: Imagekit::Internal::Type::Boolean | nil,
-        metadata: Imagekit::Models::FileUploadV1Response::Metadata | nil,
+        metadata: Imagekit::Models::FileUploadResponse::Metadata | nil,
         name: String | nil,
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail_url: String | nil,
         url: String | nil,
-        version_info: Imagekit::Models::FileUploadV1Response::VersionInfo | nil,
-        video_codec: String | nil,
-        width: Float | nil
-      }
-    end
-  end
-
-  def test_upload_v2_required_params
-    skip("Prism tests are disabled")
-
-    response =
-      @image_kit.files.upload_v2(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
-
-    assert_pattern do
-      response => Imagekit::Models::FileUploadV2Response
-    end
-
-    assert_pattern do
-      response => {
-        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileUploadV2Response::AITag]) | nil,
-        audio_codec: String | nil,
-        bit_rate: Integer | nil,
-        custom_coordinates: String | nil,
-        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
-        duration: Integer | nil,
-        embedded_metadata: Imagekit::Models::FileUploadV2Response::EmbeddedMetadata | nil,
-        extension_status: Imagekit::Models::FileUploadV2Response::ExtensionStatus | nil,
-        file_id: String | nil,
-        file_path: String | nil,
-        file_type: String | nil,
-        height: Float | nil,
-        is_private_file: Imagekit::Internal::Type::Boolean | nil,
-        is_published: Imagekit::Internal::Type::Boolean | nil,
-        metadata: Imagekit::Models::FileUploadV2Response::Metadata | nil,
-        name: String | nil,
-        size: Float | nil,
-        tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
-        thumbnail_url: String | nil,
-        url: String | nil,
-        version_info: Imagekit::Models::FileUploadV2Response::VersionInfo | nil,
+        version_info: Imagekit::Models::FileUploadResponse::VersionInfo | nil,
         video_codec: String | nil,
         width: Float | nil
       }

@@ -3,13 +3,13 @@
 require_relative "../../test_helper"
 
 class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceTest
-  def test_retrieve
+  def test_get
     skip("Prism tests are disabled")
 
-    response = @image_kit.files.metadata.retrieve("fileId")
+    response = @image_kit.files.metadata.get("fileId")
 
     assert_pattern do
-      response => Imagekit::Models::Files::MetadataRetrieveResponse
+      response => Imagekit::Models::Files::MetadataGetResponse
     end
 
     assert_pattern do
@@ -18,7 +18,7 @@ class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceT
         bit_rate: Integer | nil,
         density: Integer | nil,
         duration: Integer | nil,
-        exif: Imagekit::Models::Files::MetadataRetrieveResponse::Exif | nil,
+        exif: Imagekit::Models::Files::MetadataGetResponse::Exif | nil,
         format_: String | nil,
         has_color_profile: Imagekit::Internal::Type::Boolean | nil,
         has_transparency: Imagekit::Internal::Type::Boolean | nil,
@@ -32,13 +32,13 @@ class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceT
     end
   end
 
-  def test_from_url_required_params
+  def test_get_from_url_required_params
     skip("Prism tests are disabled")
 
-    response = @image_kit.files.metadata.from_url(url: "url")
+    response = @image_kit.files.metadata.get_from_url(url: "https://example.com")
 
     assert_pattern do
-      response => Imagekit::Models::Files::MetadataFromURLResponse
+      response => Imagekit::Models::Files::MetadataGetFromURLResponse
     end
 
     assert_pattern do
@@ -47,7 +47,7 @@ class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceT
         bit_rate: Integer | nil,
         density: Integer | nil,
         duration: Integer | nil,
-        exif: Imagekit::Models::Files::MetadataFromURLResponse::Exif | nil,
+        exif: Imagekit::Models::Files::MetadataGetFromURLResponse::Exif | nil,
         format_: String | nil,
         has_color_profile: Imagekit::Internal::Type::Boolean | nil,
         has_transparency: Imagekit::Internal::Type::Boolean | nil,

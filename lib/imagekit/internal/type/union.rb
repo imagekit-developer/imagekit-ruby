@@ -4,6 +4,19 @@ module Imagekit
   module Internal
     module Type
       # @api private
+      #
+      # @example
+      #   # `origin_create_response` is a `Imagekit::Models::Accounts::OriginCreateResponse`
+      #   case origin_create_response
+      #   when Imagekit::Models::Accounts::OriginCreateResponse::S3
+      #     puts(origin_create_response.id)
+      #   when Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible
+      #     puts(origin_create_response.bucket)
+      #   when Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup
+      #     puts(origin_create_response.include_canonical_header)
+      #   else
+      #     puts(origin_create_response)
+      #   end
       module Union
         include Imagekit::Internal::Type::Converter
         include Imagekit::Internal::Util::SorbetRuntimeSupport

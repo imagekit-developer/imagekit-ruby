@@ -45,10 +45,7 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 3)
@@ -66,10 +63,7 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 4)
@@ -86,8 +80,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {max_retries: 3}
       )
@@ -108,8 +102,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {max_retries: 4}
       )
@@ -134,10 +128,7 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -161,10 +152,7 @@ class ImagekitTest < Minitest::Test
 
     assert_raises(Imagekit::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
       Thread.current.thread_variable_set(:time_now, nil)
     end
 
@@ -188,10 +176,7 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -209,10 +194,7 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
-        file_name: "fileName"
-      )
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
     3.times do
@@ -231,8 +213,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
@@ -254,8 +236,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::InternalServerError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
@@ -283,8 +265,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::APIConnectionError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {extra_headers: {}}
       )
@@ -321,8 +303,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::APIConnectionError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {extra_headers: {}}
       )
@@ -354,8 +336,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::APIConnectionError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -390,8 +372,8 @@ class ImagekitTest < Minitest::Test
       )
 
     assert_raises(Imagekit::Errors::APIConnectionError) do
-      image_kit.files.upload_v1(
-        file: "https://www.example.com/rest-of-the-image-path.jpg",
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
         file_name: "fileName",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -413,10 +395,7 @@ class ImagekitTest < Minitest::Test
         password: "My Password"
       )
 
-    image_kit.files.upload_v1(
-      file: "https://www.example.com/rest-of-the-image-path.jpg",
-      file_name: "fileName"
-    )
+    image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")

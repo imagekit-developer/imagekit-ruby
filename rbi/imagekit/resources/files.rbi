@@ -3,92 +3,78 @@
 module Imagekit
   module Resources
     class Files
-      sig { returns(Imagekit::Resources::Files::Details) }
-      attr_reader :details
-
-      sig { returns(Imagekit::Resources::Files::Batch) }
-      attr_reader :batch
+      sig { returns(Imagekit::Resources::Files::Bulk) }
+      attr_reader :bulk
 
       sig { returns(Imagekit::Resources::Files::Versions) }
       attr_reader :versions
 
-      sig { returns(Imagekit::Resources::Files::Purge) }
-      attr_reader :purge
-
       sig { returns(Imagekit::Resources::Files::Metadata) }
       attr_reader :metadata
 
-      # This API can list all the uploaded files and folders in your ImageKit.io media
-      # library. In addition, you can fine-tune your query by specifying various filters
-      # by generating a query string in a Lucene-like syntax and provide this generated
-      # string as the value of the `searchQuery`.
+      # This API updates the details or attributes of the current version of the file.
+      # You can update `tags`, `customCoordinates`, `customMetadata`, publication
+      # status, remove existing `AITags` and apply extensions using this API.
       sig do
         params(
-          file_type: String,
-          limit: String,
-          path: String,
-          search_query: String,
-          skip: String,
-          sort: String,
-          type: Imagekit::FileListParams::Type::OrSymbol,
+          file_id: String,
+          custom_coordinates: T.nilable(String),
+          custom_metadata: T.anything,
+          description: String,
+          extensions:
+            T::Array[
+              T.any(
+                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::OrHash,
+                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash,
+                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::OrHash
+              )
+            ],
+          remove_ai_tags:
+            T.any(
+              T::Array[String],
+              Imagekit::FileUpdateParams::RemoveAITags::OrSymbol
+            ),
+          tags: T.nilable(T::Array[String]),
+          webhook_url: String,
+          publish: Imagekit::FileUpdateParams::Publish::OrHash,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(T::Array[Imagekit::Models::FileListResponseItem])
+        ).returns(Imagekit::Models::FileUpdateResponse)
       end
-      def list(
-        # Type of files to include in the result set. Accepts three values:
+      def update(
+        # The unique `fileId` of the uploaded file. `fileId` is returned in list and
+        # search assets API and upload API.
+        file_id,
+        # Define an important area in the image in the format `x,y,width,height` e.g.
+        # `10,10,100,100`. Send `null` to unset this value.
+        custom_coordinates: nil,
+        # A key-value data to be associated with the asset. To unset a key, send `null`
+        # value for that key. Before setting any custom metadata on an asset you have to
+        # create the field using custom metadata fields API.
+        custom_metadata: nil,
+        # Optional text to describe the contents of the file.
+        description: nil,
+        # Array of extensions to be applied to the asset. Each extension can be configured
+        # with specific parameters based on the extension type.
+        extensions: nil,
+        # An array of AITags associated with the file that you want to remove, e.g.
+        # `["car", "vehicle", "motorsports"]`.
         #
-        # `all` - include all types of files in the result set. `image` - only search in
-        # image type files. `non-image` - only search in files that are not images, e.g.,
-        # JS or CSS or video files.
+        # If you want to remove all AITags associated with the file, send a string -
+        # "all".
         #
-        # Default value - `all`
-        file_type: nil,
-        # The maximum number of results to return in response:
-        #
-        # Minimum value - 1
-        #
-        # Maximum value - 1000
-        #
-        # Default value - 1000
-        limit: nil,
-        # Folder path if you want to limit the search within a specific folder. For
-        # example, `/sales-banner/` will only search in folder sales-banner.
-        path: nil,
-        # Query string in a Lucene-like query language e.g. `createdAt > "7d"`.
-        #
-        # Note : When the searchQuery parameter is present, the following query parameters
-        # will have no effect on the result:
-        #
-        # 1. `tags`
-        # 2. `type`
-        # 3. `name`
-        #
-        # [Learn more](/docs/api-reference/digital-asset-management-dam/list-and-search-assets#advanced-search-queries)
-        # from examples.
-        search_query: nil,
-        # The number of results to skip before returning results:
-        #
-        # Minimum value - 0
-        #
-        # Default value - 0
-        skip: nil,
-        # You can sort based on the following fields:
-        #
-        # 1. name - `ASC_NAME` or `DESC_NAME`
-        # 2. createdAt - `ASC_CREATED` or `DESC_CREATED`
-        # 3. updatedAt - `ASC_UPDATED` or `DESC_UPDATED`
-        # 4. height - `ASC_HEIGHT` or `DESC_HEIGHT`
-        # 5. width - `ASC_WIDTH` or `DESC_WIDTH`
-        # 6. size - `ASC_SIZE` or `DESC_SIZE`
-        #
-        # Default value - `ASC_CREATED`
-        sort: nil,
-        # Limit search to one of `file`, `file-version`, or `folder`. Pass `all` to
-        # include `files` and `folders` in search results (`file-version` will not be
-        # included in this case).
-        #
-        # Default value - `file`
-        type: nil,
+        # Note: The remove operation for `AITags` executes before any of the `extensions`
+        # are processed.
+        remove_ai_tags: nil,
+        # An array of tags associated with the file, such as `["tag1", "tag2"]`. Send
+        # `null` to unset all tags associated with the file.
+        tags: nil,
+        # The final status of extensions after they have completed execution will be
+        # delivered to this endpoint as a POST request.
+        # [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure)
+        # about the webhook payload structure.
+        webhook_url: nil,
+        # Configure the publication status of a file and its versions.
+        publish: nil,
         request_options: {}
       )
       end
@@ -108,24 +94,6 @@ module Imagekit
         # The unique `fileId` of the uploaded file. `fileId` is returned in list and
         # search assets API and upload API.
         file_id,
-        request_options: {}
-      )
-      end
-
-      # This API adds tags to multiple files in bulk. A maximum of 50 files can be
-      # specified at a time.
-      sig do
-        params(
-          file_ids: T::Array[String],
-          tags: T::Array[String],
-          request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::FileAddTagsResponse)
-      end
-      def add_tags(
-        # An array of fileIds to which you want to add tags.
-        file_ids:,
-        # An array of tags that you want to add to the files.
-        tags:,
         request_options: {}
       )
       end
@@ -156,6 +124,22 @@ module Imagekit
       )
       end
 
+      # This API returns an object with details or attributes about the current version
+      # of the file.
+      sig do
+        params(
+          file_id: String,
+          request_options: Imagekit::RequestOptions::OrHash
+        ).returns(Imagekit::Models::FileGetResponse)
+      end
+      def get(
+        # The unique `fileId` of the uploaded file. `fileId` is returned in the list and
+        # search assets API and upload API.
+        file_id,
+        request_options: {}
+      )
+      end
+
       # This will move a file and all its versions from one folder to another.
       #
       # Note: If any file at the destination has the same name as the source file, then
@@ -172,42 +156,6 @@ module Imagekit
         destination_path:,
         # The full path of the file you want to move.
         source_file_path:,
-        request_options: {}
-      )
-      end
-
-      # This API removes AITags from multiple files in bulk. A maximum of 50 files can
-      # be specified at a time.
-      sig do
-        params(
-          ai_tags: T::Array[String],
-          file_ids: T::Array[String],
-          request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::FileRemoveAITagsResponse)
-      end
-      def remove_ai_tags(
-        # An array of AITags that you want to remove from the files.
-        ai_tags:,
-        # An array of fileIds from which you want to remove AITags.
-        file_ids:,
-        request_options: {}
-      )
-      end
-
-      # This API removes tags from multiple files in bulk. A maximum of 50 files can be
-      # specified at a time.
-      sig do
-        params(
-          file_ids: T::Array[String],
-          tags: T::Array[String],
-          request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::FileRemoveTagsResponse)
-      end
-      def remove_tags(
-        # An array of fileIds from which you want to remove tags.
-        file_ids:,
-        # An array of tags that you want to remove from the files.
-        tags:,
         request_options: {}
       )
       end
@@ -285,41 +233,50 @@ module Imagekit
       #   technologies.
       sig do
         params(
-          file: String,
+          file: Imagekit::Internal::FileInput,
           file_name: String,
           token: String,
           checks: String,
           custom_coordinates: String,
-          custom_metadata: String,
-          expire: String,
-          extensions: String,
+          custom_metadata: T::Hash[Symbol, T.anything],
+          description: String,
+          expire: Integer,
+          extensions:
+            T::Array[
+              T.any(
+                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::OrHash,
+                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash,
+                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::OrHash
+              )
+            ],
           folder: String,
-          is_private_file:
-            Imagekit::FileUploadV1Params::IsPrivateFile::OrSymbol,
-          is_published: Imagekit::FileUploadV1Params::IsPublished::OrSymbol,
-          overwrite_ai_tags:
-            Imagekit::FileUploadV1Params::OverwriteAITags::OrSymbol,
-          overwrite_custom_metadata:
-            Imagekit::FileUploadV1Params::OverwriteCustomMetadata::OrSymbol,
-          overwrite_file: String,
-          overwrite_tags: Imagekit::FileUploadV1Params::OverwriteTags::OrSymbol,
+          is_private_file: T::Boolean,
+          is_published: T::Boolean,
+          overwrite_ai_tags: T::Boolean,
+          overwrite_custom_metadata: T::Boolean,
+          overwrite_file: T::Boolean,
+          overwrite_tags: T::Boolean,
           public_key: String,
-          response_fields: String,
+          response_fields:
+            T::Array[Imagekit::FileUploadParams::ResponseField::OrSymbol],
           signature: String,
-          tags: String,
-          transformation: String,
-          use_unique_file_name:
-            Imagekit::FileUploadV1Params::UseUniqueFileName::OrSymbol,
+          tags: T::Array[String],
+          transformation: Imagekit::FileUploadParams::Transformation::OrHash,
+          use_unique_file_name: T::Boolean,
           webhook_url: String,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::FileUploadV1Response)
+        ).returns(Imagekit::Models::FileUploadResponse)
       end
-      def upload_v1(
-        # Pass the HTTP URL or base64 string. When passing a URL in the file parameter,
-        # please ensure that our servers can access the URL. In case ImageKit is unable to
-        # download the file from the specified URL, a `400` error response is returned.
-        # This will also result in a `400` error if the file download request is aborted
-        # if response headers are not received in 8 seconds.
+      def upload(
+        # The API accepts any of the following:
+        #
+        # - **Binary data** – send the raw bytes as `multipart/form-data`.
+        # - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can
+        #   fetch.
+        # - **Base64 string** – the file encoded as a Base64 data URI or plain Base64.
+        #
+        # When supplying a URL, the server must receive the response headers within 8
+        # seconds; otherwise the request fails with 400 Bad Request.
         file:,
         # The name with which the file has to be uploaded. The file name can contain:
         #
@@ -350,16 +307,18 @@ module Imagekit
         # - If this field is not specified and the file is overwritten, then
         #   customCoordinates will be removed.
         custom_coordinates: nil,
-        # Stringified JSON key-value data to be associated with the asset.
+        # JSON key-value pairs to associate with the asset. Create the custom metadata
+        # fields before setting these values.
         custom_metadata: nil,
+        # Optional text to describe the contents of the file.
+        description: nil,
         # The time until your signature is valid. It must be a
         # [Unix time](https://en.wikipedia.org/wiki/Unix_time) in less than 1 hour into
         # the future. It should be in seconds. This field is only required for
         # authentication when uploading a file from the client side.
         expire: nil,
-        # Stringified JSON object with an array of extensions to be applied to the image.
-        # Refer to extensions schema in
-        # [update file API request body](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#request-body).
+        # Array of extensions to be applied to the image. Each extension can be configured
+        # with specific parameters based on the extension type.
         extensions: nil,
         # The folder path in which the image has to be uploaded. If the folder(s) didn't
         # exist before, a new folder(s) is created.
@@ -400,15 +359,7 @@ module Imagekit
         # Your ImageKit.io public key. This field is only required for authentication when
         # uploading a file from the client side.
         public_key: nil,
-        # Comma-separated values of the fields that you want the API to return in the
-        # response.
-        #
-        # For example, set the value of this field to
-        # `tags,customCoordinates,isPrivateFile` to get the value of `tags`,
-        # `customCoordinates`, and `isPrivateFile` in the response.
-        #
-        # Accepts combination of `tags`, `customCoordinates`, `isPrivateFile`,
-        # `embeddedMetadata`, `isPublished`, `customMetadata`, and `metadata`.
+        # Array of response field keys to include in the API response body.
         response_fields: nil,
         # HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a
         # key. Learn how to create a signature on the page below. This should be in
@@ -417,209 +368,22 @@ module Imagekit
         # Signature must be calculated on the server-side. This field is only required for
         # authentication when uploading a file from the client side.
         signature: nil,
-        # Set the tags while uploading the file.
-        #
-        # Comma-separated value of tags in the format `tag1,tag2,tag3`. The maximum length
-        # of all characters should not exceed 500. `%` is not allowed.
-        #
-        # If this field is not specified and the file is overwritten then the tags will be
-        # removed.
+        # Set the tags while uploading the file. Provide an array of tag strings (e.g.
+        # `["tag1", "tag2", "tag3"]`). The combined length of all tag characters must not
+        # exceed 500, and the `%` character is not allowed. If this field is not specified
+        # and the file is overwritten, the existing tags will be removed.
         tags: nil,
-        # Stringified JSON object with properties for pre and post transformations:
+        # Configure pre-processing (`pre`) and post-processing (`post`) transformations.
         #
-        # `pre` - Accepts a "string" containing a valid transformation used for requesting
-        # a pre-transformation for an image or a video file.
+        # - `pre` — applied before the file is uploaded to the Media Library.
+        #   Useful for reducing file size or applying basic optimizations upfront (e.g.,
+        #   resize, compress).
         #
-        # `post` - Accepts an array of objects with properties:
+        # - `post` — applied immediately after upload.
+        #   Ideal for generating transformed versions (like video encodes or thumbnails)
+        #   in advance, so they're ready for delivery without delay.
         #
-        # - `type`: One of `transformation`, `gif-to-video`, `thumbnail`, or `abs`
-        #   (Adaptive bitrate streaming).
-        # - `value`: A "string" corresponding to the required transformation. Required if
-        #   `type` is `transformation` or `abs`. Optional if `type` is `gif-to-video` or
-        #   `thumbnail`.
-        # - `protocol`: Either `hls` or `dash`, applicable only if `type` is `abs`.
-        #
-        # Read more about
-        # [Adaptive bitrate streaming (ABS)](/docs/adaptive-bitrate-streaming).
-        transformation: nil,
-        # Whether to use a unique filename for this file or not.
-        #
-        # If `true`, ImageKit.io will add a unique suffix to the filename parameter to get
-        # a unique filename.
-        #
-        # If `false`, then the image is uploaded with the provided filename parameter, and
-        # any existing file with the same name is replaced.
-        use_unique_file_name: nil,
-        # The final status of extensions after they have completed execution will be
-        # delivered to this endpoint as a POST request.
-        # [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure)
-        # about the webhook payload structure.
-        webhook_url: nil,
-        request_options: {}
-      )
-      end
-
-      # The V2 API enhances security by verifying the entire payload using JWT. This API
-      # is in beta.
-      #
-      # ImageKit.io allows you to upload files directly from both the server and client
-      # sides. For server-side uploads, private API key authentication is used. For
-      # client-side uploads, generate a one-time `token` from your secure backend using
-      # private API.
-      # [Learn more](/docs/api-reference/upload-file/upload-file-v2#how-to-implement-secure-client-side-file-upload)
-      # about how to implement secure client-side file upload.
-      #
-      # **File size limit** \
-      # On the free plan, the maximum upload file sizes are 20MB for images, audio, and raw
-      # files, and 100MB for videos. On the paid plan, these limits increase to 40MB for
-      # images, audio, and raw files, and 2GB for videos. These limits can be further increased
-      # with higher-tier plans.
-      #
-      # **Version limit** \
-      # A file can have a maximum of 100 versions.
-      #
-      # **Demo applications**
-      #
-      # - A full-fledged
-      #   [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader),
-      #   supporting file selections from local storage, URL, Dropbox, Google Drive,
-      #   Instagram, and more.
-      # - [Quick start guides](/docs/quick-start-guides) for various frameworks and
-      #   technologies.
-      sig do
-        params(
-          file: String,
-          file_name: String,
-          token: String,
-          checks: String,
-          custom_coordinates: String,
-          custom_metadata: String,
-          extensions: String,
-          folder: String,
-          is_private_file:
-            Imagekit::FileUploadV2Params::IsPrivateFile::OrSymbol,
-          is_published: Imagekit::FileUploadV2Params::IsPublished::OrSymbol,
-          overwrite_ai_tags:
-            Imagekit::FileUploadV2Params::OverwriteAITags::OrSymbol,
-          overwrite_custom_metadata:
-            Imagekit::FileUploadV2Params::OverwriteCustomMetadata::OrSymbol,
-          overwrite_file: String,
-          overwrite_tags: Imagekit::FileUploadV2Params::OverwriteTags::OrSymbol,
-          response_fields: String,
-          tags: String,
-          transformation: String,
-          use_unique_file_name:
-            Imagekit::FileUploadV2Params::UseUniqueFileName::OrSymbol,
-          webhook_url: String,
-          request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::FileUploadV2Response)
-      end
-      def upload_v2(
-        # Pass the HTTP URL or base64 string. When passing a URL in the file parameter,
-        # please ensure that our servers can access the URL. In case ImageKit is unable to
-        # download the file from the specified URL, a `400` error response is returned.
-        # This will also result in a `400` error if the file download request is aborted
-        # if response headers are not received in 8 seconds.
-        file:,
-        # The name with which the file has to be uploaded.
-        file_name:,
-        # This is the client-generated JSON Web Token (JWT). The ImageKit.io server uses
-        # it to authenticate and check that the upload request parameters have not been
-        # tampered with after the token has been generated. Learn how to create the token
-        # on the page below. This field is only required for authentication when uploading
-        # a file from the client side.
-        #
-        # **Note**: Sending a JWT that has been used in the past will result in a
-        # validation error. Even if your previous request resulted in an error, you should
-        # always send a new token.
-        #
-        # **⚠️Warning**: JWT must be generated on the server-side because it is generated
-        # using your account's private API key. This field is required for authentication
-        # when uploading a file from the client-side.
-        token: nil,
-        # Server-side checks to run on the asset. Read more about
-        # [Upload API checks](/docs/api-reference/upload-file/upload-file-v2#upload-api-checks).
-        checks: nil,
-        # Define an important area in the image. This is only relevant for image type
-        # files.
-        #
-        # - To be passed as a string with the x and y coordinates of the top-left corner,
-        #   and width and height of the area of interest in the format `x,y,width,height`.
-        #   For example - `10,10,100,100`
-        # - Can be used with fo-customtransformation.
-        # - If this field is not specified and the file is overwritten, then
-        #   customCoordinates will be removed.
-        custom_coordinates: nil,
-        # Stringified JSON key-value data to be associated with the asset.
-        custom_metadata: nil,
-        # Stringified JSON object with an array of extensions to be applied to the image.
-        # Refer to extensions schema in
-        # [update file API request body](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#request-body).
-        extensions: nil,
-        # The folder path in which the image has to be uploaded. If the folder(s) didn't
-        # exist before, a new folder(s) is created. Using multiple `/` creates a nested
-        # folder.
-        folder: nil,
-        # Whether to mark the file as private or not.
-        #
-        # If `true`, the file is marked as private and is accessible only using named
-        # transformation or signed URL.
-        is_private_file: nil,
-        # Whether to upload file as published or not.
-        #
-        # If `false`, the file is marked as unpublished, which restricts access to the
-        # file only via the media library. Files in draft or unpublished state can only be
-        # publicly accessed after being published.
-        #
-        # The option to upload in draft state is only available in custom enterprise
-        # pricing plans.
-        is_published: nil,
-        # If set to `true` and a file already exists at the exact location, its AITags
-        # will be removed. Set `overwriteAITags` to `false` to preserve AITags.
-        overwrite_ai_tags: nil,
-        # If the request does not have `customMetadata`, and a file already exists at the
-        # exact location, existing customMetadata will be removed.
-        overwrite_custom_metadata: nil,
-        # If `false` and `useUniqueFileName` is also `false`, and a file already exists at
-        # the exact location, upload API will return an error immediately.
-        overwrite_file: nil,
-        # If the request does not have `tags`, and a file already exists at the exact
-        # location, existing tags will be removed.
-        overwrite_tags: nil,
-        # Comma-separated values of the fields that you want the API to return in the
-        # response.
-        #
-        # For example, set the value of this field to
-        # `tags,customCoordinates,isPrivateFile` to get the value of `tags`,
-        # `customCoordinates`, and `isPrivateFile` in the response.
-        #
-        # Accepts combination of `tags`, `customCoordinates`, `isPrivateFile`,
-        # `embeddedMetadata`, `isPublished`, `customMetadata`, and `metadata`.
-        response_fields: nil,
-        # Set the tags while uploading the file.
-        #
-        # Comma-separated value of tags in the format `tag1,tag2,tag3`. The maximum length
-        # of all characters should not exceed 500. `%` is not allowed.
-        #
-        # If this field is not specified and the file is overwritten then the tags will be
-        # removed.
-        tags: nil,
-        # Stringified JSON object with properties for pre and post transformations:
-        #
-        # `pre` - Accepts a "string" containing a valid transformation used for requesting
-        # a pre-transformation for an image or a video file.
-        #
-        # `post` - Accepts an array of objects with properties:
-        #
-        # - `type`: One of `transformation`, `gif-to-video`, `thumbnail`, or `abs`
-        #   (Adaptive bitrate streaming).
-        # - `value`: A "string" corresponding to the required transformation. Required if
-        #   `type` is `transformation` or `abs`. Optional if `type` is `gif-to-video` or
-        #   `thumbnail`.
-        # - `protocol`: Either `hls` or `dash`, applicable only if `type` is `abs`.
-        #
-        # Read more about
-        # [Adaptive bitrate streaming (ABS)](/docs/adaptive-bitrate-streaming).
+        # You can mix and match any combination of post-processing types.
         transformation: nil,
         # Whether to use a unique filename for this file or not.
         #

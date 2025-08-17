@@ -1,11 +1,11 @@
 module Imagekit
-  class AccountGetUsageParams = Imagekit::Models::AccountGetUsageParams
+  module Accounts = Imagekit::Models::Accounts
 
-  class BulkJobCopyFolderParams = Imagekit::Models::BulkJobCopyFolderParams
+  class AssetListParams = Imagekit::Models::AssetListParams
 
-  class BulkJobMoveFolderParams = Imagekit::Models::BulkJobMoveFolderParams
+  module Beta = Imagekit::Models::Beta
 
-  class BulkJobRetrieveStatusParams = Imagekit::Models::BulkJobRetrieveStatusParams
+  module Cache = Imagekit::Models::Cache
 
   class CustomMetadataFieldCreateParams = Imagekit::Models::CustomMetadataFieldCreateParams
 
@@ -15,39 +15,31 @@ module Imagekit
 
   class CustomMetadataFieldUpdateParams = Imagekit::Models::CustomMetadataFieldUpdateParams
 
-  class ExifDetails = Imagekit::Models::ExifDetails
-
-  class ExifImage = Imagekit::Models::ExifImage
-
-  class FileAddTagsParams = Imagekit::Models::FileAddTagsParams
-
   class FileCopyParams = Imagekit::Models::FileCopyParams
 
   class FileDeleteParams = Imagekit::Models::FileDeleteParams
 
-  class FileListParams = Imagekit::Models::FileListParams
+  class FileGetParams = Imagekit::Models::FileGetParams
 
   class FileMoveParams = Imagekit::Models::FileMoveParams
-
-  class FileRemoveAITagsParams = Imagekit::Models::FileRemoveAITagsParams
-
-  class FileRemoveTagsParams = Imagekit::Models::FileRemoveTagsParams
 
   class FileRenameParams = Imagekit::Models::FileRenameParams
 
   module Files = Imagekit::Models::Files
 
-  class FileUploadV1Params = Imagekit::Models::FileUploadV1Params
+  class FileUpdateParams = Imagekit::Models::FileUpdateParams
 
-  class FileUploadV2Params = Imagekit::Models::FileUploadV2Params
+  class FileUploadParams = Imagekit::Models::FileUploadParams
+
+  class FolderCopyParams = Imagekit::Models::FolderCopyParams
 
   class FolderCreateParams = Imagekit::Models::FolderCreateParams
 
   class FolderDeleteParams = Imagekit::Models::FolderDeleteParams
 
-  class Gps = Imagekit::Models::Gps
+  class FolderMoveParams = Imagekit::Models::FolderMoveParams
 
-  class Interoperability = Imagekit::Models::Interoperability
+  class FolderRenameParams = Imagekit::Models::FolderRenameParams
 
-  class Thumbnail = Imagekit::Models::Thumbnail
+  module Folders = Imagekit::Models::Folders
 end

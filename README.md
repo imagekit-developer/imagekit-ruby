@@ -29,13 +29,32 @@ image_kit = Imagekit::Client.new(
   password: ENV["ORG_MY_PASSWORD_TOKEN"] # This is the default and can be omitted
 )
 
-response = image_kit.files.upload_v1(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  file_name: "fileName"
-)
+response = image_kit.files.upload(file_name: "fileName")
 
 puts(response.videoCodec)
 ```
+
+### File uploads
+
+Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.
+
+```ruby
+require "pathname"
+
+# Use `Pathname` to send the filename and/or avoid paging a large file into memory:
+response = image_kit.files.upload(file: Pathname("/path/to/file"))
+
+# Alternatively, pass file contents or a `StringIO` directly:
+response = image_kit.files.upload(file: File.read("/path/to/file"))
+
+# Or, to control the filename and/or content type:
+file = Imagekit::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
+response = image_kit.files.upload(file: file)
+
+puts(response.videoCodec)
+```
+
+Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
 
 ### Handling errors
 
@@ -43,10 +62,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  file = image_kit.files.upload_v1(
-    file: "https://www.example.com/rest-of-the-image-path.jpg",
-    file_name: "fileName"
-  )
+  file = image_kit.files.upload(file_name: "fileName")
 rescue Imagekit::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -89,11 +105,7 @@ image_kit = Imagekit::Client.new(
 )
 
 # Or, configure per-request:
-image_kit.files.upload_v1(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  file_name: "fileName",
-  request_options: {max_retries: 5}
-)
+image_kit.files.upload(file_name: "fileName", request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -107,11 +119,7 @@ image_kit = Imagekit::Client.new(
 )
 
 # Or, configure per-request:
-image_kit.files.upload_v1(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  file_name: "fileName",
-  request_options: {timeout: 5}
-)
+image_kit.files.upload(file_name: "fileName", request_options: {timeout: 5})
 ```
 
 On timeout, `Imagekit::Errors::APITimeoutError` is raised.
@@ -142,8 +150,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 
 ```ruby
 response =
-  image_kit.files.upload_v1(
-    file: "https://www.example.com/rest-of-the-image-path.jpg",
+  image_kit.files.upload(
     file_name: "fileName",
     request_options: {
       extra_query: {my_query_parameter: value},
@@ -190,27 +197,18 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-image_kit.files.upload_v1(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  file_name: "fileName"
-)
+image_kit.files.upload(file_name: "fileName")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-image_kit.files.upload_v1(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  file_name: "fileName"
-)
+image_kit.files.upload(file_name: "fileName")
 
 # You can also splat a full Params class:
-params = Imagekit::FileUploadV1Params.new(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  file_name: "fileName"
-)
-image_kit.files.upload_v1(**params)
+params = Imagekit::FileUploadParams.new(file_name: "fileName")
+image_kit.files.upload(**params)
 ```
 
 ### Enums
@@ -218,25 +216,25 @@ image_kit.files.upload_v1(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :file
-puts(Imagekit::FileListParams::Type::FILE)
+# :all
+puts(Imagekit::AssetListParams::FileType::ALL)
 
-# Revealed type: `T.all(Imagekit::FileListParams::Type, Symbol)`
-T.reveal_type(Imagekit::FileListParams::Type::FILE)
+# Revealed type: `T.all(Imagekit::AssetListParams::FileType, Symbol)`
+T.reveal_type(Imagekit::AssetListParams::FileType::ALL)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-image_kit.files.list(
-  type: Imagekit::FileListParams::Type::FILE,
+image_kit.assets.list(
+  file_type: Imagekit::AssetListParams::FileType::ALL,
   # …
 )
 
 # Literal values are also permissible:
-image_kit.files.list(
-  type: :file,
+image_kit.assets.list(
+  file_type: :all,
   # …
 )
 ```

@@ -3,18 +3,38 @@
 require_relative "../../test_helper"
 
 class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceTest
-  def test_retrieve_required_params
+  def test_list
     skip("Prism tests are disabled")
 
-    response = @image_kit.files.versions.retrieve("versionId", file_id: "fileId")
+    response = @image_kit.files.versions.list("fileId")
 
     assert_pattern do
-      response => Imagekit::Models::Files::VersionRetrieveResponse
+      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionListResponseItem])
+    end
+  end
+
+  def test_delete_required_params
+    skip("Prism tests are disabled")
+
+    response = @image_kit.files.versions.delete("versionId", file_id: "fileId")
+
+    assert_pattern do
+      response => Imagekit::Internal::Type::Unknown
+    end
+  end
+
+  def test_get_required_params
+    skip("Prism tests are disabled")
+
+    response = @image_kit.files.versions.get("versionId", file_id: "fileId")
+
+    assert_pattern do
+      response => Imagekit::Models::Files::VersionGetResponse
     end
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionRetrieveResponse::AITag]) | nil,
+        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionGetResponse::AITag]) | nil,
         created_at: String | nil,
         custom_coordinates: String | nil,
         custom_metadata: Imagekit::Internal::Type::Unknown | nil,
@@ -33,29 +53,9 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
         type: String | nil,
         updated_at: String | nil,
         url: String | nil,
-        version_info: Imagekit::Models::Files::VersionRetrieveResponse::VersionInfo | nil,
+        version_info: Imagekit::Models::Files::VersionGetResponse::VersionInfo | nil,
         width: Float | nil
       }
-    end
-  end
-
-  def test_list
-    skip("Prism tests are disabled")
-
-    response = @image_kit.files.versions.list("fileId")
-
-    assert_pattern do
-      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionListResponseItem])
-    end
-  end
-
-  def test_delete_required_params
-    skip("Prism tests are disabled")
-
-    response = @image_kit.files.versions.delete("versionId", file_id: "fileId")
-
-    assert_pattern do
-      response => Imagekit::Internal::Type::Unknown
     end
   end
 

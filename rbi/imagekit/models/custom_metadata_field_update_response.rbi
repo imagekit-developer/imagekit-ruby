@@ -284,9 +284,9 @@ module Imagekit
               :Text,
               Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
             )
-          TEXT_AREA =
+          TEXTAREA =
             T.let(
-              :TextArea,
+              :Textarea,
               Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
             )
           NUMBER =

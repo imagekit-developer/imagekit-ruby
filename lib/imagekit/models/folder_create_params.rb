@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    # @see Imagekit::Resources::Folder#create
+    # @see Imagekit::Resources::Folders#create
     class FolderCreateParams < Imagekit::Internal::Type::BaseModel
       extend Imagekit::Internal::Type::RequestParameters::Converter
       include Imagekit::Internal::Type::RequestParameters

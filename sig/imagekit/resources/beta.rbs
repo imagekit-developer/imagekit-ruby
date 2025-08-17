@@ -1,0 +1,9 @@
+module Imagekit
+  module Resources
+    class Beta
+      attr_reader v2: Imagekit::Resources::Beta::V2
+
+      def initialize: (client: Imagekit::Client) -> void
+    end
+  end
+end

@@ -8,8 +8,7 @@ module Imagekit
       include Imagekit::Internal::Type::RequestParameters
 
       # @!attribute include_deleted
-      #   Set it to `true` to include deleted field objects in the API response. Default
-      #   value is `false`.
+      #   Set it to `true` to include deleted field objects in the API response.
       #
       #   @return [Boolean, nil]
       optional :include_deleted, Imagekit::Internal::Type::Boolean
@@ -18,7 +17,7 @@ module Imagekit
       #   Some parameter documentations has been truncated, see
       #   {Imagekit::Models::CustomMetadataFieldListParams} for more details.
       #
-      #   @param include_deleted [Boolean] Set it to `true` to include deleted field objects in the API response. Default v
+      #   @param include_deleted [Boolean] Set it to `true` to include deleted field objects in the API response.
       #
       #   @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -1,0 +1,15 @@
+module Imagekit
+  module Models
+    type folder_rename_response = { job_id: String }
+
+    class FolderRenameResponse < Imagekit::Internal::Type::BaseModel
+      attr_reader job_id: String?
+
+      def job_id=: (String) -> String
+
+      def initialize: (?job_id: String) -> void
+
+      def to_hash: -> { job_id: String }
+    end
+  end
+end

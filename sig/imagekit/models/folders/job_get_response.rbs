@@ -1,0 +1,45 @@
+module Imagekit
+  module Models
+    module Folders
+      type job_get_response =
+        {
+          job_id: String,
+          purge_request_id: String,
+          status: String,
+          type: String
+        }
+
+      class JobGetResponse < Imagekit::Internal::Type::BaseModel
+        attr_reader job_id: String?
+
+        def job_id=: (String) -> String
+
+        attr_reader purge_request_id: String?
+
+        def purge_request_id=: (String) -> String
+
+        attr_reader status: String?
+
+        def status=: (String) -> String
+
+        attr_reader type: String?
+
+        def type=: (String) -> String
+
+        def initialize: (
+          ?job_id: String,
+          ?purge_request_id: String,
+          ?status: String,
+          ?type: String
+        ) -> void
+
+        def to_hash: -> {
+          job_id: String,
+          purge_request_id: String,
+          status: String,
+          type: String
+        }
+      end
+    end
+  end
+end

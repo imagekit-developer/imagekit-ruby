@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    # @see Imagekit::Resources::Folder#delete
+    # @see Imagekit::Resources::Folders#delete
     class FolderDeleteParams < Imagekit::Internal::Type::BaseModel
       extend Imagekit::Internal::Type::RequestParameters::Converter
       include Imagekit::Internal::Type::RequestParameters

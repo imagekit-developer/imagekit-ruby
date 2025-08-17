@@ -14,8 +14,7 @@ module Imagekit
           )
         end
 
-      # Set it to `true` to include deleted field objects in the API response. Default
-      # value is `false`.
+      # Set it to `true` to include deleted field objects in the API response.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :include_deleted
 
@@ -29,8 +28,7 @@ module Imagekit
         ).returns(T.attached_class)
       end
       def self.new(
-        # Set it to `true` to include deleted field objects in the API response. Default
-        # value is `false`.
+        # Set it to `true` to include deleted field objects in the API response.
         include_deleted: nil,
         request_options: {}
       )

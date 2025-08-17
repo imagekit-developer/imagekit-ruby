@@ -137,7 +137,7 @@ module Imagekit
           extend Imagekit::Internal::Type::Enum
 
           TEXT = :Text
-          TEXT_AREA = :TextArea
+          TEXTAREA = :Textarea
           NUMBER = :Number
           DATE = :Date
           BOOLEAN = :Boolean

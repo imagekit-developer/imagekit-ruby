@@ -24,14 +24,20 @@ module Imagekit
     sig { returns(Imagekit::Resources::Files) }
     attr_reader :files
 
-    sig { returns(Imagekit::Resources::Folder) }
-    attr_reader :folder
+    sig { returns(Imagekit::Resources::Assets) }
+    attr_reader :assets
 
-    sig { returns(Imagekit::Resources::BulkJobs) }
-    attr_reader :bulk_jobs
+    sig { returns(Imagekit::Resources::Cache) }
+    attr_reader :cache
+
+    sig { returns(Imagekit::Resources::Folders) }
+    attr_reader :folders
 
     sig { returns(Imagekit::Resources::Accounts) }
     attr_reader :accounts
+
+    sig { returns(Imagekit::Resources::Beta) }
+    attr_reader :beta
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }

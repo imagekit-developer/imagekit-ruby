@@ -3,57 +3,54 @@
 module Imagekit
   module Resources
     class Files
-      # @return [Imagekit::Resources::Files::Details]
-      attr_reader :details
-
-      # @return [Imagekit::Resources::Files::Batch]
-      attr_reader :batch
+      # @return [Imagekit::Resources::Files::Bulk]
+      attr_reader :bulk
 
       # @return [Imagekit::Resources::Files::Versions]
       attr_reader :versions
-
-      # @return [Imagekit::Resources::Files::Purge]
-      attr_reader :purge
 
       # @return [Imagekit::Resources::Files::Metadata]
       attr_reader :metadata
 
       # Some parameter documentations has been truncated, see
-      # {Imagekit::Models::FileListParams} for more details.
+      # {Imagekit::Models::FileUpdateParams} for more details.
       #
-      # This API can list all the uploaded files and folders in your ImageKit.io media
-      # library. In addition, you can fine-tune your query by specifying various filters
-      # by generating a query string in a Lucene-like syntax and provide this generated
-      # string as the value of the `searchQuery`.
+      # This API updates the details or attributes of the current version of the file.
+      # You can update `tags`, `customCoordinates`, `customMetadata`, publication
+      # status, remove existing `AITags` and apply extensions using this API.
       #
-      # @overload list(file_type: nil, limit: nil, path: nil, search_query: nil, skip: nil, sort: nil, type: nil, request_options: {})
+      # @overload update(file_id, custom_coordinates: nil, custom_metadata: nil, description: nil, extensions: nil, remove_ai_tags: nil, tags: nil, webhook_url: nil, publish: nil, request_options: {})
       #
-      # @param file_type [String] Type of files to include in the result set. Accepts three values:
+      # @param file_id [String] The unique `fileId` of the uploaded file. `fileId` is returned in list and searc
       #
-      # @param limit [String] The maximum number of results to return in response:
+      # @param custom_coordinates [String, nil] Define an important area in the image in the format `x,y,width,height` e.g. `10,
       #
-      # @param path [String] Folder path if you want to limit the search within a specific folder. For exampl
+      # @param custom_metadata [Object] A key-value data to be associated with the asset. To unset a key, send `null` va
       #
-      # @param search_query [String] Query string in a Lucene-like query language e.g. `createdAt > "7d"`.
+      # @param description [String] Optional text to describe the contents of the file.
       #
-      # @param skip [String] The number of results to skip before returning results:
+      # @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
-      # @param sort [String] You can sort based on the following fields:
+      # @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
       #
-      # @param type [Symbol, Imagekit::Models::FileListParams::Type] Limit search to one of `file`, `file-version`, or `folder`. Pass `all` to includ
+      # @param tags [Array<String>, nil] An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `nul
+      #
+      # @param webhook_url [String] The final status of extensions after they have completed execution will be deliv
+      #
+      # @param publish [Imagekit::Models::FileUpdateParams::Publish] Configure the publication status of a file and its versions.
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<Imagekit::Models::FileListResponseItem>]
+      # @return [Imagekit::Models::FileUpdateResponse]
       #
-      # @see Imagekit::Models::FileListParams
-      def list(params = {})
-        parsed, options = Imagekit::FileListParams.dump_request(params)
+      # @see Imagekit::Models::FileUpdateParams
+      def update(file_id, params = {})
+        parsed, options = Imagekit::FileUpdateParams.dump_request(params)
         @client.request(
-          method: :get,
-          path: "v1/files",
-          query: parsed.transform_keys(file_type: "fileType", search_query: "searchQuery"),
-          model: Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileListResponseItem],
+          method: :patch,
+          path: ["v1/files/%1$s/details", file_id],
+          body: parsed,
+          model: Imagekit::Models::FileUpdateResponse,
           options: options
         )
       end
@@ -82,34 +79,6 @@ module Imagekit
           path: ["v1/files/%1$s", file_id],
           model: NilClass,
           options: params[:request_options]
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
-      # {Imagekit::Models::FileAddTagsParams} for more details.
-      #
-      # This API adds tags to multiple files in bulk. A maximum of 50 files can be
-      # specified at a time.
-      #
-      # @overload add_tags(file_ids:, tags:, request_options: {})
-      #
-      # @param file_ids [Array<String>] An array of fileIds to which you want to add tags.
-      #
-      # @param tags [Array<String>] An array of tags that you want to add to the files.
-      #
-      # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Imagekit::Models::FileAddTagsResponse]
-      #
-      # @see Imagekit::Models::FileAddTagsParams
-      def add_tags(params)
-        parsed, options = Imagekit::FileAddTagsParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "v1/files/addTags",
-          body: parsed,
-          model: Imagekit::Models::FileAddTagsResponse,
-          options: options
         )
       end
 
@@ -147,6 +116,30 @@ module Imagekit
       end
 
       # Some parameter documentations has been truncated, see
+      # {Imagekit::Models::FileGetParams} for more details.
+      #
+      # This API returns an object with details or attributes about the current version
+      # of the file.
+      #
+      # @overload get(file_id, request_options: {})
+      #
+      # @param file_id [String] The unique `fileId` of the uploaded file. `fileId` is returned in the list and s
+      #
+      # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Imagekit::Models::FileGetResponse]
+      #
+      # @see Imagekit::Models::FileGetParams
+      def get(file_id, params = {})
+        @client.request(
+          method: :get,
+          path: ["v1/files/%1$s/details", file_id],
+          model: Imagekit::Models::FileGetResponse,
+          options: params[:request_options]
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {Imagekit::Models::FileMoveParams} for more details.
       #
       # This will move a file and all its versions from one folder to another.
@@ -172,62 +165,6 @@ module Imagekit
           path: "v1/files/move",
           body: parsed,
           model: Imagekit::Internal::Type::Unknown,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
-      # {Imagekit::Models::FileRemoveAITagsParams} for more details.
-      #
-      # This API removes AITags from multiple files in bulk. A maximum of 50 files can
-      # be specified at a time.
-      #
-      # @overload remove_ai_tags(ai_tags:, file_ids:, request_options: {})
-      #
-      # @param ai_tags [Array<String>] An array of AITags that you want to remove from the files.
-      #
-      # @param file_ids [Array<String>] An array of fileIds from which you want to remove AITags.
-      #
-      # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Imagekit::Models::FileRemoveAITagsResponse]
-      #
-      # @see Imagekit::Models::FileRemoveAITagsParams
-      def remove_ai_tags(params)
-        parsed, options = Imagekit::FileRemoveAITagsParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "v1/files/removeAITags",
-          body: parsed,
-          model: Imagekit::Models::FileRemoveAITagsResponse,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
-      # {Imagekit::Models::FileRemoveTagsParams} for more details.
-      #
-      # This API removes tags from multiple files in bulk. A maximum of 50 files can be
-      # specified at a time.
-      #
-      # @overload remove_tags(file_ids:, tags:, request_options: {})
-      #
-      # @param file_ids [Array<String>] An array of fileIds from which you want to remove tags.
-      #
-      # @param tags [Array<String>] An array of tags that you want to remove from the files.
-      #
-      # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Imagekit::Models::FileRemoveTagsResponse]
-      #
-      # @see Imagekit::Models::FileRemoveTagsParams
-      def remove_tags(params)
-        parsed, options = Imagekit::FileRemoveTagsParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "v1/files/removeTags",
-          body: parsed,
-          model: Imagekit::Models::FileRemoveTagsResponse,
           options: options
         )
       end
@@ -266,7 +203,7 @@ module Imagekit
       end
 
       # Some parameter documentations has been truncated, see
-      # {Imagekit::Models::FileUploadV1Params} for more details.
+      # {Imagekit::Models::FileUploadParams} for more details.
       #
       # ImageKit.io allows you to upload files directly from both the server and client
       # sides. For server-side uploads, private API key authentication is used. For
@@ -296,9 +233,9 @@ module Imagekit
       # - [Quick start guides](/docs/quick-start-guides) for various frameworks and
       #   technologies.
       #
-      # @overload upload_v1(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, expire: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, public_key: nil, response_fields: nil, signature: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
+      # @overload upload(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, expire: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, public_key: nil, response_fields: nil, signature: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
       #
-      # @param file [String] Pass the HTTP URL or base64 string. When passing a URL in the file parameter, pl
+      # @param file [Pathname, StringIO, IO, String, Imagekit::FilePart] The API accepts any of the following:
       #
       # @param file_name [String] The name with which the file has to be uploaded.
       #
@@ -308,47 +245,49 @@ module Imagekit
       #
       # @param custom_coordinates [String] Define an important area in the image. This is only relevant for image type file
       #
-      # @param custom_metadata [String] Stringified JSON key-value data to be associated with the asset.
+      # @param custom_metadata [Hash{Symbol=>Object}] JSON key-value pairs to associate with the asset. Create the custom metadata fie
       #
-      # @param expire [String] The time until your signature is valid. It must be a [Unix time](https://en.wiki
+      # @param description [String] Optional text to describe the contents of the file.
       #
-      # @param extensions [String] Stringified JSON object with an array of extensions to be applied to the image.
+      # @param expire [Integer] The time until your signature is valid. It must be a [Unix time](https://en.wiki
+      #
+      # @param extensions [Array<Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
       #
       # @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
       #
-      # @param is_private_file [Symbol, Imagekit::Models::FileUploadV1Params::IsPrivateFile] Whether to mark the file as private or not.
+      # @param is_private_file [Boolean] Whether to mark the file as private or not.
       #
-      # @param is_published [Symbol, Imagekit::Models::FileUploadV1Params::IsPublished] Whether to upload file as published or not.
+      # @param is_published [Boolean] Whether to upload file as published or not.
       #
-      # @param overwrite_ai_tags [Symbol, Imagekit::Models::FileUploadV1Params::OverwriteAITags] If set to `true` and a file already exists at the exact location, its AITags wil
+      # @param overwrite_ai_tags [Boolean] If set to `true` and a file already exists at the exact location, its AITags wil
       #
-      # @param overwrite_custom_metadata [Symbol, Imagekit::Models::FileUploadV1Params::OverwriteCustomMetadata] If the request does not have `customMetadata`, and a file already exists at the
+      # @param overwrite_custom_metadata [Boolean] If the request does not have `customMetadata`, and a file already exists at the
       #
-      # @param overwrite_file [String] If `false` and `useUniqueFileName` is also `false`, and a file already exists at
+      # @param overwrite_file [Boolean] If `false` and `useUniqueFileName` is also `false`, and a file already exists at
       #
-      # @param overwrite_tags [Symbol, Imagekit::Models::FileUploadV1Params::OverwriteTags] If the request does not have `tags`, and a file already exists at the exact loca
+      # @param overwrite_tags [Boolean] If the request does not have `tags`, and a file already exists at the exact loca
       #
       # @param public_key [String] Your ImageKit.io public key. This field is only required for authentication when
       #
-      # @param response_fields [String] Comma-separated values of the fields that you want the API to return in the resp
+      # @param response_fields [Array<Symbol, Imagekit::Models::FileUploadParams::ResponseField>] Array of response field keys to include in the API response body.
       #
       # @param signature [String] HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a
       #
-      # @param tags [String] Set the tags while uploading the file.
+      # @param tags [Array<String>] Set the tags while uploading the file.
       #
-      # @param transformation [String] Stringified JSON object with properties for pre and post transformations:
+      # @param transformation [Imagekit::Models::FileUploadParams::Transformation] Configure pre-processing (`pre`) and post-processing (`post`) transformations.
       #
-      # @param use_unique_file_name [Symbol, Imagekit::Models::FileUploadV1Params::UseUniqueFileName] Whether to use a unique filename for this file or not.
+      # @param use_unique_file_name [Boolean] Whether to use a unique filename for this file or not.
       #
       # @param webhook_url [String] The final status of extensions after they have completed execution will be deliv
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekit::Models::FileUploadV1Response]
+      # @return [Imagekit::Models::FileUploadResponse]
       #
-      # @see Imagekit::Models::FileUploadV1Params
-      def upload_v1(params)
-        parsed, options = Imagekit::FileUploadV1Params.dump_request(params)
+      # @see Imagekit::Models::FileUploadParams
+      def upload(params)
+        parsed, options = Imagekit::FileUploadParams.dump_request(params)
         path =
           @client.base_url_overridden? ? "api/v1/files/upload" : "https://upload.imagekit.io/api/v1/files/upload"
         @client.request(
@@ -356,97 +295,7 @@ module Imagekit
           path: path,
           headers: {"content-type" => "multipart/form-data"},
           body: parsed,
-          model: Imagekit::Models::FileUploadV1Response,
-          options: options
-        )
-      end
-
-      # Some parameter documentations has been truncated, see
-      # {Imagekit::Models::FileUploadV2Params} for more details.
-      #
-      # The V2 API enhances security by verifying the entire payload using JWT. This API
-      # is in beta.
-      #
-      # ImageKit.io allows you to upload files directly from both the server and client
-      # sides. For server-side uploads, private API key authentication is used. For
-      # client-side uploads, generate a one-time `token` from your secure backend using
-      # private API.
-      # [Learn more](/docs/api-reference/upload-file/upload-file-v2#how-to-implement-secure-client-side-file-upload)
-      # about how to implement secure client-side file upload.
-      #
-      # **File size limit** \
-      # On the free plan, the maximum upload file sizes are 20MB for images, audio, and raw
-      # files, and 100MB for videos. On the paid plan, these limits increase to 40MB for
-      # images, audio, and raw files, and 2GB for videos. These limits can be further increased
-      # with higher-tier plans.
-      #
-      # **Version limit** \
-      # A file can have a maximum of 100 versions.
-      #
-      # **Demo applications**
-      #
-      # - A full-fledged
-      #   [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader),
-      #   supporting file selections from local storage, URL, Dropbox, Google Drive,
-      #   Instagram, and more.
-      # - [Quick start guides](/docs/quick-start-guides) for various frameworks and
-      #   technologies.
-      #
-      # @overload upload_v2(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, response_fields: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
-      #
-      # @param file [String] Pass the HTTP URL or base64 string. When passing a URL in the file parameter, pl
-      #
-      # @param file_name [String] The name with which the file has to be uploaded.
-      #
-      # @param token [String] This is the client-generated JSON Web Token (JWT). The ImageKit.io server uses i
-      #
-      # @param checks [String] Server-side checks to run on the asset.
-      #
-      # @param custom_coordinates [String] Define an important area in the image. This is only relevant for image type file
-      #
-      # @param custom_metadata [String] Stringified JSON key-value data to be associated with the asset.
-      #
-      # @param extensions [String] Stringified JSON object with an array of extensions to be applied to the image.
-      #
-      # @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
-      #
-      # @param is_private_file [Symbol, Imagekit::Models::FileUploadV2Params::IsPrivateFile] Whether to mark the file as private or not.
-      #
-      # @param is_published [Symbol, Imagekit::Models::FileUploadV2Params::IsPublished] Whether to upload file as published or not.
-      #
-      # @param overwrite_ai_tags [Symbol, Imagekit::Models::FileUploadV2Params::OverwriteAITags] If set to `true` and a file already exists at the exact location, its AITags wil
-      #
-      # @param overwrite_custom_metadata [Symbol, Imagekit::Models::FileUploadV2Params::OverwriteCustomMetadata] If the request does not have `customMetadata`, and a file already exists at the
-      #
-      # @param overwrite_file [String] If `false` and `useUniqueFileName` is also `false`, and a file already exists at
-      #
-      # @param overwrite_tags [Symbol, Imagekit::Models::FileUploadV2Params::OverwriteTags] If the request does not have `tags`, and a file already exists at the exact loca
-      #
-      # @param response_fields [String] Comma-separated values of the fields that you want the API to return in the resp
-      #
-      # @param tags [String] Set the tags while uploading the file.
-      #
-      # @param transformation [String] Stringified JSON object with properties for pre and post transformations:
-      #
-      # @param use_unique_file_name [Symbol, Imagekit::Models::FileUploadV2Params::UseUniqueFileName] Whether to use a unique filename for this file or not.
-      #
-      # @param webhook_url [String] The final status of extensions after they have completed execution will be deliv
-      #
-      # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Imagekit::Models::FileUploadV2Response]
-      #
-      # @see Imagekit::Models::FileUploadV2Params
-      def upload_v2(params)
-        parsed, options = Imagekit::FileUploadV2Params.dump_request(params)
-        path =
-          @client.base_url_overridden? ? "api/v2/files/upload" : "https://upload.imagekit.io/api/v2/files/upload"
-        @client.request(
-          method: :post,
-          path: path,
-          headers: {"content-type" => "multipart/form-data"},
-          body: parsed,
-          model: Imagekit::Models::FileUploadV2Response,
+          model: Imagekit::Models::FileUploadResponse,
           options: options
         )
       end
@@ -456,10 +305,8 @@ module Imagekit
       # @param client [Imagekit::Client]
       def initialize(client:)
         @client = client
-        @details = Imagekit::Resources::Files::Details.new(client: client)
-        @batch = Imagekit::Resources::Files::Batch.new(client: client)
+        @bulk = Imagekit::Resources::Files::Bulk.new(client: client)
         @versions = Imagekit::Resources::Files::Versions.new(client: client)
-        @purge = Imagekit::Resources::Files::Purge.new(client: client)
         @metadata = Imagekit::Resources::Files::Metadata.new(client: client)
       end
     end

@@ -1,0 +1,26 @@
+module Imagekit
+  module Models
+    module Files
+      type bulk_delete_params =
+        { file_ids: ::Array[String] }
+        & Imagekit::Internal::Type::request_parameters
+
+      class BulkDeleteParams < Imagekit::Internal::Type::BaseModel
+        extend Imagekit::Internal::Type::RequestParameters::Converter
+        include Imagekit::Internal::Type::RequestParameters
+
+        attr_accessor file_ids: ::Array[String]
+
+        def initialize: (
+          file_ids: ::Array[String],
+          ?request_options: Imagekit::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          file_ids: ::Array[String],
+          request_options: Imagekit::RequestOptions
+        }
+      end
+    end
+  end
+end

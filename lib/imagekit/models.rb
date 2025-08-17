@@ -39,13 +39,13 @@ module Imagekit
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
-  AccountGetUsageParams = Imagekit::Models::AccountGetUsageParams
+  Accounts = Imagekit::Models::Accounts
 
-  BulkJobCopyFolderParams = Imagekit::Models::BulkJobCopyFolderParams
+  AssetListParams = Imagekit::Models::AssetListParams
 
-  BulkJobMoveFolderParams = Imagekit::Models::BulkJobMoveFolderParams
+  Beta = Imagekit::Models::Beta
 
-  BulkJobRetrieveStatusParams = Imagekit::Models::BulkJobRetrieveStatusParams
+  Cache = Imagekit::Models::Cache
 
   CustomMetadataFieldCreateParams = Imagekit::Models::CustomMetadataFieldCreateParams
 
@@ -55,39 +55,31 @@ module Imagekit
 
   CustomMetadataFieldUpdateParams = Imagekit::Models::CustomMetadataFieldUpdateParams
 
-  ExifDetails = Imagekit::Models::ExifDetails
-
-  ExifImage = Imagekit::Models::ExifImage
-
-  FileAddTagsParams = Imagekit::Models::FileAddTagsParams
-
   FileCopyParams = Imagekit::Models::FileCopyParams
 
   FileDeleteParams = Imagekit::Models::FileDeleteParams
 
-  FileListParams = Imagekit::Models::FileListParams
+  FileGetParams = Imagekit::Models::FileGetParams
 
   FileMoveParams = Imagekit::Models::FileMoveParams
-
-  FileRemoveAITagsParams = Imagekit::Models::FileRemoveAITagsParams
-
-  FileRemoveTagsParams = Imagekit::Models::FileRemoveTagsParams
 
   FileRenameParams = Imagekit::Models::FileRenameParams
 
   Files = Imagekit::Models::Files
 
-  FileUploadV1Params = Imagekit::Models::FileUploadV1Params
+  FileUpdateParams = Imagekit::Models::FileUpdateParams
 
-  FileUploadV2Params = Imagekit::Models::FileUploadV2Params
+  FileUploadParams = Imagekit::Models::FileUploadParams
+
+  FolderCopyParams = Imagekit::Models::FolderCopyParams
 
   FolderCreateParams = Imagekit::Models::FolderCreateParams
 
   FolderDeleteParams = Imagekit::Models::FolderDeleteParams
 
-  Gps = Imagekit::Models::Gps
+  FolderMoveParams = Imagekit::Models::FolderMoveParams
 
-  Interoperability = Imagekit::Models::Interoperability
+  FolderRenameParams = Imagekit::Models::FolderRenameParams
 
-  Thumbnail = Imagekit::Models::Thumbnail
+  Folders = Imagekit::Models::Folders
 end

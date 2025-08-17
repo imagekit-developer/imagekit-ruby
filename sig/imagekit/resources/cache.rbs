@@ -1,0 +1,9 @@
+module Imagekit
+  module Resources
+    class Cache
+      attr_reader invalidation: Imagekit::Resources::Cache::Invalidation
+
+      def initialize: (client: Imagekit::Client) -> void
+    end
+  end
+end

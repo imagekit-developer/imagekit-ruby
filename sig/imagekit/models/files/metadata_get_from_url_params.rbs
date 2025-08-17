@@ -1,0 +1,25 @@
+module Imagekit
+  module Models
+    module Files
+      type metadata_get_from_url_params =
+        { url: String } & Imagekit::Internal::Type::request_parameters
+
+      class MetadataGetFromURLParams < Imagekit::Internal::Type::BaseModel
+        extend Imagekit::Internal::Type::RequestParameters::Converter
+        include Imagekit::Internal::Type::RequestParameters
+
+        attr_accessor url: String
+
+        def initialize: (
+          url: String,
+          ?request_options: Imagekit::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          request_options: Imagekit::RequestOptions
+        }
+      end
+    end
+  end
+end

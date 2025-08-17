@@ -1,0 +1,18 @@
+module Imagekit
+  module Resources
+    class Assets
+      def list: (
+        ?file_type: Imagekit::Models::AssetListParams::file_type,
+        ?limit: Integer,
+        ?path: String,
+        ?search_query: String,
+        ?skip: Integer,
+        ?sort: Imagekit::Models::AssetListParams::sort,
+        ?type: Imagekit::Models::AssetListParams::type_,
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::asset_list_response
+
+      def initialize: (client: Imagekit::Client) -> void
+    end
+  end
+end

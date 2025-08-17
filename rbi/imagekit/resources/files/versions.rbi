@@ -4,25 +4,6 @@ module Imagekit
   module Resources
     class Files
       class Versions
-        # This API returns an object with details or attributes of a file version.
-        sig do
-          params(
-            version_id: String,
-            file_id: String,
-            request_options: Imagekit::RequestOptions::OrHash
-          ).returns(Imagekit::Models::Files::VersionRetrieveResponse)
-        end
-        def retrieve(
-          # The unique `versionId` of the uploaded file. `versionId` is returned in list and
-          # search assets API and upload API.
-          version_id,
-          # The unique `fileId` of the uploaded file. `fileId` is returned in list and
-          # search assets API and upload API.
-          file_id:,
-          request_options: {}
-        )
-        end
-
         # This API returns details of all versions of a file.
         sig do
           params(
@@ -50,6 +31,25 @@ module Imagekit
           ).returns(T.anything)
         end
         def delete(
+          # The unique `versionId` of the uploaded file. `versionId` is returned in list and
+          # search assets API and upload API.
+          version_id,
+          # The unique `fileId` of the uploaded file. `fileId` is returned in list and
+          # search assets API and upload API.
+          file_id:,
+          request_options: {}
+        )
+        end
+
+        # This API returns an object with details or attributes of a file version.
+        sig do
+          params(
+            version_id: String,
+            file_id: String,
+            request_options: Imagekit::RequestOptions::OrHash
+          ).returns(Imagekit::Models::Files::VersionGetResponse)
+        end
+        def get(
           # The unique `versionId` of the uploaded file. `versionId` is returned in list and
           # search assets API and upload API.
           version_id,

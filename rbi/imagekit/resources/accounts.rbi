@@ -3,27 +3,14 @@
 module Imagekit
   module Resources
     class Accounts
-      # Get the account usage information between two dates. Note that the API response
-      # includes data from the start date while excluding data from the end date. In
-      # other words, the data covers the period starting from the specified start date
-      # up to, but not including, the end date.
-      sig do
-        params(
-          end_date: Date,
-          start_date: Date,
-          request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::AccountGetUsageResponse)
-      end
-      def get_usage(
-        # Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`.
-        # The difference between `startDate` and `endDate` should be less than 90 days.
-        end_date:,
-        # Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`.
-        # The difference between `startDate` and `endDate` should be less than 90 days.
-        start_date:,
-        request_options: {}
-      )
-      end
+      sig { returns(Imagekit::Resources::Accounts::Usage) }
+      attr_reader :usage
+
+      sig { returns(Imagekit::Resources::Accounts::Origins) }
+      attr_reader :origins
+
+      sig { returns(Imagekit::Resources::Accounts::URLEndpoints) }
+      attr_reader :url_endpoints
 
       # @api private
       sig { params(client: Imagekit::Client).returns(T.attached_class) }

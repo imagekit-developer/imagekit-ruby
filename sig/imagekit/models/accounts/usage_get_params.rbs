@@ -1,0 +1,30 @@
+module Imagekit
+  module Models
+    module Accounts
+      type usage_get_params =
+        { end_date: Date, start_date: Date }
+        & Imagekit::Internal::Type::request_parameters
+
+      class UsageGetParams < Imagekit::Internal::Type::BaseModel
+        extend Imagekit::Internal::Type::RequestParameters::Converter
+        include Imagekit::Internal::Type::RequestParameters
+
+        attr_accessor end_date: Date
+
+        attr_accessor start_date: Date
+
+        def initialize: (
+          end_date: Date,
+          start_date: Date,
+          ?request_options: Imagekit::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          end_date: Date,
+          start_date: Date,
+          request_options: Imagekit::RequestOptions
+        }
+      end
+    end
+  end
+end

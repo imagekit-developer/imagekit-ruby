@@ -73,7 +73,7 @@ module Imagekit
       #
       # @overload list(include_deleted: nil, request_options: {})
       #
-      # @param include_deleted [Boolean] Set it to `true` to include deleted field objects in the API response. Default v
+      # @param include_deleted [Boolean] Set it to `true` to include deleted field objects in the API response.
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -13,9 +13,9 @@ module Imagekit
           params(
             file_id: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(Imagekit::Models::Files::MetadataRetrieveResponse)
+          ).returns(Imagekit::Models::Files::MetadataGetResponse)
         end
-        def retrieve(
+        def get(
           # The unique `fileId` of the uploaded file. `fileId` is returned in the list and
           # search assets API and upload API.
           file_id,
@@ -29,9 +29,9 @@ module Imagekit
           params(
             url: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(Imagekit::Models::Files::MetadataFromURLResponse)
+          ).returns(Imagekit::Models::Files::MetadataGetFromURLResponse)
         end
-        def from_url(
+        def get_from_url(
           # Should be a valid file URL. It should be accessible using your ImageKit.io
           # account.
           url:,

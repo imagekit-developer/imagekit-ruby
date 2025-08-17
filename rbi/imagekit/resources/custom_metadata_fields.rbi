@@ -67,8 +67,7 @@ module Imagekit
         )
       end
       def list(
-        # Set it to `true` to include deleted field objects in the API response. Default
-        # value is `false`.
+        # Set it to `true` to include deleted field objects in the API response.
         include_deleted: nil,
         request_options: {}
       )

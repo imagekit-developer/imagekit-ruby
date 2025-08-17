@@ -16,11 +16,15 @@ module Imagekit
 
     attr_reader files: Imagekit::Resources::Files
 
-    attr_reader folder: Imagekit::Resources::Folder
+    attr_reader assets: Imagekit::Resources::Assets
 
-    attr_reader bulk_jobs: Imagekit::Resources::BulkJobs
+    attr_reader cache: Imagekit::Resources::Cache
+
+    attr_reader folders: Imagekit::Resources::Folders
 
     attr_reader accounts: Imagekit::Resources::Accounts
+
+    attr_reader beta: Imagekit::Resources::Beta
 
     private def auth_headers: -> ::Hash[String, String]
 

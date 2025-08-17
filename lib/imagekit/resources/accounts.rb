@@ -3,41 +3,23 @@
 module Imagekit
   module Resources
     class Accounts
-      # Some parameter documentations has been truncated, see
-      # {Imagekit::Models::AccountGetUsageParams} for more details.
-      #
-      # Get the account usage information between two dates. Note that the API response
-      # includes data from the start date while excluding data from the end date. In
-      # other words, the data covers the period starting from the specified start date
-      # up to, but not including, the end date.
-      #
-      # @overload get_usage(end_date:, start_date:, request_options: {})
-      #
-      # @param end_date [Date] Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`.
-      #
-      # @param start_date [Date] Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`.
-      #
-      # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Imagekit::Models::AccountGetUsageResponse]
-      #
-      # @see Imagekit::Models::AccountGetUsageParams
-      def get_usage(params)
-        parsed, options = Imagekit::AccountGetUsageParams.dump_request(params)
-        @client.request(
-          method: :get,
-          path: "v1/accounts/usage",
-          query: parsed.transform_keys(end_date: "endDate", start_date: "startDate"),
-          model: Imagekit::Models::AccountGetUsageResponse,
-          options: options
-        )
-      end
+      # @return [Imagekit::Resources::Accounts::Usage]
+      attr_reader :usage
+
+      # @return [Imagekit::Resources::Accounts::Origins]
+      attr_reader :origins
+
+      # @return [Imagekit::Resources::Accounts::URLEndpoints]
+      attr_reader :url_endpoints
 
       # @api private
       #
       # @param client [Imagekit::Client]
       def initialize(client:)
         @client = client
+        @usage = Imagekit::Resources::Accounts::Usage.new(client: client)
+        @origins = Imagekit::Resources::Accounts::Origins.new(client: client)
+        @url_endpoints = Imagekit::Resources::Accounts::URLEndpoints.new(client: client)
       end
     end
   end
