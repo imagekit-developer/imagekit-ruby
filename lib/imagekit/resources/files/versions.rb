@@ -43,7 +43,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Object]
+        # @return [Imagekit::Models::Files::VersionDeleteResponse]
         #
         # @see Imagekit::Models::Files::VersionDeleteParams
         def delete(version_id, params)
@@ -55,7 +55,7 @@ module Imagekit
           @client.request(
             method: :delete,
             path: ["v1/files/%1$s/versions/%2$s", file_id, version_id],
-            model: Imagekit::Internal::Type::Unknown,
+            model: Imagekit::Models::Files::VersionDeleteResponse,
             options: options
           )
         end

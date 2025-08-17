@@ -13,7 +13,7 @@ module Imagekit
           folder_name: String,
           parent_folder_path: String,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(T.anything)
+        ).returns(Imagekit::Models::FolderCreateResponse)
       end
       def create(
         # The folder will be created with this name.
@@ -40,7 +40,7 @@ module Imagekit
         params(
           folder_path: String,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(T.anything)
+        ).returns(Imagekit::Models::FolderDeleteResponse)
       end
       def delete(
         # Full path to the folder you want to delete. For example `/folder/to/delete/`.

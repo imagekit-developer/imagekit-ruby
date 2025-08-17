@@ -79,7 +79,7 @@ module Imagekit
         params(
           id: String,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(T.anything)
+        ).returns(Imagekit::Models::CustomMetadataFieldDeleteResponse)
       end
       def delete(
         # Should be a valid custom metadata field id.

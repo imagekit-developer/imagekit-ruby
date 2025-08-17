@@ -445,11 +445,9 @@ module Imagekit
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `exif_details` is a `Imagekit::ExifDetails`
-        #   exif_details => {
-        #     aperture_value: aperture_value,
-        #     color_space: color_space,
-        #     create_date: create_date
+        #   # `auto_description_extension` is a `Imagekit::AutoDescriptionExtension`
+        #   auto_description_extension => {
+        #     name: name
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

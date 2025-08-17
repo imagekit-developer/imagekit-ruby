@@ -2,7 +2,9 @@
 
 module Imagekit
   module Models
-    # @type [Imagekit::Internal::Type::Converter]
-    CustomMetadataFieldDeleteResponse = Imagekit::Internal::Type::Unknown
+    # @see Imagekit::Resources::CustomMetadataFields#delete
+    class CustomMetadataFieldDeleteResponse < Imagekit::Internal::Type::BaseModel
+      # @!method initialize
+    end
   end
 end

@@ -19,14 +19,14 @@ module Imagekit
         params(
           file_id: String,
           custom_coordinates: T.nilable(String),
-          custom_metadata: T.anything,
+          custom_metadata: T::Hash[Symbol, T.anything],
           description: String,
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::RemovedotBgExtension::OrHash,
+                Imagekit::AutoTaggingExtension::OrHash,
+                Imagekit::AutoDescriptionExtension::OrHash
               )
             ],
           remove_ai_tags:
@@ -109,7 +109,7 @@ module Imagekit
           source_file_path: String,
           include_file_versions: T::Boolean,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(T.anything)
+        ).returns(Imagekit::Models::FileCopyResponse)
       end
       def copy(
         # Full path to the folder you want to copy the above file into.
@@ -149,7 +149,7 @@ module Imagekit
           destination_path: String,
           source_file_path: String,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(T.anything)
+        ).returns(Imagekit::Models::FileMoveResponse)
       end
       def move(
         # Full path to the folder you want to move the above file into.
@@ -244,9 +244,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::RemovedotBgExtension::OrHash,
+                Imagekit::AutoTaggingExtension::OrHash,
+                Imagekit::AutoDescriptionExtension::OrHash
               )
             ],
           folder: String,

@@ -43,8 +43,10 @@ module Imagekit
           #   API. Send `customMetadata` in `responseFields` in API request to get the value
           #   of this field.
           #
-          #   @return [Object, nil]
-          optional :custom_metadata, Imagekit::Internal::Type::Unknown, api_name: :customMetadata
+          #   @return [Hash{Symbol=>Object}, nil]
+          optional :custom_metadata,
+                   Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown],
+                   api_name: :customMetadata
 
           # @!attribute duration
           #   The duration of the video in seconds (only for video).
@@ -193,7 +195,7 @@ module Imagekit
           #
           #   @param custom_coordinates [String, nil] Value of custom coordinates associated with the image in the format `x,y,width,h
           #
-          #   @param custom_metadata [Object] A key-value data associated with the asset. Use `responseField` in API request t
+          #   @param custom_metadata [Hash{Symbol=>Object}] A key-value data associated with the asset. Use `responseField` in API request t
           #
           #   @param duration [Integer] The duration of the video in seconds (only for video).
           #

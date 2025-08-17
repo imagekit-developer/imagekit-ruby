@@ -28,7 +28,7 @@ module Imagekit
             version_id: String,
             file_id: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(T.anything)
+          ).returns(Imagekit::Models::Files::VersionDeleteResponse)
         end
         def delete(
           # The unique `versionId` of the uploaded file. `versionId` is returned in list and

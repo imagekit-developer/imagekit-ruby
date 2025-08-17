@@ -103,14 +103,14 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Object]
+      # @return [Imagekit::Models::CustomMetadataFieldDeleteResponse]
       #
       # @see Imagekit::Models::CustomMetadataFieldDeleteParams
       def delete(id, params = {})
         @client.request(
           method: :delete,
           path: ["v1/customMetadataFields/%1$s", id],
-          model: Imagekit::Internal::Type::Unknown,
+          model: Imagekit::Models::CustomMetadataFieldDeleteResponse,
           options: params[:request_options]
         )
       end

@@ -2,7 +2,9 @@
 
 module Imagekit
   module Models
-    # @type [Imagekit::Internal::Type::Converter]
-    FileMoveResponse = Imagekit::Internal::Type::Unknown
+    # @see Imagekit::Resources::Files#move
+    class FileMoveResponse < Imagekit::Internal::Type::BaseModel
+      # @!method initialize
+    end
   end
 end

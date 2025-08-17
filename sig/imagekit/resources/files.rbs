@@ -10,7 +10,7 @@ module Imagekit
       def update: (
         String file_id,
         ?custom_coordinates: String?,
-        ?custom_metadata: top,
+        ?custom_metadata: ::Hash[Symbol, top],
         ?description: String,
         ?extensions: ::Array[Imagekit::Models::FileUpdateParams::extension],
         ?remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
@@ -30,7 +30,7 @@ module Imagekit
         source_file_path: String,
         ?include_file_versions: bool,
         ?request_options: Imagekit::request_opts
-      ) -> top
+      ) -> Imagekit::Models::FileCopyResponse
 
       def get: (
         String file_id,
@@ -41,7 +41,7 @@ module Imagekit
         destination_path: String,
         source_file_path: String,
         ?request_options: Imagekit::request_opts
-      ) -> top
+      ) -> Imagekit::Models::FileMoveResponse
 
       def rename: (
         file_path: String,

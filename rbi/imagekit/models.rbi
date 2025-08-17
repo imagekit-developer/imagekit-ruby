@@ -5,6 +5,10 @@ module Imagekit
 
   AssetListParams = Imagekit::Models::AssetListParams
 
+  AutoDescriptionExtension = Imagekit::Models::AutoDescriptionExtension
+
+  AutoTaggingExtension = Imagekit::Models::AutoTaggingExtension
+
   Beta = Imagekit::Models::Beta
 
   Cache = Imagekit::Models::Cache
@@ -56,6 +60,8 @@ module Imagekit
   Gps = Imagekit::Models::Gps
 
   Interoperability = Imagekit::Models::Interoperability
+
+  RemovedotBgExtension = Imagekit::Models::RemovedotBgExtension
 
   Thumbnail = Imagekit::Models::Thumbnail
 end

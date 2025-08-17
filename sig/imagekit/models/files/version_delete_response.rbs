@@ -1,7 +1,13 @@
 module Imagekit
   module Models
     module Files
-      VersionDeleteResponse: Imagekit::Internal::Type::Converter
+      type version_delete_response = {  }
+
+      class VersionDeleteResponse < Imagekit::Internal::Type::BaseModel
+        def initialize: -> void
+
+        def to_hash: -> {  }
+      end
     end
   end
 end

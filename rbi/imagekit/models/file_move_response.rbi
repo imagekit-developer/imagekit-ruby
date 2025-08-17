@@ -2,6 +2,19 @@
 
 module Imagekit
   module Models
-    FileMoveResponse = T.let(T.anything, Imagekit::Internal::Type::Converter)
+    class FileMoveResponse < Imagekit::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(Imagekit::Models::FileMoveResponse, Imagekit::Internal::AnyHash)
+        end
+
+      sig { returns(T.attached_class) }
+      def self.new
+      end
+
+      sig { override.returns({}) }
+      def to_hash
+      end
+    end
   end
 end

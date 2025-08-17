@@ -45,10 +45,10 @@ module Imagekit
       # metadata on an asset, you have to create the field using custom metadata fields
       # API. Send `customMetadata` in `responseFields` in API request to get the value
       # of this field.
-      sig { returns(T.nilable(T.anything)) }
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_reader :custom_metadata
 
-      sig { params(custom_metadata: T.anything).void }
+      sig { params(custom_metadata: T::Hash[Symbol, T.anything]).void }
       attr_writer :custom_metadata
 
       # The duration of the video in seconds (only for video).
@@ -223,7 +223,7 @@ module Imagekit
           audio_codec: String,
           bit_rate: Integer,
           custom_coordinates: T.nilable(String),
-          custom_metadata: T.anything,
+          custom_metadata: T::Hash[Symbol, T.anything],
           duration: Integer,
           embedded_metadata: T::Hash[Symbol, T.anything],
           extension_status:
@@ -330,7 +330,7 @@ module Imagekit
             audio_codec: String,
             bit_rate: Integer,
             custom_coordinates: T.nilable(String),
-            custom_metadata: T.anything,
+            custom_metadata: T::Hash[Symbol, T.anything],
             duration: Integer,
             embedded_metadata: T::Hash[Symbol, T.anything],
             extension_status:

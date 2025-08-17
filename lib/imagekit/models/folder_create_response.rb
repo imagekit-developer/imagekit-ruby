@@ -2,7 +2,9 @@
 
 module Imagekit
   module Models
-    # @type [Imagekit::Internal::Type::Converter]
-    FolderCreateResponse = Imagekit::Internal::Type::Unknown
+    # @see Imagekit::Resources::Folders#create
+    class FolderCreateResponse < Imagekit::Internal::Type::BaseModel
+      # @!method initialize
+    end
   end
 end

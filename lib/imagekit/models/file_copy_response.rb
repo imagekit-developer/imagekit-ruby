@@ -2,7 +2,9 @@
 
 module Imagekit
   module Models
-    # @type [Imagekit::Internal::Type::Converter]
-    FileCopyResponse = Imagekit::Internal::Type::Unknown
+    # @see Imagekit::Resources::Files#copy
+    class FileCopyResponse < Imagekit::Internal::Type::BaseModel
+      # @!method initialize
+    end
   end
 end

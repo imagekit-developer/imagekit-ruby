@@ -58,7 +58,13 @@ class Imagekit::Test::Resources::CustomMetadataFieldsTest < Imagekit::Test::Reso
     response = @image_kit.custom_metadata_fields.delete("id")
 
     assert_pattern do
-      response => Imagekit::Internal::Type::Unknown
+      response => Imagekit::Models::CustomMetadataFieldDeleteResponse
+    end
+
+    assert_pattern do
+      response => {
+        **_
+      }
     end
   end
 end

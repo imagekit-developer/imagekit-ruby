@@ -8,7 +8,7 @@ module Imagekit
             audio_codec: String,
             bit_rate: Integer,
             custom_coordinates: String?,
-            custom_metadata: top,
+            custom_metadata: ::Hash[Symbol, top],
             duration: Integer,
             embedded_metadata: ::Hash[Symbol, top],
             extension_status: Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus,
@@ -42,9 +42,9 @@ module Imagekit
 
           attr_accessor custom_coordinates: String?
 
-          attr_reader custom_metadata: top?
+          attr_reader custom_metadata: ::Hash[Symbol, top]?
 
-          def custom_metadata=: (top) -> top
+          def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
           attr_reader duration: Integer?
 
@@ -127,7 +127,7 @@ module Imagekit
             ?audio_codec: String,
             ?bit_rate: Integer,
             ?custom_coordinates: String?,
-            ?custom_metadata: top,
+            ?custom_metadata: ::Hash[Symbol, top],
             ?duration: Integer,
             ?embedded_metadata: ::Hash[Symbol, top],
             ?extension_status: Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus,
@@ -153,7 +153,7 @@ module Imagekit
             audio_codec: String,
             bit_rate: Integer,
             custom_coordinates: String?,
-            custom_metadata: top,
+            custom_metadata: ::Hash[Symbol, top],
             duration: Integer,
             embedded_metadata: ::Hash[Symbol, top],
             extension_status: Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus,

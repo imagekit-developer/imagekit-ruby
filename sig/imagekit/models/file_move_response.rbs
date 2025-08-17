@@ -1,5 +1,11 @@
 module Imagekit
   module Models
-    FileMoveResponse: Imagekit::Internal::Type::Converter
+    type file_move_response = {  }
+
+    class FileMoveResponse < Imagekit::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
   end
 end

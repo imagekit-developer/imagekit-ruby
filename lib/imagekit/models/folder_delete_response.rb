@@ -2,7 +2,9 @@
 
 module Imagekit
   module Models
-    # @type [Imagekit::Internal::Type::Converter]
-    FolderDeleteResponse = Imagekit::Internal::Type::Unknown
+    # @see Imagekit::Resources::Folders#delete
+    class FolderDeleteResponse < Imagekit::Internal::Type::BaseModel
+      # @!method initialize
+    end
   end
 end

@@ -29,8 +29,10 @@ module Imagekit
       # @!attribute custom_metadata
       #   An object with custom metadata for the file.
       #
-      #   @return [Object, nil]
-      optional :custom_metadata, Imagekit::Internal::Type::Unknown, api_name: :customMetadata
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :custom_metadata,
+               Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown],
+               api_name: :customMetadata
 
       # @!attribute file_id
       #   Unique identifier of the asset.
@@ -152,7 +154,7 @@ module Imagekit
       #
       #   @param custom_coordinates [String, nil] An string with custom coordinates of the file.
       #
-      #   @param custom_metadata [Object] An object with custom metadata for the file.
+      #   @param custom_metadata [Hash{Symbol=>Object}] An object with custom metadata for the file.
       #
       #   @param file_id [String] Unique identifier of the asset.
       #

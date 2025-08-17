@@ -20,7 +20,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Object]
+      # @return [Imagekit::Models::FolderCreateResponse]
       #
       # @see Imagekit::Models::FolderCreateParams
       def create(params)
@@ -29,7 +29,7 @@ module Imagekit
           method: :post,
           path: "v1/folder",
           body: parsed,
-          model: Imagekit::Internal::Type::Unknown,
+          model: Imagekit::Models::FolderCreateResponse,
           options: options
         )
       end
@@ -46,7 +46,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Object]
+      # @return [Imagekit::Models::FolderDeleteResponse]
       #
       # @see Imagekit::Models::FolderDeleteParams
       def delete(params)
@@ -55,7 +55,7 @@ module Imagekit
           method: :delete,
           path: "v1/folder",
           body: parsed,
-          model: Imagekit::Internal::Type::Unknown,
+          model: Imagekit::Models::FolderDeleteResponse,
           options: options
         )
       end

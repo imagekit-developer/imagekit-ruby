@@ -3,8 +3,10 @@
 module Imagekit
   module Models
     module Files
-      # @type [Imagekit::Internal::Type::Converter]
-      VersionDeleteResponse = Imagekit::Internal::Type::Unknown
+      # @see Imagekit::Resources::Files::Versions#delete
+      class VersionDeleteResponse < Imagekit::Internal::Type::BaseModel
+        # @!method initialize
+      end
     end
   end
 end

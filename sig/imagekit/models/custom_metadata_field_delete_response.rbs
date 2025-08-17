@@ -1,5 +1,11 @@
 module Imagekit
   module Models
-    CustomMetadataFieldDeleteResponse: Imagekit::Internal::Type::Converter
+    type custom_metadata_field_delete_response = {  }
+
+    class CustomMetadataFieldDeleteResponse < Imagekit::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
   end
 end

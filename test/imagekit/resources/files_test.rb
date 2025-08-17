@@ -17,7 +17,7 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
         ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileUpdateResponse::AITag]) | nil,
         created_at: String | nil,
         custom_coordinates: String | nil,
-        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
+        custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         extension_status: Imagekit::Models::FileUpdateResponse::ExtensionStatus | nil,
         file_id: String | nil,
         file_path: String | nil,
@@ -57,7 +57,13 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
       @image_kit.files.copy(destination_path: "/folder/to/copy/into/", source_file_path: "/path/to/file.jpg")
 
     assert_pattern do
-      response => Imagekit::Internal::Type::Unknown
+      response => Imagekit::Models::FileCopyResponse
+    end
+
+    assert_pattern do
+      response => {
+        **_
+      }
     end
   end
 
@@ -75,7 +81,7 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
         ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileGetResponse::AITag]) | nil,
         created_at: String | nil,
         custom_coordinates: String | nil,
-        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
+        custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         file_id: String | nil,
         file_path: String | nil,
         file_type: String | nil,
@@ -104,7 +110,13 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
       @image_kit.files.move(destination_path: "/folder/to/move/into/", source_file_path: "/path/to/file.jpg")
 
     assert_pattern do
-      response => Imagekit::Internal::Type::Unknown
+      response => Imagekit::Models::FileMoveResponse
+    end
+
+    assert_pattern do
+      response => {
+        **_
+      }
     end
   end
 
@@ -139,7 +151,7 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
         audio_codec: String | nil,
         bit_rate: Integer | nil,
         custom_coordinates: String | nil,
-        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
+        custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         duration: Integer | nil,
         embedded_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         extension_status: Imagekit::Models::FileUploadResponse::ExtensionStatus | nil,

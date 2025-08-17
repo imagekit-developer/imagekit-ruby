@@ -1,0 +1,41 @@
+module Imagekit
+  module Models
+    type auto_tagging_extension =
+      {
+        max_tags: Integer,
+        min_confidence: Integer,
+        name: Imagekit::Models::AutoTaggingExtension::name_
+      }
+
+    class AutoTaggingExtension < Imagekit::Internal::Type::BaseModel
+      attr_accessor max_tags: Integer
+
+      attr_accessor min_confidence: Integer
+
+      attr_accessor name: Imagekit::Models::AutoTaggingExtension::name_
+
+      def initialize: (
+        max_tags: Integer,
+        min_confidence: Integer,
+        name: Imagekit::Models::AutoTaggingExtension::name_
+      ) -> void
+
+      def to_hash: -> {
+        max_tags: Integer,
+        min_confidence: Integer,
+        name: Imagekit::Models::AutoTaggingExtension::name_
+      }
+
+      type name_ = :"google-auto-tagging" | :"aws-auto-tagging"
+
+      module Name
+        extend Imagekit::Internal::Type::Enum
+
+        GOOGLE_AUTO_TAGGING: :"google-auto-tagging"
+        AWS_AUTO_TAGGING: :"aws-auto-tagging"
+
+        def self?.values: -> ::Array[Imagekit::Models::AutoTaggingExtension::name_]
+      end
+    end
+  end
+end

@@ -9,7 +9,13 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
     response = @image_kit.folders.create(folder_name: "summer", parent_folder_path: "/product/images/")
 
     assert_pattern do
-      response => Imagekit::Internal::Type::Unknown
+      response => Imagekit::Models::FolderCreateResponse
+    end
+
+    assert_pattern do
+      response => {
+        **_
+      }
     end
   end
 
@@ -19,7 +25,13 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
     response = @image_kit.folders.delete(folder_path: "/folder/to/delete/")
 
     assert_pattern do
-      response => Imagekit::Internal::Type::Unknown
+      response => Imagekit::Models::FolderDeleteResponse
+    end
+
+    assert_pattern do
+      response => {
+        **_
+      }
     end
   end
 

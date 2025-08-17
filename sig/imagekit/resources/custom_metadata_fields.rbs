@@ -20,7 +20,10 @@ module Imagekit
         ?request_options: Imagekit::request_opts
       ) -> Imagekit::Models::custom_metadata_field_list_response
 
-      def delete: (String id, ?request_options: Imagekit::request_opts) -> top
+      def delete: (
+        String id,
+        ?request_options: Imagekit::request_opts
+      ) -> Imagekit::Models::CustomMetadataFieldDeleteResponse
 
       def initialize: (client: Imagekit::Client) -> void
     end

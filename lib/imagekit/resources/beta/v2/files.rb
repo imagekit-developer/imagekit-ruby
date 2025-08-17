@@ -52,7 +52,7 @@ module Imagekit
           #
           # @param description [String] Optional text to describe the contents of the file.
           #
-          # @param extensions [Array<Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
+          # @param extensions [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
           #
           # @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
           #

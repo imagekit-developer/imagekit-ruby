@@ -35,10 +35,10 @@ module Imagekit
         attr_accessor :custom_coordinates
 
         # An object with custom metadata for the file.
-        sig { returns(T.nilable(T.anything)) }
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_reader :custom_metadata
 
-        sig { params(custom_metadata: T.anything).void }
+        sig { params(custom_metadata: T::Hash[Symbol, T.anything]).void }
         attr_writer :custom_metadata
 
         # Unique identifier of the asset.
@@ -185,7 +185,7 @@ module Imagekit
               ),
             created_at: String,
             custom_coordinates: T.nilable(String),
-            custom_metadata: T.anything,
+            custom_metadata: T::Hash[Symbol, T.anything],
             file_id: String,
             file_path: String,
             file_type: String,
@@ -270,7 +270,7 @@ module Imagekit
                 ),
               created_at: String,
               custom_coordinates: T.nilable(String),
-              custom_metadata: T.anything,
+              custom_metadata: T::Hash[Symbol, T.anything],
               file_id: String,
               file_path: String,
               file_type: String,

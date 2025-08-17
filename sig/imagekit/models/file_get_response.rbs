@@ -5,7 +5,7 @@ module Imagekit
         ai_tags: ::Array[Imagekit::Models::FileGetResponse::AITag]?,
         created_at: String,
         custom_coordinates: String?,
-        custom_metadata: top,
+        custom_metadata: ::Hash[Symbol, top],
         file_id: String,
         file_path: String,
         file_type: String,
@@ -34,9 +34,9 @@ module Imagekit
 
       attr_accessor custom_coordinates: String?
 
-      attr_reader custom_metadata: top?
+      attr_reader custom_metadata: ::Hash[Symbol, top]?
 
-      def custom_metadata=: (top) -> top
+      def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
       attr_reader file_id: String?
 
@@ -110,7 +110,7 @@ module Imagekit
         ?ai_tags: ::Array[Imagekit::Models::FileGetResponse::AITag]?,
         ?created_at: String,
         ?custom_coordinates: String?,
-        ?custom_metadata: top,
+        ?custom_metadata: ::Hash[Symbol, top],
         ?file_id: String,
         ?file_path: String,
         ?file_type: String,
@@ -134,7 +134,7 @@ module Imagekit
         ai_tags: ::Array[Imagekit::Models::FileGetResponse::AITag]?,
         created_at: String,
         custom_coordinates: String?,
-        custom_metadata: top,
+        custom_metadata: ::Hash[Symbol, top],
         file_id: String,
         file_path: String,
         file_type: String,

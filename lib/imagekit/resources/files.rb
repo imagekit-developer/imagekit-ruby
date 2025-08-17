@@ -25,11 +25,11 @@ module Imagekit
       #
       # @param custom_coordinates [String, nil] Define an important area in the image in the format `x,y,width,height` e.g. `10,
       #
-      # @param custom_metadata [Object] A key-value data to be associated with the asset. To unset a key, send `null` va
+      # @param custom_metadata [Hash{Symbol=>Object}] A key-value data to be associated with the asset. To unset a key, send `null` va
       #
       # @param description [String] Optional text to describe the contents of the file.
       #
-      # @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
+      # @param extensions [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
       # @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
       #
@@ -101,7 +101,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Object]
+      # @return [Imagekit::Models::FileCopyResponse]
       #
       # @see Imagekit::Models::FileCopyParams
       def copy(params)
@@ -110,7 +110,7 @@ module Imagekit
           method: :post,
           path: "v1/files/copy",
           body: parsed,
-          model: Imagekit::Internal::Type::Unknown,
+          model: Imagekit::Models::FileCopyResponse,
           options: options
         )
       end
@@ -155,7 +155,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Object]
+      # @return [Imagekit::Models::FileMoveResponse]
       #
       # @see Imagekit::Models::FileMoveParams
       def move(params)
@@ -164,7 +164,7 @@ module Imagekit
           method: :post,
           path: "v1/files/move",
           body: parsed,
-          model: Imagekit::Internal::Type::Unknown,
+          model: Imagekit::Models::FileMoveResponse,
           options: options
         )
       end
@@ -251,7 +251,7 @@ module Imagekit
       #
       # @param expire [Integer] The time until your signature is valid. It must be a [Unix time](https://en.wiki
       #
-      # @param extensions [Array<Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
+      # @param extensions [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
       #
       # @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
       #

@@ -19,7 +19,13 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
     response = @image_kit.files.versions.delete("versionId", file_id: "fileId")
 
     assert_pattern do
-      response => Imagekit::Internal::Type::Unknown
+      response => Imagekit::Models::Files::VersionDeleteResponse
+    end
+
+    assert_pattern do
+      response => {
+        **_
+      }
     end
   end
 
@@ -37,7 +43,7 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
         ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionGetResponse::AITag]) | nil,
         created_at: String | nil,
         custom_coordinates: String | nil,
-        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
+        custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         file_id: String | nil,
         file_path: String | nil,
         file_type: String | nil,
@@ -73,7 +79,7 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
         ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionRestoreResponse::AITag]) | nil,
         created_at: String | nil,
         custom_coordinates: String | nil,
-        custom_metadata: Imagekit::Internal::Type::Unknown | nil,
+        custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         file_id: String | nil,
         file_path: String | nil,
         file_type: String | nil,
