@@ -386,438 +386,58 @@ module Imagekit
 
             type exif =
               {
-                exif: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Exif,
-                gps: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Gps,
-                image: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Image,
-                interoperability: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Interoperability,
+                exif: Imagekit::ExifDetails,
+                gps: Imagekit::Gps,
+                image: Imagekit::ExifImage,
+                interoperability: Imagekit::Interoperability,
                 makernote: ::Hash[Symbol, top],
-                thumbnail: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Thumbnail
+                thumbnail: Imagekit::Thumbnail
               }
 
             class Exif < Imagekit::Internal::Type::BaseModel
-              attr_reader exif: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Exif?
+              attr_reader exif: Imagekit::ExifDetails?
 
-              def exif=: (
-                Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Exif
-              ) -> Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Exif
+              def exif=: (Imagekit::ExifDetails) -> Imagekit::ExifDetails
 
-              attr_reader gps: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Gps?
+              attr_reader gps: Imagekit::Gps?
 
-              def gps=: (
-                Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Gps
-              ) -> Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Gps
+              def gps=: (Imagekit::Gps) -> Imagekit::Gps
 
-              attr_reader image: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Image?
+              attr_reader image: Imagekit::ExifImage?
 
-              def image=: (
-                Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Image
-              ) -> Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Image
+              def image=: (Imagekit::ExifImage) -> Imagekit::ExifImage
 
-              attr_reader interoperability: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Interoperability?
+              attr_reader interoperability: Imagekit::Interoperability?
 
               def interoperability=: (
-                Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Interoperability
-              ) -> Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Interoperability
+                Imagekit::Interoperability
+              ) -> Imagekit::Interoperability
 
               attr_reader makernote: ::Hash[Symbol, top]?
 
               def makernote=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
-              attr_reader thumbnail: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Thumbnail?
+              attr_reader thumbnail: Imagekit::Thumbnail?
 
-              def thumbnail=: (
-                Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Thumbnail
-              ) -> Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Thumbnail
+              def thumbnail=: (Imagekit::Thumbnail) -> Imagekit::Thumbnail
 
               def initialize: (
-                ?exif: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Exif,
-                ?gps: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Gps,
-                ?image: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Image,
-                ?interoperability: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Interoperability,
+                ?exif: Imagekit::ExifDetails,
+                ?gps: Imagekit::Gps,
+                ?image: Imagekit::ExifImage,
+                ?interoperability: Imagekit::Interoperability,
                 ?makernote: ::Hash[Symbol, top],
-                ?thumbnail: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Thumbnail
+                ?thumbnail: Imagekit::Thumbnail
               ) -> void
 
               def to_hash: -> {
-                exif: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Exif,
-                gps: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Gps,
-                image: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Image,
-                interoperability: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Interoperability,
+                exif: Imagekit::ExifDetails,
+                gps: Imagekit::Gps,
+                image: Imagekit::ExifImage,
+                interoperability: Imagekit::Interoperability,
                 makernote: ::Hash[Symbol, top],
-                thumbnail: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata::Exif::Thumbnail
+                thumbnail: Imagekit::Thumbnail
               }
-
-              type exif =
-                {
-                  aperture_value: Float,
-                  color_space: Integer,
-                  create_date: String,
-                  custom_rendered: Integer,
-                  date_time_original: String,
-                  exif_image_height: Integer,
-                  exif_image_width: Integer,
-                  exif_version: String,
-                  exposure_compensation: Float,
-                  exposure_mode: Integer,
-                  exposure_program: Integer,
-                  exposure_time: Float,
-                  flash: Integer,
-                  flashpix_version: String,
-                  f_number: Float,
-                  focal_length: Integer,
-                  focal_plane_resolution_unit: Integer,
-                  focal_plane_x_resolution: Float,
-                  focal_plane_y_resolution: Float,
-                  interop_offset: Integer,
-                  iso: Integer,
-                  metering_mode: Integer,
-                  scene_capture_type: Integer,
-                  shutter_speed_value: Float,
-                  sub_sec_time: String,
-                  white_balance: Integer
-                }
-
-              class Exif < Imagekit::Internal::Type::BaseModel
-                attr_reader aperture_value: Float?
-
-                def aperture_value=: (Float) -> Float
-
-                attr_reader color_space: Integer?
-
-                def color_space=: (Integer) -> Integer
-
-                attr_reader create_date: String?
-
-                def create_date=: (String) -> String
-
-                attr_reader custom_rendered: Integer?
-
-                def custom_rendered=: (Integer) -> Integer
-
-                attr_reader date_time_original: String?
-
-                def date_time_original=: (String) -> String
-
-                attr_reader exif_image_height: Integer?
-
-                def exif_image_height=: (Integer) -> Integer
-
-                attr_reader exif_image_width: Integer?
-
-                def exif_image_width=: (Integer) -> Integer
-
-                attr_reader exif_version: String?
-
-                def exif_version=: (String) -> String
-
-                attr_reader exposure_compensation: Float?
-
-                def exposure_compensation=: (Float) -> Float
-
-                attr_reader exposure_mode: Integer?
-
-                def exposure_mode=: (Integer) -> Integer
-
-                attr_reader exposure_program: Integer?
-
-                def exposure_program=: (Integer) -> Integer
-
-                attr_reader exposure_time: Float?
-
-                def exposure_time=: (Float) -> Float
-
-                attr_reader flash: Integer?
-
-                def flash=: (Integer) -> Integer
-
-                attr_reader flashpix_version: String?
-
-                def flashpix_version=: (String) -> String
-
-                attr_reader f_number: Float?
-
-                def f_number=: (Float) -> Float
-
-                attr_reader focal_length: Integer?
-
-                def focal_length=: (Integer) -> Integer
-
-                attr_reader focal_plane_resolution_unit: Integer?
-
-                def focal_plane_resolution_unit=: (Integer) -> Integer
-
-                attr_reader focal_plane_x_resolution: Float?
-
-                def focal_plane_x_resolution=: (Float) -> Float
-
-                attr_reader focal_plane_y_resolution: Float?
-
-                def focal_plane_y_resolution=: (Float) -> Float
-
-                attr_reader interop_offset: Integer?
-
-                def interop_offset=: (Integer) -> Integer
-
-                attr_reader iso: Integer?
-
-                def iso=: (Integer) -> Integer
-
-                attr_reader metering_mode: Integer?
-
-                def metering_mode=: (Integer) -> Integer
-
-                attr_reader scene_capture_type: Integer?
-
-                def scene_capture_type=: (Integer) -> Integer
-
-                attr_reader shutter_speed_value: Float?
-
-                def shutter_speed_value=: (Float) -> Float
-
-                attr_reader sub_sec_time: String?
-
-                def sub_sec_time=: (String) -> String
-
-                attr_reader white_balance: Integer?
-
-                def white_balance=: (Integer) -> Integer
-
-                def initialize: (
-                  ?aperture_value: Float,
-                  ?color_space: Integer,
-                  ?create_date: String,
-                  ?custom_rendered: Integer,
-                  ?date_time_original: String,
-                  ?exif_image_height: Integer,
-                  ?exif_image_width: Integer,
-                  ?exif_version: String,
-                  ?exposure_compensation: Float,
-                  ?exposure_mode: Integer,
-                  ?exposure_program: Integer,
-                  ?exposure_time: Float,
-                  ?flash: Integer,
-                  ?flashpix_version: String,
-                  ?f_number: Float,
-                  ?focal_length: Integer,
-                  ?focal_plane_resolution_unit: Integer,
-                  ?focal_plane_x_resolution: Float,
-                  ?focal_plane_y_resolution: Float,
-                  ?interop_offset: Integer,
-                  ?iso: Integer,
-                  ?metering_mode: Integer,
-                  ?scene_capture_type: Integer,
-                  ?shutter_speed_value: Float,
-                  ?sub_sec_time: String,
-                  ?white_balance: Integer
-                ) -> void
-
-                def to_hash: -> {
-                  aperture_value: Float,
-                  color_space: Integer,
-                  create_date: String,
-                  custom_rendered: Integer,
-                  date_time_original: String,
-                  exif_image_height: Integer,
-                  exif_image_width: Integer,
-                  exif_version: String,
-                  exposure_compensation: Float,
-                  exposure_mode: Integer,
-                  exposure_program: Integer,
-                  exposure_time: Float,
-                  flash: Integer,
-                  flashpix_version: String,
-                  f_number: Float,
-                  focal_length: Integer,
-                  focal_plane_resolution_unit: Integer,
-                  focal_plane_x_resolution: Float,
-                  focal_plane_y_resolution: Float,
-                  interop_offset: Integer,
-                  iso: Integer,
-                  metering_mode: Integer,
-                  scene_capture_type: Integer,
-                  shutter_speed_value: Float,
-                  sub_sec_time: String,
-                  white_balance: Integer
-                }
-              end
-
-              type gps = { gps_version_id: ::Array[Integer] }
-
-              class Gps < Imagekit::Internal::Type::BaseModel
-                attr_reader gps_version_id: ::Array[Integer]?
-
-                def gps_version_id=: (::Array[Integer]) -> ::Array[Integer]
-
-                def initialize: (?gps_version_id: ::Array[Integer]) -> void
-
-                def to_hash: -> { gps_version_id: ::Array[Integer] }
-              end
-
-              type image =
-                {
-                  exif_offset: Integer,
-                  gps_info: Integer,
-                  make: String,
-                  model: String,
-                  modify_date: String,
-                  orientation: Integer,
-                  resolution_unit: Integer,
-                  software: String,
-                  x_resolution: Integer,
-                  y_cb_cr_positioning: Integer,
-                  y_resolution: Integer
-                }
-
-              class Image < Imagekit::Internal::Type::BaseModel
-                attr_reader exif_offset: Integer?
-
-                def exif_offset=: (Integer) -> Integer
-
-                attr_reader gps_info: Integer?
-
-                def gps_info=: (Integer) -> Integer
-
-                attr_reader make: String?
-
-                def make=: (String) -> String
-
-                attr_reader model: String?
-
-                def model=: (String) -> String
-
-                attr_reader modify_date: String?
-
-                def modify_date=: (String) -> String
-
-                attr_reader orientation: Integer?
-
-                def orientation=: (Integer) -> Integer
-
-                attr_reader resolution_unit: Integer?
-
-                def resolution_unit=: (Integer) -> Integer
-
-                attr_reader software: String?
-
-                def software=: (String) -> String
-
-                attr_reader x_resolution: Integer?
-
-                def x_resolution=: (Integer) -> Integer
-
-                attr_reader y_cb_cr_positioning: Integer?
-
-                def y_cb_cr_positioning=: (Integer) -> Integer
-
-                attr_reader y_resolution: Integer?
-
-                def y_resolution=: (Integer) -> Integer
-
-                def initialize: (
-                  ?exif_offset: Integer,
-                  ?gps_info: Integer,
-                  ?make: String,
-                  ?model: String,
-                  ?modify_date: String,
-                  ?orientation: Integer,
-                  ?resolution_unit: Integer,
-                  ?software: String,
-                  ?x_resolution: Integer,
-                  ?y_cb_cr_positioning: Integer,
-                  ?y_resolution: Integer
-                ) -> void
-
-                def to_hash: -> {
-                  exif_offset: Integer,
-                  gps_info: Integer,
-                  make: String,
-                  model: String,
-                  modify_date: String,
-                  orientation: Integer,
-                  resolution_unit: Integer,
-                  software: String,
-                  x_resolution: Integer,
-                  y_cb_cr_positioning: Integer,
-                  y_resolution: Integer
-                }
-              end
-
-              type interoperability =
-                { interop_index: String, interop_version: String }
-
-              class Interoperability < Imagekit::Internal::Type::BaseModel
-                attr_reader interop_index: String?
-
-                def interop_index=: (String) -> String
-
-                attr_reader interop_version: String?
-
-                def interop_version=: (String) -> String
-
-                def initialize: (
-                  ?interop_index: String,
-                  ?interop_version: String
-                ) -> void
-
-                def to_hash: -> {
-                  interop_index: String,
-                  interop_version: String
-                }
-              end
-
-              type thumbnail =
-                {
-                  compression: Integer,
-                  resolution_unit: Integer,
-                  thumbnail_length: Integer,
-                  thumbnail_offset: Integer,
-                  x_resolution: Integer,
-                  y_resolution: Integer
-                }
-
-              class Thumbnail < Imagekit::Internal::Type::BaseModel
-                attr_reader compression: Integer?
-
-                def compression=: (Integer) -> Integer
-
-                attr_reader resolution_unit: Integer?
-
-                def resolution_unit=: (Integer) -> Integer
-
-                attr_reader thumbnail_length: Integer?
-
-                def thumbnail_length=: (Integer) -> Integer
-
-                attr_reader thumbnail_offset: Integer?
-
-                def thumbnail_offset=: (Integer) -> Integer
-
-                attr_reader x_resolution: Integer?
-
-                def x_resolution=: (Integer) -> Integer
-
-                attr_reader y_resolution: Integer?
-
-                def y_resolution=: (Integer) -> Integer
-
-                def initialize: (
-                  ?compression: Integer,
-                  ?resolution_unit: Integer,
-                  ?thumbnail_length: Integer,
-                  ?thumbnail_offset: Integer,
-                  ?x_resolution: Integer,
-                  ?y_resolution: Integer
-                ) -> void
-
-                def to_hash: -> {
-                  compression: Integer,
-                  resolution_unit: Integer,
-                  thumbnail_length: Integer,
-                  thumbnail_offset: Integer,
-                  x_resolution: Integer,
-                  y_resolution: Integer
-                }
-              end
             end
           end
 

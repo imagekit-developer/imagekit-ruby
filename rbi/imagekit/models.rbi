@@ -21,6 +21,10 @@ module Imagekit
   CustomMetadataFieldUpdateParams =
     Imagekit::Models::CustomMetadataFieldUpdateParams
 
+  ExifDetails = Imagekit::Models::ExifDetails
+
+  ExifImage = Imagekit::Models::ExifImage
+
   FileCopyParams = Imagekit::Models::FileCopyParams
 
   FileDeleteParams = Imagekit::Models::FileDeleteParams
@@ -48,4 +52,10 @@ module Imagekit
   FolderRenameParams = Imagekit::Models::FolderRenameParams
 
   Folders = Imagekit::Models::Folders
+
+  Gps = Imagekit::Models::Gps
+
+  Interoperability = Imagekit::Models::Interoperability
+
+  Thumbnail = Imagekit::Models::Thumbnail
 end
