@@ -66,9 +66,7 @@ module Imagekit
             #
             #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type]
             required :type,
-                     enum: -> {
-                       Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type
-                     }
+                     enum: -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type }
 
             # @!attribute preserve_asset_delivery_types
             #   Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
@@ -99,9 +97,7 @@ module Imagekit
             #
             #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type]
             required :type,
-                     enum: -> {
-                       Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type
-                     }
+                     enum: -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type }
 
             # @!method initialize(type:)
             #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type]
@@ -122,9 +118,7 @@ module Imagekit
             #
             #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type]
             required :type,
-                     enum: -> {
-                       Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type
-                     }
+                     enum: -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type }
 
             # @!method initialize(type:)
             #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type]

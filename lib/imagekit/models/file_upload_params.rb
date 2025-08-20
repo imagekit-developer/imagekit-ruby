@@ -324,9 +324,7 @@ module Imagekit
         #
         #   @return [Array<Imagekit::Models::FileUploadParams::Transformation::Post::SimplePostTransformation, Imagekit::Models::FileUploadParams::Transformation::Post::ConvertGifToVideo, Imagekit::Models::FileUploadParams::Transformation::Post::GenerateAThumbnail, Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming>, nil]
         optional :post,
-                 -> {
-                   Imagekit::Internal::Type::ArrayOf[union: Imagekit::FileUploadParams::Transformation::Post]
-                 }
+                 -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::FileUploadParams::Transformation::Post] }
 
         # @!attribute pre
         #   Transformation string to apply before uploading the file to the Media Library.
@@ -372,9 +370,7 @@ module Imagekit
             #
             #   @return [Symbol, Imagekit::Models::FileUploadParams::Transformation::Post::SimplePostTransformation::Type]
             required :type,
-                     enum: -> {
-                       Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type
-                     }
+                     enum: -> { Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type }
 
             # @!attribute value
             #   Transformation string (e.g. `w-200,h-200`).
@@ -410,10 +406,7 @@ module Imagekit
             #   Converts an animated GIF into an MP4.
             #
             #   @return [Symbol, Imagekit::Models::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type]
-            required :type,
-                     enum: -> {
-                       Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type
-                     }
+            required :type, enum: -> { Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type }
 
             # @!attribute value
             #   Optional transformation string to apply to the output video.
@@ -449,10 +442,7 @@ module Imagekit
             #   Generates a thumbnail image.
             #
             #   @return [Symbol, Imagekit::Models::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type]
-            required :type,
-                     enum: -> {
-                       Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type
-                     }
+            required :type, enum: -> { Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type }
 
             # @!attribute value
             #   Optional transformation string.
@@ -489,18 +479,14 @@ module Imagekit
             #
             #   @return [Symbol, Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol]
             required :protocol,
-                     enum: -> {
-                       Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol
-                     }
+                     enum: -> { Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol }
 
             # @!attribute type
             #   Adaptive Bitrate Streaming (ABS) setup.
             #
             #   @return [Symbol, Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type]
             required :type,
-                     enum: -> {
-                       Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type
-                     }
+                     enum: -> { Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type }
 
             # @!attribute value
             #   List of different representations you want to create separated by an underscore.

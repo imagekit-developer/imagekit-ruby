@@ -89,9 +89,7 @@ module Imagekit
           #
           #   @return [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>, nil]
           optional :extensions,
-                   -> {
-                     Imagekit::Internal::Type::ArrayOf[union: Imagekit::Beta::V2::FileUploadParams::Extension]
-                   }
+                   -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::Beta::V2::FileUploadParams::Extension] }
 
           # @!attribute folder
           #   The folder path in which the image has to be uploaded. If the folder(s) didn't
@@ -291,9 +289,7 @@ module Imagekit
             #
             #   @return [Array<Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming>, nil]
             optional :post,
-                     -> {
-                       Imagekit::Internal::Type::ArrayOf[union: Imagekit::Beta::V2::FileUploadParams::Transformation::Post]
-                     }
+                     -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::Beta::V2::FileUploadParams::Transformation::Post] }
 
             # @!attribute pre
             #   Transformation string to apply before uploading the file to the Media Library.
@@ -325,17 +321,13 @@ module Imagekit
             module Post
               extend Imagekit::Internal::Type::Union
 
-              variant -> {
-                Imagekit::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation
-              }
+              variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation }
 
               variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo }
 
               variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail }
 
-              variant -> {
-                Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming
-              }
+              variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming }
 
               class SimplePostTransformation < Imagekit::Internal::Type::BaseModel
                 # @!attribute type
@@ -343,9 +335,7 @@ module Imagekit
                 #
                 #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation::Type]
                 required :type,
-                         enum: -> {
-                           Imagekit::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation::Type
-                         }
+                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation::Type }
 
                 # @!attribute value
                 #   Transformation string (e.g. `w-200,h-200`).
@@ -382,9 +372,7 @@ module Imagekit
                 #
                 #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type]
                 required :type,
-                         enum: -> {
-                           Imagekit::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type
-                         }
+                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type }
 
                 # @!attribute value
                 #   Optional transformation string to apply to the output video.
@@ -421,9 +409,7 @@ module Imagekit
                 #
                 #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type]
                 required :type,
-                         enum: -> {
-                           Imagekit::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type
-                         }
+                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type }
 
                 # @!attribute value
                 #   Optional transformation string.
@@ -460,18 +446,14 @@ module Imagekit
                 #
                 #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol]
                 required :protocol,
-                         enum: -> {
-                           Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol
-                         }
+                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol }
 
                 # @!attribute type
                 #   Adaptive Bitrate Streaming (ABS) setup.
                 #
                 #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type]
                 required :type,
-                         enum: -> {
-                           Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type
-                         }
+                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type }
 
                 # @!attribute value
                 #   List of different representations you want to create separated by an underscore.
