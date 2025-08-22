@@ -18,25 +18,11 @@ module Imagekit
       sig do
         params(
           file_id: String,
-          custom_coordinates: T.nilable(String),
-          custom_metadata: T::Hash[Symbol, T.anything],
-          description: String,
-          extensions:
-            T::Array[
-              T.any(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::OrHash
-              )
-            ],
-          remove_ai_tags:
+          update:
             T.any(
-              T::Array[String],
-              Imagekit::FileUpdateParams::RemoveAITags::OrSymbol
+              Imagekit::FileUpdateParams::Update::UpdateFileDetails::OrHash,
+              Imagekit::FileUpdateParams::Update::ChangePublicationStatus::OrHash
             ),
-          tags: T.nilable(T::Array[String]),
-          webhook_url: String,
-          publish: Imagekit::FileUpdateParams::Publish::OrHash,
           request_options: Imagekit::RequestOptions::OrHash
         ).returns(Imagekit::Models::FileUpdateResponse)
       end
@@ -44,37 +30,7 @@ module Imagekit
         # The unique `fileId` of the uploaded file. `fileId` is returned in list and
         # search assets API and upload API.
         file_id,
-        # Define an important area in the image in the format `x,y,width,height` e.g.
-        # `10,10,100,100`. Send `null` to unset this value.
-        custom_coordinates: nil,
-        # A key-value data to be associated with the asset. To unset a key, send `null`
-        # value for that key. Before setting any custom metadata on an asset you have to
-        # create the field using custom metadata fields API.
-        custom_metadata: nil,
-        # Optional text to describe the contents of the file.
-        description: nil,
-        # Array of extensions to be applied to the asset. Each extension can be configured
-        # with specific parameters based on the extension type.
-        extensions: nil,
-        # An array of AITags associated with the file that you want to remove, e.g.
-        # `["car", "vehicle", "motorsports"]`.
-        #
-        # If you want to remove all AITags associated with the file, send a string -
-        # "all".
-        #
-        # Note: The remove operation for `AITags` executes before any of the `extensions`
-        # are processed.
-        remove_ai_tags: nil,
-        # An array of tags associated with the file, such as `["tag1", "tag2"]`. Send
-        # `null` to unset all tags associated with the file.
-        tags: nil,
-        # The final status of extensions after they have completed execution will be
-        # delivered to this endpoint as a POST request.
-        # [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure)
-        # about the webhook payload structure.
-        webhook_url: nil,
-        # Configure the publication status of a file and its versions.
-        publish: nil,
+        update: nil,
         request_options: {}
       )
       end

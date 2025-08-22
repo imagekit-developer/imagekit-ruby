@@ -19,25 +19,11 @@ module Imagekit
       # You can update `tags`, `customCoordinates`, `customMetadata`, publication
       # status, remove existing `AITags` and apply extensions using this API.
       #
-      # @overload update(file_id, custom_coordinates: nil, custom_metadata: nil, description: nil, extensions: nil, remove_ai_tags: nil, tags: nil, webhook_url: nil, publish: nil, request_options: {})
+      # @overload update(file_id, update: nil, request_options: {})
       #
       # @param file_id [String] The unique `fileId` of the uploaded file. `fileId` is returned in list and searc
       #
-      # @param custom_coordinates [String, nil] Define an important area in the image in the format `x,y,width,height` e.g. `10,
-      #
-      # @param custom_metadata [Hash{Symbol=>Object}] A key-value data to be associated with the asset. To unset a key, send `null` va
-      #
-      # @param description [String] Optional text to describe the contents of the file.
-      #
-      # @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
-      #
-      # @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
-      #
-      # @param tags [Array<String>, nil] An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `nul
-      #
-      # @param webhook_url [String] The final status of extensions after they have completed execution will be deliv
-      #
-      # @param publish [Imagekit::Models::FileUpdateParams::Publish] Configure the publication status of a file and its versions.
+      # @param update [Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails, Imagekit::Models::FileUpdateParams::Update::ChangePublicationStatus]
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -49,7 +35,7 @@ module Imagekit
         @client.request(
           method: :patch,
           path: ["v1/files/%1$s/details", file_id],
-          body: parsed,
+          body: parsed[:update],
           model: Imagekit::Models::FileUpdateResponse,
           options: options
         )
