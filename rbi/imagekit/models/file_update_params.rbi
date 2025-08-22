@@ -39,9 +39,9 @@ module Imagekit
           T.nilable(
             T::Array[
               T.any(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension,
-                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension,
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension
+                Imagekit::FileUpdateParams::Extension::RemoveBg,
+                Imagekit::FileUpdateParams::Extension::AIAutoDescription,
+                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension
               )
             ]
           )
@@ -54,9 +54,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::FileUpdateParams::Extension::RemoveBg::OrHash,
+                Imagekit::FileUpdateParams::Extension::AIAutoDescription::OrHash,
+                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash
               )
             ]
         ).void
@@ -124,9 +124,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::FileUpdateParams::Extension::RemoveBg::OrHash,
+                Imagekit::FileUpdateParams::Extension::AIAutoDescription::OrHash,
+                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash
               )
             ],
           remove_ai_tags:
@@ -185,9 +185,9 @@ module Imagekit
             extensions:
               T::Array[
                 T.any(
-                  Imagekit::FileUpdateParams::Extension::RemovedotBgExtension,
-                  Imagekit::FileUpdateParams::Extension::AutoTaggingExtension,
-                  Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension
+                  Imagekit::FileUpdateParams::Extension::RemoveBg,
+                  Imagekit::FileUpdateParams::Extension::AIAutoDescription,
+                  Imagekit::FileUpdateParams::Extension::AutoTaggingExtension
                 )
               ],
             remove_ai_tags:
@@ -211,33 +211,29 @@ module Imagekit
         Variants =
           T.type_alias do
             T.any(
-              Imagekit::FileUpdateParams::Extension::RemovedotBgExtension,
-              Imagekit::FileUpdateParams::Extension::AutoTaggingExtension,
-              Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension
+              Imagekit::FileUpdateParams::Extension::RemoveBg,
+              Imagekit::FileUpdateParams::Extension::AIAutoDescription,
+              Imagekit::FileUpdateParams::Extension::AutoTaggingExtension
             )
           end
 
-        class RemovedotBgExtension < Imagekit::Internal::Type::BaseModel
+        class RemoveBg < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension,
+                Imagekit::FileUpdateParams::Extension::RemoveBg,
                 Imagekit::Internal::AnyHash
               )
             end
 
           # Specifies the background removal extension.
-          sig do
-            returns(
-              Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Name::OrSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :name
 
           sig do
             returns(
               T.nilable(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Options
+                Imagekit::FileUpdateParams::Extension::RemoveBg::Options
               )
             )
           end
@@ -246,74 +242,42 @@ module Imagekit
           sig do
             params(
               options:
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Options::OrHash
+                Imagekit::FileUpdateParams::Extension::RemoveBg::Options::OrHash
             ).void
           end
           attr_writer :options
 
           sig do
             params(
-              name:
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Name::OrSymbol,
               options:
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Options::OrHash
+                Imagekit::FileUpdateParams::Extension::RemoveBg::Options::OrHash,
+              name: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
+            options: nil,
             # Specifies the background removal extension.
-            name:,
-            options: nil
+            name: :"remove-bg"
           )
           end
 
           sig do
             override.returns(
               {
-                name:
-                  Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Name::OrSymbol,
+                name: Symbol,
                 options:
-                  Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Options
+                  Imagekit::FileUpdateParams::Extension::RemoveBg::Options
               }
             )
           end
           def to_hash
           end
 
-          # Specifies the background removal extension.
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Name
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            REMOVE_BG =
-              T.let(
-                :"remove-bg",
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Name::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Name::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
           class Options < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Options,
+                  Imagekit::FileUpdateParams::Extension::RemoveBg::Options,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -483,74 +447,28 @@ module Imagekit
           end
         end
 
-        class AutoDescriptionExtension < Imagekit::Internal::Type::BaseModel
+        class AIAutoDescription < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension,
+                Imagekit::FileUpdateParams::Extension::AIAutoDescription,
                 Imagekit::Internal::AnyHash
               )
             end
 
           # Specifies the auto description extension.
-          sig do
-            returns(
-              Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::Name::OrSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :name
 
-          sig do
-            params(
-              name:
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::Name::OrSymbol
-            ).returns(T.attached_class)
-          end
+          sig { params(name: Symbol).returns(T.attached_class) }
           def self.new(
             # Specifies the auto description extension.
-            name:
+            name: :"ai-auto-description"
           )
           end
 
-          sig do
-            override.returns(
-              {
-                name:
-                  Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::Name::OrSymbol
-              }
-            )
-          end
+          sig { override.returns({ name: Symbol }) }
           def to_hash
-          end
-
-          # Specifies the auto description extension.
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::Name
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            AI_AUTO_DESCRIPTION =
-              T.let(
-                :"ai-auto-description",
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::Name::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::Name::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 

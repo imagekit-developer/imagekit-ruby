@@ -24,9 +24,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::FileUpdateParams::Extension::RemoveBg::OrHash,
+                Imagekit::FileUpdateParams::Extension::AIAutoDescription::OrHash,
+                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash
               )
             ],
           remove_ai_tags:

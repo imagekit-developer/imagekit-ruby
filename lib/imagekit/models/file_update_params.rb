@@ -34,7 +34,7 @@ module Imagekit
       #   Array of extensions to be applied to the asset. Each extension can be configured
       #   with specific parameters based on the extension type.
       #
-      #   @return [Array<Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension>, nil]
+      #   @return [Array<Imagekit::Models::FileUpdateParams::Extension::RemoveBg, Imagekit::Models::FileUpdateParams::Extension::AIAutoDescription, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension>, nil]
       optional :extensions,
                -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::FileUpdateParams::Extension] }
 
@@ -87,7 +87,7 @@ module Imagekit
       #
       #   @param description [String] Optional text to describe the contents of the file.
       #
-      #   @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
+      #   @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemoveBg, Imagekit::Models::FileUpdateParams::Extension::AIAutoDescription, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
       #   @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
       #
@@ -102,42 +102,32 @@ module Imagekit
       module Extension
         extend Imagekit::Internal::Type::Union
 
-        variant -> { Imagekit::FileUpdateParams::Extension::RemovedotBgExtension }
+        discriminator :name
+
+        variant :"remove-bg", -> { Imagekit::FileUpdateParams::Extension::RemoveBg }
+
+        variant :"ai-auto-description", -> { Imagekit::FileUpdateParams::Extension::AIAutoDescription }
 
         variant -> { Imagekit::FileUpdateParams::Extension::AutoTaggingExtension }
 
-        variant -> { Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension }
-
-        class RemovedotBgExtension < Imagekit::Internal::Type::BaseModel
+        class RemoveBg < Imagekit::Internal::Type::BaseModel
           # @!attribute name
           #   Specifies the background removal extension.
           #
-          #   @return [Symbol, Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension::Name]
-          required :name, enum: -> { Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Name }
+          #   @return [Symbol, :"remove-bg"]
+          required :name, const: :"remove-bg"
 
           # @!attribute options
           #
-          #   @return [Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension::Options, nil]
-          optional :options, -> { Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::Options }
+          #   @return [Imagekit::Models::FileUpdateParams::Extension::RemoveBg::Options, nil]
+          optional :options, -> { Imagekit::FileUpdateParams::Extension::RemoveBg::Options }
 
-          # @!method initialize(name:, options: nil)
-          #   @param name [Symbol, Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension::Name] Specifies the background removal extension.
+          # @!method initialize(options: nil, name: :"remove-bg")
+          #   @param options [Imagekit::Models::FileUpdateParams::Extension::RemoveBg::Options]
           #
-          #   @param options [Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension::Options]
+          #   @param name [Symbol, :"remove-bg"] Specifies the background removal extension.
 
-          # Specifies the background removal extension.
-          #
-          # @see Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension#name
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            REMOVE_BG = :"remove-bg"
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # @see Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension#options
+          # @see Imagekit::Models::FileUpdateParams::Extension::RemoveBg#options
           class Options < Imagekit::Internal::Type::BaseModel
             # @!attribute add_shadow
             #   Whether to add an artificial shadow to the result. Default is false. Note:
@@ -170,8 +160,8 @@ module Imagekit
 
             # @!method initialize(add_shadow: nil, bg_color: nil, bg_image_url: nil, semitransparency: nil)
             #   Some parameter documentations has been truncated, see
-            #   {Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension::Options}
-            #   for more details.
+            #   {Imagekit::Models::FileUpdateParams::Extension::RemoveBg::Options} for more
+            #   details.
             #
             #   @param add_shadow [Boolean] Whether to add an artificial shadow to the result. Default is false. Note: Addin
             #
@@ -223,31 +213,19 @@ module Imagekit
           end
         end
 
-        class AutoDescriptionExtension < Imagekit::Internal::Type::BaseModel
+        class AIAutoDescription < Imagekit::Internal::Type::BaseModel
           # @!attribute name
           #   Specifies the auto description extension.
           #
-          #   @return [Symbol, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension::Name]
-          required :name, enum: -> { Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::Name }
+          #   @return [Symbol, :"ai-auto-description"]
+          required :name, const: :"ai-auto-description"
 
-          # @!method initialize(name:)
-          #   @param name [Symbol, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension::Name] Specifies the auto description extension.
-
-          # Specifies the auto description extension.
-          #
-          # @see Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension#name
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            AI_AUTO_DESCRIPTION = :"ai-auto-description"
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          # @!method initialize(name: :"ai-auto-description")
+          #   @param name [Symbol, :"ai-auto-description"] Specifies the auto description extension.
         end
 
         # @!method self.variants
-        #   @return [Array(Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension)]
+        #   @return [Array(Imagekit::Models::FileUpdateParams::Extension::RemoveBg, Imagekit::Models::FileUpdateParams::Extension::AIAutoDescription, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension)]
       end
 
       # An array of AITags associated with the file that you want to remove, e.g.

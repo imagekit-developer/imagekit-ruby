@@ -29,7 +29,7 @@ module Imagekit
       #
       # @param description [String] Optional text to describe the contents of the file.
       #
-      # @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
+      # @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemoveBg, Imagekit::Models::FileUpdateParams::Extension::AIAutoDescription, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
       # @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
       #
