@@ -1,6 +1,12 @@
 module Imagekit
   module Resources
     class Webhooks
+      def unsafe_unwrap: (
+        String payload
+      ) -> (Imagekit::VideoTransformationAcceptedWebhookEvent
+      | Imagekit::VideoTransformationReadyWebhookEvent
+      | Imagekit::VideoTransformationErrorWebhookEvent)
+
       def unwrap: (
         String payload
       ) -> (Imagekit::VideoTransformationAcceptedWebhookEvent

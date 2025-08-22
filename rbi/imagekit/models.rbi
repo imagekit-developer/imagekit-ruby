@@ -65,6 +65,8 @@ module Imagekit
 
   Thumbnail = Imagekit::Models::Thumbnail
 
+  UnsafeUnwrapWebhookEvent = Imagekit::Models::UnsafeUnwrapWebhookEvent
+
   UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent
 
   VideoTransformationAcceptedWebhookEvent =
@@ -75,6 +77,8 @@ module Imagekit
 
   VideoTransformationReadyWebhookEvent =
     Imagekit::Models::VideoTransformationReadyWebhookEvent
+
+  WebhookUnsafeUnwrapParams = Imagekit::Models::WebhookUnsafeUnwrapParams
 
   WebhookUnwrapParams = Imagekit::Models::WebhookUnwrapParams
 end

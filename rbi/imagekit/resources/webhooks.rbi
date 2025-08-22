@@ -12,6 +12,21 @@ module Imagekit
           )
         )
       end
+      def unsafe_unwrap(
+        # The raw webhook payload as a string
+        payload
+      )
+      end
+
+      sig do
+        params(payload: String).returns(
+          T.any(
+            Imagekit::VideoTransformationAcceptedWebhookEvent,
+            Imagekit::VideoTransformationReadyWebhookEvent,
+            Imagekit::VideoTransformationErrorWebhookEvent
+          )
+        )
+      end
       def unwrap(
         # The raw webhook payload as a string
         payload

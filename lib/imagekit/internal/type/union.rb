@@ -6,16 +6,16 @@ module Imagekit
       # @api private
       #
       # @example
-      #   # `unwrap_webhook_event` is a `Imagekit::UnwrapWebhookEvent`
-      #   case unwrap_webhook_event
+      #   # `unsafe_unwrap_webhook_event` is a `Imagekit::UnsafeUnwrapWebhookEvent`
+      #   case unsafe_unwrap_webhook_event
       #   when Imagekit::VideoTransformationAcceptedWebhookEvent
-      #     puts(unwrap_webhook_event.id)
+      #     puts(unsafe_unwrap_webhook_event.id)
       #   when Imagekit::VideoTransformationReadyWebhookEvent
-      #     puts(unwrap_webhook_event.created_at)
+      #     puts(unsafe_unwrap_webhook_event.created_at)
       #   when Imagekit::VideoTransformationErrorWebhookEvent
-      #     puts(unwrap_webhook_event.data)
+      #     puts(unsafe_unwrap_webhook_event.data)
       #   else
-      #     puts(unwrap_webhook_event)
+      #     puts(unsafe_unwrap_webhook_event)
       #   end
       module Union
         include Imagekit::Internal::Type::Converter
