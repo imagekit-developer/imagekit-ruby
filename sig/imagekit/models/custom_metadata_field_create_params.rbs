@@ -132,22 +132,22 @@ module Imagekit
           String
           | Float
           | bool
-          | ::Array[Imagekit::Models::CustomMetadataFieldCreateParams::Schema::DefaultValue::union_member3]
+          | ::Array[Imagekit::Models::CustomMetadataFieldCreateParams::Schema::DefaultValue::array_for_multi_select_type_field]
 
         module DefaultValue
           extend Imagekit::Internal::Type::Union
 
-          type union_member3 = String | Float | bool
+          type array_for_multi_select_type_field = String | Float | bool
 
-          module UnionMember3
+          module ArrayForMultiSelectTypeField
             extend Imagekit::Internal::Type::Union
 
-            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldCreateParams::Schema::DefaultValue::union_member3]
+            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldCreateParams::Schema::DefaultValue::array_for_multi_select_type_field]
           end
 
           def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldCreateParams::Schema::default_value]
 
-          UnionMember3Array: Imagekit::Internal::Type::Converter
+          ArrayForMultiSelectTypeFieldArray: Imagekit::Internal::Type::Converter
         end
 
         type max_value = String | Float
