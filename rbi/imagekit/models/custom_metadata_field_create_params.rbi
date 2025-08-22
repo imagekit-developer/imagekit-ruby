@@ -343,12 +343,12 @@ module Imagekit
                 Float,
                 T::Boolean,
                 T::Array[
-                  Imagekit::CustomMetadataFieldCreateParams::Schema::DefaultValue::ArrayForMultiSelectTypeField::Variants
+                  Imagekit::CustomMetadataFieldCreateParams::Schema::DefaultValue::Mixed::Variants
                 ]
               )
             end
 
-          module ArrayForMultiSelectTypeField
+          module Mixed
             extend Imagekit::Internal::Type::Union
 
             Variants = T.type_alias { T.any(String, Float, T::Boolean) }
@@ -356,7 +356,7 @@ module Imagekit
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::CustomMetadataFieldCreateParams::Schema::DefaultValue::ArrayForMultiSelectTypeField::Variants
+                  Imagekit::CustomMetadataFieldCreateParams::Schema::DefaultValue::Mixed::Variants
                 ]
               )
             end
@@ -374,11 +374,11 @@ module Imagekit
           def self.variants
           end
 
-          ArrayForMultiSelectTypeFieldArray =
+          MixedArray =
             T.let(
               Imagekit::Internal::Type::ArrayOf[
                 union:
-                  Imagekit::CustomMetadataFieldCreateParams::Schema::DefaultValue::ArrayForMultiSelectTypeField
+                  Imagekit::CustomMetadataFieldCreateParams::Schema::DefaultValue::Mixed
               ],
               Imagekit::Internal::Type::Converter
             )

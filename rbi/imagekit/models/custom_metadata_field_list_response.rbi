@@ -339,12 +339,12 @@ module Imagekit
                 Float,
                 T::Boolean,
                 T::Array[
-                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3::Variants
+                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::Mixed::Variants
                 ]
               )
             end
 
-          module UnionMember3
+          module Mixed
             extend Imagekit::Internal::Type::Union
 
             Variants = T.type_alias { T.any(String, Float, T::Boolean) }
@@ -352,7 +352,7 @@ module Imagekit
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3::Variants
+                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::Mixed::Variants
                 ]
               )
             end
@@ -370,11 +370,11 @@ module Imagekit
           def self.variants
           end
 
-          UnionMember3Array =
+          MixedArray =
             T.let(
               Imagekit::Internal::Type::ArrayOf[
                 union:
-                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3
+                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::Mixed
               ],
               Imagekit::Internal::Type::Converter
             )

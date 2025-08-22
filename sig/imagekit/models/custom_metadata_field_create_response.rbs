@@ -131,22 +131,22 @@ module Imagekit
           String
           | Float
           | bool
-          | ::Array[Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::union_member3]
+          | ::Array[Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::mixed]
 
         module DefaultValue
           extend Imagekit::Internal::Type::Union
 
-          type union_member3 = String | Float | bool
+          type mixed = String | Float | bool
 
-          module UnionMember3
+          module Mixed
             extend Imagekit::Internal::Type::Union
 
-            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::union_member3]
+            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::mixed]
           end
 
           def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::default_value]
 
-          UnionMember3Array: Imagekit::Internal::Type::Converter
+          MixedArray: Imagekit::Internal::Type::Converter
         end
 
         type max_value = String | Float

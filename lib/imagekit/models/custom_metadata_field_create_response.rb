@@ -162,9 +162,9 @@ module Imagekit
           variant Imagekit::Internal::Type::Boolean
 
           # Default value should be of type array when custom metadata field type is set to `MultiSelect`.
-          variant -> { Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::UnionMember3Array }
+          variant -> { Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::MixedArray }
 
-          module UnionMember3
+          module Mixed
             extend Imagekit::Internal::Type::Union
 
             variant String
@@ -181,8 +181,8 @@ module Imagekit
           #   @return [Array(String, Float, Boolean, Array<String, Float, Boolean>)]
 
           # @type [Imagekit::Internal::Type::Converter]
-          UnionMember3Array =
-            Imagekit::Internal::Type::ArrayOf[union: -> { Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::UnionMember3 }]
+          MixedArray =
+            Imagekit::Internal::Type::ArrayOf[union: -> { Imagekit::Models::CustomMetadataFieldCreateResponse::Schema::DefaultValue::Mixed }]
         end
 
         # Maximum value of the field. Only set if field type is `Date` or `Number`. For
