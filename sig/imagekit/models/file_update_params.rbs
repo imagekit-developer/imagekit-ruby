@@ -1,230 +1,271 @@
 module Imagekit
   module Models
     type file_update_params =
-      {
-        custom_coordinates: String?,
-        custom_metadata: ::Hash[Symbol, top],
-        description: String,
-        extensions: ::Array[Imagekit::Models::FileUpdateParams::extension],
-        remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
-        tags: ::Array[String]?,
-        webhook_url: String,
-        publish: Imagekit::FileUpdateParams::Publish
-      }
+      { update: Imagekit::Models::FileUpdateParams::update }
       & Imagekit::Internal::Type::request_parameters
 
     class FileUpdateParams < Imagekit::Internal::Type::BaseModel
       extend Imagekit::Internal::Type::RequestParameters::Converter
       include Imagekit::Internal::Type::RequestParameters
 
-      attr_accessor custom_coordinates: String?
+      attr_reader update: Imagekit::Models::FileUpdateParams::update?
 
-      attr_reader custom_metadata: ::Hash[Symbol, top]?
-
-      def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
-
-      attr_reader description: String?
-
-      def description=: (String) -> String
-
-      attr_reader extensions: ::Array[Imagekit::Models::FileUpdateParams::extension]?
-
-      def extensions=: (
-        ::Array[Imagekit::Models::FileUpdateParams::extension]
-      ) -> ::Array[Imagekit::Models::FileUpdateParams::extension]
-
-      attr_reader remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags?
-
-      def remove_ai_tags=: (
-        Imagekit::Models::FileUpdateParams::remove_ai_tags
-      ) -> Imagekit::Models::FileUpdateParams::remove_ai_tags
-
-      attr_accessor tags: ::Array[String]?
-
-      attr_reader webhook_url: String?
-
-      def webhook_url=: (String) -> String
-
-      attr_reader publish: Imagekit::FileUpdateParams::Publish?
-
-      def publish=: (
-        Imagekit::FileUpdateParams::Publish
-      ) -> Imagekit::FileUpdateParams::Publish
+      def update=: (
+        Imagekit::Models::FileUpdateParams::update
+      ) -> Imagekit::Models::FileUpdateParams::update
 
       def initialize: (
-        ?custom_coordinates: String?,
-        ?custom_metadata: ::Hash[Symbol, top],
-        ?description: String,
-        ?extensions: ::Array[Imagekit::Models::FileUpdateParams::extension],
-        ?remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
-        ?tags: ::Array[String]?,
-        ?webhook_url: String,
-        ?publish: Imagekit::FileUpdateParams::Publish,
+        ?update: Imagekit::Models::FileUpdateParams::update,
         ?request_options: Imagekit::request_opts
       ) -> void
 
       def to_hash: -> {
-        custom_coordinates: String?,
-        custom_metadata: ::Hash[Symbol, top],
-        description: String,
-        extensions: ::Array[Imagekit::Models::FileUpdateParams::extension],
-        remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
-        tags: ::Array[String]?,
-        webhook_url: String,
-        publish: Imagekit::FileUpdateParams::Publish,
+        update: Imagekit::Models::FileUpdateParams::update,
         request_options: Imagekit::RequestOptions
       }
 
-      type extension =
-        Imagekit::FileUpdateParams::Extension::RemoveBg
-        | Imagekit::FileUpdateParams::Extension::AIAutoDescription
-        | Imagekit::FileUpdateParams::Extension::AutoTaggingExtension
+      type update =
+        Imagekit::FileUpdateParams::Update::UpdateFileDetails
+        | Imagekit::FileUpdateParams::Update::ChangePublicationStatus
 
-      module Extension
+      module Update
         extend Imagekit::Internal::Type::Union
 
-        type remove_bg =
+        type update_file_details =
           {
-            name: :"remove-bg",
-            options: Imagekit::FileUpdateParams::Extension::RemoveBg::Options
+            custom_coordinates: String?,
+            custom_metadata: ::Hash[Symbol, top],
+            description: String,
+            extensions: ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::extension],
+            remove_ai_tags: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::remove_ai_tags,
+            tags: ::Array[String]?,
+            webhook_url: String
           }
 
-        class RemoveBg < Imagekit::Internal::Type::BaseModel
-          attr_accessor name: :"remove-bg"
+        class UpdateFileDetails < Imagekit::Internal::Type::BaseModel
+          attr_accessor custom_coordinates: String?
 
-          attr_reader options: Imagekit::FileUpdateParams::Extension::RemoveBg::Options?
+          attr_reader custom_metadata: ::Hash[Symbol, top]?
 
-          def options=: (
-            Imagekit::FileUpdateParams::Extension::RemoveBg::Options
-          ) -> Imagekit::FileUpdateParams::Extension::RemoveBg::Options
+          def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader extensions: ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::extension]?
+
+          def extensions=: (
+            ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::extension]
+          ) -> ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::extension]
+
+          attr_reader remove_ai_tags: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::remove_ai_tags?
+
+          def remove_ai_tags=: (
+            Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::remove_ai_tags
+          ) -> Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::remove_ai_tags
+
+          attr_accessor tags: ::Array[String]?
+
+          attr_reader webhook_url: String?
+
+          def webhook_url=: (String) -> String
 
           def initialize: (
-            ?options: Imagekit::FileUpdateParams::Extension::RemoveBg::Options,
-            ?name: :"remove-bg"
+            ?custom_coordinates: String?,
+            ?custom_metadata: ::Hash[Symbol, top],
+            ?description: String,
+            ?extensions: ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::extension],
+            ?remove_ai_tags: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::remove_ai_tags,
+            ?tags: ::Array[String]?,
+            ?webhook_url: String
           ) -> void
 
           def to_hash: -> {
-            name: :"remove-bg",
-            options: Imagekit::FileUpdateParams::Extension::RemoveBg::Options
+            custom_coordinates: String?,
+            custom_metadata: ::Hash[Symbol, top],
+            description: String,
+            extensions: ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::extension],
+            remove_ai_tags: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::remove_ai_tags,
+            tags: ::Array[String]?,
+            webhook_url: String
           }
 
-          type options =
-            {
-              add_shadow: bool,
-              bg_color: String,
-              bg_image_url: String,
-              semitransparency: bool
-            }
+          type extension =
+            Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::RemoveBg
+            | Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::AIAutoDescription
+            | Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::AutoTaggingExtension
 
-          class Options < Imagekit::Internal::Type::BaseModel
-            attr_reader add_shadow: bool?
+          module Extension
+            extend Imagekit::Internal::Type::Union
 
-            def add_shadow=: (bool) -> bool
+            type remove_bg =
+              {
+                name: :"remove-bg",
+                options: Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::RemoveBg::Options
+              }
 
-            attr_reader bg_color: String?
+            class RemoveBg < Imagekit::Internal::Type::BaseModel
+              attr_accessor name: :"remove-bg"
 
-            def bg_color=: (String) -> String
+              attr_reader options: Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::RemoveBg::Options?
 
-            attr_reader bg_image_url: String?
+              def options=: (
+                Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::RemoveBg::Options
+              ) -> Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::RemoveBg::Options
 
-            def bg_image_url=: (String) -> String
+              def initialize: (
+                ?options: Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::RemoveBg::Options,
+                ?name: :"remove-bg"
+              ) -> void
 
-            attr_reader semitransparency: bool?
+              def to_hash: -> {
+                name: :"remove-bg",
+                options: Imagekit::FileUpdateParams::Update::UpdateFileDetails::Extension::RemoveBg::Options
+              }
 
-            def semitransparency=: (bool) -> bool
+              type options =
+                {
+                  add_shadow: bool,
+                  bg_color: String,
+                  bg_image_url: String,
+                  semitransparency: bool
+                }
+
+              class Options < Imagekit::Internal::Type::BaseModel
+                attr_reader add_shadow: bool?
+
+                def add_shadow=: (bool) -> bool
+
+                attr_reader bg_color: String?
+
+                def bg_color=: (String) -> String
+
+                attr_reader bg_image_url: String?
+
+                def bg_image_url=: (String) -> String
+
+                attr_reader semitransparency: bool?
+
+                def semitransparency=: (bool) -> bool
+
+                def initialize: (
+                  ?add_shadow: bool,
+                  ?bg_color: String,
+                  ?bg_image_url: String,
+                  ?semitransparency: bool
+                ) -> void
+
+                def to_hash: -> {
+                  add_shadow: bool,
+                  bg_color: String,
+                  bg_image_url: String,
+                  semitransparency: bool
+                }
+              end
+            end
+
+            type auto_tagging_extension =
+              {
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::Extension::AutoTaggingExtension::name_
+              }
+
+            class AutoTaggingExtension < Imagekit::Internal::Type::BaseModel
+              attr_accessor max_tags: Integer
+
+              attr_accessor min_confidence: Integer
+
+              attr_accessor name: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::Extension::AutoTaggingExtension::name_
+
+              def initialize: (
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::Extension::AutoTaggingExtension::name_
+              ) -> void
+
+              def to_hash: -> {
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::Extension::AutoTaggingExtension::name_
+              }
+
+              type name_ = :"google-auto-tagging" | :"aws-auto-tagging"
+
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                GOOGLE_AUTO_TAGGING: :"google-auto-tagging"
+                AWS_AUTO_TAGGING: :"aws-auto-tagging"
+
+                def self?.values: -> ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::Extension::AutoTaggingExtension::name_]
+              end
+            end
+
+            type ai_auto_description = { name: :"ai-auto-description" }
+
+            class AIAutoDescription < Imagekit::Internal::Type::BaseModel
+              attr_accessor name: :"ai-auto-description"
+
+              def initialize: (?name: :"ai-auto-description") -> void
+
+              def to_hash: -> { name: :"ai-auto-description" }
+            end
+
+            def self?.variants: -> ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::extension]
+          end
+
+          type remove_ai_tags = ::Array[String] | :all
+
+          module RemoveAITags
+            extend Imagekit::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Imagekit::Models::FileUpdateParams::Update::UpdateFileDetails::remove_ai_tags]
+
+            StringArray: Imagekit::Internal::Type::Converter
+          end
+        end
+
+        type change_publication_status =
+          {
+            publish: Imagekit::FileUpdateParams::Update::ChangePublicationStatus::Publish
+          }
+
+        class ChangePublicationStatus < Imagekit::Internal::Type::BaseModel
+          attr_reader publish: Imagekit::FileUpdateParams::Update::ChangePublicationStatus::Publish?
+
+          def publish=: (
+            Imagekit::FileUpdateParams::Update::ChangePublicationStatus::Publish
+          ) -> Imagekit::FileUpdateParams::Update::ChangePublicationStatus::Publish
+
+          def initialize: (
+            ?publish: Imagekit::FileUpdateParams::Update::ChangePublicationStatus::Publish
+          ) -> void
+
+          def to_hash: -> {
+            publish: Imagekit::FileUpdateParams::Update::ChangePublicationStatus::Publish
+          }
+
+          type publish = { is_published: bool, include_file_versions: bool }
+
+          class Publish < Imagekit::Internal::Type::BaseModel
+            attr_accessor is_published: bool
+
+            attr_reader include_file_versions: bool?
+
+            def include_file_versions=: (bool) -> bool
 
             def initialize: (
-              ?add_shadow: bool,
-              ?bg_color: String,
-              ?bg_image_url: String,
-              ?semitransparency: bool
+              is_published: bool,
+              ?include_file_versions: bool
             ) -> void
 
-            def to_hash: -> {
-              add_shadow: bool,
-              bg_color: String,
-              bg_image_url: String,
-              semitransparency: bool
-            }
+            def to_hash: -> { is_published: bool, include_file_versions: bool }
           end
         end
 
-        type auto_tagging_extension =
-          {
-            max_tags: Integer,
-            min_confidence: Integer,
-            name: Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension::name_
-          }
-
-        class AutoTaggingExtension < Imagekit::Internal::Type::BaseModel
-          attr_accessor max_tags: Integer
-
-          attr_accessor min_confidence: Integer
-
-          attr_accessor name: Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension::name_
-
-          def initialize: (
-            max_tags: Integer,
-            min_confidence: Integer,
-            name: Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension::name_
-          ) -> void
-
-          def to_hash: -> {
-            max_tags: Integer,
-            min_confidence: Integer,
-            name: Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension::name_
-          }
-
-          type name_ = :"google-auto-tagging" | :"aws-auto-tagging"
-
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            GOOGLE_AUTO_TAGGING: :"google-auto-tagging"
-            AWS_AUTO_TAGGING: :"aws-auto-tagging"
-
-            def self?.values: -> ::Array[Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension::name_]
-          end
-        end
-
-        type ai_auto_description = { name: :"ai-auto-description" }
-
-        class AIAutoDescription < Imagekit::Internal::Type::BaseModel
-          attr_accessor name: :"ai-auto-description"
-
-          def initialize: (?name: :"ai-auto-description") -> void
-
-          def to_hash: -> { name: :"ai-auto-description" }
-        end
-
-        def self?.variants: -> ::Array[Imagekit::Models::FileUpdateParams::extension]
-      end
-
-      type remove_ai_tags = ::Array[String] | :all
-
-      module RemoveAITags
-        extend Imagekit::Internal::Type::Union
-
-        def self?.variants: -> ::Array[Imagekit::Models::FileUpdateParams::remove_ai_tags]
-
-        StringArray: Imagekit::Internal::Type::Converter
-      end
-
-      type publish = { is_published: bool, include_file_versions: bool }
-
-      class Publish < Imagekit::Internal::Type::BaseModel
-        attr_accessor is_published: bool
-
-        attr_reader include_file_versions: bool?
-
-        def include_file_versions=: (bool) -> bool
-
-        def initialize: (
-          is_published: bool,
-          ?include_file_versions: bool
-        ) -> void
-
-        def to_hash: -> { is_published: bool, include_file_versions: bool }
+        def self?.variants: -> ::Array[Imagekit::Models::FileUpdateParams::update]
       end
     end
   end

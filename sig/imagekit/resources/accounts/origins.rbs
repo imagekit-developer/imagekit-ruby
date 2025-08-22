@@ -9,27 +9,7 @@ module Imagekit
 
         def update: (
           String id,
-          access_key: String,
-          bucket: String,
-          name: String,
-          secret_key: String,
-          endpoint: String,
-          base_url: String,
-          client_email: String,
-          private_key: String,
-          account_name: String,
-          container: String,
-          sas_token: String,
-          client_id: String,
-          client_secret: String,
-          password: String,
-          username: String,
-          ?base_url_for_canonical_header: String,
-          ?include_canonical_header: bool,
-          ?prefix: String,
-          ?s3_force_path_style: bool,
-          ?forward_host_header_to_origin: bool,
-          ?type: :AKENEO_PIM,
+          origin: Imagekit::Models::Accounts::OriginUpdateParams::origin,
           ?request_options: Imagekit::request_opts
         ) -> Imagekit::Models::Accounts::origin_update_response
 
