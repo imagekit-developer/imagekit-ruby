@@ -87,7 +87,7 @@ module Imagekit
           #   Array of extensions to be applied to the image. Each extension can be configured
           #   with specific parameters based on the extension type.
           #
-          #   @return [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>, nil]
+          #   @return [Array<Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension>, nil]
           optional :extensions,
                    -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::Beta::V2::FileUploadParams::Extension] }
 
@@ -225,7 +225,7 @@ module Imagekit
           #
           #   @param description [String] Optional text to describe the contents of the file.
           #
-          #   @param extensions [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
+          #   @param extensions [Array<Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
           #
           #   @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
           #
@@ -256,14 +256,153 @@ module Imagekit
           module Extension
             extend Imagekit::Internal::Type::Union
 
-            variant -> { Imagekit::RemovedotBgExtension }
+            variant -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension }
 
-            variant -> { Imagekit::AutoTaggingExtension }
+            variant -> { Imagekit::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension }
 
-            variant -> { Imagekit::AutoDescriptionExtension }
+            variant -> { Imagekit::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension }
+
+            class RemovedotBgExtension < Imagekit::Internal::Type::BaseModel
+              # @!attribute name
+              #   Specifies the background removal extension.
+              #
+              #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Name]
+              required :name, enum: -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Name }
+
+              # @!attribute options
+              #
+              #   @return [Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options, nil]
+              optional :options, -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options }
+
+              # @!method initialize(name:, options: nil)
+              #   @param name [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Name] Specifies the background removal extension.
+              #
+              #   @param options [Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options]
+
+              # Specifies the background removal extension.
+              #
+              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension#name
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                REMOVE_BG = :"remove-bg"
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension#options
+              class Options < Imagekit::Internal::Type::BaseModel
+                # @!attribute add_shadow
+                #   Whether to add an artificial shadow to the result. Default is false. Note:
+                #   Adding shadows is currently only supported for car photos.
+                #
+                #   @return [Boolean, nil]
+                optional :add_shadow, Imagekit::Internal::Type::Boolean
+
+                # @!attribute bg_color
+                #   Specifies a solid color background using hex code (e.g., "81d4fa", "fff") or
+                #   color name (e.g., "green"). If this parameter is set, `bg_image_url` must be
+                #   empty.
+                #
+                #   @return [String, nil]
+                optional :bg_color, String
+
+                # @!attribute bg_image_url
+                #   Sets a background image from a URL. If this parameter is set, `bg_color` must be
+                #   empty.
+                #
+                #   @return [String, nil]
+                optional :bg_image_url, String
+
+                # @!attribute semitransparency
+                #   Allows semi-transparent regions in the result. Default is true. Note:
+                #   Semitransparency is currently only supported for car windows.
+                #
+                #   @return [Boolean, nil]
+                optional :semitransparency, Imagekit::Internal::Type::Boolean
+
+                # @!method initialize(add_shadow: nil, bg_color: nil, bg_image_url: nil, semitransparency: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options}
+                #   for more details.
+                #
+                #   @param add_shadow [Boolean] Whether to add an artificial shadow to the result. Default is false. Note: Addin
+                #
+                #   @param bg_color [String] Specifies a solid color background using hex code (e.g., "81d4fa", "fff") or col
+                #
+                #   @param bg_image_url [String] Sets a background image from a URL. If this parameter is set, `bg_color` must be
+                #
+                #   @param semitransparency [Boolean] Allows semi-transparent regions in the result. Default is true. Note: Semitransp
+              end
+            end
+
+            class AutoTaggingExtension < Imagekit::Internal::Type::BaseModel
+              # @!attribute max_tags
+              #   Maximum number of tags to attach to the asset.
+              #
+              #   @return [Integer]
+              required :max_tags, Integer, api_name: :maxTags
+
+              # @!attribute min_confidence
+              #   Minimum confidence level for tags to be considered valid.
+              #
+              #   @return [Integer]
+              required :min_confidence, Integer, api_name: :minConfidence
+
+              # @!attribute name
+              #   Specifies the auto-tagging extension used.
+              #
+              #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::Name]
+              required :name, enum: -> { Imagekit::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::Name }
+
+              # @!method initialize(max_tags:, min_confidence:, name:)
+              #   @param max_tags [Integer] Maximum number of tags to attach to the asset.
+              #
+              #   @param min_confidence [Integer] Minimum confidence level for tags to be considered valid.
+              #
+              #   @param name [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::Name] Specifies the auto-tagging extension used.
+
+              # Specifies the auto-tagging extension used.
+              #
+              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension#name
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                GOOGLE_AUTO_TAGGING = :"google-auto-tagging"
+                AWS_AUTO_TAGGING = :"aws-auto-tagging"
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+
+            class AutoDescriptionExtension < Imagekit::Internal::Type::BaseModel
+              # @!attribute name
+              #   Specifies the auto description extension.
+              #
+              #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::Name]
+              required :name,
+                       enum: -> { Imagekit::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::Name }
+
+              # @!method initialize(name:)
+              #   @param name [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::Name] Specifies the auto description extension.
+
+              # Specifies the auto description extension.
+              #
+              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension#name
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                AI_AUTO_DESCRIPTION = :"ai-auto-description"
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
 
             # @!method self.variants
-            #   @return [Array(Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension)]
+            #   @return [Array(Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension)]
           end
 
           module ResponseField

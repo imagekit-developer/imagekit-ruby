@@ -24,9 +24,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::RemovedotBgExtension::OrHash,
-                Imagekit::AutoTaggingExtension::OrHash,
-                Imagekit::AutoDescriptionExtension::OrHash
+                Imagekit::FileUpdateParams::Extension::RemovedotBgExtension::OrHash,
+                Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash,
+                Imagekit::FileUpdateParams::Extension::AutoDescriptionExtension::OrHash
               )
             ],
           remove_ai_tags:
@@ -244,9 +244,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::RemovedotBgExtension::OrHash,
-                Imagekit::AutoTaggingExtension::OrHash,
-                Imagekit::AutoDescriptionExtension::OrHash
+                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::OrHash,
+                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash,
+                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::OrHash
               )
             ],
           folder: String,

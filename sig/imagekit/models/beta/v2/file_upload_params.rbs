@@ -162,12 +162,153 @@ module Imagekit
           }
 
           type extension =
-            Imagekit::RemovedotBgExtension
-            | Imagekit::AutoTaggingExtension
-            | Imagekit::AutoDescriptionExtension
+            Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension
+            | Imagekit::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension
+            | Imagekit::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension
 
           module Extension
             extend Imagekit::Internal::Type::Union
+
+            type removedot_bg_extension =
+              {
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::name_,
+                options: Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options
+              }
+
+            class RemovedotBgExtension < Imagekit::Internal::Type::BaseModel
+              attr_accessor name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::name_
+
+              attr_reader options: Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options?
+
+              def options=: (
+                Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options
+              ) -> Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options
+
+              def initialize: (
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::name_,
+                ?options: Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options
+              ) -> void
+
+              def to_hash: -> {
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::name_,
+                options: Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options
+              }
+
+              type name_ = :"remove-bg"
+
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                REMOVE_BG: :"remove-bg"
+
+                def self?.values: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::name_]
+              end
+
+              type options =
+                {
+                  add_shadow: bool,
+                  bg_color: String,
+                  bg_image_url: String,
+                  semitransparency: bool
+                }
+
+              class Options < Imagekit::Internal::Type::BaseModel
+                attr_reader add_shadow: bool?
+
+                def add_shadow=: (bool) -> bool
+
+                attr_reader bg_color: String?
+
+                def bg_color=: (String) -> String
+
+                attr_reader bg_image_url: String?
+
+                def bg_image_url=: (String) -> String
+
+                attr_reader semitransparency: bool?
+
+                def semitransparency=: (bool) -> bool
+
+                def initialize: (
+                  ?add_shadow: bool,
+                  ?bg_color: String,
+                  ?bg_image_url: String,
+                  ?semitransparency: bool
+                ) -> void
+
+                def to_hash: -> {
+                  add_shadow: bool,
+                  bg_color: String,
+                  bg_image_url: String,
+                  semitransparency: bool
+                }
+              end
+            end
+
+            type auto_tagging_extension =
+              {
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+              }
+
+            class AutoTaggingExtension < Imagekit::Internal::Type::BaseModel
+              attr_accessor max_tags: Integer
+
+              attr_accessor min_confidence: Integer
+
+              attr_accessor name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+
+              def initialize: (
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+              ) -> void
+
+              def to_hash: -> {
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+              }
+
+              type name_ = :"google-auto-tagging" | :"aws-auto-tagging"
+
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                GOOGLE_AUTO_TAGGING: :"google-auto-tagging"
+                AWS_AUTO_TAGGING: :"aws-auto-tagging"
+
+                def self?.values: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_]
+              end
+            end
+
+            type auto_description_extension =
+              {
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::name_
+              }
+
+            class AutoDescriptionExtension < Imagekit::Internal::Type::BaseModel
+              attr_accessor name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::name_
+
+              def initialize: (
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::name_
+              ) -> void
+
+              def to_hash: -> {
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::name_
+              }
+
+              type name_ = :"ai-auto-description"
+
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                AI_AUTO_DESCRIPTION: :"ai-auto-description"
+
+                def self?.values: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::name_]
+              end
+            end
 
             def self?.variants: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension]
           end

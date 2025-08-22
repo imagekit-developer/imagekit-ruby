@@ -29,7 +29,7 @@ module Imagekit
       #
       # @param description [String] Optional text to describe the contents of the file.
       #
-      # @param extensions [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
+      # @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUpdateParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
       # @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
       #
@@ -251,7 +251,7 @@ module Imagekit
       #
       # @param expire [Integer] The time until your signature is valid. It must be a [Unix time](https://en.wiki
       #
-      # @param extensions [Array<Imagekit::Models::RemovedotBgExtension, Imagekit::Models::AutoTaggingExtension, Imagekit::Models::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
+      # @param extensions [Array<Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
       #
       # @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
       #

@@ -3,10 +3,6 @@ module Imagekit
 
   class AssetListParams = Imagekit::Models::AssetListParams
 
-  class AutoDescriptionExtension = Imagekit::Models::AutoDescriptionExtension
-
-  class AutoTaggingExtension = Imagekit::Models::AutoTaggingExtension
-
   module Beta = Imagekit::Models::Beta
 
   module Cache = Imagekit::Models::Cache
@@ -18,10 +14,6 @@ module Imagekit
   class CustomMetadataFieldListParams = Imagekit::Models::CustomMetadataFieldListParams
 
   class CustomMetadataFieldUpdateParams = Imagekit::Models::CustomMetadataFieldUpdateParams
-
-  class ExifDetails = Imagekit::Models::ExifDetails
-
-  class ExifImage = Imagekit::Models::ExifImage
 
   class FileCopyParams = Imagekit::Models::FileCopyParams
 
@@ -50,14 +42,6 @@ module Imagekit
   class FolderRenameParams = Imagekit::Models::FolderRenameParams
 
   module Folders = Imagekit::Models::Folders
-
-  class Gps = Imagekit::Models::Gps
-
-  class Interoperability = Imagekit::Models::Interoperability
-
-  class RemovedotBgExtension = Imagekit::Models::RemovedotBgExtension
-
-  class Thumbnail = Imagekit::Models::Thumbnail
 
   module UnsafeUnwrapWebhookEvent = Imagekit::Models::UnsafeUnwrapWebhookEvent
 

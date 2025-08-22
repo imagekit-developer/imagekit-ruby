@@ -5,10 +5,6 @@ module Imagekit
 
   AssetListParams = Imagekit::Models::AssetListParams
 
-  AutoDescriptionExtension = Imagekit::Models::AutoDescriptionExtension
-
-  AutoTaggingExtension = Imagekit::Models::AutoTaggingExtension
-
   Beta = Imagekit::Models::Beta
 
   Cache = Imagekit::Models::Cache
@@ -24,10 +20,6 @@ module Imagekit
 
   CustomMetadataFieldUpdateParams =
     Imagekit::Models::CustomMetadataFieldUpdateParams
-
-  ExifDetails = Imagekit::Models::ExifDetails
-
-  ExifImage = Imagekit::Models::ExifImage
 
   FileCopyParams = Imagekit::Models::FileCopyParams
 
@@ -56,14 +48,6 @@ module Imagekit
   FolderRenameParams = Imagekit::Models::FolderRenameParams
 
   Folders = Imagekit::Models::Folders
-
-  Gps = Imagekit::Models::Gps
-
-  Interoperability = Imagekit::Models::Interoperability
-
-  RemovedotBgExtension = Imagekit::Models::RemovedotBgExtension
-
-  Thumbnail = Imagekit::Models::Thumbnail
 
   UnsafeUnwrapWebhookEvent = Imagekit::Models::UnsafeUnwrapWebhookEvent
 

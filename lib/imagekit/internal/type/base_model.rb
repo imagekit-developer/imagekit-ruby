@@ -438,8 +438,10 @@ module Imagekit
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `auto_description_extension` is a `Imagekit::AutoDescriptionExtension`
-        #   auto_description_extension => {
+        #   # `custom_metadata_field_create_response` is a `Imagekit::Models::CustomMetadataFieldCreateResponse`
+        #   custom_metadata_field_create_response => {
+        #     id: id,
+        #     label: label,
         #     name: name
         #   }
         def deconstruct_keys(keys)
