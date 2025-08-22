@@ -101,9 +101,9 @@ module Imagekit
           T.nilable(
             T::Array[
               T.any(
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension,
-                Imagekit::FileUploadParams::Extension::AutoTaggingExtension,
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension
+                Imagekit::FileUploadParams::Extension::RemoveBg,
+                Imagekit::FileUploadParams::Extension::AIAutoDescription,
+                Imagekit::FileUploadParams::Extension::AutoTaggingExtension
               )
             ]
           )
@@ -116,9 +116,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::FileUploadParams::Extension::RemoveBg::OrHash,
+                Imagekit::FileUploadParams::Extension::AIAutoDescription::OrHash,
+                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash
               )
             ]
         ).void
@@ -301,9 +301,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::FileUploadParams::Extension::RemoveBg::OrHash,
+                Imagekit::FileUploadParams::Extension::AIAutoDescription::OrHash,
+                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash
               )
             ],
           folder: String,
@@ -473,9 +473,9 @@ module Imagekit
             extensions:
               T::Array[
                 T.any(
-                  Imagekit::FileUploadParams::Extension::RemovedotBgExtension,
-                  Imagekit::FileUploadParams::Extension::AutoTaggingExtension,
-                  Imagekit::FileUploadParams::Extension::AutoDescriptionExtension
+                  Imagekit::FileUploadParams::Extension::RemoveBg,
+                  Imagekit::FileUploadParams::Extension::AIAutoDescription,
+                  Imagekit::FileUploadParams::Extension::AutoTaggingExtension
                 )
               ],
             folder: String,
@@ -506,33 +506,29 @@ module Imagekit
         Variants =
           T.type_alias do
             T.any(
-              Imagekit::FileUploadParams::Extension::RemovedotBgExtension,
-              Imagekit::FileUploadParams::Extension::AutoTaggingExtension,
-              Imagekit::FileUploadParams::Extension::AutoDescriptionExtension
+              Imagekit::FileUploadParams::Extension::RemoveBg,
+              Imagekit::FileUploadParams::Extension::AIAutoDescription,
+              Imagekit::FileUploadParams::Extension::AutoTaggingExtension
             )
           end
 
-        class RemovedotBgExtension < Imagekit::Internal::Type::BaseModel
+        class RemoveBg < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension,
+                Imagekit::FileUploadParams::Extension::RemoveBg,
                 Imagekit::Internal::AnyHash
               )
             end
 
           # Specifies the background removal extension.
-          sig do
-            returns(
-              Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Name::OrSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :name
 
           sig do
             returns(
               T.nilable(
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options
+                Imagekit::FileUploadParams::Extension::RemoveBg::Options
               )
             )
           end
@@ -541,74 +537,42 @@ module Imagekit
           sig do
             params(
               options:
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options::OrHash
+                Imagekit::FileUploadParams::Extension::RemoveBg::Options::OrHash
             ).void
           end
           attr_writer :options
 
           sig do
             params(
-              name:
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Name::OrSymbol,
               options:
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options::OrHash
+                Imagekit::FileUploadParams::Extension::RemoveBg::Options::OrHash,
+              name: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
+            options: nil,
             # Specifies the background removal extension.
-            name:,
-            options: nil
+            name: :"remove-bg"
           )
           end
 
           sig do
             override.returns(
               {
-                name:
-                  Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Name::OrSymbol,
+                name: Symbol,
                 options:
-                  Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options
+                  Imagekit::FileUploadParams::Extension::RemoveBg::Options
               }
             )
           end
           def to_hash
           end
 
-          # Specifies the background removal extension.
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Name
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            REMOVE_BG =
-              T.let(
-                :"remove-bg",
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Name::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Name::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
           class Options < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options,
+                  Imagekit::FileUploadParams::Extension::RemoveBg::Options,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -778,74 +742,28 @@ module Imagekit
           end
         end
 
-        class AutoDescriptionExtension < Imagekit::Internal::Type::BaseModel
+        class AIAutoDescription < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension,
+                Imagekit::FileUploadParams::Extension::AIAutoDescription,
                 Imagekit::Internal::AnyHash
               )
             end
 
           # Specifies the auto description extension.
-          sig do
-            returns(
-              Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::Name::OrSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :name
 
-          sig do
-            params(
-              name:
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::Name::OrSymbol
-            ).returns(T.attached_class)
-          end
+          sig { params(name: Symbol).returns(T.attached_class) }
           def self.new(
             # Specifies the auto description extension.
-            name:
+            name: :"ai-auto-description"
           )
           end
 
-          sig do
-            override.returns(
-              {
-                name:
-                  Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::Name::OrSymbol
-              }
-            )
-          end
+          sig { override.returns({ name: Symbol }) }
           def to_hash
-          end
-
-          # Specifies the auto description extension.
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::Name
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            AI_AUTO_DESCRIPTION =
-              T.let(
-                :"ai-auto-description",
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::Name::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::Name::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 
@@ -926,10 +844,10 @@ module Imagekit
             T.nilable(
               T::Array[
                 T.any(
-                  Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation,
-                  Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo,
-                  Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail,
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming
+                  Imagekit::FileUploadParams::Transformation::Post::Transformation,
+                  Imagekit::FileUploadParams::Transformation::Post::GifToVideo,
+                  Imagekit::FileUploadParams::Transformation::Post::Thumbnail,
+                  Imagekit::FileUploadParams::Transformation::Post::Abs
                 )
               ]
             )
@@ -942,10 +860,10 @@ module Imagekit
             post:
               T::Array[
                 T.any(
-                  Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::OrHash,
-                  Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::OrHash,
-                  Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::OrHash,
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::OrHash
+                  Imagekit::FileUploadParams::Transformation::Post::Transformation::OrHash,
+                  Imagekit::FileUploadParams::Transformation::Post::GifToVideo::OrHash,
+                  Imagekit::FileUploadParams::Transformation::Post::Thumbnail::OrHash,
+                  Imagekit::FileUploadParams::Transformation::Post::Abs::OrHash
                 )
               ]
           ).void
@@ -976,10 +894,10 @@ module Imagekit
             post:
               T::Array[
                 T.any(
-                  Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::OrHash,
-                  Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::OrHash,
-                  Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::OrHash,
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::OrHash
+                  Imagekit::FileUploadParams::Transformation::Post::Transformation::OrHash,
+                  Imagekit::FileUploadParams::Transformation::Post::GifToVideo::OrHash,
+                  Imagekit::FileUploadParams::Transformation::Post::Thumbnail::OrHash,
+                  Imagekit::FileUploadParams::Transformation::Post::Abs::OrHash
                 )
               ],
             pre: String
@@ -1002,10 +920,10 @@ module Imagekit
               post:
                 T::Array[
                   T.any(
-                    Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation,
-                    Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo,
-                    Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail,
-                    Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming
+                    Imagekit::FileUploadParams::Transformation::Post::Transformation,
+                    Imagekit::FileUploadParams::Transformation::Post::GifToVideo,
+                    Imagekit::FileUploadParams::Transformation::Post::Thumbnail,
+                    Imagekit::FileUploadParams::Transformation::Post::Abs
                   )
                 ],
               pre: String
@@ -1021,28 +939,24 @@ module Imagekit
           Variants =
             T.type_alias do
               T.any(
-                Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation,
-                Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo,
-                Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail,
-                Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming
+                Imagekit::FileUploadParams::Transformation::Post::Transformation,
+                Imagekit::FileUploadParams::Transformation::Post::GifToVideo,
+                Imagekit::FileUploadParams::Transformation::Post::Thumbnail,
+                Imagekit::FileUploadParams::Transformation::Post::Abs
               )
             end
 
-          class SimplePostTransformation < Imagekit::Internal::Type::BaseModel
+          class Transformation < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation,
+                  Imagekit::FileUploadParams::Transformation::Post::Transformation,
                   Imagekit::Internal::AnyHash
                 )
               end
 
             # Transformation type.
-            sig do
-              returns(
-                Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type::OrSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
             # Transformation string (e.g. `w-200,h-200`).
@@ -1051,79 +965,33 @@ module Imagekit
             attr_accessor :value
 
             sig do
-              params(
-                type:
-                  Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type::OrSymbol,
-                value: String
-              ).returns(T.attached_class)
+              params(value: String, type: Symbol).returns(T.attached_class)
             end
             def self.new(
-              # Transformation type.
-              type:,
               # Transformation string (e.g. `w-200,h-200`).
               # Same syntax as ImageKit URL-based transformations.
-              value:
+              value:,
+              # Transformation type.
+              type: :transformation
             )
             end
 
-            sig do
-              override.returns(
-                {
-                  type:
-                    Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type::OrSymbol,
-                  value: String
-                }
-              )
-            end
+            sig { override.returns({ type: Symbol, value: String }) }
             def to_hash
-            end
-
-            # Transformation type.
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              TRANSFORMATION =
-                T.let(
-                  :transformation,
-                  Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 
-          class ConvertGifToVideo < Imagekit::Internal::Type::BaseModel
+          class GifToVideo < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo,
+                  Imagekit::FileUploadParams::Transformation::Post::GifToVideo,
                   Imagekit::Internal::AnyHash
                 )
               end
 
             # Converts an animated GIF into an MP4.
-            sig do
-              returns(
-                Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type::OrSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
             # Optional transformation string to apply to the output video.
@@ -1135,79 +1003,33 @@ module Imagekit
             attr_writer :value
 
             sig do
-              params(
-                type:
-                  Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type::OrSymbol,
-                value: String
-              ).returns(T.attached_class)
+              params(value: String, type: Symbol).returns(T.attached_class)
             end
             def self.new(
-              # Converts an animated GIF into an MP4.
-              type:,
               # Optional transformation string to apply to the output video.
               # **Example**: `q-80`
-              value: nil
+              value: nil,
+              # Converts an animated GIF into an MP4.
+              type: :"gif-to-video"
             )
             end
 
-            sig do
-              override.returns(
-                {
-                  type:
-                    Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type::OrSymbol,
-                  value: String
-                }
-              )
-            end
+            sig { override.returns({ type: Symbol, value: String }) }
             def to_hash
-            end
-
-            # Converts an animated GIF into an MP4.
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              GIF_TO_VIDEO =
-                T.let(
-                  :"gif-to-video",
-                  Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 
-          class GenerateAThumbnail < Imagekit::Internal::Type::BaseModel
+          class Thumbnail < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail,
+                  Imagekit::FileUploadParams::Transformation::Post::Thumbnail,
                   Imagekit::Internal::AnyHash
                 )
               end
 
             # Generates a thumbnail image.
-            sig do
-              returns(
-                Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type::OrSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
             # Optional transformation string.
@@ -1219,69 +1041,27 @@ module Imagekit
             attr_writer :value
 
             sig do
-              params(
-                type:
-                  Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type::OrSymbol,
-                value: String
-              ).returns(T.attached_class)
+              params(value: String, type: Symbol).returns(T.attached_class)
             end
             def self.new(
-              # Generates a thumbnail image.
-              type:,
               # Optional transformation string.
               # **Example**: `w-150,h-150`
-              value: nil
+              value: nil,
+              # Generates a thumbnail image.
+              type: :thumbnail
             )
             end
 
-            sig do
-              override.returns(
-                {
-                  type:
-                    Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type::OrSymbol,
-                  value: String
-                }
-              )
-            end
+            sig { override.returns({ type: Symbol, value: String }) }
             def to_hash
-            end
-
-            # Generates a thumbnail image.
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              THUMBNAIL =
-                T.let(
-                  :thumbnail,
-                  Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 
-          class AdaptiveBitrateStreaming < Imagekit::Internal::Type::BaseModel
+          class Abs < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming,
+                  Imagekit::FileUploadParams::Transformation::Post::Abs,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -1289,17 +1069,13 @@ module Imagekit
             # Streaming protocol to use (`hls` or `dash`).
             sig do
               returns(
-                Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol::OrSymbol
+                Imagekit::FileUploadParams::Transformation::Post::Abs::Protocol::OrSymbol
               )
             end
             attr_accessor :protocol
 
             # Adaptive Bitrate Streaming (ABS) setup.
-            sig do
-              returns(
-                Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type::OrSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
             # List of different representations you want to create separated by an underscore.
@@ -1309,19 +1085,18 @@ module Imagekit
             sig do
               params(
                 protocol:
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol::OrSymbol,
-                type:
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type::OrSymbol,
-                value: String
+                  Imagekit::FileUploadParams::Transformation::Post::Abs::Protocol::OrSymbol,
+                value: String,
+                type: Symbol
               ).returns(T.attached_class)
             end
             def self.new(
               # Streaming protocol to use (`hls` or `dash`).
               protocol:,
-              # Adaptive Bitrate Streaming (ABS) setup.
-              type:,
               # List of different representations you want to create separated by an underscore.
-              value:
+              value:,
+              # Adaptive Bitrate Streaming (ABS) setup.
+              type: :abs
             )
             end
 
@@ -1329,9 +1104,8 @@ module Imagekit
               override.returns(
                 {
                   protocol:
-                    Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol::OrSymbol,
-                  type:
-                    Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type::OrSymbol,
+                    Imagekit::FileUploadParams::Transformation::Post::Abs::Protocol::OrSymbol,
+                  type: Symbol,
                   value: String
                 }
               )
@@ -1347,7 +1121,7 @@ module Imagekit
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol
+                    Imagekit::FileUploadParams::Transformation::Post::Abs::Protocol
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1355,48 +1129,18 @@ module Imagekit
               HLS =
                 T.let(
                   :hls,
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol::TaggedSymbol
+                  Imagekit::FileUploadParams::Transformation::Post::Abs::Protocol::TaggedSymbol
                 )
               DASH =
                 T.let(
                   :dash,
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol::TaggedSymbol
+                  Imagekit::FileUploadParams::Transformation::Post::Abs::Protocol::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
-            end
-
-            # Adaptive Bitrate Streaming (ABS) setup.
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              ABS =
-                T.let(
-                  :abs,
-                  Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type::TaggedSymbol
+                    Imagekit::FileUploadParams::Transformation::Post::Abs::Protocol::TaggedSymbol
                   ]
                 )
               end

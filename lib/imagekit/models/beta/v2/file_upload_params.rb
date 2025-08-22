@@ -87,7 +87,7 @@ module Imagekit
           #   Array of extensions to be applied to the image. Each extension can be configured
           #   with specific parameters based on the extension type.
           #
-          #   @return [Array<Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension>, nil]
+          #   @return [Array<Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemoveBg, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AIAutoDescription, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension>, nil]
           optional :extensions,
                    -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::Beta::V2::FileUploadParams::Extension] }
 
@@ -225,7 +225,7 @@ module Imagekit
           #
           #   @param description [String] Optional text to describe the contents of the file.
           #
-          #   @param extensions [Array<Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension>] Array of extensions to be applied to the image. Each extension can be configured
+          #   @param extensions [Array<Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemoveBg, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AIAutoDescription, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension>] Array of extensions to be applied to the image. Each extension can be configured
           #
           #   @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
           #
@@ -256,42 +256,32 @@ module Imagekit
           module Extension
             extend Imagekit::Internal::Type::Union
 
-            variant -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension }
+            discriminator :name
+
+            variant :"remove-bg", -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg }
+
+            variant :"ai-auto-description", -> { Imagekit::Beta::V2::FileUploadParams::Extension::AIAutoDescription }
 
             variant -> { Imagekit::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension }
 
-            variant -> { Imagekit::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension }
-
-            class RemovedotBgExtension < Imagekit::Internal::Type::BaseModel
+            class RemoveBg < Imagekit::Internal::Type::BaseModel
               # @!attribute name
               #   Specifies the background removal extension.
               #
-              #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Name]
-              required :name, enum: -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Name }
+              #   @return [Symbol, :"remove-bg"]
+              required :name, const: :"remove-bg"
 
               # @!attribute options
               #
-              #   @return [Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options, nil]
-              optional :options, -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options }
+              #   @return [Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemoveBg::Options, nil]
+              optional :options, -> { Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::Options }
 
-              # @!method initialize(name:, options: nil)
-              #   @param name [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Name] Specifies the background removal extension.
+              # @!method initialize(options: nil, name: :"remove-bg")
+              #   @param options [Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemoveBg::Options]
               #
-              #   @param options [Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options]
+              #   @param name [Symbol, :"remove-bg"] Specifies the background removal extension.
 
-              # Specifies the background removal extension.
-              #
-              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension#name
-              module Name
-                extend Imagekit::Internal::Type::Enum
-
-                REMOVE_BG = :"remove-bg"
-
-                # @!method self.values
-                #   @return [Array<Symbol>]
-              end
-
-              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension#options
+              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemoveBg#options
               class Options < Imagekit::Internal::Type::BaseModel
                 # @!attribute add_shadow
                 #   Whether to add an artificial shadow to the result. Default is false. Note:
@@ -324,8 +314,8 @@ module Imagekit
 
                 # @!method initialize(add_shadow: nil, bg_color: nil, bg_image_url: nil, semitransparency: nil)
                 #   Some parameter documentations has been truncated, see
-                #   {Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension::Options}
-                #   for more details.
+                #   {Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemoveBg::Options} for
+                #   more details.
                 #
                 #   @param add_shadow [Boolean] Whether to add an artificial shadow to the result. Default is false. Note: Addin
                 #
@@ -377,32 +367,19 @@ module Imagekit
               end
             end
 
-            class AutoDescriptionExtension < Imagekit::Internal::Type::BaseModel
+            class AIAutoDescription < Imagekit::Internal::Type::BaseModel
               # @!attribute name
               #   Specifies the auto description extension.
               #
-              #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::Name]
-              required :name,
-                       enum: -> { Imagekit::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::Name }
+              #   @return [Symbol, :"ai-auto-description"]
+              required :name, const: :"ai-auto-description"
 
-              # @!method initialize(name:)
-              #   @param name [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension::Name] Specifies the auto description extension.
-
-              # Specifies the auto description extension.
-              #
-              # @see Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension#name
-              module Name
-                extend Imagekit::Internal::Type::Enum
-
-                AI_AUTO_DESCRIPTION = :"ai-auto-description"
-
-                # @!method self.values
-                #   @return [Array<Symbol>]
-              end
+              # @!method initialize(name: :"ai-auto-description")
+              #   @param name [Symbol, :"ai-auto-description"] Specifies the auto description extension.
             end
 
             # @!method self.variants
-            #   @return [Array(Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemovedotBgExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoDescriptionExtension)]
+            #   @return [Array(Imagekit::Models::Beta::V2::FileUploadParams::Extension::RemoveBg, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AIAutoDescription, Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension)]
           end
 
           module ResponseField
@@ -426,7 +403,7 @@ module Imagekit
             #   Each item must match one of the following types: `transformation`,
             #   `gif-to-video`, `thumbnail`, `abs`.
             #
-            #   @return [Array<Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming>, nil]
+            #   @return [Array<Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Transformation, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GifToVideo, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Thumbnail, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs>, nil]
             optional :post,
                      -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::Beta::V2::FileUploadParams::Transformation::Post] }
 
@@ -453,28 +430,29 @@ module Imagekit
             #
             #   You can mix and match any combination of post-processing types.
             #
-            #   @param post [Array<Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming>] List of transformations to apply _after_ the file is uploaded.
+            #   @param post [Array<Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Transformation, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GifToVideo, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Thumbnail, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs>] List of transformations to apply _after_ the file is uploaded.
             #
             #   @param pre [String] Transformation string to apply before uploading the file to the Media Library. U
 
             module Post
               extend Imagekit::Internal::Type::Union
 
-              variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation }
+              discriminator :type
 
-              variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo }
+              variant :transformation, -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::Transformation }
 
-              variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail }
+              variant :"gif-to-video", -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::GifToVideo }
 
-              variant -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming }
+              variant :thumbnail, -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::Thumbnail }
 
-              class SimplePostTransformation < Imagekit::Internal::Type::BaseModel
+              variant :abs, -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::Abs }
+
+              class Transformation < Imagekit::Internal::Type::BaseModel
                 # @!attribute type
                 #   Transformation type.
                 #
-                #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation::Type]
-                required :type,
-                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation::Type }
+                #   @return [Symbol, :transformation]
+                required :type, const: :transformation
 
                 # @!attribute value
                 #   Transformation string (e.g. `w-200,h-200`).
@@ -483,35 +461,22 @@ module Imagekit
                 #   @return [String]
                 required :value, String
 
-                # @!method initialize(type:, value:)
+                # @!method initialize(value:, type: :transformation)
                 #   Some parameter documentations has been truncated, see
-                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation}
+                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Transformation}
                 #   for more details.
                 #
-                #   @param type [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation::Type] Transformation type.
-                #
                 #   @param value [String] Transformation string (e.g. `w-200,h-200`).
-
-                # Transformation type.
                 #
-                # @see Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation#type
-                module Type
-                  extend Imagekit::Internal::Type::Enum
-
-                  TRANSFORMATION = :transformation
-
-                  # @!method self.values
-                  #   @return [Array<Symbol>]
-                end
+                #   @param type [Symbol, :transformation] Transformation type.
               end
 
-              class ConvertGifToVideo < Imagekit::Internal::Type::BaseModel
+              class GifToVideo < Imagekit::Internal::Type::BaseModel
                 # @!attribute type
                 #   Converts an animated GIF into an MP4.
                 #
-                #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type]
-                required :type,
-                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type }
+                #   @return [Symbol, :"gif-to-video"]
+                required :type, const: :"gif-to-video"
 
                 # @!attribute value
                 #   Optional transformation string to apply to the output video.
@@ -520,35 +485,22 @@ module Imagekit
                 #   @return [String, nil]
                 optional :value, String
 
-                # @!method initialize(type:, value: nil)
+                # @!method initialize(value: nil, type: :"gif-to-video")
                 #   Some parameter documentations has been truncated, see
-                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo}
+                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GifToVideo}
                 #   for more details.
                 #
-                #   @param type [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo::Type] Converts an animated GIF into an MP4.
-                #
                 #   @param value [String] Optional transformation string to apply to the output video.
-
-                # Converts an animated GIF into an MP4.
                 #
-                # @see Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo#type
-                module Type
-                  extend Imagekit::Internal::Type::Enum
-
-                  GIF_TO_VIDEO = :"gif-to-video"
-
-                  # @!method self.values
-                  #   @return [Array<Symbol>]
-                end
+                #   @param type [Symbol, :"gif-to-video"] Converts an animated GIF into an MP4.
               end
 
-              class GenerateAThumbnail < Imagekit::Internal::Type::BaseModel
+              class Thumbnail < Imagekit::Internal::Type::BaseModel
                 # @!attribute type
                 #   Generates a thumbnail image.
                 #
-                #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type]
-                required :type,
-                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type }
+                #   @return [Symbol, :thumbnail]
+                required :type, const: :thumbnail
 
                 # @!attribute value
                 #   Optional transformation string.
@@ -557,42 +509,28 @@ module Imagekit
                 #   @return [String, nil]
                 optional :value, String
 
-                # @!method initialize(type:, value: nil)
+                # @!method initialize(value: nil, type: :thumbnail)
                 #   Some parameter documentations has been truncated, see
-                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail}
+                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Thumbnail}
                 #   for more details.
                 #
-                #   @param type [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail::Type] Generates a thumbnail image.
-                #
                 #   @param value [String] Optional transformation string.
-
-                # Generates a thumbnail image.
                 #
-                # @see Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail#type
-                module Type
-                  extend Imagekit::Internal::Type::Enum
-
-                  THUMBNAIL = :thumbnail
-
-                  # @!method self.values
-                  #   @return [Array<Symbol>]
-                end
+                #   @param type [Symbol, :thumbnail] Generates a thumbnail image.
               end
 
-              class AdaptiveBitrateStreaming < Imagekit::Internal::Type::BaseModel
+              class Abs < Imagekit::Internal::Type::BaseModel
                 # @!attribute protocol
                 #   Streaming protocol to use (`hls` or `dash`).
                 #
-                #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol]
-                required :protocol,
-                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol }
+                #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs::Protocol]
+                required :protocol, enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::Abs::Protocol }
 
                 # @!attribute type
                 #   Adaptive Bitrate Streaming (ABS) setup.
                 #
-                #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type]
-                required :type,
-                         enum: -> { Imagekit::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type }
+                #   @return [Symbol, :abs]
+                required :type, const: :abs
 
                 # @!attribute value
                 #   List of different representations you want to create separated by an underscore.
@@ -600,20 +538,20 @@ module Imagekit
                 #   @return [String]
                 required :value, String
 
-                # @!method initialize(protocol:, type:, value:)
+                # @!method initialize(protocol:, value:, type: :abs)
                 #   Some parameter documentations has been truncated, see
-                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming}
-                #   for more details.
+                #   {Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs} for
+                #   more details.
                 #
-                #   @param protocol [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Protocol] Streaming protocol to use (`hls` or `dash`).
-                #
-                #   @param type [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::Type] Adaptive Bitrate Streaming (ABS) setup.
+                #   @param protocol [Symbol, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs::Protocol] Streaming protocol to use (`hls` or `dash`).
                 #
                 #   @param value [String] List of different representations you want to create separated by an underscore.
+                #
+                #   @param type [Symbol, :abs] Adaptive Bitrate Streaming (ABS) setup.
 
                 # Streaming protocol to use (`hls` or `dash`).
                 #
-                # @see Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming#protocol
+                # @see Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs#protocol
                 module Protocol
                   extend Imagekit::Internal::Type::Enum
 
@@ -623,22 +561,10 @@ module Imagekit
                   # @!method self.values
                   #   @return [Array<Symbol>]
                 end
-
-                # Adaptive Bitrate Streaming (ABS) setup.
-                #
-                # @see Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming#type
-                module Type
-                  extend Imagekit::Internal::Type::Enum
-
-                  ABS = :abs
-
-                  # @!method self.values
-                  #   @return [Array<Symbol>]
-                end
               end
 
               # @!method self.variants
-              #   @return [Array(Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::SimplePostTransformation, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::ConvertGifToVideo, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GenerateAThumbnail, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming)]
+              #   @return [Array(Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Transformation, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::GifToVideo, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Thumbnail, Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs)]
             end
           end
         end

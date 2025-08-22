@@ -41,9 +41,9 @@ module Imagekit
           returns(
             T.nilable(
               T.any(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai
               )
             )
           )
@@ -54,9 +54,9 @@ module Imagekit
           params(
             url_rewriter:
               T.any(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::OrHash
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary::OrHash,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix::OrHash,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai::OrHash
               )
           ).void
         end
@@ -69,9 +69,9 @@ module Imagekit
             url_prefix: String,
             url_rewriter:
               T.any(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::OrHash
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary::OrHash,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix::OrHash,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai::OrHash
               ),
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -100,9 +100,9 @@ module Imagekit
               url_prefix: String,
               url_rewriter:
                 T.any(
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter,
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter,
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter
+                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary,
+                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix,
+                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai
                 ),
               request_options: Imagekit::RequestOptions
             }
@@ -118,26 +118,22 @@ module Imagekit
           Variants =
             T.type_alias do
               T.any(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai
               )
             end
 
-          class CloudinaryURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Cloudinary < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter,
+                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary,
                   Imagekit::Internal::AnyHash
                 )
               end
 
-            sig do
-              returns(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type::OrSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
             # Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
@@ -149,189 +145,65 @@ module Imagekit
 
             sig do
               params(
-                type:
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type::OrSymbol,
-                preserve_asset_delivery_types: T::Boolean
+                preserve_asset_delivery_types: T::Boolean,
+                type: Symbol
               ).returns(T.attached_class)
             end
             def self.new(
-              type:,
               # Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
-              preserve_asset_delivery_types: nil
+              preserve_asset_delivery_types: nil,
+              type: :CLOUDINARY
             )
             end
 
             sig do
               override.returns(
-                {
-                  type:
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type::OrSymbol,
-                  preserve_asset_delivery_types: T::Boolean
-                }
+                { type: Symbol, preserve_asset_delivery_types: T::Boolean }
               )
             end
             def to_hash
             end
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              CLOUDINARY =
-                T.let(
-                  :CLOUDINARY,
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
-            end
           end
 
-          class ImgixURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Imgix < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter,
+                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix,
                   Imagekit::Internal::AnyHash
                 )
               end
 
-            sig do
-              returns(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type::OrSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
-            sig do
-              params(
-                type:
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type::OrSymbol
-              ).returns(T.attached_class)
-            end
-            def self.new(type:)
+            sig { params(type: Symbol).returns(T.attached_class) }
+            def self.new(type: :IMGIX)
             end
 
-            sig do
-              override.returns(
-                {
-                  type:
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type::OrSymbol
-                }
-              )
-            end
+            sig { override.returns({ type: Symbol }) }
             def to_hash
-            end
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              IMGIX =
-                T.let(
-                  :IMGIX,
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 
-          class AkamaiURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Akamai < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter,
+                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai,
                   Imagekit::Internal::AnyHash
                 )
               end
 
-            sig do
-              returns(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type::OrSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
-            sig do
-              params(
-                type:
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type::OrSymbol
-              ).returns(T.attached_class)
-            end
-            def self.new(type:)
+            sig { params(type: Symbol).returns(T.attached_class) }
+            def self.new(type: :AKAMAI)
             end
 
-            sig do
-              override.returns(
-                {
-                  type:
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type::OrSymbol
-                }
-              )
-            end
+            sig { override.returns({ type: Symbol }) }
             def to_hash
-            end
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              AKAMAI =
-                T.let(
-                  :AKAMAI,
-                  Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 

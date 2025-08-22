@@ -13,9 +13,9 @@ module Imagekit
             url_prefix: String,
             url_rewriter:
               T.any(
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::OrHash
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary::OrHash,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix::OrHash,
+                Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai::OrHash
               ),
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Models::Accounts::URLEndpointCreateResponse)
@@ -46,9 +46,9 @@ module Imagekit
             url_prefix: String,
             url_rewriter:
               T.any(
-                Imagekit::Accounts::URLEndpointUpdateParams::URLRewriter::CloudinaryURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointUpdateParams::URLRewriter::ImgixURLRewriter::OrHash,
-                Imagekit::Accounts::URLEndpointUpdateParams::URLRewriter::AkamaiURLRewriter::OrHash
+                Imagekit::Accounts::URLEndpointUpdateParams::URLRewriter::Cloudinary::OrHash,
+                Imagekit::Accounts::URLEndpointUpdateParams::URLRewriter::Imgix::OrHash,
+                Imagekit::Accounts::URLEndpointUpdateParams::URLRewriter::Akamai::OrHash
               ),
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Models::Accounts::URLEndpointUpdateResponse)

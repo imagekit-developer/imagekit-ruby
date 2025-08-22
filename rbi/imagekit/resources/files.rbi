@@ -244,9 +244,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUploadParams::Extension::RemovedotBgExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoDescriptionExtension::OrHash
+                Imagekit::FileUploadParams::Extension::RemoveBg::OrHash,
+                Imagekit::FileUploadParams::Extension::AIAutoDescription::OrHash,
+                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash
               )
             ],
           folder: String,

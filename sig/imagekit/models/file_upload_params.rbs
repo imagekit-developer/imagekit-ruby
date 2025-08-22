@@ -181,47 +181,37 @@ module Imagekit
       }
 
       type extension =
-        Imagekit::FileUploadParams::Extension::RemovedotBgExtension
+        Imagekit::FileUploadParams::Extension::RemoveBg
+        | Imagekit::FileUploadParams::Extension::AIAutoDescription
         | Imagekit::FileUploadParams::Extension::AutoTaggingExtension
-        | Imagekit::FileUploadParams::Extension::AutoDescriptionExtension
 
       module Extension
         extend Imagekit::Internal::Type::Union
 
-        type removedot_bg_extension =
+        type remove_bg =
           {
-            name: Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension::name_,
-            options: Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options
+            name: :"remove-bg",
+            options: Imagekit::FileUploadParams::Extension::RemoveBg::Options
           }
 
-        class RemovedotBgExtension < Imagekit::Internal::Type::BaseModel
-          attr_accessor name: Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension::name_
+        class RemoveBg < Imagekit::Internal::Type::BaseModel
+          attr_accessor name: :"remove-bg"
 
-          attr_reader options: Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options?
+          attr_reader options: Imagekit::FileUploadParams::Extension::RemoveBg::Options?
 
           def options=: (
-            Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options
-          ) -> Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options
+            Imagekit::FileUploadParams::Extension::RemoveBg::Options
+          ) -> Imagekit::FileUploadParams::Extension::RemoveBg::Options
 
           def initialize: (
-            name: Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension::name_,
-            ?options: Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options
+            ?options: Imagekit::FileUploadParams::Extension::RemoveBg::Options,
+            ?name: :"remove-bg"
           ) -> void
 
           def to_hash: -> {
-            name: Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension::name_,
-            options: Imagekit::FileUploadParams::Extension::RemovedotBgExtension::Options
+            name: :"remove-bg",
+            options: Imagekit::FileUploadParams::Extension::RemoveBg::Options
           }
-
-          type name_ = :"remove-bg"
-
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            REMOVE_BG: :"remove-bg"
-
-            def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Extension::RemovedotBgExtension::name_]
-          end
 
           type options =
             {
@@ -302,31 +292,14 @@ module Imagekit
           end
         end
 
-        type auto_description_extension =
-          {
-            name: Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension::name_
-          }
+        type ai_auto_description = { name: :"ai-auto-description" }
 
-        class AutoDescriptionExtension < Imagekit::Internal::Type::BaseModel
-          attr_accessor name: Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension::name_
+        class AIAutoDescription < Imagekit::Internal::Type::BaseModel
+          attr_accessor name: :"ai-auto-description"
 
-          def initialize: (
-            name: Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension::name_
-          ) -> void
+          def initialize: (?name: :"ai-auto-description") -> void
 
-          def to_hash: -> {
-            name: Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension::name_
-          }
-
-          type name_ = :"ai-auto-description"
-
-          module Name
-            extend Imagekit::Internal::Type::Enum
-
-            AI_AUTO_DESCRIPTION: :"ai-auto-description"
-
-            def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Extension::AutoDescriptionExtension::name_]
-          end
+          def to_hash: -> { name: :"ai-auto-description" }
         end
 
         def self?.variants: -> ::Array[Imagekit::Models::FileUploadParams::extension]
@@ -383,137 +356,77 @@ module Imagekit
         }
 
         type post =
-          Imagekit::FileUploadParams::Transformation::Post::SimplePostTransformation
-          | Imagekit::FileUploadParams::Transformation::Post::ConvertGifToVideo
-          | Imagekit::FileUploadParams::Transformation::Post::GenerateAThumbnail
-          | Imagekit::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming
+          Imagekit::FileUploadParams::Transformation::Post::Transformation
+          | Imagekit::FileUploadParams::Transformation::Post::GifToVideo
+          | Imagekit::FileUploadParams::Transformation::Post::Thumbnail
+          | Imagekit::FileUploadParams::Transformation::Post::Abs
 
         module Post
           extend Imagekit::Internal::Type::Union
 
-          type simple_post_transformation =
-            {
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::SimplePostTransformation::type_,
-              value: String
-            }
+          type transformation = { type: :transformation, value: String }
 
-          class SimplePostTransformation < Imagekit::Internal::Type::BaseModel
-            attr_accessor type: Imagekit::Models::FileUploadParams::Transformation::Post::SimplePostTransformation::type_
+          class Transformation < Imagekit::Internal::Type::BaseModel
+            attr_accessor type: :transformation
 
             attr_accessor value: String
 
-            def initialize: (
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::SimplePostTransformation::type_,
-              value: String
-            ) -> void
+            def initialize: (value: String, ?type: :transformation) -> void
 
-            def to_hash: -> {
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::SimplePostTransformation::type_,
-              value: String
-            }
-
-            type type_ = :transformation
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TRANSFORMATION: :transformation
-
-              def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Transformation::Post::SimplePostTransformation::type_]
-            end
+            def to_hash: -> { type: :transformation, value: String }
           end
 
-          type convert_gif_to_video =
-            {
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::ConvertGifToVideo::type_,
-              value: String
-            }
+          type gif_to_video = { type: :"gif-to-video", value: String }
 
-          class ConvertGifToVideo < Imagekit::Internal::Type::BaseModel
-            attr_accessor type: Imagekit::Models::FileUploadParams::Transformation::Post::ConvertGifToVideo::type_
+          class GifToVideo < Imagekit::Internal::Type::BaseModel
+            attr_accessor type: :"gif-to-video"
 
             attr_reader value: String?
 
             def value=: (String) -> String
 
-            def initialize: (
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::ConvertGifToVideo::type_,
-              ?value: String
-            ) -> void
+            def initialize: (?value: String, ?type: :"gif-to-video") -> void
 
-            def to_hash: -> {
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::ConvertGifToVideo::type_,
-              value: String
-            }
-
-            type type_ = :"gif-to-video"
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              GIF_TO_VIDEO: :"gif-to-video"
-
-              def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Transformation::Post::ConvertGifToVideo::type_]
-            end
+            def to_hash: -> { type: :"gif-to-video", value: String }
           end
 
-          type generate_a_thumbnail =
-            {
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::GenerateAThumbnail::type_,
-              value: String
-            }
+          type thumbnail = { type: :thumbnail, value: String }
 
-          class GenerateAThumbnail < Imagekit::Internal::Type::BaseModel
-            attr_accessor type: Imagekit::Models::FileUploadParams::Transformation::Post::GenerateAThumbnail::type_
+          class Thumbnail < Imagekit::Internal::Type::BaseModel
+            attr_accessor type: :thumbnail
 
             attr_reader value: String?
 
             def value=: (String) -> String
 
-            def initialize: (
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::GenerateAThumbnail::type_,
-              ?value: String
-            ) -> void
+            def initialize: (?value: String, ?type: :thumbnail) -> void
 
-            def to_hash: -> {
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::GenerateAThumbnail::type_,
-              value: String
-            }
-
-            type type_ = :thumbnail
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              THUMBNAIL: :thumbnail
-
-              def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Transformation::Post::GenerateAThumbnail::type_]
-            end
+            def to_hash: -> { type: :thumbnail, value: String }
           end
 
-          type adaptive_bitrate_streaming =
+          type abs =
             {
-              protocol: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::protocol,
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::type_,
+              protocol: Imagekit::Models::FileUploadParams::Transformation::Post::Abs::protocol,
+              type: :abs,
               value: String
             }
 
-          class AdaptiveBitrateStreaming < Imagekit::Internal::Type::BaseModel
-            attr_accessor protocol: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::protocol
+          class Abs < Imagekit::Internal::Type::BaseModel
+            attr_accessor protocol: Imagekit::Models::FileUploadParams::Transformation::Post::Abs::protocol
 
-            attr_accessor type: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::type_
+            attr_accessor type: :abs
 
             attr_accessor value: String
 
             def initialize: (
-              protocol: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::protocol,
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::type_,
-              value: String
+              protocol: Imagekit::Models::FileUploadParams::Transformation::Post::Abs::protocol,
+              value: String,
+              ?type: :abs
             ) -> void
 
             def to_hash: -> {
-              protocol: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::protocol,
-              type: Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::type_,
+              protocol: Imagekit::Models::FileUploadParams::Transformation::Post::Abs::protocol,
+              type: :abs,
               value: String
             }
 
@@ -525,17 +438,7 @@ module Imagekit
               HLS: :hls
               DASH: :dash
 
-              def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::protocol]
-            end
-
-            type type_ = :abs
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              ABS: :abs
-
-              def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Transformation::Post::AdaptiveBitrateStreaming::type_]
+              def self?.values: -> ::Array[Imagekit::Models::FileUploadParams::Transformation::Post::Abs::protocol]
             end
           end
 

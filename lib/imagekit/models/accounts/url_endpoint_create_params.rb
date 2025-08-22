@@ -32,7 +32,7 @@ module Imagekit
         # @!attribute url_rewriter
         #   Configuration for third-party URL rewriting.
         #
-        #   @return [Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter, nil]
+        #   @return [Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Akamai, nil]
         optional :url_rewriter,
                  union: -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter },
                  api_name: :urlRewriter
@@ -47,7 +47,7 @@ module Imagekit
         #
         #   @param url_prefix [String] Path segment appended to your base URL to form the endpoint (letters, digits, an
         #
-        #   @param url_rewriter [Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter] Configuration for third-party URL rewriting.
+        #   @param url_rewriter [Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Akamai] Configuration for third-party URL rewriting.
         #
         #   @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}]
 
@@ -55,18 +55,19 @@ module Imagekit
         module URLRewriter
           extend Imagekit::Internal::Type::Union
 
-          variant -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter }
+          discriminator :type
 
-          variant -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter }
+          variant :CLOUDINARY, -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary }
 
-          variant -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter }
+          variant :IMGIX, -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix }
 
-          class CloudinaryURLRewriter < Imagekit::Internal::Type::BaseModel
+          variant :AKAMAI, -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai }
+
+          class Cloudinary < Imagekit::Internal::Type::BaseModel
             # @!attribute type
             #
-            #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type]
-            required :type,
-                     enum: -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type }
+            #   @return [Symbol, :CLOUDINARY]
+            required :type, const: :CLOUDINARY
 
             # @!attribute preserve_asset_delivery_types
             #   Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
@@ -76,66 +77,34 @@ module Imagekit
                      Imagekit::Internal::Type::Boolean,
                      api_name: :preserveAssetDeliveryTypes
 
-            # @!method initialize(type:, preserve_asset_delivery_types: nil)
-            #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter::Type]
-            #
+            # @!method initialize(preserve_asset_delivery_types: nil, type: :CLOUDINARY)
             #   @param preserve_asset_delivery_types [Boolean] Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
-
-            # @see Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter#type
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              CLOUDINARY = :CLOUDINARY
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            #
+            #   @param type [Symbol, :CLOUDINARY]
           end
 
-          class ImgixURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Imgix < Imagekit::Internal::Type::BaseModel
             # @!attribute type
             #
-            #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type]
-            required :type,
-                     enum: -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type }
+            #   @return [Symbol, :IMGIX]
+            required :type, const: :IMGIX
 
-            # @!method initialize(type:)
-            #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter::Type]
-
-            # @see Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter#type
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              IMGIX = :IMGIX
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method initialize(type: :IMGIX)
+            #   @param type [Symbol, :IMGIX]
           end
 
-          class AkamaiURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Akamai < Imagekit::Internal::Type::BaseModel
             # @!attribute type
             #
-            #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type]
-            required :type,
-                     enum: -> { Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type }
+            #   @return [Symbol, :AKAMAI]
+            required :type, const: :AKAMAI
 
-            # @!method initialize(type:)
-            #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter::Type]
-
-            # @see Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter#type
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              AKAMAI = :AKAMAI
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method initialize(type: :AKAMAI)
+            #   @param type [Symbol, :AKAMAI]
           end
 
           # @!method self.variants
-          #   @return [Array(Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::CloudinaryURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::ImgixURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::AkamaiURLRewriter)]
+          #   @return [Array(Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Akamai)]
         end
       end
     end
