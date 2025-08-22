@@ -43,7 +43,7 @@ module Imagekit
           attr_accessor :name
 
           # Path prefix inside the bucket.
-          sig { returns(T.anything) }
+          sig { returns(String) }
           attr_accessor :prefix
 
           sig do
@@ -71,7 +71,7 @@ module Imagekit
               bucket: String,
               include_canonical_header: T::Boolean,
               name: String,
-              prefix: T.anything,
+              prefix: String,
               type:
                 Imagekit::Models::Accounts::OriginGetResponse::S3::Type::OrSymbol,
               base_url_for_canonical_header: String
@@ -102,7 +102,7 @@ module Imagekit
                 bucket: String,
                 include_canonical_header: T::Boolean,
                 name: String,
-                prefix: T.anything,
+                prefix: String,
                 type:
                   Imagekit::Models::Accounts::OriginGetResponse::S3::Type::TaggedSymbol,
                 base_url_for_canonical_header: String
@@ -168,7 +168,7 @@ module Imagekit
           attr_accessor :name
 
           # Path prefix inside the bucket.
-          sig { returns(T.anything) }
+          sig { returns(String) }
           attr_accessor :prefix
 
           # Use path-style S3 URLs?
@@ -201,7 +201,7 @@ module Imagekit
               endpoint: String,
               include_canonical_header: T::Boolean,
               name: String,
-              prefix: T.anything,
+              prefix: String,
               s3_force_path_style: T::Boolean,
               type:
                 Imagekit::Models::Accounts::OriginGetResponse::S3Compatible::Type::OrSymbol,
@@ -238,7 +238,7 @@ module Imagekit
                 endpoint: String,
                 include_canonical_header: T::Boolean,
                 name: String,
-                prefix: T.anything,
+                prefix: String,
                 s3_force_path_style: T::Boolean,
                 type:
                   Imagekit::Models::Accounts::OriginGetResponse::S3Compatible::Type::TaggedSymbol,
@@ -301,7 +301,7 @@ module Imagekit
           attr_accessor :name
 
           # Path prefix inside the bucket.
-          sig { returns(T.anything) }
+          sig { returns(String) }
           attr_accessor :prefix
 
           sig do
@@ -329,7 +329,7 @@ module Imagekit
               bucket: String,
               include_canonical_header: T::Boolean,
               name: String,
-              prefix: T.anything,
+              prefix: String,
               type:
                 Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup::Type::OrSymbol,
               base_url_for_canonical_header: String
@@ -360,7 +360,7 @@ module Imagekit
                 bucket: String,
                 include_canonical_header: T::Boolean,
                 name: String,
-                prefix: T.anything,
+                prefix: String,
                 type:
                   Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup::Type::TaggedSymbol,
                 base_url_for_canonical_header: String
@@ -410,7 +410,7 @@ module Imagekit
             end
 
           # Root URL for the web folder origin.
-          sig { returns(T.anything) }
+          sig { returns(String) }
           attr_accessor :base_url
 
           # Forward the Host header to origin?
@@ -447,7 +447,7 @@ module Imagekit
           sig do
             params(
               id: String,
-              base_url: T.anything,
+              base_url: String,
               forward_host_header_to_origin: T::Boolean,
               include_canonical_header: T::Boolean,
               name: String,
@@ -478,7 +478,7 @@ module Imagekit
             override.returns(
               {
                 id: String,
-                base_url: T.anything,
+                base_url: String,
                 forward_host_header_to_origin: T::Boolean,
                 include_canonical_header: T::Boolean,
                 name: String,
@@ -649,7 +649,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :name
 
-          sig { returns(T.anything) }
+          sig { returns(String) }
           attr_accessor :prefix
 
           sig do
@@ -678,7 +678,7 @@ module Imagekit
               client_email: String,
               include_canonical_header: T::Boolean,
               name: String,
-              prefix: T.anything,
+              prefix: String,
               type:
                 Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs::Type::OrSymbol,
               base_url_for_canonical_header: String
@@ -709,7 +709,7 @@ module Imagekit
                 client_email: String,
                 include_canonical_header: T::Boolean,
                 name: String,
-                prefix: T.anything,
+                prefix: String,
                 type:
                   Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs::Type::TaggedSymbol,
                 base_url_for_canonical_header: String
@@ -772,7 +772,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :name
 
-          sig { returns(T.anything) }
+          sig { returns(String) }
           attr_accessor :prefix
 
           sig do
@@ -801,7 +801,7 @@ module Imagekit
               container: String,
               include_canonical_header: T::Boolean,
               name: String,
-              prefix: T.anything,
+              prefix: String,
               type:
                 Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage::Type::OrSymbol,
               base_url_for_canonical_header: String
@@ -832,7 +832,7 @@ module Imagekit
                 container: String,
                 include_canonical_header: T::Boolean,
                 name: String,
-                prefix: T.anything,
+                prefix: String,
                 type:
                   Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage::Type::TaggedSymbol,
                 base_url_for_canonical_header: String
@@ -882,7 +882,7 @@ module Imagekit
             end
 
           # Akeneo instance base URL.
-          sig { returns(T.anything) }
+          sig { returns(String) }
           attr_accessor :base_url
 
           # Whether to send a Canonical header.
@@ -915,7 +915,7 @@ module Imagekit
           sig do
             params(
               id: String,
-              base_url: T.anything,
+              base_url: String,
               include_canonical_header: T::Boolean,
               name: String,
               type:
@@ -943,7 +943,7 @@ module Imagekit
             override.returns(
               {
                 id: String,
-                base_url: T.anything,
+                base_url: String,
                 include_canonical_header: T::Boolean,
                 name: String,
                 type:

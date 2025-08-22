@@ -20,7 +20,7 @@ module Imagekit
             bucket: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::S3::type_,
             base_url_for_canonical_header: String
           }
@@ -32,7 +32,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor prefix: top
+          attr_accessor prefix: String
 
           attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::S3::type_
 
@@ -47,7 +47,7 @@ module Imagekit
             bucket: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::S3::type_,
             ?base_url_for_canonical_header: String
           ) -> void
@@ -57,7 +57,7 @@ module Imagekit
             bucket: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::S3::type_,
             base_url_for_canonical_header: String
           }
@@ -80,7 +80,7 @@ module Imagekit
             endpoint: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             :s3_force_path_style => bool,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible::type_,
             base_url_for_canonical_header: String
@@ -95,7 +95,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor prefix: top
+          attr_accessor prefix: String
 
           attr_accessor s3_force_path_style: bool
 
@@ -113,7 +113,7 @@ module Imagekit
             endpoint: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             s3_force_path_style: bool,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible::type_,
             ?base_url_for_canonical_header: String
@@ -125,7 +125,7 @@ module Imagekit
             endpoint: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             :s3_force_path_style => bool,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible::type_,
             base_url_for_canonical_header: String
@@ -148,7 +148,7 @@ module Imagekit
             bucket: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_,
             base_url_for_canonical_header: String
           }
@@ -160,7 +160,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor prefix: top
+          attr_accessor prefix: String
 
           attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_
 
@@ -175,7 +175,7 @@ module Imagekit
             bucket: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_,
             ?base_url_for_canonical_header: String
           ) -> void
@@ -185,7 +185,7 @@ module Imagekit
             bucket: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_,
             base_url_for_canonical_header: String
           }
@@ -204,7 +204,7 @@ module Imagekit
         type web_folder =
           {
             id: String,
-            base_url: top,
+            base_url: String,
             forward_host_header_to_origin: bool,
             include_canonical_header: bool,
             name: String,
@@ -213,7 +213,7 @@ module Imagekit
           }
 
         class WebFolder < Imagekit::Internal::Type::BaseModel
-          attr_accessor base_url: top
+          attr_accessor base_url: String
 
           attr_accessor forward_host_header_to_origin: bool
 
@@ -231,7 +231,7 @@ module Imagekit
 
           def initialize: (
             id: String,
-            base_url: top,
+            base_url: String,
             forward_host_header_to_origin: bool,
             include_canonical_header: bool,
             name: String,
@@ -241,7 +241,7 @@ module Imagekit
 
           def to_hash: -> {
             id: String,
-            base_url: top,
+            base_url: String,
             forward_host_header_to_origin: bool,
             include_canonical_header: bool,
             name: String,
@@ -316,7 +316,7 @@ module Imagekit
             client_email: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_,
             base_url_for_canonical_header: String
           }
@@ -330,7 +330,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor prefix: top
+          attr_accessor prefix: String
 
           attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_
 
@@ -346,7 +346,7 @@ module Imagekit
             client_email: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_,
             ?base_url_for_canonical_header: String
           ) -> void
@@ -357,7 +357,7 @@ module Imagekit
             client_email: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_,
             base_url_for_canonical_header: String
           }
@@ -380,7 +380,7 @@ module Imagekit
             container: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_,
             base_url_for_canonical_header: String
           }
@@ -394,7 +394,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor prefix: top
+          attr_accessor prefix: String
 
           attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_
 
@@ -410,7 +410,7 @@ module Imagekit
             container: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_,
             ?base_url_for_canonical_header: String
           ) -> void
@@ -421,7 +421,7 @@ module Imagekit
             container: String,
             include_canonical_header: bool,
             name: String,
-            prefix: top,
+            prefix: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_,
             base_url_for_canonical_header: String
           }
@@ -440,7 +440,7 @@ module Imagekit
         type akeneo_pim =
           {
             id: String,
-            base_url: top,
+            base_url: String,
             include_canonical_header: bool,
             name: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_,
@@ -448,7 +448,7 @@ module Imagekit
           }
 
         class AkeneoPim < Imagekit::Internal::Type::BaseModel
-          attr_accessor base_url: top
+          attr_accessor base_url: String
 
           attr_accessor include_canonical_header: bool
 
@@ -464,7 +464,7 @@ module Imagekit
 
           def initialize: (
             id: String,
-            base_url: top,
+            base_url: String,
             include_canonical_header: bool,
             name: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_,
@@ -473,7 +473,7 @@ module Imagekit
 
           def to_hash: -> {
             id: String,
-            base_url: top,
+            base_url: String,
             include_canonical_header: bool,
             name: String,
             type: Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_,
