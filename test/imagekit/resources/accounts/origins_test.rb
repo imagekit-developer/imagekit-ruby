@@ -6,16 +6,7 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response =
-      @image_kit.accounts.origins.create(
-        base_url: "https://akeneo.company.com",
-        client_id: "akeneo-client-id",
-        client_secret: "akeneo-client-secret",
-        name: "US S3 Storage",
-        password: "strongpassword123",
-        type: :AKENEO_PIM,
-        username: "integration-user"
-      )
+    response = @image_kit.accounts.origins.create(body: {name: "name", type: :S3})
 
     assert_pattern do
       response => Imagekit::Models::Accounts::OriginCreateResponse
@@ -38,17 +29,7 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
   def test_update_required_params
     skip("Prism tests are disabled")
 
-    response =
-      @image_kit.accounts.origins.update(
-        "id",
-        base_url: "https://akeneo.company.com",
-        client_id: "akeneo-client-id",
-        client_secret: "akeneo-client-secret",
-        name: "US S3 Storage",
-        password: "strongpassword123",
-        type: :AKENEO_PIM,
-        username: "integration-user"
-      )
+    response = @image_kit.accounts.origins.update("id", body: {name: "name", type: :S3})
 
     assert_pattern do
       response => Imagekit::Models::Accounts::OriginUpdateResponse
