@@ -30,7 +30,7 @@ module Imagekit
         sig { returns(String) }
         attr_accessor :secret_key
 
-        sig { returns(Symbol) }
+        sig { returns(Imagekit::Accounts::OriginUpdateParams::Type::OrSymbol) }
         attr_accessor :type
 
         # URL used in the Canonical header (if enabled).
@@ -112,6 +112,7 @@ module Imagekit
             bucket: String,
             name: String,
             secret_key: String,
+            type: Imagekit::Accounts::OriginUpdateParams::Type::OrSymbol,
             endpoint: String,
             base_url: String,
             client_email: String,
@@ -128,7 +129,6 @@ module Imagekit
             prefix: String,
             s3_force_path_style: T::Boolean,
             forward_host_header_to_origin: T::Boolean,
-            type: Symbol,
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -140,6 +140,7 @@ module Imagekit
           name:,
           # Secret key for the bucket.
           secret_key:,
+          type:,
           # Custom S3-compatible endpoint.
           endpoint:,
           # Akeneo instance base URL.
@@ -166,7 +167,6 @@ module Imagekit
           s3_force_path_style: nil,
           # Forward the Host header to origin?
           forward_host_header_to_origin: nil,
-          type: :AKENEO_PIM,
           request_options: {}
         )
         end
@@ -178,7 +178,7 @@ module Imagekit
               bucket: String,
               name: String,
               secret_key: String,
-              type: Symbol,
+              type: Imagekit::Accounts::OriginUpdateParams::Type::OrSymbol,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
@@ -200,6 +200,67 @@ module Imagekit
           )
         end
         def to_hash
+        end
+
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Imagekit::Accounts::OriginUpdateParams::Type)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          AKENEO_PIM =
+            T.let(
+              :AKENEO_PIM,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+          S3 =
+            T.let(
+              :S3,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+          S3_COMPATIBLE =
+            T.let(
+              :S3_COMPATIBLE,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+          CLOUDINARY_BACKUP =
+            T.let(
+              :CLOUDINARY_BACKUP,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+          WEB_FOLDER =
+            T.let(
+              :WEB_FOLDER,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+          WEB_PROXY =
+            T.let(
+              :WEB_PROXY,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+          GCS =
+            T.let(
+              :GCS,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+          AZURE_BLOB =
+            T.let(
+              :AZURE_BLOB,
+              Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::Accounts::OriginUpdateParams::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

@@ -12,6 +12,7 @@ module Imagekit
             bucket: String,
             name: String,
             secret_key: String,
+            type: Imagekit::Accounts::OriginCreateParams::Type::OrSymbol,
             endpoint: String,
             base_url: String,
             client_email: String,
@@ -28,7 +29,6 @@ module Imagekit
             prefix: String,
             s3_force_path_style: T::Boolean,
             forward_host_header_to_origin: T::Boolean,
-            type: Symbol,
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Models::Accounts::OriginCreateResponse::Variants)
         end
@@ -40,6 +40,7 @@ module Imagekit
           name:,
           # Secret key for the bucket.
           secret_key:,
+          type:,
           # Custom S3-compatible endpoint.
           endpoint:,
           # Akeneo instance base URL.
@@ -66,7 +67,6 @@ module Imagekit
           s3_force_path_style: nil,
           # Forward the Host header to origin?
           forward_host_header_to_origin: nil,
-          type: :AKENEO_PIM,
           request_options: {}
         )
         end
@@ -80,6 +80,7 @@ module Imagekit
             bucket: String,
             name: String,
             secret_key: String,
+            type: Imagekit::Accounts::OriginUpdateParams::Type::OrSymbol,
             endpoint: String,
             base_url: String,
             client_email: String,
@@ -96,7 +97,6 @@ module Imagekit
             prefix: String,
             s3_force_path_style: T::Boolean,
             forward_host_header_to_origin: T::Boolean,
-            type: Symbol,
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Models::Accounts::OriginUpdateResponse::Variants)
         end
@@ -111,6 +111,7 @@ module Imagekit
           name:,
           # Secret key for the bucket.
           secret_key:,
+          type:,
           # Custom S3-compatible endpoint.
           endpoint:,
           # Akeneo instance base URL.
@@ -137,7 +138,6 @@ module Imagekit
           s3_force_path_style: nil,
           # Forward the Host header to origin?
           forward_host_header_to_origin: nil,
-          type: :AKENEO_PIM,
           request_options: {}
         )
         end
