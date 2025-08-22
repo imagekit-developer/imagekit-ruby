@@ -335,15 +335,16 @@ module Imagekit
           Variants =
             T.type_alias do
               T.any(
-                Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember0::Variants,
+                String,
+                Float,
+                T::Boolean,
                 T::Array[
-                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::JsonScalarArray::Variants
+                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3::Variants
                 ]
               )
             end
 
-          # Primitive JSON scalar.
-          module UnionMember0
+          module UnionMember3
             extend Imagekit::Internal::Type::Union
 
             Variants = T.type_alias { T.any(String, Float, T::Boolean) }
@@ -351,24 +352,7 @@ module Imagekit
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember0::Variants
-                ]
-              )
-            end
-            def self.variants
-            end
-          end
-
-          # Primitive JSON scalar.
-          module JsonScalarArray
-            extend Imagekit::Internal::Type::Union
-
-            Variants = T.type_alias { T.any(String, Float, T::Boolean) }
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::JsonScalarArray::Variants
+                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3::Variants
                 ]
               )
             end
@@ -386,11 +370,11 @@ module Imagekit
           def self.variants
           end
 
-          JsonScalar2DArray =
+          UnionMember3Array =
             T.let(
               Imagekit::Internal::Type::ArrayOf[
                 union:
-                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::JsonScalarArray
+                  Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3
               ],
               Imagekit::Internal::Type::Converter
             )
