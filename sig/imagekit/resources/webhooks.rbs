@@ -1,0 +1,13 @@
+module Imagekit
+  module Resources
+    class Webhooks
+      def unwrap: (
+        String payload
+      ) -> (Imagekit::VideoTransformationAcceptedWebhookEvent
+      | Imagekit::VideoTransformationReadyWebhookEvent
+      | Imagekit::VideoTransformationErrorWebhookEvent)
+
+      def initialize: (client: Imagekit::Client) -> void
+    end
+  end
+end

@@ -6,16 +6,16 @@ module Imagekit
       # @api private
       #
       # @example
-      #   # `origin_create_response` is a `Imagekit::Models::Accounts::OriginCreateResponse`
-      #   case origin_create_response
-      #   when Imagekit::Models::Accounts::OriginCreateResponse::S3
-      #     puts(origin_create_response.id)
-      #   when Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible
-      #     puts(origin_create_response.bucket)
-      #   when Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup
-      #     puts(origin_create_response.include_canonical_header)
+      #   # `unwrap_webhook_event` is a `Imagekit::UnwrapWebhookEvent`
+      #   case unwrap_webhook_event
+      #   when Imagekit::VideoTransformationAcceptedWebhookEvent
+      #     puts(unwrap_webhook_event.id)
+      #   when Imagekit::VideoTransformationReadyWebhookEvent
+      #     puts(unwrap_webhook_event.created_at)
+      #   when Imagekit::VideoTransformationErrorWebhookEvent
+      #     puts(unwrap_webhook_event.data)
       #   else
-      #     puts(origin_create_response)
+      #     puts(unwrap_webhook_event)
       #   end
       module Union
         include Imagekit::Internal::Type::Converter

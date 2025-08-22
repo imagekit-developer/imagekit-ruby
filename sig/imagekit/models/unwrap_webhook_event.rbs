@@ -1,0 +1,14 @@
+module Imagekit
+  module Models
+    type unwrap_webhook_event =
+      Imagekit::VideoTransformationAcceptedWebhookEvent
+      | Imagekit::VideoTransformationReadyWebhookEvent
+      | Imagekit::VideoTransformationErrorWebhookEvent
+
+    module UnwrapWebhookEvent
+      extend Imagekit::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Imagekit::Models::unwrap_webhook_event]
+    end
+  end
+end

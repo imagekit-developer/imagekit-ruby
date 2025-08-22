@@ -44,6 +44,9 @@ module Imagekit
     # @return [Imagekit::Resources::Beta]
     attr_reader :beta
 
+    # @return [Imagekit::Resources::Webhooks]
+    attr_reader :webhooks
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -111,6 +114,7 @@ module Imagekit
       @folders = Imagekit::Resources::Folders.new(client: self)
       @accounts = Imagekit::Resources::Accounts.new(client: self)
       @beta = Imagekit::Resources::Beta.new(client: self)
+      @webhooks = Imagekit::Resources::Webhooks.new(client: self)
     end
   end
 end

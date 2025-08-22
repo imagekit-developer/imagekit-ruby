@@ -58,4 +58,14 @@ module Imagekit
   class RemovedotBgExtension = Imagekit::Models::RemovedotBgExtension
 
   class Thumbnail = Imagekit::Models::Thumbnail
+
+  module UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent
+
+  class VideoTransformationAcceptedWebhookEvent = Imagekit::Models::VideoTransformationAcceptedWebhookEvent
+
+  class VideoTransformationErrorWebhookEvent = Imagekit::Models::VideoTransformationErrorWebhookEvent
+
+  class VideoTransformationReadyWebhookEvent = Imagekit::Models::VideoTransformationReadyWebhookEvent
+
+  class WebhookUnwrapParams = Imagekit::Models::WebhookUnwrapParams
 end

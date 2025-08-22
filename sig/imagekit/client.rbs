@@ -26,6 +26,8 @@ module Imagekit
 
     attr_reader beta: Imagekit::Resources::Beta
 
+    attr_reader webhooks: Imagekit::Resources::Webhooks
+
     private def auth_headers: -> ::Hash[String, String]
 
     def base_url_overridden?: -> bool
