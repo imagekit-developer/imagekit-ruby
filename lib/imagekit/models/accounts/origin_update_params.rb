@@ -11,11 +11,11 @@ module Imagekit
         # @!attribute origin
         #   Schema for origin resources.
         #
-        #   @return [Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3, Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3Compatible, Imagekit::Models::Accounts::OriginUpdateParams::Origin::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebFolder, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebProxy, Imagekit::Models::Accounts::OriginUpdateParams::Origin::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AzureBlobStorage, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AkeneoPim]
+        #   @return [Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3, Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3Compatible, Imagekit::Models::Accounts::OriginUpdateParams::Origin::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebFolder, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebProxy, Imagekit::Models::Accounts::OriginUpdateParams::Origin::Gcs, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AzureBlob, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AkeneoPim]
         required :origin, union: -> { Imagekit::Accounts::OriginUpdateParams::Origin }
 
         # @!method initialize(origin:, request_options: {})
-        #   @param origin [Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3, Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3Compatible, Imagekit::Models::Accounts::OriginUpdateParams::Origin::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebFolder, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebProxy, Imagekit::Models::Accounts::OriginUpdateParams::Origin::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AzureBlobStorage, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AkeneoPim] Schema for origin resources.
+        #   @param origin [Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3, Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3Compatible, Imagekit::Models::Accounts::OriginUpdateParams::Origin::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebFolder, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebProxy, Imagekit::Models::Accounts::OriginUpdateParams::Origin::Gcs, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AzureBlob, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AkeneoPim] Schema for origin resources.
         #
         #   @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}]
 
@@ -23,21 +23,23 @@ module Imagekit
         module Origin
           extend Imagekit::Internal::Type::Union
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::S3 }
+          discriminator :type
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::S3Compatible }
+          variant :S3, -> { Imagekit::Accounts::OriginUpdateParams::Origin::S3 }
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::CloudinaryBackup }
+          variant :S3_COMPATIBLE, -> { Imagekit::Accounts::OriginUpdateParams::Origin::S3Compatible }
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::WebFolder }
+          variant :CLOUDINARY_BACKUP, -> { Imagekit::Accounts::OriginUpdateParams::Origin::CloudinaryBackup }
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::WebProxy }
+          variant :WEB_FOLDER, -> { Imagekit::Accounts::OriginUpdateParams::Origin::WebFolder }
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::GoogleCloudStorageGcs }
+          variant :WEB_PROXY, -> { Imagekit::Accounts::OriginUpdateParams::Origin::WebProxy }
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::AzureBlobStorage }
+          variant :GCS, -> { Imagekit::Accounts::OriginUpdateParams::Origin::Gcs }
 
-          variant -> { Imagekit::Accounts::OriginUpdateParams::Origin::AkeneoPim }
+          variant :AZURE_BLOB, -> { Imagekit::Accounts::OriginUpdateParams::Origin::AzureBlob }
+
+          variant :AKENEO_PIM, -> { Imagekit::Accounts::OriginUpdateParams::Origin::AkeneoPim }
 
           class S3 < Imagekit::Internal::Type::BaseModel
             # @!attribute access_key
@@ -349,7 +351,7 @@ module Imagekit
             #   @param type [Symbol, :WEB_PROXY]
           end
 
-          class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+          class Gcs < Imagekit::Internal::Type::BaseModel
             # @!attribute bucket
             #
             #   @return [String]
@@ -413,7 +415,7 @@ module Imagekit
             #   @param type [Symbol, :GCS]
           end
 
-          class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+          class AzureBlob < Imagekit::Internal::Type::BaseModel
             # @!attribute account_name
             #
             #   @return [String]
@@ -554,7 +556,7 @@ module Imagekit
           end
 
           # @!method self.variants
-          #   @return [Array(Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3, Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3Compatible, Imagekit::Models::Accounts::OriginUpdateParams::Origin::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebFolder, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebProxy, Imagekit::Models::Accounts::OriginUpdateParams::Origin::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AzureBlobStorage, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AkeneoPim)]
+          #   @return [Array(Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3, Imagekit::Models::Accounts::OriginUpdateParams::Origin::S3Compatible, Imagekit::Models::Accounts::OriginUpdateParams::Origin::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebFolder, Imagekit::Models::Accounts::OriginUpdateParams::Origin::WebProxy, Imagekit::Models::Accounts::OriginUpdateParams::Origin::Gcs, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AzureBlob, Imagekit::Models::Accounts::OriginUpdateParams::Origin::AkeneoPim)]
         end
       end
     end

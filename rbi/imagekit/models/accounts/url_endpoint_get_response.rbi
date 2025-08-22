@@ -41,9 +41,9 @@ module Imagekit
           params(
             url_rewriter:
               T.any(
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::CloudinaryURLRewriter::OrHash,
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::ImgixURLRewriter::OrHash,
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::AkamaiURLRewriter::OrHash
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Cloudinary::OrHash,
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Imgix::OrHash,
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Akamai::OrHash
               )
           ).void
         end
@@ -64,9 +64,9 @@ module Imagekit
             url_prefix: String,
             url_rewriter:
               T.any(
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::CloudinaryURLRewriter::OrHash,
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::ImgixURLRewriter::OrHash,
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::AkamaiURLRewriter::OrHash
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Cloudinary::OrHash,
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Imgix::OrHash,
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Akamai::OrHash
               )
           ).returns(T.attached_class)
         end
@@ -111,17 +111,17 @@ module Imagekit
           Variants =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::CloudinaryURLRewriter,
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::ImgixURLRewriter,
-                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::AkamaiURLRewriter
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Cloudinary,
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Imgix,
+                Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Akamai
               )
             end
 
-          class CloudinaryURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Cloudinary < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::CloudinaryURLRewriter,
+                  Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Cloudinary,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -155,11 +155,11 @@ module Imagekit
             end
           end
 
-          class ImgixURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Imgix < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::ImgixURLRewriter,
+                  Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Imgix,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -176,11 +176,11 @@ module Imagekit
             end
           end
 
-          class AkamaiURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Akamai < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::AkamaiURLRewriter,
+                  Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Akamai,
                   Imagekit::Internal::AnyHash
                 )
               end

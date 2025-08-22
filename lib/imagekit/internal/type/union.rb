@@ -6,16 +6,28 @@ module Imagekit
       # @api private
       #
       # @example
-      #   # `unsafe_unwrap_webhook_event` is a `Imagekit::UnsafeUnwrapWebhookEvent`
-      #   case unsafe_unwrap_webhook_event
-      #   when Imagekit::VideoTransformationAcceptedWebhookEvent
-      #     puts(unsafe_unwrap_webhook_event.id)
-      #   when Imagekit::VideoTransformationReadyWebhookEvent
-      #     puts(unsafe_unwrap_webhook_event.created_at)
-      #   when Imagekit::VideoTransformationErrorWebhookEvent
-      #     puts(unsafe_unwrap_webhook_event.data)
+      #   # `origin_create_response` is a `Imagekit::Models::Accounts::OriginCreateResponse`
+      #   case origin_create_response
+      #   when Imagekit::Models::Accounts::OriginCreateResponse::S3
+      #     puts(origin_create_response.id)
+      #   when Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible
+      #     puts(origin_create_response.bucket)
+      #   when Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup
+      #     puts(origin_create_response.include_canonical_header)
       #   else
-      #     puts(unsafe_unwrap_webhook_event)
+      #     puts(origin_create_response)
+      #   end
+      #
+      # @example
+      #   case origin_create_response
+      #   in {type: :S3, id: id, bucket: bucket, include_canonical_header: include_canonical_header}
+      #     puts(id)
+      #   in {type: :S3_COMPATIBLE, id: id, bucket: bucket, endpoint: endpoint}
+      #     puts(bucket)
+      #   in {type: :CLOUDINARY_BACKUP, id: id, bucket: bucket, include_canonical_header: include_canonical_header}
+      #     puts(include_canonical_header)
+      #   else
+      #     puts(origin_create_response)
       #   end
       module Union
         include Imagekit::Internal::Type::Converter

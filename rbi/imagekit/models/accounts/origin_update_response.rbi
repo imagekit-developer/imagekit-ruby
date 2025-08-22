@@ -15,8 +15,8 @@ module Imagekit
               Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup,
               Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder,
               Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy,
-              Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs,
-              Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage,
+              Imagekit::Models::Accounts::OriginUpdateResponse::Gcs,
+              Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlob,
               Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim
             )
           end
@@ -451,11 +451,11 @@ module Imagekit
           end
         end
 
-        class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+        class Gcs < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs,
+                Imagekit::Models::Accounts::OriginUpdateResponse::Gcs,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -539,11 +539,11 @@ module Imagekit
           end
         end
 
-        class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+        class AzureBlob < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage,
+                Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlob,
                 Imagekit::Internal::AnyHash
               )
             end

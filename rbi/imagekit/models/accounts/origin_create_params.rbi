@@ -24,8 +24,8 @@ module Imagekit
               Imagekit::Accounts::OriginCreateParams::Origin::CloudinaryBackup,
               Imagekit::Accounts::OriginCreateParams::Origin::WebFolder,
               Imagekit::Accounts::OriginCreateParams::Origin::WebProxy,
-              Imagekit::Accounts::OriginCreateParams::Origin::GoogleCloudStorageGcs,
-              Imagekit::Accounts::OriginCreateParams::Origin::AzureBlobStorage,
+              Imagekit::Accounts::OriginCreateParams::Origin::Gcs,
+              Imagekit::Accounts::OriginCreateParams::Origin::AzureBlob,
               Imagekit::Accounts::OriginCreateParams::Origin::AkeneoPim
             )
           )
@@ -41,8 +41,8 @@ module Imagekit
                 Imagekit::Accounts::OriginCreateParams::Origin::CloudinaryBackup::OrHash,
                 Imagekit::Accounts::OriginCreateParams::Origin::WebFolder::OrHash,
                 Imagekit::Accounts::OriginCreateParams::Origin::WebProxy::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::GoogleCloudStorageGcs::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::AzureBlobStorage::OrHash,
+                Imagekit::Accounts::OriginCreateParams::Origin::Gcs::OrHash,
+                Imagekit::Accounts::OriginCreateParams::Origin::AzureBlob::OrHash,
                 Imagekit::Accounts::OriginCreateParams::Origin::AkeneoPim::OrHash
               ),
             request_options: Imagekit::RequestOptions::OrHash
@@ -65,8 +65,8 @@ module Imagekit
                   Imagekit::Accounts::OriginCreateParams::Origin::CloudinaryBackup,
                   Imagekit::Accounts::OriginCreateParams::Origin::WebFolder,
                   Imagekit::Accounts::OriginCreateParams::Origin::WebProxy,
-                  Imagekit::Accounts::OriginCreateParams::Origin::GoogleCloudStorageGcs,
-                  Imagekit::Accounts::OriginCreateParams::Origin::AzureBlobStorage,
+                  Imagekit::Accounts::OriginCreateParams::Origin::Gcs,
+                  Imagekit::Accounts::OriginCreateParams::Origin::AzureBlob,
                   Imagekit::Accounts::OriginCreateParams::Origin::AkeneoPim
                 ),
               request_options: Imagekit::RequestOptions
@@ -88,8 +88,8 @@ module Imagekit
                 Imagekit::Accounts::OriginCreateParams::Origin::CloudinaryBackup,
                 Imagekit::Accounts::OriginCreateParams::Origin::WebFolder,
                 Imagekit::Accounts::OriginCreateParams::Origin::WebProxy,
-                Imagekit::Accounts::OriginCreateParams::Origin::GoogleCloudStorageGcs,
-                Imagekit::Accounts::OriginCreateParams::Origin::AzureBlobStorage,
+                Imagekit::Accounts::OriginCreateParams::Origin::Gcs,
+                Imagekit::Accounts::OriginCreateParams::Origin::AzureBlob,
                 Imagekit::Accounts::OriginCreateParams::Origin::AkeneoPim
               )
             end
@@ -552,11 +552,11 @@ module Imagekit
             end
           end
 
-          class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+          class Gcs < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Accounts::OriginCreateParams::Origin::GoogleCloudStorageGcs,
+                  Imagekit::Accounts::OriginCreateParams::Origin::Gcs,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -642,11 +642,11 @@ module Imagekit
             end
           end
 
-          class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+          class AzureBlob < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::Accounts::OriginCreateParams::Origin::AzureBlobStorage,
+                  Imagekit::Accounts::OriginCreateParams::Origin::AzureBlob,
                   Imagekit::Internal::AnyHash
                 )
               end

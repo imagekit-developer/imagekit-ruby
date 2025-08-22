@@ -42,17 +42,17 @@ module Imagekit
         }
 
         type url_rewriter =
-          Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::CloudinaryURLRewriter
-          | Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::ImgixURLRewriter
-          | Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::AkamaiURLRewriter
+          Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Cloudinary
+          | Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Imgix
+          | Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter::Akamai
 
         module URLRewriter
           extend Imagekit::Internal::Type::Union
 
-          type cloudinary_url_rewriter =
+          type cloudinary =
             { preserve_asset_delivery_types: bool, type: :CLOUDINARY }
 
-          class CloudinaryURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Cloudinary < Imagekit::Internal::Type::BaseModel
             attr_accessor preserve_asset_delivery_types: bool
 
             attr_accessor type: :CLOUDINARY
@@ -68,9 +68,9 @@ module Imagekit
             }
           end
 
-          type imgix_url_rewriter = { type: :IMGIX }
+          type imgix = { type: :IMGIX }
 
-          class ImgixURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Imgix < Imagekit::Internal::Type::BaseModel
             attr_accessor type: :IMGIX
 
             def initialize: (?type: :IMGIX) -> void
@@ -78,9 +78,9 @@ module Imagekit
             def to_hash: -> { type: :IMGIX }
           end
 
-          type akamai_url_rewriter = { type: :AKAMAI }
+          type akamai = { type: :AKAMAI }
 
-          class AkamaiURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Akamai < Imagekit::Internal::Type::BaseModel
             attr_accessor type: :AKAMAI
 
             def initialize: (?type: :AKAMAI) -> void

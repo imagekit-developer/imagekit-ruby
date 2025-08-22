@@ -29,7 +29,7 @@ module Imagekit
         # @!attribute url_rewriter
         #   Configuration for third-party URL rewriting.
         #
-        #   @return [Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::CloudinaryURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::ImgixURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::AkamaiURLRewriter, nil]
+        #   @return [Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Akamai, nil]
         optional :url_rewriter,
                  union: -> { Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter },
                  api_name: :urlRewriter
@@ -58,7 +58,7 @@ module Imagekit
         #
         #   @param url_prefix [String] Path segment appended to your base URL to form the endpoint (letters, digits, an
         #
-        #   @param url_rewriter [Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::CloudinaryURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::ImgixURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::AkamaiURLRewriter] Configuration for third-party URL rewriting.
+        #   @param url_rewriter [Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Akamai] Configuration for third-party URL rewriting.
 
         # Configuration for third-party URL rewriting.
         #
@@ -66,13 +66,15 @@ module Imagekit
         module URLRewriter
           extend Imagekit::Internal::Type::Union
 
-          variant -> { Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::CloudinaryURLRewriter }
+          discriminator :type
 
-          variant -> { Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::ImgixURLRewriter }
+          variant :CLOUDINARY, -> { Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Cloudinary }
 
-          variant -> { Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::AkamaiURLRewriter }
+          variant :IMGIX, -> { Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Imgix }
 
-          class CloudinaryURLRewriter < Imagekit::Internal::Type::BaseModel
+          variant :AKAMAI, -> { Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Akamai }
+
+          class Cloudinary < Imagekit::Internal::Type::BaseModel
             # @!attribute preserve_asset_delivery_types
             #   Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
             #
@@ -92,7 +94,7 @@ module Imagekit
             #   @param type [Symbol, :CLOUDINARY]
           end
 
-          class ImgixURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Imgix < Imagekit::Internal::Type::BaseModel
             # @!attribute type
             #
             #   @return [Symbol, :IMGIX]
@@ -102,7 +104,7 @@ module Imagekit
             #   @param type [Symbol, :IMGIX]
           end
 
-          class AkamaiURLRewriter < Imagekit::Internal::Type::BaseModel
+          class Akamai < Imagekit::Internal::Type::BaseModel
             # @!attribute type
             #
             #   @return [Symbol, :AKAMAI]
@@ -113,7 +115,7 @@ module Imagekit
           end
 
           # @!method self.variants
-          #   @return [Array(Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::CloudinaryURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::ImgixURLRewriter, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::AkamaiURLRewriter)]
+          #   @return [Array(Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter::Akamai)]
         end
       end
     end

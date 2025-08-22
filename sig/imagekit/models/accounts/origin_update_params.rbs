@@ -27,8 +27,8 @@ module Imagekit
           | Imagekit::Accounts::OriginUpdateParams::Origin::CloudinaryBackup
           | Imagekit::Accounts::OriginUpdateParams::Origin::WebFolder
           | Imagekit::Accounts::OriginUpdateParams::Origin::WebProxy
-          | Imagekit::Accounts::OriginUpdateParams::Origin::GoogleCloudStorageGcs
-          | Imagekit::Accounts::OriginUpdateParams::Origin::AzureBlobStorage
+          | Imagekit::Accounts::OriginUpdateParams::Origin::Gcs
+          | Imagekit::Accounts::OriginUpdateParams::Origin::AzureBlob
           | Imagekit::Accounts::OriginUpdateParams::Origin::AkeneoPim
 
         module Origin
@@ -304,7 +304,7 @@ module Imagekit
             }
           end
 
-          type google_cloud_storage_gcs =
+          type gcs =
             {
               bucket: String,
               client_email: String,
@@ -316,7 +316,7 @@ module Imagekit
               prefix: String
             }
 
-          class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+          class Gcs < Imagekit::Internal::Type::BaseModel
             attr_accessor bucket: String
 
             attr_accessor client_email: String
@@ -362,7 +362,7 @@ module Imagekit
             }
           end
 
-          type azure_blob_storage =
+          type azure_blob =
             {
               account_name: String,
               container: String,
@@ -374,7 +374,7 @@ module Imagekit
               prefix: String
             }
 
-          class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+          class AzureBlob < Imagekit::Internal::Type::BaseModel
             attr_accessor account_name: String
 
             attr_accessor container: String

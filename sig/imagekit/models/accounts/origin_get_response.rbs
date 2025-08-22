@@ -7,8 +7,8 @@ module Imagekit
         | Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup
         | Imagekit::Models::Accounts::OriginGetResponse::WebFolder
         | Imagekit::Models::Accounts::OriginGetResponse::WebProxy
-        | Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs
-        | Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage
+        | Imagekit::Models::Accounts::OriginGetResponse::Gcs
+        | Imagekit::Models::Accounts::OriginGetResponse::AzureBlob
         | Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim
 
       module OriginGetResponse
@@ -259,7 +259,7 @@ module Imagekit
           }
         end
 
-        type google_cloud_storage_gcs =
+        type gcs =
           {
             id: String,
             bucket: String,
@@ -271,7 +271,7 @@ module Imagekit
             base_url_for_canonical_header: String
           }
 
-        class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+        class Gcs < Imagekit::Internal::Type::BaseModel
           attr_accessor bucket: String
 
           attr_accessor client_email: String
@@ -313,7 +313,7 @@ module Imagekit
           }
         end
 
-        type azure_blob_storage =
+        type azure_blob =
           {
             id: String,
             account_name: String,
@@ -325,7 +325,7 @@ module Imagekit
             base_url_for_canonical_header: String
           }
 
-        class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+        class AzureBlob < Imagekit::Internal::Type::BaseModel
           attr_accessor account_name: String
 
           attr_accessor container: String
