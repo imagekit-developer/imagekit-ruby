@@ -128,25 +128,31 @@ module Imagekit
         end
 
         type default_value =
-          String
-          | Float
-          | bool
-          | ::Array[Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::union_member3]
+          Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::union_member0
+          | ::Array[Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::json_scalar_array]
 
         module DefaultValue
           extend Imagekit::Internal::Type::Union
 
-          type union_member3 = String | Float | bool
+          type union_member0 = String | Float | bool
 
-          module UnionMember3
+          module UnionMember0
             extend Imagekit::Internal::Type::Union
 
-            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::union_member3]
+            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::union_member0]
+          end
+
+          type json_scalar_array = String | Float | bool
+
+          module JsonScalarArray
+            extend Imagekit::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::json_scalar_array]
           end
 
           def self?.variants: -> ::Array[Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::default_value]
 
-          UnionMember3Array: Imagekit::Internal::Type::Converter
+          JsonScalar2DArray: Imagekit::Internal::Type::Converter
         end
 
         type max_value = String | Float

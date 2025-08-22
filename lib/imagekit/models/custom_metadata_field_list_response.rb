@@ -155,22 +155,39 @@ module Imagekit
         module DefaultValue
           extend Imagekit::Internal::Type::Union
 
-          variant String
+          # Primitive JSON scalar.
+          variant union: -> { Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember0 }
 
-          variant Float
+          variant -> { Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::JsonScalar2DArray }
 
-          variant Imagekit::Internal::Type::Boolean
-
-          # Default value should be of type array when custom metadata field type is set to `MultiSelect`.
-          variant -> { Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3Array }
-
-          module UnionMember3
+          # Primitive JSON scalar.
+          module UnionMember0
             extend Imagekit::Internal::Type::Union
 
+            # Primitive JSON scalar.
             variant String
 
+            # Primitive JSON scalar.
             variant Float
 
+            # Primitive JSON scalar.
+            variant Imagekit::Internal::Type::Boolean
+
+            # @!method self.variants
+            #   @return [Array(String, Float, Boolean)]
+          end
+
+          # Primitive JSON scalar.
+          module JsonScalarArray
+            extend Imagekit::Internal::Type::Union
+
+            # Primitive JSON scalar.
+            variant String
+
+            # Primitive JSON scalar.
+            variant Float
+
+            # Primitive JSON scalar.
             variant Imagekit::Internal::Type::Boolean
 
             # @!method self.variants
@@ -181,8 +198,8 @@ module Imagekit
           #   @return [Array(String, Float, Boolean, Array<String, Float, Boolean>)]
 
           # @type [Imagekit::Internal::Type::Converter]
-          UnionMember3Array =
-            Imagekit::Internal::Type::ArrayOf[union: -> { Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::UnionMember3 }]
+          JsonScalar2DArray =
+            Imagekit::Internal::Type::ArrayOf[union: -> { Imagekit::Models::CustomMetadataFieldListResponseItem::Schema::DefaultValue::JsonScalarArray }]
         end
 
         # Maximum value of the field. Only set if field type is `Date` or `Number`. For
