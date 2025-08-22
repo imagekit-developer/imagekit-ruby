@@ -41,11 +41,7 @@ module Imagekit
       end
       attr_writer :request
 
-      sig do
-        returns(
-          Imagekit::VideoTransformationAcceptedWebhookEvent::Type::TaggedSymbol
-        )
-      end
+      sig { returns(Symbol) }
       attr_accessor :type
 
       sig do
@@ -55,8 +51,7 @@ module Imagekit
           data: Imagekit::VideoTransformationAcceptedWebhookEvent::Data::OrHash,
           request:
             Imagekit::VideoTransformationAcceptedWebhookEvent::Request::OrHash,
-          type:
-            Imagekit::VideoTransformationAcceptedWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -65,7 +60,7 @@ module Imagekit
         created_at:,
         data:,
         request:,
-        type:
+        type: :"video.transformation.accepted"
       )
       end
 
@@ -76,8 +71,7 @@ module Imagekit
             created_at: Time,
             data: Imagekit::VideoTransformationAcceptedWebhookEvent::Data,
             request: Imagekit::VideoTransformationAcceptedWebhookEvent::Request,
-            type:
-              Imagekit::VideoTransformationAcceptedWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -608,35 +602,6 @@ module Imagekit
           )
         end
         def to_hash
-        end
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              Imagekit::VideoTransformationAcceptedWebhookEvent::Type
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VIDEO_TRANSFORMATION_ACCEPTED =
-          T.let(
-            :"video.transformation.accepted",
-            Imagekit::VideoTransformationAcceptedWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Imagekit::VideoTransformationAcceptedWebhookEvent::Type::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
     end

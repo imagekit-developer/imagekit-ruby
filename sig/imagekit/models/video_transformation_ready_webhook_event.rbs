@@ -6,7 +6,7 @@ module Imagekit
         created_at: Time,
         data: Imagekit::VideoTransformationReadyWebhookEvent::Data,
         request: Imagekit::VideoTransformationReadyWebhookEvent::Request,
-        type: Imagekit::Models::VideoTransformationReadyWebhookEvent::type_,
+        type: :"video.transformation.ready",
         timings: Imagekit::VideoTransformationReadyWebhookEvent::Timings
       }
 
@@ -19,7 +19,7 @@ module Imagekit
 
       attr_accessor request: Imagekit::VideoTransformationReadyWebhookEvent::Request
 
-      attr_accessor type: Imagekit::Models::VideoTransformationReadyWebhookEvent::type_
+      attr_accessor type: :"video.transformation.ready"
 
       attr_reader timings: Imagekit::VideoTransformationReadyWebhookEvent::Timings?
 
@@ -32,8 +32,8 @@ module Imagekit
         created_at: Time,
         data: Imagekit::VideoTransformationReadyWebhookEvent::Data,
         request: Imagekit::VideoTransformationReadyWebhookEvent::Request,
-        type: Imagekit::Models::VideoTransformationReadyWebhookEvent::type_,
-        ?timings: Imagekit::VideoTransformationReadyWebhookEvent::Timings
+        ?timings: Imagekit::VideoTransformationReadyWebhookEvent::Timings,
+        ?type: :"video.transformation.ready"
       ) -> void
 
       def to_hash: -> {
@@ -41,7 +41,7 @@ module Imagekit
         created_at: Time,
         data: Imagekit::VideoTransformationReadyWebhookEvent::Data,
         request: Imagekit::VideoTransformationReadyWebhookEvent::Request,
-        type: Imagekit::Models::VideoTransformationReadyWebhookEvent::type_,
+        type: :"video.transformation.ready",
         timings: Imagekit::VideoTransformationReadyWebhookEvent::Timings
       }
 
@@ -321,16 +321,6 @@ module Imagekit
           x_request_id: String,
           user_agent: String
         }
-      end
-
-      type type_ = :"video.transformation.ready"
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        VIDEO_TRANSFORMATION_READY: :"video.transformation.ready"
-
-        def self?.values: -> ::Array[Imagekit::Models::VideoTransformationReadyWebhookEvent::type_]
       end
 
       type timings = { download_duration: Integer, encoding_duration: Integer }

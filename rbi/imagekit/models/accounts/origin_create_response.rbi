@@ -46,11 +46,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :prefix
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginCreateResponse::S3::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -72,9 +68,8 @@ module Imagekit
               include_canonical_header: T::Boolean,
               name: String,
               prefix: String,
-              type:
-                Imagekit::Models::Accounts::OriginCreateResponse::S3::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -89,9 +84,9 @@ module Imagekit
             name:,
             # Path prefix inside the bucket.
             prefix:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :S3
           )
           end
 
@@ -103,42 +98,12 @@ module Imagekit
                 include_canonical_header: T::Boolean,
                 name: String,
                 prefix: String,
-                type:
-                  Imagekit::Models::Accounts::OriginCreateResponse::S3::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginCreateResponse::S3::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            S3 =
-              T.let(
-                :S3,
-                Imagekit::Models::Accounts::OriginCreateResponse::S3::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginCreateResponse::S3::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 
@@ -175,11 +140,7 @@ module Imagekit
           sig { returns(T::Boolean) }
           attr_accessor :s3_force_path_style
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -203,9 +164,8 @@ module Imagekit
               name: String,
               prefix: String,
               s3_force_path_style: T::Boolean,
-              type:
-                Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -224,9 +184,9 @@ module Imagekit
             prefix:,
             # Use path-style S3 URLs?
             s3_force_path_style:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :S3_COMPATIBLE
           )
           end
 
@@ -240,42 +200,12 @@ module Imagekit
                 name: String,
                 prefix: String,
                 s3_force_path_style: T::Boolean,
-                type:
-                  Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            S3_COMPATIBLE =
-              T.let(
-                :S3_COMPATIBLE,
-                Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 

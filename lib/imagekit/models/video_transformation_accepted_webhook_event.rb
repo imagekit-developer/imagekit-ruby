@@ -26,10 +26,10 @@ module Imagekit
 
       # @!attribute type
       #
-      #   @return [Symbol, Imagekit::Models::VideoTransformationAcceptedWebhookEvent::Type]
-      required :type, enum: -> { Imagekit::VideoTransformationAcceptedWebhookEvent::Type }
+      #   @return [Symbol, :"video.transformation.accepted"]
+      required :type, const: :"video.transformation.accepted"
 
-      # @!method initialize(id:, created_at:, data:, request:, type:)
+      # @!method initialize(id:, created_at:, data:, request:, type: :"video.transformation.accepted")
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time]
@@ -38,7 +38,7 @@ module Imagekit
       #
       #   @param request [Imagekit::Models::VideoTransformationAcceptedWebhookEvent::Request]
       #
-      #   @param type [Symbol, Imagekit::Models::VideoTransformationAcceptedWebhookEvent::Type]
+      #   @param type [Symbol, :"video.transformation.accepted"]
 
       # @see Imagekit::Models::VideoTransformationAcceptedWebhookEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
@@ -225,16 +225,6 @@ module Imagekit
         #   @param x_request_id [String] Unique ID for the originating request.
         #
         #   @param user_agent [String] User-Agent header of the originating request.
-      end
-
-      # @see Imagekit::Models::VideoTransformationAcceptedWebhookEvent#type
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        VIDEO_TRANSFORMATION_ACCEPTED = :"video.transformation.accepted"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

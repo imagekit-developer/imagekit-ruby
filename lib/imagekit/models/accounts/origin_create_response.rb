@@ -54,8 +54,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::S3::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::S3::Type }
+          #   @return [Symbol, :S3]
+          required :type, const: :S3
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -72,7 +72,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, bucket:, include_canonical_header:, name:, prefix:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, bucket:, include_canonical_header:, name:, prefix:, base_url_for_canonical_header: nil, type: :S3)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::S3} for more details.
           #
@@ -86,19 +86,9 @@ module Imagekit
           #
           #   @param prefix [String] Path prefix inside the bucket.
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::S3::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::S3#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            S3 = :S3
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :S3]
         end
 
         class S3Compatible < Imagekit::Internal::Type::BaseModel
@@ -142,8 +132,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type }
+          #   @return [Symbol, :S3_COMPATIBLE]
+          required :type, const: :S3_COMPATIBLE
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -160,7 +150,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, bucket:, endpoint:, include_canonical_header:, name:, prefix:, s3_force_path_style:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, bucket:, endpoint:, include_canonical_header:, name:, prefix:, s3_force_path_style:, base_url_for_canonical_header: nil, type: :S3_COMPATIBLE)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible} for more
           #   details.
@@ -179,19 +169,9 @@ module Imagekit
           #
           #   @param s3_force_path_style [Boolean] Use path-style S3 URLs?
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            S3_COMPATIBLE = :S3_COMPATIBLE
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :S3_COMPATIBLE]
         end
 
         class CloudinaryBackup < Imagekit::Internal::Type::BaseModel

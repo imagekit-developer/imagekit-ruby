@@ -21,7 +21,7 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginGetResponse::S3::type_,
+            type: :S3,
             base_url_for_canonical_header: String
           }
 
@@ -34,7 +34,7 @@ module Imagekit
 
           attr_accessor prefix: String
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginGetResponse::S3::type_
+          attr_accessor type: :S3
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -48,8 +48,8 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginGetResponse::S3::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :S3
           ) -> void
 
           def to_hash: -> {
@@ -58,19 +58,9 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginGetResponse::S3::type_,
+            type: :S3,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :S3
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            S3: :S3
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginGetResponse::S3::type_]
-          end
         end
 
         type s3_compatible =
@@ -82,7 +72,7 @@ module Imagekit
             name: String,
             prefix: String,
             :s3_force_path_style => bool,
-            type: Imagekit::Models::Accounts::OriginGetResponse::S3Compatible::type_,
+            type: :S3_COMPATIBLE,
             base_url_for_canonical_header: String
           }
 
@@ -99,7 +89,7 @@ module Imagekit
 
           attr_accessor s3_force_path_style: bool
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginGetResponse::S3Compatible::type_
+          attr_accessor type: :S3_COMPATIBLE
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -115,8 +105,8 @@ module Imagekit
             name: String,
             prefix: String,
             s3_force_path_style: bool,
-            type: Imagekit::Models::Accounts::OriginGetResponse::S3Compatible::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :S3_COMPATIBLE
           ) -> void
 
           def to_hash: -> {
@@ -127,19 +117,9 @@ module Imagekit
             name: String,
             prefix: String,
             :s3_force_path_style => bool,
-            type: Imagekit::Models::Accounts::OriginGetResponse::S3Compatible::type_,
+            type: :S3_COMPATIBLE,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :S3_COMPATIBLE
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            S3_COMPATIBLE: :S3_COMPATIBLE
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginGetResponse::S3Compatible::type_]
-          end
         end
 
         type cloudinary_backup =

@@ -26,15 +26,15 @@ module Imagekit
 
       # @!attribute type
       #
-      #   @return [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Type]
-      required :type, enum: -> { Imagekit::VideoTransformationReadyWebhookEvent::Type }
+      #   @return [Symbol, :"video.transformation.ready"]
+      required :type, const: :"video.transformation.ready"
 
       # @!attribute timings
       #
       #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Timings, nil]
       optional :timings, -> { Imagekit::VideoTransformationReadyWebhookEvent::Timings }
 
-      # @!method initialize(id:, created_at:, data:, request:, type:, timings: nil)
+      # @!method initialize(id:, created_at:, data:, request:, timings: nil, type: :"video.transformation.ready")
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time]
@@ -43,9 +43,9 @@ module Imagekit
       #
       #   @param request [Imagekit::Models::VideoTransformationReadyWebhookEvent::Request]
       #
-      #   @param type [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Type]
-      #
       #   @param timings [Imagekit::Models::VideoTransformationReadyWebhookEvent::Timings]
+      #
+      #   @param type [Symbol, :"video.transformation.ready"]
 
       # @see Imagekit::Models::VideoTransformationReadyWebhookEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
@@ -285,16 +285,6 @@ module Imagekit
         #   @param x_request_id [String] Unique ID for the originating request.
         #
         #   @param user_agent [String] User-Agent header of the originating request.
-      end
-
-      # @see Imagekit::Models::VideoTransformationReadyWebhookEvent#type
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        VIDEO_TRANSFORMATION_READY = :"video.transformation.ready"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # @see Imagekit::Models::VideoTransformationReadyWebhookEvent#timings

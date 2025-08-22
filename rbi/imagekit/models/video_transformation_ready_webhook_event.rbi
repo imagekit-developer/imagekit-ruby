@@ -39,11 +39,7 @@ module Imagekit
       end
       attr_writer :request
 
-      sig do
-        returns(
-          Imagekit::VideoTransformationReadyWebhookEvent::Type::TaggedSymbol
-        )
-      end
+      sig { returns(Symbol) }
       attr_accessor :type
 
       sig do
@@ -68,9 +64,9 @@ module Imagekit
           data: Imagekit::VideoTransformationReadyWebhookEvent::Data::OrHash,
           request:
             Imagekit::VideoTransformationReadyWebhookEvent::Request::OrHash,
-          type: Imagekit::VideoTransformationReadyWebhookEvent::Type::OrSymbol,
           timings:
-            Imagekit::VideoTransformationReadyWebhookEvent::Timings::OrHash
+            Imagekit::VideoTransformationReadyWebhookEvent::Timings::OrHash,
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -79,8 +75,8 @@ module Imagekit
         created_at:,
         data:,
         request:,
-        type:,
-        timings: nil
+        timings: nil,
+        type: :"video.transformation.ready"
       )
       end
 
@@ -91,8 +87,7 @@ module Imagekit
             created_at: Time,
             data: Imagekit::VideoTransformationReadyWebhookEvent::Data,
             request: Imagekit::VideoTransformationReadyWebhookEvent::Request,
-            type:
-              Imagekit::VideoTransformationReadyWebhookEvent::Type::TaggedSymbol,
+            type: Symbol,
             timings: Imagekit::VideoTransformationReadyWebhookEvent::Timings
           }
         )
@@ -741,32 +736,6 @@ module Imagekit
           )
         end
         def to_hash
-        end
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Imagekit::VideoTransformationReadyWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VIDEO_TRANSFORMATION_READY =
-          T.let(
-            :"video.transformation.ready",
-            Imagekit::VideoTransformationReadyWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Imagekit::VideoTransformationReadyWebhookEvent::Type::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
 

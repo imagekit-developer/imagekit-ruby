@@ -39,11 +39,7 @@ module Imagekit
       end
       attr_writer :request
 
-      sig do
-        returns(
-          Imagekit::VideoTransformationErrorWebhookEvent::Type::TaggedSymbol
-        )
-      end
+      sig { returns(Symbol) }
       attr_accessor :type
 
       sig do
@@ -53,7 +49,7 @@ module Imagekit
           data: Imagekit::VideoTransformationErrorWebhookEvent::Data::OrHash,
           request:
             Imagekit::VideoTransformationErrorWebhookEvent::Request::OrHash,
-          type: Imagekit::VideoTransformationErrorWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -62,7 +58,7 @@ module Imagekit
         created_at:,
         data:,
         request:,
-        type:
+        type: :"video.transformation.error"
       )
       end
 
@@ -73,8 +69,7 @@ module Imagekit
             created_at: Time,
             data: Imagekit::VideoTransformationErrorWebhookEvent::Data,
             request: Imagekit::VideoTransformationErrorWebhookEvent::Request,
-            type:
-              Imagekit::VideoTransformationErrorWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -700,32 +695,6 @@ module Imagekit
           )
         end
         def to_hash
-        end
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Imagekit::VideoTransformationErrorWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VIDEO_TRANSFORMATION_ERROR =
-          T.let(
-            :"video.transformation.error",
-            Imagekit::VideoTransformationErrorWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Imagekit::VideoTransformationErrorWebhookEvent::Type::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
     end

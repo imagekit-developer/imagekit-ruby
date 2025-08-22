@@ -6,7 +6,7 @@ module Imagekit
         created_at: Time,
         data: Imagekit::VideoTransformationAcceptedWebhookEvent::Data,
         request: Imagekit::VideoTransformationAcceptedWebhookEvent::Request,
-        type: Imagekit::Models::VideoTransformationAcceptedWebhookEvent::type_
+        type: :"video.transformation.accepted"
       }
 
     class VideoTransformationAcceptedWebhookEvent < Imagekit::Internal::Type::BaseModel
@@ -18,14 +18,14 @@ module Imagekit
 
       attr_accessor request: Imagekit::VideoTransformationAcceptedWebhookEvent::Request
 
-      attr_accessor type: Imagekit::Models::VideoTransformationAcceptedWebhookEvent::type_
+      attr_accessor type: :"video.transformation.accepted"
 
       def initialize: (
         id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationAcceptedWebhookEvent::Data,
         request: Imagekit::VideoTransformationAcceptedWebhookEvent::Request,
-        type: Imagekit::Models::VideoTransformationAcceptedWebhookEvent::type_
+        ?type: :"video.transformation.accepted"
       ) -> void
 
       def to_hash: -> {
@@ -33,7 +33,7 @@ module Imagekit
         created_at: Time,
         data: Imagekit::VideoTransformationAcceptedWebhookEvent::Data,
         request: Imagekit::VideoTransformationAcceptedWebhookEvent::Request,
-        type: Imagekit::Models::VideoTransformationAcceptedWebhookEvent::type_
+        type: :"video.transformation.accepted"
       }
 
       type data =
@@ -245,16 +245,6 @@ module Imagekit
           x_request_id: String,
           user_agent: String
         }
-      end
-
-      type type_ = :"video.transformation.accepted"
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        VIDEO_TRANSFORMATION_ACCEPTED: :"video.transformation.accepted"
-
-        def self?.values: -> ::Array[Imagekit::Models::VideoTransformationAcceptedWebhookEvent::type_]
       end
     end
   end
