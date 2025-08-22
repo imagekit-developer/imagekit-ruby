@@ -304,11 +304,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :prefix
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -330,9 +326,8 @@ module Imagekit
               include_canonical_header: T::Boolean,
               name: String,
               prefix: String,
-              type:
-                Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -347,9 +342,9 @@ module Imagekit
             name:,
             # Path prefix inside the bucket.
             prefix:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :CLOUDINARY_BACKUP
           )
           end
 
@@ -361,42 +356,12 @@ module Imagekit
                 include_canonical_header: T::Boolean,
                 name: String,
                 prefix: String,
-                type:
-                  Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            CLOUDINARY_BACKUP =
-              T.let(
-                :CLOUDINARY_BACKUP,
-                Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 
@@ -425,11 +390,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :name
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginListResponseItem::WebFolder::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -451,9 +412,8 @@ module Imagekit
               forward_host_header_to_origin: T::Boolean,
               include_canonical_header: T::Boolean,
               name: String,
-              type:
-                Imagekit::Models::Accounts::OriginListResponseItem::WebFolder::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -468,9 +428,9 @@ module Imagekit
             include_canonical_header:,
             # Display name of the origin.
             name:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :WEB_FOLDER
           )
           end
 
@@ -482,42 +442,12 @@ module Imagekit
                 forward_host_header_to_origin: T::Boolean,
                 include_canonical_header: T::Boolean,
                 name: String,
-                type:
-                  Imagekit::Models::Accounts::OriginListResponseItem::WebFolder::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginListResponseItem::WebFolder::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            WEB_FOLDER =
-              T.let(
-                :WEB_FOLDER,
-                Imagekit::Models::Accounts::OriginListResponseItem::WebFolder::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginListResponseItem::WebFolder::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 
@@ -538,11 +468,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :name
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginListResponseItem::WebProxy::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -562,9 +488,8 @@ module Imagekit
               id: String,
               include_canonical_header: T::Boolean,
               name: String,
-              type:
-                Imagekit::Models::Accounts::OriginListResponseItem::WebProxy::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -575,9 +500,9 @@ module Imagekit
             include_canonical_header:,
             # Display name of the origin.
             name:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :WEB_PROXY
           )
           end
 
@@ -587,42 +512,12 @@ module Imagekit
                 id: String,
                 include_canonical_header: T::Boolean,
                 name: String,
-                type:
-                  Imagekit::Models::Accounts::OriginListResponseItem::WebProxy::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginListResponseItem::WebProxy::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            WEB_PROXY =
-              T.let(
-                :WEB_PROXY,
-                Imagekit::Models::Accounts::OriginListResponseItem::WebProxy::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginListResponseItem::WebProxy::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 
@@ -652,11 +547,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :prefix
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginListResponseItem::GoogleCloudStorageGcs::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -679,9 +570,8 @@ module Imagekit
               include_canonical_header: T::Boolean,
               name: String,
               prefix: String,
-              type:
-                Imagekit::Models::Accounts::OriginListResponseItem::GoogleCloudStorageGcs::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -695,9 +585,9 @@ module Imagekit
             # Display name of the origin.
             name:,
             prefix:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :GCS
           )
           end
 
@@ -710,42 +600,12 @@ module Imagekit
                 include_canonical_header: T::Boolean,
                 name: String,
                 prefix: String,
-                type:
-                  Imagekit::Models::Accounts::OriginListResponseItem::GoogleCloudStorageGcs::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginListResponseItem::GoogleCloudStorageGcs::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            GCS =
-              T.let(
-                :GCS,
-                Imagekit::Models::Accounts::OriginListResponseItem::GoogleCloudStorageGcs::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginListResponseItem::GoogleCloudStorageGcs::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 
@@ -775,11 +635,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :prefix
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginListResponseItem::AzureBlobStorage::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -802,9 +658,8 @@ module Imagekit
               include_canonical_header: T::Boolean,
               name: String,
               prefix: String,
-              type:
-                Imagekit::Models::Accounts::OriginListResponseItem::AzureBlobStorage::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -818,9 +673,9 @@ module Imagekit
             # Display name of the origin.
             name:,
             prefix:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :AZURE_BLOB
           )
           end
 
@@ -833,42 +688,12 @@ module Imagekit
                 include_canonical_header: T::Boolean,
                 name: String,
                 prefix: String,
-                type:
-                  Imagekit::Models::Accounts::OriginListResponseItem::AzureBlobStorage::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginListResponseItem::AzureBlobStorage::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            AZURE_BLOB =
-              T.let(
-                :AZURE_BLOB,
-                Imagekit::Models::Accounts::OriginListResponseItem::AzureBlobStorage::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginListResponseItem::AzureBlobStorage::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 
@@ -893,11 +718,7 @@ module Imagekit
           sig { returns(String) }
           attr_accessor :name
 
-          sig do
-            returns(
-              Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim::Type::TaggedSymbol
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :type
 
           # URL used in the Canonical header (if enabled).
@@ -918,9 +739,8 @@ module Imagekit
               base_url: String,
               include_canonical_header: T::Boolean,
               name: String,
-              type:
-                Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim::Type::OrSymbol,
-              base_url_for_canonical_header: String
+              base_url_for_canonical_header: String,
+              type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -933,9 +753,9 @@ module Imagekit
             include_canonical_header:,
             # Display name of the origin.
             name:,
-            type:,
             # URL used in the Canonical header (if enabled).
-            base_url_for_canonical_header: nil
+            base_url_for_canonical_header: nil,
+            type: :AKENEO_PIM
           )
           end
 
@@ -946,42 +766,12 @@ module Imagekit
                 base_url: String,
                 include_canonical_header: T::Boolean,
                 name: String,
-                type:
-                  Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim::Type::TaggedSymbol,
+                type: Symbol,
                 base_url_for_canonical_header: String
               }
             )
           end
           def to_hash
-          end
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            AKENEO_PIM =
-              T.let(
-                :AKENEO_PIM,
-                Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
 

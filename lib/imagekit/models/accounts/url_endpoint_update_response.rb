@@ -83,66 +83,33 @@ module Imagekit
 
             # @!attribute type
             #
-            #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type]
-            required :type,
-                     enum: -> { Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type }
+            #   @return [Symbol, :CLOUDINARY]
+            required :type, const: :CLOUDINARY
 
-            # @!method initialize(preserve_asset_delivery_types:, type:)
+            # @!method initialize(preserve_asset_delivery_types:, type: :CLOUDINARY)
             #   @param preserve_asset_delivery_types [Boolean] Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
             #
-            #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type]
-
-            # @see Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter#type
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              CLOUDINARY = :CLOUDINARY
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            #   @param type [Symbol, :CLOUDINARY]
           end
 
           class ImgixURLRewriter < Imagekit::Internal::Type::BaseModel
             # @!attribute type
             #
-            #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type]
-            required :type,
-                     enum: -> { Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type }
+            #   @return [Symbol, :IMGIX]
+            required :type, const: :IMGIX
 
-            # @!method initialize(type:)
-            #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type]
-
-            # @see Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter#type
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              IMGIX = :IMGIX
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method initialize(type: :IMGIX)
+            #   @param type [Symbol, :IMGIX]
           end
 
           class AkamaiURLRewriter < Imagekit::Internal::Type::BaseModel
             # @!attribute type
             #
-            #   @return [Symbol, Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type]
-            required :type,
-                     enum: -> { Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type }
+            #   @return [Symbol, :AKAMAI]
+            required :type, const: :AKAMAI
 
-            # @!method initialize(type:)
-            #   @param type [Symbol, Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type]
-
-            # @see Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter#type
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              AKAMAI = :AKAMAI
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method initialize(type: :AKAMAI)
+            #   @param type [Symbol, :AKAMAI]
           end
 
           # @!method self.variants

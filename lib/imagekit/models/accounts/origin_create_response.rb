@@ -223,8 +223,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup::Type }
+          #   @return [Symbol, :CLOUDINARY_BACKUP]
+          required :type, const: :CLOUDINARY_BACKUP
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -241,7 +241,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, bucket:, include_canonical_header:, name:, prefix:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, bucket:, include_canonical_header:, name:, prefix:, base_url_for_canonical_header: nil, type: :CLOUDINARY_BACKUP)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup} for more
           #   details.
@@ -256,19 +256,9 @@ module Imagekit
           #
           #   @param prefix [String] Path prefix inside the bucket.
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            CLOUDINARY_BACKUP = :CLOUDINARY_BACKUP
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :CLOUDINARY_BACKUP]
         end
 
         class WebFolder < Imagekit::Internal::Type::BaseModel
@@ -302,8 +292,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::WebFolder::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::WebFolder::Type }
+          #   @return [Symbol, :WEB_FOLDER]
+          required :type, const: :WEB_FOLDER
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -320,7 +310,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, base_url:, forward_host_header_to_origin:, include_canonical_header:, name:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, base_url:, forward_host_header_to_origin:, include_canonical_header:, name:, base_url_for_canonical_header: nil, type: :WEB_FOLDER)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::WebFolder} for more details.
           #
@@ -334,19 +324,9 @@ module Imagekit
           #
           #   @param name [String] Display name of the origin.
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::WebFolder::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::WebFolder#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            WEB_FOLDER = :WEB_FOLDER
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :WEB_FOLDER]
         end
 
         class WebProxy < Imagekit::Internal::Type::BaseModel
@@ -366,8 +346,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::WebProxy::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::WebProxy::Type }
+          #   @return [Symbol, :WEB_PROXY]
+          required :type, const: :WEB_PROXY
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -384,7 +364,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, include_canonical_header:, name:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, include_canonical_header:, name:, base_url_for_canonical_header: nil, type: :WEB_PROXY)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::WebProxy} for more details.
           #
@@ -394,19 +374,9 @@ module Imagekit
           #
           #   @param name [String] Display name of the origin.
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::WebProxy::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::WebProxy#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            WEB_PROXY = :WEB_PROXY
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :WEB_PROXY]
         end
 
         class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
@@ -441,8 +411,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs::Type }
+          #   @return [Symbol, :GCS]
+          required :type, const: :GCS
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -459,7 +429,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, bucket:, client_email:, include_canonical_header:, name:, prefix:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, bucket:, client_email:, include_canonical_header:, name:, prefix:, base_url_for_canonical_header: nil, type: :GCS)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs} for
           #   more details.
@@ -476,19 +446,9 @@ module Imagekit
           #
           #   @param prefix [String]
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            GCS = :GCS
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :GCS]
         end
 
         class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
@@ -523,8 +483,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage::Type }
+          #   @return [Symbol, :AZURE_BLOB]
+          required :type, const: :AZURE_BLOB
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -541,7 +501,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, account_name:, container:, include_canonical_header:, name:, prefix:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, account_name:, container:, include_canonical_header:, name:, prefix:, base_url_for_canonical_header: nil, type: :AZURE_BLOB)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage} for more
           #   details.
@@ -558,19 +518,9 @@ module Imagekit
           #
           #   @param prefix [String]
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            AZURE_BLOB = :AZURE_BLOB
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :AZURE_BLOB]
         end
 
         class AkeneoPim < Imagekit::Internal::Type::BaseModel
@@ -596,8 +546,8 @@ module Imagekit
 
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim::Type]
-          required :type, enum: -> { Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim::Type }
+          #   @return [Symbol, :AKENEO_PIM]
+          required :type, const: :AKENEO_PIM
 
           # @!attribute base_url_for_canonical_header
           #   URL used in the Canonical header (if enabled).
@@ -614,7 +564,7 @@ module Imagekit
             required :id, String
           end
 
-          # @!method initialize(id:, base_url:, include_canonical_header:, name:, type:, base_url_for_canonical_header: nil)
+          # @!method initialize(id:, base_url:, include_canonical_header:, name:, base_url_for_canonical_header: nil, type: :AKENEO_PIM)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim} for more details.
           #
@@ -626,19 +576,9 @@ module Imagekit
           #
           #   @param name [String] Display name of the origin.
           #
-          #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim::Type]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
-
-          # @see Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim#type
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            AKENEO_PIM = :AKENEO_PIM
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #
+          #   @param type [Symbol, :AKENEO_PIM]
         end
 
         # @!method self.variants

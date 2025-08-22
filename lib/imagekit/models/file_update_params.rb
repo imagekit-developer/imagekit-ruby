@@ -48,7 +48,7 @@ module Imagekit
       #   Note: The remove operation for `AITags` executes before any of the `extensions`
       #   are processed.
       #
-      #   @return [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags, nil]
+      #   @return [Array<String>, Symbol, :all, nil]
       optional :remove_ai_tags,
                union: -> {
                  Imagekit::FileUpdateParams::RemoveAITags
@@ -89,7 +89,7 @@ module Imagekit
       #
       #   @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemoveBg, Imagekit::Models::FileUpdateParams::Extension::AIAutoDescription, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
-      #   @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
+      #   @param remove_ai_tags [Array<String>, Symbol, :all] An array of AITags associated with the file that you want to remove, e.g. `["car
       #
       #   @param tags [Array<String>, nil] An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `nul
       #
@@ -241,23 +241,13 @@ module Imagekit
 
         variant -> { Imagekit::Models::FileUpdateParams::RemoveAITags::StringArray }
 
-        variant const: -> { Imagekit::Models::FileUpdateParams::RemoveAITags::ALL }
+        variant const: :all
 
         # @!method self.variants
-        #   @return [Array(Array<String>, Symbol)]
-
-        define_sorbet_constant!(:Variants) do
-          T.type_alias { T.any(T::Array[String], Imagekit::FileUpdateParams::RemoveAITags::TaggedSymbol) }
-        end
+        #   @return [Array(Array<String>, Symbol, :all)]
 
         # @type [Imagekit::Internal::Type::Converter]
         StringArray = Imagekit::Internal::Type::ArrayOf[String]
-
-        # @!group
-
-        ALL = :all
-
-        # @!endgroup
       end
 
       class Publish < Imagekit::Internal::Type::BaseModel

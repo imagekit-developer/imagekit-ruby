@@ -29,11 +29,7 @@ module Imagekit
                 Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash
               )
             ],
-          remove_ai_tags:
-            T.any(
-              T::Array[String],
-              Imagekit::FileUpdateParams::RemoveAITags::OrSymbol
-            ),
+          remove_ai_tags: T.any(T::Array[String], Symbol),
           tags: T.nilable(T::Array[String]),
           webhook_url: String,
           publish: Imagekit::FileUpdateParams::Publish::OrHash,

@@ -208,8 +208,6 @@ module Imagekit
         def self?.variants: -> ::Array[Imagekit::Models::FileUpdateParams::remove_ai_tags]
 
         StringArray: Imagekit::Internal::Type::Converter
-
-        ALL: :all
       end
 
       type publish = { is_published: bool, include_file_versions: bool }

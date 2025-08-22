@@ -71,27 +71,10 @@ module Imagekit
       #
       # Note: The remove operation for `AITags` executes before any of the `extensions`
       # are processed.
-      sig do
-        returns(
-          T.nilable(
-            T.any(
-              T::Array[String],
-              Imagekit::FileUpdateParams::RemoveAITags::OrSymbol
-            )
-          )
-        )
-      end
+      sig { returns(T.nilable(T.any(T::Array[String], Symbol))) }
       attr_reader :remove_ai_tags
 
-      sig do
-        params(
-          remove_ai_tags:
-            T.any(
-              T::Array[String],
-              Imagekit::FileUpdateParams::RemoveAITags::OrSymbol
-            )
-        ).void
-      end
+      sig { params(remove_ai_tags: T.any(T::Array[String], Symbol)).void }
       attr_writer :remove_ai_tags
 
       # An array of tags associated with the file, such as `["tag1", "tag2"]`. Send
@@ -129,11 +112,7 @@ module Imagekit
                 Imagekit::FileUpdateParams::Extension::AutoTaggingExtension::OrHash
               )
             ],
-          remove_ai_tags:
-            T.any(
-              T::Array[String],
-              Imagekit::FileUpdateParams::RemoveAITags::OrSymbol
-            ),
+          remove_ai_tags: T.any(T::Array[String], Symbol),
           tags: T.nilable(T::Array[String]),
           webhook_url: String,
           publish: Imagekit::FileUpdateParams::Publish::OrHash,
@@ -190,11 +169,7 @@ module Imagekit
                   Imagekit::FileUpdateParams::Extension::AutoTaggingExtension
                 )
               ],
-            remove_ai_tags:
-              T.any(
-                T::Array[String],
-                Imagekit::FileUpdateParams::RemoveAITags::OrSymbol
-              ),
+            remove_ai_tags: T.any(T::Array[String], Symbol),
             tags: T.nilable(T::Array[String]),
             webhook_url: String,
             publish: Imagekit::FileUpdateParams::Publish,
@@ -492,13 +467,7 @@ module Imagekit
       module RemoveAITags
         extend Imagekit::Internal::Type::Union
 
-        Variants =
-          T.type_alias do
-            T.any(
-              T::Array[String],
-              Imagekit::FileUpdateParams::RemoveAITags::TaggedSymbol
-            )
-          end
+        Variants = T.type_alias { T.any(T::Array[String], Symbol) }
 
         sig do
           override.returns(
@@ -513,15 +482,6 @@ module Imagekit
             Imagekit::Internal::Type::ArrayOf[String],
             Imagekit::Internal::Type::Converter
           )
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Imagekit::FileUpdateParams::RemoveAITags)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ALL =
-          T.let(:all, Imagekit::FileUpdateParams::RemoveAITags::TaggedSymbol)
       end
 
       class Publish < Imagekit::Internal::Type::BaseModel

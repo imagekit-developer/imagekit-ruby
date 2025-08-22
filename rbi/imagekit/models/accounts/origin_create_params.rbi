@@ -30,7 +30,7 @@ module Imagekit
         sig { returns(String) }
         attr_accessor :secret_key
 
-        sig { returns(Imagekit::Accounts::OriginCreateParams::Type::OrSymbol) }
+        sig { returns(Symbol) }
         attr_accessor :type
 
         # URL used in the Canonical header (if enabled).
@@ -112,7 +112,6 @@ module Imagekit
             bucket: String,
             name: String,
             secret_key: String,
-            type: Imagekit::Accounts::OriginCreateParams::Type::OrSymbol,
             endpoint: String,
             base_url: String,
             client_email: String,
@@ -129,6 +128,7 @@ module Imagekit
             prefix: String,
             s3_force_path_style: T::Boolean,
             forward_host_header_to_origin: T::Boolean,
+            type: Symbol,
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -140,7 +140,6 @@ module Imagekit
           name:,
           # Secret key for the bucket.
           secret_key:,
-          type:,
           # Custom S3-compatible endpoint.
           endpoint:,
           # Akeneo instance base URL.
@@ -167,6 +166,7 @@ module Imagekit
           s3_force_path_style: nil,
           # Forward the Host header to origin?
           forward_host_header_to_origin: nil,
+          type: :AKENEO_PIM,
           request_options: {}
         )
         end
@@ -178,7 +178,7 @@ module Imagekit
               bucket: String,
               name: String,
               secret_key: String,
-              type: Imagekit::Accounts::OriginCreateParams::Type::OrSymbol,
+              type: Symbol,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
@@ -200,32 +200,6 @@ module Imagekit
           )
         end
         def to_hash
-        end
-
-        module Type
-          extend Imagekit::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Imagekit::Accounts::OriginCreateParams::Type)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          AKENEO_PIM =
-            T.let(
-              :AKENEO_PIM,
-              Imagekit::Accounts::OriginCreateParams::Type::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Imagekit::Accounts::OriginCreateParams::Type::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
     end

@@ -33,8 +33,8 @@ module Imagekit
 
         # @!attribute type
         #
-        #   @return [Symbol, Imagekit::Models::Accounts::OriginCreateParams::Type]
-        required :type, enum: -> { Imagekit::Accounts::OriginCreateParams::Type }
+        #   @return [Symbol, :AKENEO_PIM]
+        required :type, const: :AKENEO_PIM
 
         # @!attribute base_url_for_canonical_header
         #   URL used in the Canonical header (if enabled).
@@ -130,7 +130,7 @@ module Imagekit
         #   @return [String]
         required :username, String
 
-        # @!method initialize(access_key:, bucket:, name:, secret_key:, type:, endpoint:, base_url:, client_email:, private_key:, account_name:, container:, sas_token:, client_id:, client_secret:, password:, username:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, s3_force_path_style: nil, forward_host_header_to_origin: nil, request_options: {})
+        # @!method initialize(access_key:, bucket:, name:, secret_key:, endpoint:, base_url:, client_email:, private_key:, account_name:, container:, sas_token:, client_id:, client_secret:, password:, username:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, s3_force_path_style: nil, forward_host_header_to_origin: nil, type: :AKENEO_PIM, request_options: {})
         #   @param access_key [String] Access key for the bucket.
         #
         #   @param bucket [String]
@@ -138,8 +138,6 @@ module Imagekit
         #   @param name [String] Display name of the origin.
         #
         #   @param secret_key [String] Secret key for the bucket.
-        #
-        #   @param type [Symbol, Imagekit::Models::Accounts::OriginCreateParams::Type]
         #
         #   @param endpoint [String] Custom S3-compatible endpoint.
         #
@@ -173,16 +171,9 @@ module Imagekit
         #
         #   @param forward_host_header_to_origin [Boolean] Forward the Host header to origin?
         #
+        #   @param type [Symbol, :AKENEO_PIM]
+        #
         #   @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}]
-
-        module Type
-          extend Imagekit::Internal::Type::Enum
-
-          AKENEO_PIM = :AKENEO_PIM
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
       end
     end
   end

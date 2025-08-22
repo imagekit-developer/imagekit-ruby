@@ -130,66 +130,28 @@ module Imagekit
             sig { returns(T::Boolean) }
             attr_accessor :preserve_asset_delivery_types
 
-            sig do
-              returns(
-                Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type::TaggedSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
             sig do
               params(
                 preserve_asset_delivery_types: T::Boolean,
-                type:
-                  Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type::OrSymbol
+                type: Symbol
               ).returns(T.attached_class)
             end
             def self.new(
               # Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
               preserve_asset_delivery_types:,
-              type:
+              type: :CLOUDINARY
             )
             end
 
             sig do
               override.returns(
-                {
-                  preserve_asset_delivery_types: T::Boolean,
-                  type:
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type::TaggedSymbol
-                }
+                { preserve_asset_delivery_types: T::Boolean, type: Symbol }
               )
             end
             def to_hash
-            end
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              CLOUDINARY =
-                T.let(
-                  :CLOUDINARY,
-                  Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::CloudinaryURLRewriter::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 
@@ -202,60 +164,15 @@ module Imagekit
                 )
               end
 
-            sig do
-              returns(
-                Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type::TaggedSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
-            sig do
-              params(
-                type:
-                  Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type::OrSymbol
-              ).returns(T.attached_class)
-            end
-            def self.new(type:)
+            sig { params(type: Symbol).returns(T.attached_class) }
+            def self.new(type: :IMGIX)
             end
 
-            sig do
-              override.returns(
-                {
-                  type:
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type::TaggedSymbol
-                }
-              )
-            end
+            sig { override.returns({ type: Symbol }) }
             def to_hash
-            end
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              IMGIX =
-                T.let(
-                  :IMGIX,
-                  Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::ImgixURLRewriter::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 
@@ -268,60 +185,15 @@ module Imagekit
                 )
               end
 
-            sig do
-              returns(
-                Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type::TaggedSymbol
-              )
-            end
+            sig { returns(Symbol) }
             attr_accessor :type
 
-            sig do
-              params(
-                type:
-                  Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type::OrSymbol
-              ).returns(T.attached_class)
-            end
-            def self.new(type:)
+            sig { params(type: Symbol).returns(T.attached_class) }
+            def self.new(type: :AKAMAI)
             end
 
-            sig do
-              override.returns(
-                {
-                  type:
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type::TaggedSymbol
-                }
-              )
-            end
+            sig { override.returns({ type: Symbol }) }
             def to_hash
-            end
-
-            module Type
-              extend Imagekit::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              AKAMAI =
-                T.let(
-                  :AKAMAI,
-                  Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::AkamaiURLRewriter::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
 

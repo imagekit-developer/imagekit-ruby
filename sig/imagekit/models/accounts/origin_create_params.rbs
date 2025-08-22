@@ -7,7 +7,7 @@ module Imagekit
           bucket: String,
           name: String,
           secret_key: String,
-          type: Imagekit::Models::Accounts::OriginCreateParams::type_,
+          type: :AKENEO_PIM,
           base_url_for_canonical_header: String,
           include_canonical_header: bool,
           prefix: String,
@@ -39,7 +39,7 @@ module Imagekit
 
         attr_accessor secret_key: String
 
-        attr_accessor type: Imagekit::Models::Accounts::OriginCreateParams::type_
+        attr_accessor type: :AKENEO_PIM
 
         attr_reader base_url_for_canonical_header: String?
 
@@ -88,7 +88,6 @@ module Imagekit
           bucket: String,
           name: String,
           secret_key: String,
-          type: Imagekit::Models::Accounts::OriginCreateParams::type_,
           endpoint: String,
           base_url: String,
           client_email: String,
@@ -105,6 +104,7 @@ module Imagekit
           ?prefix: String,
           ?s3_force_path_style: bool,
           ?forward_host_header_to_origin: bool,
+          ?type: :AKENEO_PIM,
           ?request_options: Imagekit::request_opts
         ) -> void
 
@@ -113,7 +113,7 @@ module Imagekit
           bucket: String,
           name: String,
           secret_key: String,
-          type: Imagekit::Models::Accounts::OriginCreateParams::type_,
+          type: :AKENEO_PIM,
           base_url_for_canonical_header: String,
           include_canonical_header: bool,
           prefix: String,
@@ -132,16 +132,6 @@ module Imagekit
           username: String,
           request_options: Imagekit::RequestOptions
         }
-
-        type type_ = :AKENEO_PIM
-
-        module Type
-          extend Imagekit::Internal::Type::Enum
-
-          AKENEO_PIM: :AKENEO_PIM
-
-          def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginCreateParams::type_]
-        end
       end
     end
   end

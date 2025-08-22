@@ -149,7 +149,7 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_,
+            type: :CLOUDINARY_BACKUP,
             base_url_for_canonical_header: String
           }
 
@@ -162,7 +162,7 @@ module Imagekit
 
           attr_accessor prefix: String
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_
+          attr_accessor type: :CLOUDINARY_BACKUP
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -176,8 +176,8 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :CLOUDINARY_BACKUP
           ) -> void
 
           def to_hash: -> {
@@ -186,19 +186,9 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_,
+            type: :CLOUDINARY_BACKUP,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :CLOUDINARY_BACKUP
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            CLOUDINARY_BACKUP: :CLOUDINARY_BACKUP
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup::type_]
-          end
         end
 
         type web_folder =
@@ -208,7 +198,7 @@ module Imagekit
             forward_host_header_to_origin: bool,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder::type_,
+            type: :WEB_FOLDER,
             base_url_for_canonical_header: String
           }
 
@@ -221,7 +211,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder::type_
+          attr_accessor type: :WEB_FOLDER
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -235,8 +225,8 @@ module Imagekit
             forward_host_header_to_origin: bool,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :WEB_FOLDER
           ) -> void
 
           def to_hash: -> {
@@ -245,19 +235,9 @@ module Imagekit
             forward_host_header_to_origin: bool,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder::type_,
+            type: :WEB_FOLDER,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :WEB_FOLDER
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            WEB_FOLDER: :WEB_FOLDER
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder::type_]
-          end
         end
 
         type web_proxy =
@@ -265,7 +245,7 @@ module Imagekit
             id: String,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy::type_,
+            type: :WEB_PROXY,
             base_url_for_canonical_header: String
           }
 
@@ -274,7 +254,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy::type_
+          attr_accessor type: :WEB_PROXY
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -286,27 +266,17 @@ module Imagekit
             id: String,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :WEB_PROXY
           ) -> void
 
           def to_hash: -> {
             id: String,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy::type_,
+            type: :WEB_PROXY,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :WEB_PROXY
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            WEB_PROXY: :WEB_PROXY
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy::type_]
-          end
         end
 
         type google_cloud_storage_gcs =
@@ -317,7 +287,7 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_,
+            type: :GCS,
             base_url_for_canonical_header: String
           }
 
@@ -332,7 +302,7 @@ module Imagekit
 
           attr_accessor prefix: String
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_
+          attr_accessor type: :GCS
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -347,8 +317,8 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :GCS
           ) -> void
 
           def to_hash: -> {
@@ -358,19 +328,9 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_,
+            type: :GCS,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :GCS
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            GCS: :GCS
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs::type_]
-          end
         end
 
         type azure_blob_storage =
@@ -381,7 +341,7 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_,
+            type: :AZURE_BLOB,
             base_url_for_canonical_header: String
           }
 
@@ -396,7 +356,7 @@ module Imagekit
 
           attr_accessor prefix: String
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_
+          attr_accessor type: :AZURE_BLOB
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -411,8 +371,8 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :AZURE_BLOB
           ) -> void
 
           def to_hash: -> {
@@ -422,19 +382,9 @@ module Imagekit
             include_canonical_header: bool,
             name: String,
             prefix: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_,
+            type: :AZURE_BLOB,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :AZURE_BLOB
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            AZURE_BLOB: :AZURE_BLOB
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage::type_]
-          end
         end
 
         type akeneo_pim =
@@ -443,7 +393,7 @@ module Imagekit
             base_url: String,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_,
+            type: :AKENEO_PIM,
             base_url_for_canonical_header: String
           }
 
@@ -454,7 +404,7 @@ module Imagekit
 
           attr_accessor name: String
 
-          attr_accessor type: Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_
+          attr_accessor type: :AKENEO_PIM
 
           attr_reader base_url_for_canonical_header: String?
 
@@ -467,8 +417,8 @@ module Imagekit
             base_url: String,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_,
-            ?base_url_for_canonical_header: String
+            ?base_url_for_canonical_header: String,
+            ?type: :AKENEO_PIM
           ) -> void
 
           def to_hash: -> {
@@ -476,19 +426,9 @@ module Imagekit
             base_url: String,
             include_canonical_header: bool,
             name: String,
-            type: Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_,
+            type: :AKENEO_PIM,
             base_url_for_canonical_header: String
           }
-
-          type type_ = :AKENEO_PIM
-
-          module Type
-            extend Imagekit::Internal::Type::Enum
-
-            AKENEO_PIM: :AKENEO_PIM
-
-            def self?.values: -> ::Array[Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim::type_]
-          end
         end
 
         def self?.variants: -> ::Array[Imagekit::Models::Accounts::origin_update_response]

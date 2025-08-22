@@ -31,7 +31,7 @@ module Imagekit
       #
       # @param extensions [Array<Imagekit::Models::FileUpdateParams::Extension::RemoveBg, Imagekit::Models::FileUpdateParams::Extension::AIAutoDescription, Imagekit::Models::FileUpdateParams::Extension::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
-      # @param remove_ai_tags [Array<String>, Symbol, Imagekit::Models::FileUpdateParams::RemoveAITags] An array of AITags associated with the file that you want to remove, e.g. `["car
+      # @param remove_ai_tags [Array<String>, Symbol, :all] An array of AITags associated with the file that you want to remove, e.g. `["car
       #
       # @param tags [Array<String>, nil] An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `nul
       #
