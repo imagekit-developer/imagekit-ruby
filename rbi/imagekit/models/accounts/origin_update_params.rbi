@@ -15,48 +15,191 @@ module Imagekit
             )
           end
 
-        sig { returns(Imagekit::Accounts::OriginUpdateParams::Body) }
-        attr_reader :body
+        # Access key for the bucket.
+        sig { returns(String) }
+        attr_accessor :access_key
+
+        sig { returns(String) }
+        attr_accessor :bucket
+
+        # Display name of the origin.
+        sig { returns(String) }
+        attr_accessor :name
+
+        # Secret key for the bucket.
+        sig { returns(String) }
+        attr_accessor :secret_key
+
+        sig { returns(Symbol) }
+        attr_accessor :type
+
+        # URL used in the Canonical header (if enabled).
+        sig { returns(T.nilable(String)) }
+        attr_reader :base_url_for_canonical_header
+
+        sig { params(base_url_for_canonical_header: String).void }
+        attr_writer :base_url_for_canonical_header
+
+        # Whether to send a Canonical header.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :include_canonical_header
+
+        sig { params(include_canonical_header: T::Boolean).void }
+        attr_writer :include_canonical_header
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :prefix
+
+        sig { params(prefix: String).void }
+        attr_writer :prefix
+
+        # Custom S3-compatible endpoint.
+        sig { returns(String) }
+        attr_accessor :endpoint
+
+        # Use path-style S3 URLs?
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :s3_force_path_style
+
+        sig { params(s3_force_path_style: T::Boolean).void }
+        attr_writer :s3_force_path_style
+
+        # Akeneo instance base URL.
+        sig { returns(String) }
+        attr_accessor :base_url
+
+        # Forward the Host header to origin?
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :forward_host_header_to_origin
+
+        sig { params(forward_host_header_to_origin: T::Boolean).void }
+        attr_writer :forward_host_header_to_origin
+
+        sig { returns(String) }
+        attr_accessor :client_email
+
+        sig { returns(String) }
+        attr_accessor :private_key
+
+        sig { returns(String) }
+        attr_accessor :account_name
+
+        sig { returns(String) }
+        attr_accessor :container
+
+        sig { returns(String) }
+        attr_accessor :sas_token
+
+        # Akeneo API client ID.
+        sig { returns(String) }
+        attr_accessor :client_id
+
+        # Akeneo API client secret.
+        sig { returns(String) }
+        attr_accessor :client_secret
+
+        # Akeneo API password.
+        sig { returns(String) }
+        attr_accessor :password
+
+        # Akeneo API username.
+        sig { returns(String) }
+        attr_accessor :username
 
         sig do
           params(
-            body: Imagekit::Accounts::OriginUpdateParams::Body::OrHash
-          ).void
-        end
-        attr_writer :body
-
-        sig do
-          params(
-            body: Imagekit::Accounts::OriginUpdateParams::Body::OrHash,
+            access_key: String,
+            bucket: String,
+            name: String,
+            secret_key: String,
+            endpoint: String,
+            base_url: String,
+            client_email: String,
+            private_key: String,
+            account_name: String,
+            container: String,
+            sas_token: String,
+            client_id: String,
+            client_secret: String,
+            password: String,
+            username: String,
+            base_url_for_canonical_header: String,
+            include_canonical_header: T::Boolean,
+            prefix: String,
+            s3_force_path_style: T::Boolean,
+            forward_host_header_to_origin: T::Boolean,
+            type: Symbol,
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(body:, request_options: {})
+        def self.new(
+          # Access key for the bucket.
+          access_key:,
+          bucket:,
+          # Display name of the origin.
+          name:,
+          # Secret key for the bucket.
+          secret_key:,
+          # Custom S3-compatible endpoint.
+          endpoint:,
+          # Akeneo instance base URL.
+          base_url:,
+          client_email:,
+          private_key:,
+          account_name:,
+          container:,
+          sas_token:,
+          # Akeneo API client ID.
+          client_id:,
+          # Akeneo API client secret.
+          client_secret:,
+          # Akeneo API password.
+          password:,
+          # Akeneo API username.
+          username:,
+          # URL used in the Canonical header (if enabled).
+          base_url_for_canonical_header: nil,
+          # Whether to send a Canonical header.
+          include_canonical_header: nil,
+          prefix: nil,
+          # Use path-style S3 URLs?
+          s3_force_path_style: nil,
+          # Forward the Host header to origin?
+          forward_host_header_to_origin: nil,
+          type: :AKENEO_PIM,
+          request_options: {}
+        )
         end
 
         sig do
           override.returns(
             {
-              body: Imagekit::Accounts::OriginUpdateParams::Body,
+              access_key: String,
+              bucket: String,
+              name: String,
+              secret_key: String,
+              type: Symbol,
+              base_url_for_canonical_header: String,
+              include_canonical_header: T::Boolean,
+              prefix: String,
+              endpoint: String,
+              s3_force_path_style: T::Boolean,
+              base_url: String,
+              forward_host_header_to_origin: T::Boolean,
+              client_email: String,
+              private_key: String,
+              account_name: String,
+              container: String,
+              sas_token: String,
+              client_id: String,
+              client_secret: String,
+              password: String,
+              username: String,
               request_options: Imagekit::RequestOptions
             }
           )
         end
         def to_hash
-        end
-
-        class Body < Imagekit::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Imagekit::Accounts::OriginUpdateParams::Body,
-                Imagekit::Internal::AnyHash
-              )
-            end
-
-          sig { override.returns({}) }
-          def to_hash
-          end
         end
       end
     end
