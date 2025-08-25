@@ -17,8 +17,8 @@ module Imagekit
         #   Date and time when the file was uploaded. The date and time is in ISO8601
         #   format.
         #
-        #   @return [String, nil]
-        optional :created_at, String, api_name: :createdAt
+        #   @return [Time, nil]
+        optional :created_at, Time, api_name: :createdAt
 
         # @!attribute custom_coordinates
         #   An string with custom coordinates of the file.
@@ -114,15 +114,15 @@ module Imagekit
         # @!attribute type
         #   Type of the asset.
         #
-        #   @return [String, nil]
-        optional :type, String
+        #   @return [Symbol, Imagekit::Models::Files::VersionListResponseItem::Type, nil]
+        optional :type, enum: -> { Imagekit::Models::Files::VersionListResponseItem::Type }
 
         # @!attribute updated_at
         #   Date and time when the file was last updated. The date and time is in ISO8601
         #   format.
         #
-        #   @return [String, nil]
-        optional :updated_at, String, api_name: :updatedAt
+        #   @return [Time, nil]
+        optional :updated_at, Time, api_name: :updatedAt
 
         # @!attribute url
         #   URL of the file.
@@ -152,7 +152,7 @@ module Imagekit
         #
         #   @param ai_tags [Array<Imagekit::Models::Files::VersionListResponseItem::AITag>, nil] An array of tags assigned to the file by auto tagging.
         #
-        #   @param created_at [String] Date and time when the file was uploaded. The date and time is in ISO8601 format
+        #   @param created_at [Time] Date and time when the file was uploaded. The date and time is in ISO8601 format
         #
         #   @param custom_coordinates [String, nil] An string with custom coordinates of the file.
         #
@@ -182,9 +182,9 @@ module Imagekit
         #
         #   @param thumbnail [String] URL of the thumbnail image. This URL is used to access the thumbnail image of th
         #
-        #   @param type [String] Type of the asset.
+        #   @param type [Symbol, Imagekit::Models::Files::VersionListResponseItem::Type] Type of the asset.
         #
-        #   @param updated_at [String] Date and time when the file was last updated. The date and time is in ISO8601 fo
+        #   @param updated_at [Time] Date and time when the file was last updated. The date and time is in ISO8601 fo
         #
         #   @param url [String] URL of the file.
         #
@@ -221,6 +221,19 @@ module Imagekit
           #   @param name [String] Name of the tag.
           #
           #   @param source [String] Source of the tag. Possible values are `google-auto-tagging` and `aws-auto-taggi
+        end
+
+        # Type of the asset.
+        #
+        # @see Imagekit::Models::Files::VersionListResponseItem#type
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          FILE = :file
+          FILE_VERSION = :"file-version"
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         # @see Imagekit::Models::Files::VersionListResponseItem#version_info

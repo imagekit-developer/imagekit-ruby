@@ -4,7 +4,7 @@ module Imagekit
       type version_restore_response =
         {
           ai_tags: ::Array[Imagekit::Models::Files::VersionRestoreResponse::AITag]?,
-          created_at: String,
+          created_at: Time,
           custom_coordinates: String?,
           custom_metadata: ::Hash[Symbol, top],
           file_id: String,
@@ -19,8 +19,8 @@ module Imagekit
           size: Float,
           tags: ::Array[String]?,
           thumbnail: String,
-          type: String,
-          updated_at: String,
+          type: Imagekit::Models::Files::VersionRestoreResponse::type_,
+          updated_at: Time,
           url: String,
           version_info: Imagekit::Models::Files::VersionRestoreResponse::VersionInfo,
           width: Float
@@ -29,9 +29,9 @@ module Imagekit
       class VersionRestoreResponse < Imagekit::Internal::Type::BaseModel
         attr_accessor ai_tags: ::Array[Imagekit::Models::Files::VersionRestoreResponse::AITag]?
 
-        attr_reader created_at: String?
+        attr_reader created_at: Time?
 
-        def created_at=: (String) -> String
+        def created_at=: (Time) -> Time
 
         attr_accessor custom_coordinates: String?
 
@@ -85,13 +85,15 @@ module Imagekit
 
         def thumbnail=: (String) -> String
 
-        attr_reader type: String?
+        attr_reader type: Imagekit::Models::Files::VersionRestoreResponse::type_?
 
-        def type=: (String) -> String
+        def type=: (
+          Imagekit::Models::Files::VersionRestoreResponse::type_
+        ) -> Imagekit::Models::Files::VersionRestoreResponse::type_
 
-        attr_reader updated_at: String?
+        attr_reader updated_at: Time?
 
-        def updated_at=: (String) -> String
+        def updated_at=: (Time) -> Time
 
         attr_reader url: String?
 
@@ -109,7 +111,7 @@ module Imagekit
 
         def initialize: (
           ?ai_tags: ::Array[Imagekit::Models::Files::VersionRestoreResponse::AITag]?,
-          ?created_at: String,
+          ?created_at: Time,
           ?custom_coordinates: String?,
           ?custom_metadata: ::Hash[Symbol, top],
           ?file_id: String,
@@ -124,8 +126,8 @@ module Imagekit
           ?size: Float,
           ?tags: ::Array[String]?,
           ?thumbnail: String,
-          ?type: String,
-          ?updated_at: String,
+          ?type: Imagekit::Models::Files::VersionRestoreResponse::type_,
+          ?updated_at: Time,
           ?url: String,
           ?version_info: Imagekit::Models::Files::VersionRestoreResponse::VersionInfo,
           ?width: Float
@@ -133,7 +135,7 @@ module Imagekit
 
         def to_hash: -> {
           ai_tags: ::Array[Imagekit::Models::Files::VersionRestoreResponse::AITag]?,
-          created_at: String,
+          created_at: Time,
           custom_coordinates: String?,
           custom_metadata: ::Hash[Symbol, top],
           file_id: String,
@@ -148,8 +150,8 @@ module Imagekit
           size: Float,
           tags: ::Array[String]?,
           thumbnail: String,
-          type: String,
-          updated_at: String,
+          type: Imagekit::Models::Files::VersionRestoreResponse::type_,
+          updated_at: Time,
           url: String,
           version_info: Imagekit::Models::Files::VersionRestoreResponse::VersionInfo,
           width: Float
@@ -177,6 +179,17 @@ module Imagekit
           ) -> void
 
           def to_hash: -> { confidence: Float, name: String, source: String }
+        end
+
+        type type_ = :file | :"file-version"
+
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          FILE: :file
+          FILE_VERSION: :"file-version"
+
+          def self?.values: -> ::Array[Imagekit::Models::Files::VersionRestoreResponse::type_]
         end
 
         type version_info = { id: String, name: String }

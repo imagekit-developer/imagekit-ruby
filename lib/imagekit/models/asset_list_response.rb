@@ -6,10 +6,12 @@ module Imagekit
     module AssetListResponseItem
       extend Imagekit::Internal::Type::Union
 
+      discriminator :type
+
+      variant :folder, -> { Imagekit::Models::AssetListResponseItem::Folder }
+
       # Object containing details of a file or file version.
       variant -> { Imagekit::Models::AssetListResponseItem::FileDetails }
-
-      variant -> { Imagekit::Models::AssetListResponseItem::FolderDetails }
 
       class FileDetails < Imagekit::Internal::Type::BaseModel
         # @!attribute ai_tags
@@ -25,8 +27,8 @@ module Imagekit
         #   Date and time when the file was uploaded. The date and time is in ISO8601
         #   format.
         #
-        #   @return [String, nil]
-        optional :created_at, String, api_name: :createdAt
+        #   @return [Time, nil]
+        optional :created_at, Time, api_name: :createdAt
 
         # @!attribute custom_coordinates
         #   An string with custom coordinates of the file.
@@ -122,15 +124,15 @@ module Imagekit
         # @!attribute type
         #   Type of the asset.
         #
-        #   @return [String, nil]
-        optional :type, String
+        #   @return [Symbol, Imagekit::Models::AssetListResponseItem::FileDetails::Type, nil]
+        optional :type, enum: -> { Imagekit::Models::AssetListResponseItem::FileDetails::Type }
 
         # @!attribute updated_at
         #   Date and time when the file was last updated. The date and time is in ISO8601
         #   format.
         #
-        #   @return [String, nil]
-        optional :updated_at, String, api_name: :updatedAt
+        #   @return [Time, nil]
+        optional :updated_at, Time, api_name: :updatedAt
 
         # @!attribute url
         #   URL of the file.
@@ -160,7 +162,7 @@ module Imagekit
         #
         #   @param ai_tags [Array<Imagekit::Models::AssetListResponseItem::FileDetails::AITag>, nil] An array of tags assigned to the file by auto tagging.
         #
-        #   @param created_at [String] Date and time when the file was uploaded. The date and time is in ISO8601 format
+        #   @param created_at [Time] Date and time when the file was uploaded. The date and time is in ISO8601 format
         #
         #   @param custom_coordinates [String, nil] An string with custom coordinates of the file.
         #
@@ -190,9 +192,9 @@ module Imagekit
         #
         #   @param thumbnail [String] URL of the thumbnail image. This URL is used to access the thumbnail image of th
         #
-        #   @param type [String] Type of the asset.
+        #   @param type [Symbol, Imagekit::Models::AssetListResponseItem::FileDetails::Type] Type of the asset.
         #
-        #   @param updated_at [String] Date and time when the file was last updated. The date and time is in ISO8601 fo
+        #   @param updated_at [Time] Date and time when the file was last updated. The date and time is in ISO8601 fo
         #
         #   @param url [String] URL of the file.
         #
@@ -231,6 +233,19 @@ module Imagekit
           #   @param source [String] Source of the tag. Possible values are `google-auto-tagging` and `aws-auto-taggi
         end
 
+        # Type of the asset.
+        #
+        # @see Imagekit::Models::AssetListResponseItem::FileDetails#type
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          FILE = :file
+          FILE_VERSION = :"file-version"
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
         # @see Imagekit::Models::AssetListResponseItem::FileDetails#version_info
         class VersionInfo < Imagekit::Internal::Type::BaseModel
           # @!attribute id
@@ -254,13 +269,13 @@ module Imagekit
         end
       end
 
-      class FolderDetails < Imagekit::Internal::Type::BaseModel
+      class Folder < Imagekit::Internal::Type::BaseModel
         # @!attribute created_at
         #   Date and time when the folder was created. The date and time is in ISO8601
         #   format.
         #
-        #   @return [String, nil]
-        optional :created_at, String, api_name: :createdAt
+        #   @return [Time, nil]
+        optional :created_at, Time, api_name: :createdAt
 
         # @!attribute folder_id
         #   Unique identifier of the asset.
@@ -286,21 +301,21 @@ module Imagekit
         # @!attribute type
         #   Type of the asset.
         #
-        #   @return [Symbol, Imagekit::Models::AssetListResponseItem::FolderDetails::Type, nil]
-        optional :type, enum: -> { Imagekit::Models::AssetListResponseItem::FolderDetails::Type }
+        #   @return [Symbol, Imagekit::Models::AssetListResponseItem::Folder::Type, nil]
+        optional :type, enum: -> { Imagekit::Models::AssetListResponseItem::Folder::Type }
 
         # @!attribute updated_at
         #   Date and time when the folder was last updated. The date and time is in ISO8601
         #   format.
         #
-        #   @return [String, nil]
-        optional :updated_at, String, api_name: :updatedAt
+        #   @return [Time, nil]
+        optional :updated_at, Time, api_name: :updatedAt
 
         # @!method initialize(created_at: nil, folder_id: nil, folder_path: nil, name: nil, type: nil, updated_at: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Imagekit::Models::AssetListResponseItem::FolderDetails} for more details.
+        #   {Imagekit::Models::AssetListResponseItem::Folder} for more details.
         #
-        #   @param created_at [String] Date and time when the folder was created. The date and time is in ISO8601 forma
+        #   @param created_at [Time] Date and time when the folder was created. The date and time is in ISO8601 forma
         #
         #   @param folder_id [String] Unique identifier of the asset.
         #
@@ -308,13 +323,13 @@ module Imagekit
         #
         #   @param name [String] Name of the asset.
         #
-        #   @param type [Symbol, Imagekit::Models::AssetListResponseItem::FolderDetails::Type] Type of the asset.
+        #   @param type [Symbol, Imagekit::Models::AssetListResponseItem::Folder::Type] Type of the asset.
         #
-        #   @param updated_at [String] Date and time when the folder was last updated. The date and time is in ISO8601
+        #   @param updated_at [Time] Date and time when the folder was last updated. The date and time is in ISO8601
 
         # Type of the asset.
         #
-        # @see Imagekit::Models::AssetListResponseItem::FolderDetails#type
+        # @see Imagekit::Models::AssetListResponseItem::Folder#type
         module Type
           extend Imagekit::Internal::Type::Enum
 
@@ -326,7 +341,7 @@ module Imagekit
       end
 
       # @!method self.variants
-      #   @return [Array(Imagekit::Models::AssetListResponseItem::FileDetails, Imagekit::Models::AssetListResponseItem::FolderDetails)]
+      #   @return [Array(Imagekit::Models::AssetListResponseItem::Folder, Imagekit::Models::AssetListResponseItem::FileDetails)]
     end
 
     # @type [Imagekit::Internal::Type::Converter]

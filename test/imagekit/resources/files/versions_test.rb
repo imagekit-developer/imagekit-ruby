@@ -41,7 +41,7 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
     assert_pattern do
       response => {
         ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionGetResponse::AITag]) | nil,
-        created_at: String | nil,
+        created_at: Time | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         file_id: String | nil,
@@ -56,8 +56,8 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail: String | nil,
-        type: String | nil,
-        updated_at: String | nil,
+        type: Imagekit::Models::Files::VersionGetResponse::Type | nil,
+        updated_at: Time | nil,
         url: String | nil,
         version_info: Imagekit::Models::Files::VersionGetResponse::VersionInfo | nil,
         width: Float | nil
@@ -77,7 +77,7 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
     assert_pattern do
       response => {
         ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionRestoreResponse::AITag]) | nil,
-        created_at: String | nil,
+        created_at: Time | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         file_id: String | nil,
@@ -92,8 +92,8 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail: String | nil,
-        type: String | nil,
-        updated_at: String | nil,
+        type: Imagekit::Models::Files::VersionRestoreResponse::Type | nil,
+        updated_at: Time | nil,
         url: String | nil,
         version_info: Imagekit::Models::Files::VersionRestoreResponse::VersionInfo | nil,
         width: Float | nil

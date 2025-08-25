@@ -29,7 +29,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<Imagekit::Models::AssetListResponseItem::FileDetails, Imagekit::Models::AssetListResponseItem::FolderDetails>]
+      # @return [Array<Imagekit::Models::AssetListResponseItem::Folder, Imagekit::Models::AssetListResponseItem::FileDetails>]
       #
       # @see Imagekit::Models::AssetListParams
       def list(params = {})

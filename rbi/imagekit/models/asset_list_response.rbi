@@ -9,8 +9,8 @@ module Imagekit
       Variants =
         T.type_alias do
           T.any(
-            Imagekit::Models::AssetListResponseItem::FileDetails,
-            Imagekit::Models::AssetListResponseItem::FolderDetails
+            Imagekit::Models::AssetListResponseItem::Folder,
+            Imagekit::Models::AssetListResponseItem::FileDetails
           )
         end
 
@@ -37,10 +37,10 @@ module Imagekit
 
         # Date and time when the file was uploaded. The date and time is in ISO8601
         # format.
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Time)) }
         attr_reader :created_at
 
-        sig { params(created_at: String).void }
+        sig { params(created_at: Time).void }
         attr_writer :created_at
 
         # An string with custom coordinates of the file.
@@ -141,18 +141,29 @@ module Imagekit
         attr_writer :thumbnail
 
         # Type of the asset.
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              Imagekit::Models::AssetListResponseItem::FileDetails::Type::TaggedSymbol
+            )
+          )
+        end
         attr_reader :type
 
-        sig { params(type: String).void }
+        sig do
+          params(
+            type:
+              Imagekit::Models::AssetListResponseItem::FileDetails::Type::OrSymbol
+          ).void
+        end
         attr_writer :type
 
         # Date and time when the file was last updated. The date and time is in ISO8601
         # format.
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Time)) }
         attr_reader :updated_at
 
-        sig { params(updated_at: String).void }
+        sig { params(updated_at: Time).void }
         attr_writer :updated_at
 
         # URL of the file.
@@ -196,7 +207,7 @@ module Imagekit
                   Imagekit::Models::AssetListResponseItem::FileDetails::AITag::OrHash
                 ]
               ),
-            created_at: String,
+            created_at: Time,
             custom_coordinates: T.nilable(String),
             custom_metadata: T::Hash[Symbol, T.anything],
             file_id: String,
@@ -211,8 +222,9 @@ module Imagekit
             size: Float,
             tags: T.nilable(T::Array[String]),
             thumbnail: String,
-            type: String,
-            updated_at: String,
+            type:
+              Imagekit::Models::AssetListResponseItem::FileDetails::Type::OrSymbol,
+            updated_at: Time,
             url: String,
             version_info:
               Imagekit::Models::AssetListResponseItem::FileDetails::VersionInfo::OrHash,
@@ -281,7 +293,7 @@ module Imagekit
                     Imagekit::Models::AssetListResponseItem::FileDetails::AITag
                   ]
                 ),
-              created_at: String,
+              created_at: Time,
               custom_coordinates: T.nilable(String),
               custom_metadata: T::Hash[Symbol, T.anything],
               file_id: String,
@@ -296,8 +308,9 @@ module Imagekit
               size: Float,
               tags: T.nilable(T::Array[String]),
               thumbnail: String,
-              type: String,
-              updated_at: String,
+              type:
+                Imagekit::Models::AssetListResponseItem::FileDetails::Type::TaggedSymbol,
+              updated_at: Time,
               url: String,
               version_info:
                 Imagekit::Models::AssetListResponseItem::FileDetails::VersionInfo,
@@ -364,6 +377,41 @@ module Imagekit
           end
         end
 
+        # Type of the asset.
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Imagekit::Models::AssetListResponseItem::FileDetails::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          FILE =
+            T.let(
+              :file,
+              Imagekit::Models::AssetListResponseItem::FileDetails::Type::TaggedSymbol
+            )
+          FILE_VERSION =
+            T.let(
+              :"file-version",
+              Imagekit::Models::AssetListResponseItem::FileDetails::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::Models::AssetListResponseItem::FileDetails::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
         class VersionInfo < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
@@ -403,21 +451,21 @@ module Imagekit
         end
       end
 
-      class FolderDetails < Imagekit::Internal::Type::BaseModel
+      class Folder < Imagekit::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::Models::AssetListResponseItem::FolderDetails,
+              Imagekit::Models::AssetListResponseItem::Folder,
               Imagekit::Internal::AnyHash
             )
           end
 
         # Date and time when the folder was created. The date and time is in ISO8601
         # format.
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Time)) }
         attr_reader :created_at
 
-        sig { params(created_at: String).void }
+        sig { params(created_at: Time).void }
         attr_writer :created_at
 
         # Unique identifier of the asset.
@@ -448,7 +496,7 @@ module Imagekit
         sig do
           returns(
             T.nilable(
-              Imagekit::Models::AssetListResponseItem::FolderDetails::Type::TaggedSymbol
+              Imagekit::Models::AssetListResponseItem::Folder::Type::TaggedSymbol
             )
           )
         end
@@ -457,28 +505,28 @@ module Imagekit
         sig do
           params(
             type:
-              Imagekit::Models::AssetListResponseItem::FolderDetails::Type::OrSymbol
+              Imagekit::Models::AssetListResponseItem::Folder::Type::OrSymbol
           ).void
         end
         attr_writer :type
 
         # Date and time when the folder was last updated. The date and time is in ISO8601
         # format.
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Time)) }
         attr_reader :updated_at
 
-        sig { params(updated_at: String).void }
+        sig { params(updated_at: Time).void }
         attr_writer :updated_at
 
         sig do
           params(
-            created_at: String,
+            created_at: Time,
             folder_id: String,
             folder_path: String,
             name: String,
             type:
-              Imagekit::Models::AssetListResponseItem::FolderDetails::Type::OrSymbol,
-            updated_at: String
+              Imagekit::Models::AssetListResponseItem::Folder::Type::OrSymbol,
+            updated_at: Time
           ).returns(T.attached_class)
         end
         def self.new(
@@ -505,13 +553,13 @@ module Imagekit
         sig do
           override.returns(
             {
-              created_at: String,
+              created_at: Time,
               folder_id: String,
               folder_path: String,
               name: String,
               type:
-                Imagekit::Models::AssetListResponseItem::FolderDetails::Type::TaggedSymbol,
-              updated_at: String
+                Imagekit::Models::AssetListResponseItem::Folder::Type::TaggedSymbol,
+              updated_at: Time
             }
           )
         end
@@ -526,7 +574,7 @@ module Imagekit
             T.type_alias do
               T.all(
                 Symbol,
-                Imagekit::Models::AssetListResponseItem::FolderDetails::Type
+                Imagekit::Models::AssetListResponseItem::Folder::Type
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -534,13 +582,13 @@ module Imagekit
           FOLDER =
             T.let(
               :folder,
-              Imagekit::Models::AssetListResponseItem::FolderDetails::Type::TaggedSymbol
+              Imagekit::Models::AssetListResponseItem::Folder::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                Imagekit::Models::AssetListResponseItem::FolderDetails::Type::TaggedSymbol
+                Imagekit::Models::AssetListResponseItem::Folder::Type::TaggedSymbol
               ]
             )
           end

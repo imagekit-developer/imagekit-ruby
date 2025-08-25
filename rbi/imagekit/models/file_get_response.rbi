@@ -16,10 +16,10 @@ module Imagekit
 
       # Date and time when the file was uploaded. The date and time is in ISO8601
       # format.
-      sig { returns(T.nilable(String)) }
+      sig { returns(T.nilable(Time)) }
       attr_reader :created_at
 
-      sig { params(created_at: String).void }
+      sig { params(created_at: Time).void }
       attr_writer :created_at
 
       # An string with custom coordinates of the file.
@@ -120,18 +120,24 @@ module Imagekit
       attr_writer :thumbnail
 
       # Type of the asset.
-      sig { returns(T.nilable(String)) }
+      sig do
+        returns(
+          T.nilable(Imagekit::Models::FileGetResponse::Type::TaggedSymbol)
+        )
+      end
       attr_reader :type
 
-      sig { params(type: String).void }
+      sig do
+        params(type: Imagekit::Models::FileGetResponse::Type::OrSymbol).void
+      end
       attr_writer :type
 
       # Date and time when the file was last updated. The date and time is in ISO8601
       # format.
-      sig { returns(T.nilable(String)) }
+      sig { returns(T.nilable(Time)) }
       attr_reader :updated_at
 
-      sig { params(updated_at: String).void }
+      sig { params(updated_at: Time).void }
       attr_writer :updated_at
 
       # URL of the file.
@@ -166,7 +172,7 @@ module Imagekit
             T.nilable(
               T::Array[Imagekit::Models::FileGetResponse::AITag::OrHash]
             ),
-          created_at: String,
+          created_at: Time,
           custom_coordinates: T.nilable(String),
           custom_metadata: T::Hash[Symbol, T.anything],
           file_id: String,
@@ -181,8 +187,8 @@ module Imagekit
           size: Float,
           tags: T.nilable(T::Array[String]),
           thumbnail: String,
-          type: String,
-          updated_at: String,
+          type: Imagekit::Models::FileGetResponse::Type::OrSymbol,
+          updated_at: Time,
           url: String,
           version_info: Imagekit::Models::FileGetResponse::VersionInfo::OrHash,
           width: Float
@@ -246,7 +252,7 @@ module Imagekit
           {
             ai_tags:
               T.nilable(T::Array[Imagekit::Models::FileGetResponse::AITag]),
-            created_at: String,
+            created_at: Time,
             custom_coordinates: T.nilable(String),
             custom_metadata: T::Hash[Symbol, T.anything],
             file_id: String,
@@ -261,8 +267,8 @@ module Imagekit
             size: Float,
             tags: T.nilable(T::Array[String]),
             thumbnail: String,
-            type: String,
-            updated_at: String,
+            type: Imagekit::Models::FileGetResponse::Type::TaggedSymbol,
+            updated_at: Time,
             url: String,
             version_info: Imagekit::Models::FileGetResponse::VersionInfo,
             width: Float
@@ -323,6 +329,33 @@ module Imagekit
           override.returns({ confidence: Float, name: String, source: String })
         end
         def to_hash
+        end
+      end
+
+      # Type of the asset.
+      module Type
+        extend Imagekit::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Imagekit::Models::FileGetResponse::Type)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        FILE =
+          T.let(:file, Imagekit::Models::FileGetResponse::Type::TaggedSymbol)
+        FILE_VERSION =
+          T.let(
+            :"file-version",
+            Imagekit::Models::FileGetResponse::Type::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Imagekit::Models::FileGetResponse::Type::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 

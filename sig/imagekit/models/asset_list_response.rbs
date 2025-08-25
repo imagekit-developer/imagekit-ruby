@@ -1,8 +1,8 @@
 module Imagekit
   module Models
     type asset_list_response_item =
-      Imagekit::Models::AssetListResponseItem::FileDetails
-      | Imagekit::Models::AssetListResponseItem::FolderDetails
+      Imagekit::Models::AssetListResponseItem::Folder
+      | Imagekit::Models::AssetListResponseItem::FileDetails
 
     module AssetListResponseItem
       extend Imagekit::Internal::Type::Union
@@ -10,7 +10,7 @@ module Imagekit
       type file_details =
         {
           ai_tags: ::Array[Imagekit::Models::AssetListResponseItem::FileDetails::AITag]?,
-          created_at: String,
+          created_at: Time,
           custom_coordinates: String?,
           custom_metadata: ::Hash[Symbol, top],
           file_id: String,
@@ -25,8 +25,8 @@ module Imagekit
           size: Float,
           tags: ::Array[String]?,
           thumbnail: String,
-          type: String,
-          updated_at: String,
+          type: Imagekit::Models::AssetListResponseItem::FileDetails::type_,
+          updated_at: Time,
           url: String,
           version_info: Imagekit::Models::AssetListResponseItem::FileDetails::VersionInfo,
           width: Float
@@ -35,9 +35,9 @@ module Imagekit
       class FileDetails < Imagekit::Internal::Type::BaseModel
         attr_accessor ai_tags: ::Array[Imagekit::Models::AssetListResponseItem::FileDetails::AITag]?
 
-        attr_reader created_at: String?
+        attr_reader created_at: Time?
 
-        def created_at=: (String) -> String
+        def created_at=: (Time) -> Time
 
         attr_accessor custom_coordinates: String?
 
@@ -91,13 +91,15 @@ module Imagekit
 
         def thumbnail=: (String) -> String
 
-        attr_reader type: String?
+        attr_reader type: Imagekit::Models::AssetListResponseItem::FileDetails::type_?
 
-        def type=: (String) -> String
+        def type=: (
+          Imagekit::Models::AssetListResponseItem::FileDetails::type_
+        ) -> Imagekit::Models::AssetListResponseItem::FileDetails::type_
 
-        attr_reader updated_at: String?
+        attr_reader updated_at: Time?
 
-        def updated_at=: (String) -> String
+        def updated_at=: (Time) -> Time
 
         attr_reader url: String?
 
@@ -115,7 +117,7 @@ module Imagekit
 
         def initialize: (
           ?ai_tags: ::Array[Imagekit::Models::AssetListResponseItem::FileDetails::AITag]?,
-          ?created_at: String,
+          ?created_at: Time,
           ?custom_coordinates: String?,
           ?custom_metadata: ::Hash[Symbol, top],
           ?file_id: String,
@@ -130,8 +132,8 @@ module Imagekit
           ?size: Float,
           ?tags: ::Array[String]?,
           ?thumbnail: String,
-          ?type: String,
-          ?updated_at: String,
+          ?type: Imagekit::Models::AssetListResponseItem::FileDetails::type_,
+          ?updated_at: Time,
           ?url: String,
           ?version_info: Imagekit::Models::AssetListResponseItem::FileDetails::VersionInfo,
           ?width: Float
@@ -139,7 +141,7 @@ module Imagekit
 
         def to_hash: -> {
           ai_tags: ::Array[Imagekit::Models::AssetListResponseItem::FileDetails::AITag]?,
-          created_at: String,
+          created_at: Time,
           custom_coordinates: String?,
           custom_metadata: ::Hash[Symbol, top],
           file_id: String,
@@ -154,8 +156,8 @@ module Imagekit
           size: Float,
           tags: ::Array[String]?,
           thumbnail: String,
-          type: String,
-          updated_at: String,
+          type: Imagekit::Models::AssetListResponseItem::FileDetails::type_,
+          updated_at: Time,
           url: String,
           version_info: Imagekit::Models::AssetListResponseItem::FileDetails::VersionInfo,
           width: Float
@@ -185,6 +187,17 @@ module Imagekit
           def to_hash: -> { confidence: Float, name: String, source: String }
         end
 
+        type type_ = :file | :"file-version"
+
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          FILE: :file
+          FILE_VERSION: :"file-version"
+
+          def self?.values: -> ::Array[Imagekit::Models::AssetListResponseItem::FileDetails::type_]
+        end
+
         type version_info = { id: String, name: String }
 
         class VersionInfo < Imagekit::Internal::Type::BaseModel
@@ -202,20 +215,20 @@ module Imagekit
         end
       end
 
-      type folder_details =
+      type folder =
         {
-          created_at: String,
+          created_at: Time,
           folder_id: String,
           folder_path: String,
           name: String,
-          type: Imagekit::Models::AssetListResponseItem::FolderDetails::type_,
-          updated_at: String
+          type: Imagekit::Models::AssetListResponseItem::Folder::type_,
+          updated_at: Time
         }
 
-      class FolderDetails < Imagekit::Internal::Type::BaseModel
-        attr_reader created_at: String?
+      class Folder < Imagekit::Internal::Type::BaseModel
+        attr_reader created_at: Time?
 
-        def created_at=: (String) -> String
+        def created_at=: (Time) -> Time
 
         attr_reader folder_id: String?
 
@@ -229,32 +242,32 @@ module Imagekit
 
         def name=: (String) -> String
 
-        attr_reader type: Imagekit::Models::AssetListResponseItem::FolderDetails::type_?
+        attr_reader type: Imagekit::Models::AssetListResponseItem::Folder::type_?
 
         def type=: (
-          Imagekit::Models::AssetListResponseItem::FolderDetails::type_
-        ) -> Imagekit::Models::AssetListResponseItem::FolderDetails::type_
+          Imagekit::Models::AssetListResponseItem::Folder::type_
+        ) -> Imagekit::Models::AssetListResponseItem::Folder::type_
 
-        attr_reader updated_at: String?
+        attr_reader updated_at: Time?
 
-        def updated_at=: (String) -> String
+        def updated_at=: (Time) -> Time
 
         def initialize: (
-          ?created_at: String,
+          ?created_at: Time,
           ?folder_id: String,
           ?folder_path: String,
           ?name: String,
-          ?type: Imagekit::Models::AssetListResponseItem::FolderDetails::type_,
-          ?updated_at: String
+          ?type: Imagekit::Models::AssetListResponseItem::Folder::type_,
+          ?updated_at: Time
         ) -> void
 
         def to_hash: -> {
-          created_at: String,
+          created_at: Time,
           folder_id: String,
           folder_path: String,
           name: String,
-          type: Imagekit::Models::AssetListResponseItem::FolderDetails::type_,
-          updated_at: String
+          type: Imagekit::Models::AssetListResponseItem::Folder::type_,
+          updated_at: Time
         }
 
         type type_ = :folder
@@ -264,7 +277,7 @@ module Imagekit
 
           FOLDER: :folder
 
-          def self?.values: -> ::Array[Imagekit::Models::AssetListResponseItem::FolderDetails::type_]
+          def self?.values: -> ::Array[Imagekit::Models::AssetListResponseItem::Folder::type_]
         end
       end
 

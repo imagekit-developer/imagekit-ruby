@@ -24,10 +24,10 @@ module Imagekit
 
         # Date and time when the file was uploaded. The date and time is in ISO8601
         # format.
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Time)) }
         attr_reader :created_at
 
-        sig { params(created_at: String).void }
+        sig { params(created_at: Time).void }
         attr_writer :created_at
 
         # An string with custom coordinates of the file.
@@ -128,18 +128,29 @@ module Imagekit
         attr_writer :thumbnail
 
         # Type of the asset.
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              Imagekit::Models::Files::VersionRestoreResponse::Type::TaggedSymbol
+            )
+          )
+        end
         attr_reader :type
 
-        sig { params(type: String).void }
+        sig do
+          params(
+            type:
+              Imagekit::Models::Files::VersionRestoreResponse::Type::OrSymbol
+          ).void
+        end
         attr_writer :type
 
         # Date and time when the file was last updated. The date and time is in ISO8601
         # format.
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Time)) }
         attr_reader :updated_at
 
-        sig { params(updated_at: String).void }
+        sig { params(updated_at: Time).void }
         attr_writer :updated_at
 
         # URL of the file.
@@ -183,7 +194,7 @@ module Imagekit
                   Imagekit::Models::Files::VersionRestoreResponse::AITag::OrHash
                 ]
               ),
-            created_at: String,
+            created_at: Time,
             custom_coordinates: T.nilable(String),
             custom_metadata: T::Hash[Symbol, T.anything],
             file_id: String,
@@ -198,8 +209,9 @@ module Imagekit
             size: Float,
             tags: T.nilable(T::Array[String]),
             thumbnail: String,
-            type: String,
-            updated_at: String,
+            type:
+              Imagekit::Models::Files::VersionRestoreResponse::Type::OrSymbol,
+            updated_at: Time,
             url: String,
             version_info:
               Imagekit::Models::Files::VersionRestoreResponse::VersionInfo::OrHash,
@@ -268,7 +280,7 @@ module Imagekit
                     Imagekit::Models::Files::VersionRestoreResponse::AITag
                   ]
                 ),
-              created_at: String,
+              created_at: Time,
               custom_coordinates: T.nilable(String),
               custom_metadata: T::Hash[Symbol, T.anything],
               file_id: String,
@@ -283,8 +295,9 @@ module Imagekit
               size: Float,
               tags: T.nilable(T::Array[String]),
               thumbnail: String,
-              type: String,
-              updated_at: String,
+              type:
+                Imagekit::Models::Files::VersionRestoreResponse::Type::TaggedSymbol,
+              updated_at: Time,
               url: String,
               version_info:
                 Imagekit::Models::Files::VersionRestoreResponse::VersionInfo,
@@ -348,6 +361,41 @@ module Imagekit
             )
           end
           def to_hash
+          end
+        end
+
+        # Type of the asset.
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Imagekit::Models::Files::VersionRestoreResponse::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          FILE =
+            T.let(
+              :file,
+              Imagekit::Models::Files::VersionRestoreResponse::Type::TaggedSymbol
+            )
+          FILE_VERSION =
+            T.let(
+              :"file-version",
+              Imagekit::Models::Files::VersionRestoreResponse::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::Models::Files::VersionRestoreResponse::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 
