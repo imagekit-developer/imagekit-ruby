@@ -47,6 +47,8 @@ module Imagekit
 
   Cache = Imagekit::Models::Cache
 
+  CustomMetadataField = Imagekit::Models::CustomMetadataField
+
   CustomMetadataFieldCreateParams = Imagekit::Models::CustomMetadataFieldCreateParams
 
   CustomMetadataFieldDeleteParams = Imagekit::Models::CustomMetadataFieldDeleteParams

@@ -6,14 +6,14 @@ module Imagekit
         name: String,
         schema: Imagekit::CustomMetadataFieldCreateParams::Schema,
         ?request_options: Imagekit::request_opts
-      ) -> Imagekit::Models::CustomMetadataFieldCreateResponse
+      ) -> Imagekit::CustomMetadataField
 
       def update: (
         String id,
         ?label: String,
         ?schema: Imagekit::CustomMetadataFieldUpdateParams::Schema,
         ?request_options: Imagekit::request_opts
-      ) -> Imagekit::Models::CustomMetadataFieldUpdateResponse
+      ) -> Imagekit::CustomMetadataField
 
       def list: (
         ?include_deleted: bool,

@@ -21,7 +21,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekit::Models::CustomMetadataFieldCreateResponse]
+      # @return [Imagekit::Models::CustomMetadataField]
       #
       # @see Imagekit::Models::CustomMetadataFieldCreateParams
       def create(params)
@@ -30,7 +30,7 @@ module Imagekit
           method: :post,
           path: "v1/customMetadataFields",
           body: parsed,
-          model: Imagekit::Models::CustomMetadataFieldCreateResponse,
+          model: Imagekit::CustomMetadataField,
           options: options
         )
       end
@@ -50,7 +50,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekit::Models::CustomMetadataFieldUpdateResponse]
+      # @return [Imagekit::Models::CustomMetadataField]
       #
       # @see Imagekit::Models::CustomMetadataFieldUpdateParams
       def update(id, params = {})
@@ -59,7 +59,7 @@ module Imagekit
           method: :patch,
           path: ["v1/customMetadataFields/%1$s", id],
           body: parsed,
-          model: Imagekit::Models::CustomMetadataFieldUpdateResponse,
+          model: Imagekit::CustomMetadataField,
           options: options
         )
       end
@@ -77,7 +77,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<Imagekit::Models::CustomMetadataFieldListResponseItem>]
+      # @return [Array<Imagekit::Models::CustomMetadataField>]
       #
       # @see Imagekit::Models::CustomMetadataFieldListParams
       def list(params = {})
@@ -86,7 +86,7 @@ module Imagekit
           method: :get,
           path: "v1/customMetadataFields",
           query: parsed.transform_keys(include_deleted: "includeDeleted"),
-          model: Imagekit::Internal::Type::ArrayOf[Imagekit::Models::CustomMetadataFieldListResponseItem],
+          model: Imagekit::Internal::Type::ArrayOf[Imagekit::CustomMetadataField],
           options: options
         )
       end

@@ -2,13 +2,10 @@
 
 module Imagekit
   module Models
-    class CustomMetadataFieldUpdateResponse < Imagekit::Internal::Type::BaseModel
+    class CustomMetadataField < Imagekit::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(
-            Imagekit::Models::CustomMetadataFieldUpdateResponse,
-            Imagekit::Internal::AnyHash
-          )
+          T.any(Imagekit::CustomMetadataField, Imagekit::Internal::AnyHash)
         end
 
       # Unique identifier for the custom metadata field. Use this to update the field.
@@ -27,17 +24,10 @@ module Imagekit
       attr_accessor :name
 
       # An object that describes the rules for the custom metadata field value.
-      sig do
-        returns(Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema)
-      end
+      sig { returns(Imagekit::CustomMetadataField::Schema) }
       attr_reader :schema
 
-      sig do
-        params(
-          schema:
-            Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::OrHash
-        ).void
-      end
+      sig { params(schema: Imagekit::CustomMetadataField::Schema::OrHash).void }
       attr_writer :schema
 
       # Object containing details of a custom metadata field.
@@ -46,8 +36,7 @@ module Imagekit
           id: String,
           label: String,
           name: String,
-          schema:
-            Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::OrHash
+          schema: Imagekit::CustomMetadataField::Schema::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -71,7 +60,7 @@ module Imagekit
             id: String,
             label: String,
             name: String,
-            schema: Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema
+            schema: Imagekit::CustomMetadataField::Schema
           }
         )
       end
@@ -82,16 +71,14 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema,
+              Imagekit::CustomMetadataField::Schema,
               Imagekit::Internal::AnyHash
             )
           end
 
         # Type of the custom metadata field.
         sig do
-          returns(
-            Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
-          )
+          returns(Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol)
         end
         attr_accessor :type
 
@@ -100,7 +87,7 @@ module Imagekit
         sig do
           returns(
             T.nilable(
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Variants
+              Imagekit::CustomMetadataField::Schema::DefaultValue::Variants
             )
           )
         end
@@ -109,7 +96,7 @@ module Imagekit
         sig do
           params(
             default_value:
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Variants
+              Imagekit::CustomMetadataField::Schema::DefaultValue::Variants
           ).void
         end
         attr_writer :default_value
@@ -133,17 +120,14 @@ module Imagekit
         # field, it will be a numeric value.
         sig do
           returns(
-            T.nilable(
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MaxValue::Variants
-            )
+            T.nilable(Imagekit::CustomMetadataField::Schema::MaxValue::Variants)
           )
         end
         attr_reader :max_value
 
         sig do
           params(
-            max_value:
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MaxValue::Variants
+            max_value: Imagekit::CustomMetadataField::Schema::MaxValue::Variants
           ).void
         end
         attr_writer :max_value
@@ -160,17 +144,14 @@ module Imagekit
         # field, it will be a numeric value.
         sig do
           returns(
-            T.nilable(
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MinValue::Variants
-            )
+            T.nilable(Imagekit::CustomMetadataField::Schema::MinValue::Variants)
           )
         end
         attr_reader :min_value
 
         sig do
           params(
-            min_value:
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MinValue::Variants
+            min_value: Imagekit::CustomMetadataField::Schema::MinValue::Variants
           ).void
         end
         attr_writer :min_value
@@ -180,7 +161,7 @@ module Imagekit
           returns(
             T.nilable(
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::SelectOption::Variants
+                Imagekit::CustomMetadataField::Schema::SelectOption::Variants
               ]
             )
           )
@@ -191,7 +172,7 @@ module Imagekit
           params(
             select_options:
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::SelectOption::Variants
+                Imagekit::CustomMetadataField::Schema::SelectOption::Variants
               ]
           ).void
         end
@@ -200,20 +181,19 @@ module Imagekit
         # An object that describes the rules for the custom metadata field value.
         sig do
           params(
-            type:
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::OrSymbol,
+            type: Imagekit::CustomMetadataField::Schema::Type::OrSymbol,
             default_value:
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Variants,
+              Imagekit::CustomMetadataField::Schema::DefaultValue::Variants,
             is_value_required: T::Boolean,
             max_length: Float,
             max_value:
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MaxValue::Variants,
+              Imagekit::CustomMetadataField::Schema::MaxValue::Variants,
             min_length: Float,
             min_value:
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MinValue::Variants,
+              Imagekit::CustomMetadataField::Schema::MinValue::Variants,
             select_options:
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::SelectOption::Variants
+                Imagekit::CustomMetadataField::Schema::SelectOption::Variants
               ]
           ).returns(T.attached_class)
         end
@@ -245,20 +225,19 @@ module Imagekit
         sig do
           override.returns(
             {
-              type:
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol,
+              type: Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol,
               default_value:
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Variants,
+                Imagekit::CustomMetadataField::Schema::DefaultValue::Variants,
               is_value_required: T::Boolean,
               max_length: Float,
               max_value:
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MaxValue::Variants,
+                Imagekit::CustomMetadataField::Schema::MaxValue::Variants,
               min_length: Float,
               min_value:
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MinValue::Variants,
+                Imagekit::CustomMetadataField::Schema::MinValue::Variants,
               select_options:
                 T::Array[
-                  Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::SelectOption::Variants
+                  Imagekit::CustomMetadataField::Schema::SelectOption::Variants
                 ]
             }
           )
@@ -272,53 +251,50 @@ module Imagekit
 
           TaggedSymbol =
             T.type_alias do
-              T.all(
-                Symbol,
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type
-              )
+              T.all(Symbol, Imagekit::CustomMetadataField::Schema::Type)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           TEXT =
             T.let(
               :Text,
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+              Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
             )
           TEXTAREA =
             T.let(
               :Textarea,
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+              Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
             )
           NUMBER =
             T.let(
               :Number,
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+              Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
             )
           DATE =
             T.let(
               :Date,
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+              Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
             )
           BOOLEAN =
             T.let(
               :Boolean,
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+              Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
             )
           SINGLE_SELECT =
             T.let(
               :SingleSelect,
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+              Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
             )
           MULTI_SELECT =
             T.let(
               :MultiSelect,
-              Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+              Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type::TaggedSymbol
+                Imagekit::CustomMetadataField::Schema::Type::TaggedSymbol
               ]
             )
           end
@@ -338,7 +314,7 @@ module Imagekit
                 Float,
                 T::Boolean,
                 T::Array[
-                  Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Mixed::Variants
+                  Imagekit::CustomMetadataField::Schema::DefaultValue::Mixed::Variants
                 ]
               )
             end
@@ -351,7 +327,7 @@ module Imagekit
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Mixed::Variants
+                  Imagekit::CustomMetadataField::Schema::DefaultValue::Mixed::Variants
                 ]
               )
             end
@@ -362,7 +338,7 @@ module Imagekit
           sig do
             override.returns(
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Variants
+                Imagekit::CustomMetadataField::Schema::DefaultValue::Variants
               ]
             )
           end
@@ -373,7 +349,7 @@ module Imagekit
             T.let(
               Imagekit::Internal::Type::ArrayOf[
                 union:
-                  Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Mixed
+                  Imagekit::CustomMetadataField::Schema::DefaultValue::Mixed
               ],
               Imagekit::Internal::Type::Converter
             )
@@ -390,7 +366,7 @@ module Imagekit
           sig do
             override.returns(
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MaxValue::Variants
+                Imagekit::CustomMetadataField::Schema::MaxValue::Variants
               ]
             )
           end
@@ -409,7 +385,7 @@ module Imagekit
           sig do
             override.returns(
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MinValue::Variants
+                Imagekit::CustomMetadataField::Schema::MinValue::Variants
               ]
             )
           end
@@ -425,7 +401,7 @@ module Imagekit
           sig do
             override.returns(
               T::Array[
-                Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::SelectOption::Variants
+                Imagekit::CustomMetadataField::Schema::SelectOption::Variants
               ]
             )
           end

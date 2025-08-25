@@ -438,8 +438,8 @@ module Imagekit
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `custom_metadata_field_create_response` is a `Imagekit::Models::CustomMetadataFieldCreateResponse`
-        #   custom_metadata_field_create_response => {
+        #   # `custom_metadata_field` is a `Imagekit::CustomMetadataField`
+        #   custom_metadata_field => {
         #     id: id,
         #     label: label,
         #     name: name

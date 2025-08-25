@@ -2,8 +2,8 @@
 
 module Imagekit
   module Models
-    # @see Imagekit::Resources::CustomMetadataFields#update
-    class CustomMetadataFieldUpdateResponse < Imagekit::Internal::Type::BaseModel
+    # @see Imagekit::Resources::CustomMetadataFields#create
+    class CustomMetadataField < Imagekit::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for the custom metadata field. Use this to update the field.
       #
@@ -28,12 +28,12 @@ module Imagekit
       # @!attribute schema
       #   An object that describes the rules for the custom metadata field value.
       #
-      #   @return [Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema]
-      required :schema, -> { Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema }
+      #   @return [Imagekit::Models::CustomMetadataField::Schema]
+      required :schema, -> { Imagekit::CustomMetadataField::Schema }
 
       # @!method initialize(id:, label:, name:, schema:)
       #   Some parameter documentations has been truncated, see
-      #   {Imagekit::Models::CustomMetadataFieldUpdateResponse} for more details.
+      #   {Imagekit::Models::CustomMetadataField} for more details.
       #
       #   Object containing details of a custom metadata field.
       #
@@ -43,15 +43,15 @@ module Imagekit
       #
       #   @param name [String] API name of the custom metadata field. This becomes the key while setting `custo
       #
-      #   @param schema [Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema] An object that describes the rules for the custom metadata field value.
+      #   @param schema [Imagekit::Models::CustomMetadataField::Schema] An object that describes the rules for the custom metadata field value.
 
-      # @see Imagekit::Models::CustomMetadataFieldUpdateResponse#schema
+      # @see Imagekit::Models::CustomMetadataField#schema
       class Schema < Imagekit::Internal::Type::BaseModel
         # @!attribute type
         #   Type of the custom metadata field.
         #
-        #   @return [Symbol, Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type]
-        required :type, enum: -> { Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type }
+        #   @return [Symbol, Imagekit::Models::CustomMetadataField::Schema::Type]
+        required :type, enum: -> { Imagekit::CustomMetadataField::Schema::Type }
 
         # @!attribute default_value
         #   The default value for this custom metadata field. Date type of default value
@@ -59,7 +59,7 @@ module Imagekit
         #
         #   @return [String, Float, Boolean, Array<String, Float, Boolean>, nil]
         optional :default_value,
-                 union: -> { Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue },
+                 union: -> { Imagekit::CustomMetadataField::Schema::DefaultValue },
                  api_name: :defaultValue
 
         # @!attribute is_value_required
@@ -81,7 +81,9 @@ module Imagekit
         #
         #   @return [String, Float, nil]
         optional :max_value,
-                 union: -> { Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MaxValue },
+                 union: -> {
+                   Imagekit::CustomMetadataField::Schema::MaxValue
+                 },
                  api_name: :maxValue
 
         # @!attribute min_length
@@ -97,7 +99,9 @@ module Imagekit
         #
         #   @return [String, Float, nil]
         optional :min_value,
-                 union: -> { Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::MinValue },
+                 union: -> {
+                   Imagekit::CustomMetadataField::Schema::MinValue
+                 },
                  api_name: :minValue
 
         # @!attribute select_options
@@ -105,16 +109,18 @@ module Imagekit
         #
         #   @return [Array<String, Float, Boolean>, nil]
         optional :select_options,
-                 -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::SelectOption] },
+                 -> {
+                   Imagekit::Internal::Type::ArrayOf[union: Imagekit::CustomMetadataField::Schema::SelectOption]
+                 },
                  api_name: :selectOptions
 
         # @!method initialize(type:, default_value: nil, is_value_required: nil, max_length: nil, max_value: nil, min_length: nil, min_value: nil, select_options: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema} for more details.
+        #   {Imagekit::Models::CustomMetadataField::Schema} for more details.
         #
         #   An object that describes the rules for the custom metadata field value.
         #
-        #   @param type [Symbol, Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::Type] Type of the custom metadata field.
+        #   @param type [Symbol, Imagekit::Models::CustomMetadataField::Schema::Type] Type of the custom metadata field.
         #
         #   @param default_value [String, Float, Boolean, Array<String, Float, Boolean>] The default value for this custom metadata field. Date type of default value dep
         #
@@ -132,7 +138,7 @@ module Imagekit
 
         # Type of the custom metadata field.
         #
-        # @see Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema#type
+        # @see Imagekit::Models::CustomMetadataField::Schema#type
         module Type
           extend Imagekit::Internal::Type::Enum
 
@@ -151,7 +157,7 @@ module Imagekit
         # The default value for this custom metadata field. Date type of default value
         # depends on the field type.
         #
-        # @see Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema#default_value
+        # @see Imagekit::Models::CustomMetadataField::Schema#default_value
         module DefaultValue
           extend Imagekit::Internal::Type::Union
 
@@ -162,7 +168,7 @@ module Imagekit
           variant Imagekit::Internal::Type::Boolean
 
           # Default value should be of type array when custom metadata field type is set to `MultiSelect`.
-          variant -> { Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::MixedArray }
+          variant -> { Imagekit::Models::CustomMetadataField::Schema::DefaultValue::MixedArray }
 
           module Mixed
             extend Imagekit::Internal::Type::Union
@@ -182,14 +188,16 @@ module Imagekit
 
           # @type [Imagekit::Internal::Type::Converter]
           MixedArray =
-            Imagekit::Internal::Type::ArrayOf[union: -> { Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema::DefaultValue::Mixed }]
+            Imagekit::Internal::Type::ArrayOf[union: -> {
+              Imagekit::CustomMetadataField::Schema::DefaultValue::Mixed
+            }]
         end
 
         # Maximum value of the field. Only set if field type is `Date` or `Number`. For
         # `Date` type field, the value will be in ISO8601 string format. For `Number` type
         # field, it will be a numeric value.
         #
-        # @see Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema#max_value
+        # @see Imagekit::Models::CustomMetadataField::Schema#max_value
         module MaxValue
           extend Imagekit::Internal::Type::Union
 
@@ -205,7 +213,7 @@ module Imagekit
         # `Date` type field, the value will be in ISO8601 string format. For `Number` type
         # field, it will be a numeric value.
         #
-        # @see Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema#min_value
+        # @see Imagekit::Models::CustomMetadataField::Schema#min_value
         module MinValue
           extend Imagekit::Internal::Type::Union
 

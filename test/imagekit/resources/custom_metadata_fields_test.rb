@@ -10,7 +10,7 @@ class Imagekit::Test::Resources::CustomMetadataFieldsTest < Imagekit::Test::Reso
       @image_kit.custom_metadata_fields.create(label: "price", name: "price", schema: {type: :Number})
 
     assert_pattern do
-      response => Imagekit::Models::CustomMetadataFieldCreateResponse
+      response => Imagekit::CustomMetadataField
     end
 
     assert_pattern do
@@ -18,7 +18,7 @@ class Imagekit::Test::Resources::CustomMetadataFieldsTest < Imagekit::Test::Reso
         id: String,
         label: String,
         name: String,
-        schema: Imagekit::Models::CustomMetadataFieldCreateResponse::Schema
+        schema: Imagekit::CustomMetadataField::Schema
       }
     end
   end
@@ -29,7 +29,7 @@ class Imagekit::Test::Resources::CustomMetadataFieldsTest < Imagekit::Test::Reso
     response = @image_kit.custom_metadata_fields.update("id")
 
     assert_pattern do
-      response => Imagekit::Models::CustomMetadataFieldUpdateResponse
+      response => Imagekit::CustomMetadataField
     end
 
     assert_pattern do
@@ -37,7 +37,7 @@ class Imagekit::Test::Resources::CustomMetadataFieldsTest < Imagekit::Test::Reso
         id: String,
         label: String,
         name: String,
-        schema: Imagekit::Models::CustomMetadataFieldUpdateResponse::Schema
+        schema: Imagekit::CustomMetadataField::Schema
       }
     end
   end
@@ -48,7 +48,7 @@ class Imagekit::Test::Resources::CustomMetadataFieldsTest < Imagekit::Test::Reso
     response = @image_kit.custom_metadata_fields.list
 
     assert_pattern do
-      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::CustomMetadataFieldListResponseItem])
+      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::CustomMetadataField])
     end
   end
 

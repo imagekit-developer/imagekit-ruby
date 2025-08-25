@@ -7,6 +7,8 @@ module Imagekit
 
   module Cache = Imagekit::Models::Cache
 
+  class CustomMetadataField = Imagekit::Models::CustomMetadataField
+
   class CustomMetadataFieldCreateParams = Imagekit::Models::CustomMetadataFieldCreateParams
 
   class CustomMetadataFieldDeleteParams = Imagekit::Models::CustomMetadataFieldDeleteParams

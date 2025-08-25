@@ -13,7 +13,7 @@ module Imagekit
           name: String,
           schema: Imagekit::CustomMetadataFieldCreateParams::Schema::OrHash,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::CustomMetadataFieldCreateResponse)
+        ).returns(Imagekit::CustomMetadataField)
       end
       def create(
         # Human readable name of the custom metadata field. This should be unique across
@@ -36,7 +36,7 @@ module Imagekit
           label: String,
           schema: Imagekit::CustomMetadataFieldUpdateParams::Schema::OrHash,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::CustomMetadataFieldUpdateResponse)
+        ).returns(Imagekit::CustomMetadataField)
       end
       def update(
         # Should be a valid custom metadata field id.
@@ -62,9 +62,7 @@ module Imagekit
         params(
           include_deleted: T::Boolean,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(
-          T::Array[Imagekit::Models::CustomMetadataFieldListResponseItem]
-        )
+        ).returns(T::Array[Imagekit::CustomMetadataField])
       end
       def list(
         # Set it to `true` to include deleted field objects in the API response.
