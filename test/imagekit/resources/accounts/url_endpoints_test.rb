@@ -9,7 +9,7 @@ class Imagekit::Test::Resources::Accounts::URLEndpointsTest < Imagekit::Test::Re
     response = @image_kit.accounts.url_endpoints.create(description: "My custom URL endpoint")
 
     assert_pattern do
-      response => Imagekit::Models::Accounts::URLEndpointCreateResponse
+      response => Imagekit::Accounts::URLEndpointResponse
     end
 
     assert_pattern do
@@ -18,7 +18,7 @@ class Imagekit::Test::Resources::Accounts::URLEndpointsTest < Imagekit::Test::Re
         description: String,
         origins: ^(Imagekit::Internal::Type::ArrayOf[String]),
         url_prefix: String,
-        url_rewriter: Imagekit::Models::Accounts::URLEndpointCreateResponse::URLRewriter | nil
+        url_rewriter: Imagekit::Accounts::URLEndpointResponse::URLRewriter | nil
       }
     end
   end
@@ -29,7 +29,7 @@ class Imagekit::Test::Resources::Accounts::URLEndpointsTest < Imagekit::Test::Re
     response = @image_kit.accounts.url_endpoints.update("id", description: "My custom URL endpoint")
 
     assert_pattern do
-      response => Imagekit::Models::Accounts::URLEndpointUpdateResponse
+      response => Imagekit::Accounts::URLEndpointResponse
     end
 
     assert_pattern do
@@ -38,7 +38,7 @@ class Imagekit::Test::Resources::Accounts::URLEndpointsTest < Imagekit::Test::Re
         description: String,
         origins: ^(Imagekit::Internal::Type::ArrayOf[String]),
         url_prefix: String,
-        url_rewriter: Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter | nil
+        url_rewriter: Imagekit::Accounts::URLEndpointResponse::URLRewriter | nil
       }
     end
   end
@@ -49,7 +49,7 @@ class Imagekit::Test::Resources::Accounts::URLEndpointsTest < Imagekit::Test::Re
     response = @image_kit.accounts.url_endpoints.list
 
     assert_pattern do
-      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Accounts::URLEndpointListResponseItem])
+      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Accounts::URLEndpointResponse])
     end
   end
 
@@ -69,7 +69,7 @@ class Imagekit::Test::Resources::Accounts::URLEndpointsTest < Imagekit::Test::Re
     response = @image_kit.accounts.url_endpoints.get("id")
 
     assert_pattern do
-      response => Imagekit::Models::Accounts::URLEndpointGetResponse
+      response => Imagekit::Accounts::URLEndpointResponse
     end
 
     assert_pattern do
@@ -78,7 +78,7 @@ class Imagekit::Test::Resources::Accounts::URLEndpointsTest < Imagekit::Test::Re
         description: String,
         origins: ^(Imagekit::Internal::Type::ArrayOf[String]),
         url_prefix: String,
-        url_rewriter: Imagekit::Models::Accounts::URLEndpointGetResponse::URLRewriter | nil
+        url_rewriter: Imagekit::Accounts::URLEndpointResponse::URLRewriter | nil
       }
     end
   end

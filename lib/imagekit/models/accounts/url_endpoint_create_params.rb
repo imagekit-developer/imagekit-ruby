@@ -4,7 +4,7 @@ module Imagekit
   module Models
     module Accounts
       # @see Imagekit::Resources::Accounts::URLEndpoints#create
-      class URLEndpointCreateParams < Imagekit::Models::Accounts::URLEndpoint
+      class URLEndpointCreateParams < Imagekit::Models::Accounts::URLEndpointRequest
         extend Imagekit::Internal::Type::RequestParameters::Converter
         include Imagekit::Internal::Type::RequestParameters
 

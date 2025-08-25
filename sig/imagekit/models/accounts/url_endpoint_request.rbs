@@ -1,15 +1,15 @@
 module Imagekit
   module Models
     module Accounts
-      type url_endpoint =
+      type url_endpoint_request =
         {
           description: String,
           origins: ::Array[String],
           url_prefix: String,
-          url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter
+          url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
         }
 
-      class URLEndpoint < Imagekit::Internal::Type::BaseModel
+      class URLEndpointRequest < Imagekit::Internal::Type::BaseModel
         attr_accessor description: String
 
         attr_reader origins: ::Array[String]?
@@ -20,30 +20,30 @@ module Imagekit
 
         def url_prefix=: (String) -> String
 
-        attr_reader url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter?
+        attr_reader url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter?
 
         def url_rewriter=: (
-          Imagekit::Models::Accounts::URLEndpoint::url_rewriter
-        ) -> Imagekit::Models::Accounts::URLEndpoint::url_rewriter
+          Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
+        ) -> Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
 
         def initialize: (
           description: String,
           ?origins: ::Array[String],
           ?url_prefix: String,
-          ?url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
         ) -> void
 
         def to_hash: -> {
           description: String,
           origins: ::Array[String],
           url_prefix: String,
-          url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter
+          url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
         }
 
         type url_rewriter =
-          Imagekit::Accounts::URLEndpoint::URLRewriter::Cloudinary
-          | Imagekit::Accounts::URLEndpoint::URLRewriter::Imgix
-          | Imagekit::Accounts::URLEndpoint::URLRewriter::Akamai
+          Imagekit::Accounts::URLEndpointRequest::URLRewriter::Cloudinary
+          | Imagekit::Accounts::URLEndpointRequest::URLRewriter::Imgix
+          | Imagekit::Accounts::URLEndpointRequest::URLRewriter::Akamai
 
         module URLRewriter
           extend Imagekit::Internal::Type::Union
@@ -89,7 +89,7 @@ module Imagekit
             def to_hash: -> { type: :AKAMAI }
           end
 
-          def self?.variants: -> ::Array[Imagekit::Models::Accounts::URLEndpoint::url_rewriter]
+          def self?.variants: -> ::Array[Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter]
         end
       end
     end

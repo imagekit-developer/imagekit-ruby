@@ -1,27 +1,27 @@
 module Imagekit
   module Models
     module Accounts
-      type url_endpoint_update_response =
+      type url_endpoint_response =
         {
           id: String,
           description: String,
           origins: ::Array[String],
           url_prefix: String,
-          url_rewriter: Imagekit::Models::Accounts::URLEndpointUpdateResponse::url_rewriter
+          url_rewriter: Imagekit::Models::Accounts::URLEndpointResponse::url_rewriter
         }
 
-      class URLEndpointUpdateResponse < Imagekit::Internal::Type::BaseModel
+      class URLEndpointResponse < Imagekit::Internal::Type::BaseModel
         attr_accessor description: String
 
         attr_accessor origins: ::Array[String]
 
         attr_accessor url_prefix: String
 
-        attr_reader url_rewriter: Imagekit::Models::Accounts::URLEndpointUpdateResponse::url_rewriter?
+        attr_reader url_rewriter: Imagekit::Models::Accounts::URLEndpointResponse::url_rewriter?
 
         def url_rewriter=: (
-          Imagekit::Models::Accounts::URLEndpointUpdateResponse::url_rewriter
-        ) -> Imagekit::Models::Accounts::URLEndpointUpdateResponse::url_rewriter
+          Imagekit::Models::Accounts::URLEndpointResponse::url_rewriter
+        ) -> Imagekit::Models::Accounts::URLEndpointResponse::url_rewriter
 
         attr_accessor id: String
 
@@ -30,7 +30,7 @@ module Imagekit
           description: String,
           origins: ::Array[String],
           url_prefix: String,
-          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointUpdateResponse::url_rewriter
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointResponse::url_rewriter
         ) -> void
 
         def to_hash: -> {
@@ -38,13 +38,13 @@ module Imagekit
           description: String,
           origins: ::Array[String],
           url_prefix: String,
-          url_rewriter: Imagekit::Models::Accounts::URLEndpointUpdateResponse::url_rewriter
+          url_rewriter: Imagekit::Models::Accounts::URLEndpointResponse::url_rewriter
         }
 
         type url_rewriter =
-          Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::Cloudinary
-          | Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::Imgix
-          | Imagekit::Models::Accounts::URLEndpointUpdateResponse::URLRewriter::Akamai
+          Imagekit::Accounts::URLEndpointResponse::URLRewriter::Cloudinary
+          | Imagekit::Accounts::URLEndpointResponse::URLRewriter::Imgix
+          | Imagekit::Accounts::URLEndpointResponse::URLRewriter::Akamai
 
         module URLRewriter
           extend Imagekit::Internal::Type::Union
@@ -88,7 +88,7 @@ module Imagekit
             def to_hash: -> { type: :AKAMAI }
           end
 
-          def self?.variants: -> ::Array[Imagekit::Models::Accounts::URLEndpointUpdateResponse::url_rewriter]
+          def self?.variants: -> ::Array[Imagekit::Models::Accounts::URLEndpointResponse::url_rewriter]
         end
       end
     end

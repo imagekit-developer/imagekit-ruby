@@ -3,7 +3,7 @@
 module Imagekit
   module Models
     module Accounts
-      class URLEndpointUpdateParams < Imagekit::Models::Accounts::URLEndpoint
+      class URLEndpointUpdateParams < Imagekit::Models::Accounts::URLEndpointRequest
         extend Imagekit::Internal::Type::RequestParameters::Converter
         include Imagekit::Internal::Type::RequestParameters
 

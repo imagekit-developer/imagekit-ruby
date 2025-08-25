@@ -18,11 +18,11 @@ module Imagekit
         #
         # @param url_prefix [String] Path segment appended to your base URL to form the endpoint (letters, digits, an
         #
-        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Akamai] Configuration for third-party URL rewriting.
+        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpointRequest::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointRequest::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointRequest::URLRewriter::Akamai] Configuration for third-party URL rewriting.
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Accounts::URLEndpointCreateResponse]
+        # @return [Imagekit::Models::Accounts::URLEndpointResponse]
         #
         # @see Imagekit::Models::Accounts::URLEndpointCreateParams
         def create(params)
@@ -31,7 +31,7 @@ module Imagekit
             method: :post,
             path: "v1/accounts/url-endpoints",
             body: parsed,
-            model: Imagekit::Models::Accounts::URLEndpointCreateResponse,
+            model: Imagekit::Accounts::URLEndpointResponse,
             options: options
           )
         end
@@ -52,11 +52,11 @@ module Imagekit
         #
         # @param url_prefix [String] Path segment appended to your base URL to form the endpoint (letters, digits, an
         #
-        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Akamai] Configuration for third-party URL rewriting.
+        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpointRequest::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointRequest::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointRequest::URLRewriter::Akamai] Configuration for third-party URL rewriting.
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Accounts::URLEndpointUpdateResponse]
+        # @return [Imagekit::Models::Accounts::URLEndpointResponse]
         #
         # @see Imagekit::Models::Accounts::URLEndpointUpdateParams
         def update(id, params)
@@ -65,7 +65,7 @@ module Imagekit
             method: :put,
             path: ["v1/accounts/url-endpoints/%1$s", id],
             body: parsed,
-            model: Imagekit::Models::Accounts::URLEndpointUpdateResponse,
+            model: Imagekit::Accounts::URLEndpointResponse,
             options: options
           )
         end
@@ -78,14 +78,14 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<Imagekit::Models::Accounts::URLEndpointListResponseItem>]
+        # @return [Array<Imagekit::Models::Accounts::URLEndpointResponse>]
         #
         # @see Imagekit::Models::Accounts::URLEndpointListParams
         def list(params = {})
           @client.request(
             method: :get,
             path: "v1/accounts/url-endpoints",
-            model: Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Accounts::URLEndpointListResponseItem],
+            model: Imagekit::Internal::Type::ArrayOf[Imagekit::Accounts::URLEndpointResponse],
             options: params[:request_options]
           )
         end
@@ -127,14 +127,14 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Accounts::URLEndpointGetResponse]
+        # @return [Imagekit::Models::Accounts::URLEndpointResponse]
         #
         # @see Imagekit::Models::Accounts::URLEndpointGetParams
         def get(id, params = {})
           @client.request(
             method: :get,
             path: ["v1/accounts/url-endpoints/%1$s", id],
-            model: Imagekit::Models::Accounts::URLEndpointGetResponse,
+            model: Imagekit::Accounts::URLEndpointResponse,
             options: params[:request_options]
           )
         end

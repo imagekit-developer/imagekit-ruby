@@ -6,18 +6,18 @@ module Imagekit
           description: String,
           ?origins: ::Array[String],
           ?url_prefix: String,
-          ?url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter,
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter,
           ?request_options: Imagekit::request_opts
-        ) -> Imagekit::Models::Accounts::URLEndpointCreateResponse
+        ) -> Imagekit::Accounts::URLEndpointResponse
 
         def update: (
           String id,
           description: String,
           ?origins: ::Array[String],
           ?url_prefix: String,
-          ?url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter,
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter,
           ?request_options: Imagekit::request_opts
-        ) -> Imagekit::Models::Accounts::URLEndpointUpdateResponse
+        ) -> Imagekit::Accounts::URLEndpointResponse
 
         def list: (
           ?request_options: Imagekit::request_opts
@@ -28,7 +28,7 @@ module Imagekit
         def get: (
           String id,
           ?request_options: Imagekit::request_opts
-        ) -> Imagekit::Models::Accounts::URLEndpointGetResponse
+        ) -> Imagekit::Accounts::URLEndpointResponse
 
         def initialize: (client: Imagekit::Client) -> void
       end
