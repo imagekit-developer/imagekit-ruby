@@ -1,7 +1,8 @@
 module Imagekit
   module Models
     module Accounts
-      type origin_list_response = ::Array[Imagekit::Models::Accounts::origin]
+      type origin_list_response =
+        ::Array[Imagekit::Models::Accounts::origin_response]
 
       OriginListResponse: Imagekit::Internal::Type::Converter
     end

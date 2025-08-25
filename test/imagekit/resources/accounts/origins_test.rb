@@ -18,19 +18,19 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
       )
 
     assert_pattern do
-      response => Imagekit::Accounts::Origin
+      response => Imagekit::Accounts::OriginResponse
     end
 
     assert_pattern do
       case response
-      in Imagekit::Accounts::Origin::S3
-      in Imagekit::Accounts::Origin::S3Compatible
-      in Imagekit::Accounts::Origin::CloudinaryBackup
-      in Imagekit::Accounts::Origin::WebFolder
-      in Imagekit::Accounts::Origin::WebProxy
-      in Imagekit::Accounts::Origin::Gcs
-      in Imagekit::Accounts::Origin::AzureBlob
-      in Imagekit::Accounts::Origin::AkeneoPim
+      in Imagekit::Accounts::OriginResponse::S3
+      in Imagekit::Accounts::OriginResponse::S3Compatible
+      in Imagekit::Accounts::OriginResponse::CloudinaryBackup
+      in Imagekit::Accounts::OriginResponse::WebFolder
+      in Imagekit::Accounts::OriginResponse::WebProxy
+      in Imagekit::Accounts::OriginResponse::Gcs
+      in Imagekit::Accounts::OriginResponse::AzureBlob
+      in Imagekit::Accounts::OriginResponse::AkeneoPim
       end
     end
 
@@ -38,88 +38,76 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
       case response
       in {
         type: :S3,
-        access_key: String,
+        id: String,
         bucket: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :S3_COMPATIBLE,
-        access_key: String,
+        id: String,
         bucket: String,
         endpoint: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil,
-        s3_force_path_style: Imagekit::Internal::Type::Boolean | nil
+        prefix: String,
+        s3_force_path_style: Imagekit::Internal::Type::Boolean,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :CLOUDINARY_BACKUP,
-        access_key: String,
+        id: String,
         bucket: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :WEB_FOLDER,
+        id: String,
         base_url: String,
+        forward_host_header_to_origin: Imagekit::Internal::Type::Boolean,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        forward_host_header_to_origin: Imagekit::Internal::Type::Boolean | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :WEB_PROXY,
+        id: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :GCS,
+        id: String,
         bucket: String,
         client_email: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        private_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :AZURE_BLOB,
+        id: String,
         account_name: String,
         container: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        sas_token: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :AKENEO_PIM,
+        id: String,
         base_url: String,
-        client_id: String,
-        client_secret: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        password: String,
-        username: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       end
     end
@@ -141,19 +129,19 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
       )
 
     assert_pattern do
-      response => Imagekit::Accounts::Origin
+      response => Imagekit::Accounts::OriginResponse
     end
 
     assert_pattern do
       case response
-      in Imagekit::Accounts::Origin::S3
-      in Imagekit::Accounts::Origin::S3Compatible
-      in Imagekit::Accounts::Origin::CloudinaryBackup
-      in Imagekit::Accounts::Origin::WebFolder
-      in Imagekit::Accounts::Origin::WebProxy
-      in Imagekit::Accounts::Origin::Gcs
-      in Imagekit::Accounts::Origin::AzureBlob
-      in Imagekit::Accounts::Origin::AkeneoPim
+      in Imagekit::Accounts::OriginResponse::S3
+      in Imagekit::Accounts::OriginResponse::S3Compatible
+      in Imagekit::Accounts::OriginResponse::CloudinaryBackup
+      in Imagekit::Accounts::OriginResponse::WebFolder
+      in Imagekit::Accounts::OriginResponse::WebProxy
+      in Imagekit::Accounts::OriginResponse::Gcs
+      in Imagekit::Accounts::OriginResponse::AzureBlob
+      in Imagekit::Accounts::OriginResponse::AkeneoPim
       end
     end
 
@@ -161,88 +149,76 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
       case response
       in {
         type: :S3,
-        access_key: String,
+        id: String,
         bucket: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :S3_COMPATIBLE,
-        access_key: String,
+        id: String,
         bucket: String,
         endpoint: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil,
-        s3_force_path_style: Imagekit::Internal::Type::Boolean | nil
+        prefix: String,
+        s3_force_path_style: Imagekit::Internal::Type::Boolean,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :CLOUDINARY_BACKUP,
-        access_key: String,
+        id: String,
         bucket: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :WEB_FOLDER,
+        id: String,
         base_url: String,
+        forward_host_header_to_origin: Imagekit::Internal::Type::Boolean,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        forward_host_header_to_origin: Imagekit::Internal::Type::Boolean | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :WEB_PROXY,
+        id: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :GCS,
+        id: String,
         bucket: String,
         client_email: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        private_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :AZURE_BLOB,
+        id: String,
         account_name: String,
         container: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        sas_token: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :AKENEO_PIM,
+        id: String,
         base_url: String,
-        client_id: String,
-        client_secret: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        password: String,
-        username: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       end
     end
@@ -254,7 +230,7 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
     response = @image_kit.accounts.origins.list
 
     assert_pattern do
-      response => ^(Imagekit::Internal::Type::ArrayOf[union: Imagekit::Accounts::Origin])
+      response => ^(Imagekit::Internal::Type::ArrayOf[union: Imagekit::Accounts::OriginResponse])
     end
   end
 
@@ -274,19 +250,19 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
     response = @image_kit.accounts.origins.get("id")
 
     assert_pattern do
-      response => Imagekit::Accounts::Origin
+      response => Imagekit::Accounts::OriginResponse
     end
 
     assert_pattern do
       case response
-      in Imagekit::Accounts::Origin::S3
-      in Imagekit::Accounts::Origin::S3Compatible
-      in Imagekit::Accounts::Origin::CloudinaryBackup
-      in Imagekit::Accounts::Origin::WebFolder
-      in Imagekit::Accounts::Origin::WebProxy
-      in Imagekit::Accounts::Origin::Gcs
-      in Imagekit::Accounts::Origin::AzureBlob
-      in Imagekit::Accounts::Origin::AkeneoPim
+      in Imagekit::Accounts::OriginResponse::S3
+      in Imagekit::Accounts::OriginResponse::S3Compatible
+      in Imagekit::Accounts::OriginResponse::CloudinaryBackup
+      in Imagekit::Accounts::OriginResponse::WebFolder
+      in Imagekit::Accounts::OriginResponse::WebProxy
+      in Imagekit::Accounts::OriginResponse::Gcs
+      in Imagekit::Accounts::OriginResponse::AzureBlob
+      in Imagekit::Accounts::OriginResponse::AkeneoPim
       end
     end
 
@@ -294,88 +270,76 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
       case response
       in {
         type: :S3,
-        access_key: String,
+        id: String,
         bucket: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :S3_COMPATIBLE,
-        access_key: String,
+        id: String,
         bucket: String,
         endpoint: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil,
-        s3_force_path_style: Imagekit::Internal::Type::Boolean | nil
+        prefix: String,
+        s3_force_path_style: Imagekit::Internal::Type::Boolean,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :CLOUDINARY_BACKUP,
-        access_key: String,
+        id: String,
         bucket: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        secret_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :WEB_FOLDER,
+        id: String,
         base_url: String,
+        forward_host_header_to_origin: Imagekit::Internal::Type::Boolean,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        forward_host_header_to_origin: Imagekit::Internal::Type::Boolean | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :WEB_PROXY,
+        id: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :GCS,
+        id: String,
         bucket: String,
         client_email: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        private_key: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :AZURE_BLOB,
+        id: String,
         account_name: String,
         container: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        sas_token: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil,
-        prefix: String | nil
+        prefix: String,
+        base_url_for_canonical_header: String | nil
       }
       in {
         type: :AKENEO_PIM,
+        id: String,
         base_url: String,
-        client_id: String,
-        client_secret: String,
+        include_canonical_header: Imagekit::Internal::Type::Boolean,
         name: String,
-        password: String,
-        username: String,
-        id: String | nil,
-        base_url_for_canonical_header: String | nil,
-        include_canonical_header: Imagekit::Internal::Type::Boolean | nil
+        base_url_for_canonical_header: String | nil
       }
       end
     end
