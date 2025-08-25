@@ -19,17 +19,16 @@ module Imagekit
         optional :purge_request_id, String, api_name: :purgeRequestId
 
         # @!attribute status
-        #   Status of the bulk job. Possible values - `Pending`, `Completed`.
+        #   Status of the bulk job.
         #
-        #   @return [String, nil]
-        optional :status, String
+        #   @return [Symbol, Imagekit::Models::Folders::JobGetResponse::Status, nil]
+        optional :status, enum: -> { Imagekit::Models::Folders::JobGetResponse::Status }
 
         # @!attribute type
-        #   Type of the bulk job. Possible values - `COPY_FOLDER`, `MOVE_FOLDER`,
-        #   `RENAME_FOLDER`.
+        #   Type of the bulk job.
         #
-        #   @return [String, nil]
-        optional :type, String
+        #   @return [Symbol, Imagekit::Models::Folders::JobGetResponse::Type, nil]
+        optional :type, enum: -> { Imagekit::Models::Folders::JobGetResponse::Type }
 
         # @!method initialize(job_id: nil, purge_request_id: nil, status: nil, type: nil)
         #   Some parameter documentations has been truncated, see
@@ -39,9 +38,36 @@ module Imagekit
         #
         #   @param purge_request_id [String] Unique identifier of the purge request. This will be present only if `purgeCache
         #
-        #   @param status [String] Status of the bulk job. Possible values - `Pending`, `Completed`.
+        #   @param status [Symbol, Imagekit::Models::Folders::JobGetResponse::Status] Status of the bulk job.
         #
-        #   @param type [String] Type of the bulk job. Possible values - `COPY_FOLDER`, `MOVE_FOLDER`, `RENAME_FO
+        #   @param type [Symbol, Imagekit::Models::Folders::JobGetResponse::Type] Type of the bulk job.
+
+        # Status of the bulk job.
+        #
+        # @see Imagekit::Models::Folders::JobGetResponse#status
+        module Status
+          extend Imagekit::Internal::Type::Enum
+
+          PENDING = :Pending
+          COMPLETED = :Completed
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Type of the bulk job.
+        #
+        # @see Imagekit::Models::Folders::JobGetResponse#type
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          COPY_FOLDER = :COPY_FOLDER
+          MOVE_FOLDER = :MOVE_FOLDER
+          RENAME_FOLDER = :RENAME_FOLDER
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

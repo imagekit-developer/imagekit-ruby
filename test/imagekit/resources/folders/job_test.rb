@@ -16,8 +16,8 @@ class Imagekit::Test::Resources::Folders::JobTest < Imagekit::Test::ResourceTest
       response => {
         job_id: String | nil,
         purge_request_id: String | nil,
-        status: String | nil,
-        type: String | nil
+        status: Imagekit::Models::Folders::JobGetResponse::Status | nil,
+        type: Imagekit::Models::Folders::JobGetResponse::Type | nil
       }
     end
   end
