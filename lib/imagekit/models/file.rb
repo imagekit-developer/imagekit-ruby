@@ -3,13 +3,13 @@
 module Imagekit
   module Models
     # @see Imagekit::Resources::Files#get
-    class FileGetResponse < Imagekit::Internal::Type::BaseModel
+    class File < Imagekit::Internal::Type::BaseModel
       # @!attribute ai_tags
       #   An array of tags assigned to the file by auto tagging.
       #
-      #   @return [Array<Imagekit::Models::FileGetResponse::AITag>, nil]
+      #   @return [Array<Imagekit::Models::File::AITag>, nil]
       optional :ai_tags,
-               -> { Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileGetResponse::AITag] },
+               -> { Imagekit::Internal::Type::ArrayOf[Imagekit::File::AITag] },
                api_name: :AITags,
                nil?: true
 
@@ -114,8 +114,8 @@ module Imagekit
       # @!attribute type
       #   Type of the asset.
       #
-      #   @return [Symbol, Imagekit::Models::FileGetResponse::Type, nil]
-      optional :type, enum: -> { Imagekit::Models::FileGetResponse::Type }
+      #   @return [Symbol, Imagekit::Models::File::Type, nil]
+      optional :type, enum: -> { Imagekit::File::Type }
 
       # @!attribute updated_at
       #   Date and time when the file was last updated. The date and time is in ISO8601
@@ -133,8 +133,8 @@ module Imagekit
       # @!attribute version_info
       #   An object with details of the file version.
       #
-      #   @return [Imagekit::Models::FileGetResponse::VersionInfo, nil]
-      optional :version_info, -> { Imagekit::Models::FileGetResponse::VersionInfo }, api_name: :versionInfo
+      #   @return [Imagekit::Models::File::VersionInfo, nil]
+      optional :version_info, -> { Imagekit::File::VersionInfo }, api_name: :versionInfo
 
       # @!attribute width
       #   Width of the file.
@@ -143,12 +143,12 @@ module Imagekit
       optional :width, Float
 
       # @!method initialize(ai_tags: nil, created_at: nil, custom_coordinates: nil, custom_metadata: nil, file_id: nil, file_path: nil, file_type: nil, has_alpha: nil, height: nil, is_private_file: nil, is_published: nil, mime: nil, name: nil, size: nil, tags: nil, thumbnail: nil, type: nil, updated_at: nil, url: nil, version_info: nil, width: nil)
-      #   Some parameter documentations has been truncated, see
-      #   {Imagekit::Models::FileGetResponse} for more details.
+      #   Some parameter documentations has been truncated, see {Imagekit::Models::File}
+      #   for more details.
       #
       #   Object containing details of a file or file version.
       #
-      #   @param ai_tags [Array<Imagekit::Models::FileGetResponse::AITag>, nil] An array of tags assigned to the file by auto tagging.
+      #   @param ai_tags [Array<Imagekit::Models::File::AITag>, nil] An array of tags assigned to the file by auto tagging.
       #
       #   @param created_at [Time] Date and time when the file was uploaded. The date and time is in ISO8601 format
       #
@@ -180,13 +180,13 @@ module Imagekit
       #
       #   @param thumbnail [String] URL of the thumbnail image. This URL is used to access the thumbnail image of th
       #
-      #   @param type [Symbol, Imagekit::Models::FileGetResponse::Type] Type of the asset.
+      #   @param type [Symbol, Imagekit::Models::File::Type] Type of the asset.
       #
       #   @param updated_at [Time] Date and time when the file was last updated. The date and time is in ISO8601 fo
       #
       #   @param url [String] URL of the file.
       #
-      #   @param version_info [Imagekit::Models::FileGetResponse::VersionInfo] An object with details of the file version.
+      #   @param version_info [Imagekit::Models::File::VersionInfo] An object with details of the file version.
       #
       #   @param width [Float] Width of the file.
 
@@ -212,7 +212,7 @@ module Imagekit
 
         # @!method initialize(confidence: nil, name: nil, source: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Imagekit::Models::FileGetResponse::AITag} for more details.
+        #   {Imagekit::Models::File::AITag} for more details.
         #
         #   @param confidence [Float] Confidence score of the tag.
         #
@@ -223,7 +223,7 @@ module Imagekit
 
       # Type of the asset.
       #
-      # @see Imagekit::Models::FileGetResponse#type
+      # @see Imagekit::Models::File#type
       module Type
         extend Imagekit::Internal::Type::Enum
 
@@ -234,7 +234,7 @@ module Imagekit
         #   @return [Array<Symbol>]
       end
 
-      # @see Imagekit::Models::FileGetResponse#version_info
+      # @see Imagekit::Models::File#version_info
       class VersionInfo < Imagekit::Internal::Type::BaseModel
         # @!attribute id
         #   Unique identifier of the file version.

@@ -2,16 +2,12 @@
 
 module Imagekit
   module Models
-    class FileGetResponse < Imagekit::Internal::Type::BaseModel
+    class File < Imagekit::Internal::Type::BaseModel
       OrHash =
-        T.type_alias do
-          T.any(Imagekit::Models::FileGetResponse, Imagekit::Internal::AnyHash)
-        end
+        T.type_alias { T.any(Imagekit::File, Imagekit::Internal::AnyHash) }
 
       # An array of tags assigned to the file by auto tagging.
-      sig do
-        returns(T.nilable(T::Array[Imagekit::Models::FileGetResponse::AITag]))
-      end
+      sig { returns(T.nilable(T::Array[Imagekit::File::AITag])) }
       attr_accessor :ai_tags
 
       # Date and time when the file was uploaded. The date and time is in ISO8601
@@ -120,16 +116,10 @@ module Imagekit
       attr_writer :thumbnail
 
       # Type of the asset.
-      sig do
-        returns(
-          T.nilable(Imagekit::Models::FileGetResponse::Type::TaggedSymbol)
-        )
-      end
+      sig { returns(T.nilable(Imagekit::File::Type::TaggedSymbol)) }
       attr_reader :type
 
-      sig do
-        params(type: Imagekit::Models::FileGetResponse::Type::OrSymbol).void
-      end
+      sig { params(type: Imagekit::File::Type::OrSymbol).void }
       attr_writer :type
 
       # Date and time when the file was last updated. The date and time is in ISO8601
@@ -148,14 +138,10 @@ module Imagekit
       attr_writer :url
 
       # An object with details of the file version.
-      sig { returns(T.nilable(Imagekit::Models::FileGetResponse::VersionInfo)) }
+      sig { returns(T.nilable(Imagekit::File::VersionInfo)) }
       attr_reader :version_info
 
-      sig do
-        params(
-          version_info: Imagekit::Models::FileGetResponse::VersionInfo::OrHash
-        ).void
-      end
+      sig { params(version_info: Imagekit::File::VersionInfo::OrHash).void }
       attr_writer :version_info
 
       # Width of the file.
@@ -168,10 +154,7 @@ module Imagekit
       # Object containing details of a file or file version.
       sig do
         params(
-          ai_tags:
-            T.nilable(
-              T::Array[Imagekit::Models::FileGetResponse::AITag::OrHash]
-            ),
+          ai_tags: T.nilable(T::Array[Imagekit::File::AITag::OrHash]),
           created_at: Time,
           custom_coordinates: T.nilable(String),
           custom_metadata: T::Hash[Symbol, T.anything],
@@ -187,10 +170,10 @@ module Imagekit
           size: Float,
           tags: T.nilable(T::Array[String]),
           thumbnail: String,
-          type: Imagekit::Models::FileGetResponse::Type::OrSymbol,
+          type: Imagekit::File::Type::OrSymbol,
           updated_at: Time,
           url: String,
-          version_info: Imagekit::Models::FileGetResponse::VersionInfo::OrHash,
+          version_info: Imagekit::File::VersionInfo::OrHash,
           width: Float
         ).returns(T.attached_class)
       end
@@ -250,8 +233,7 @@ module Imagekit
       sig do
         override.returns(
           {
-            ai_tags:
-              T.nilable(T::Array[Imagekit::Models::FileGetResponse::AITag]),
+            ai_tags: T.nilable(T::Array[Imagekit::File::AITag]),
             created_at: Time,
             custom_coordinates: T.nilable(String),
             custom_metadata: T::Hash[Symbol, T.anything],
@@ -267,10 +249,10 @@ module Imagekit
             size: Float,
             tags: T.nilable(T::Array[String]),
             thumbnail: String,
-            type: Imagekit::Models::FileGetResponse::Type::TaggedSymbol,
+            type: Imagekit::File::Type::TaggedSymbol,
             updated_at: Time,
             url: String,
-            version_info: Imagekit::Models::FileGetResponse::VersionInfo,
+            version_info: Imagekit::File::VersionInfo,
             width: Float
           }
         )
@@ -281,10 +263,7 @@ module Imagekit
       class AITag < Imagekit::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Imagekit::Models::FileGetResponse::AITag,
-              Imagekit::Internal::AnyHash
-            )
+            T.any(Imagekit::File::AITag, Imagekit::Internal::AnyHash)
           end
 
         # Confidence score of the tag.
@@ -336,25 +315,14 @@ module Imagekit
       module Type
         extend Imagekit::Internal::Type::Enum
 
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Imagekit::Models::FileGetResponse::Type)
-          end
+        TaggedSymbol = T.type_alias { T.all(Symbol, Imagekit::File::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        FILE =
-          T.let(:file, Imagekit::Models::FileGetResponse::Type::TaggedSymbol)
+        FILE = T.let(:file, Imagekit::File::Type::TaggedSymbol)
         FILE_VERSION =
-          T.let(
-            :"file-version",
-            Imagekit::Models::FileGetResponse::Type::TaggedSymbol
-          )
+          T.let(:"file-version", Imagekit::File::Type::TaggedSymbol)
 
-        sig do
-          override.returns(
-            T::Array[Imagekit::Models::FileGetResponse::Type::TaggedSymbol]
-          )
-        end
+        sig { override.returns(T::Array[Imagekit::File::Type::TaggedSymbol]) }
         def self.values
         end
       end
@@ -362,10 +330,7 @@ module Imagekit
       class VersionInfo < Imagekit::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Imagekit::Models::FileGetResponse::VersionInfo,
-              Imagekit::Internal::AnyHash
-            )
+            T.any(Imagekit::File::VersionInfo, Imagekit::Internal::AnyHash)
           end
 
         # Unique identifier of the file version.

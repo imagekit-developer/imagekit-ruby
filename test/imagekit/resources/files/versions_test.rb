@@ -9,7 +9,7 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
     response = @image_kit.files.versions.list("fileId")
 
     assert_pattern do
-      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionListResponseItem])
+      response => ^(Imagekit::Internal::Type::ArrayOf[Imagekit::File])
     end
   end
 
@@ -35,12 +35,12 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
     response = @image_kit.files.versions.get("versionId", file_id: "fileId")
 
     assert_pattern do
-      response => Imagekit::Models::Files::VersionGetResponse
+      response => Imagekit::File
     end
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionGetResponse::AITag]) | nil,
+        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::File::AITag]) | nil,
         created_at: Time | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
@@ -56,10 +56,10 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail: String | nil,
-        type: Imagekit::Models::Files::VersionGetResponse::Type | nil,
+        type: Imagekit::File::Type | nil,
         updated_at: Time | nil,
         url: String | nil,
-        version_info: Imagekit::Models::Files::VersionGetResponse::VersionInfo | nil,
+        version_info: Imagekit::File::VersionInfo | nil,
         width: Float | nil
       }
     end
@@ -71,12 +71,12 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
     response = @image_kit.files.versions.restore("versionId", file_id: "fileId")
 
     assert_pattern do
-      response => Imagekit::Models::Files::VersionRestoreResponse
+      response => Imagekit::File
     end
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionRestoreResponse::AITag]) | nil,
+        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::File::AITag]) | nil,
         created_at: Time | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
@@ -92,10 +92,10 @@ class Imagekit::Test::Resources::Files::VersionsTest < Imagekit::Test::ResourceT
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail: String | nil,
-        type: Imagekit::Models::Files::VersionRestoreResponse::Type | nil,
+        type: Imagekit::File::Type | nil,
         updated_at: Time | nil,
         url: String | nil,
-        version_info: Imagekit::Models::Files::VersionRestoreResponse::VersionInfo | nil,
+        version_info: Imagekit::File::VersionInfo | nil,
         width: Float | nil
       }
     end

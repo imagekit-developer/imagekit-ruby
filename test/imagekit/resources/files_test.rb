@@ -11,33 +11,6 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
     assert_pattern do
       response => Imagekit::Models::FileUpdateResponse
     end
-
-    assert_pattern do
-      response => {
-        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileUpdateResponse::AITag]) | nil,
-        created_at: Time | nil,
-        custom_coordinates: String | nil,
-        custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
-        extension_status: Imagekit::Models::FileUpdateResponse::ExtensionStatus | nil,
-        file_id: String | nil,
-        file_path: String | nil,
-        file_type: String | nil,
-        has_alpha: Imagekit::Internal::Type::Boolean | nil,
-        height: Float | nil,
-        is_private_file: Imagekit::Internal::Type::Boolean | nil,
-        is_published: Imagekit::Internal::Type::Boolean | nil,
-        mime: String | nil,
-        name: String | nil,
-        size: Float | nil,
-        tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
-        thumbnail: String | nil,
-        type: Imagekit::Models::FileUpdateResponse::Type | nil,
-        updated_at: Time | nil,
-        url: String | nil,
-        version_info: Imagekit::Models::FileUpdateResponse::VersionInfo | nil,
-        width: Float | nil
-      }
-    end
   end
 
   def test_delete
@@ -73,12 +46,12 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
     response = @image_kit.files.get("fileId")
 
     assert_pattern do
-      response => Imagekit::Models::FileGetResponse
+      response => Imagekit::File
     end
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::Models::FileGetResponse::AITag]) | nil,
+        ai_tags: ^(Imagekit::Internal::Type::ArrayOf[Imagekit::File::AITag]) | nil,
         created_at: Time | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
@@ -94,10 +67,10 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail: String | nil,
-        type: Imagekit::Models::FileGetResponse::Type | nil,
+        type: Imagekit::File::Type | nil,
         updated_at: Time | nil,
         url: String | nil,
-        version_info: Imagekit::Models::FileGetResponse::VersionInfo | nil,
+        version_info: Imagekit::File::VersionInfo | nil,
         width: Float | nil
       }
     end

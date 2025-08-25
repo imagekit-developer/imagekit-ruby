@@ -1,8 +1,8 @@
 module Imagekit
   module Models
-    type file_get_response =
+    type file =
       {
-        ai_tags: ::Array[Imagekit::Models::FileGetResponse::AITag]?,
+        ai_tags: ::Array[Imagekit::File::AITag]?,
         created_at: Time,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
@@ -18,15 +18,15 @@ module Imagekit
         size: Float,
         tags: ::Array[String]?,
         thumbnail: String,
-        type: Imagekit::Models::FileGetResponse::type_,
+        type: Imagekit::Models::File::type_,
         updated_at: Time,
         url: String,
-        version_info: Imagekit::Models::FileGetResponse::VersionInfo,
+        version_info: Imagekit::File::VersionInfo,
         width: Float
       }
 
-    class FileGetResponse < Imagekit::Internal::Type::BaseModel
-      attr_accessor ai_tags: ::Array[Imagekit::Models::FileGetResponse::AITag]?
+    class File < Imagekit::Internal::Type::BaseModel
+      attr_accessor ai_tags: ::Array[Imagekit::File::AITag]?
 
       attr_reader created_at: Time?
 
@@ -84,11 +84,11 @@ module Imagekit
 
       def thumbnail=: (String) -> String
 
-      attr_reader type: Imagekit::Models::FileGetResponse::type_?
+      attr_reader type: Imagekit::Models::File::type_?
 
       def type=: (
-        Imagekit::Models::FileGetResponse::type_
-      ) -> Imagekit::Models::FileGetResponse::type_
+        Imagekit::Models::File::type_
+      ) -> Imagekit::Models::File::type_
 
       attr_reader updated_at: Time?
 
@@ -98,18 +98,18 @@ module Imagekit
 
       def url=: (String) -> String
 
-      attr_reader version_info: Imagekit::Models::FileGetResponse::VersionInfo?
+      attr_reader version_info: Imagekit::File::VersionInfo?
 
       def version_info=: (
-        Imagekit::Models::FileGetResponse::VersionInfo
-      ) -> Imagekit::Models::FileGetResponse::VersionInfo
+        Imagekit::File::VersionInfo
+      ) -> Imagekit::File::VersionInfo
 
       attr_reader width: Float?
 
       def width=: (Float) -> Float
 
       def initialize: (
-        ?ai_tags: ::Array[Imagekit::Models::FileGetResponse::AITag]?,
+        ?ai_tags: ::Array[Imagekit::File::AITag]?,
         ?created_at: Time,
         ?custom_coordinates: String?,
         ?custom_metadata: ::Hash[Symbol, top],
@@ -125,15 +125,15 @@ module Imagekit
         ?size: Float,
         ?tags: ::Array[String]?,
         ?thumbnail: String,
-        ?type: Imagekit::Models::FileGetResponse::type_,
+        ?type: Imagekit::Models::File::type_,
         ?updated_at: Time,
         ?url: String,
-        ?version_info: Imagekit::Models::FileGetResponse::VersionInfo,
+        ?version_info: Imagekit::File::VersionInfo,
         ?width: Float
       ) -> void
 
       def to_hash: -> {
-        ai_tags: ::Array[Imagekit::Models::FileGetResponse::AITag]?,
+        ai_tags: ::Array[Imagekit::File::AITag]?,
         created_at: Time,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
@@ -149,10 +149,10 @@ module Imagekit
         size: Float,
         tags: ::Array[String]?,
         thumbnail: String,
-        type: Imagekit::Models::FileGetResponse::type_,
+        type: Imagekit::Models::File::type_,
         updated_at: Time,
         url: String,
-        version_info: Imagekit::Models::FileGetResponse::VersionInfo,
+        version_info: Imagekit::File::VersionInfo,
         width: Float
       }
 
@@ -188,7 +188,7 @@ module Imagekit
         FILE: :file
         FILE_VERSION: :"file-version"
 
-        def self?.values: -> ::Array[Imagekit::Models::FileGetResponse::type_]
+        def self?.values: -> ::Array[Imagekit::Models::File::type_]
       end
 
       type version_info = { id: String, name: String }

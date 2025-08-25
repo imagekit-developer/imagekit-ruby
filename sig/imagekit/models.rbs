@@ -17,6 +17,8 @@ module Imagekit
 
   class CustomMetadataFieldUpdateParams = Imagekit::Models::CustomMetadataFieldUpdateParams
 
+  class File = Imagekit::Models::File
+
   class FileCopyParams = Imagekit::Models::FileCopyParams
 
   class FileDeleteParams = Imagekit::Models::FileDeleteParams
@@ -32,6 +34,8 @@ module Imagekit
   class FileUpdateParams = Imagekit::Models::FileUpdateParams
 
   class FileUploadParams = Imagekit::Models::FileUploadParams
+
+  class Folder = Imagekit::Models::Folder
 
   class FolderCopyParams = Imagekit::Models::FolderCopyParams
 

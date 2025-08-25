@@ -9,7 +9,7 @@ module Imagekit
           params(
             file_id: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(T::Array[Imagekit::Models::Files::VersionListResponseItem])
+          ).returns(T::Array[Imagekit::File])
         end
         def list(
           # The unique `fileId` of the uploaded file. `fileId` is returned in list and
@@ -47,7 +47,7 @@ module Imagekit
             version_id: String,
             file_id: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(Imagekit::Models::Files::VersionGetResponse)
+          ).returns(Imagekit::File)
         end
         def get(
           # The unique `versionId` of the uploaded file. `versionId` is returned in list and
@@ -66,7 +66,7 @@ module Imagekit
             version_id: String,
             file_id: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(Imagekit::Models::Files::VersionRestoreResponse)
+          ).returns(Imagekit::File)
         end
         def restore(
           # The unique `versionId` of the uploaded file. `versionId` is returned in list and

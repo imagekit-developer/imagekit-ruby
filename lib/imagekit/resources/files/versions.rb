@@ -15,14 +15,14 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<Imagekit::Models::Files::VersionListResponseItem>]
+        # @return [Array<Imagekit::Models::File>]
         #
         # @see Imagekit::Models::Files::VersionListParams
         def list(file_id, params = {})
           @client.request(
             method: :get,
             path: ["v1/files/%1$s/versions", file_id],
-            model: Imagekit::Internal::Type::ArrayOf[Imagekit::Models::Files::VersionListResponseItem],
+            model: Imagekit::Internal::Type::ArrayOf[Imagekit::File],
             options: params[:request_options]
           )
         end
@@ -73,7 +73,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Files::VersionGetResponse]
+        # @return [Imagekit::Models::File]
         #
         # @see Imagekit::Models::Files::VersionGetParams
         def get(version_id, params)
@@ -85,7 +85,7 @@ module Imagekit
           @client.request(
             method: :get,
             path: ["v1/files/%1$s/versions/%2$s", file_id, version_id],
-            model: Imagekit::Models::Files::VersionGetResponse,
+            model: Imagekit::File,
             options: options
           )
         end
@@ -103,7 +103,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Files::VersionRestoreResponse]
+        # @return [Imagekit::Models::File]
         #
         # @see Imagekit::Models::Files::VersionRestoreParams
         def restore(version_id, params)
@@ -115,7 +115,7 @@ module Imagekit
           @client.request(
             method: :put,
             path: ["v1/files/%1$s/versions/%2$s/restore", file_id, version_id],
-            model: Imagekit::Models::Files::VersionRestoreResponse,
+            model: Imagekit::File,
             options: options
           )
         end

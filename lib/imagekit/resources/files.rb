@@ -113,14 +113,14 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekit::Models::FileGetResponse]
+      # @return [Imagekit::Models::File]
       #
       # @see Imagekit::Models::FileGetParams
       def get(file_id, params = {})
         @client.request(
           method: :get,
           path: ["v1/files/%1$s/details", file_id],
-          model: Imagekit::Models::FileGetResponse,
+          model: Imagekit::File,
           options: params[:request_options]
         )
       end

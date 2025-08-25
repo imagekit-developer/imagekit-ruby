@@ -86,7 +86,7 @@ module Imagekit
         params(
           file_id: String,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::Models::FileGetResponse)
+        ).returns(Imagekit::File)
       end
       def get(
         # The unique `fileId` of the uploaded file. `fileId` is returned in the list and
