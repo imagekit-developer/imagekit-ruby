@@ -3,25 +3,27 @@
 module Imagekit
   module Models
     module Accounts
-      # @see Imagekit::Resources::Accounts::Origins#get
-      module OriginGetResponse
+      # Schema for origin resources.
+      module Origin
         extend Imagekit::Internal::Type::Union
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::S3 }
+        discriminator :type
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::S3Compatible }
+        variant :S3, -> { Imagekit::Accounts::Origin::S3 }
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup }
+        variant :S3_COMPATIBLE, -> { Imagekit::Accounts::Origin::S3Compatible }
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::WebFolder }
+        variant :CLOUDINARY_BACKUP, -> { Imagekit::Accounts::Origin::CloudinaryBackup }
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::WebProxy }
+        variant :WEB_FOLDER, -> { Imagekit::Accounts::Origin::WebFolder }
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs }
+        variant :WEB_PROXY, -> { Imagekit::Accounts::Origin::WebProxy }
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage }
+        variant :GCS, -> { Imagekit::Accounts::Origin::Gcs }
 
-        variant -> { Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim }
+        variant :AZURE_BLOB, -> { Imagekit::Accounts::Origin::AzureBlob }
+
+        variant :AKENEO_PIM, -> { Imagekit::Accounts::Origin::AkeneoPim }
 
         class S3 < Imagekit::Internal::Type::BaseModel
           # @!attribute access_key
@@ -73,14 +75,7 @@ module Imagekit
           #   @return [String, nil]
           optional :prefix, String
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(access_key:, bucket:, name:, secret_key:, id: nil, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :S3)
+          # @!method initialize(access_key:, bucket:, name:, secret_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :S3)
           #   @param access_key [String] Access key for the bucket.
           #
           #   @param bucket [String] S3 bucket name.
@@ -88,8 +83,6 @@ module Imagekit
           #   @param name [String] Display name of the origin.
           #
           #   @param secret_key [String] Secret key for the bucket.
-          #
-          #   @param id [String]
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
@@ -162,14 +155,7 @@ module Imagekit
           #   @return [Boolean, nil]
           optional :s3_force_path_style, Imagekit::Internal::Type::Boolean, api_name: :s3ForcePathStyle
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(access_key:, bucket:, endpoint:, name:, secret_key:, id: nil, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, s3_force_path_style: nil, type: :S3_COMPATIBLE)
+          # @!method initialize(access_key:, bucket:, endpoint:, name:, secret_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, s3_force_path_style: nil, type: :S3_COMPATIBLE)
           #   @param access_key [String] Access key for the bucket.
           #
           #   @param bucket [String] S3 bucket name.
@@ -179,8 +165,6 @@ module Imagekit
           #   @param name [String] Display name of the origin.
           #
           #   @param secret_key [String] Secret key for the bucket.
-          #
-          #   @param id [String]
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
@@ -243,14 +227,7 @@ module Imagekit
           #   @return [String, nil]
           optional :prefix, String
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(access_key:, bucket:, name:, secret_key:, id: nil, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :CLOUDINARY_BACKUP)
+          # @!method initialize(access_key:, bucket:, name:, secret_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :CLOUDINARY_BACKUP)
           #   @param access_key [String] Access key for the bucket.
           #
           #   @param bucket [String] S3 bucket name.
@@ -258,8 +235,6 @@ module Imagekit
           #   @param name [String] Display name of the origin.
           #
           #   @param secret_key [String] Secret key for the bucket.
-          #
-          #   @param id [String]
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
@@ -310,19 +285,10 @@ module Imagekit
                    Imagekit::Internal::Type::Boolean,
                    api_name: :includeCanonicalHeader
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(base_url:, name:, id: nil, base_url_for_canonical_header: nil, forward_host_header_to_origin: nil, include_canonical_header: nil, type: :WEB_FOLDER)
+          # @!method initialize(base_url:, name:, base_url_for_canonical_header: nil, forward_host_header_to_origin: nil, include_canonical_header: nil, type: :WEB_FOLDER)
           #   @param base_url [String] Root URL for the web folder origin.
           #
           #   @param name [String] Display name of the origin.
-          #
-          #   @param id [String]
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
@@ -359,17 +325,8 @@ module Imagekit
                    Imagekit::Internal::Type::Boolean,
                    api_name: :includeCanonicalHeader
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(name:, id: nil, base_url_for_canonical_header: nil, include_canonical_header: nil, type: :WEB_PROXY)
+          # @!method initialize(name:, base_url_for_canonical_header: nil, include_canonical_header: nil, type: :WEB_PROXY)
           #   @param name [String] Display name of the origin.
-          #
-          #   @param id [String]
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
@@ -378,7 +335,7 @@ module Imagekit
           #   @param type [Symbol, :WEB_PROXY]
         end
 
-        class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+        class Gcs < Imagekit::Internal::Type::BaseModel
           # @!attribute bucket
           #
           #   @return [String]
@@ -424,14 +381,7 @@ module Imagekit
           #   @return [String, nil]
           optional :prefix, String
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(bucket:, client_email:, name:, private_key:, id: nil, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :GCS)
+          # @!method initialize(bucket:, client_email:, name:, private_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :GCS)
           #   @param bucket [String]
           #
           #   @param client_email [String]
@@ -439,8 +389,6 @@ module Imagekit
           #   @param name [String] Display name of the origin.
           #
           #   @param private_key [String]
-          #
-          #   @param id [String]
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
@@ -451,7 +399,7 @@ module Imagekit
           #   @param type [Symbol, :GCS]
         end
 
-        class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+        class AzureBlob < Imagekit::Internal::Type::BaseModel
           # @!attribute account_name
           #
           #   @return [String]
@@ -497,14 +445,7 @@ module Imagekit
           #   @return [String, nil]
           optional :prefix, String
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(account_name:, container:, name:, sas_token:, id: nil, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :AZURE_BLOB)
+          # @!method initialize(account_name:, container:, name:, sas_token:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :AZURE_BLOB)
           #   @param account_name [String]
           #
           #   @param container [String]
@@ -512,8 +453,6 @@ module Imagekit
           #   @param name [String] Display name of the origin.
           #
           #   @param sas_token [String]
-          #
-          #   @param id [String]
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
@@ -580,14 +519,7 @@ module Imagekit
                    Imagekit::Internal::Type::Boolean,
                    api_name: :includeCanonicalHeader
 
-          response_only do
-            # @!attribute id
-            #
-            #   @return [String, nil]
-            optional :id, String
-          end
-
-          # @!method initialize(base_url:, client_id:, client_secret:, name:, password:, username:, id: nil, base_url_for_canonical_header: nil, include_canonical_header: nil, type: :AKENEO_PIM)
+          # @!method initialize(base_url:, client_id:, client_secret:, name:, password:, username:, base_url_for_canonical_header: nil, include_canonical_header: nil, type: :AKENEO_PIM)
           #   @param base_url [String] Akeneo instance base URL.
           #
           #   @param client_id [String] Akeneo API client ID.
@@ -600,8 +532,6 @@ module Imagekit
           #
           #   @param username [String] Akeneo API username.
           #
-          #   @param id [String]
-          #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
           #   @param include_canonical_header [Boolean] Whether to send a Canonical header.
@@ -610,7 +540,7 @@ module Imagekit
         end
 
         # @!method self.variants
-        #   @return [Array(Imagekit::Models::Accounts::OriginGetResponse::S3, Imagekit::Models::Accounts::OriginGetResponse::S3Compatible, Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup, Imagekit::Models::Accounts::OriginGetResponse::WebFolder, Imagekit::Models::Accounts::OriginGetResponse::WebProxy, Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage, Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim)]
+        #   @return [Array(Imagekit::Models::Accounts::Origin::S3, Imagekit::Models::Accounts::Origin::S3Compatible, Imagekit::Models::Accounts::Origin::CloudinaryBackup, Imagekit::Models::Accounts::Origin::WebFolder, Imagekit::Models::Accounts::Origin::WebProxy, Imagekit::Models::Accounts::Origin::Gcs, Imagekit::Models::Accounts::Origin::AzureBlob, Imagekit::Models::Accounts::Origin::AkeneoPim)]
       end
     end
   end

@@ -10,14 +10,14 @@ module Imagekit
           params(
             origin:
               T.any(
-                Imagekit::Accounts::OriginCreateParams::Origin::S3::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::S3Compatible::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::CloudinaryBackup::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::WebFolder::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::WebProxy::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::Gcs::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::AzureBlob::OrHash,
-                Imagekit::Accounts::OriginCreateParams::Origin::AkeneoPim::OrHash
+                Imagekit::Accounts::Origin::S3::OrHash,
+                Imagekit::Accounts::Origin::S3Compatible::OrHash,
+                Imagekit::Accounts::Origin::CloudinaryBackup::OrHash,
+                Imagekit::Accounts::Origin::WebFolder::OrHash,
+                Imagekit::Accounts::Origin::WebProxy::OrHash,
+                Imagekit::Accounts::Origin::Gcs::OrHash,
+                Imagekit::Accounts::Origin::AzureBlob::OrHash,
+                Imagekit::Accounts::Origin::AkeneoPim::OrHash
               ),
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Models::Accounts::OriginCreateResponse::Variants)
@@ -36,14 +36,14 @@ module Imagekit
             id: String,
             origin:
               T.any(
-                Imagekit::Accounts::OriginUpdateParams::Origin::S3::OrHash,
-                Imagekit::Accounts::OriginUpdateParams::Origin::S3Compatible::OrHash,
-                Imagekit::Accounts::OriginUpdateParams::Origin::CloudinaryBackup::OrHash,
-                Imagekit::Accounts::OriginUpdateParams::Origin::WebFolder::OrHash,
-                Imagekit::Accounts::OriginUpdateParams::Origin::WebProxy::OrHash,
-                Imagekit::Accounts::OriginUpdateParams::Origin::Gcs::OrHash,
-                Imagekit::Accounts::OriginUpdateParams::Origin::AzureBlob::OrHash,
-                Imagekit::Accounts::OriginUpdateParams::Origin::AkeneoPim::OrHash
+                Imagekit::Accounts::Origin::S3::OrHash,
+                Imagekit::Accounts::Origin::S3Compatible::OrHash,
+                Imagekit::Accounts::Origin::CloudinaryBackup::OrHash,
+                Imagekit::Accounts::Origin::WebFolder::OrHash,
+                Imagekit::Accounts::Origin::WebProxy::OrHash,
+                Imagekit::Accounts::Origin::Gcs::OrHash,
+                Imagekit::Accounts::Origin::AzureBlob::OrHash,
+                Imagekit::Accounts::Origin::AkeneoPim::OrHash
               ),
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Models::Accounts::OriginUpdateResponse::Variants)

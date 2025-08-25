@@ -3,30 +3,28 @@
 module Imagekit
   module Models
     module Accounts
-      module OriginGetResponse
+      # Schema for origin resources.
+      module Origin
         extend Imagekit::Internal::Type::Union
 
         Variants =
           T.type_alias do
             T.any(
-              Imagekit::Models::Accounts::OriginGetResponse::S3,
-              Imagekit::Models::Accounts::OriginGetResponse::S3Compatible,
-              Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup,
-              Imagekit::Models::Accounts::OriginGetResponse::WebFolder,
-              Imagekit::Models::Accounts::OriginGetResponse::WebProxy,
-              Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs,
-              Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage,
-              Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim
+              Imagekit::Accounts::Origin::S3,
+              Imagekit::Accounts::Origin::S3Compatible,
+              Imagekit::Accounts::Origin::CloudinaryBackup,
+              Imagekit::Accounts::Origin::WebFolder,
+              Imagekit::Accounts::Origin::WebProxy,
+              Imagekit::Accounts::Origin::Gcs,
+              Imagekit::Accounts::Origin::AzureBlob,
+              Imagekit::Accounts::Origin::AkeneoPim
             )
           end
 
         class S3 < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
-              T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::S3,
-                Imagekit::Internal::AnyHash
-              )
+              T.any(Imagekit::Accounts::Origin::S3, Imagekit::Internal::AnyHash)
             end
 
           # Access key for the bucket.
@@ -69,19 +67,12 @@ module Imagekit
           sig { params(prefix: String).void }
           attr_writer :prefix
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               access_key: String,
               bucket: String,
               name: String,
               secret_key: String,
-              id: String,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
@@ -97,7 +88,6 @@ module Imagekit
             name:,
             # Secret key for the bucket.
             secret_key:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Whether to send a Canonical header.
@@ -116,7 +106,6 @@ module Imagekit
                 name: String,
                 secret_key: String,
                 type: Symbol,
-                id: String,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean,
                 prefix: String
@@ -131,7 +120,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::S3Compatible,
+                Imagekit::Accounts::Origin::S3Compatible,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -187,12 +176,6 @@ module Imagekit
           sig { params(s3_force_path_style: T::Boolean).void }
           attr_writer :s3_force_path_style
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               access_key: String,
@@ -200,7 +183,6 @@ module Imagekit
               endpoint: String,
               name: String,
               secret_key: String,
-              id: String,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
@@ -219,7 +201,6 @@ module Imagekit
             name:,
             # Secret key for the bucket.
             secret_key:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Whether to send a Canonical header.
@@ -241,7 +222,6 @@ module Imagekit
                 name: String,
                 secret_key: String,
                 type: Symbol,
-                id: String,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean,
                 prefix: String,
@@ -257,7 +237,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup,
+                Imagekit::Accounts::Origin::CloudinaryBackup,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -302,19 +282,12 @@ module Imagekit
           sig { params(prefix: String).void }
           attr_writer :prefix
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               access_key: String,
               bucket: String,
               name: String,
               secret_key: String,
-              id: String,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
@@ -330,7 +303,6 @@ module Imagekit
             name:,
             # Secret key for the bucket.
             secret_key:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Whether to send a Canonical header.
@@ -349,7 +321,6 @@ module Imagekit
                 name: String,
                 secret_key: String,
                 type: Symbol,
-                id: String,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean,
                 prefix: String
@@ -364,7 +335,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::WebFolder,
+                Imagekit::Accounts::Origin::WebFolder,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -401,17 +372,10 @@ module Imagekit
           sig { params(include_canonical_header: T::Boolean).void }
           attr_writer :include_canonical_header
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               base_url: String,
               name: String,
-              id: String,
               base_url_for_canonical_header: String,
               forward_host_header_to_origin: T::Boolean,
               include_canonical_header: T::Boolean,
@@ -423,7 +387,6 @@ module Imagekit
             base_url:,
             # Display name of the origin.
             name:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Forward the Host header to origin?
@@ -440,7 +403,6 @@ module Imagekit
                 base_url: String,
                 name: String,
                 type: Symbol,
-                id: String,
                 base_url_for_canonical_header: String,
                 forward_host_header_to_origin: T::Boolean,
                 include_canonical_header: T::Boolean
@@ -455,7 +417,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::WebProxy,
+                Imagekit::Accounts::Origin::WebProxy,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -481,16 +443,9 @@ module Imagekit
           sig { params(include_canonical_header: T::Boolean).void }
           attr_writer :include_canonical_header
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               name: String,
-              id: String,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               type: Symbol
@@ -499,7 +454,6 @@ module Imagekit
           def self.new(
             # Display name of the origin.
             name:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Whether to send a Canonical header.
@@ -513,7 +467,6 @@ module Imagekit
               {
                 name: String,
                 type: Symbol,
-                id: String,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean
               }
@@ -523,11 +476,11 @@ module Imagekit
           end
         end
 
-        class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+        class Gcs < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs,
+                Imagekit::Accounts::Origin::Gcs,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -568,19 +521,12 @@ module Imagekit
           sig { params(prefix: String).void }
           attr_writer :prefix
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               bucket: String,
               client_email: String,
               name: String,
               private_key: String,
-              id: String,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
@@ -593,7 +539,6 @@ module Imagekit
             # Display name of the origin.
             name:,
             private_key:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Whether to send a Canonical header.
@@ -611,7 +556,6 @@ module Imagekit
                 name: String,
                 private_key: String,
                 type: Symbol,
-                id: String,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean,
                 prefix: String
@@ -622,11 +566,11 @@ module Imagekit
           end
         end
 
-        class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+        class AzureBlob < Imagekit::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage,
+                Imagekit::Accounts::Origin::AzureBlob,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -667,19 +611,12 @@ module Imagekit
           sig { params(prefix: String).void }
           attr_writer :prefix
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               account_name: String,
               container: String,
               name: String,
               sas_token: String,
-              id: String,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
@@ -692,7 +629,6 @@ module Imagekit
             # Display name of the origin.
             name:,
             sas_token:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Whether to send a Canonical header.
@@ -710,7 +646,6 @@ module Imagekit
                 name: String,
                 sas_token: String,
                 type: Symbol,
-                id: String,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean,
                 prefix: String
@@ -725,7 +660,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim,
+                Imagekit::Accounts::Origin::AkeneoPim,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -771,12 +706,6 @@ module Imagekit
           sig { params(include_canonical_header: T::Boolean).void }
           attr_writer :include_canonical_header
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
           sig do
             params(
               base_url: String,
@@ -785,7 +714,6 @@ module Imagekit
               name: String,
               password: String,
               username: String,
-              id: String,
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               type: Symbol
@@ -804,7 +732,6 @@ module Imagekit
             password:,
             # Akeneo API username.
             username:,
-            id: nil,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
             # Whether to send a Canonical header.
@@ -823,7 +750,6 @@ module Imagekit
                 password: String,
                 type: Symbol,
                 username: String,
-                id: String,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean
               }
@@ -833,11 +759,7 @@ module Imagekit
           end
         end
 
-        sig do
-          override.returns(
-            T::Array[Imagekit::Models::Accounts::OriginGetResponse::Variants]
-          )
-        end
+        sig { override.returns(T::Array[Imagekit::Accounts::Origin::Variants]) }
         def self.variants
         end
       end

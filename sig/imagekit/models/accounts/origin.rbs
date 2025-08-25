@@ -1,17 +1,17 @@
 module Imagekit
   module Models
     module Accounts
-      type origin_create_response =
-        Imagekit::Models::Accounts::OriginCreateResponse::S3
-        | Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible
-        | Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup
-        | Imagekit::Models::Accounts::OriginCreateResponse::WebFolder
-        | Imagekit::Models::Accounts::OriginCreateResponse::WebProxy
-        | Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs
-        | Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage
-        | Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim
+      type origin =
+        Imagekit::Accounts::Origin::S3
+        | Imagekit::Accounts::Origin::S3Compatible
+        | Imagekit::Accounts::Origin::CloudinaryBackup
+        | Imagekit::Accounts::Origin::WebFolder
+        | Imagekit::Accounts::Origin::WebProxy
+        | Imagekit::Accounts::Origin::Gcs
+        | Imagekit::Accounts::Origin::AzureBlob
+        | Imagekit::Accounts::Origin::AkeneoPim
 
-      module OriginCreateResponse
+      module Origin
         extend Imagekit::Internal::Type::Union
 
         type s3 =
@@ -21,7 +21,6 @@ module Imagekit
             name: String,
             secret_key: String,
             type: :S3,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
@@ -50,16 +49,11 @@ module Imagekit
 
           def prefix=: (String) -> String
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             access_key: String,
             bucket: String,
             name: String,
             secret_key: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?prefix: String,
@@ -72,7 +66,6 @@ module Imagekit
             name: String,
             secret_key: String,
             type: :S3,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
@@ -87,7 +80,6 @@ module Imagekit
             name: String,
             secret_key: String,
             type: :S3_COMPATIBLE,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String,
@@ -123,17 +115,12 @@ module Imagekit
 
           def s3_force_path_style=: (bool) -> bool
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             access_key: String,
             bucket: String,
             endpoint: String,
             name: String,
             secret_key: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?prefix: String,
@@ -148,7 +135,6 @@ module Imagekit
             name: String,
             secret_key: String,
             type: :S3_COMPATIBLE,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String,
@@ -163,7 +149,6 @@ module Imagekit
             name: String,
             secret_key: String,
             type: :CLOUDINARY_BACKUP,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
@@ -192,16 +177,11 @@ module Imagekit
 
           def prefix=: (String) -> String
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             access_key: String,
             bucket: String,
             name: String,
             secret_key: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?prefix: String,
@@ -214,7 +194,6 @@ module Imagekit
             name: String,
             secret_key: String,
             type: :CLOUDINARY_BACKUP,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
@@ -226,7 +205,6 @@ module Imagekit
             base_url: String,
             name: String,
             type: :WEB_FOLDER,
-            id: String,
             base_url_for_canonical_header: String,
             forward_host_header_to_origin: bool,
             include_canonical_header: bool
@@ -251,14 +229,9 @@ module Imagekit
 
           def include_canonical_header=: (bool) -> bool
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             base_url: String,
             name: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?forward_host_header_to_origin: bool,
             ?include_canonical_header: bool,
@@ -269,7 +242,6 @@ module Imagekit
             base_url: String,
             name: String,
             type: :WEB_FOLDER,
-            id: String,
             base_url_for_canonical_header: String,
             forward_host_header_to_origin: bool,
             include_canonical_header: bool
@@ -280,7 +252,6 @@ module Imagekit
           {
             name: String,
             type: :WEB_PROXY,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool
           }
@@ -298,13 +269,8 @@ module Imagekit
 
           def include_canonical_header=: (bool) -> bool
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             name: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?type: :WEB_PROXY
@@ -313,26 +279,24 @@ module Imagekit
           def to_hash: -> {
             name: String,
             type: :WEB_PROXY,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool
           }
         end
 
-        type google_cloud_storage_gcs =
+        type gcs =
           {
             bucket: String,
             client_email: String,
             name: String,
             private_key: String,
             type: :GCS,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
           }
 
-        class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+        class Gcs < Imagekit::Internal::Type::BaseModel
           attr_accessor bucket: String
 
           attr_accessor client_email: String
@@ -355,16 +319,11 @@ module Imagekit
 
           def prefix=: (String) -> String
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             bucket: String,
             client_email: String,
             name: String,
             private_key: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?prefix: String,
@@ -377,27 +336,25 @@ module Imagekit
             name: String,
             private_key: String,
             type: :GCS,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
           }
         end
 
-        type azure_blob_storage =
+        type azure_blob =
           {
             account_name: String,
             container: String,
             name: String,
             sas_token: String,
             type: :AZURE_BLOB,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
           }
 
-        class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+        class AzureBlob < Imagekit::Internal::Type::BaseModel
           attr_accessor account_name: String
 
           attr_accessor container: String
@@ -420,16 +377,11 @@ module Imagekit
 
           def prefix=: (String) -> String
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             account_name: String,
             container: String,
             name: String,
             sas_token: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?prefix: String,
@@ -442,7 +394,6 @@ module Imagekit
             name: String,
             sas_token: String,
             type: :AZURE_BLOB,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
             prefix: String
@@ -458,7 +409,6 @@ module Imagekit
             password: String,
             type: :AKENEO_PIM,
             username: String,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool
           }
@@ -486,10 +436,6 @@ module Imagekit
 
           def include_canonical_header=: (bool) -> bool
 
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
           def initialize: (
             base_url: String,
             client_id: String,
@@ -497,7 +443,6 @@ module Imagekit
             name: String,
             password: String,
             username: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?type: :AKENEO_PIM
@@ -511,13 +456,12 @@ module Imagekit
             password: String,
             type: :AKENEO_PIM,
             username: String,
-            id: String,
             base_url_for_canonical_header: String,
             include_canonical_header: bool
           }
         end
 
-        def self?.variants: -> ::Array[Imagekit::Models::Accounts::origin_create_response]
+        def self?.variants: -> ::Array[Imagekit::Models::Accounts::origin]
       end
     end
   end
