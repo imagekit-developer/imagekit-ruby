@@ -1,8 +1,8 @@
 module Imagekit
   module Models
-    type async_bulk_job_response = { job_id: String }
+    type job_response = { job_id: String }
 
-    class AsyncBulkJobResponse < Imagekit::Internal::Type::BaseModel
+    class JobResponse < Imagekit::Internal::Type::BaseModel
       attr_accessor job_id: String
 
       def initialize: (job_id: String) -> void

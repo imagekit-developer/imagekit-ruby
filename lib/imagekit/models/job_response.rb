@@ -3,7 +3,7 @@
 module Imagekit
   module Models
     # @see Imagekit::Resources::Folders#copy
-    class AsyncBulkJobResponse < Imagekit::Internal::Type::BaseModel
+    class JobResponse < Imagekit::Internal::Type::BaseModel
       # @!attribute job_id
       #   Unique identifier of the bulk job. This can be used to check the status of the
       #   bulk job.
@@ -13,7 +13,7 @@ module Imagekit
 
       # @!method initialize(job_id:)
       #   Some parameter documentations has been truncated, see
-      #   {Imagekit::Models::AsyncBulkJobResponse} for more details.
+      #   {Imagekit::Models::JobResponse} for more details.
       #
       #   Job submitted successfully. A `jobId` will be returned.
       #

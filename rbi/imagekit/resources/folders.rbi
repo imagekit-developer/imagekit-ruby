@@ -60,7 +60,7 @@ module Imagekit
           source_folder_path: String,
           include_versions: T::Boolean,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::AsyncBulkJobResponse)
+        ).returns(Imagekit::JobResponse)
       end
       def copy(
         # Full path to the destination folder where you want to copy the source folder
@@ -85,7 +85,7 @@ module Imagekit
           destination_path: String,
           source_folder_path: String,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::AsyncBulkJobResponse)
+        ).returns(Imagekit::JobResponse)
       end
       def move(
         # Full path to the destination folder where you want to move the source folder
@@ -106,7 +106,7 @@ module Imagekit
           new_folder_name: String,
           purge_cache: T::Boolean,
           request_options: Imagekit::RequestOptions::OrHash
-        ).returns(Imagekit::AsyncBulkJobResponse)
+        ).returns(Imagekit::JobResponse)
       end
       def rename(
         # The full path to the folder you want to rename.

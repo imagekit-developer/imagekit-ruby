@@ -3,8 +3,6 @@ module Imagekit
 
   class AssetListParams = Imagekit::Models::AssetListParams
 
-  class AsyncBulkJobResponse = Imagekit::Models::AsyncBulkJobResponse
-
   module Beta = Imagekit::Models::Beta
 
   module Cache = Imagekit::Models::Cache
@@ -50,6 +48,8 @@ module Imagekit
   class FolderRenameParams = Imagekit::Models::FolderRenameParams
 
   module Folders = Imagekit::Models::Folders
+
+  class JobResponse = Imagekit::Models::JobResponse
 
   class Metadata = Imagekit::Models::Metadata
 

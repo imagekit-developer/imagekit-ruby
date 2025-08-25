@@ -2,10 +2,10 @@
 
 module Imagekit
   module Models
-    class AsyncBulkJobResponse < Imagekit::Internal::Type::BaseModel
+    class JobResponse < Imagekit::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Imagekit::AsyncBulkJobResponse, Imagekit::Internal::AnyHash)
+          T.any(Imagekit::JobResponse, Imagekit::Internal::AnyHash)
         end
 
       # Unique identifier of the bulk job. This can be used to check the status of the
