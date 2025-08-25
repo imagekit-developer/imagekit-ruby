@@ -1,0 +1,5 @@
+module Imagekit
+  module Models
+    AsyncBulkJobResponse: Imagekit::Internal::Type::Converter
+  end
+end

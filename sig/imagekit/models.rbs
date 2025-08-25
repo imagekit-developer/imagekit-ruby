@@ -3,6 +3,8 @@ module Imagekit
 
   class AssetListParams = Imagekit::Models::AssetListParams
 
+  AsyncBulkJobResponse: Imagekit::Internal::Type::Converter
+
   module Beta = Imagekit::Models::Beta
 
   module Cache = Imagekit::Models::Cache
