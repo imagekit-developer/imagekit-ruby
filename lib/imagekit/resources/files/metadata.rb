@@ -19,14 +19,14 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Files::MetadataGetResponse]
+        # @return [Imagekit::Models::Metadata]
         #
         # @see Imagekit::Models::Files::MetadataGetParams
         def get(file_id, params = {})
           @client.request(
             method: :get,
             path: ["v1/files/%1$s/metadata", file_id],
-            model: Imagekit::Models::Files::MetadataGetResponse,
+            model: Imagekit::Metadata,
             options: params[:request_options]
           )
         end
@@ -43,7 +43,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Files::MetadataGetFromURLResponse]
+        # @return [Imagekit::Models::Metadata]
         #
         # @see Imagekit::Models::Files::MetadataGetFromURLParams
         def get_from_url(params)
@@ -52,7 +52,7 @@ module Imagekit
             method: :get,
             path: "v1/files/metadata",
             query: parsed,
-            model: Imagekit::Models::Files::MetadataGetFromURLResponse,
+            model: Imagekit::Metadata,
             options: options
           )
         end

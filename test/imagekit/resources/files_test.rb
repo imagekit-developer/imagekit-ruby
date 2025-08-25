@@ -134,7 +134,7 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
         height: Float | nil,
         is_private_file: Imagekit::Internal::Type::Boolean | nil,
         is_published: Imagekit::Internal::Type::Boolean | nil,
-        metadata: Imagekit::Models::FileUploadResponse::Metadata | nil,
+        metadata: Imagekit::Metadata | nil,
         name: String | nil,
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,

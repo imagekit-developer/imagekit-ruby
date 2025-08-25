@@ -13,7 +13,7 @@ module Imagekit
           params(
             file_id: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(Imagekit::Models::Files::MetadataGetResponse)
+          ).returns(Imagekit::Metadata)
         end
         def get(
           # The unique `fileId` of the uploaded file. `fileId` is returned in the list and
@@ -29,7 +29,7 @@ module Imagekit
           params(
             url: String,
             request_options: Imagekit::RequestOptions::OrHash
-          ).returns(Imagekit::Models::Files::MetadataGetFromURLResponse)
+          ).returns(Imagekit::Metadata)
         end
         def get_from_url(
           # Should be a valid file URL. It should be accessible using your ImageKit.io

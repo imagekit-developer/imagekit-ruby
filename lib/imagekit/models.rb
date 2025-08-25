@@ -89,6 +89,8 @@ module Imagekit
 
   Folders = Imagekit::Models::Folders
 
+  Metadata = Imagekit::Models::Metadata
+
   UnsafeUnwrapWebhookEvent = Imagekit::Models::UnsafeUnwrapWebhookEvent
 
   UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent

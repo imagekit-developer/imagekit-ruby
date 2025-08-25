@@ -9,7 +9,7 @@ class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceT
     response = @image_kit.files.metadata.get("fileId")
 
     assert_pattern do
-      response => Imagekit::Models::Files::MetadataGetResponse
+      response => Imagekit::Metadata
     end
 
     assert_pattern do
@@ -18,7 +18,7 @@ class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceT
         bit_rate: Integer | nil,
         density: Integer | nil,
         duration: Integer | nil,
-        exif: Imagekit::Models::Files::MetadataGetResponse::Exif | nil,
+        exif: Imagekit::Metadata::Exif | nil,
         format_: String | nil,
         has_color_profile: Imagekit::Internal::Type::Boolean | nil,
         has_transparency: Imagekit::Internal::Type::Boolean | nil,
@@ -38,7 +38,7 @@ class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceT
     response = @image_kit.files.metadata.get_from_url(url: "https://example.com")
 
     assert_pattern do
-      response => Imagekit::Models::Files::MetadataGetFromURLResponse
+      response => Imagekit::Metadata
     end
 
     assert_pattern do
@@ -47,7 +47,7 @@ class Imagekit::Test::Resources::Files::MetadataTest < Imagekit::Test::ResourceT
         bit_rate: Integer | nil,
         density: Integer | nil,
         duration: Integer | nil,
-        exif: Imagekit::Models::Files::MetadataGetFromURLResponse::Exif | nil,
+        exif: Imagekit::Metadata::Exif | nil,
         format_: String | nil,
         has_color_profile: Imagekit::Internal::Type::Boolean | nil,
         has_transparency: Imagekit::Internal::Type::Boolean | nil,

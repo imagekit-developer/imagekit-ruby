@@ -28,7 +28,7 @@ class Imagekit::Test::Resources::Beta::V2::FilesTest < Imagekit::Test::ResourceT
         height: Float | nil,
         is_private_file: Imagekit::Internal::Type::Boolean | nil,
         is_published: Imagekit::Internal::Type::Boolean | nil,
-        metadata: Imagekit::Models::Beta::V2::FileUploadResponse::Metadata | nil,
+        metadata: Imagekit::Metadata | nil,
         name: String | nil,
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
