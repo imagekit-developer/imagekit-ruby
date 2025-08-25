@@ -2,7 +2,6 @@
 
 module Imagekit
   module Models
-    # @see Imagekit::Resources::Files#get
     class File < Imagekit::Internal::Type::BaseModel
       # @!attribute ai_tags
       #   An array of tags assigned to the file by auto tagging.

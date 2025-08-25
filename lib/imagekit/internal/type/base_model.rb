@@ -438,11 +438,11 @@ module Imagekit
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `custom_metadata_field` is a `Imagekit::CustomMetadataField`
-        #   custom_metadata_field => {
-        #     id: id,
-        #     label: label,
-        #     name: name
+        #   # `file` is a `Imagekit::File`
+        #   file => {
+        #     ai_tags: ai_tags,
+        #     created_at: created_at,
+        #     custom_coordinates: custom_coordinates
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)
