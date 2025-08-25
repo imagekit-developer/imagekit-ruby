@@ -7,8 +7,8 @@ module Imagekit
         | Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup
         | Imagekit::Models::Accounts::OriginCreateResponse::WebFolder
         | Imagekit::Models::Accounts::OriginCreateResponse::WebProxy
-        | Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs
-        | Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage
+        | Imagekit::Models::Accounts::OriginCreateResponse::Gcs
+        | Imagekit::Models::Accounts::OriginCreateResponse::AzureBlob
         | Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim
 
       module OriginCreateResponse
@@ -16,25 +16,23 @@ module Imagekit
 
         type s3 =
           {
-            access_key: String,
-            bucket: String,
-            name: String,
-            secret_key: String,
-            type: :S3,
             id: String,
-            base_url_for_canonical_header: String,
+            bucket: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :S3,
+            base_url_for_canonical_header: String
           }
 
         class S3 < Imagekit::Internal::Type::BaseModel
-          attr_accessor access_key: String
-
           attr_accessor bucket: String
+
+          attr_accessor include_canonical_header: bool
 
           attr_accessor name: String
 
-          attr_accessor secret_key: String
+          attr_accessor prefix: String
 
           attr_accessor type: :S3
 
@@ -42,68 +40,54 @@ module Imagekit
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader prefix: String?
-
-          def prefix=: (String) -> String
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
-            access_key: String,
+            id: String,
             bucket: String,
+            include_canonical_header: bool,
             name: String,
-            secret_key: String,
-            ?id: String,
+            prefix: String,
             ?base_url_for_canonical_header: String,
-            ?include_canonical_header: bool,
-            ?prefix: String,
             ?type: :S3
           ) -> void
 
           def to_hash: -> {
-            access_key: String,
-            bucket: String,
-            name: String,
-            secret_key: String,
-            type: :S3,
             id: String,
-            base_url_for_canonical_header: String,
+            bucket: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :S3,
+            base_url_for_canonical_header: String
           }
         end
 
         type s3_compatible =
           {
-            access_key: String,
+            id: String,
             bucket: String,
             endpoint: String,
-            name: String,
-            secret_key: String,
-            type: :S3_COMPATIBLE,
-            id: String,
-            base_url_for_canonical_header: String,
             include_canonical_header: bool,
+            name: String,
             prefix: String,
-            :s3_force_path_style => bool
+            :s3_force_path_style => bool,
+            type: :S3_COMPATIBLE,
+            base_url_for_canonical_header: String
           }
 
         class S3Compatible < Imagekit::Internal::Type::BaseModel
-          attr_accessor access_key: String
-
           attr_accessor bucket: String
 
           attr_accessor endpoint: String
 
+          attr_accessor include_canonical_header: bool
+
           attr_accessor name: String
 
-          attr_accessor secret_key: String
+          attr_accessor prefix: String
+
+          attr_accessor s3_force_path_style: bool
 
           attr_accessor type: :S3_COMPATIBLE
 
@@ -111,72 +95,52 @@ module Imagekit
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader prefix: String?
-
-          def prefix=: (String) -> String
-
-          attr_reader s3_force_path_style: bool?
-
-          def s3_force_path_style=: (bool) -> bool
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
-            access_key: String,
+            id: String,
             bucket: String,
             endpoint: String,
+            include_canonical_header: bool,
             name: String,
-            secret_key: String,
-            ?id: String,
+            prefix: String,
+            s3_force_path_style: bool,
             ?base_url_for_canonical_header: String,
-            ?include_canonical_header: bool,
-            ?prefix: String,
-            ?s3_force_path_style: bool,
             ?type: :S3_COMPATIBLE
           ) -> void
 
           def to_hash: -> {
-            access_key: String,
+            id: String,
             bucket: String,
             endpoint: String,
-            name: String,
-            secret_key: String,
-            type: :S3_COMPATIBLE,
-            id: String,
-            base_url_for_canonical_header: String,
             include_canonical_header: bool,
+            name: String,
             prefix: String,
-            :s3_force_path_style => bool
+            :s3_force_path_style => bool,
+            type: :S3_COMPATIBLE,
+            base_url_for_canonical_header: String
           }
         end
 
         type cloudinary_backup =
           {
-            access_key: String,
-            bucket: String,
-            name: String,
-            secret_key: String,
-            type: :CLOUDINARY_BACKUP,
             id: String,
-            base_url_for_canonical_header: String,
+            bucket: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :CLOUDINARY_BACKUP,
+            base_url_for_canonical_header: String
           }
 
         class CloudinaryBackup < Imagekit::Internal::Type::BaseModel
-          attr_accessor access_key: String
-
           attr_accessor bucket: String
+
+          attr_accessor include_canonical_header: bool
 
           attr_accessor name: String
 
-          attr_accessor secret_key: String
+          attr_accessor prefix: String
 
           attr_accessor type: :CLOUDINARY_BACKUP
 
@@ -184,56 +148,46 @@ module Imagekit
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader prefix: String?
-
-          def prefix=: (String) -> String
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
-            access_key: String,
+            id: String,
             bucket: String,
+            include_canonical_header: bool,
             name: String,
-            secret_key: String,
-            ?id: String,
+            prefix: String,
             ?base_url_for_canonical_header: String,
-            ?include_canonical_header: bool,
-            ?prefix: String,
             ?type: :CLOUDINARY_BACKUP
           ) -> void
 
           def to_hash: -> {
-            access_key: String,
-            bucket: String,
-            name: String,
-            secret_key: String,
-            type: :CLOUDINARY_BACKUP,
             id: String,
-            base_url_for_canonical_header: String,
+            bucket: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :CLOUDINARY_BACKUP,
+            base_url_for_canonical_header: String
           }
         end
 
         type web_folder =
           {
+            id: String,
             base_url: String,
+            forward_host_header_to_origin: bool,
+            include_canonical_header: bool,
             name: String,
             type: :WEB_FOLDER,
-            id: String,
-            base_url_for_canonical_header: String,
-            forward_host_header_to_origin: bool,
-            include_canonical_header: bool
+            base_url_for_canonical_header: String
           }
 
         class WebFolder < Imagekit::Internal::Type::BaseModel
           attr_accessor base_url: String
+
+          attr_accessor forward_host_header_to_origin: bool
+
+          attr_accessor include_canonical_header: bool
 
           attr_accessor name: String
 
@@ -243,49 +197,41 @@ module Imagekit
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader forward_host_header_to_origin: bool?
-
-          def forward_host_header_to_origin=: (bool) -> bool
-
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
+            id: String,
             base_url: String,
+            forward_host_header_to_origin: bool,
+            include_canonical_header: bool,
             name: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
-            ?forward_host_header_to_origin: bool,
-            ?include_canonical_header: bool,
             ?type: :WEB_FOLDER
           ) -> void
 
           def to_hash: -> {
+            id: String,
             base_url: String,
+            forward_host_header_to_origin: bool,
+            include_canonical_header: bool,
             name: String,
             type: :WEB_FOLDER,
-            id: String,
-            base_url_for_canonical_header: String,
-            forward_host_header_to_origin: bool,
-            include_canonical_header: bool
+            base_url_for_canonical_header: String
           }
         end
 
         type web_proxy =
           {
+            id: String,
+            include_canonical_header: bool,
             name: String,
             type: :WEB_PROXY,
-            id: String,
-            base_url_for_canonical_header: String,
-            include_canonical_header: bool
+            base_url_for_canonical_header: String
           }
 
         class WebProxy < Imagekit::Internal::Type::BaseModel
+          attr_accessor include_canonical_header: bool
+
           attr_accessor name: String
 
           attr_accessor type: :WEB_PROXY
@@ -294,52 +240,47 @@ module Imagekit
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
+            id: String,
+            include_canonical_header: bool,
             name: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
-            ?include_canonical_header: bool,
             ?type: :WEB_PROXY
           ) -> void
 
           def to_hash: -> {
+            id: String,
+            include_canonical_header: bool,
             name: String,
             type: :WEB_PROXY,
-            id: String,
-            base_url_for_canonical_header: String,
-            include_canonical_header: bool
+            base_url_for_canonical_header: String
           }
         end
 
-        type google_cloud_storage_gcs =
+        type gcs =
           {
+            id: String,
             bucket: String,
             client_email: String,
-            name: String,
-            private_key: String,
-            type: :GCS,
-            id: String,
-            base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :GCS,
+            base_url_for_canonical_header: String
           }
 
-        class GoogleCloudStorageGcs < Imagekit::Internal::Type::BaseModel
+        class Gcs < Imagekit::Internal::Type::BaseModel
           attr_accessor bucket: String
 
           attr_accessor client_email: String
 
+          attr_accessor include_canonical_header: bool
+
           attr_accessor name: String
 
-          attr_accessor private_key: String
+          attr_accessor prefix: String
 
           attr_accessor type: :GCS
 
@@ -347,64 +288,53 @@ module Imagekit
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader prefix: String?
-
-          def prefix=: (String) -> String
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
+            id: String,
             bucket: String,
             client_email: String,
+            include_canonical_header: bool,
             name: String,
-            private_key: String,
-            ?id: String,
+            prefix: String,
             ?base_url_for_canonical_header: String,
-            ?include_canonical_header: bool,
-            ?prefix: String,
             ?type: :GCS
           ) -> void
 
           def to_hash: -> {
+            id: String,
             bucket: String,
             client_email: String,
-            name: String,
-            private_key: String,
-            type: :GCS,
-            id: String,
-            base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :GCS,
+            base_url_for_canonical_header: String
           }
         end
 
-        type azure_blob_storage =
+        type azure_blob =
           {
+            id: String,
             account_name: String,
             container: String,
-            name: String,
-            sas_token: String,
-            type: :AZURE_BLOB,
-            id: String,
-            base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :AZURE_BLOB,
+            base_url_for_canonical_header: String
           }
 
-        class AzureBlobStorage < Imagekit::Internal::Type::BaseModel
+        class AzureBlob < Imagekit::Internal::Type::BaseModel
           attr_accessor account_name: String
 
           attr_accessor container: String
 
+          attr_accessor include_canonical_header: bool
+
           attr_accessor name: String
 
-          attr_accessor sas_token: String
+          attr_accessor prefix: String
 
           attr_accessor type: :AZURE_BLOB
 
@@ -412,108 +342,72 @@ module Imagekit
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader prefix: String?
-
-          def prefix=: (String) -> String
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
+            id: String,
             account_name: String,
             container: String,
+            include_canonical_header: bool,
             name: String,
-            sas_token: String,
-            ?id: String,
+            prefix: String,
             ?base_url_for_canonical_header: String,
-            ?include_canonical_header: bool,
-            ?prefix: String,
             ?type: :AZURE_BLOB
           ) -> void
 
           def to_hash: -> {
+            id: String,
             account_name: String,
             container: String,
-            name: String,
-            sas_token: String,
-            type: :AZURE_BLOB,
-            id: String,
-            base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            name: String,
+            prefix: String,
+            type: :AZURE_BLOB,
+            base_url_for_canonical_header: String
           }
         end
 
         type akeneo_pim =
           {
-            base_url: String,
-            client_id: String,
-            client_secret: String,
-            name: String,
-            password: String,
-            type: :AKENEO_PIM,
-            username: String,
             id: String,
-            base_url_for_canonical_header: String,
-            include_canonical_header: bool
+            base_url: String,
+            include_canonical_header: bool,
+            name: String,
+            type: :AKENEO_PIM,
+            base_url_for_canonical_header: String
           }
 
         class AkeneoPim < Imagekit::Internal::Type::BaseModel
           attr_accessor base_url: String
 
-          attr_accessor client_id: String
-
-          attr_accessor client_secret: String
+          attr_accessor include_canonical_header: bool
 
           attr_accessor name: String
 
-          attr_accessor password: String
-
           attr_accessor type: :AKENEO_PIM
-
-          attr_accessor username: String
 
           attr_reader base_url_for_canonical_header: String?
 
           def base_url_for_canonical_header=: (String) -> String
 
-          attr_reader include_canonical_header: bool?
-
-          def include_canonical_header=: (bool) -> bool
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
+          attr_accessor id: String
 
           def initialize: (
+            id: String,
             base_url: String,
-            client_id: String,
-            client_secret: String,
+            include_canonical_header: bool,
             name: String,
-            password: String,
-            username: String,
-            ?id: String,
             ?base_url_for_canonical_header: String,
-            ?include_canonical_header: bool,
             ?type: :AKENEO_PIM
           ) -> void
 
           def to_hash: -> {
-            base_url: String,
-            client_id: String,
-            client_secret: String,
-            name: String,
-            password: String,
-            type: :AKENEO_PIM,
-            username: String,
             id: String,
-            base_url_for_canonical_header: String,
-            include_canonical_header: bool
+            base_url: String,
+            include_canonical_header: bool,
+            name: String,
+            type: :AKENEO_PIM,
+            base_url_for_canonical_header: String
           }
         end
 

@@ -13,7 +13,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Accounts::OriginCreateResponse::S3, Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible, Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup, Imagekit::Models::Accounts::OriginCreateResponse::WebFolder, Imagekit::Models::Accounts::OriginCreateResponse::WebProxy, Imagekit::Models::Accounts::OriginCreateResponse::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginCreateResponse::AzureBlobStorage, Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim]
+        # @return [Imagekit::Models::Accounts::OriginCreateResponse::S3, Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible, Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup, Imagekit::Models::Accounts::OriginCreateResponse::WebFolder, Imagekit::Models::Accounts::OriginCreateResponse::WebProxy, Imagekit::Models::Accounts::OriginCreateResponse::Gcs, Imagekit::Models::Accounts::OriginCreateResponse::AzureBlob, Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim]
         #
         # @see Imagekit::Models::Accounts::OriginCreateParams
         def create(params)
@@ -41,7 +41,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Accounts::OriginUpdateResponse::S3, Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible, Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder, Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy, Imagekit::Models::Accounts::OriginUpdateResponse::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlobStorage, Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim]
+        # @return [Imagekit::Models::Accounts::OriginUpdateResponse::S3, Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible, Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup, Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder, Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy, Imagekit::Models::Accounts::OriginUpdateResponse::Gcs, Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlob, Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim]
         #
         # @see Imagekit::Models::Accounts::OriginUpdateParams
         def update(id, params)
@@ -62,7 +62,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Array<Imagekit::Models::Accounts::OriginListResponseItem::S3, Imagekit::Models::Accounts::OriginListResponseItem::S3Compatible, Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup, Imagekit::Models::Accounts::OriginListResponseItem::WebFolder, Imagekit::Models::Accounts::OriginListResponseItem::WebProxy, Imagekit::Models::Accounts::OriginListResponseItem::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginListResponseItem::AzureBlobStorage, Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim>]
+        # @return [Array<Imagekit::Models::Accounts::OriginListResponseItem::S3, Imagekit::Models::Accounts::OriginListResponseItem::S3Compatible, Imagekit::Models::Accounts::OriginListResponseItem::CloudinaryBackup, Imagekit::Models::Accounts::OriginListResponseItem::WebFolder, Imagekit::Models::Accounts::OriginListResponseItem::WebProxy, Imagekit::Models::Accounts::OriginListResponseItem::Gcs, Imagekit::Models::Accounts::OriginListResponseItem::AzureBlob, Imagekit::Models::Accounts::OriginListResponseItem::AkeneoPim>]
         #
         # @see Imagekit::Models::Accounts::OriginListParams
         def list(params = {})
@@ -111,7 +111,7 @@ module Imagekit
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekit::Models::Accounts::OriginGetResponse::S3, Imagekit::Models::Accounts::OriginGetResponse::S3Compatible, Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup, Imagekit::Models::Accounts::OriginGetResponse::WebFolder, Imagekit::Models::Accounts::OriginGetResponse::WebProxy, Imagekit::Models::Accounts::OriginGetResponse::GoogleCloudStorageGcs, Imagekit::Models::Accounts::OriginGetResponse::AzureBlobStorage, Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim]
+        # @return [Imagekit::Models::Accounts::OriginGetResponse::S3, Imagekit::Models::Accounts::OriginGetResponse::S3Compatible, Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup, Imagekit::Models::Accounts::OriginGetResponse::WebFolder, Imagekit::Models::Accounts::OriginGetResponse::WebProxy, Imagekit::Models::Accounts::OriginGetResponse::Gcs, Imagekit::Models::Accounts::OriginGetResponse::AzureBlob, Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim]
         #
         # @see Imagekit::Models::Accounts::OriginGetParams
         def get(id, params = {})
