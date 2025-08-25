@@ -5,9 +5,7 @@ module Imagekit
     module Accounts
       OriginListResponse =
         T.let(
-          Imagekit::Internal::Type::ArrayOf[
-            union: Imagekit::Accounts::OriginResponse
-          ],
+          Imagekit::Internal::Type::ArrayOf[union: Imagekit::Accounts::Origin],
           Imagekit::Internal::Type::Converter
         )
     end
