@@ -45,12 +45,12 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Imagekit::Models::FolderCopyResponse
+      response => Imagekit::AsyncBulkJobResponse
     end
 
     assert_pattern do
       response => {
-        job_id: String | nil
+        job_id: String
       }
     end
   end
@@ -65,12 +65,12 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Imagekit::Models::FolderMoveResponse
+      response => Imagekit::AsyncBulkJobResponse
     end
 
     assert_pattern do
       response => {
-        job_id: String | nil
+        job_id: String
       }
     end
   end
@@ -81,12 +81,12 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
     response = @image_kit.folders.rename(folder_path: "/path/of/folder", new_folder_name: "new-folder-name")
 
     assert_pattern do
-      response => Imagekit::Models::FolderRenameResponse
+      response => Imagekit::AsyncBulkJobResponse
     end
 
     assert_pattern do
       response => {
-        job_id: String | nil
+        job_id: String
       }
     end
   end

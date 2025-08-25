@@ -5,11 +5,7 @@ module Imagekit
 
   AssetListParams = Imagekit::Models::AssetListParams
 
-  AsyncBulkJobResponse =
-    T.let(
-      Imagekit::Models::AsyncBulkJobResponse,
-      Imagekit::Internal::Type::Converter
-    )
+  AsyncBulkJobResponse = Imagekit::Models::AsyncBulkJobResponse
 
   Beta = Imagekit::Models::Beta
 

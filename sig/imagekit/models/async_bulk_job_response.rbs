@@ -1,5 +1,13 @@
 module Imagekit
   module Models
-    AsyncBulkJobResponse: Imagekit::Internal::Type::Converter
+    type async_bulk_job_response = { job_id: String }
+
+    class AsyncBulkJobResponse < Imagekit::Internal::Type::BaseModel
+      attr_accessor job_id: String
+
+      def initialize: (job_id: String) -> void
+
+      def to_hash: -> { job_id: String }
+    end
   end
 end

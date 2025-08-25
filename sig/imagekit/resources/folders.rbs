@@ -19,20 +19,20 @@ module Imagekit
         source_folder_path: String,
         ?include_versions: bool,
         ?request_options: Imagekit::request_opts
-      ) -> Imagekit::Models::FolderCopyResponse
+      ) -> Imagekit::AsyncBulkJobResponse
 
       def move: (
         destination_path: String,
         source_folder_path: String,
         ?request_options: Imagekit::request_opts
-      ) -> Imagekit::Models::FolderMoveResponse
+      ) -> Imagekit::AsyncBulkJobResponse
 
       def rename: (
         folder_path: String,
         new_folder_name: String,
         ?purge_cache: bool,
         ?request_options: Imagekit::request_opts
-      ) -> Imagekit::Models::FolderRenameResponse
+      ) -> Imagekit::AsyncBulkJobResponse
 
       def initialize: (client: Imagekit::Client) -> void
     end

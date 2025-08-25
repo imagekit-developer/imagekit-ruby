@@ -43,7 +43,6 @@ module Imagekit
 
   AssetListParams = Imagekit::Models::AssetListParams
 
-  # @type [Imagekit::Internal::Type::Converter]
   AsyncBulkJobResponse = Imagekit::Models::AsyncBulkJobResponse
 
   Beta = Imagekit::Models::Beta
