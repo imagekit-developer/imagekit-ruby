@@ -6,28 +6,28 @@ module Imagekit
       # @api private
       #
       # @example
-      #   # `origin_response` is a `Imagekit::Accounts::OriginResponse`
-      #   case origin_response
-      #   when Imagekit::Accounts::OriginResponse::S3
-      #     puts(origin_response.id)
-      #   when Imagekit::Accounts::OriginResponse::S3Compatible
-      #     puts(origin_response.bucket)
-      #   when Imagekit::Accounts::OriginResponse::CloudinaryBackup
-      #     puts(origin_response.include_canonical_header)
+      #   # `origin_request` is a `Imagekit::Accounts::OriginRequest`
+      #   case origin_request
+      #   when Imagekit::Accounts::OriginRequest::S3
+      #     puts(origin_request.access_key)
+      #   when Imagekit::Accounts::OriginRequest::S3Compatible
+      #     puts(origin_request.bucket)
+      #   when Imagekit::Accounts::OriginRequest::CloudinaryBackup
+      #     puts(origin_request.name)
       #   else
-      #     puts(origin_response)
+      #     puts(origin_request)
       #   end
       #
       # @example
-      #   case origin_response
-      #   in {type: :S3, id: id, bucket: bucket, include_canonical_header: include_canonical_header}
-      #     puts(id)
-      #   in {type: :S3_COMPATIBLE, id: id, bucket: bucket, endpoint: endpoint}
+      #   case origin_request
+      #   in {type: :S3, access_key: access_key, bucket: bucket, name: name}
+      #     puts(access_key)
+      #   in {type: :S3_COMPATIBLE, access_key: access_key, bucket: bucket, endpoint: endpoint}
       #     puts(bucket)
-      #   in {type: :CLOUDINARY_BACKUP, id: id, bucket: bucket, include_canonical_header: include_canonical_header}
-      #     puts(include_canonical_header)
+      #   in {type: :CLOUDINARY_BACKUP, access_key: access_key, bucket: bucket, name: name}
+      #     puts(name)
       #   else
-      #     puts(origin_response)
+      #     puts(origin_request)
       #   end
       module Union
         include Imagekit::Internal::Type::Converter
