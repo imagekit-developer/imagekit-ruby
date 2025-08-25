@@ -1,17 +1,17 @@
 module Imagekit
   module Models
     module Accounts
-      type origin_create_response =
-        Imagekit::Models::Accounts::OriginCreateResponse::S3
-        | Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible
-        | Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup
-        | Imagekit::Models::Accounts::OriginCreateResponse::WebFolder
-        | Imagekit::Models::Accounts::OriginCreateResponse::WebProxy
-        | Imagekit::Models::Accounts::OriginCreateResponse::Gcs
-        | Imagekit::Models::Accounts::OriginCreateResponse::AzureBlob
-        | Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim
+      type origin_response =
+        Imagekit::Accounts::OriginResponse::S3
+        | Imagekit::Accounts::OriginResponse::S3Compatible
+        | Imagekit::Accounts::OriginResponse::CloudinaryBackup
+        | Imagekit::Accounts::OriginResponse::WebFolder
+        | Imagekit::Accounts::OriginResponse::WebProxy
+        | Imagekit::Accounts::OriginResponse::Gcs
+        | Imagekit::Accounts::OriginResponse::AzureBlob
+        | Imagekit::Accounts::OriginResponse::AkeneoPim
 
-      module OriginCreateResponse
+      module OriginResponse
         extend Imagekit::Internal::Type::Union
 
         type s3 =
@@ -411,7 +411,7 @@ module Imagekit
           }
         end
 
-        def self?.variants: -> ::Array[Imagekit::Models::Accounts::origin_create_response]
+        def self?.variants: -> ::Array[Imagekit::Models::Accounts::origin_response]
       end
     end
   end

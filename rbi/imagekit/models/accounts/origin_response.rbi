@@ -4,20 +4,20 @@ module Imagekit
   module Models
     module Accounts
       # Origin object as returned by the API (sensitive fields removed).
-      module OriginUpdateResponse
+      module OriginResponse
         extend Imagekit::Internal::Type::Union
 
         Variants =
           T.type_alias do
             T.any(
-              Imagekit::Models::Accounts::OriginUpdateResponse::S3,
-              Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible,
-              Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup,
-              Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder,
-              Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy,
-              Imagekit::Models::Accounts::OriginUpdateResponse::Gcs,
-              Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlob,
-              Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim
+              Imagekit::Accounts::OriginResponse::S3,
+              Imagekit::Accounts::OriginResponse::S3Compatible,
+              Imagekit::Accounts::OriginResponse::CloudinaryBackup,
+              Imagekit::Accounts::OriginResponse::WebFolder,
+              Imagekit::Accounts::OriginResponse::WebProxy,
+              Imagekit::Accounts::OriginResponse::Gcs,
+              Imagekit::Accounts::OriginResponse::AzureBlob,
+              Imagekit::Accounts::OriginResponse::AkeneoPim
             )
           end
 
@@ -25,7 +25,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::S3,
+                Imagekit::Accounts::OriginResponse::S3,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -111,7 +111,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible,
+                Imagekit::Accounts::OriginResponse::S3Compatible,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -213,7 +213,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup,
+                Imagekit::Accounts::OriginResponse::CloudinaryBackup,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -299,7 +299,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder,
+                Imagekit::Accounts::OriginResponse::WebFolder,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -385,7 +385,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy,
+                Imagekit::Accounts::OriginResponse::WebProxy,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -455,7 +455,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::Gcs,
+                Imagekit::Accounts::OriginResponse::Gcs,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -543,7 +543,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlob,
+                Imagekit::Accounts::OriginResponse::AzureBlob,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -631,7 +631,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim,
+                Imagekit::Accounts::OriginResponse::AkeneoPim,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -707,7 +707,7 @@ module Imagekit
 
         sig do
           override.returns(
-            T::Array[Imagekit::Models::Accounts::OriginUpdateResponse::Variants]
+            T::Array[Imagekit::Accounts::OriginResponse::Variants]
           )
         end
         def self.variants

@@ -18,19 +18,19 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
       )
 
     assert_pattern do
-      response => Imagekit::Models::Accounts::OriginCreateResponse
+      response => Imagekit::Accounts::OriginResponse
     end
 
     assert_pattern do
       case response
-      in Imagekit::Models::Accounts::OriginCreateResponse::S3
-      in Imagekit::Models::Accounts::OriginCreateResponse::S3Compatible
-      in Imagekit::Models::Accounts::OriginCreateResponse::CloudinaryBackup
-      in Imagekit::Models::Accounts::OriginCreateResponse::WebFolder
-      in Imagekit::Models::Accounts::OriginCreateResponse::WebProxy
-      in Imagekit::Models::Accounts::OriginCreateResponse::Gcs
-      in Imagekit::Models::Accounts::OriginCreateResponse::AzureBlob
-      in Imagekit::Models::Accounts::OriginCreateResponse::AkeneoPim
+      in Imagekit::Accounts::OriginResponse::S3
+      in Imagekit::Accounts::OriginResponse::S3Compatible
+      in Imagekit::Accounts::OriginResponse::CloudinaryBackup
+      in Imagekit::Accounts::OriginResponse::WebFolder
+      in Imagekit::Accounts::OriginResponse::WebProxy
+      in Imagekit::Accounts::OriginResponse::Gcs
+      in Imagekit::Accounts::OriginResponse::AzureBlob
+      in Imagekit::Accounts::OriginResponse::AkeneoPim
       end
     end
 
@@ -129,19 +129,19 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
       )
 
     assert_pattern do
-      response => Imagekit::Models::Accounts::OriginUpdateResponse
+      response => Imagekit::Accounts::OriginResponse
     end
 
     assert_pattern do
       case response
-      in Imagekit::Models::Accounts::OriginUpdateResponse::S3
-      in Imagekit::Models::Accounts::OriginUpdateResponse::S3Compatible
-      in Imagekit::Models::Accounts::OriginUpdateResponse::CloudinaryBackup
-      in Imagekit::Models::Accounts::OriginUpdateResponse::WebFolder
-      in Imagekit::Models::Accounts::OriginUpdateResponse::WebProxy
-      in Imagekit::Models::Accounts::OriginUpdateResponse::Gcs
-      in Imagekit::Models::Accounts::OriginUpdateResponse::AzureBlob
-      in Imagekit::Models::Accounts::OriginUpdateResponse::AkeneoPim
+      in Imagekit::Accounts::OriginResponse::S3
+      in Imagekit::Accounts::OriginResponse::S3Compatible
+      in Imagekit::Accounts::OriginResponse::CloudinaryBackup
+      in Imagekit::Accounts::OriginResponse::WebFolder
+      in Imagekit::Accounts::OriginResponse::WebProxy
+      in Imagekit::Accounts::OriginResponse::Gcs
+      in Imagekit::Accounts::OriginResponse::AzureBlob
+      in Imagekit::Accounts::OriginResponse::AkeneoPim
       end
     end
 
@@ -230,7 +230,7 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
     response = @image_kit.accounts.origins.list
 
     assert_pattern do
-      response => ^(Imagekit::Internal::Type::ArrayOf[union: Imagekit::Models::Accounts::OriginListResponseItem])
+      response => ^(Imagekit::Internal::Type::ArrayOf[union: Imagekit::Accounts::OriginResponse])
     end
   end
 
@@ -250,19 +250,19 @@ class Imagekit::Test::Resources::Accounts::OriginsTest < Imagekit::Test::Resourc
     response = @image_kit.accounts.origins.get("id")
 
     assert_pattern do
-      response => Imagekit::Models::Accounts::OriginGetResponse
+      response => Imagekit::Accounts::OriginResponse
     end
 
     assert_pattern do
       case response
-      in Imagekit::Models::Accounts::OriginGetResponse::S3
-      in Imagekit::Models::Accounts::OriginGetResponse::S3Compatible
-      in Imagekit::Models::Accounts::OriginGetResponse::CloudinaryBackup
-      in Imagekit::Models::Accounts::OriginGetResponse::WebFolder
-      in Imagekit::Models::Accounts::OriginGetResponse::WebProxy
-      in Imagekit::Models::Accounts::OriginGetResponse::Gcs
-      in Imagekit::Models::Accounts::OriginGetResponse::AzureBlob
-      in Imagekit::Models::Accounts::OriginGetResponse::AkeneoPim
+      in Imagekit::Accounts::OriginResponse::S3
+      in Imagekit::Accounts::OriginResponse::S3Compatible
+      in Imagekit::Accounts::OriginResponse::CloudinaryBackup
+      in Imagekit::Accounts::OriginResponse::WebFolder
+      in Imagekit::Accounts::OriginResponse::WebProxy
+      in Imagekit::Accounts::OriginResponse::Gcs
+      in Imagekit::Accounts::OriginResponse::AzureBlob
+      in Imagekit::Accounts::OriginResponse::AkeneoPim
       end
     end
 

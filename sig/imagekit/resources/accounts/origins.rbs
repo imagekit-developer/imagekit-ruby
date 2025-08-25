@@ -5,13 +5,13 @@ module Imagekit
         def create: (
           origin: Imagekit::Models::Accounts::origin,
           ?request_options: Imagekit::request_opts
-        ) -> Imagekit::Models::Accounts::origin_create_response
+        ) -> Imagekit::Models::Accounts::origin_response
 
         def update: (
           String id,
           origin: Imagekit::Models::Accounts::origin,
           ?request_options: Imagekit::request_opts
-        ) -> Imagekit::Models::Accounts::origin_update_response
+        ) -> Imagekit::Models::Accounts::origin_response
 
         def list: (
           ?request_options: Imagekit::request_opts
@@ -22,7 +22,7 @@ module Imagekit
         def get: (
           String id,
           ?request_options: Imagekit::request_opts
-        ) -> Imagekit::Models::Accounts::origin_get_response
+        ) -> Imagekit::Models::Accounts::origin_response
 
         def initialize: (client: Imagekit::Client) -> void
       end
