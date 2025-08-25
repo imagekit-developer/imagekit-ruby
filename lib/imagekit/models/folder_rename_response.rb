@@ -2,8 +2,8 @@
 
 module Imagekit
   module Models
-    # @see Imagekit::Resources::Folders#copy
-    class JobResponse < Imagekit::Internal::Type::BaseModel
+    # @see Imagekit::Resources::Folders#rename
+    class FolderRenameResponse < Imagekit::Internal::Type::BaseModel
       # @!attribute job_id
       #   Unique identifier of the bulk job. This can be used to check the status of the
       #   bulk job.
@@ -13,7 +13,7 @@ module Imagekit
 
       # @!method initialize(job_id:)
       #   Some parameter documentations has been truncated, see
-      #   {Imagekit::Models::JobResponse} for more details.
+      #   {Imagekit::Models::FolderRenameResponse} for more details.
       #
       #   Job submitted successfully. A `jobId` will be returned.
       #

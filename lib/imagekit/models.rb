@@ -89,8 +89,6 @@ module Imagekit
 
   Folders = Imagekit::Models::Folders
 
-  JobResponse = Imagekit::Models::JobResponse
-
   Metadata = Imagekit::Models::Metadata
 
   UnsafeUnwrapWebhookEvent = Imagekit::Models::UnsafeUnwrapWebhookEvent

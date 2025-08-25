@@ -45,7 +45,7 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Imagekit::JobResponse
+      response => Imagekit::Models::FolderCopyResponse
     end
 
     assert_pattern do
@@ -65,7 +65,7 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Imagekit::JobResponse
+      response => Imagekit::Models::FolderMoveResponse
     end
 
     assert_pattern do
@@ -81,7 +81,7 @@ class Imagekit::Test::Resources::FoldersTest < Imagekit::Test::ResourceTest
     response = @image_kit.folders.rename(folder_path: "/path/of/folder", new_folder_name: "new-folder-name")
 
     assert_pattern do
-      response => Imagekit::JobResponse
+      response => Imagekit::Models::FolderRenameResponse
     end
 
     assert_pattern do

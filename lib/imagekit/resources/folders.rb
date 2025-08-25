@@ -79,7 +79,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekit::Models::JobResponse]
+      # @return [Imagekit::Models::FolderCopyResponse]
       #
       # @see Imagekit::Models::FolderCopyParams
       def copy(params)
@@ -88,7 +88,7 @@ module Imagekit
           method: :post,
           path: "v1/bulkJobs/copyFolder",
           body: parsed,
-          model: Imagekit::JobResponse,
+          model: Imagekit::Models::FolderCopyResponse,
           options: options
         )
       end
@@ -109,7 +109,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekit::Models::JobResponse]
+      # @return [Imagekit::Models::FolderMoveResponse]
       #
       # @see Imagekit::Models::FolderMoveParams
       def move(params)
@@ -118,7 +118,7 @@ module Imagekit
           method: :post,
           path: "v1/bulkJobs/moveFolder",
           body: parsed,
-          model: Imagekit::JobResponse,
+          model: Imagekit::Models::FolderMoveResponse,
           options: options
         )
       end
@@ -140,7 +140,7 @@ module Imagekit
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekit::Models::JobResponse]
+      # @return [Imagekit::Models::FolderRenameResponse]
       #
       # @see Imagekit::Models::FolderRenameParams
       def rename(params)
@@ -149,7 +149,7 @@ module Imagekit
           method: :post,
           path: "v1/bulkJobs/renameFolder",
           body: parsed,
-          model: Imagekit::JobResponse,
+          model: Imagekit::Models::FolderRenameResponse,
           options: options
         )
       end

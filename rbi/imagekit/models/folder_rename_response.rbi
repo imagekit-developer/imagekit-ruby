@@ -2,10 +2,13 @@
 
 module Imagekit
   module Models
-    class JobResponse < Imagekit::Internal::Type::BaseModel
+    class FolderRenameResponse < Imagekit::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Imagekit::JobResponse, Imagekit::Internal::AnyHash)
+          T.any(
+            Imagekit::Models::FolderRenameResponse,
+            Imagekit::Internal::AnyHash
+          )
         end
 
       # Unique identifier of the bulk job. This can be used to check the status of the
