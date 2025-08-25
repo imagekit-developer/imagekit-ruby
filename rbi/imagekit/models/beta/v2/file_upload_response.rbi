@@ -55,6 +55,14 @@ module Imagekit
           sig { params(custom_metadata: T::Hash[Symbol, T.anything]).void }
           attr_writer :custom_metadata
 
+          # Optional text to describe the contents of the file. Can be set by the user or
+          # the ai-auto-description extension.
+          sig { returns(T.nilable(String)) }
+          attr_reader :description
+
+          sig { params(description: String).void }
+          attr_writer :description
+
           # The duration of the video in seconds (only for video).
           sig { returns(T.nilable(Integer)) }
           attr_reader :duration
@@ -232,6 +240,7 @@ module Imagekit
               bit_rate: Integer,
               custom_coordinates: T.nilable(String),
               custom_metadata: T::Hash[Symbol, T.anything],
+              description: String,
               duration: Integer,
               embedded_metadata: T::Hash[Symbol, T.anything],
               extension_status:
@@ -272,6 +281,9 @@ module Imagekit
             # API. Send `customMetadata` in `responseFields` in API request to get the value
             # of this field.
             custom_metadata: nil,
+            # Optional text to describe the contents of the file. Can be set by the user or
+            # the ai-auto-description extension.
+            description: nil,
             # The duration of the video in seconds (only for video).
             duration: nil,
             # Consolidated embedded metadata associated with the file. It includes exif, iptc,
@@ -343,6 +355,7 @@ module Imagekit
                 bit_rate: Integer,
                 custom_coordinates: T.nilable(String),
                 custom_metadata: T::Hash[Symbol, T.anything],
+                description: String,
                 duration: Integer,
                 embedded_metadata: T::Hash[Symbol, T.anything],
                 extension_status:

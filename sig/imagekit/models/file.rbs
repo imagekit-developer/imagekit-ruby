@@ -6,6 +6,7 @@ module Imagekit
         created_at: Time,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
+        description: String,
         file_id: String,
         file_path: String,
         file_type: String,
@@ -37,6 +38,10 @@ module Imagekit
       attr_reader custom_metadata: ::Hash[Symbol, top]?
 
       def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
 
       attr_reader file_id: String?
 
@@ -113,6 +118,7 @@ module Imagekit
         ?created_at: Time,
         ?custom_coordinates: String?,
         ?custom_metadata: ::Hash[Symbol, top],
+        ?description: String,
         ?file_id: String,
         ?file_path: String,
         ?file_type: String,
@@ -137,6 +143,7 @@ module Imagekit
         created_at: Time,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
+        description: String,
         file_id: String,
         file_path: String,
         file_type: String,

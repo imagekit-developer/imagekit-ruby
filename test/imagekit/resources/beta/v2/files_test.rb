@@ -19,6 +19,7 @@ class Imagekit::Test::Resources::Beta::V2::FilesTest < Imagekit::Test::ResourceT
         bit_rate: Integer | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
+        description: String | nil,
         duration: Integer | nil,
         embedded_metadata: ^(Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown]) | nil,
         extension_status: Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus | nil,

@@ -34,6 +34,13 @@ module Imagekit
                Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown],
                api_name: :customMetadata
 
+      # @!attribute description
+      #   Optional text to describe the contents of the file. Can be set by the user or
+      #   the ai-auto-description extension.
+      #
+      #   @return [String, nil]
+      optional :description, String
+
       # @!attribute file_id
       #   Unique identifier of the asset.
       #
@@ -142,7 +149,7 @@ module Imagekit
       #   @return [Float, nil]
       optional :width, Float
 
-      # @!method initialize(ai_tags: nil, created_at: nil, custom_coordinates: nil, custom_metadata: nil, file_id: nil, file_path: nil, file_type: nil, has_alpha: nil, height: nil, is_private_file: nil, is_published: nil, mime: nil, name: nil, size: nil, tags: nil, thumbnail: nil, type: nil, updated_at: nil, url: nil, version_info: nil, width: nil)
+      # @!method initialize(ai_tags: nil, created_at: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, file_id: nil, file_path: nil, file_type: nil, has_alpha: nil, height: nil, is_private_file: nil, is_published: nil, mime: nil, name: nil, size: nil, tags: nil, thumbnail: nil, type: nil, updated_at: nil, url: nil, version_info: nil, width: nil)
       #   Some parameter documentations has been truncated, see {Imagekit::Models::File}
       #   for more details.
       #
@@ -155,6 +162,8 @@ module Imagekit
       #   @param custom_coordinates [String, nil] An string with custom coordinates of the file.
       #
       #   @param custom_metadata [Hash{Symbol=>Object}] An object with custom metadata for the file.
+      #
+      #   @param description [String] Optional text to describe the contents of the file. Can be set by the user or th
       #
       #   @param file_id [String] Unique identifier of the asset.
       #

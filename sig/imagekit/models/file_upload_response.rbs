@@ -7,6 +7,7 @@ module Imagekit
         bit_rate: Integer,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
+        description: String,
         duration: Integer,
         embedded_metadata: ::Hash[Symbol, top],
         extension_status: Imagekit::Models::FileUploadResponse::ExtensionStatus,
@@ -43,6 +44,10 @@ module Imagekit
       attr_reader custom_metadata: ::Hash[Symbol, top]?
 
       def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
 
       attr_reader duration: Integer?
 
@@ -124,6 +129,7 @@ module Imagekit
         ?bit_rate: Integer,
         ?custom_coordinates: String?,
         ?custom_metadata: ::Hash[Symbol, top],
+        ?description: String,
         ?duration: Integer,
         ?embedded_metadata: ::Hash[Symbol, top],
         ?extension_status: Imagekit::Models::FileUploadResponse::ExtensionStatus,
@@ -150,6 +156,7 @@ module Imagekit
         bit_rate: Integer,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
+        description: String,
         duration: Integer,
         embedded_metadata: ::Hash[Symbol, top],
         extension_status: Imagekit::Models::FileUploadResponse::ExtensionStatus,

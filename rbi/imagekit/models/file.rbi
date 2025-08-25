@@ -29,6 +29,14 @@ module Imagekit
       sig { params(custom_metadata: T::Hash[Symbol, T.anything]).void }
       attr_writer :custom_metadata
 
+      # Optional text to describe the contents of the file. Can be set by the user or
+      # the ai-auto-description extension.
+      sig { returns(T.nilable(String)) }
+      attr_reader :description
+
+      sig { params(description: String).void }
+      attr_writer :description
+
       # Unique identifier of the asset.
       sig { returns(T.nilable(String)) }
       attr_reader :file_id
@@ -158,6 +166,7 @@ module Imagekit
           created_at: Time,
           custom_coordinates: T.nilable(String),
           custom_metadata: T::Hash[Symbol, T.anything],
+          description: String,
           file_id: String,
           file_path: String,
           file_type: String,
@@ -187,6 +196,9 @@ module Imagekit
         custom_coordinates: nil,
         # An object with custom metadata for the file.
         custom_metadata: nil,
+        # Optional text to describe the contents of the file. Can be set by the user or
+        # the ai-auto-description extension.
+        description: nil,
         # Unique identifier of the asset.
         file_id: nil,
         # Path of the file. This is the path you would use in the URL to access the file.
@@ -237,6 +249,7 @@ module Imagekit
             created_at: Time,
             custom_coordinates: T.nilable(String),
             custom_metadata: T::Hash[Symbol, T.anything],
+            description: String,
             file_id: String,
             file_path: String,
             file_type: String,

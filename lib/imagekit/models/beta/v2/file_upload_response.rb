@@ -48,6 +48,13 @@ module Imagekit
                    Imagekit::Internal::Type::HashOf[Imagekit::Internal::Type::Unknown],
                    api_name: :customMetadata
 
+          # @!attribute description
+          #   Optional text to describe the contents of the file. Can be set by the user or
+          #   the ai-auto-description extension.
+          #
+          #   @return [String, nil]
+          optional :description, String
+
           # @!attribute duration
           #   The duration of the video in seconds (only for video).
           #
@@ -181,7 +188,7 @@ module Imagekit
           #   @return [Float, nil]
           optional :width, Float
 
-          # @!method initialize(ai_tags: nil, audio_codec: nil, bit_rate: nil, custom_coordinates: nil, custom_metadata: nil, duration: nil, embedded_metadata: nil, extension_status: nil, file_id: nil, file_path: nil, file_type: nil, height: nil, is_private_file: nil, is_published: nil, metadata: nil, name: nil, size: nil, tags: nil, thumbnail_url: nil, url: nil, version_info: nil, video_codec: nil, width: nil)
+          # @!method initialize(ai_tags: nil, audio_codec: nil, bit_rate: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, duration: nil, embedded_metadata: nil, extension_status: nil, file_id: nil, file_path: nil, file_type: nil, height: nil, is_private_file: nil, is_published: nil, metadata: nil, name: nil, size: nil, tags: nil, thumbnail_url: nil, url: nil, version_info: nil, video_codec: nil, width: nil)
           #   Some parameter documentations has been truncated, see
           #   {Imagekit::Models::Beta::V2::FileUploadResponse} for more details.
           #
@@ -196,6 +203,8 @@ module Imagekit
           #   @param custom_coordinates [String, nil] Value of custom coordinates associated with the image in the format `x,y,width,h
           #
           #   @param custom_metadata [Hash{Symbol=>Object}] A key-value data associated with the asset. Use `responseField` in API request t
+          #
+          #   @param description [String] Optional text to describe the contents of the file. Can be set by the user or th
           #
           #   @param duration [Integer] The duration of the video in seconds (only for video).
           #
