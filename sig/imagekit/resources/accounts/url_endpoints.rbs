@@ -6,7 +6,7 @@ module Imagekit
           description: String,
           ?origins: ::Array[String],
           ?url_prefix: String,
-          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter,
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter,
           ?request_options: Imagekit::request_opts
         ) -> Imagekit::Models::Accounts::URLEndpointCreateResponse
 
@@ -15,7 +15,7 @@ module Imagekit
           description: String,
           ?origins: ::Array[String],
           ?url_prefix: String,
-          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointUpdateParams::url_rewriter,
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpoint::url_rewriter,
           ?request_options: Imagekit::request_opts
         ) -> Imagekit::Models::Accounts::URLEndpointUpdateResponse
 

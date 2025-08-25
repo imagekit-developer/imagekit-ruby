@@ -2,101 +2,15 @@ module Imagekit
   module Models
     module Accounts
       type url_endpoint_create_params =
-        {
-          description: String,
-          origins: ::Array[String],
-          url_prefix: String,
-          url_rewriter: Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter
-        }
-        & Imagekit::Internal::Type::request_parameters
+        {  } & Imagekit::Internal::Type::request_parameters
 
-      class URLEndpointCreateParams < Imagekit::Internal::Type::BaseModel
+      class URLEndpointCreateParams < Imagekit::Models::Accounts::URLEndpoint
         extend Imagekit::Internal::Type::RequestParameters::Converter
         include Imagekit::Internal::Type::RequestParameters
 
-        attr_accessor description: String
+        def initialize: (?request_options: Imagekit::request_opts) -> void
 
-        attr_reader origins: ::Array[String]?
-
-        def origins=: (::Array[String]) -> ::Array[String]
-
-        attr_reader url_prefix: String?
-
-        def url_prefix=: (String) -> String
-
-        attr_reader url_rewriter: Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter?
-
-        def url_rewriter=: (
-          Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter
-        ) -> Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter
-
-        def initialize: (
-          description: String,
-          ?origins: ::Array[String],
-          ?url_prefix: String,
-          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter,
-          ?request_options: Imagekit::request_opts
-        ) -> void
-
-        def to_hash: -> {
-          description: String,
-          origins: ::Array[String],
-          url_prefix: String,
-          url_rewriter: Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter,
-          request_options: Imagekit::RequestOptions
-        }
-
-        type url_rewriter =
-          Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary
-          | Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Imgix
-          | Imagekit::Accounts::URLEndpointCreateParams::URLRewriter::Akamai
-
-        module URLRewriter
-          extend Imagekit::Internal::Type::Union
-
-          type cloudinary =
-            { type: :CLOUDINARY, preserve_asset_delivery_types: bool }
-
-          class Cloudinary < Imagekit::Internal::Type::BaseModel
-            attr_accessor type: :CLOUDINARY
-
-            attr_reader preserve_asset_delivery_types: bool?
-
-            def preserve_asset_delivery_types=: (bool) -> bool
-
-            def initialize: (
-              ?preserve_asset_delivery_types: bool,
-              ?type: :CLOUDINARY
-            ) -> void
-
-            def to_hash: -> {
-              type: :CLOUDINARY,
-              preserve_asset_delivery_types: bool
-            }
-          end
-
-          type imgix = { type: :IMGIX }
-
-          class Imgix < Imagekit::Internal::Type::BaseModel
-            attr_accessor type: :IMGIX
-
-            def initialize: (?type: :IMGIX) -> void
-
-            def to_hash: -> { type: :IMGIX }
-          end
-
-          type akamai = { type: :AKAMAI }
-
-          class Akamai < Imagekit::Internal::Type::BaseModel
-            attr_accessor type: :AKAMAI
-
-            def initialize: (?type: :AKAMAI) -> void
-
-            def to_hash: -> { type: :AKAMAI }
-          end
-
-          def self?.variants: -> ::Array[Imagekit::Models::Accounts::URLEndpointCreateParams::url_rewriter]
-        end
+        def to_hash: -> { request_options: Imagekit::RequestOptions }
       end
     end
   end

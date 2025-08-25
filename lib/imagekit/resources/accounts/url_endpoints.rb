@@ -18,7 +18,7 @@ module Imagekit
         #
         # @param url_prefix [String] Path segment appended to your base URL to form the endpoint (letters, digits, an
         #
-        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointCreateParams::URLRewriter::Akamai] Configuration for third-party URL rewriting.
+        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Akamai] Configuration for third-party URL rewriting.
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -52,7 +52,7 @@ module Imagekit
         #
         # @param url_prefix [String] Path segment appended to your base URL to form the endpoint (letters, digits, an
         #
-        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpointUpdateParams::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpointUpdateParams::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpointUpdateParams::URLRewriter::Akamai] Configuration for third-party URL rewriting.
+        # @param url_rewriter [Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Cloudinary, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Imgix, Imagekit::Models::Accounts::URLEndpoint::URLRewriter::Akamai] Configuration for third-party URL rewriting.
         #
         # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
         #
