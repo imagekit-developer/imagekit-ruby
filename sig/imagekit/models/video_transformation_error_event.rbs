@@ -1,0 +1,290 @@
+module Imagekit
+  module Models
+    type video_transformation_error_event =
+      {
+        id: String,
+        created_at: Time,
+        data: Imagekit::VideoTransformationErrorEvent::Data,
+        request: Imagekit::VideoTransformationErrorEvent::Request,
+        type: :"video.transformation.error"
+      }
+
+    class VideoTransformationErrorEvent < Imagekit::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor data: Imagekit::VideoTransformationErrorEvent::Data
+
+      attr_accessor request: Imagekit::VideoTransformationErrorEvent::Request
+
+      attr_accessor type: :"video.transformation.error"
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        data: Imagekit::VideoTransformationErrorEvent::Data,
+        request: Imagekit::VideoTransformationErrorEvent::Request,
+        ?type: :"video.transformation.error"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        data: Imagekit::VideoTransformationErrorEvent::Data,
+        request: Imagekit::VideoTransformationErrorEvent::Request,
+        type: :"video.transformation.error"
+      }
+
+      type data =
+        {
+          asset: Imagekit::VideoTransformationErrorEvent::Data::Asset,
+          transformation: Imagekit::VideoTransformationErrorEvent::Data::Transformation
+        }
+
+      class Data < Imagekit::Internal::Type::BaseModel
+        attr_accessor asset: Imagekit::VideoTransformationErrorEvent::Data::Asset
+
+        attr_accessor transformation: Imagekit::VideoTransformationErrorEvent::Data::Transformation
+
+        def initialize: (
+          asset: Imagekit::VideoTransformationErrorEvent::Data::Asset,
+          transformation: Imagekit::VideoTransformationErrorEvent::Data::Transformation
+        ) -> void
+
+        def to_hash: -> {
+          asset: Imagekit::VideoTransformationErrorEvent::Data::Asset,
+          transformation: Imagekit::VideoTransformationErrorEvent::Data::Transformation
+        }
+
+        type asset = { url: String }
+
+        class Asset < Imagekit::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
+
+        type transformation =
+          {
+            type: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::type_,
+            error: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Error,
+            options: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options
+          }
+
+        class Transformation < Imagekit::Internal::Type::BaseModel
+          attr_accessor type: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::type_
+
+          attr_reader error: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Error?
+
+          def error=: (
+            Imagekit::VideoTransformationErrorEvent::Data::Transformation::Error
+          ) -> Imagekit::VideoTransformationErrorEvent::Data::Transformation::Error
+
+          attr_reader options: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options?
+
+          def options=: (
+            Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options
+          ) -> Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options
+
+          def initialize: (
+            type: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::type_,
+            ?error: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Error,
+            ?options: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options
+          ) -> void
+
+          def to_hash: -> {
+            type: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::type_,
+            error: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Error,
+            options: Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options
+          }
+
+          type type_ =
+            :"video-transformation" | :"gif-to-video" | :"video-thumbnail"
+
+          module Type
+            extend Imagekit::Internal::Type::Enum
+
+            VIDEO_TRANSFORMATION: :"video-transformation"
+            GIF_TO_VIDEO: :"gif-to-video"
+            VIDEO_THUMBNAIL: :"video-thumbnail"
+
+            def self?.values: -> ::Array[Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::type_]
+          end
+
+          type error =
+            {
+              reason: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Error::reason
+            }
+
+          class Error < Imagekit::Internal::Type::BaseModel
+            attr_accessor reason: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Error::reason
+
+            def initialize: (
+              reason: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Error::reason
+            ) -> void
+
+            def to_hash: -> {
+              reason: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Error::reason
+            }
+
+            type reason =
+              :encoding_failed | :download_failed | :internal_server_error
+
+            module Reason
+              extend Imagekit::Internal::Type::Enum
+
+              ENCODING_FAILED: :encoding_failed
+              DOWNLOAD_FAILED: :download_failed
+              INTERNAL_SERVER_ERROR: :internal_server_error
+
+              def self?.values: -> ::Array[Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Error::reason]
+            end
+          end
+
+          type options =
+            {
+              audio_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::audio_codec,
+              auto_rotate: bool,
+              format_: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::format_,
+              quality: Integer,
+              stream_protocol: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::stream_protocol,
+              variants: ::Array[String],
+              video_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::video_codec
+            }
+
+          class Options < Imagekit::Internal::Type::BaseModel
+            attr_reader audio_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::audio_codec?
+
+            def audio_codec=: (
+              Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::audio_codec
+            ) -> Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::audio_codec
+
+            attr_reader auto_rotate: bool?
+
+            def auto_rotate=: (bool) -> bool
+
+            attr_reader format_: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::format_?
+
+            def format_=: (
+              Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::format_
+            ) -> Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::format_
+
+            attr_reader quality: Integer?
+
+            def quality=: (Integer) -> Integer
+
+            attr_reader stream_protocol: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::stream_protocol?
+
+            def stream_protocol=: (
+              Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::stream_protocol
+            ) -> Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::stream_protocol
+
+            attr_reader variants: ::Array[String]?
+
+            def variants=: (::Array[String]) -> ::Array[String]
+
+            attr_reader video_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::video_codec?
+
+            def video_codec=: (
+              Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::video_codec
+            ) -> Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::video_codec
+
+            def initialize: (
+              ?audio_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::audio_codec,
+              ?auto_rotate: bool,
+              ?format_: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::format_,
+              ?quality: Integer,
+              ?stream_protocol: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::stream_protocol,
+              ?variants: ::Array[String],
+              ?video_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::video_codec
+            ) -> void
+
+            def to_hash: -> {
+              audio_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::audio_codec,
+              auto_rotate: bool,
+              format_: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::format_,
+              quality: Integer,
+              stream_protocol: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::stream_protocol,
+              variants: ::Array[String],
+              video_codec: Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::video_codec
+            }
+
+            type audio_codec = :aac | :opus
+
+            module AudioCodec
+              extend Imagekit::Internal::Type::Enum
+
+              AAC: :aac
+              OPUS: :opus
+
+              def self?.values: -> ::Array[Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::audio_codec]
+            end
+
+            type format_ = :mp4 | :webm | :jpg | :png | :webp
+
+            module Format
+              extend Imagekit::Internal::Type::Enum
+
+              MP4: :mp4
+              WEBM: :webm
+              JPG: :jpg
+              PNG: :png
+              WEBP: :webp
+
+              def self?.values: -> ::Array[Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::format_]
+            end
+
+            type stream_protocol = :HLS | :DASH
+
+            module StreamProtocol
+              extend Imagekit::Internal::Type::Enum
+
+              HLS: :HLS
+              DASH: :DASH
+
+              def self?.values: -> ::Array[Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::stream_protocol]
+            end
+
+            type video_codec = :h264 | :vp9
+
+            module VideoCodec
+              extend Imagekit::Internal::Type::Enum
+
+              H264: :h264
+              VP9: :vp9
+
+              def self?.values: -> ::Array[Imagekit::Models::VideoTransformationErrorEvent::Data::Transformation::Options::video_codec]
+            end
+          end
+        end
+      end
+
+      type request = { url: String, x_request_id: String, user_agent: String }
+
+      class Request < Imagekit::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor x_request_id: String
+
+        attr_reader user_agent: String?
+
+        def user_agent=: (String) -> String
+
+        def initialize: (
+          url: String,
+          x_request_id: String,
+          ?user_agent: String
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          x_request_id: String,
+          user_agent: String
+        }
+      end
+    end
+  end
+end

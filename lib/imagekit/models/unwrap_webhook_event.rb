@@ -5,14 +5,14 @@ module Imagekit
     module UnwrapWebhookEvent
       extend Imagekit::Internal::Type::Union
 
-      variant -> { Imagekit::VideoTransformationAcceptedWebhookEvent }
+      variant -> { Imagekit::VideoTransformationAcceptedEvent }
 
-      variant -> { Imagekit::VideoTransformationReadyWebhookEvent }
+      variant -> { Imagekit::VideoTransformationReadyEvent }
 
-      variant -> { Imagekit::VideoTransformationErrorWebhookEvent }
+      variant -> { Imagekit::VideoTransformationErrorEvent }
 
       # @!method self.variants
-      #   @return [Array(Imagekit::Models::VideoTransformationAcceptedWebhookEvent, Imagekit::Models::VideoTransformationReadyWebhookEvent, Imagekit::Models::VideoTransformationErrorWebhookEvent)]
+      #   @return [Array(Imagekit::Models::VideoTransformationAcceptedEvent, Imagekit::Models::VideoTransformationReadyEvent, Imagekit::Models::VideoTransformationErrorEvent)]
     end
   end
 end

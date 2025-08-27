@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class VideoTransformationReadyWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class VideoTransformationReadyEvent < Imagekit::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for the event.
       #
@@ -16,13 +16,13 @@ module Imagekit
 
       # @!attribute data
       #
-      #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data]
-      required :data, -> { Imagekit::VideoTransformationReadyWebhookEvent::Data }
+      #   @return [Imagekit::Models::VideoTransformationReadyEvent::Data]
+      required :data, -> { Imagekit::VideoTransformationReadyEvent::Data }
 
       # @!attribute request
       #
-      #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Request]
-      required :request, -> { Imagekit::VideoTransformationReadyWebhookEvent::Request }
+      #   @return [Imagekit::Models::VideoTransformationReadyEvent::Request]
+      required :request, -> { Imagekit::VideoTransformationReadyEvent::Request }
 
       # @!attribute type
       #
@@ -31,39 +31,39 @@ module Imagekit
 
       # @!attribute timings
       #
-      #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Timings, nil]
-      optional :timings, -> { Imagekit::VideoTransformationReadyWebhookEvent::Timings }
+      #   @return [Imagekit::Models::VideoTransformationReadyEvent::Timings, nil]
+      optional :timings, -> { Imagekit::VideoTransformationReadyEvent::Timings }
 
       # @!method initialize(id:, created_at:, data:, request:, timings: nil, type: :"video.transformation.ready")
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time]
       #
-      #   @param data [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data]
+      #   @param data [Imagekit::Models::VideoTransformationReadyEvent::Data]
       #
-      #   @param request [Imagekit::Models::VideoTransformationReadyWebhookEvent::Request]
+      #   @param request [Imagekit::Models::VideoTransformationReadyEvent::Request]
       #
-      #   @param timings [Imagekit::Models::VideoTransformationReadyWebhookEvent::Timings]
+      #   @param timings [Imagekit::Models::VideoTransformationReadyEvent::Timings]
       #
       #   @param type [Symbol, :"video.transformation.ready"]
 
-      # @see Imagekit::Models::VideoTransformationReadyWebhookEvent#data
+      # @see Imagekit::Models::VideoTransformationReadyEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute asset
         #
-        #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Asset]
-        required :asset, -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Asset }
+        #   @return [Imagekit::Models::VideoTransformationReadyEvent::Data::Asset]
+        required :asset, -> { Imagekit::VideoTransformationReadyEvent::Data::Asset }
 
         # @!attribute transformation
         #
-        #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation]
-        required :transformation, -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation }
+        #   @return [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation]
+        required :transformation, -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation }
 
         # @!method initialize(asset:, transformation:)
-        #   @param asset [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Asset]
-        #   @param transformation [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation]
+        #   @param asset [Imagekit::Models::VideoTransformationReadyEvent::Data::Asset]
+        #   @param transformation [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation]
 
-        # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data#asset
+        # @see Imagekit::Models::VideoTransformationReadyEvent::Data#asset
         class Asset < Imagekit::Internal::Type::BaseModel
           # @!attribute url
           #   Source asset URL.
@@ -75,29 +75,29 @@ module Imagekit
           #   @param url [String] Source asset URL.
         end
 
-        # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data#transformation
+        # @see Imagekit::Models::VideoTransformationReadyEvent::Data#transformation
         class Transformation < Imagekit::Internal::Type::BaseModel
           # @!attribute type
           #
-          #   @return [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Type]
-          required :type, enum: -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Type }
+          #   @return [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Type]
+          required :type, enum: -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation::Type }
 
           # @!attribute options
           #
-          #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options, nil]
-          optional :options, -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Options }
+          #   @return [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options, nil]
+          optional :options, -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation::Options }
 
           # @!attribute output
           #
-          #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Output, nil]
-          optional :output, -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Output }
+          #   @return [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Output, nil]
+          optional :output, -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation::Output }
 
           # @!method initialize(type:, options: nil, output: nil)
-          #   @param type [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Type]
-          #   @param options [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options]
-          #   @param output [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Output]
+          #   @param type [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Type]
+          #   @param options [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options]
+          #   @param output [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Output]
 
-          # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation#type
+          # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation#type
           module Type
             extend Imagekit::Internal::Type::Enum
 
@@ -109,13 +109,13 @@ module Imagekit
             #   @return [Array<Symbol>]
           end
 
-          # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation#options
+          # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation#options
           class Options < Imagekit::Internal::Type::BaseModel
             # @!attribute audio_codec
             #
-            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::AudioCodec, nil]
+            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::AudioCodec, nil]
             optional :audio_codec,
-                     enum: -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::AudioCodec }
+                     enum: -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation::Options::AudioCodec }
 
             # @!attribute auto_rotate
             #
@@ -124,10 +124,10 @@ module Imagekit
 
             # @!attribute format_
             #
-            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::Format, nil]
+            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::Format, nil]
             optional :format_,
                      enum: -> {
-                       Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::Format
+                       Imagekit::VideoTransformationReadyEvent::Data::Transformation::Options::Format
                      },
                      api_name: :format
 
@@ -138,9 +138,9 @@ module Imagekit
 
             # @!attribute stream_protocol
             #
-            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::StreamProtocol, nil]
+            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::StreamProtocol, nil]
             optional :stream_protocol,
-                     enum: -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::StreamProtocol }
+                     enum: -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation::Options::StreamProtocol }
 
             # @!attribute variants
             #
@@ -149,20 +149,20 @@ module Imagekit
 
             # @!attribute video_codec
             #
-            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::VideoCodec, nil]
+            #   @return [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::VideoCodec, nil]
             optional :video_codec,
-                     enum: -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::VideoCodec }
+                     enum: -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation::Options::VideoCodec }
 
             # @!method initialize(audio_codec: nil, auto_rotate: nil, format_: nil, quality: nil, stream_protocol: nil, variants: nil, video_codec: nil)
-            #   @param audio_codec [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::AudioCodec]
+            #   @param audio_codec [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::AudioCodec]
             #   @param auto_rotate [Boolean]
-            #   @param format_ [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::Format]
+            #   @param format_ [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::Format]
             #   @param quality [Integer]
-            #   @param stream_protocol [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::StreamProtocol]
+            #   @param stream_protocol [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::StreamProtocol]
             #   @param variants [Array<String>]
-            #   @param video_codec [Symbol, Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options::VideoCodec]
+            #   @param video_codec [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::VideoCodec]
 
-            # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options#audio_codec
+            # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options#audio_codec
             module AudioCodec
               extend Imagekit::Internal::Type::Enum
 
@@ -173,7 +173,7 @@ module Imagekit
               #   @return [Array<Symbol>]
             end
 
-            # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options#format_
+            # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options#format_
             module Format
               extend Imagekit::Internal::Type::Enum
 
@@ -187,7 +187,7 @@ module Imagekit
               #   @return [Array<Symbol>]
             end
 
-            # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options#stream_protocol
+            # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options#stream_protocol
             module StreamProtocol
               extend Imagekit::Internal::Type::Enum
 
@@ -198,7 +198,7 @@ module Imagekit
               #   @return [Array<Symbol>]
             end
 
-            # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Options#video_codec
+            # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options#video_codec
             module VideoCodec
               extend Imagekit::Internal::Type::Enum
 
@@ -210,7 +210,7 @@ module Imagekit
             end
           end
 
-          # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation#output
+          # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation#output
           class Output < Imagekit::Internal::Type::BaseModel
             # @!attribute url
             #
@@ -219,15 +219,15 @@ module Imagekit
 
             # @!attribute video_metadata
             #
-            #   @return [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Output::VideoMetadata, nil]
+            #   @return [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Output::VideoMetadata, nil]
             optional :video_metadata,
-                     -> { Imagekit::VideoTransformationReadyWebhookEvent::Data::Transformation::Output::VideoMetadata }
+                     -> { Imagekit::VideoTransformationReadyEvent::Data::Transformation::Output::VideoMetadata }
 
             # @!method initialize(url:, video_metadata: nil)
             #   @param url [String]
-            #   @param video_metadata [Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Output::VideoMetadata]
+            #   @param video_metadata [Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Output::VideoMetadata]
 
-            # @see Imagekit::Models::VideoTransformationReadyWebhookEvent::Data::Transformation::Output#video_metadata
+            # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Output#video_metadata
             class VideoMetadata < Imagekit::Internal::Type::BaseModel
               # @!attribute bitrate
               #
@@ -259,7 +259,7 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::VideoTransformationReadyWebhookEvent#request
+      # @see Imagekit::Models::VideoTransformationReadyEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute url
         #   URL of the submitted request.
@@ -287,7 +287,7 @@ module Imagekit
         #   @param user_agent [String] User-Agent header of the originating request.
       end
 
-      # @see Imagekit::Models::VideoTransformationReadyWebhookEvent#timings
+      # @see Imagekit::Models::VideoTransformationReadyEvent#timings
       class Timings < Imagekit::Internal::Type::BaseModel
         # @!attribute download_duration
         #   Milliseconds spent downloading the source.
