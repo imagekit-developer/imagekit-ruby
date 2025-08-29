@@ -4,7 +4,7 @@ module Imagekit
       {
         src: String,
         url_endpoint: String,
-        query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter],
+        query_parameters: ::Hash[Symbol, String],
         transformation: ::Array[Imagekit::Transformation],
         transformation_position: Imagekit::Models::transformation_position
       }
@@ -14,11 +14,9 @@ module Imagekit
 
       attr_accessor url_endpoint: String
 
-      attr_reader query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter]?
+      attr_reader query_parameters: ::Hash[Symbol, String]?
 
-      def query_parameters=: (
-        ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter]
-      ) -> ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter]
+      def query_parameters=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
       attr_reader transformation: ::Array[Imagekit::Transformation]?
 
@@ -35,7 +33,7 @@ module Imagekit
       def initialize: (
         src: String,
         url_endpoint: String,
-        ?query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter],
+        ?query_parameters: ::Hash[Symbol, String],
         ?transformation: ::Array[Imagekit::Transformation],
         ?transformation_position: Imagekit::Models::transformation_position
       ) -> void
@@ -43,18 +41,10 @@ module Imagekit
       def to_hash: -> {
         src: String,
         url_endpoint: String,
-        query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter],
+        query_parameters: ::Hash[Symbol, String],
         transformation: ::Array[Imagekit::Transformation],
         transformation_position: Imagekit::Models::transformation_position
       }
-
-      type query_parameter = String | Float
-
-      module QueryParameter
-        extend Imagekit::Internal::Type::Union
-
-        def self?.variants: -> ::Array[Imagekit::Models::SrcOptions::query_parameter]
-      end
     end
   end
 end

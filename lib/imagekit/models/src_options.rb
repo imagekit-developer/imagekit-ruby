@@ -23,10 +23,8 @@ module Imagekit
       #   They can be any query parameters and not necessarily related to ImageKit. This
       #   is especially useful if you want to add a versioning parameter to your URLs.
       #
-      #   @return [Hash{Symbol=>String, Float}, nil]
-      optional :query_parameters,
-               -> { Imagekit::Internal::Type::HashOf[union: Imagekit::SrcOptions::QueryParameter] },
-               api_name: :queryParameters
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :query_parameters, Imagekit::Internal::Type::HashOf[String], api_name: :queryParameters
 
       # @!attribute transformation
       #   An array of objects specifying the transformations to be applied in the URL. If
@@ -56,22 +54,11 @@ module Imagekit
       #
       #   @param url_endpoint [String] Get your urlEndpoint from the [ImageKit dashboard](https://imagekit.io/dashboard
       #
-      #   @param query_parameters [Hash{Symbol=>String, Float}] These are additional query parameters that you want to add to the final URL.
+      #   @param query_parameters [Hash{Symbol=>String}] These are additional query parameters that you want to add to the final URL.
       #
       #   @param transformation [Array<Imagekit::Models::Transformation>] An array of objects specifying the transformations to be applied in the URL. If
       #
       #   @param transformation_position [Symbol, Imagekit::Models::TransformationPosition] By default, the transformation string is added as a query parameter in the URL,
-
-      module QueryParameter
-        extend Imagekit::Internal::Type::Union
-
-        variant String
-
-        variant Float
-
-        # @!method self.variants
-        #   @return [Array(String, Float)]
-      end
     end
   end
 end

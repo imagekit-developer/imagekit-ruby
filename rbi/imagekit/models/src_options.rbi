@@ -22,21 +22,10 @@ module Imagekit
       # These are additional query parameters that you want to add to the final URL.
       # They can be any query parameters and not necessarily related to ImageKit. This
       # is especially useful if you want to add a versioning parameter to your URLs.
-      sig do
-        returns(
-          T.nilable(
-            T::Hash[Symbol, Imagekit::SrcOptions::QueryParameter::Variants]
-          )
-        )
-      end
+      sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :query_parameters
 
-      sig do
-        params(
-          query_parameters:
-            T::Hash[Symbol, Imagekit::SrcOptions::QueryParameter::Variants]
-        ).void
-      end
+      sig { params(query_parameters: T::Hash[Symbol, String]).void }
       attr_writer :query_parameters
 
       # An array of objects specifying the transformations to be applied in the URL. If
@@ -68,8 +57,7 @@ module Imagekit
         params(
           src: String,
           url_endpoint: String,
-          query_parameters:
-            T::Hash[Symbol, Imagekit::SrcOptions::QueryParameter::Variants],
+          query_parameters: T::Hash[Symbol, String],
           transformation: T::Array[Imagekit::Transformation::OrHash],
           transformation_position: Imagekit::TransformationPosition::OrSymbol
         ).returns(T.attached_class)
@@ -102,28 +90,13 @@ module Imagekit
           {
             src: String,
             url_endpoint: String,
-            query_parameters:
-              T::Hash[Symbol, Imagekit::SrcOptions::QueryParameter::Variants],
+            query_parameters: T::Hash[Symbol, String],
             transformation: T::Array[Imagekit::Transformation],
             transformation_position: Imagekit::TransformationPosition::OrSymbol
           }
         )
       end
       def to_hash
-      end
-
-      module QueryParameter
-        extend Imagekit::Internal::Type::Union
-
-        Variants = T.type_alias { T.any(String, Float) }
-
-        sig do
-          override.returns(
-            T::Array[Imagekit::SrcOptions::QueryParameter::Variants]
-          )
-        end
-        def self.variants
-        end
       end
     end
   end
