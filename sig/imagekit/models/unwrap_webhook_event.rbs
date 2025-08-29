@@ -1,9 +1,9 @@
 module Imagekit
   module Models
     type unwrap_webhook_event =
-      Imagekit::VideoTransformationAcceptedEvent
-      | Imagekit::VideoTransformationReadyEvent
-      | Imagekit::VideoTransformationErrorEvent
+      Imagekit::VideoTransformationAcceptedWebhookEvent
+      | Imagekit::VideoTransformationReadyWebhookEvent
+      | Imagekit::VideoTransformationErrorWebhookEvent
 
     module UnwrapWebhookEvent
       extend Imagekit::Internal::Type::Union

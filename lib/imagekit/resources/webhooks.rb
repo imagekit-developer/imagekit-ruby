@@ -5,7 +5,7 @@ module Imagekit
     class Webhooks
       # @param payload [String] The raw webhook payload as a string
       #
-      # @return [Imagekit::Models::VideoTransformationAcceptedEvent, Imagekit::Models::VideoTransformationReadyEvent, Imagekit::Models::VideoTransformationErrorEvent]
+      # @return [Imagekit::Models::VideoTransformationAcceptedWebhookEvent, Imagekit::Models::VideoTransformationReadyWebhookEvent, Imagekit::Models::VideoTransformationErrorWebhookEvent]
       def unsafe_unwrap(payload)
         parsed = JSON.parse(payload, symbolize_names: true)
         Imagekit::Internal::Type::Converter.coerce(Imagekit::Models::UnsafeUnwrapWebhookEvent, parsed)
@@ -13,7 +13,7 @@ module Imagekit
 
       # @param payload [String] The raw webhook payload as a string
       #
-      # @return [Imagekit::Models::VideoTransformationAcceptedEvent, Imagekit::Models::VideoTransformationReadyEvent, Imagekit::Models::VideoTransformationErrorEvent]
+      # @return [Imagekit::Models::VideoTransformationAcceptedWebhookEvent, Imagekit::Models::VideoTransformationReadyWebhookEvent, Imagekit::Models::VideoTransformationErrorWebhookEvent]
       def unwrap(payload)
         parsed = JSON.parse(payload, symbolize_names: true)
         Imagekit::Internal::Type::Converter.coerce(Imagekit::Models::UnwrapWebhookEvent, parsed)

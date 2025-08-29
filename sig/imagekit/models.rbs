@@ -55,11 +55,11 @@ module Imagekit
 
   module UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent
 
-  class VideoTransformationAcceptedEvent = Imagekit::Models::VideoTransformationAcceptedEvent
+  class VideoTransformationAcceptedWebhookEvent = Imagekit::Models::VideoTransformationAcceptedWebhookEvent
 
-  class VideoTransformationErrorEvent = Imagekit::Models::VideoTransformationErrorEvent
+  class VideoTransformationErrorWebhookEvent = Imagekit::Models::VideoTransformationErrorWebhookEvent
 
-  class VideoTransformationReadyEvent = Imagekit::Models::VideoTransformationReadyEvent
+  class VideoTransformationReadyWebhookEvent = Imagekit::Models::VideoTransformationReadyWebhookEvent
 
   class WebhookUnsafeUnwrapParams = Imagekit::Models::WebhookUnsafeUnwrapParams
 

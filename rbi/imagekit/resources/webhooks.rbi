@@ -6,9 +6,9 @@ module Imagekit
       sig do
         params(payload: String).returns(
           T.any(
-            Imagekit::VideoTransformationAcceptedEvent,
-            Imagekit::VideoTransformationReadyEvent,
-            Imagekit::VideoTransformationErrorEvent
+            Imagekit::VideoTransformationAcceptedWebhookEvent,
+            Imagekit::VideoTransformationReadyWebhookEvent,
+            Imagekit::VideoTransformationErrorWebhookEvent
           )
         )
       end
@@ -21,9 +21,9 @@ module Imagekit
       sig do
         params(payload: String).returns(
           T.any(
-            Imagekit::VideoTransformationAcceptedEvent,
-            Imagekit::VideoTransformationReadyEvent,
-            Imagekit::VideoTransformationErrorEvent
+            Imagekit::VideoTransformationAcceptedWebhookEvent,
+            Imagekit::VideoTransformationReadyWebhookEvent,
+            Imagekit::VideoTransformationErrorWebhookEvent
           )
         )
       end

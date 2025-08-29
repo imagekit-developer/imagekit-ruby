@@ -2,11 +2,11 @@
 
 module Imagekit
   module Models
-    class VideoTransformationAcceptedEvent < Imagekit::Internal::Type::BaseModel
+    class VideoTransformationErrorWebhookEvent < Imagekit::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Imagekit::VideoTransformationAcceptedEvent,
+            Imagekit::VideoTransformationErrorWebhookEvent,
             Imagekit::Internal::AnyHash
           )
         end
@@ -18,22 +18,23 @@ module Imagekit
       sig { returns(Time) }
       attr_accessor :created_at
 
-      sig { returns(Imagekit::VideoTransformationAcceptedEvent::Data) }
+      sig { returns(Imagekit::VideoTransformationErrorWebhookEvent::Data) }
       attr_reader :data
 
       sig do
         params(
-          data: Imagekit::VideoTransformationAcceptedEvent::Data::OrHash
+          data: Imagekit::VideoTransformationErrorWebhookEvent::Data::OrHash
         ).void
       end
       attr_writer :data
 
-      sig { returns(Imagekit::VideoTransformationAcceptedEvent::Request) }
+      sig { returns(Imagekit::VideoTransformationErrorWebhookEvent::Request) }
       attr_reader :request
 
       sig do
         params(
-          request: Imagekit::VideoTransformationAcceptedEvent::Request::OrHash
+          request:
+            Imagekit::VideoTransformationErrorWebhookEvent::Request::OrHash
         ).void
       end
       attr_writer :request
@@ -45,8 +46,9 @@ module Imagekit
         params(
           id: String,
           created_at: Time,
-          data: Imagekit::VideoTransformationAcceptedEvent::Data::OrHash,
-          request: Imagekit::VideoTransformationAcceptedEvent::Request::OrHash,
+          data: Imagekit::VideoTransformationErrorWebhookEvent::Data::OrHash,
+          request:
+            Imagekit::VideoTransformationErrorWebhookEvent::Request::OrHash,
           type: Symbol
         ).returns(T.attached_class)
       end
@@ -56,7 +58,7 @@ module Imagekit
         created_at:,
         data:,
         request:,
-        type: :"video.transformation.accepted"
+        type: :"video.transformation.error"
       )
       end
 
@@ -65,8 +67,8 @@ module Imagekit
           {
             id: String,
             created_at: Time,
-            data: Imagekit::VideoTransformationAcceptedEvent::Data,
-            request: Imagekit::VideoTransformationAcceptedEvent::Request,
+            data: Imagekit::VideoTransformationErrorWebhookEvent::Data,
+            request: Imagekit::VideoTransformationErrorWebhookEvent::Request,
             type: Symbol
           }
         )
@@ -78,25 +80,27 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::VideoTransformationAcceptedEvent::Data,
+              Imagekit::VideoTransformationErrorWebhookEvent::Data,
               Imagekit::Internal::AnyHash
             )
           end
 
-        sig { returns(Imagekit::VideoTransformationAcceptedEvent::Data::Asset) }
+        sig do
+          returns(Imagekit::VideoTransformationErrorWebhookEvent::Data::Asset)
+        end
         attr_reader :asset
 
         sig do
           params(
             asset:
-              Imagekit::VideoTransformationAcceptedEvent::Data::Asset::OrHash
+              Imagekit::VideoTransformationErrorWebhookEvent::Data::Asset::OrHash
           ).void
         end
         attr_writer :asset
 
         sig do
           returns(
-            Imagekit::VideoTransformationAcceptedEvent::Data::Transformation
+            Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation
           )
         end
         attr_reader :transformation
@@ -104,7 +108,7 @@ module Imagekit
         sig do
           params(
             transformation:
-              Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::OrHash
+              Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::OrHash
           ).void
         end
         attr_writer :transformation
@@ -112,9 +116,9 @@ module Imagekit
         sig do
           params(
             asset:
-              Imagekit::VideoTransformationAcceptedEvent::Data::Asset::OrHash,
+              Imagekit::VideoTransformationErrorWebhookEvent::Data::Asset::OrHash,
             transformation:
-              Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::OrHash
+              Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::OrHash
           ).returns(T.attached_class)
         end
         def self.new(asset:, transformation:)
@@ -123,9 +127,10 @@ module Imagekit
         sig do
           override.returns(
             {
-              asset: Imagekit::VideoTransformationAcceptedEvent::Data::Asset,
+              asset:
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Asset,
               transformation:
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation
             }
           )
         end
@@ -136,7 +141,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::VideoTransformationAcceptedEvent::Data::Asset,
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Asset,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -161,14 +166,14 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation,
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation,
                 Imagekit::Internal::AnyHash
               )
             end
 
           sig do
             returns(
-              Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type::TaggedSymbol
+              Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type::TaggedSymbol
             )
           end
           attr_accessor :type
@@ -176,7 +181,24 @@ module Imagekit
           sig do
             returns(
               T.nilable(
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error
+              )
+            )
+          end
+          attr_reader :error
+
+          sig do
+            params(
+              error:
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::OrHash
+            ).void
+          end
+          attr_writer :error
+
+          sig do
+            returns(
+              T.nilable(
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options
               )
             )
           end
@@ -185,7 +207,7 @@ module Imagekit
           sig do
             params(
               options:
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::OrHash
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::OrHash
             ).void
           end
           attr_writer :options
@@ -193,21 +215,25 @@ module Imagekit
           sig do
             params(
               type:
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type::OrSymbol,
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type::OrSymbol,
+              error:
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::OrHash,
               options:
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::OrHash
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::OrHash
             ).returns(T.attached_class)
           end
-          def self.new(type:, options: nil)
+          def self.new(type:, error: nil, options: nil)
           end
 
           sig do
             override.returns(
               {
                 type:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type::TaggedSymbol,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type::TaggedSymbol,
+                error:
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error,
                 options:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options
               }
             )
           end
@@ -221,7 +247,7 @@ module Imagekit
               T.type_alias do
                 T.all(
                   Symbol,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -229,23 +255,23 @@ module Imagekit
             VIDEO_TRANSFORMATION =
               T.let(
                 :"video-transformation",
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type::TaggedSymbol
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type::TaggedSymbol
               )
             GIF_TO_VIDEO =
               T.let(
                 :"gif-to-video",
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type::TaggedSymbol
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type::TaggedSymbol
               )
             VIDEO_THUMBNAIL =
               T.let(
                 :"video-thumbnail",
-                Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type::TaggedSymbol
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Type::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Type::TaggedSymbol
                 ]
               )
             end
@@ -253,11 +279,87 @@ module Imagekit
             end
           end
 
+          class Error < Imagekit::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error,
+                  Imagekit::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason::TaggedSymbol
+              )
+            end
+            attr_accessor :reason
+
+            sig do
+              params(
+                reason:
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(reason:)
+            end
+
+            sig do
+              override.returns(
+                {
+                  reason:
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module Reason
+              extend Imagekit::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              ENCODING_FAILED =
+                T.let(
+                  :encoding_failed,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason::TaggedSymbol
+                )
+              DOWNLOAD_FAILED =
+                T.let(
+                  :download_failed,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason::TaggedSymbol
+                )
+              INTERNAL_SERVER_ERROR =
+                T.let(
+                  :internal_server_error,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Error::Reason::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           class Options < Imagekit::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -265,7 +367,7 @@ module Imagekit
             sig do
               returns(
                 T.nilable(
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
                 )
               )
             end
@@ -274,7 +376,7 @@ module Imagekit
             sig do
               params(
                 audio_codec:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec::OrSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec::OrSymbol
               ).void
             end
             attr_writer :audio_codec
@@ -288,7 +390,7 @@ module Imagekit
             sig do
               returns(
                 T.nilable(
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol
                 )
               )
             end
@@ -297,7 +399,7 @@ module Imagekit
             sig do
               params(
                 format_:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::OrSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::OrSymbol
               ).void
             end
             attr_writer :format_
@@ -311,7 +413,7 @@ module Imagekit
             sig do
               returns(
                 T.nilable(
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
                 )
               )
             end
@@ -320,7 +422,7 @@ module Imagekit
             sig do
               params(
                 stream_protocol:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol::OrSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol::OrSymbol
               ).void
             end
             attr_writer :stream_protocol
@@ -334,7 +436,7 @@ module Imagekit
             sig do
               returns(
                 T.nilable(
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
                 )
               )
             end
@@ -343,7 +445,7 @@ module Imagekit
             sig do
               params(
                 video_codec:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec::OrSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec::OrSymbol
               ).void
             end
             attr_writer :video_codec
@@ -351,16 +453,16 @@ module Imagekit
             sig do
               params(
                 audio_codec:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec::OrSymbol,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec::OrSymbol,
                 auto_rotate: T::Boolean,
                 format_:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::OrSymbol,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::OrSymbol,
                 quality: Integer,
                 stream_protocol:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol::OrSymbol,
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol::OrSymbol,
                 variants: T::Array[String],
                 video_codec:
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec::OrSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec::OrSymbol
               ).returns(T.attached_class)
             end
             def self.new(
@@ -378,16 +480,16 @@ module Imagekit
               override.returns(
                 {
                   audio_codec:
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol,
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol,
                   auto_rotate: T::Boolean,
                   format_:
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol,
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol,
                   quality: Integer,
                   stream_protocol:
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol,
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol,
                   variants: T::Array[String],
                   video_codec:
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
                 }
               )
             end
@@ -401,7 +503,7 @@ module Imagekit
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -409,18 +511,18 @@ module Imagekit
               AAC =
                 T.let(
                   :aac,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
                 )
               OPUS =
                 T.let(
                   :opus,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::AudioCodec::TaggedSymbol
                   ]
                 )
               end
@@ -435,7 +537,7 @@ module Imagekit
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -443,33 +545,33 @@ module Imagekit
               MP4 =
                 T.let(
                   :mp4,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol
                 )
               WEBM =
                 T.let(
                   :webm,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol
                 )
               JPG =
                 T.let(
                   :jpg,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol
                 )
               PNG =
                 T.let(
                   :png,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol
                 )
               WEBP =
                 T.let(
                   :webp,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::Format::TaggedSymbol
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::Format::TaggedSymbol
                   ]
                 )
               end
@@ -484,7 +586,7 @@ module Imagekit
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -492,18 +594,18 @@ module Imagekit
               HLS =
                 T.let(
                   :HLS,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
                 )
               DASH =
                 T.let(
                   :DASH,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::StreamProtocol::TaggedSymbol
                   ]
                 )
               end
@@ -518,7 +620,7 @@ module Imagekit
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -526,18 +628,18 @@ module Imagekit
               H264 =
                 T.let(
                   :h264,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
                 )
               VP9 =
                 T.let(
                   :vp9,
-                  Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
+                  Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Imagekit::VideoTransformationAcceptedEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
+                    Imagekit::VideoTransformationErrorWebhookEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
                   ]
                 )
               end
@@ -552,7 +654,7 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::VideoTransformationAcceptedEvent::Request,
+              Imagekit::VideoTransformationErrorWebhookEvent::Request,
               Imagekit::Internal::AnyHash
             )
           end
