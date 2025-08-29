@@ -8,9 +8,9 @@ module Imagekit
       Variants =
         T.type_alias do
           T.any(
-            Imagekit::VideoTransformationAcceptedWebhookEvent,
-            Imagekit::VideoTransformationReadyWebhookEvent,
-            Imagekit::VideoTransformationErrorWebhookEvent
+            Imagekit::VideoTransformationAcceptedEvent,
+            Imagekit::VideoTransformationReadyEvent,
+            Imagekit::VideoTransformationErrorEvent
           )
         end
 
