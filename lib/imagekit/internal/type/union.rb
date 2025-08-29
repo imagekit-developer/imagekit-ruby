@@ -6,28 +6,16 @@ module Imagekit
       # @api private
       #
       # @example
-      #   # `origin_request` is a `Imagekit::Accounts::OriginRequest`
-      #   case origin_request
-      #   when Imagekit::Accounts::OriginRequest::S3
-      #     puts(origin_request.access_key)
-      #   when Imagekit::Accounts::OriginRequest::S3Compatible
-      #     puts(origin_request.bucket)
-      #   when Imagekit::Accounts::OriginRequest::CloudinaryBackup
-      #     puts(origin_request.name)
+      #   # `overlay` is a `Imagekit::Overlay`
+      #   case overlay
+      #   when Imagekit::TextOverlay
+      #     # ...
+      #   when Imagekit::ImageOverlay
+      #     # ...
+      #   when Imagekit::VideoOverlay
+      #     # ...
       #   else
-      #     puts(origin_request)
-      #   end
-      #
-      # @example
-      #   case origin_request
-      #   in {type: :S3, access_key: access_key, bucket: bucket, name: name}
-      #     puts(access_key)
-      #   in {type: :S3_COMPATIBLE, access_key: access_key, bucket: bucket, endpoint: endpoint}
-      #     puts(bucket)
-      #   in {type: :CLOUDINARY_BACKUP, access_key: access_key, bucket: bucket, name: name}
-      #     puts(name)
-      #   else
-      #     puts(origin_request)
+      #     puts(overlay)
       #   end
       module Union
         include Imagekit::Internal::Type::Converter

@@ -1,0 +1,60 @@
+module Imagekit
+  module Models
+    type src_options =
+      {
+        src: String,
+        url_endpoint: String,
+        query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter],
+        transformation: ::Array[Imagekit::Transformation],
+        transformation_position: Imagekit::Models::transformation_position
+      }
+
+    class SrcOptions < Imagekit::Internal::Type::BaseModel
+      attr_accessor src: String
+
+      attr_accessor url_endpoint: String
+
+      attr_reader query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter]?
+
+      def query_parameters=: (
+        ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter]
+      ) -> ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter]
+
+      attr_reader transformation: ::Array[Imagekit::Transformation]?
+
+      def transformation=: (
+        ::Array[Imagekit::Transformation]
+      ) -> ::Array[Imagekit::Transformation]
+
+      attr_reader transformation_position: Imagekit::Models::transformation_position?
+
+      def transformation_position=: (
+        Imagekit::Models::transformation_position
+      ) -> Imagekit::Models::transformation_position
+
+      def initialize: (
+        src: String,
+        url_endpoint: String,
+        ?query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter],
+        ?transformation: ::Array[Imagekit::Transformation],
+        ?transformation_position: Imagekit::Models::transformation_position
+      ) -> void
+
+      def to_hash: -> {
+        src: String,
+        url_endpoint: String,
+        query_parameters: ::Hash[Symbol, Imagekit::Models::SrcOptions::query_parameter],
+        transformation: ::Array[Imagekit::Transformation],
+        transformation_position: Imagekit::Models::transformation_position
+      }
+
+      type query_parameter = String | Float
+
+      module QueryParameter
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::SrcOptions::query_parameter]
+      end
+    end
+  end
+end

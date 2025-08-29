@@ -1,0 +1,85 @@
+module Imagekit
+  module Models
+    type overlay_position =
+      {
+        focus: Imagekit::Models::OverlayPosition::focus,
+        x: Imagekit::Models::OverlayPosition::x,
+        y_: Imagekit::Models::OverlayPosition::y_
+      }
+
+    class OverlayPosition < Imagekit::Internal::Type::BaseModel
+      attr_reader focus: Imagekit::Models::OverlayPosition::focus?
+
+      def focus=: (
+        Imagekit::Models::OverlayPosition::focus
+      ) -> Imagekit::Models::OverlayPosition::focus
+
+      attr_reader x: Imagekit::Models::OverlayPosition::x?
+
+      def x=: (
+        Imagekit::Models::OverlayPosition::x
+      ) -> Imagekit::Models::OverlayPosition::x
+
+      attr_reader y_: Imagekit::Models::OverlayPosition::y_?
+
+      def y_=: (
+        Imagekit::Models::OverlayPosition::y_
+      ) -> Imagekit::Models::OverlayPosition::y_
+
+      def initialize: (
+        ?focus: Imagekit::Models::OverlayPosition::focus,
+        ?x: Imagekit::Models::OverlayPosition::x,
+        ?y_: Imagekit::Models::OverlayPosition::y_
+      ) -> void
+
+      def to_hash: -> {
+        focus: Imagekit::Models::OverlayPosition::focus,
+        x: Imagekit::Models::OverlayPosition::x,
+        y_: Imagekit::Models::OverlayPosition::y_
+      }
+
+      type focus =
+        :center
+        | :top
+        | :left
+        | :bottom
+        | :right
+        | :top_left
+        | :top_right
+        | :bottom_left
+        | :bottom_right
+
+      module Focus
+        extend Imagekit::Internal::Type::Enum
+
+        CENTER: :center
+        TOP: :top
+        LEFT: :left
+        BOTTOM: :bottom
+        RIGHT: :right
+        TOP_LEFT: :top_left
+        TOP_RIGHT: :top_right
+        BOTTOM_LEFT: :bottom_left
+        BOTTOM_RIGHT: :bottom_right
+
+        def self?.values: -> ::Array[Imagekit::Models::OverlayPosition::focus]
+      end
+
+      type x = Float | String
+
+      module X
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::OverlayPosition::x]
+      end
+
+      type y_ = Float | String
+
+      module Y
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::OverlayPosition::y_]
+      end
+    end
+  end
+end

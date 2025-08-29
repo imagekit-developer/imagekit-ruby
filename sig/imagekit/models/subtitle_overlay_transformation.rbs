@@ -1,0 +1,88 @@
+module Imagekit
+  module Models
+    type subtitle_overlay_transformation =
+      {
+        background: String,
+        color: String,
+        font_family: String,
+        font_outline: String,
+        font_shadow: String,
+        font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size,
+        typography: Imagekit::Models::SubtitleOverlayTransformation::typography
+      }
+
+    class SubtitleOverlayTransformation < Imagekit::Internal::Type::BaseModel
+      attr_reader background: String?
+
+      def background=: (String) -> String
+
+      attr_reader color: String?
+
+      def color=: (String) -> String
+
+      attr_reader font_family: String?
+
+      def font_family=: (String) -> String
+
+      attr_reader font_outline: String?
+
+      def font_outline=: (String) -> String
+
+      attr_reader font_shadow: String?
+
+      def font_shadow=: (String) -> String
+
+      attr_reader font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size?
+
+      def font_size=: (
+        Imagekit::Models::SubtitleOverlayTransformation::font_size
+      ) -> Imagekit::Models::SubtitleOverlayTransformation::font_size
+
+      attr_reader typography: Imagekit::Models::SubtitleOverlayTransformation::typography?
+
+      def typography=: (
+        Imagekit::Models::SubtitleOverlayTransformation::typography
+      ) -> Imagekit::Models::SubtitleOverlayTransformation::typography
+
+      def initialize: (
+        ?background: String,
+        ?color: String,
+        ?font_family: String,
+        ?font_outline: String,
+        ?font_shadow: String,
+        ?font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size,
+        ?typography: Imagekit::Models::SubtitleOverlayTransformation::typography
+      ) -> void
+
+      def to_hash: -> {
+        background: String,
+        color: String,
+        font_family: String,
+        font_outline: String,
+        font_shadow: String,
+        font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size,
+        typography: Imagekit::Models::SubtitleOverlayTransformation::typography
+      }
+
+      type font_size = Float | String
+
+      module FontSize
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::SubtitleOverlayTransformation::font_size]
+      end
+
+      type typography = :b | :i | :b_i
+
+      module Typography
+        extend Imagekit::Internal::Type::Enum
+
+        B: :b
+        I: :i
+        B_I: :b_i
+
+        def self?.values: -> ::Array[Imagekit::Models::SubtitleOverlayTransformation::typography]
+      end
+    end
+  end
+end

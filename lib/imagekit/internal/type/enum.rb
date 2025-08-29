@@ -15,6 +15,31 @@ module Imagekit
       #
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
+      #
+      # @example
+      #   # `streaming_resolution` is a `Imagekit::StreamingResolution`
+      #   case streaming_resolution
+      #   when Imagekit::StreamingResolution::STREAMING_RESOLUTION_240
+      #     # ...
+      #   when Imagekit::StreamingResolution::STREAMING_RESOLUTION_360
+      #     # ...
+      #   when Imagekit::StreamingResolution::STREAMING_RESOLUTION_480
+      #     # ...
+      #   else
+      #     puts(streaming_resolution)
+      #   end
+      #
+      # @example
+      #   case streaming_resolution
+      #   in :"240"
+      #     # ...
+      #   in :"360"
+      #     # ...
+      #   in :"480"
+      #     # ...
+      #   else
+      #     puts(streaming_resolution)
+      #   end
       module Enum
         include Imagekit::Internal::Type::Converter
         include Imagekit::Internal::Util::SorbetRuntimeSupport

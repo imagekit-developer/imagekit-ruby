@@ -1,0 +1,211 @@
+module Imagekit
+  module Models
+    type text_overlay_transformation =
+      {
+        alpha: Float,
+        background: String,
+        flip: Imagekit::Models::TextOverlayTransformation::flip,
+        font_color: String,
+        font_family: String,
+        font_size: Imagekit::Models::TextOverlayTransformation::font_size,
+        inner_alignment: Imagekit::Models::TextOverlayTransformation::inner_alignment,
+        line_height: Imagekit::Models::TextOverlayTransformation::line_height,
+        padding: Imagekit::Models::TextOverlayTransformation::padding,
+        radius: Imagekit::Models::TextOverlayTransformation::radius,
+        rotation: Imagekit::Models::TextOverlayTransformation::rotation,
+        typography: Imagekit::Models::TextOverlayTransformation::typography,
+        width: Imagekit::Models::TextOverlayTransformation::width
+      }
+
+    class TextOverlayTransformation < Imagekit::Internal::Type::BaseModel
+      attr_reader alpha: Float?
+
+      def alpha=: (Float) -> Float
+
+      attr_reader background: String?
+
+      def background=: (String) -> String
+
+      attr_reader flip: Imagekit::Models::TextOverlayTransformation::flip?
+
+      def flip=: (
+        Imagekit::Models::TextOverlayTransformation::flip
+      ) -> Imagekit::Models::TextOverlayTransformation::flip
+
+      attr_reader font_color: String?
+
+      def font_color=: (String) -> String
+
+      attr_reader font_family: String?
+
+      def font_family=: (String) -> String
+
+      attr_reader font_size: Imagekit::Models::TextOverlayTransformation::font_size?
+
+      def font_size=: (
+        Imagekit::Models::TextOverlayTransformation::font_size
+      ) -> Imagekit::Models::TextOverlayTransformation::font_size
+
+      attr_reader inner_alignment: Imagekit::Models::TextOverlayTransformation::inner_alignment?
+
+      def inner_alignment=: (
+        Imagekit::Models::TextOverlayTransformation::inner_alignment
+      ) -> Imagekit::Models::TextOverlayTransformation::inner_alignment
+
+      attr_reader line_height: Imagekit::Models::TextOverlayTransformation::line_height?
+
+      def line_height=: (
+        Imagekit::Models::TextOverlayTransformation::line_height
+      ) -> Imagekit::Models::TextOverlayTransformation::line_height
+
+      attr_reader padding: Imagekit::Models::TextOverlayTransformation::padding?
+
+      def padding=: (
+        Imagekit::Models::TextOverlayTransformation::padding
+      ) -> Imagekit::Models::TextOverlayTransformation::padding
+
+      attr_reader radius: Imagekit::Models::TextOverlayTransformation::radius?
+
+      def radius=: (
+        Imagekit::Models::TextOverlayTransformation::radius
+      ) -> Imagekit::Models::TextOverlayTransformation::radius
+
+      attr_reader rotation: Imagekit::Models::TextOverlayTransformation::rotation?
+
+      def rotation=: (
+        Imagekit::Models::TextOverlayTransformation::rotation
+      ) -> Imagekit::Models::TextOverlayTransformation::rotation
+
+      attr_reader typography: Imagekit::Models::TextOverlayTransformation::typography?
+
+      def typography=: (
+        Imagekit::Models::TextOverlayTransformation::typography
+      ) -> Imagekit::Models::TextOverlayTransformation::typography
+
+      attr_reader width: Imagekit::Models::TextOverlayTransformation::width?
+
+      def width=: (
+        Imagekit::Models::TextOverlayTransformation::width
+      ) -> Imagekit::Models::TextOverlayTransformation::width
+
+      def initialize: (
+        ?alpha: Float,
+        ?background: String,
+        ?flip: Imagekit::Models::TextOverlayTransformation::flip,
+        ?font_color: String,
+        ?font_family: String,
+        ?font_size: Imagekit::Models::TextOverlayTransformation::font_size,
+        ?inner_alignment: Imagekit::Models::TextOverlayTransformation::inner_alignment,
+        ?line_height: Imagekit::Models::TextOverlayTransformation::line_height,
+        ?padding: Imagekit::Models::TextOverlayTransformation::padding,
+        ?radius: Imagekit::Models::TextOverlayTransformation::radius,
+        ?rotation: Imagekit::Models::TextOverlayTransformation::rotation,
+        ?typography: Imagekit::Models::TextOverlayTransformation::typography,
+        ?width: Imagekit::Models::TextOverlayTransformation::width
+      ) -> void
+
+      def to_hash: -> {
+        alpha: Float,
+        background: String,
+        flip: Imagekit::Models::TextOverlayTransformation::flip,
+        font_color: String,
+        font_family: String,
+        font_size: Imagekit::Models::TextOverlayTransformation::font_size,
+        inner_alignment: Imagekit::Models::TextOverlayTransformation::inner_alignment,
+        line_height: Imagekit::Models::TextOverlayTransformation::line_height,
+        padding: Imagekit::Models::TextOverlayTransformation::padding,
+        radius: Imagekit::Models::TextOverlayTransformation::radius,
+        rotation: Imagekit::Models::TextOverlayTransformation::rotation,
+        typography: Imagekit::Models::TextOverlayTransformation::typography,
+        width: Imagekit::Models::TextOverlayTransformation::width
+      }
+
+      type flip = :h | :v | :h_v | :v_h
+
+      module Flip
+        extend Imagekit::Internal::Type::Enum
+
+        H: :h
+        V: :v
+        H_V: :h_v
+        V_H: :v_h
+
+        def self?.values: -> ::Array[Imagekit::Models::TextOverlayTransformation::flip]
+      end
+
+      type font_size = Float | String
+
+      module FontSize
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::font_size]
+      end
+
+      type inner_alignment = :left | :right | :center
+
+      module InnerAlignment
+        extend Imagekit::Internal::Type::Enum
+
+        LEFT: :left
+        RIGHT: :right
+        CENTER: :center
+
+        def self?.values: -> ::Array[Imagekit::Models::TextOverlayTransformation::inner_alignment]
+      end
+
+      type line_height = Float | String
+
+      module LineHeight
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::line_height]
+      end
+
+      type padding = Float | String
+
+      module Padding
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::padding]
+      end
+
+      type radius = Float | :max
+
+      module Radius
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::radius]
+
+        MAX: :max
+      end
+
+      type rotation = Float | String
+
+      module Rotation
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::rotation]
+      end
+
+      type typography = :b | :i | :b_i
+
+      module Typography
+        extend Imagekit::Internal::Type::Enum
+
+        B: :b
+        I: :i
+        B_I: :b_i
+
+        def self?.values: -> ::Array[Imagekit::Models::TextOverlayTransformation::typography]
+      end
+
+      type width = Float | String
+
+      module Width
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::width]
+      end
+    end
+  end
+end

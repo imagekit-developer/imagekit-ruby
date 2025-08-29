@@ -438,11 +438,10 @@ module Imagekit
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `custom_metadata_field` is a `Imagekit::CustomMetadataField`
-        #   custom_metadata_field => {
-        #     id: id,
-        #     label: label,
-        #     name: name
+        #   # `base_overlay` is a `Imagekit::BaseOverlay`
+        #   base_overlay => {
+        #     position: position,
+        #     timing: timing
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

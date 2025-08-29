@@ -1,0 +1,26 @@
+module Imagekit
+  module Models
+    type base_overlay =
+      { position: Imagekit::OverlayPosition, timing: Imagekit::OverlayTiming }
+
+    class BaseOverlay < Imagekit::Internal::Type::BaseModel
+      attr_reader position: Imagekit::OverlayPosition?
+
+      def position=: (Imagekit::OverlayPosition) -> Imagekit::OverlayPosition
+
+      attr_reader timing: Imagekit::OverlayTiming?
+
+      def timing=: (Imagekit::OverlayTiming) -> Imagekit::OverlayTiming
+
+      def initialize: (
+        ?position: Imagekit::OverlayPosition,
+        ?timing: Imagekit::OverlayTiming
+      ) -> void
+
+      def to_hash: -> {
+        position: Imagekit::OverlayPosition,
+        timing: Imagekit::OverlayTiming
+      }
+    end
+  end
+end

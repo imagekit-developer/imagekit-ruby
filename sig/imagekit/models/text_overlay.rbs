@@ -1,0 +1,71 @@
+module Imagekit
+  module Models
+    type text_overlay =
+      {
+        text: String,
+        type: Imagekit::Models::TextOverlay::type_,
+        encoding: Imagekit::Models::TextOverlay::encoding,
+        transformation: ::Array[Imagekit::TextOverlayTransformation]
+      }
+
+    class TextOverlay < Imagekit::Models::BaseOverlay
+      def text: -> String
+
+      def text=: (String _) -> String
+
+      def `type`: -> Imagekit::Models::TextOverlay::type_
+
+      def type=: (
+        Imagekit::Models::TextOverlay::type_ _
+      ) -> Imagekit::Models::TextOverlay::type_
+
+      def encoding: -> Imagekit::Models::TextOverlay::encoding?
+
+      def encoding=: (
+        Imagekit::Models::TextOverlay::encoding _
+      ) -> Imagekit::Models::TextOverlay::encoding
+
+      def transformation: -> ::Array[Imagekit::TextOverlayTransformation]?
+
+      def transformation=: (
+        ::Array[Imagekit::TextOverlayTransformation] _
+      ) -> ::Array[Imagekit::TextOverlayTransformation]
+
+      def initialize: (
+        text: String,
+        type: Imagekit::Models::TextOverlay::type_,
+        ?encoding: Imagekit::Models::TextOverlay::encoding,
+        ?transformation: ::Array[Imagekit::TextOverlayTransformation]
+      ) -> void
+
+      def to_hash: -> {
+        text: String,
+        type: Imagekit::Models::TextOverlay::type_,
+        encoding: Imagekit::Models::TextOverlay::encoding,
+        transformation: ::Array[Imagekit::TextOverlayTransformation]
+      }
+
+      type type_ = :text
+
+      module Type
+        extend Imagekit::Internal::Type::Enum
+
+        TEXT: :text
+
+        def self?.values: -> ::Array[Imagekit::Models::TextOverlay::type_]
+      end
+
+      type encoding = :auto | :plain | :base64
+
+      module Encoding
+        extend Imagekit::Internal::Type::Enum
+
+        AUTO: :auto
+        PLAIN: :plain
+        BASE64: :base64
+
+        def self?.values: -> ::Array[Imagekit::Models::TextOverlay::encoding]
+      end
+    end
+  end
+end

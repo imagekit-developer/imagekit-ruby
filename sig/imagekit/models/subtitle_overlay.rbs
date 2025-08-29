@@ -1,0 +1,71 @@
+module Imagekit
+  module Models
+    type subtitle_overlay =
+      {
+        input: String,
+        type: Imagekit::Models::SubtitleOverlay::type_,
+        encoding: Imagekit::Models::SubtitleOverlay::encoding,
+        transformation: ::Array[Imagekit::SubtitleOverlayTransformation]
+      }
+
+    class SubtitleOverlay < Imagekit::Models::BaseOverlay
+      def input: -> String
+
+      def input=: (String _) -> String
+
+      def `type`: -> Imagekit::Models::SubtitleOverlay::type_
+
+      def type=: (
+        Imagekit::Models::SubtitleOverlay::type_ _
+      ) -> Imagekit::Models::SubtitleOverlay::type_
+
+      def encoding: -> Imagekit::Models::SubtitleOverlay::encoding?
+
+      def encoding=: (
+        Imagekit::Models::SubtitleOverlay::encoding _
+      ) -> Imagekit::Models::SubtitleOverlay::encoding
+
+      def transformation: -> ::Array[Imagekit::SubtitleOverlayTransformation]?
+
+      def transformation=: (
+        ::Array[Imagekit::SubtitleOverlayTransformation] _
+      ) -> ::Array[Imagekit::SubtitleOverlayTransformation]
+
+      def initialize: (
+        input: String,
+        type: Imagekit::Models::SubtitleOverlay::type_,
+        ?encoding: Imagekit::Models::SubtitleOverlay::encoding,
+        ?transformation: ::Array[Imagekit::SubtitleOverlayTransformation]
+      ) -> void
+
+      def to_hash: -> {
+        input: String,
+        type: Imagekit::Models::SubtitleOverlay::type_,
+        encoding: Imagekit::Models::SubtitleOverlay::encoding,
+        transformation: ::Array[Imagekit::SubtitleOverlayTransformation]
+      }
+
+      type type_ = :subtitle
+
+      module Type
+        extend Imagekit::Internal::Type::Enum
+
+        SUBTITLE: :subtitle
+
+        def self?.values: -> ::Array[Imagekit::Models::SubtitleOverlay::type_]
+      end
+
+      type encoding = :auto | :plain | :base64
+
+      module Encoding
+        extend Imagekit::Internal::Type::Enum
+
+        AUTO: :auto
+        PLAIN: :plain
+        BASE64: :base64
+
+        def self?.values: -> ::Array[Imagekit::Models::SubtitleOverlay::encoding]
+      end
+    end
+  end
+end

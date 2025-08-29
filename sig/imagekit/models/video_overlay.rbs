@@ -1,0 +1,71 @@
+module Imagekit
+  module Models
+    type video_overlay =
+      {
+        input: String,
+        type: Imagekit::Models::VideoOverlay::type_,
+        encoding: Imagekit::Models::VideoOverlay::encoding,
+        transformation: ::Array[Imagekit::Transformation]
+      }
+
+    class VideoOverlay < Imagekit::Models::BaseOverlay
+      def input: -> String
+
+      def input=: (String _) -> String
+
+      def `type`: -> Imagekit::Models::VideoOverlay::type_
+
+      def type=: (
+        Imagekit::Models::VideoOverlay::type_ _
+      ) -> Imagekit::Models::VideoOverlay::type_
+
+      def encoding: -> Imagekit::Models::VideoOverlay::encoding?
+
+      def encoding=: (
+        Imagekit::Models::VideoOverlay::encoding _
+      ) -> Imagekit::Models::VideoOverlay::encoding
+
+      def transformation: -> ::Array[Imagekit::Transformation]?
+
+      def transformation=: (
+        ::Array[Imagekit::Transformation] _
+      ) -> ::Array[Imagekit::Transformation]
+
+      def initialize: (
+        input: String,
+        type: Imagekit::Models::VideoOverlay::type_,
+        ?encoding: Imagekit::Models::VideoOverlay::encoding,
+        ?transformation: ::Array[Imagekit::Transformation]
+      ) -> void
+
+      def to_hash: -> {
+        input: String,
+        type: Imagekit::Models::VideoOverlay::type_,
+        encoding: Imagekit::Models::VideoOverlay::encoding,
+        transformation: ::Array[Imagekit::Transformation]
+      }
+
+      type type_ = :video
+
+      module Type
+        extend Imagekit::Internal::Type::Enum
+
+        VIDEO: :video
+
+        def self?.values: -> ::Array[Imagekit::Models::VideoOverlay::type_]
+      end
+
+      type encoding = :auto | :plain | :base64
+
+      module Encoding
+        extend Imagekit::Internal::Type::Enum
+
+        AUTO: :auto
+        PLAIN: :plain
+        BASE64: :base64
+
+        def self?.values: -> ::Array[Imagekit::Models::VideoOverlay::encoding]
+      end
+    end
+  end
+end

@@ -1,0 +1,66 @@
+module Imagekit
+  module Models
+    type overlay_timing =
+      {
+        duration: Imagekit::Models::OverlayTiming::duration,
+        end_: Imagekit::Models::OverlayTiming::end_,
+        start: Imagekit::Models::OverlayTiming::start
+      }
+
+    class OverlayTiming < Imagekit::Internal::Type::BaseModel
+      attr_reader duration: Imagekit::Models::OverlayTiming::duration?
+
+      def duration=: (
+        Imagekit::Models::OverlayTiming::duration
+      ) -> Imagekit::Models::OverlayTiming::duration
+
+      attr_reader end_: Imagekit::Models::OverlayTiming::end_?
+
+      def end_=: (
+        Imagekit::Models::OverlayTiming::end_
+      ) -> Imagekit::Models::OverlayTiming::end_
+
+      attr_reader start: Imagekit::Models::OverlayTiming::start?
+
+      def start=: (
+        Imagekit::Models::OverlayTiming::start
+      ) -> Imagekit::Models::OverlayTiming::start
+
+      def initialize: (
+        ?duration: Imagekit::Models::OverlayTiming::duration,
+        ?end_: Imagekit::Models::OverlayTiming::end_,
+        ?start: Imagekit::Models::OverlayTiming::start
+      ) -> void
+
+      def to_hash: -> {
+        duration: Imagekit::Models::OverlayTiming::duration,
+        end_: Imagekit::Models::OverlayTiming::end_,
+        start: Imagekit::Models::OverlayTiming::start
+      }
+
+      type duration = Float | String
+
+      module Duration
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::OverlayTiming::duration]
+      end
+
+      type end_ = Float | String
+
+      module End
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::OverlayTiming::end_]
+      end
+
+      type start = Float | String
+
+      module Start
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::OverlayTiming::start]
+      end
+    end
+  end
+end

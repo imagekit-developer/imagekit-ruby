@@ -5,6 +5,8 @@ module Imagekit
 
   AssetListParams = Imagekit::Models::AssetListParams
 
+  BaseOverlay = Imagekit::Models::BaseOverlay
+
   Beta = Imagekit::Models::Beta
 
   Cache = Imagekit::Models::Cache
@@ -55,11 +57,43 @@ module Imagekit
 
   Folders = Imagekit::Models::Folders
 
+  ImageOverlay = Imagekit::Models::ImageOverlay
+
   Metadata = Imagekit::Models::Metadata
+
+  Overlay = Imagekit::Models::Overlay
+
+  OverlayPosition = Imagekit::Models::OverlayPosition
+
+  OverlayTiming = Imagekit::Models::OverlayTiming
+
+  SolidColorOverlay = Imagekit::Models::SolidColorOverlay
+
+  SolidColorOverlayTransformation =
+    Imagekit::Models::SolidColorOverlayTransformation
+
+  SrcOptions = Imagekit::Models::SrcOptions
+
+  StreamingResolution = Imagekit::Models::StreamingResolution
+
+  SubtitleOverlay = Imagekit::Models::SubtitleOverlay
+
+  SubtitleOverlayTransformation =
+    Imagekit::Models::SubtitleOverlayTransformation
+
+  TextOverlay = Imagekit::Models::TextOverlay
+
+  TextOverlayTransformation = Imagekit::Models::TextOverlayTransformation
+
+  Transformation = Imagekit::Models::Transformation
+
+  TransformationPosition = Imagekit::Models::TransformationPosition
 
   UnsafeUnwrapWebhookEvent = Imagekit::Models::UnsafeUnwrapWebhookEvent
 
   UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent
+
+  VideoOverlay = Imagekit::Models::VideoOverlay
 
   VideoTransformationAcceptedEvent =
     Imagekit::Models::VideoTransformationAcceptedEvent
