@@ -8,7 +8,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/imagekit).
 
-The REST API documentation can be found on [imagekit.io](https://imagekit.io).
+The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs).
 
 ## Installation
 
