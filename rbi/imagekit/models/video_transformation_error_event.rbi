@@ -486,7 +486,7 @@ module Imagekit
             sig { params(variants: T::Array[String]).void }
             attr_writer :variants
 
-            # Video codec used for encoding (h264 or vp9).
+            # Video codec used for encoding (h264, vp9, or av1).
             sig do
               returns(
                 T.nilable(
@@ -533,7 +533,7 @@ module Imagekit
               stream_protocol: nil,
               # Array of quality representations for adaptive bitrate streaming.
               variants: nil,
-              # Video codec used for encoding (h264 or vp9).
+              # Video codec used for encoding (h264, vp9, or av1).
               video_codec: nil
             )
             end
@@ -678,7 +678,7 @@ module Imagekit
               end
             end
 
-            # Video codec used for encoding (h264 or vp9).
+            # Video codec used for encoding (h264, vp9, or av1).
             module VideoCodec
               extend Imagekit::Internal::Type::Enum
 
@@ -699,6 +699,11 @@ module Imagekit
               VP9 =
                 T.let(
                   :vp9,
+                  Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
+                )
+              AV1 =
+                T.let(
+                  :av1,
                   Imagekit::VideoTransformationErrorEvent::Data::Transformation::Options::VideoCodec::TaggedSymbol
                 )
 

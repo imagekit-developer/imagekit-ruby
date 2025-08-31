@@ -187,7 +187,7 @@ module Imagekit
             optional :variants, Imagekit::Internal::Type::ArrayOf[String]
 
             # @!attribute video_codec
-            #   Video codec used for encoding (h264 or vp9).
+            #   Video codec used for encoding (h264, vp9, or av1).
             #
             #   @return [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::VideoCodec, nil]
             optional :video_codec,
@@ -208,7 +208,7 @@ module Imagekit
             #
             #   @param variants [Array<String>] Array of quality representations for adaptive bitrate streaming.
             #
-            #   @param video_codec [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::VideoCodec] Video codec used for encoding (h264 or vp9).
+            #   @param video_codec [Symbol, Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options::VideoCodec] Video codec used for encoding (h264, vp9, or av1).
 
             # Audio codec used for encoding (aac or opus).
             #
@@ -252,7 +252,7 @@ module Imagekit
               #   @return [Array<Symbol>]
             end
 
-            # Video codec used for encoding (h264 or vp9).
+            # Video codec used for encoding (h264, vp9, or av1).
             #
             # @see Imagekit::Models::VideoTransformationReadyEvent::Data::Transformation::Options#video_codec
             module VideoCodec
@@ -260,6 +260,7 @@ module Imagekit
 
               H264 = :h264
               VP9 = :vp9
+              AV1 = :av1
 
               # @!method self.values
               #   @return [Array<Symbol>]

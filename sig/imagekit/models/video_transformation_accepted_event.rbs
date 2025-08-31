@@ -209,13 +209,14 @@ module Imagekit
               def self?.values: -> ::Array[Imagekit::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol]
             end
 
-            type video_codec = :h264 | :vp9
+            type video_codec = :h264 | :vp9 | :av1
 
             module VideoCodec
               extend Imagekit::Internal::Type::Enum
 
               H264: :h264
               VP9: :vp9
+              AV1: :av1
 
               def self?.values: -> ::Array[Imagekit::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec]
             end
