@@ -85,6 +85,14 @@ module Imagekit
 
   module UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent
 
+  class UploadPostTransformErrorWebhookEvent = Imagekit::Models::UploadPostTransformErrorWebhookEvent
+
+  class UploadPostTransformSuccessWebhookEvent = Imagekit::Models::UploadPostTransformSuccessWebhookEvent
+
+  class UploadPreTransformErrorWebhookEvent = Imagekit::Models::UploadPreTransformErrorWebhookEvent
+
+  class UploadPreTransformSuccessWebhookEvent = Imagekit::Models::UploadPreTransformSuccessWebhookEvent
+
   class VideoOverlay = Imagekit::Models::VideoOverlay
 
   class VideoTransformationAcceptedEvent = Imagekit::Models::VideoTransformationAcceptedEvent

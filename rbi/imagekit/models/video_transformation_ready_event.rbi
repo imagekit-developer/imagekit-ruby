@@ -15,6 +15,7 @@ module Imagekit
       sig { returns(String) }
       attr_accessor :id
 
+      # Timestamp when the event was created in ISO8601 format.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -26,6 +27,7 @@ module Imagekit
       end
       attr_writer :data
 
+      # Information about the original request that triggered the video transformation.
       sig { returns(Imagekit::VideoTransformationReadyEvent::Request) }
       attr_reader :request
 
@@ -39,6 +41,7 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
+      # Performance metrics for the transformation process.
       sig do
         returns(T.nilable(Imagekit::VideoTransformationReadyEvent::Timings))
       end
@@ -51,6 +54,10 @@ module Imagekit
       end
       attr_writer :timings
 
+      # Triggered when video encoding is finished and the transformed resource is ready
+      # to be served. This is the key event to listen for - update your database or CMS
+      # flags when you receive this so your application can start showing the
+      # transformed video to users.
       sig do
         params(
           id: String,
@@ -64,9 +71,12 @@ module Imagekit
       def self.new(
         # Unique identifier for the event.
         id:,
+        # Timestamp when the event was created in ISO8601 format.
         created_at:,
         data:,
+        # Information about the original request that triggered the video transformation.
         request:,
+        # Performance metrics for the transformation process.
         timings: nil,
         type: :"video.transformation.ready"
       )
@@ -96,6 +106,7 @@ module Imagekit
             )
           end
 
+        # Information about the source video asset being transformed.
         sig { returns(Imagekit::VideoTransformationReadyEvent::Data::Asset) }
         attr_reader :asset
 
@@ -126,7 +137,11 @@ module Imagekit
               Imagekit::VideoTransformationReadyEvent::Data::Transformation::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(asset:, transformation:)
+        def self.new(
+          # Information about the source video asset being transformed.
+          asset:,
+          transformation:
+        )
         end
 
         sig do
@@ -150,13 +165,14 @@ module Imagekit
               )
             end
 
-          # Source asset URL.
+          # URL to download or access the source video file.
           sig { returns(String) }
           attr_accessor :url
 
+          # Information about the source video asset being transformed.
           sig { params(url: String).returns(T.attached_class) }
           def self.new(
-            # Source asset URL.
+            # URL to download or access the source video file.
             url:
           )
           end
@@ -175,6 +191,12 @@ module Imagekit
               )
             end
 
+          # Type of video transformation:
+          #
+          # - `video-transformation`: Standard video processing (resize, format conversion,
+          #   etc.)
+          # - `gif-to-video`: Convert animated GIF to video format
+          # - `video-thumbnail`: Generate thumbnail image from video
           sig do
             returns(
               Imagekit::VideoTransformationReadyEvent::Data::Transformation::Type::TaggedSymbol
@@ -182,6 +204,7 @@ module Imagekit
           end
           attr_accessor :type
 
+          # Configuration options for video transformations.
           sig do
             returns(
               T.nilable(
@@ -199,6 +222,7 @@ module Imagekit
           end
           attr_writer :options
 
+          # Information about the transformed output video.
           sig do
             returns(
               T.nilable(
@@ -226,7 +250,19 @@ module Imagekit
                 Imagekit::VideoTransformationReadyEvent::Data::Transformation::Output::OrHash
             ).returns(T.attached_class)
           end
-          def self.new(type:, options: nil, output: nil)
+          def self.new(
+            # Type of video transformation:
+            #
+            # - `video-transformation`: Standard video processing (resize, format conversion,
+            #   etc.)
+            # - `gif-to-video`: Convert animated GIF to video format
+            # - `video-thumbnail`: Generate thumbnail image from video
+            type:,
+            # Configuration options for video transformations.
+            options: nil,
+            # Information about the transformed output video.
+            output: nil
+          )
           end
 
           sig do
@@ -244,6 +280,12 @@ module Imagekit
           def to_hash
           end
 
+          # Type of video transformation:
+          #
+          # - `video-transformation`: Standard video processing (resize, format conversion,
+          #   etc.)
+          # - `gif-to-video`: Convert animated GIF to video format
+          # - `video-thumbnail`: Generate thumbnail image from video
           module Type
             extend Imagekit::Internal::Type::Enum
 
@@ -292,6 +334,7 @@ module Imagekit
                 )
               end
 
+            # Audio codec used for encoding (aac or opus).
             sig do
               returns(
                 T.nilable(
@@ -309,12 +352,14 @@ module Imagekit
             end
             attr_writer :audio_codec
 
+            # Whether to automatically rotate the video based on metadata.
             sig { returns(T.nilable(T::Boolean)) }
             attr_reader :auto_rotate
 
             sig { params(auto_rotate: T::Boolean).void }
             attr_writer :auto_rotate
 
+            # Output format for the transformed video or thumbnail.
             sig do
               returns(
                 T.nilable(
@@ -332,12 +377,14 @@ module Imagekit
             end
             attr_writer :format_
 
+            # Quality setting for the output video.
             sig { returns(T.nilable(Integer)) }
             attr_reader :quality
 
             sig { params(quality: Integer).void }
             attr_writer :quality
 
+            # Streaming protocol for adaptive bitrate streaming.
             sig do
               returns(
                 T.nilable(
@@ -355,12 +402,14 @@ module Imagekit
             end
             attr_writer :stream_protocol
 
+            # Array of quality representations for adaptive bitrate streaming.
             sig { returns(T.nilable(T::Array[String])) }
             attr_reader :variants
 
             sig { params(variants: T::Array[String]).void }
             attr_writer :variants
 
+            # Video codec used for encoding (h264 or vp9).
             sig do
               returns(
                 T.nilable(
@@ -378,6 +427,7 @@ module Imagekit
             end
             attr_writer :video_codec
 
+            # Configuration options for video transformations.
             sig do
               params(
                 audio_codec:
@@ -394,12 +444,19 @@ module Imagekit
               ).returns(T.attached_class)
             end
             def self.new(
+              # Audio codec used for encoding (aac or opus).
               audio_codec: nil,
+              # Whether to automatically rotate the video based on metadata.
               auto_rotate: nil,
+              # Output format for the transformed video or thumbnail.
               format_: nil,
+              # Quality setting for the output video.
               quality: nil,
+              # Streaming protocol for adaptive bitrate streaming.
               stream_protocol: nil,
+              # Array of quality representations for adaptive bitrate streaming.
               variants: nil,
+              # Video codec used for encoding (h264 or vp9).
               video_codec: nil
             )
             end
@@ -424,6 +481,7 @@ module Imagekit
             def to_hash
             end
 
+            # Audio codec used for encoding (aac or opus).
             module AudioCodec
               extend Imagekit::Internal::Type::Enum
 
@@ -458,6 +516,7 @@ module Imagekit
               end
             end
 
+            # Output format for the transformed video or thumbnail.
             module Format
               extend Imagekit::Internal::Type::Enum
 
@@ -507,6 +566,7 @@ module Imagekit
               end
             end
 
+            # Streaming protocol for adaptive bitrate streaming.
             module StreamProtocol
               extend Imagekit::Internal::Type::Enum
 
@@ -541,6 +601,7 @@ module Imagekit
               end
             end
 
+            # Video codec used for encoding (h264 or vp9).
             module VideoCodec
               extend Imagekit::Internal::Type::Enum
 
@@ -585,9 +646,11 @@ module Imagekit
                 )
               end
 
+            # URL to access the transformed video.
             sig { returns(String) }
             attr_accessor :url
 
+            # Metadata of the output video file.
             sig do
               returns(
                 T.nilable(
@@ -605,6 +668,7 @@ module Imagekit
             end
             attr_writer :video_metadata
 
+            # Information about the transformed output video.
             sig do
               params(
                 url: String,
@@ -612,7 +676,12 @@ module Imagekit
                   Imagekit::VideoTransformationReadyEvent::Data::Transformation::Output::VideoMetadata::OrHash
               ).returns(T.attached_class)
             end
-            def self.new(url:, video_metadata: nil)
+            def self.new(
+              # URL to access the transformed video.
+              url:,
+              # Metadata of the output video file.
+              video_metadata: nil
+            )
             end
 
             sig do
@@ -636,18 +705,23 @@ module Imagekit
                   )
                 end
 
+              # Bitrate of the output video in bits per second.
               sig { returns(Integer) }
               attr_accessor :bitrate
 
+              # Duration of the output video in seconds.
               sig { returns(Float) }
               attr_accessor :duration
 
+              # Height of the output video in pixels.
               sig { returns(Integer) }
               attr_accessor :height
 
+              # Width of the output video in pixels.
               sig { returns(Integer) }
               attr_accessor :width
 
+              # Metadata of the output video file.
               sig do
                 params(
                   bitrate: Integer,
@@ -656,7 +730,16 @@ module Imagekit
                   width: Integer
                 ).returns(T.attached_class)
               end
-              def self.new(bitrate:, duration:, height:, width:)
+              def self.new(
+                # Bitrate of the output video in bits per second.
+                bitrate:,
+                # Duration of the output video in seconds.
+                duration:,
+                # Height of the output video in pixels.
+                height:,
+                # Width of the output video in pixels.
+                width:
+              )
               end
 
               sig do
@@ -685,32 +768,33 @@ module Imagekit
             )
           end
 
-        # URL of the submitted request.
+        # Full URL of the transformation request that was submitted.
         sig { returns(String) }
         attr_accessor :url
 
-        # Unique ID for the originating request.
+        # Unique identifier for the originating transformation request.
         sig { returns(String) }
         attr_accessor :x_request_id
 
-        # User-Agent header of the originating request.
+        # User-Agent header from the original request that triggered the transformation.
         sig { returns(T.nilable(String)) }
         attr_reader :user_agent
 
         sig { params(user_agent: String).void }
         attr_writer :user_agent
 
+        # Information about the original request that triggered the video transformation.
         sig do
           params(url: String, x_request_id: String, user_agent: String).returns(
             T.attached_class
           )
         end
         def self.new(
-          # URL of the submitted request.
+          # Full URL of the transformation request that was submitted.
           url:,
-          # Unique ID for the originating request.
+          # Unique identifier for the originating transformation request.
           x_request_id:,
-          # User-Agent header of the originating request.
+          # User-Agent header from the original request that triggered the transformation.
           user_agent: nil
         )
         end
@@ -733,20 +817,22 @@ module Imagekit
             )
           end
 
-        # Milliseconds spent downloading the source.
+        # Time spent downloading the source video from your origin or media library, in
+        # milliseconds.
         sig { returns(T.nilable(Integer)) }
         attr_reader :download_duration
 
         sig { params(download_duration: Integer).void }
         attr_writer :download_duration
 
-        # Milliseconds spent encoding.
+        # Time spent encoding the video, in milliseconds.
         sig { returns(T.nilable(Integer)) }
         attr_reader :encoding_duration
 
         sig { params(encoding_duration: Integer).void }
         attr_writer :encoding_duration
 
+        # Performance metrics for the transformation process.
         sig do
           params(
             download_duration: Integer,
@@ -754,9 +840,10 @@ module Imagekit
           ).returns(T.attached_class)
         end
         def self.new(
-          # Milliseconds spent downloading the source.
+          # Time spent downloading the source video from your origin or media library, in
+          # milliseconds.
           download_duration: nil,
-          # Milliseconds spent encoding.
+          # Time spent encoding the video, in milliseconds.
           encoding_duration: nil
         )
         end

@@ -4,6 +4,7 @@ module Imagekit
       {
         ai_change_background: String,
         ai_drop_shadow: Imagekit::Models::Transformation::ai_drop_shadow,
+        ai_edit: String,
         ai_remove_background: Imagekit::Models::Transformation::ai_remove_background,
         ai_remove_background_external: Imagekit::Models::Transformation::ai_remove_background_external,
         ai_retouch: Imagekit::Models::Transformation::ai_retouch,
@@ -65,6 +66,10 @@ module Imagekit
       def ai_drop_shadow=: (
         Imagekit::Models::Transformation::ai_drop_shadow
       ) -> Imagekit::Models::Transformation::ai_drop_shadow
+
+      attr_reader ai_edit: String?
+
+      def ai_edit=: (String) -> String
 
       attr_reader ai_remove_background: Imagekit::Models::Transformation::ai_remove_background?
 
@@ -329,6 +334,7 @@ module Imagekit
       def initialize: (
         ?ai_change_background: String,
         ?ai_drop_shadow: Imagekit::Models::Transformation::ai_drop_shadow,
+        ?ai_edit: String,
         ?ai_remove_background: Imagekit::Models::Transformation::ai_remove_background,
         ?ai_remove_background_external: Imagekit::Models::Transformation::ai_remove_background_external,
         ?ai_retouch: Imagekit::Models::Transformation::ai_retouch,
@@ -383,6 +389,7 @@ module Imagekit
       def to_hash: -> {
         ai_change_background: String,
         ai_drop_shadow: Imagekit::Models::Transformation::ai_drop_shadow,
+        ai_edit: String,
         ai_remove_background: Imagekit::Models::Transformation::ai_remove_background,
         ai_remove_background_external: Imagekit::Models::Transformation::ai_remove_background_external,
         ai_retouch: Imagekit::Models::Transformation::ai_retouch,
@@ -440,8 +447,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::Transformation::ai_drop_shadow]
-
-        TRUE: true
       end
 
       type ai_remove_background = true
@@ -617,8 +622,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::Transformation::gradient]
-
-        TRUE: true
       end
 
       type grayscale = true
@@ -653,8 +656,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::Transformation::radius]
-
-        MAX: :max
       end
 
       type rotation = Float | String
@@ -671,8 +672,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::Transformation::shadow]
-
-        TRUE: true
       end
 
       type sharpen = true | Float
@@ -681,8 +680,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::Transformation::sharpen]
-
-        TRUE: true
       end
 
       type start_offset = Float | String
@@ -699,8 +696,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::Transformation::trim]
-
-        TRUE: true
       end
 
       type unsharp_mask = true | String
@@ -709,8 +704,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::Transformation::unsharp_mask]
-
-        TRUE: true
       end
 
       type video_codec = :h264 | :vp9 | :av1 | :none

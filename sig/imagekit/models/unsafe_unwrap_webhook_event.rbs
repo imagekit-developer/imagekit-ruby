@@ -4,6 +4,10 @@ module Imagekit
       Imagekit::VideoTransformationAcceptedEvent
       | Imagekit::VideoTransformationReadyEvent
       | Imagekit::VideoTransformationErrorEvent
+      | Imagekit::UploadPreTransformSuccessWebhookEvent
+      | Imagekit::UploadPreTransformErrorWebhookEvent
+      | Imagekit::UploadPostTransformSuccessWebhookEvent
+      | Imagekit::UploadPostTransformErrorWebhookEvent
 
     module UnsafeUnwrapWebhookEvent
       extend Imagekit::Internal::Type::Union

@@ -15,11 +15,14 @@ module Imagekit
       sig { returns(String) }
       attr_accessor :color
 
-      sig { returns(Imagekit::SolidColorOverlay::Type::OrSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
       # Control width and height of the solid color overlay. Supported transformations
-      # depend on the base/parent asset.
+      # depend on the base/parent asset. See overlays on
+      # [Images](https://imagekit.io/docs/add-overlays-on-images#apply-transformation-on-solid-color-overlay)
+      # and
+      # [Videos](https://imagekit.io/docs/add-overlays-on-videos#apply-transformations-on-solid-color-block-overlay).
       sig do
         returns(T.nilable(T::Array[Imagekit::SolidColorOverlayTransformation]))
       end
@@ -36,9 +39,9 @@ module Imagekit
       sig do
         params(
           color: String,
-          type: Imagekit::SolidColorOverlay::Type::OrSymbol,
           transformation:
-            T::Array[Imagekit::SolidColorOverlayTransformation::OrHash]
+            T::Array[Imagekit::SolidColorOverlayTransformation::OrHash],
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -47,10 +50,13 @@ module Imagekit
         # is provided, the last two characters represent the opacity level (from `00` for
         # 0.00 to `99` for 0.99).
         color:,
-        type:,
         # Control width and height of the solid color overlay. Supported transformations
-        # depend on the base/parent asset.
-        transformation: nil
+        # depend on the base/parent asset. See overlays on
+        # [Images](https://imagekit.io/docs/add-overlays-on-images#apply-transformation-on-solid-color-overlay)
+        # and
+        # [Videos](https://imagekit.io/docs/add-overlays-on-videos#apply-transformations-on-solid-color-block-overlay).
+        transformation: nil,
+        type: :solidColor
       )
       end
 
@@ -58,31 +64,12 @@ module Imagekit
         override.returns(
           {
             color: String,
-            type: Imagekit::SolidColorOverlay::Type::OrSymbol,
+            type: Symbol,
             transformation: T::Array[Imagekit::SolidColorOverlayTransformation]
           }
         )
       end
       def to_hash
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Imagekit::SolidColorOverlay::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        SOLID_COLOR =
-          T.let(:solidColor, Imagekit::SolidColorOverlay::Type::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Imagekit::SolidColorOverlay::Type::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

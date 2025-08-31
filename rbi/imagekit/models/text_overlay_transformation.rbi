@@ -47,7 +47,10 @@ module Imagekit
       attr_writer :font_color
 
       # Specifies the font family of the overlaid text. Choose from the supported fonts
-      # list or use a custom font.
+      # list or use a custom font. See
+      # [Supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list)
+      # and
+      # [Custom font](https://imagekit.io/docs/add-overlays-on-images#change-font-family-in-text-overlay).
       sig { returns(T.nilable(String)) }
       attr_reader :font_family
 
@@ -89,7 +92,10 @@ module Imagekit
       end
       attr_writer :inner_alignment
 
-      # Specifies the line height of the text overlay.
+      # Specifies the line height of the text overlay. Accepts integer values
+      # representing line height in points. It can also accept
+      # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations)
+      # such as `bw_mul_0.2`, or `bh_div_20`.
       sig do
         returns(
           T.nilable(Imagekit::TextOverlayTransformation::LineHeight::Variants)
@@ -123,21 +129,10 @@ module Imagekit
 
       # Specifies the corner radius of the text overlay. Set to `max` to achieve a
       # circular or oval shape.
-      sig do
-        returns(
-          T.nilable(
-            T.any(Float, Imagekit::TextOverlayTransformation::Radius::OrSymbol)
-          )
-        )
-      end
+      sig { returns(T.nilable(T.any(Float, Symbol))) }
       attr_reader :radius
 
-      sig do
-        params(
-          radius:
-            T.any(Float, Imagekit::TextOverlayTransformation::Radius::OrSymbol)
-        ).void
-      end
+      sig { params(radius: T.any(Float, Symbol)).void }
       attr_writer :radius
 
       # Specifies the rotation angle of the text overlay. Accepts a numeric value for
@@ -156,25 +151,21 @@ module Imagekit
       end
       attr_writer :rotation
 
-      # Specifies the typography style of the text. Supported values: `b` for bold, `i`
-      # for italics, and `b_i` for bold with italics.
-      sig do
-        returns(
-          T.nilable(Imagekit::TextOverlayTransformation::Typography::OrSymbol)
-        )
-      end
+      # Specifies the typography style of the text. Supported values:
+      #
+      # - Single styles: `b` (bold), `i` (italic), `strikethrough`.
+      # - Combinations: Any combination separated by underscores, e.g., `b_i`,
+      #   `b_i_strikethrough`.
+      sig { returns(T.nilable(String)) }
       attr_reader :typography
 
-      sig do
-        params(
-          typography: Imagekit::TextOverlayTransformation::Typography::OrSymbol
-        ).void
-      end
+      sig { params(typography: String).void }
       attr_writer :typography
 
       # Specifies the maximum width (in pixels) of the overlaid text. The text wraps
       # automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are
-      # supported. Useful when used in conjunction with the `background`.
+      # supported. Useful when used in conjunction with the `background`. Learn about
+      # [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       sig do
         returns(T.nilable(Imagekit::TextOverlayTransformation::Width::Variants))
       end
@@ -198,10 +189,9 @@ module Imagekit
           line_height:
             Imagekit::TextOverlayTransformation::LineHeight::Variants,
           padding: Imagekit::TextOverlayTransformation::Padding::Variants,
-          radius:
-            T.any(Float, Imagekit::TextOverlayTransformation::Radius::OrSymbol),
+          radius: T.any(Float, Symbol),
           rotation: Imagekit::TextOverlayTransformation::Rotation::Variants,
-          typography: Imagekit::TextOverlayTransformation::Typography::OrSymbol,
+          typography: String,
           width: Imagekit::TextOverlayTransformation::Width::Variants
         ).returns(T.attached_class)
       end
@@ -218,7 +208,10 @@ module Imagekit
         # `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
         font_color: nil,
         # Specifies the font family of the overlaid text. Choose from the supported fonts
-        # list or use a custom font.
+        # list or use a custom font. See
+        # [Supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list)
+        # and
+        # [Custom font](https://imagekit.io/docs/add-overlays-on-images#change-font-family-in-text-overlay).
         font_family: nil,
         # Specifies the font size of the overlaid text. Accepts a numeric value or an
         # arithmetic expression.
@@ -226,7 +219,10 @@ module Imagekit
         # Specifies the inner alignment of the text when width is more than the text
         # length.
         inner_alignment: nil,
-        # Specifies the line height of the text overlay.
+        # Specifies the line height of the text overlay. Accepts integer values
+        # representing line height in points. It can also accept
+        # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations)
+        # such as `bw_mul_0.2`, or `bh_div_20`.
         line_height: nil,
         # Specifies the padding around the overlaid text. Can be provided as a single
         # positive integer or multiple values separated by underscores (following CSS
@@ -238,12 +234,16 @@ module Imagekit
         # Specifies the rotation angle of the text overlay. Accepts a numeric value for
         # clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
         rotation: nil,
-        # Specifies the typography style of the text. Supported values: `b` for bold, `i`
-        # for italics, and `b_i` for bold with italics.
+        # Specifies the typography style of the text. Supported values:
+        #
+        # - Single styles: `b` (bold), `i` (italic), `strikethrough`.
+        # - Combinations: Any combination separated by underscores, e.g., `b_i`,
+        #   `b_i_strikethrough`.
         typography: nil,
         # Specifies the maximum width (in pixels) of the overlaid text. The text wraps
         # automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are
-        # supported. Useful when used in conjunction with the `background`.
+        # supported. Useful when used in conjunction with the `background`. Learn about
+        # [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
         width: nil
       )
       end
@@ -262,14 +262,9 @@ module Imagekit
             line_height:
               Imagekit::TextOverlayTransformation::LineHeight::Variants,
             padding: Imagekit::TextOverlayTransformation::Padding::Variants,
-            radius:
-              T.any(
-                Float,
-                Imagekit::TextOverlayTransformation::Radius::OrSymbol
-              ),
+            radius: T.any(Float, Symbol),
             rotation: Imagekit::TextOverlayTransformation::Rotation::Variants,
-            typography:
-              Imagekit::TextOverlayTransformation::Typography::OrSymbol,
+            typography: String,
             width: Imagekit::TextOverlayTransformation::Width::Variants
           }
         )
@@ -357,7 +352,10 @@ module Imagekit
         end
       end
 
-      # Specifies the line height of the text overlay.
+      # Specifies the line height of the text overlay. Accepts integer values
+      # representing line height in points. It can also accept
+      # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations)
+      # such as `bw_mul_0.2`, or `bh_div_20`.
       module LineHeight
         extend Imagekit::Internal::Type::Union
 
@@ -394,13 +392,7 @@ module Imagekit
       module Radius
         extend Imagekit::Internal::Type::Union
 
-        Variants =
-          T.type_alias do
-            T.any(
-              Float,
-              Imagekit::TextOverlayTransformation::Radius::TaggedSymbol
-            )
-          end
+        Variants = T.type_alias { T.any(Float, Symbol) }
 
         sig do
           override.returns(
@@ -409,15 +401,6 @@ module Imagekit
         end
         def self.variants
         end
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Imagekit::TextOverlayTransformation::Radius)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        MAX =
-          T.let(:max, Imagekit::TextOverlayTransformation::Radius::TaggedSymbol)
       end
 
       # Specifies the rotation angle of the text overlay. Accepts a numeric value for
@@ -436,47 +419,10 @@ module Imagekit
         end
       end
 
-      # Specifies the typography style of the text. Supported values: `b` for bold, `i`
-      # for italics, and `b_i` for bold with italics.
-      module Typography
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Imagekit::TextOverlayTransformation::Typography)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        B =
-          T.let(
-            :b,
-            Imagekit::TextOverlayTransformation::Typography::TaggedSymbol
-          )
-        I =
-          T.let(
-            :i,
-            Imagekit::TextOverlayTransformation::Typography::TaggedSymbol
-          )
-        B_I =
-          T.let(
-            :b_i,
-            Imagekit::TextOverlayTransformation::Typography::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Imagekit::TextOverlayTransformation::Typography::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
       # Specifies the maximum width (in pixels) of the overlaid text. The text wraps
       # automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are
-      # supported. Useful when used in conjunction with the `background`.
+      # supported. Useful when used in conjunction with the `background`. Learn about
+      # [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       module Width
         extend Imagekit::Internal::Type::Union
 

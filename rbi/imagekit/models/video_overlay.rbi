@@ -12,7 +12,7 @@ module Imagekit
       sig { returns(String) }
       attr_accessor :input
 
-      sig { returns(Imagekit::VideoOverlay::Type::OrSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
       # The input path can be included in the layer as either `i-{input}` or
@@ -27,7 +27,8 @@ module Imagekit
       attr_writer :encoding
 
       # Array of transformation to be applied to the overlay video. Except
-      # `streamingResolutions`, all other video transformations are supported.
+      # `streamingResolutions`, all other video transformations are supported. See
+      # [Video transformations](https://imagekit.io/docs/video-transformation).
       sig { returns(T.nilable(T::Array[Imagekit::Transformation])) }
       attr_reader :transformation
 
@@ -37,15 +38,14 @@ module Imagekit
       sig do
         params(
           input: String,
-          type: Imagekit::VideoOverlay::Type::OrSymbol,
           encoding: Imagekit::VideoOverlay::Encoding::OrSymbol,
-          transformation: T::Array[Imagekit::Transformation]
+          transformation: T::Array[Imagekit::Transformation],
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
         # Specifies the relative path to the video used as an overlay.
         input:,
-        type:,
         # The input path can be included in the layer as either `i-{input}` or
         # `ie-{base64_encoded_input}`. By default, the SDK determines the appropriate
         # format automatically. To always use base64 encoding (`ie-{base64}`), set this
@@ -53,8 +53,10 @@ module Imagekit
         # `plain`.
         encoding: nil,
         # Array of transformation to be applied to the overlay video. Except
-        # `streamingResolutions`, all other video transformations are supported.
-        transformation: nil
+        # `streamingResolutions`, all other video transformations are supported. See
+        # [Video transformations](https://imagekit.io/docs/video-transformation).
+        transformation: nil,
+        type: :video
       )
       end
 
@@ -62,29 +64,13 @@ module Imagekit
         override.returns(
           {
             input: String,
-            type: Imagekit::VideoOverlay::Type::OrSymbol,
+            type: Symbol,
             encoding: Imagekit::VideoOverlay::Encoding::OrSymbol,
             transformation: T::Array[Imagekit::Transformation]
           }
         )
       end
       def to_hash
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Imagekit::VideoOverlay::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VIDEO = T.let(:video, Imagekit::VideoOverlay::Type::TaggedSymbol)
-
-        sig do
-          override.returns(T::Array[Imagekit::VideoOverlay::Type::TaggedSymbol])
-        end
-        def self.values
-        end
       end
 
       # The input path can be included in the layer as either `i-{input}` or

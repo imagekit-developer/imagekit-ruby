@@ -2,6 +2,9 @@
 
 module Imagekit
   module Models
+    # Triggered when a new video transformation request is accepted for processing.
+    # This event confirms that ImageKit has received and queued your transformation
+    # request. Use this for debugging and tracking transformation lifecycle.
     module UnsafeUnwrapWebhookEvent
       extend Imagekit::Internal::Type::Union
 
@@ -10,7 +13,11 @@ module Imagekit
           T.any(
             Imagekit::VideoTransformationAcceptedEvent,
             Imagekit::VideoTransformationReadyEvent,
-            Imagekit::VideoTransformationErrorEvent
+            Imagekit::VideoTransformationErrorEvent,
+            Imagekit::UploadPreTransformSuccessWebhookEvent,
+            Imagekit::UploadPreTransformErrorWebhookEvent,
+            Imagekit::UploadPostTransformSuccessWebhookEvent,
+            Imagekit::UploadPostTransformErrorWebhookEvent
           )
         end
 

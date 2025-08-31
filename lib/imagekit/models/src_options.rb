@@ -29,7 +29,8 @@ module Imagekit
       # @!attribute transformation
       #   An array of objects specifying the transformations to be applied in the URL. If
       #   more than one transformation is specified, they are applied in the order they
-      #   are specified as chained transformations.
+      #   are specified as chained transformations. See
+      #   [Chained transformations](https://imagekit.io/docs/transformations#chained-transformations).
       #
       #   @return [Array<Imagekit::Models::Transformation>, nil]
       optional :transformation, -> { Imagekit::Internal::Type::ArrayOf[Imagekit::Transformation] }
@@ -37,7 +38,8 @@ module Imagekit
       # @!attribute transformation_position
       #   By default, the transformation string is added as a query parameter in the URL,
       #   e.g., `?tr=w-100,h-100`. If you want to add the transformation string in the
-      #   path of the URL, set this to `path`.
+      #   path of the URL, set this to `path`. Learn more in the
+      #   [Transformations guide](https://imagekit.io/docs/transformations).
       #
       #   @return [Symbol, Imagekit::Models::TransformationPosition, nil]
       optional :transformation_position,
@@ -48,7 +50,8 @@ module Imagekit
       #   Some parameter documentations has been truncated, see
       #   {Imagekit::Models::SrcOptions} for more details.
       #
-      #   Options for generating ImageKit URLs with transformations
+      #   Options for generating ImageKit URLs with transformations. See the
+      #   [Transformations guide](https://imagekit.io/docs/transformations).
       #
       #   @param src [String] Accepts a relative or absolute path of the resource. If a relative path is provi
       #

@@ -4,79 +4,88 @@ module Imagekit
   module Models
     class SolidColorOverlayTransformation < Imagekit::Internal::Type::BaseModel
       # @!attribute alpha
-      #   Alpha transparency level
+      #   Specifies the transparency level of the solid color overlay. Accepts integers
+      #   from `1` to `9`.
       #
       #   @return [Float, nil]
       optional :alpha, Float
 
       # @!attribute background
-      #   Background color
+      #   Specifies the background color of the solid color overlay. Accepts an RGB hex
+      #   code (e.g., `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
       #
       #   @return [String, nil]
       optional :background, String
 
       # @!attribute gradient
-      #   Gradient effect for the overlay
+      #   Creates a linear gradient with two colors. Pass `true` for a default gradient,
+      #   or provide a string for a custom gradient. Only works if the base asset is an
+      #   image. See
+      #   [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
       #
-      #   @return [Boolean, String, Imagekit::Models::SolidColorOverlayTransformation::Gradient, nil]
+      #   @return [Boolean, true, String, nil]
       optional :gradient, union: -> { Imagekit::SolidColorOverlayTransformation::Gradient }
 
       # @!attribute height
-      #   Height of the solid color overlay
+      #   Controls the height of the solid color overlay. Accepts a numeric value or an
+      #   arithmetic expression. Learn about
+      #   [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       #
       #   @return [Float, String, nil]
       optional :height, union: -> { Imagekit::SolidColorOverlayTransformation::Height }
 
       # @!attribute radius
-      #   Corner radius of the solid color overlay
+      #   Specifies the corner radius of the solid color overlay. Set to `max` for
+      #   circular or oval shape. See
+      #   [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
       #
-      #   @return [Float, Symbol, Imagekit::Models::SolidColorOverlayTransformation::Radius, nil]
+      #   @return [Float, Symbol, :max, nil]
       optional :radius, union: -> { Imagekit::SolidColorOverlayTransformation::Radius }
 
       # @!attribute width
-      #   Width of the solid color overlay
+      #   Controls the width of the solid color overlay. Accepts a numeric value or an
+      #   arithmetic expression (e.g., `bw_mul_0.2` or `bh_div_2`). Learn about
+      #   [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       #
       #   @return [Float, String, nil]
       optional :width, union: -> { Imagekit::SolidColorOverlayTransformation::Width }
 
       # @!method initialize(alpha: nil, background: nil, gradient: nil, height: nil, radius: nil, width: nil)
-      #   @param alpha [Float] Alpha transparency level
+      #   Some parameter documentations has been truncated, see
+      #   {Imagekit::Models::SolidColorOverlayTransformation} for more details.
       #
-      #   @param background [String] Background color
+      #   @param alpha [Float] Specifies the transparency level of the solid color overlay. Accepts integers fr
       #
-      #   @param gradient [Boolean, String, Imagekit::Models::SolidColorOverlayTransformation::Gradient] Gradient effect for the overlay
+      #   @param background [String] Specifies the background color of the solid color overlay. Accepts an RGB hex co
       #
-      #   @param height [Float, String] Height of the solid color overlay
+      #   @param gradient [Boolean, true, String] Creates a linear gradient with two colors. Pass `true` for a default gradient, o
       #
-      #   @param radius [Float, Symbol, Imagekit::Models::SolidColorOverlayTransformation::Radius] Corner radius of the solid color overlay
+      #   @param height [Float, String] Controls the height of the solid color overlay. Accepts a numeric value or an ar
       #
-      #   @param width [Float, String] Width of the solid color overlay
+      #   @param radius [Float, Symbol, :max] Specifies the corner radius of the solid color overlay. Set to `max` for circula
+      #
+      #   @param width [Float, String] Controls the width of the solid color overlay. Accepts a numeric value or an ari
 
-      # Gradient effect for the overlay
+      # Creates a linear gradient with two colors. Pass `true` for a default gradient,
+      # or provide a string for a custom gradient. Only works if the base asset is an
+      # image. See
+      # [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
       #
       # @see Imagekit::Models::SolidColorOverlayTransformation#gradient
       module Gradient
         extend Imagekit::Internal::Type::Union
 
-        variant const: -> { Imagekit::Models::SolidColorOverlayTransformation::Gradient::TRUE }
+        variant const: true
 
         variant String
 
         # @!method self.variants
-        #   @return [Array(Boolean, String)]
-
-        define_sorbet_constant!(:Variants) do
-          T.type_alias { T.any(Imagekit::SolidColorOverlayTransformation::Gradient::TaggedBoolean, String) }
-        end
-
-        # @!group
-
-        TRUE = true
-
-        # @!endgroup
+        #   @return [Array(Boolean, true, String)]
       end
 
-      # Height of the solid color overlay
+      # Controls the height of the solid color overlay. Accepts a numeric value or an
+      # arithmetic expression. Learn about
+      # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       #
       # @see Imagekit::Models::SolidColorOverlayTransformation#height
       module Height
@@ -90,7 +99,9 @@ module Imagekit
         #   @return [Array(Float, String)]
       end
 
-      # Corner radius of the solid color overlay
+      # Specifies the corner radius of the solid color overlay. Set to `max` for
+      # circular or oval shape. See
+      # [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
       #
       # @see Imagekit::Models::SolidColorOverlayTransformation#radius
       module Radius
@@ -98,23 +109,15 @@ module Imagekit
 
         variant Float
 
-        variant const: -> { Imagekit::Models::SolidColorOverlayTransformation::Radius::MAX }
+        variant const: :max
 
         # @!method self.variants
-        #   @return [Array(Float, Symbol)]
-
-        define_sorbet_constant!(:Variants) do
-          T.type_alias { T.any(Float, Imagekit::SolidColorOverlayTransformation::Radius::TaggedSymbol) }
-        end
-
-        # @!group
-
-        MAX = :max
-
-        # @!endgroup
+        #   @return [Array(Float, Symbol, :max)]
       end
 
-      # Width of the solid color overlay
+      # Controls the width of the solid color overlay. Accepts a numeric value or an
+      # arithmetic expression (e.g., `bw_mul_0.2` or `bh_div_2`). Learn about
+      # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       #
       # @see Imagekit::Models::SolidColorOverlayTransformation#width
       module Width

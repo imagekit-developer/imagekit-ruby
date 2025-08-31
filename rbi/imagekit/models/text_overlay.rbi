@@ -13,7 +13,7 @@ module Imagekit
       sig { returns(String) }
       attr_accessor :text
 
-      sig { returns(Imagekit::TextOverlay::Type::OrSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
       # Text can be included in the layer as either `i-{input}` (plain text) or
@@ -27,7 +27,8 @@ module Imagekit
       sig { params(encoding: Imagekit::TextOverlay::Encoding::OrSymbol).void }
       attr_writer :encoding
 
-      # Control styling of the text overlay.
+      # Control styling of the text overlay. See
+      # [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
       sig { returns(T.nilable(T::Array[Imagekit::TextOverlayTransformation])) }
       attr_reader :transformation
 
@@ -41,24 +42,25 @@ module Imagekit
       sig do
         params(
           text: String,
-          type: Imagekit::TextOverlay::Type::OrSymbol,
           encoding: Imagekit::TextOverlay::Encoding::OrSymbol,
-          transformation: T::Array[Imagekit::TextOverlayTransformation::OrHash]
+          transformation: T::Array[Imagekit::TextOverlayTransformation::OrHash],
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
         # Specifies the text to be displayed in the overlay. The SDK automatically handles
         # special characters and encoding.
         text:,
-        type:,
         # Text can be included in the layer as either `i-{input}` (plain text) or
         # `ie-{base64_encoded_input}` (base64). By default, the SDK selects the
         # appropriate format based on the input text. To always use base64
         # (`ie-{base64}`), set this parameter to `base64`. To always use plain text
         # (`i-{input}`), set it to `plain`.
         encoding: nil,
-        # Control styling of the text overlay.
-        transformation: nil
+        # Control styling of the text overlay. See
+        # [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
+        transformation: nil,
+        type: :text
       )
       end
 
@@ -66,29 +68,13 @@ module Imagekit
         override.returns(
           {
             text: String,
-            type: Imagekit::TextOverlay::Type::OrSymbol,
+            type: Symbol,
             encoding: Imagekit::TextOverlay::Encoding::OrSymbol,
             transformation: T::Array[Imagekit::TextOverlayTransformation]
           }
         )
       end
       def to_hash
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Imagekit::TextOverlay::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        TEXT = T.let(:text, Imagekit::TextOverlay::Type::TaggedSymbol)
-
-        sig do
-          override.returns(T::Array[Imagekit::TextOverlay::Type::TaggedSymbol])
-        end
-        def self.values
-        end
       end
 
       # Text can be included in the layer as either `i-{input}` (plain text) or

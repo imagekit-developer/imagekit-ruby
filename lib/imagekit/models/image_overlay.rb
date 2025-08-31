@@ -11,8 +11,8 @@ module Imagekit
 
       # @!attribute type
       #
-      #   @return [Symbol, Imagekit::Models::ImageOverlay::Type]
-      required :type, enum: -> { Imagekit::ImageOverlay::Type }
+      #   @return [Symbol, :image]
+      required :type, const: :image
 
       # @!attribute encoding
       #   The input path can be included in the layer as either `i-{input}` or
@@ -26,31 +26,25 @@ module Imagekit
 
       # @!attribute transformation
       #   Array of transformations to be applied to the overlay image. Supported
-      #   transformations depends on the base/parent asset.
+      #   transformations depends on the base/parent asset. See overlays on
+      #   [Images](https://imagekit.io/docs/add-overlays-on-images#list-of-supported-image-transformations-in-image-layers)
+      #   and
+      #   [Videos](https://imagekit.io/docs/add-overlays-on-videos#list-of-transformations-supported-on-image-overlay).
       #
       #   @return [Array<Imagekit::Models::Transformation>, nil]
       optional :transformation, -> { Imagekit::Internal::Type::ArrayOf[Imagekit::Transformation] }
 
-      # @!method initialize(input:, type:, encoding: nil, transformation: nil)
+      # @!method initialize(input:, encoding: nil, transformation: nil, type: :image)
       #   Some parameter documentations has been truncated, see
       #   {Imagekit::Models::ImageOverlay} for more details.
       #
       #   @param input [String] Specifies the relative path to the image used as an overlay.
       #
-      #   @param type [Symbol, Imagekit::Models::ImageOverlay::Type]
-      #
       #   @param encoding [Symbol, Imagekit::Models::ImageOverlay::Encoding] The input path can be included in the layer as either `i-{input}` or `ie-{base64
       #
       #   @param transformation [Array<Imagekit::Models::Transformation>] Array of transformations to be applied to the overlay image. Supported transform
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        IMAGE = :image
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
+      #
+      #   @param type [Symbol, :image]
 
       # The input path can be included in the layer as either `i-{input}` or
       # `ie-{base64_encoded_input}`. By default, the SDK determines the appropriate

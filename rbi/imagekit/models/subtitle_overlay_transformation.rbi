@@ -11,57 +11,74 @@ module Imagekit
           )
         end
 
-      # Background color for subtitles
+      # Specifies the subtitle background color using a standard color name, an RGB
+      # color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+      #
+      # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
       sig { returns(T.nilable(String)) }
       attr_reader :background
 
       sig { params(background: String).void }
       attr_writer :background
 
-      # Text color for subtitles
+      # Sets the font color of the subtitle text using a standard color name, an RGB
+      # color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+      #
+      # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
       sig { returns(T.nilable(String)) }
       attr_reader :color
 
       sig { params(color: String).void }
       attr_writer :color
 
-      # Font family for subtitles
+      # Font family for subtitles. Refer to the
+      # [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
       sig { returns(T.nilable(String)) }
       attr_reader :font_family
 
       sig { params(font_family: String).void }
       attr_writer :font_family
 
-      # Font outline for subtitles
+      # Sets the font outline of the subtitle text. Requires the outline width (an
+      # integer) and the outline color (as an RGB color code, RGBA color code, or
+      # standard web color name) separated by an underscore. Example: `fol-2_blue`
+      # (outline width of 2px and outline color blue), `fol-2_A1CCDD` (outline width of
+      # 2px and outline color `#A1CCDD`) and `fol-2_A1CCDD50` (outline width of 2px and
+      # outline color `#A1CCDD` at 50% opacity).
+      #
+      # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
       sig { returns(T.nilable(String)) }
       attr_reader :font_outline
 
       sig { params(font_outline: String).void }
       attr_writer :font_outline
 
-      # Font shadow for subtitles
+      # Sets the font shadow for the subtitle text. Requires the shadow color (as an RGB
+      # color code, RGBA color code, or standard web color name) and shadow indent (an
+      # integer) separated by an underscore. Example: `fsh-blue_2` (shadow color blue,
+      # indent of 2px), `fsh-A1CCDD_3` (shadow color `#A1CCDD`, indent of 3px),
+      # `fsh-A1CCDD50_3` (shadow color `#A1CCDD` at 50% opacity, indent of 3px).
+      #
+      # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
       sig { returns(T.nilable(String)) }
       attr_reader :font_shadow
 
       sig { params(font_shadow: String).void }
       attr_writer :font_shadow
 
-      # Font size for subtitles
-      sig do
-        returns(
-          T.nilable(Imagekit::SubtitleOverlayTransformation::FontSize::Variants)
-        )
-      end
+      # Sets the font size of subtitle text.
+      #
+      # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
+      sig { returns(T.nilable(Float)) }
       attr_reader :font_size
 
-      sig do
-        params(
-          font_size: Imagekit::SubtitleOverlayTransformation::FontSize::Variants
-        ).void
-      end
+      sig { params(font_size: Float).void }
       attr_writer :font_size
 
-      # Typography style for subtitles
+      # Sets the typography style of the subtitle text. Supports values are `b` for
+      # bold, `i` for italics, and `b_i` for bold with italics.
+      #
+      # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
       sig do
         returns(
           T.nilable(
@@ -79,6 +96,9 @@ module Imagekit
       end
       attr_writer :typography
 
+      # Subtitle styling options.
+      # [Learn more](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
+      # from the docs.
       sig do
         params(
           background: String,
@@ -86,26 +106,50 @@ module Imagekit
           font_family: String,
           font_outline: String,
           font_shadow: String,
-          font_size:
-            Imagekit::SubtitleOverlayTransformation::FontSize::Variants,
+          font_size: Float,
           typography:
             Imagekit::SubtitleOverlayTransformation::Typography::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
-        # Background color for subtitles
+        # Specifies the subtitle background color using a standard color name, an RGB
+        # color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+        #
+        # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
         background: nil,
-        # Text color for subtitles
+        # Sets the font color of the subtitle text using a standard color name, an RGB
+        # color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+        #
+        # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
         color: nil,
-        # Font family for subtitles
+        # Font family for subtitles. Refer to the
+        # [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
         font_family: nil,
-        # Font outline for subtitles
+        # Sets the font outline of the subtitle text. Requires the outline width (an
+        # integer) and the outline color (as an RGB color code, RGBA color code, or
+        # standard web color name) separated by an underscore. Example: `fol-2_blue`
+        # (outline width of 2px and outline color blue), `fol-2_A1CCDD` (outline width of
+        # 2px and outline color `#A1CCDD`) and `fol-2_A1CCDD50` (outline width of 2px and
+        # outline color `#A1CCDD` at 50% opacity).
+        #
+        # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
         font_outline: nil,
-        # Font shadow for subtitles
+        # Sets the font shadow for the subtitle text. Requires the shadow color (as an RGB
+        # color code, RGBA color code, or standard web color name) and shadow indent (an
+        # integer) separated by an underscore. Example: `fsh-blue_2` (shadow color blue,
+        # indent of 2px), `fsh-A1CCDD_3` (shadow color `#A1CCDD`, indent of 3px),
+        # `fsh-A1CCDD50_3` (shadow color `#A1CCDD` at 50% opacity, indent of 3px).
+        #
+        # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
         font_shadow: nil,
-        # Font size for subtitles
+        # Sets the font size of subtitle text.
+        #
+        # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
         font_size: nil,
-        # Typography style for subtitles
+        # Sets the typography style of the subtitle text. Supports values are `b` for
+        # bold, `i` for italics, and `b_i` for bold with italics.
+        #
+        # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
         typography: nil
       )
       end
@@ -118,8 +162,7 @@ module Imagekit
             font_family: String,
             font_outline: String,
             font_shadow: String,
-            font_size:
-              Imagekit::SubtitleOverlayTransformation::FontSize::Variants,
+            font_size: Float,
             typography:
               Imagekit::SubtitleOverlayTransformation::Typography::OrSymbol
           }
@@ -128,24 +171,10 @@ module Imagekit
       def to_hash
       end
 
-      # Font size for subtitles
-      module FontSize
-        extend Imagekit::Internal::Type::Union
-
-        Variants = T.type_alias { T.any(Float, String) }
-
-        sig do
-          override.returns(
-            T::Array[
-              Imagekit::SubtitleOverlayTransformation::FontSize::Variants
-            ]
-          )
-        end
-        def self.variants
-        end
-      end
-
-      # Typography style for subtitles
+      # Sets the typography style of the subtitle text. Supports values are `b` for
+      # bold, `i` for italics, and `b_i` for bold with italics.
+      #
+      # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
       module Typography
         extend Imagekit::Internal::Type::Enum
 

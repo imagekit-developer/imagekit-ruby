@@ -13,7 +13,7 @@ module Imagekit
         padding: Imagekit::Models::TextOverlayTransformation::padding,
         radius: Imagekit::Models::TextOverlayTransformation::radius,
         rotation: Imagekit::Models::TextOverlayTransformation::rotation,
-        typography: Imagekit::Models::TextOverlayTransformation::typography,
+        typography: String,
         width: Imagekit::Models::TextOverlayTransformation::width
       }
 
@@ -76,11 +76,9 @@ module Imagekit
         Imagekit::Models::TextOverlayTransformation::rotation
       ) -> Imagekit::Models::TextOverlayTransformation::rotation
 
-      attr_reader typography: Imagekit::Models::TextOverlayTransformation::typography?
+      attr_reader typography: String?
 
-      def typography=: (
-        Imagekit::Models::TextOverlayTransformation::typography
-      ) -> Imagekit::Models::TextOverlayTransformation::typography
+      def typography=: (String) -> String
 
       attr_reader width: Imagekit::Models::TextOverlayTransformation::width?
 
@@ -100,7 +98,7 @@ module Imagekit
         ?padding: Imagekit::Models::TextOverlayTransformation::padding,
         ?radius: Imagekit::Models::TextOverlayTransformation::radius,
         ?rotation: Imagekit::Models::TextOverlayTransformation::rotation,
-        ?typography: Imagekit::Models::TextOverlayTransformation::typography,
+        ?typography: String,
         ?width: Imagekit::Models::TextOverlayTransformation::width
       ) -> void
 
@@ -116,7 +114,7 @@ module Imagekit
         padding: Imagekit::Models::TextOverlayTransformation::padding,
         radius: Imagekit::Models::TextOverlayTransformation::radius,
         rotation: Imagekit::Models::TextOverlayTransformation::rotation,
-        typography: Imagekit::Models::TextOverlayTransformation::typography,
+        typography: String,
         width: Imagekit::Models::TextOverlayTransformation::width
       }
 
@@ -175,8 +173,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::radius]
-
-        MAX: :max
       end
 
       type rotation = Float | String
@@ -185,18 +181,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::TextOverlayTransformation::rotation]
-      end
-
-      type typography = :b | :i | :b_i
-
-      module Typography
-        extend Imagekit::Internal::Type::Enum
-
-        B: :b
-        I: :i
-        B_I: :b_i
-
-        def self?.values: -> ::Array[Imagekit::Models::TextOverlayTransformation::typography]
       end
 
       type width = Float | String

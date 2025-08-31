@@ -7,7 +7,7 @@ module Imagekit
         font_family: String,
         font_outline: String,
         font_shadow: String,
-        font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size,
+        font_size: Float,
         typography: Imagekit::Models::SubtitleOverlayTransformation::typography
       }
 
@@ -32,11 +32,9 @@ module Imagekit
 
       def font_shadow=: (String) -> String
 
-      attr_reader font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size?
+      attr_reader font_size: Float?
 
-      def font_size=: (
-        Imagekit::Models::SubtitleOverlayTransformation::font_size
-      ) -> Imagekit::Models::SubtitleOverlayTransformation::font_size
+      def font_size=: (Float) -> Float
 
       attr_reader typography: Imagekit::Models::SubtitleOverlayTransformation::typography?
 
@@ -50,7 +48,7 @@ module Imagekit
         ?font_family: String,
         ?font_outline: String,
         ?font_shadow: String,
-        ?font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size,
+        ?font_size: Float,
         ?typography: Imagekit::Models::SubtitleOverlayTransformation::typography
       ) -> void
 
@@ -60,17 +58,9 @@ module Imagekit
         font_family: String,
         font_outline: String,
         font_shadow: String,
-        font_size: Imagekit::Models::SubtitleOverlayTransformation::font_size,
+        font_size: Float,
         typography: Imagekit::Models::SubtitleOverlayTransformation::typography
       }
-
-      type font_size = Float | String
-
-      module FontSize
-        extend Imagekit::Internal::Type::Union
-
-        def self?.variants: -> ::Array[Imagekit::Models::SubtitleOverlayTransformation::font_size]
-      end
 
       type typography = :b | :i | :b_i
 

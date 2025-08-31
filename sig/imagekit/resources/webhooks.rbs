@@ -5,13 +5,21 @@ module Imagekit
         String payload
       ) -> (Imagekit::VideoTransformationAcceptedEvent
       | Imagekit::VideoTransformationReadyEvent
-      | Imagekit::VideoTransformationErrorEvent)
+      | Imagekit::VideoTransformationErrorEvent
+      | Imagekit::UploadPreTransformSuccessWebhookEvent
+      | Imagekit::UploadPreTransformErrorWebhookEvent
+      | Imagekit::UploadPostTransformSuccessWebhookEvent
+      | Imagekit::UploadPostTransformErrorWebhookEvent)
 
       def unwrap: (
         String payload
       ) -> (Imagekit::VideoTransformationAcceptedEvent
       | Imagekit::VideoTransformationReadyEvent
-      | Imagekit::VideoTransformationErrorEvent)
+      | Imagekit::VideoTransformationErrorEvent
+      | Imagekit::UploadPreTransformSuccessWebhookEvent
+      | Imagekit::UploadPreTransformErrorWebhookEvent
+      | Imagekit::UploadPostTransformSuccessWebhookEvent
+      | Imagekit::UploadPostTransformErrorWebhookEvent)
 
       def initialize: (client: Imagekit::Client) -> void
     end

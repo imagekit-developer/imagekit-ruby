@@ -3,7 +3,7 @@ module Imagekit
     type subtitle_overlay =
       {
         input: String,
-        type: Imagekit::Models::SubtitleOverlay::type_,
+        type: :subtitle,
         encoding: Imagekit::Models::SubtitleOverlay::encoding,
         transformation: ::Array[Imagekit::SubtitleOverlayTransformation]
       }
@@ -13,11 +13,9 @@ module Imagekit
 
       def input=: (String _) -> String
 
-      def `type`: -> Imagekit::Models::SubtitleOverlay::type_
+      def `type`: -> :subtitle
 
-      def type=: (
-        Imagekit::Models::SubtitleOverlay::type_ _
-      ) -> Imagekit::Models::SubtitleOverlay::type_
+      def type=: (:subtitle _) -> :subtitle
 
       def encoding: -> Imagekit::Models::SubtitleOverlay::encoding?
 
@@ -33,27 +31,17 @@ module Imagekit
 
       def initialize: (
         input: String,
-        type: Imagekit::Models::SubtitleOverlay::type_,
         ?encoding: Imagekit::Models::SubtitleOverlay::encoding,
-        ?transformation: ::Array[Imagekit::SubtitleOverlayTransformation]
+        ?transformation: ::Array[Imagekit::SubtitleOverlayTransformation],
+        ?type: :subtitle
       ) -> void
 
       def to_hash: -> {
         input: String,
-        type: Imagekit::Models::SubtitleOverlay::type_,
+        type: :subtitle,
         encoding: Imagekit::Models::SubtitleOverlay::encoding,
         transformation: ::Array[Imagekit::SubtitleOverlayTransformation]
       }
-
-      type type_ = :subtitle
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        SUBTITLE: :subtitle
-
-        def self?.values: -> ::Array[Imagekit::Models::SubtitleOverlay::type_]
-      end
 
       type encoding = :auto | :plain | :base64
 

@@ -11,8 +11,8 @@ module Imagekit
 
       # @!attribute type
       #
-      #   @return [Symbol, Imagekit::Models::SubtitleOverlay::Type]
-      required :type, enum: -> { Imagekit::SubtitleOverlay::Type }
+      #   @return [Symbol, :subtitle]
+      required :type, const: :subtitle
 
       # @!attribute encoding
       #   The input path can be included in the layer as either `i-{input}` or
@@ -25,32 +25,24 @@ module Imagekit
       optional :encoding, enum: -> { Imagekit::SubtitleOverlay::Encoding }
 
       # @!attribute transformation
-      #   Control styling of the subtitle.
+      #   Control styling of the subtitle. See
+      #   [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
       #
       #   @return [Array<Imagekit::Models::SubtitleOverlayTransformation>, nil]
       optional :transformation,
                -> { Imagekit::Internal::Type::ArrayOf[Imagekit::SubtitleOverlayTransformation] }
 
-      # @!method initialize(input:, type:, encoding: nil, transformation: nil)
+      # @!method initialize(input:, encoding: nil, transformation: nil, type: :subtitle)
       #   Some parameter documentations has been truncated, see
       #   {Imagekit::Models::SubtitleOverlay} for more details.
       #
       #   @param input [String] Specifies the relative path to the subtitle file used as an overlay.
       #
-      #   @param type [Symbol, Imagekit::Models::SubtitleOverlay::Type]
-      #
       #   @param encoding [Symbol, Imagekit::Models::SubtitleOverlay::Encoding] The input path can be included in the layer as either `i-{input}` or `ie-{base64
       #
-      #   @param transformation [Array<Imagekit::Models::SubtitleOverlayTransformation>] Control styling of the subtitle.
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        SUBTITLE = :subtitle
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
+      #   @param transformation [Array<Imagekit::Models::SubtitleOverlayTransformation>] Control styling of the subtitle. See [Styling subtitles](https://imagekit.io/doc
+      #
+      #   @param type [Symbol, :subtitle]
 
       # The input path can be included in the layer as either `i-{input}` or
       # `ie-{base64_encoded_input}`. By default, the SDK determines the appropriate

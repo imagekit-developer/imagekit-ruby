@@ -12,7 +12,7 @@ module Imagekit
       sig { returns(String) }
       attr_accessor :input
 
-      sig { returns(Imagekit::ImageOverlay::Type::OrSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
       # The input path can be included in the layer as either `i-{input}` or
@@ -27,7 +27,10 @@ module Imagekit
       attr_writer :encoding
 
       # Array of transformations to be applied to the overlay image. Supported
-      # transformations depends on the base/parent asset.
+      # transformations depends on the base/parent asset. See overlays on
+      # [Images](https://imagekit.io/docs/add-overlays-on-images#list-of-supported-image-transformations-in-image-layers)
+      # and
+      # [Videos](https://imagekit.io/docs/add-overlays-on-videos#list-of-transformations-supported-on-image-overlay).
       sig { returns(T.nilable(T::Array[Imagekit::Transformation])) }
       attr_reader :transformation
 
@@ -37,15 +40,14 @@ module Imagekit
       sig do
         params(
           input: String,
-          type: Imagekit::ImageOverlay::Type::OrSymbol,
           encoding: Imagekit::ImageOverlay::Encoding::OrSymbol,
-          transformation: T::Array[Imagekit::Transformation]
+          transformation: T::Array[Imagekit::Transformation],
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
         # Specifies the relative path to the image used as an overlay.
         input:,
-        type:,
         # The input path can be included in the layer as either `i-{input}` or
         # `ie-{base64_encoded_input}`. By default, the SDK determines the appropriate
         # format automatically. To always use base64 encoding (`ie-{base64}`), set this
@@ -53,8 +55,12 @@ module Imagekit
         # `plain`.
         encoding: nil,
         # Array of transformations to be applied to the overlay image. Supported
-        # transformations depends on the base/parent asset.
-        transformation: nil
+        # transformations depends on the base/parent asset. See overlays on
+        # [Images](https://imagekit.io/docs/add-overlays-on-images#list-of-supported-image-transformations-in-image-layers)
+        # and
+        # [Videos](https://imagekit.io/docs/add-overlays-on-videos#list-of-transformations-supported-on-image-overlay).
+        transformation: nil,
+        type: :image
       )
       end
 
@@ -62,29 +68,13 @@ module Imagekit
         override.returns(
           {
             input: String,
-            type: Imagekit::ImageOverlay::Type::OrSymbol,
+            type: Symbol,
             encoding: Imagekit::ImageOverlay::Encoding::OrSymbol,
             transformation: T::Array[Imagekit::Transformation]
           }
         )
       end
       def to_hash
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Imagekit::ImageOverlay::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        IMAGE = T.let(:image, Imagekit::ImageOverlay::Type::TaggedSymbol)
-
-        sig do
-          override.returns(T::Array[Imagekit::ImageOverlay::Type::TaggedSymbol])
-        end
-        def self.values
-        end
       end
 
       # The input path can be included in the layer as either `i-{input}` or

@@ -67,8 +67,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::SolidColorOverlayTransformation::gradient]
-
-        TRUE: true
       end
 
       type height = Float | String
@@ -85,8 +83,6 @@ module Imagekit
         extend Imagekit::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekit::Models::SolidColorOverlayTransformation::radius]
-
-        MAX: :max
       end
 
       type width = Float | String

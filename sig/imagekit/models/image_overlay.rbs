@@ -3,7 +3,7 @@ module Imagekit
     type image_overlay =
       {
         input: String,
-        type: Imagekit::Models::ImageOverlay::type_,
+        type: :image,
         encoding: Imagekit::Models::ImageOverlay::encoding,
         transformation: ::Array[Imagekit::Transformation]
       }
@@ -13,11 +13,9 @@ module Imagekit
 
       def input=: (String _) -> String
 
-      def `type`: -> Imagekit::Models::ImageOverlay::type_
+      def `type`: -> :image
 
-      def type=: (
-        Imagekit::Models::ImageOverlay::type_ _
-      ) -> Imagekit::Models::ImageOverlay::type_
+      def type=: (:image _) -> :image
 
       def encoding: -> Imagekit::Models::ImageOverlay::encoding?
 
@@ -33,27 +31,17 @@ module Imagekit
 
       def initialize: (
         input: String,
-        type: Imagekit::Models::ImageOverlay::type_,
         ?encoding: Imagekit::Models::ImageOverlay::encoding,
-        ?transformation: ::Array[Imagekit::Transformation]
+        ?transformation: ::Array[Imagekit::Transformation],
+        ?type: :image
       ) -> void
 
       def to_hash: -> {
         input: String,
-        type: Imagekit::Models::ImageOverlay::type_,
+        type: :image,
         encoding: Imagekit::Models::ImageOverlay::encoding,
         transformation: ::Array[Imagekit::Transformation]
       }
-
-      type type_ = :image
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        IMAGE: :image
-
-        def self?.values: -> ::Array[Imagekit::Models::ImageOverlay::type_]
-      end
 
       type encoding = :auto | :plain | :base64
 

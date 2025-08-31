@@ -12,7 +12,7 @@ module Imagekit
       sig { returns(String) }
       attr_accessor :input
 
-      sig { returns(Imagekit::SubtitleOverlay::Type::OrSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
       # The input path can be included in the layer as either `i-{input}` or
@@ -28,7 +28,8 @@ module Imagekit
       end
       attr_writer :encoding
 
-      # Control styling of the subtitle.
+      # Control styling of the subtitle. See
+      # [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
       sig do
         returns(T.nilable(T::Array[Imagekit::SubtitleOverlayTransformation]))
       end
@@ -45,24 +46,25 @@ module Imagekit
       sig do
         params(
           input: String,
-          type: Imagekit::SubtitleOverlay::Type::OrSymbol,
           encoding: Imagekit::SubtitleOverlay::Encoding::OrSymbol,
           transformation:
-            T::Array[Imagekit::SubtitleOverlayTransformation::OrHash]
+            T::Array[Imagekit::SubtitleOverlayTransformation::OrHash],
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
         # Specifies the relative path to the subtitle file used as an overlay.
         input:,
-        type:,
         # The input path can be included in the layer as either `i-{input}` or
         # `ie-{base64_encoded_input}`. By default, the SDK determines the appropriate
         # format automatically. To always use base64 encoding (`ie-{base64}`), set this
         # parameter to `base64`. To always use plain text (`i-{input}`), set it to
         # `plain`.
         encoding: nil,
-        # Control styling of the subtitle.
-        transformation: nil
+        # Control styling of the subtitle. See
+        # [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
+        transformation: nil,
+        type: :subtitle
       )
       end
 
@@ -70,32 +72,13 @@ module Imagekit
         override.returns(
           {
             input: String,
-            type: Imagekit::SubtitleOverlay::Type::OrSymbol,
+            type: Symbol,
             encoding: Imagekit::SubtitleOverlay::Encoding::OrSymbol,
             transformation: T::Array[Imagekit::SubtitleOverlayTransformation]
           }
         )
       end
       def to_hash
-      end
-
-      module Type
-        extend Imagekit::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Imagekit::SubtitleOverlay::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        SUBTITLE =
-          T.let(:subtitle, Imagekit::SubtitleOverlay::Type::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Imagekit::SubtitleOverlay::Type::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       # The input path can be included in the layer as either `i-{input}` or

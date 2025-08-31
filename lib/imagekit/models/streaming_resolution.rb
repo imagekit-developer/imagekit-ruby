@@ -2,7 +2,8 @@
 
 module Imagekit
   module Models
-    # Available streaming resolutions for adaptive bitrate streaming
+    # Available streaming resolutions for
+    # [adaptive bitrate streaming](https://imagekit.io/docs/adaptive-bitrate-streaming)
     module StreamingResolution
       extend Imagekit::Internal::Type::Enum
 

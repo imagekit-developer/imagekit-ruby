@@ -8,7 +8,11 @@ module Imagekit
           T.any(
             Imagekit::VideoTransformationAcceptedEvent,
             Imagekit::VideoTransformationReadyEvent,
-            Imagekit::VideoTransformationErrorEvent
+            Imagekit::VideoTransformationErrorEvent,
+            Imagekit::UploadPreTransformSuccessWebhookEvent,
+            Imagekit::UploadPreTransformErrorWebhookEvent,
+            Imagekit::UploadPostTransformSuccessWebhookEvent,
+            Imagekit::UploadPostTransformErrorWebhookEvent
           )
         )
       end
@@ -23,7 +27,11 @@ module Imagekit
           T.any(
             Imagekit::VideoTransformationAcceptedEvent,
             Imagekit::VideoTransformationReadyEvent,
-            Imagekit::VideoTransformationErrorEvent
+            Imagekit::VideoTransformationErrorEvent,
+            Imagekit::UploadPreTransformSuccessWebhookEvent,
+            Imagekit::UploadPreTransformErrorWebhookEvent,
+            Imagekit::UploadPostTransformSuccessWebhookEvent,
+            Imagekit::UploadPostTransformErrorWebhookEvent
           )
         )
       end

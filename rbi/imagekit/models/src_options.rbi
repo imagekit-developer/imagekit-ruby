@@ -30,7 +30,8 @@ module Imagekit
 
       # An array of objects specifying the transformations to be applied in the URL. If
       # more than one transformation is specified, they are applied in the order they
-      # are specified as chained transformations.
+      # are specified as chained transformations. See
+      # [Chained transformations](https://imagekit.io/docs/transformations#chained-transformations).
       sig { returns(T.nilable(T::Array[Imagekit::Transformation])) }
       attr_reader :transformation
 
@@ -41,7 +42,8 @@ module Imagekit
 
       # By default, the transformation string is added as a query parameter in the URL,
       # e.g., `?tr=w-100,h-100`. If you want to add the transformation string in the
-      # path of the URL, set this to `path`.
+      # path of the URL, set this to `path`. Learn more in the
+      # [Transformations guide](https://imagekit.io/docs/transformations).
       sig { returns(T.nilable(Imagekit::TransformationPosition::OrSymbol)) }
       attr_reader :transformation_position
 
@@ -52,7 +54,8 @@ module Imagekit
       end
       attr_writer :transformation_position
 
-      # Options for generating ImageKit URLs with transformations
+      # Options for generating ImageKit URLs with transformations. See the
+      # [Transformations guide](https://imagekit.io/docs/transformations).
       sig do
         params(
           src: String,
@@ -76,11 +79,13 @@ module Imagekit
         query_parameters: nil,
         # An array of objects specifying the transformations to be applied in the URL. If
         # more than one transformation is specified, they are applied in the order they
-        # are specified as chained transformations.
+        # are specified as chained transformations. See
+        # [Chained transformations](https://imagekit.io/docs/transformations#chained-transformations).
         transformation: nil,
         # By default, the transformation string is added as a query parameter in the URL,
         # e.g., `?tr=w-100,h-100`. If you want to add the transformation string in the
-        # path of the URL, set this to `path`.
+        # path of the URL, set this to `path`. Learn more in the
+        # [Transformations guide](https://imagekit.io/docs/transformations).
         transformation_position: nil
       )
       end
