@@ -239,12 +239,19 @@ module Imagekit
 
         type extension_status =
           {
+            ai_auto_description: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::ai_auto_description,
             aws_auto_tagging: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::aws_auto_tagging,
             google_auto_tagging: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::google_auto_tagging,
             remove_bg: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::remove_bg
           }
 
         class ExtensionStatus < Imagekit::Internal::Type::BaseModel
+          attr_reader ai_auto_description: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::ai_auto_description?
+
+          def ai_auto_description=: (
+            Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::ai_auto_description
+          ) -> Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::ai_auto_description
+
           attr_reader aws_auto_tagging: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::aws_auto_tagging?
 
           def aws_auto_tagging=: (
@@ -264,16 +271,30 @@ module Imagekit
           ) -> Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::remove_bg
 
           def initialize: (
+            ?ai_auto_description: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::ai_auto_description,
             ?aws_auto_tagging: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::aws_auto_tagging,
             ?google_auto_tagging: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::google_auto_tagging,
             ?remove_bg: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::remove_bg
           ) -> void
 
           def to_hash: -> {
+            ai_auto_description: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::ai_auto_description,
             aws_auto_tagging: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::aws_auto_tagging,
             google_auto_tagging: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::google_auto_tagging,
             remove_bg: Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::remove_bg
           }
+
+          type ai_auto_description = :success | :pending | :failed
+
+          module AIAutoDescription
+            extend Imagekit::Internal::Type::Enum
+
+            SUCCESS: :success
+            PENDING: :pending
+            FAILED: :failed
+
+            def self?.values: -> ::Array[Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::ai_auto_description]
+          end
 
           type aws_auto_tagging = :success | :pending | :failed
 

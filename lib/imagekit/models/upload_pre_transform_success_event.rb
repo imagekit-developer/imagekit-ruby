@@ -321,6 +321,15 @@ module Imagekit
 
         # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data#extension_status
         class ExtensionStatus < Imagekit::Internal::Type::BaseModel
+          # @!attribute ai_auto_description
+          #
+          #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription, nil]
+          optional :ai_auto_description,
+                   enum: -> {
+                     Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription
+                   },
+                   api_name: :"ai-auto-description"
+
           # @!attribute aws_auto_tagging
           #
           #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging, nil]
@@ -346,7 +355,7 @@ module Imagekit
                    enum: -> { Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg },
                    api_name: :"remove-bg"
 
-          # @!method initialize(aws_auto_tagging: nil, google_auto_tagging: nil, remove_bg: nil)
+          # @!method initialize(ai_auto_description: nil, aws_auto_tagging: nil, google_auto_tagging: nil, remove_bg: nil)
           #   Extension names with their processing status at the time of completion of the
           #   request. It could have one of the following status values:
           #
@@ -357,9 +366,22 @@ module Imagekit
           #
           #   If no extension was requested, then this parameter is not returned.
           #
+          #   @param ai_auto_description [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription]
           #   @param aws_auto_tagging [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging]
           #   @param google_auto_tagging [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging]
           #   @param remove_bg [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg]
+
+          # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus#ai_auto_description
+          module AIAutoDescription
+            extend Imagekit::Internal::Type::Enum
+
+            SUCCESS = :success
+            PENDING = :pending
+            FAILED = :failed
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
 
           # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus#aws_auto_tagging
           module AwsAutoTagging

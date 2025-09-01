@@ -276,6 +276,13 @@ module Imagekit
 
           # @see Imagekit::Models::Beta::V2::FileUploadResponse#extension_status
           class ExtensionStatus < Imagekit::Internal::Type::BaseModel
+            # @!attribute ai_auto_description
+            #
+            #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription, nil]
+            optional :ai_auto_description,
+                     enum: -> { Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription },
+                     api_name: :"ai-auto-description"
+
             # @!attribute aws_auto_tagging
             #
             #   @return [Symbol, Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AwsAutoTagging, nil]
@@ -297,7 +304,7 @@ module Imagekit
                      enum: -> { Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::RemoveBg },
                      api_name: :"remove-bg"
 
-            # @!method initialize(aws_auto_tagging: nil, google_auto_tagging: nil, remove_bg: nil)
+            # @!method initialize(ai_auto_description: nil, aws_auto_tagging: nil, google_auto_tagging: nil, remove_bg: nil)
             #   Extension names with their processing status at the time of completion of the
             #   request. It could have one of the following status values:
             #
@@ -308,9 +315,22 @@ module Imagekit
             #
             #   If no extension was requested, then this parameter is not returned.
             #
+            #   @param ai_auto_description [Symbol, Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription]
             #   @param aws_auto_tagging [Symbol, Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AwsAutoTagging]
             #   @param google_auto_tagging [Symbol, Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::GoogleAutoTagging]
             #   @param remove_bg [Symbol, Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus::RemoveBg]
+
+            # @see Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus#ai_auto_description
+            module AIAutoDescription
+              extend Imagekit::Internal::Type::Enum
+
+              SUCCESS = :success
+              PENDING = :pending
+              FAILED = :failed
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
 
             # @see Imagekit::Models::Beta::V2::FileUploadResponse::ExtensionStatus#aws_auto_tagging
             module AwsAutoTagging

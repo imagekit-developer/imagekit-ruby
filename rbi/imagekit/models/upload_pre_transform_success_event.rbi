@@ -529,6 +529,23 @@ module Imagekit
           sig do
             returns(
               T.nilable(
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol
+              )
+            )
+          end
+          attr_reader :ai_auto_description
+
+          sig do
+            params(
+              ai_auto_description:
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::OrSymbol
+            ).void
+          end
+          attr_writer :ai_auto_description
+
+          sig do
+            returns(
+              T.nilable(
                 Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
               )
             )
@@ -588,6 +605,8 @@ module Imagekit
           # If no extension was requested, then this parameter is not returned.
           sig do
             params(
+              ai_auto_description:
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::OrSymbol,
               aws_auto_tagging:
                 Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::OrSymbol,
               google_auto_tagging:
@@ -597,6 +616,7 @@ module Imagekit
             ).returns(T.attached_class)
           end
           def self.new(
+            ai_auto_description: nil,
             aws_auto_tagging: nil,
             google_auto_tagging: nil,
             remove_bg: nil
@@ -606,6 +626,8 @@ module Imagekit
           sig do
             override.returns(
               {
+                ai_auto_description:
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol,
                 aws_auto_tagging:
                   Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol,
                 google_auto_tagging:
@@ -616,6 +638,45 @@ module Imagekit
             )
           end
           def to_hash
+          end
+
+          module AIAutoDescription
+            extend Imagekit::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            SUCCESS =
+              T.let(
+                :success,
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol
+              )
+            PENDING =
+              T.let(
+                :pending,
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol
+              )
+            FAILED =
+              T.let(
+                :failed,
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
 
           module AwsAutoTagging

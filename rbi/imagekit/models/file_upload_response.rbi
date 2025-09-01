@@ -433,6 +433,23 @@ module Imagekit
         sig do
           returns(
             T.nilable(
+              Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol
+            )
+          )
+        end
+        attr_reader :ai_auto_description
+
+        sig do
+          params(
+            ai_auto_description:
+              Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::OrSymbol
+          ).void
+        end
+        attr_writer :ai_auto_description
+
+        sig do
+          returns(
+            T.nilable(
               Imagekit::Models::FileUploadResponse::ExtensionStatus::AwsAutoTagging::TaggedSymbol
             )
           )
@@ -492,6 +509,8 @@ module Imagekit
         # If no extension was requested, then this parameter is not returned.
         sig do
           params(
+            ai_auto_description:
+              Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::OrSymbol,
             aws_auto_tagging:
               Imagekit::Models::FileUploadResponse::ExtensionStatus::AwsAutoTagging::OrSymbol,
             google_auto_tagging:
@@ -501,6 +520,7 @@ module Imagekit
           ).returns(T.attached_class)
         end
         def self.new(
+          ai_auto_description: nil,
           aws_auto_tagging: nil,
           google_auto_tagging: nil,
           remove_bg: nil
@@ -510,6 +530,8 @@ module Imagekit
         sig do
           override.returns(
             {
+              ai_auto_description:
+                Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol,
               aws_auto_tagging:
                 Imagekit::Models::FileUploadResponse::ExtensionStatus::AwsAutoTagging::TaggedSymbol,
               google_auto_tagging:
@@ -520,6 +542,45 @@ module Imagekit
           )
         end
         def to_hash
+        end
+
+        module AIAutoDescription
+          extend Imagekit::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SUCCESS =
+            T.let(
+              :success,
+              Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol
+            )
+          PENDING =
+            T.let(
+              :pending,
+              Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol
+            )
+          FAILED =
+            T.let(
+              :failed,
+              Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::Models::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
 
         module AwsAutoTagging
