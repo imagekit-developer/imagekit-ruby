@@ -1,0 +1,13 @@
+module Imagekit
+  module Models
+    type folder_move_response = { job_id: String }
+
+    class FolderMoveResponse < Imagekit::Internal::Type::BaseModel
+      attr_accessor job_id: String
+
+      def initialize: (job_id: String) -> void
+
+      def to_hash: -> { job_id: String }
+    end
+  end
+end

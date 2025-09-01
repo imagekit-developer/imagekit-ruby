@@ -1,0 +1,38 @@
+module Imagekit
+  module Models
+    type file_copy_params =
+      {
+        destination_path: String,
+        source_file_path: String,
+        include_file_versions: bool
+      }
+      & Imagekit::Internal::Type::request_parameters
+
+    class FileCopyParams < Imagekit::Internal::Type::BaseModel
+      extend Imagekit::Internal::Type::RequestParameters::Converter
+      include Imagekit::Internal::Type::RequestParameters
+
+      attr_accessor destination_path: String
+
+      attr_accessor source_file_path: String
+
+      attr_reader include_file_versions: bool?
+
+      def include_file_versions=: (bool) -> bool
+
+      def initialize: (
+        destination_path: String,
+        source_file_path: String,
+        ?include_file_versions: bool,
+        ?request_options: Imagekit::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        destination_path: String,
+        source_file_path: String,
+        include_file_versions: bool,
+        request_options: Imagekit::RequestOptions
+      }
+    end
+  end
+end

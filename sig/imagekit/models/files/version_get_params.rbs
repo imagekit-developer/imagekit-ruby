@@ -1,0 +1,25 @@
+module Imagekit
+  module Models
+    module Files
+      type version_get_params =
+        { file_id: String } & Imagekit::Internal::Type::request_parameters
+
+      class VersionGetParams < Imagekit::Internal::Type::BaseModel
+        extend Imagekit::Internal::Type::RequestParameters::Converter
+        include Imagekit::Internal::Type::RequestParameters
+
+        attr_accessor file_id: String
+
+        def initialize: (
+          file_id: String,
+          ?request_options: Imagekit::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          file_id: String,
+          request_options: Imagekit::RequestOptions
+        }
+      end
+    end
+  end
+end

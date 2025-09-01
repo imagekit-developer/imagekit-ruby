@@ -1,0 +1,17 @@
+module Imagekit
+  module Models
+    module Cache
+      type invalidation_create_response = { request_id: String }
+
+      class InvalidationCreateResponse < Imagekit::Internal::Type::BaseModel
+        attr_reader request_id: String?
+
+        def request_id=: (String) -> String
+
+        def initialize: (?request_id: String) -> void
+
+        def to_hash: -> { request_id: String }
+      end
+    end
+  end
+end

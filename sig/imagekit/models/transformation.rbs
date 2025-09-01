@@ -1,0 +1,763 @@
+module Imagekit
+  module Models
+    type transformation =
+      {
+        ai_change_background: String,
+        ai_drop_shadow: Imagekit::Models::Transformation::ai_drop_shadow,
+        ai_edit: String,
+        ai_remove_background: Imagekit::Models::Transformation::ai_remove_background,
+        ai_remove_background_external: Imagekit::Models::Transformation::ai_remove_background_external,
+        ai_retouch: Imagekit::Models::Transformation::ai_retouch,
+        ai_upscale: Imagekit::Models::Transformation::ai_upscale,
+        ai_variation: Imagekit::Models::Transformation::ai_variation,
+        aspect_ratio: Imagekit::Models::Transformation::aspect_ratio,
+        audio_codec: Imagekit::Models::Transformation::audio_codec,
+        background: String,
+        blur: Float,
+        border: String,
+        color_profile: bool,
+        contrast_stretch: Imagekit::Models::Transformation::contrast_stretch,
+        crop: Imagekit::Models::Transformation::crop,
+        crop_mode: Imagekit::Models::Transformation::crop_mode,
+        default_image: String,
+        dpr: Float,
+        duration: Imagekit::Models::Transformation::duration,
+        end_offset: Imagekit::Models::Transformation::end_offset,
+        flip: Imagekit::Models::Transformation::flip,
+        focus: String,
+        format_: Imagekit::Models::Transformation::format_,
+        gradient: Imagekit::Models::Transformation::gradient,
+        grayscale: Imagekit::Models::Transformation::grayscale,
+        height: Imagekit::Models::Transformation::height,
+        lossless: bool,
+        metadata: bool,
+        named: String,
+        opacity: Float,
+        original: bool,
+        overlay: Imagekit::Models::overlay,
+        page: Imagekit::Models::Transformation::page,
+        progressive: bool,
+        quality: Float,
+        radius: Imagekit::Models::Transformation::radius,
+        raw: String,
+        rotation: Imagekit::Models::Transformation::rotation,
+        shadow: Imagekit::Models::Transformation::shadow,
+        sharpen: Imagekit::Models::Transformation::sharpen,
+        start_offset: Imagekit::Models::Transformation::start_offset,
+        streaming_resolutions: ::Array[Imagekit::Models::streaming_resolution],
+        trim: Imagekit::Models::Transformation::trim,
+        unsharp_mask: Imagekit::Models::Transformation::unsharp_mask,
+        video_codec: Imagekit::Models::Transformation::video_codec,
+        width: Imagekit::Models::Transformation::width,
+        x: Imagekit::Models::Transformation::x,
+        x_center: Imagekit::Models::Transformation::x_center,
+        y_: Imagekit::Models::Transformation::y_,
+        y_center: Imagekit::Models::Transformation::y_center,
+        zoom: Float
+      }
+
+    class Transformation < Imagekit::Internal::Type::BaseModel
+      attr_reader ai_change_background: String?
+
+      def ai_change_background=: (String) -> String
+
+      attr_reader ai_drop_shadow: Imagekit::Models::Transformation::ai_drop_shadow?
+
+      def ai_drop_shadow=: (
+        Imagekit::Models::Transformation::ai_drop_shadow
+      ) -> Imagekit::Models::Transformation::ai_drop_shadow
+
+      attr_reader ai_edit: String?
+
+      def ai_edit=: (String) -> String
+
+      attr_reader ai_remove_background: Imagekit::Models::Transformation::ai_remove_background?
+
+      def ai_remove_background=: (
+        Imagekit::Models::Transformation::ai_remove_background
+      ) -> Imagekit::Models::Transformation::ai_remove_background
+
+      attr_reader ai_remove_background_external: Imagekit::Models::Transformation::ai_remove_background_external?
+
+      def ai_remove_background_external=: (
+        Imagekit::Models::Transformation::ai_remove_background_external
+      ) -> Imagekit::Models::Transformation::ai_remove_background_external
+
+      attr_reader ai_retouch: Imagekit::Models::Transformation::ai_retouch?
+
+      def ai_retouch=: (
+        Imagekit::Models::Transformation::ai_retouch
+      ) -> Imagekit::Models::Transformation::ai_retouch
+
+      attr_reader ai_upscale: Imagekit::Models::Transformation::ai_upscale?
+
+      def ai_upscale=: (
+        Imagekit::Models::Transformation::ai_upscale
+      ) -> Imagekit::Models::Transformation::ai_upscale
+
+      attr_reader ai_variation: Imagekit::Models::Transformation::ai_variation?
+
+      def ai_variation=: (
+        Imagekit::Models::Transformation::ai_variation
+      ) -> Imagekit::Models::Transformation::ai_variation
+
+      attr_reader aspect_ratio: Imagekit::Models::Transformation::aspect_ratio?
+
+      def aspect_ratio=: (
+        Imagekit::Models::Transformation::aspect_ratio
+      ) -> Imagekit::Models::Transformation::aspect_ratio
+
+      attr_reader audio_codec: Imagekit::Models::Transformation::audio_codec?
+
+      def audio_codec=: (
+        Imagekit::Models::Transformation::audio_codec
+      ) -> Imagekit::Models::Transformation::audio_codec
+
+      attr_reader background: String?
+
+      def background=: (String) -> String
+
+      attr_reader blur: Float?
+
+      def blur=: (Float) -> Float
+
+      attr_reader border: String?
+
+      def border=: (String) -> String
+
+      attr_reader color_profile: bool?
+
+      def color_profile=: (bool) -> bool
+
+      attr_reader contrast_stretch: Imagekit::Models::Transformation::contrast_stretch?
+
+      def contrast_stretch=: (
+        Imagekit::Models::Transformation::contrast_stretch
+      ) -> Imagekit::Models::Transformation::contrast_stretch
+
+      attr_reader crop: Imagekit::Models::Transformation::crop?
+
+      def crop=: (
+        Imagekit::Models::Transformation::crop
+      ) -> Imagekit::Models::Transformation::crop
+
+      attr_reader crop_mode: Imagekit::Models::Transformation::crop_mode?
+
+      def crop_mode=: (
+        Imagekit::Models::Transformation::crop_mode
+      ) -> Imagekit::Models::Transformation::crop_mode
+
+      attr_reader default_image: String?
+
+      def default_image=: (String) -> String
+
+      attr_reader dpr: Float?
+
+      def dpr=: (Float) -> Float
+
+      attr_reader duration: Imagekit::Models::Transformation::duration?
+
+      def duration=: (
+        Imagekit::Models::Transformation::duration
+      ) -> Imagekit::Models::Transformation::duration
+
+      attr_reader end_offset: Imagekit::Models::Transformation::end_offset?
+
+      def end_offset=: (
+        Imagekit::Models::Transformation::end_offset
+      ) -> Imagekit::Models::Transformation::end_offset
+
+      attr_reader flip: Imagekit::Models::Transformation::flip?
+
+      def flip=: (
+        Imagekit::Models::Transformation::flip
+      ) -> Imagekit::Models::Transformation::flip
+
+      attr_reader focus: String?
+
+      def focus=: (String) -> String
+
+      attr_reader format_: Imagekit::Models::Transformation::format_?
+
+      def format_=: (
+        Imagekit::Models::Transformation::format_
+      ) -> Imagekit::Models::Transformation::format_
+
+      attr_reader gradient: Imagekit::Models::Transformation::gradient?
+
+      def gradient=: (
+        Imagekit::Models::Transformation::gradient
+      ) -> Imagekit::Models::Transformation::gradient
+
+      attr_reader grayscale: Imagekit::Models::Transformation::grayscale?
+
+      def grayscale=: (
+        Imagekit::Models::Transformation::grayscale
+      ) -> Imagekit::Models::Transformation::grayscale
+
+      attr_reader height: Imagekit::Models::Transformation::height?
+
+      def height=: (
+        Imagekit::Models::Transformation::height
+      ) -> Imagekit::Models::Transformation::height
+
+      attr_reader lossless: bool?
+
+      def lossless=: (bool) -> bool
+
+      attr_reader metadata: bool?
+
+      def metadata=: (bool) -> bool
+
+      attr_reader named: String?
+
+      def named=: (String) -> String
+
+      attr_reader opacity: Float?
+
+      def opacity=: (Float) -> Float
+
+      attr_reader original: bool?
+
+      def original=: (bool) -> bool
+
+      attr_reader overlay: Imagekit::Models::overlay?
+
+      def overlay=: (Imagekit::Models::overlay) -> Imagekit::Models::overlay
+
+      attr_reader page: Imagekit::Models::Transformation::page?
+
+      def page=: (
+        Imagekit::Models::Transformation::page
+      ) -> Imagekit::Models::Transformation::page
+
+      attr_reader progressive: bool?
+
+      def progressive=: (bool) -> bool
+
+      attr_reader quality: Float?
+
+      def quality=: (Float) -> Float
+
+      attr_reader radius: Imagekit::Models::Transformation::radius?
+
+      def radius=: (
+        Imagekit::Models::Transformation::radius
+      ) -> Imagekit::Models::Transformation::radius
+
+      attr_reader raw: String?
+
+      def raw=: (String) -> String
+
+      attr_reader rotation: Imagekit::Models::Transformation::rotation?
+
+      def rotation=: (
+        Imagekit::Models::Transformation::rotation
+      ) -> Imagekit::Models::Transformation::rotation
+
+      attr_reader shadow: Imagekit::Models::Transformation::shadow?
+
+      def shadow=: (
+        Imagekit::Models::Transformation::shadow
+      ) -> Imagekit::Models::Transformation::shadow
+
+      attr_reader sharpen: Imagekit::Models::Transformation::sharpen?
+
+      def sharpen=: (
+        Imagekit::Models::Transformation::sharpen
+      ) -> Imagekit::Models::Transformation::sharpen
+
+      attr_reader start_offset: Imagekit::Models::Transformation::start_offset?
+
+      def start_offset=: (
+        Imagekit::Models::Transformation::start_offset
+      ) -> Imagekit::Models::Transformation::start_offset
+
+      attr_reader streaming_resolutions: ::Array[Imagekit::Models::streaming_resolution]?
+
+      def streaming_resolutions=: (
+        ::Array[Imagekit::Models::streaming_resolution]
+      ) -> ::Array[Imagekit::Models::streaming_resolution]
+
+      attr_reader trim: Imagekit::Models::Transformation::trim?
+
+      def trim=: (
+        Imagekit::Models::Transformation::trim
+      ) -> Imagekit::Models::Transformation::trim
+
+      attr_reader unsharp_mask: Imagekit::Models::Transformation::unsharp_mask?
+
+      def unsharp_mask=: (
+        Imagekit::Models::Transformation::unsharp_mask
+      ) -> Imagekit::Models::Transformation::unsharp_mask
+
+      attr_reader video_codec: Imagekit::Models::Transformation::video_codec?
+
+      def video_codec=: (
+        Imagekit::Models::Transformation::video_codec
+      ) -> Imagekit::Models::Transformation::video_codec
+
+      attr_reader width: Imagekit::Models::Transformation::width?
+
+      def width=: (
+        Imagekit::Models::Transformation::width
+      ) -> Imagekit::Models::Transformation::width
+
+      attr_reader x: Imagekit::Models::Transformation::x?
+
+      def x=: (
+        Imagekit::Models::Transformation::x
+      ) -> Imagekit::Models::Transformation::x
+
+      attr_reader x_center: Imagekit::Models::Transformation::x_center?
+
+      def x_center=: (
+        Imagekit::Models::Transformation::x_center
+      ) -> Imagekit::Models::Transformation::x_center
+
+      attr_reader y_: Imagekit::Models::Transformation::y_?
+
+      def y_=: (
+        Imagekit::Models::Transformation::y_
+      ) -> Imagekit::Models::Transformation::y_
+
+      attr_reader y_center: Imagekit::Models::Transformation::y_center?
+
+      def y_center=: (
+        Imagekit::Models::Transformation::y_center
+      ) -> Imagekit::Models::Transformation::y_center
+
+      attr_reader zoom: Float?
+
+      def zoom=: (Float) -> Float
+
+      def initialize: (
+        ?ai_change_background: String,
+        ?ai_drop_shadow: Imagekit::Models::Transformation::ai_drop_shadow,
+        ?ai_edit: String,
+        ?ai_remove_background: Imagekit::Models::Transformation::ai_remove_background,
+        ?ai_remove_background_external: Imagekit::Models::Transformation::ai_remove_background_external,
+        ?ai_retouch: Imagekit::Models::Transformation::ai_retouch,
+        ?ai_upscale: Imagekit::Models::Transformation::ai_upscale,
+        ?ai_variation: Imagekit::Models::Transformation::ai_variation,
+        ?aspect_ratio: Imagekit::Models::Transformation::aspect_ratio,
+        ?audio_codec: Imagekit::Models::Transformation::audio_codec,
+        ?background: String,
+        ?blur: Float,
+        ?border: String,
+        ?color_profile: bool,
+        ?contrast_stretch: Imagekit::Models::Transformation::contrast_stretch,
+        ?crop: Imagekit::Models::Transformation::crop,
+        ?crop_mode: Imagekit::Models::Transformation::crop_mode,
+        ?default_image: String,
+        ?dpr: Float,
+        ?duration: Imagekit::Models::Transformation::duration,
+        ?end_offset: Imagekit::Models::Transformation::end_offset,
+        ?flip: Imagekit::Models::Transformation::flip,
+        ?focus: String,
+        ?format_: Imagekit::Models::Transformation::format_,
+        ?gradient: Imagekit::Models::Transformation::gradient,
+        ?grayscale: Imagekit::Models::Transformation::grayscale,
+        ?height: Imagekit::Models::Transformation::height,
+        ?lossless: bool,
+        ?metadata: bool,
+        ?named: String,
+        ?opacity: Float,
+        ?original: bool,
+        ?overlay: Imagekit::Models::overlay,
+        ?page: Imagekit::Models::Transformation::page,
+        ?progressive: bool,
+        ?quality: Float,
+        ?radius: Imagekit::Models::Transformation::radius,
+        ?raw: String,
+        ?rotation: Imagekit::Models::Transformation::rotation,
+        ?shadow: Imagekit::Models::Transformation::shadow,
+        ?sharpen: Imagekit::Models::Transformation::sharpen,
+        ?start_offset: Imagekit::Models::Transformation::start_offset,
+        ?streaming_resolutions: ::Array[Imagekit::Models::streaming_resolution],
+        ?trim: Imagekit::Models::Transformation::trim,
+        ?unsharp_mask: Imagekit::Models::Transformation::unsharp_mask,
+        ?video_codec: Imagekit::Models::Transformation::video_codec,
+        ?width: Imagekit::Models::Transformation::width,
+        ?x: Imagekit::Models::Transformation::x,
+        ?x_center: Imagekit::Models::Transformation::x_center,
+        ?y_: Imagekit::Models::Transformation::y_,
+        ?y_center: Imagekit::Models::Transformation::y_center,
+        ?zoom: Float
+      ) -> void
+
+      def to_hash: -> {
+        ai_change_background: String,
+        ai_drop_shadow: Imagekit::Models::Transformation::ai_drop_shadow,
+        ai_edit: String,
+        ai_remove_background: Imagekit::Models::Transformation::ai_remove_background,
+        ai_remove_background_external: Imagekit::Models::Transformation::ai_remove_background_external,
+        ai_retouch: Imagekit::Models::Transformation::ai_retouch,
+        ai_upscale: Imagekit::Models::Transformation::ai_upscale,
+        ai_variation: Imagekit::Models::Transformation::ai_variation,
+        aspect_ratio: Imagekit::Models::Transformation::aspect_ratio,
+        audio_codec: Imagekit::Models::Transformation::audio_codec,
+        background: String,
+        blur: Float,
+        border: String,
+        color_profile: bool,
+        contrast_stretch: Imagekit::Models::Transformation::contrast_stretch,
+        crop: Imagekit::Models::Transformation::crop,
+        crop_mode: Imagekit::Models::Transformation::crop_mode,
+        default_image: String,
+        dpr: Float,
+        duration: Imagekit::Models::Transformation::duration,
+        end_offset: Imagekit::Models::Transformation::end_offset,
+        flip: Imagekit::Models::Transformation::flip,
+        focus: String,
+        format_: Imagekit::Models::Transformation::format_,
+        gradient: Imagekit::Models::Transformation::gradient,
+        grayscale: Imagekit::Models::Transformation::grayscale,
+        height: Imagekit::Models::Transformation::height,
+        lossless: bool,
+        metadata: bool,
+        named: String,
+        opacity: Float,
+        original: bool,
+        overlay: Imagekit::Models::overlay,
+        page: Imagekit::Models::Transformation::page,
+        progressive: bool,
+        quality: Float,
+        radius: Imagekit::Models::Transformation::radius,
+        raw: String,
+        rotation: Imagekit::Models::Transformation::rotation,
+        shadow: Imagekit::Models::Transformation::shadow,
+        sharpen: Imagekit::Models::Transformation::sharpen,
+        start_offset: Imagekit::Models::Transformation::start_offset,
+        streaming_resolutions: ::Array[Imagekit::Models::streaming_resolution],
+        trim: Imagekit::Models::Transformation::trim,
+        unsharp_mask: Imagekit::Models::Transformation::unsharp_mask,
+        video_codec: Imagekit::Models::Transformation::video_codec,
+        width: Imagekit::Models::Transformation::width,
+        x: Imagekit::Models::Transformation::x,
+        x_center: Imagekit::Models::Transformation::x_center,
+        y_: Imagekit::Models::Transformation::y_,
+        y_center: Imagekit::Models::Transformation::y_center,
+        zoom: Float
+      }
+
+      type ai_drop_shadow = true | String
+
+      module AIDropShadow
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::ai_drop_shadow]
+      end
+
+      type ai_remove_background = true
+
+      module AIRemoveBackground
+        extend Imagekit::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::ai_remove_background]
+      end
+
+      type ai_remove_background_external = true
+
+      module AIRemoveBackgroundExternal
+        extend Imagekit::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::ai_remove_background_external]
+      end
+
+      type ai_retouch = true
+
+      module AIRetouch
+        extend Imagekit::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::ai_retouch]
+      end
+
+      type ai_upscale = true
+
+      module AIUpscale
+        extend Imagekit::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::ai_upscale]
+      end
+
+      type ai_variation = true
+
+      module AIVariation
+        extend Imagekit::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::ai_variation]
+      end
+
+      type aspect_ratio = Float | String
+
+      module AspectRatio
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::aspect_ratio]
+      end
+
+      type audio_codec = :aac | :opus | :none
+
+      module AudioCodec
+        extend Imagekit::Internal::Type::Enum
+
+        AAC: :aac
+        OPUS: :opus
+        NONE: :none
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::audio_codec]
+      end
+
+      type contrast_stretch = true
+
+      module ContrastStretch
+        extend Imagekit::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::contrast_stretch]
+      end
+
+      type crop =
+        :force | :at_max | :at_max_enlarge | :at_least | :maintain_ratio
+
+      module Crop
+        extend Imagekit::Internal::Type::Enum
+
+        FORCE: :force
+        AT_MAX: :at_max
+        AT_MAX_ENLARGE: :at_max_enlarge
+        AT_LEAST: :at_least
+        MAINTAIN_RATIO: :maintain_ratio
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::crop]
+      end
+
+      type crop_mode = :pad_resize | :extract | :pad_extract
+
+      module CropMode
+        extend Imagekit::Internal::Type::Enum
+
+        PAD_RESIZE: :pad_resize
+        EXTRACT: :extract
+        PAD_EXTRACT: :pad_extract
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::crop_mode]
+      end
+
+      type duration = Float | String
+
+      module Duration
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::duration]
+      end
+
+      type end_offset = Float | String
+
+      module EndOffset
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::end_offset]
+      end
+
+      type flip = :h | :v | :h_v | :v_h
+
+      module Flip
+        extend Imagekit::Internal::Type::Enum
+
+        H: :h
+        V: :v
+        H_V: :h_v
+        V_H: :v_h
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::flip]
+      end
+
+      type format_ =
+        :auto
+        | :webp
+        | :jpg
+        | :jpeg
+        | :png
+        | :gif
+        | :svg
+        | :mp4
+        | :webm
+        | :avif
+        | :orig
+
+      module Format
+        extend Imagekit::Internal::Type::Enum
+
+        AUTO: :auto
+        WEBP: :webp
+        JPG: :jpg
+        JPEG: :jpeg
+        PNG: :png
+        GIF: :gif
+        SVG: :svg
+        MP4: :mp4
+        WEBM: :webm
+        AVIF: :avif
+        ORIG: :orig
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::format_]
+      end
+
+      type gradient = true | String
+
+      module Gradient
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::gradient]
+      end
+
+      type grayscale = true
+
+      module Grayscale
+        extend Imagekit::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::grayscale]
+      end
+
+      type height = Float | String
+
+      module Height
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::height]
+      end
+
+      type page = Float | String
+
+      module Page
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::page]
+      end
+
+      type radius = Float | :max
+
+      module Radius
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::radius]
+      end
+
+      type rotation = Float | String
+
+      module Rotation
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::rotation]
+      end
+
+      type shadow = true | String
+
+      module Shadow
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::shadow]
+      end
+
+      type sharpen = true | Float
+
+      module Sharpen
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::sharpen]
+      end
+
+      type start_offset = Float | String
+
+      module StartOffset
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::start_offset]
+      end
+
+      type trim = true | Float
+
+      module Trim
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::trim]
+      end
+
+      type unsharp_mask = true | String
+
+      module UnsharpMask
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::unsharp_mask]
+      end
+
+      type video_codec = :h264 | :vp9 | :av1 | :none
+
+      module VideoCodec
+        extend Imagekit::Internal::Type::Enum
+
+        H264: :h264
+        VP9: :vp9
+        AV1: :av1
+        NONE: :none
+
+        def self?.values: -> ::Array[Imagekit::Models::Transformation::video_codec]
+      end
+
+      type width = Float | String
+
+      module Width
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::width]
+      end
+
+      type x = Float | String
+
+      module X
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::x]
+      end
+
+      type x_center = Float | String
+
+      module XCenter
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::x_center]
+      end
+
+      type y_ = Float | String
+
+      module Y
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::y_]
+      end
+
+      type y_center = Float | String
+
+      module YCenter
+        extend Imagekit::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekit::Models::Transformation::y_center]
+      end
+    end
+  end
+end

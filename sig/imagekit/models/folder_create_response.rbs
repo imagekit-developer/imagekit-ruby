@@ -1,0 +1,11 @@
+module Imagekit
+  module Models
+    type folder_create_response = {  }
+
+    class FolderCreateResponse < Imagekit::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
+  end
+end

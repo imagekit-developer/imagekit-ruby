@@ -1,0 +1,97 @@
+module Imagekit
+  module Models
+    module Accounts
+      type url_endpoint_request =
+        {
+          description: String,
+          origins: ::Array[String],
+          url_prefix: String,
+          url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
+        }
+
+      class URLEndpointRequest < Imagekit::Internal::Type::BaseModel
+        attr_accessor description: String
+
+        attr_reader origins: ::Array[String]?
+
+        def origins=: (::Array[String]) -> ::Array[String]
+
+        attr_reader url_prefix: String?
+
+        def url_prefix=: (String) -> String
+
+        attr_reader url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter?
+
+        def url_rewriter=: (
+          Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
+        ) -> Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
+
+        def initialize: (
+          description: String,
+          ?origins: ::Array[String],
+          ?url_prefix: String,
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
+        ) -> void
+
+        def to_hash: -> {
+          description: String,
+          origins: ::Array[String],
+          url_prefix: String,
+          url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter
+        }
+
+        type url_rewriter =
+          Imagekit::Accounts::URLEndpointRequest::URLRewriter::Cloudinary
+          | Imagekit::Accounts::URLEndpointRequest::URLRewriter::Imgix
+          | Imagekit::Accounts::URLEndpointRequest::URLRewriter::Akamai
+
+        module URLRewriter
+          extend Imagekit::Internal::Type::Union
+
+          type cloudinary =
+            { type: :CLOUDINARY, preserve_asset_delivery_types: bool }
+
+          class Cloudinary < Imagekit::Internal::Type::BaseModel
+            attr_accessor type: :CLOUDINARY
+
+            attr_reader preserve_asset_delivery_types: bool?
+
+            def preserve_asset_delivery_types=: (bool) -> bool
+
+            def initialize: (
+              ?preserve_asset_delivery_types: bool,
+              ?type: :CLOUDINARY
+            ) -> void
+
+            def to_hash: -> {
+              type: :CLOUDINARY,
+              preserve_asset_delivery_types: bool
+            }
+          end
+
+          type imgix = { type: :IMGIX }
+
+          class Imgix < Imagekit::Internal::Type::BaseModel
+            attr_accessor type: :IMGIX
+
+            def initialize: (?type: :IMGIX) -> void
+
+            def to_hash: -> { type: :IMGIX }
+          end
+
+          type akamai = { type: :AKAMAI }
+
+          class Akamai < Imagekit::Internal::Type::BaseModel
+            attr_accessor type: :AKAMAI
+
+            def initialize: (?type: :AKAMAI) -> void
+
+            def to_hash: -> { type: :AKAMAI }
+          end
+
+          def self?.variants: -> ::Array[Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter]
+        end
+      end
+    end
+  end
+end

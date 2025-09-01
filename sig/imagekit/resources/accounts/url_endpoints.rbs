@@ -1,0 +1,37 @@
+module Imagekit
+  module Resources
+    class Accounts
+      class URLEndpoints
+        def create: (
+          description: String,
+          ?origins: ::Array[String],
+          ?url_prefix: String,
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter,
+          ?request_options: Imagekit::request_opts
+        ) -> Imagekit::Accounts::URLEndpointResponse
+
+        def update: (
+          String id,
+          description: String,
+          ?origins: ::Array[String],
+          ?url_prefix: String,
+          ?url_rewriter: Imagekit::Models::Accounts::URLEndpointRequest::url_rewriter,
+          ?request_options: Imagekit::request_opts
+        ) -> Imagekit::Accounts::URLEndpointResponse
+
+        def list: (
+          ?request_options: Imagekit::request_opts
+        ) -> Imagekit::Models::Accounts::url_endpoint_list_response
+
+        def delete: (String id, ?request_options: Imagekit::request_opts) -> nil
+
+        def get: (
+          String id,
+          ?request_options: Imagekit::request_opts
+        ) -> Imagekit::Accounts::URLEndpointResponse
+
+        def initialize: (client: Imagekit::Client) -> void
+      end
+    end
+  end
+end

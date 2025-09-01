@@ -1,0 +1,35 @@
+module Imagekit
+  module Resources
+    class Beta
+      class V2
+        class Files
+          def upload: (
+            file: Imagekit::Internal::file_input,
+            file_name: String,
+            ?token: String,
+            ?checks: String,
+            ?custom_coordinates: String,
+            ?custom_metadata: ::Hash[Symbol, top],
+            ?description: String,
+            ?extensions: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension],
+            ?folder: String,
+            ?is_private_file: bool,
+            ?is_published: bool,
+            ?overwrite_ai_tags: bool,
+            ?overwrite_custom_metadata: bool,
+            ?overwrite_file: bool,
+            ?overwrite_tags: bool,
+            ?response_fields: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field],
+            ?tags: ::Array[String],
+            ?transformation: Imagekit::Beta::V2::FileUploadParams::Transformation,
+            ?use_unique_file_name: bool,
+            ?webhook_url: String,
+            ?request_options: Imagekit::request_opts
+          ) -> Imagekit::Models::Beta::V2::FileUploadResponse
+
+          def initialize: (client: Imagekit::Client) -> void
+        end
+      end
+    end
+  end
+end

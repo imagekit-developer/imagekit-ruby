@@ -1,0 +1,16 @@
+module Imagekit
+  module Models
+    type asset_list_response_item = Imagekit::Folder | Imagekit::File
+
+    module AssetListResponseItem
+      extend Imagekit::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Imagekit::Models::asset_list_response_item]
+    end
+
+    type asset_list_response =
+      ::Array[Imagekit::Models::asset_list_response_item]
+
+    AssetListResponse: Imagekit::Internal::Type::Converter
+  end
+end

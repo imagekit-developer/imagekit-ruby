@@ -1,0 +1,14 @@
+module Imagekit
+  module Models
+    type transformation_position = :path | :query
+
+    module TransformationPosition
+      extend Imagekit::Internal::Type::Enum
+
+      PATH: :path
+      QUERY: :query
+
+      def self?.values: -> ::Array[Imagekit::Models::transformation_position]
+    end
+  end
+end

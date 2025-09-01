@@ -1,0 +1,69 @@
+module Imagekit
+  module Models
+    type folder =
+      {
+        created_at: Time,
+        folder_id: String,
+        folder_path: String,
+        name: String,
+        type: Imagekit::Models::Folder::type_,
+        updated_at: Time
+      }
+
+    class Folder < Imagekit::Internal::Type::BaseModel
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader folder_id: String?
+
+      def folder_id=: (String) -> String
+
+      attr_reader folder_path: String?
+
+      def folder_path=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader type: Imagekit::Models::Folder::type_?
+
+      def type=: (
+        Imagekit::Models::Folder::type_
+      ) -> Imagekit::Models::Folder::type_
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        ?created_at: Time,
+        ?folder_id: String,
+        ?folder_path: String,
+        ?name: String,
+        ?type: Imagekit::Models::Folder::type_,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        folder_id: String,
+        folder_path: String,
+        name: String,
+        type: Imagekit::Models::Folder::type_,
+        updated_at: Time
+      }
+
+      type type_ = :folder
+
+      module Type
+        extend Imagekit::Internal::Type::Enum
+
+        FOLDER: :folder
+
+        def self?.values: -> ::Array[Imagekit::Models::Folder::type_]
+      end
+    end
+  end
+end

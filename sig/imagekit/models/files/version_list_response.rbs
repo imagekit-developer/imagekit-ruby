@@ -1,0 +1,9 @@
+module Imagekit
+  module Models
+    module Files
+      type version_list_response = ::Array[Imagekit::File]
+
+      VersionListResponse: Imagekit::Internal::Type::Converter
+    end
+  end
+end

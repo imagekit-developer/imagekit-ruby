@@ -1,0 +1,38 @@
+module Imagekit
+  module Models
+    type solid_color_overlay =
+      {
+        color: String,
+        type: :solidColor,
+        transformation: ::Array[Imagekit::SolidColorOverlayTransformation]
+      }
+
+    class SolidColorOverlay < Imagekit::Models::BaseOverlay
+      def color: -> String
+
+      def color=: (String _) -> String
+
+      def `type`: -> :solidColor
+
+      def type=: (:solidColor _) -> :solidColor
+
+      def transformation: -> ::Array[Imagekit::SolidColorOverlayTransformation]?
+
+      def transformation=: (
+        ::Array[Imagekit::SolidColorOverlayTransformation] _
+      ) -> ::Array[Imagekit::SolidColorOverlayTransformation]
+
+      def initialize: (
+        color: String,
+        ?transformation: ::Array[Imagekit::SolidColorOverlayTransformation],
+        ?type: :solidColor
+      ) -> void
+
+      def to_hash: -> {
+        color: String,
+        type: :solidColor,
+        transformation: ::Array[Imagekit::SolidColorOverlayTransformation]
+      }
+    end
+  end
+end

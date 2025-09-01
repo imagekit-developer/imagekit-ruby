@@ -1,0 +1,34 @@
+module Imagekit
+  module Models
+    type file_rename_params =
+      { file_path: String, new_file_name: String, purge_cache: bool }
+      & Imagekit::Internal::Type::request_parameters
+
+    class FileRenameParams < Imagekit::Internal::Type::BaseModel
+      extend Imagekit::Internal::Type::RequestParameters::Converter
+      include Imagekit::Internal::Type::RequestParameters
+
+      attr_accessor file_path: String
+
+      attr_accessor new_file_name: String
+
+      attr_reader purge_cache: bool?
+
+      def purge_cache=: (bool) -> bool
+
+      def initialize: (
+        file_path: String,
+        new_file_name: String,
+        ?purge_cache: bool,
+        ?request_options: Imagekit::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file_path: String,
+        new_file_name: String,
+        purge_cache: bool,
+        request_options: Imagekit::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,72 @@
+module Imagekit
+  module Models
+    module Folders
+      type job_get_response =
+        {
+          job_id: String,
+          purge_request_id: String,
+          status: Imagekit::Models::Folders::JobGetResponse::status,
+          type: Imagekit::Models::Folders::JobGetResponse::type_
+        }
+
+      class JobGetResponse < Imagekit::Internal::Type::BaseModel
+        attr_reader job_id: String?
+
+        def job_id=: (String) -> String
+
+        attr_reader purge_request_id: String?
+
+        def purge_request_id=: (String) -> String
+
+        attr_reader status: Imagekit::Models::Folders::JobGetResponse::status?
+
+        def status=: (
+          Imagekit::Models::Folders::JobGetResponse::status
+        ) -> Imagekit::Models::Folders::JobGetResponse::status
+
+        attr_reader type: Imagekit::Models::Folders::JobGetResponse::type_?
+
+        def type=: (
+          Imagekit::Models::Folders::JobGetResponse::type_
+        ) -> Imagekit::Models::Folders::JobGetResponse::type_
+
+        def initialize: (
+          ?job_id: String,
+          ?purge_request_id: String,
+          ?status: Imagekit::Models::Folders::JobGetResponse::status,
+          ?type: Imagekit::Models::Folders::JobGetResponse::type_
+        ) -> void
+
+        def to_hash: -> {
+          job_id: String,
+          purge_request_id: String,
+          status: Imagekit::Models::Folders::JobGetResponse::status,
+          type: Imagekit::Models::Folders::JobGetResponse::type_
+        }
+
+        type status = :Pending | :Completed
+
+        module Status
+          extend Imagekit::Internal::Type::Enum
+
+          PENDING: :Pending
+          COMPLETED: :Completed
+
+          def self?.values: -> ::Array[Imagekit::Models::Folders::JobGetResponse::status]
+        end
+
+        type type_ = :COPY_FOLDER | :MOVE_FOLDER | :RENAME_FOLDER
+
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          COPY_FOLDER: :COPY_FOLDER
+          MOVE_FOLDER: :MOVE_FOLDER
+          RENAME_FOLDER: :RENAME_FOLDER
+
+          def self?.values: -> ::Array[Imagekit::Models::Folders::JobGetResponse::type_]
+        end
+      end
+    end
+  end
+end

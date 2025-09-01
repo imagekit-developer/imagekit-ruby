@@ -1,409 +1,405 @@
-require_relative './spec_helper'
-require 'rspec/autorun'
+# frozen_string_literal: true
 
-RSpec.describe ImageKitIo::Client do
-  let(:subject) { described_class }
-  let!(:public_key) { 'public_xyz' }
-  let!(:private_key) { 'private_xyz' }
-  let!(:url_endpoint) { 'https://imagekit.io/your-imgekit-id' }
-  let(:constants) { ImageKitIo.constants }
+require_relative "test_helper"
 
-  it "test_initialization_with_private_key_missing" do
-    request_obj = double
-    expect {
-      subject.new("  ", public_key, url_endpoint)
-    }.to raise_error(ArgumentError, constants.MISSING_PRIVATE_KEY)
+class ImagekitTest < Minitest::Test
+  extend Minitest::Serial
+  include WebMock::API
+
+  def before_all
+    super
+    WebMock.enable!
   end
 
-  it "test_initialization_with_non_string_private_key" do
-    request_obj = double
-    expect {
-      subject.new({ RANDOM: "RANDOM"}, public_key, url_endpoint)
-    }.to raise_error(ArgumentError, constants.MISSING_PRIVATE_KEY)
+  def setup
+    super
+    Thread.current.thread_variable_set(:mock_sleep, [])
   end
 
-  it "test_initialization_with_public_key_missing" do
-    request_obj = double
-    expect {
-      subject.new(private_key, "   ", url_endpoint)
-    }.to raise_error(ArgumentError, constants.MISSING_PUBLIC_KEY)
+  def teardown
+    Thread.current.thread_variable_set(:mock_sleep, nil)
+    WebMock.reset!
+    super
   end
 
-  it "test_initialization_with_non_string_public_key" do
-    request_obj = double
-    expect {
-      subject.new(private_key, { RANDOM: "RANDOM"}, url_endpoint)
-    }.to raise_error(ArgumentError, constants.MISSING_PUBLIC_KEY)
+  def after_all
+    WebMock.disable!
+    super
   end
 
-  it "test_initialization_with_url_endpoint_missing" do
-    request_obj = double
-    expect {
-      subject.new(private_key, public_key, "  ")
-    }.to raise_error(ArgumentError, constants.MISSING_URL_ENDPOINT)
+  def test_raises_on_missing_non_nullable_opts
+    e = assert_raises(ArgumentError) do
+      Imagekit::Client.new
+    end
+    assert_match(/is required/, e.message)
   end
 
-  it "test_initialization_with_non_string_url_endpoint" do
-    request_obj = double
-    expect {
-      subject.new(private_key, public_key, { RANDOM: "RANDOM"})
-    }.to raise_error(ArgumentError, constants.MISSING_URL_ENDPOINT)
+  def test_client_default_request_default_retry_attempts
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
+
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
+
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+    end
+
+    assert_requested(:any, /./, times: 3)
   end
 
-  context 'FileUploadTest' do
-    it "test_upload_with_valid_expected_success" do
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+  def test_client_given_request_default_retry_attempts
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password",
+        max_retries: 3
+      )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      upload = SUT.upload_file(file: "fakefile.jpg", file_name: "fake", content_type: 'image/jpeg')
-
-      expect(upload[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
+    assert_requested(:any, /./, times: 4)
+  end
 
-    it "test_list_files_with_valid_expected_success" do
-      # test list_files method
+  def test_client_default_request_given_retry_attempts
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
-
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      file_list = SUT.list_files
-
-      expect(file_list[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {max_retries: 3}
+      )
     end
 
-    it "test_file_versions_with_valid_expected_success" do
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    assert_requested(:any, /./, times: 4)
+  end
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+  def test_client_given_request_given_retry_attempts
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password",
+        max_retries: 3
+      )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      resp = SUT.file_versions(file_id: 'my_new_file_id')
-
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {max_retries: 4}
+      )
     end
 
-    it "test_file_version_detail_with_valid_expected_success" do
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    assert_requested(:any, /./, times: 5)
+  end
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+  def test_client_retry_after_seconds
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
+      status: 500,
+      headers: {"retry-after" => "1.3"},
+      body: {}
+    )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password",
+        max_retries: 1
+      )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      resp = SUT.file_version_detail(file_id: 'my_new_file_id', version_id: 'my_file_version_id')
-
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
-    it "test_delete_file_version_with_valid_expected_success" do
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    assert_requested(:any, /./, times: 2)
+    assert_equal(1.3, Thread.current.thread_variable_get(:mock_sleep).last)
+  end
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+  def test_client_retry_after_date
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
+      status: 500,
+      headers: {"retry-after" => (Time.now + 10).httpdate},
+      body: {}
+    )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password",
+        max_retries: 1
+      )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      resp = SUT.delete_file_version(file_id: 'my_new_file_id', version_id: 'my_file_version_id')
-
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      Thread.current.thread_variable_set(:time_now, Time.now)
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+      Thread.current.thread_variable_set(:time_now, nil)
     end
 
-    it "test_restore_file_version_with_valid_expected_success" do
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    assert_requested(:any, /./, times: 2)
+    assert_in_delta(10, Thread.current.thread_variable_get(:mock_sleep).last, 1.0)
+  end
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+  def test_client_retry_after_ms
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
+      status: 500,
+      headers: {"retry-after-ms" => "1300"},
+      body: {}
+    )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password",
+        max_retries: 1
+      )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      resp = SUT.restore_file_version(file_id: 'my_new_file_id', version_id: 'my_file_version_id')
-
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
-    it "test_get_file_details_with_valid_expected_success" do
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    assert_requested(:any, /./, times: 2)
+    assert_equal(1.3, Thread.current.thread_variable_get(:mock_sleep).last)
+  end
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+  def test_retry_count_header
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      file_detail = SUT.get_file_details(file_id: "http://example.com/fake.jpg")
-
-      expect(file_detail[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
     end
 
-    it "test_update_file_details_with_valid_expected_success" do
+    3.times do
+      assert_requested(:any, /./, headers: {"x-stainless-retry-count" => _1})
+    end
+  end
 
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+  def test_omit_retry_count_header
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      upload = SUT.update_file_details(file_id: "fake_id", tags: ["image_tag"],
-                                                   custom_coordinates: "10,10,100, 100")
-
-      expect(upload[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
+      )
     end
 
-    it "test_delete_file_with_valid_expected_success" do
-      # test for delete_file
+    assert_requested(:any, /./, times: 3) do
+      refute_includes(_1.headers.keys.map(&:downcase), "x-stainless-retry-count")
+    end
+  end
 
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+  def test_overwrite_retry_count_header
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      delete_resp = SUT.delete_file(file_id: "fake_id")
-
-      expect(delete_resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::InternalServerError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
+      )
     end
 
-    it "test_get_file_metadata_valid_expected_success" do
-      # test for get_file_metadata
+    assert_requested(:any, /./, headers: {"x-stainless-retry-count" => "42"}, times: 3)
+  end
 
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+  def test_client_redirect_307
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
+      status: 307,
+      headers: {"location" => "/redirected"},
+      body: {}
+    )
+    stub_request(:any, "http://localhost/redirected").to_return(
+      status: 307,
+      headers: {"location" => "/redirected"}
+    )
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      resp = SUT.get_file_metadata(file_id: "fake_id")
-
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::APIConnectionError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {extra_headers: {}}
+      )
     end
 
-    it "test_get_metadata_from_remote_url_succeeds" do
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+    assert_requested(:any, "http://localhost/redirected", times: Imagekit::Client::MAX_REDIRECTS) do
+      assert_equal(recorded.method, _1.method)
+      assert_equal(recorded.body, _1.body)
+      assert_equal(
+        recorded.headers.transform_keys(&:downcase).fetch("content-type"),
+        _1.headers.transform_keys(&:downcase).fetch("content-type")
+      )
+    end
+  end
 
-      allow(request_obj)
-        .to receive(:request){|method,url,headers,payload| @ac={method: method, url: url, headers: headers, payload:payload}}
-              .and_return({code: 200, body: {}})
+  def test_client_redirect_303
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
+      status: 303,
+      headers: {"location" => "/redirected"},
+      body: {}
+    )
+    stub_request(:get, "http://localhost/redirected").to_return(
+      status: 303,
+      headers: {"location" => "/redirected"}
+    )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      resp = SUT.get_remote_file_url_metadata(remote_file_url: "http://example.com/fakefileurl")
-
-      expect(@ac[:url]).to eq("https://api.imagekit.io/v1/metadata?url=http://example.com/fakefileurl")
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::APIConnectionError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {extra_headers: {}}
+      )
     end
 
-    it "test_purge_file_cache_valid_expected_success" do
-      # test for get_purge_file_cache
+    assert_requested(:get, "http://localhost/redirected", times: Imagekit::Client::MAX_REDIRECTS) do
+      headers = _1.headers.keys.map(&:downcase)
+      refute_includes(headers, "content-type")
+      assert_nil(_1.body)
+    end
+  end
 
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+  def test_client_redirect_auth_keep_same_origin
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
+      status: 307,
+      headers: {"location" => "/redirected"},
+      body: {}
+    )
+    stub_request(:any, "http://localhost/redirected").to_return(
+      status: 307,
+      headers: {"location" => "/redirected"}
+    )
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      resp = SUT.purge_file_cache(file_url: "http://example.com/fake.jpg")
-
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::APIConnectionError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
+      )
     end
 
-    it "test_purge_file_cache_status_valid_expected_success" do
-      # test for get_purge_file_cache
+    recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
+    auth_header = recorded.headers.transform_keys(&:downcase).fetch("authorization")
 
-      request_obj = double
-      allow(ImageKitIo::Request)
-        .to receive(:new)
-              .with(private_key, public_key, url_endpoint)
-              .and_return(request_obj)
+    assert_equal("Bearer xyz", auth_header)
+    assert_requested(:any, "http://localhost/redirected", times: Imagekit::Client::MAX_REDIRECTS) do
+      auth_header = _1.headers.transform_keys(&:downcase).fetch("authorization")
+      assert_equal("Bearer xyz", auth_header)
+    end
+  end
 
-      allow(request_obj)
-        .to receive(:create_headers)
-              .and_return({})
+  def test_client_redirect_auth_strip_cross_origin
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
+      status: 307,
+      headers: {"location" => "https://example.com/redirected"},
+      body: {}
+    )
+    stub_request(:any, "https://example.com/redirected").to_return(
+      status: 307,
+      headers: {"location" => "https://example.com/redirected"}
+    )
 
-      allow(request_obj)
-        .to receive(:request)
-              .and_return({code: 200})
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      resp = SUT.purge_file_cache_status(request_id: "fake_id")
-
-      expect(resp[:code]).to eq(200)
+    assert_raises(Imagekit::Errors::APIConnectionError) do
+      image_kit.files.upload(
+        file: Pathname(__FILE__),
+        file_name: "fileName",
+        request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
+      )
     end
 
-    it "test_phash_distance_fails_if_not_hexa" do
-      # test for get_purge_file_cache
-
-      request_obj = double
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
-
-      expect {
-        SUT.phash_distance("f06830ca9f1e3e90", "RANDOM")
-      }.to raise_error(ArgumentError)
+    assert_requested(:any, "https://example.com/redirected", times: Imagekit::Client::MAX_REDIRECTS) do
+      headers = _1.headers.keys.map(&:downcase)
+      refute_includes(headers, "authorization")
     end
+  end
 
-    it "test_phash_distance_fails_if_argument_missing" do
+  def test_default_headers
+    stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 200, body: {})
 
-      request_obj = double
+    image_kit =
+      Imagekit::Client.new(
+        base_url: "http://localhost",
+        private_api_key: "My Private API Key",
+        password: "My Password"
+      )
 
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-      SUT.set_ik_request(request_obj)
+    image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
 
-      expect {
-        SUT.phash_distance("f06830ca9f1e3e90", "  ")
-      }.to raise_error(ArgumentError)
-    end
-
-    it "test_generate_url_with_path" do
-      # request_obj=ImageKitIo::Request.new(@private_key,@public_key,@url_endpoint)
-      # url_obj = Url.new(request_obj)
-
-      SUT = ImageKitIo::Client.new(private_key, public_key, url_endpoint)
-
-      options = {path: "/default-image.jpg",
-                 url_endpoint: url_endpoint,
-                 transformation: [{height: 300, width: 400}],
-      }
-      url = SUT.url(options)
-
-      expect(url).to eq("https://imagekit.io/your-imgekit-id/tr:h-300,w-400/default-image.jpg")
-    end
-
-    it "get_authentication_params_test_with_hard_coded_params" do
-      SUT = ImageKitIo::Client.new('private_key_test', public_key, url_endpoint)
-      # SUT.set_ik_request(request_obj)
-
-      result=SUT.get_authentication_parameters('your_token',1582269249)
-      expect('your_token').to eq(result[:token])
-      expect(nil).not_to eq(result[:expire])
-      expect('e71bcd6031016b060d349d212e23e85c791decdd').to eq(result[:signature])
+    assert_requested(:any, /./) do |req|
+      headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")
+      headers.each { refute_empty(_1) }
     end
   end
 end

@@ -1,0 +1,17 @@
+module Imagekit
+  module Models
+    module Accounts
+      type origin_delete_params =
+        {  } & Imagekit::Internal::Type::request_parameters
+
+      class OriginDeleteParams < Imagekit::Internal::Type::BaseModel
+        extend Imagekit::Internal::Type::RequestParameters::Converter
+        include Imagekit::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: Imagekit::request_opts) -> void
+
+        def to_hash: -> { request_options: Imagekit::RequestOptions }
+      end
+    end
+  end
+end

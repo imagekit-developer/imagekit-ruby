@@ -1,0 +1,433 @@
+module Imagekit
+  module Models
+    module Beta
+      module V2
+        type file_upload_params =
+          {
+            file: Imagekit::Internal::file_input,
+            file_name: String,
+            token: String,
+            checks: String,
+            custom_coordinates: String,
+            custom_metadata: ::Hash[Symbol, top],
+            description: String,
+            extensions: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension],
+            folder: String,
+            is_private_file: bool,
+            is_published: bool,
+            overwrite_ai_tags: bool,
+            overwrite_custom_metadata: bool,
+            overwrite_file: bool,
+            overwrite_tags: bool,
+            response_fields: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field],
+            tags: ::Array[String],
+            transformation: Imagekit::Beta::V2::FileUploadParams::Transformation,
+            use_unique_file_name: bool,
+            webhook_url: String
+          }
+          & Imagekit::Internal::Type::request_parameters
+
+        class FileUploadParams < Imagekit::Internal::Type::BaseModel
+          extend Imagekit::Internal::Type::RequestParameters::Converter
+          include Imagekit::Internal::Type::RequestParameters
+
+          attr_accessor file: Imagekit::Internal::file_input
+
+          attr_accessor file_name: String
+
+          attr_reader token: String?
+
+          def token=: (String) -> String
+
+          attr_reader checks: String?
+
+          def checks=: (String) -> String
+
+          attr_reader custom_coordinates: String?
+
+          def custom_coordinates=: (String) -> String
+
+          attr_reader custom_metadata: ::Hash[Symbol, top]?
+
+          def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader extensions: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension]?
+
+          def extensions=: (
+            ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension]
+          ) -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension]
+
+          attr_reader folder: String?
+
+          def folder=: (String) -> String
+
+          attr_reader is_private_file: bool?
+
+          def is_private_file=: (bool) -> bool
+
+          attr_reader is_published: bool?
+
+          def is_published=: (bool) -> bool
+
+          attr_reader overwrite_ai_tags: bool?
+
+          def overwrite_ai_tags=: (bool) -> bool
+
+          attr_reader overwrite_custom_metadata: bool?
+
+          def overwrite_custom_metadata=: (bool) -> bool
+
+          attr_reader overwrite_file: bool?
+
+          def overwrite_file=: (bool) -> bool
+
+          attr_reader overwrite_tags: bool?
+
+          def overwrite_tags=: (bool) -> bool
+
+          attr_reader response_fields: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field]?
+
+          def response_fields=: (
+            ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field]
+          ) -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field]
+
+          attr_reader tags: ::Array[String]?
+
+          def tags=: (::Array[String]) -> ::Array[String]
+
+          attr_reader transformation: Imagekit::Beta::V2::FileUploadParams::Transformation?
+
+          def transformation=: (
+            Imagekit::Beta::V2::FileUploadParams::Transformation
+          ) -> Imagekit::Beta::V2::FileUploadParams::Transformation
+
+          attr_reader use_unique_file_name: bool?
+
+          def use_unique_file_name=: (bool) -> bool
+
+          attr_reader webhook_url: String?
+
+          def webhook_url=: (String) -> String
+
+          def initialize: (
+            file: Imagekit::Internal::file_input,
+            file_name: String,
+            ?token: String,
+            ?checks: String,
+            ?custom_coordinates: String,
+            ?custom_metadata: ::Hash[Symbol, top],
+            ?description: String,
+            ?extensions: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension],
+            ?folder: String,
+            ?is_private_file: bool,
+            ?is_published: bool,
+            ?overwrite_ai_tags: bool,
+            ?overwrite_custom_metadata: bool,
+            ?overwrite_file: bool,
+            ?overwrite_tags: bool,
+            ?response_fields: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field],
+            ?tags: ::Array[String],
+            ?transformation: Imagekit::Beta::V2::FileUploadParams::Transformation,
+            ?use_unique_file_name: bool,
+            ?webhook_url: String,
+            ?request_options: Imagekit::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            file: Imagekit::Internal::file_input,
+            file_name: String,
+            token: String,
+            checks: String,
+            custom_coordinates: String,
+            custom_metadata: ::Hash[Symbol, top],
+            description: String,
+            extensions: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension],
+            folder: String,
+            is_private_file: bool,
+            is_published: bool,
+            overwrite_ai_tags: bool,
+            overwrite_custom_metadata: bool,
+            overwrite_file: bool,
+            overwrite_tags: bool,
+            response_fields: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field],
+            tags: ::Array[String],
+            transformation: Imagekit::Beta::V2::FileUploadParams::Transformation,
+            use_unique_file_name: bool,
+            webhook_url: String,
+            request_options: Imagekit::RequestOptions
+          }
+
+          type extension =
+            Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg
+            | Imagekit::Beta::V2::FileUploadParams::Extension::AIAutoDescription
+            | Imagekit::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension
+
+          module Extension
+            extend Imagekit::Internal::Type::Union
+
+            type remove_bg =
+              {
+                name: :"remove-bg",
+                options: Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::Options
+              }
+
+            class RemoveBg < Imagekit::Internal::Type::BaseModel
+              attr_accessor name: :"remove-bg"
+
+              attr_reader options: Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::Options?
+
+              def options=: (
+                Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::Options
+              ) -> Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::Options
+
+              def initialize: (
+                ?options: Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::Options,
+                ?name: :"remove-bg"
+              ) -> void
+
+              def to_hash: -> {
+                name: :"remove-bg",
+                options: Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::Options
+              }
+
+              type options =
+                {
+                  add_shadow: bool,
+                  bg_color: String,
+                  bg_image_url: String,
+                  semitransparency: bool
+                }
+
+              class Options < Imagekit::Internal::Type::BaseModel
+                attr_reader add_shadow: bool?
+
+                def add_shadow=: (bool) -> bool
+
+                attr_reader bg_color: String?
+
+                def bg_color=: (String) -> String
+
+                attr_reader bg_image_url: String?
+
+                def bg_image_url=: (String) -> String
+
+                attr_reader semitransparency: bool?
+
+                def semitransparency=: (bool) -> bool
+
+                def initialize: (
+                  ?add_shadow: bool,
+                  ?bg_color: String,
+                  ?bg_image_url: String,
+                  ?semitransparency: bool
+                ) -> void
+
+                def to_hash: -> {
+                  add_shadow: bool,
+                  bg_color: String,
+                  bg_image_url: String,
+                  semitransparency: bool
+                }
+              end
+            end
+
+            type auto_tagging_extension =
+              {
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+              }
+
+            class AutoTaggingExtension < Imagekit::Internal::Type::BaseModel
+              attr_accessor max_tags: Integer
+
+              attr_accessor min_confidence: Integer
+
+              attr_accessor name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+
+              def initialize: (
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+              ) -> void
+
+              def to_hash: -> {
+                max_tags: Integer,
+                min_confidence: Integer,
+                name: Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_
+              }
+
+              type name_ = :"google-auto-tagging" | :"aws-auto-tagging"
+
+              module Name
+                extend Imagekit::Internal::Type::Enum
+
+                GOOGLE_AUTO_TAGGING: :"google-auto-tagging"
+                AWS_AUTO_TAGGING: :"aws-auto-tagging"
+
+                def self?.values: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::name_]
+              end
+            end
+
+            type ai_auto_description = { name: :"ai-auto-description" }
+
+            class AIAutoDescription < Imagekit::Internal::Type::BaseModel
+              attr_accessor name: :"ai-auto-description"
+
+              def initialize: (?name: :"ai-auto-description") -> void
+
+              def to_hash: -> { name: :"ai-auto-description" }
+            end
+
+            def self?.variants: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension]
+          end
+
+          type response_field =
+            :tags
+            | :customCoordinates
+            | :isPrivateFile
+            | :embeddedMetadata
+            | :isPublished
+            | :customMetadata
+            | :metadata
+
+          module ResponseField
+            extend Imagekit::Internal::Type::Enum
+
+            TAGS: :tags
+            CUSTOM_COORDINATES: :customCoordinates
+            IS_PRIVATE_FILE: :isPrivateFile
+            EMBEDDED_METADATA: :embeddedMetadata
+            IS_PUBLISHED: :isPublished
+            CUSTOM_METADATA: :customMetadata
+            METADATA: :metadata
+
+            def self?.values: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field]
+          end
+
+          type transformation =
+            {
+              post: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::post],
+              pre: String
+            }
+
+          class Transformation < Imagekit::Internal::Type::BaseModel
+            attr_reader post: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::post]?
+
+            def post=: (
+              ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::post]
+            ) -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::post]
+
+            attr_reader pre: String?
+
+            def pre=: (String) -> String
+
+            def initialize: (
+              ?post: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::post],
+              ?pre: String
+            ) -> void
+
+            def to_hash: -> {
+              post: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::post],
+              pre: String
+            }
+
+            type post =
+              Imagekit::Beta::V2::FileUploadParams::Transformation::Post::Transformation
+              | Imagekit::Beta::V2::FileUploadParams::Transformation::Post::GifToVideo
+              | Imagekit::Beta::V2::FileUploadParams::Transformation::Post::Thumbnail
+              | Imagekit::Beta::V2::FileUploadParams::Transformation::Post::Abs
+
+            module Post
+              extend Imagekit::Internal::Type::Union
+
+              type transformation = { type: :transformation, value: String }
+
+              class Transformation < Imagekit::Internal::Type::BaseModel
+                attr_accessor type: :transformation
+
+                attr_accessor value: String
+
+                def initialize: (value: String, ?type: :transformation) -> void
+
+                def to_hash: -> { type: :transformation, value: String }
+              end
+
+              type gif_to_video = { type: :"gif-to-video", value: String }
+
+              class GifToVideo < Imagekit::Internal::Type::BaseModel
+                attr_accessor type: :"gif-to-video"
+
+                attr_reader value: String?
+
+                def value=: (String) -> String
+
+                def initialize: (?value: String, ?type: :"gif-to-video") -> void
+
+                def to_hash: -> { type: :"gif-to-video", value: String }
+              end
+
+              type thumbnail = { type: :thumbnail, value: String }
+
+              class Thumbnail < Imagekit::Internal::Type::BaseModel
+                attr_accessor type: :thumbnail
+
+                attr_reader value: String?
+
+                def value=: (String) -> String
+
+                def initialize: (?value: String, ?type: :thumbnail) -> void
+
+                def to_hash: -> { type: :thumbnail, value: String }
+              end
+
+              type abs =
+                {
+                  protocol: Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs::protocol,
+                  type: :abs,
+                  value: String
+                }
+
+              class Abs < Imagekit::Internal::Type::BaseModel
+                attr_accessor protocol: Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs::protocol
+
+                attr_accessor type: :abs
+
+                attr_accessor value: String
+
+                def initialize: (
+                  protocol: Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs::protocol,
+                  value: String,
+                  ?type: :abs
+                ) -> void
+
+                def to_hash: -> {
+                  protocol: Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs::protocol,
+                  type: :abs,
+                  value: String
+                }
+
+                type protocol = :hls | :dash
+
+                module Protocol
+                  extend Imagekit::Internal::Type::Enum
+
+                  HLS: :hls
+                  DASH: :dash
+
+                  def self?.values: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::Post::Abs::protocol]
+                end
+              end
+
+              def self?.variants: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::Transformation::post]
+            end
+          end
+        end
+      end
+    end
+  end
+end
