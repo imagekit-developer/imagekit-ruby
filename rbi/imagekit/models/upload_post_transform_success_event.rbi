@@ -2,11 +2,11 @@
 
 module Imagekit
   module Models
-    class UploadPostTransformSuccessWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPostTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Imagekit::UploadPostTransformSuccessWebhookEvent,
+            Imagekit::UploadPostTransformSuccessEvent,
             Imagekit::Internal::AnyHash
           )
         end
@@ -19,23 +19,22 @@ module Imagekit
       sig { returns(Time) }
       attr_accessor :created_at
 
-      sig { returns(Imagekit::UploadPostTransformSuccessWebhookEvent::Data) }
+      sig { returns(Imagekit::UploadPostTransformSuccessEvent::Data) }
       attr_reader :data
 
       sig do
         params(
-          data: Imagekit::UploadPostTransformSuccessWebhookEvent::Data::OrHash
+          data: Imagekit::UploadPostTransformSuccessEvent::Data::OrHash
         ).void
       end
       attr_writer :data
 
-      sig { returns(Imagekit::UploadPostTransformSuccessWebhookEvent::Request) }
+      sig { returns(Imagekit::UploadPostTransformSuccessEvent::Request) }
       attr_reader :request
 
       sig do
         params(
-          request:
-            Imagekit::UploadPostTransformSuccessWebhookEvent::Request::OrHash
+          request: Imagekit::UploadPostTransformSuccessEvent::Request::OrHash
         ).void
       end
       attr_writer :request
@@ -50,9 +49,8 @@ module Imagekit
         params(
           id: String,
           created_at: Time,
-          data: Imagekit::UploadPostTransformSuccessWebhookEvent::Data::OrHash,
-          request:
-            Imagekit::UploadPostTransformSuccessWebhookEvent::Request::OrHash,
+          data: Imagekit::UploadPostTransformSuccessEvent::Data::OrHash,
+          request: Imagekit::UploadPostTransformSuccessEvent::Request::OrHash,
           type: Symbol
         ).returns(T.attached_class)
       end
@@ -72,8 +70,8 @@ module Imagekit
           {
             id: String,
             created_at: Time,
-            data: Imagekit::UploadPostTransformSuccessWebhookEvent::Data,
-            request: Imagekit::UploadPostTransformSuccessWebhookEvent::Request,
+            data: Imagekit::UploadPostTransformSuccessEvent::Data,
+            request: Imagekit::UploadPostTransformSuccessEvent::Request,
             type: Symbol
           }
         )
@@ -85,7 +83,7 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::UploadPostTransformSuccessWebhookEvent::Data,
+              Imagekit::UploadPostTransformSuccessEvent::Data,
               Imagekit::Internal::AnyHash
             )
           end
@@ -126,14 +124,14 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::UploadPostTransformSuccessWebhookEvent::Request,
+              Imagekit::UploadPostTransformSuccessEvent::Request,
               Imagekit::Internal::AnyHash
             )
           end
 
         sig do
           returns(
-            Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation
+            Imagekit::UploadPostTransformSuccessEvent::Request::Transformation
           )
         end
         attr_reader :transformation
@@ -141,7 +139,7 @@ module Imagekit
         sig do
           params(
             transformation:
-              Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::OrHash
+              Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::OrHash
           ).void
         end
         attr_writer :transformation
@@ -153,7 +151,7 @@ module Imagekit
         sig do
           params(
             transformation:
-              Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::OrHash,
+              Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::OrHash,
             x_request_id: String
           ).returns(T.attached_class)
         end
@@ -168,7 +166,7 @@ module Imagekit
           override.returns(
             {
               transformation:
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation,
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation,
               x_request_id: String
             }
           )
@@ -180,7 +178,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation,
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -188,7 +186,7 @@ module Imagekit
           # Type of the requested post-transformation.
           sig do
             returns(
-              Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::TaggedSymbol
+              Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::TaggedSymbol
             )
           end
           attr_accessor :type
@@ -197,7 +195,7 @@ module Imagekit
           sig do
             returns(
               T.nilable(
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol::TaggedSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol::TaggedSymbol
               )
             )
           end
@@ -206,7 +204,7 @@ module Imagekit
           sig do
             params(
               protocol:
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol::OrSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol::OrSymbol
             ).void
           end
           attr_writer :protocol
@@ -221,9 +219,9 @@ module Imagekit
           sig do
             params(
               type:
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::OrSymbol,
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::OrSymbol,
               protocol:
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol::OrSymbol,
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol::OrSymbol,
               value: String
             ).returns(T.attached_class)
           end
@@ -241,9 +239,9 @@ module Imagekit
             override.returns(
               {
                 type:
-                  Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::TaggedSymbol,
+                  Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::TaggedSymbol,
                 protocol:
-                  Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol::TaggedSymbol,
+                  Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol::TaggedSymbol,
                 value: String
               }
             )
@@ -259,7 +257,7 @@ module Imagekit
               T.type_alias do
                 T.all(
                   Symbol,
-                  Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type
+                  Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -267,28 +265,28 @@ module Imagekit
             TRANSFORMATION =
               T.let(
                 :transformation,
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::TaggedSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::TaggedSymbol
               )
             ABS =
               T.let(
                 :abs,
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::TaggedSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::TaggedSymbol
               )
             GIF_TO_VIDEO =
               T.let(
                 :"gif-to-video",
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::TaggedSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::TaggedSymbol
               )
             THUMBNAIL =
               T.let(
                 :thumbnail,
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::TaggedSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type::TaggedSymbol
+                  Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type::TaggedSymbol
                 ]
               )
             end
@@ -304,7 +302,7 @@ module Imagekit
               T.type_alias do
                 T.all(
                   Symbol,
-                  Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol
+                  Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -312,18 +310,18 @@ module Imagekit
             HLS =
               T.let(
                 :hls,
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol::TaggedSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol::TaggedSymbol
               )
             DASH =
               T.let(
                 :dash,
-                Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol::TaggedSymbol
+                Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol::TaggedSymbol
+                  Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol::TaggedSymbol
                 ]
               )
             end

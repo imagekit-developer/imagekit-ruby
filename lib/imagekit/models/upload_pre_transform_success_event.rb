@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPreTransformSuccessWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPreTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for the event.
       #
@@ -18,13 +18,13 @@ module Imagekit
       # @!attribute data
       #   Object containing details of a successful upload.
       #
-      #   @return [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data]
-      required :data, -> { Imagekit::UploadPreTransformSuccessWebhookEvent::Data }
+      #   @return [Imagekit::Models::UploadPreTransformSuccessEvent::Data]
+      required :data, -> { Imagekit::UploadPreTransformSuccessEvent::Data }
 
       # @!attribute request
       #
-      #   @return [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Request]
-      required :request, -> { Imagekit::UploadPreTransformSuccessWebhookEvent::Request }
+      #   @return [Imagekit::Models::UploadPreTransformSuccessEvent::Request]
+      required :request, -> { Imagekit::UploadPreTransformSuccessEvent::Request }
 
       # @!attribute type
       #
@@ -40,21 +40,21 @@ module Imagekit
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
-      #   @param data [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data] Object containing details of a successful upload.
+      #   @param data [Imagekit::Models::UploadPreTransformSuccessEvent::Data] Object containing details of a successful upload.
       #
-      #   @param request [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Request]
+      #   @param request [Imagekit::Models::UploadPreTransformSuccessEvent::Request]
       #
       #   @param type [Symbol, :"upload.pre-transform.success"]
 
-      # @see Imagekit::Models::UploadPreTransformSuccessWebhookEvent#data
+      # @see Imagekit::Models::UploadPreTransformSuccessEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute ai_tags
         #   An array of tags assigned to the uploaded file by auto tagging.
         #
-        #   @return [Array<Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::AITag>, nil]
+        #   @return [Array<Imagekit::Models::UploadPreTransformSuccessEvent::Data::AITag>, nil]
         optional :ai_tags,
                  -> {
-                   Imagekit::Internal::Type::ArrayOf[Imagekit::UploadPreTransformSuccessWebhookEvent::Data::AITag]
+                   Imagekit::Internal::Type::ArrayOf[Imagekit::UploadPreTransformSuccessEvent::Data::AITag]
                  },
                  api_name: :AITags,
                  nil?: true
@@ -126,9 +126,9 @@ module Imagekit
         #
         #   If no extension was requested, then this parameter is not returned.
         #
-        #   @return [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus, nil]
+        #   @return [Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus, nil]
         optional :extension_status,
-                 -> { Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus },
+                 -> { Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus },
                  api_name: :extensionStatus
 
         # @!attribute file_id
@@ -215,9 +215,9 @@ module Imagekit
         # @!attribute version_info
         #   An object containing the file or file version's `id` (versionId) and `name`.
         #
-        #   @return [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo, nil]
+        #   @return [Imagekit::Models::UploadPreTransformSuccessEvent::Data::VersionInfo, nil]
         optional :version_info,
-                 -> { Imagekit::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo },
+                 -> { Imagekit::UploadPreTransformSuccessEvent::Data::VersionInfo },
                  api_name: :versionInfo
 
         # @!attribute video_codec
@@ -234,12 +234,11 @@ module Imagekit
 
         # @!method initialize(ai_tags: nil, audio_codec: nil, bit_rate: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, duration: nil, embedded_metadata: nil, extension_status: nil, file_id: nil, file_path: nil, file_type: nil, height: nil, is_private_file: nil, is_published: nil, metadata: nil, name: nil, size: nil, tags: nil, thumbnail_url: nil, url: nil, version_info: nil, video_codec: nil, width: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data} for more
-        #   details.
+        #   {Imagekit::Models::UploadPreTransformSuccessEvent::Data} for more details.
         #
         #   Object containing details of a successful upload.
         #
-        #   @param ai_tags [Array<Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::AITag>, nil] An array of tags assigned to the uploaded file by auto tagging.
+        #   @param ai_tags [Array<Imagekit::Models::UploadPreTransformSuccessEvent::Data::AITag>, nil] An array of tags assigned to the uploaded file by auto tagging.
         #
         #   @param audio_codec [String] The audio codec used in the video (only for video).
         #
@@ -255,7 +254,7 @@ module Imagekit
         #
         #   @param embedded_metadata [Hash{Symbol=>Object}] Consolidated embedded metadata associated with the file. It includes exif, iptc,
         #
-        #   @param extension_status [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus] Extension names with their processing status at the time of completion of the re
+        #   @param extension_status [Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus] Extension names with their processing status at the time of completion of the re
         #
         #   @param file_id [String] Unique fileId. Store this fileld in your database, as this will be used to perfo
         #
@@ -281,7 +280,7 @@ module Imagekit
         #
         #   @param url [String] A publicly accessible URL of the file.
         #
-        #   @param version_info [Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo] An object containing the file or file version's `id` (versionId) and `name`.
+        #   @param version_info [Imagekit::Models::UploadPreTransformSuccessEvent::Data::VersionInfo] An object containing the file or file version's `id` (versionId) and `name`.
         #
         #   @param video_codec [String] The video codec used in the video (only for video).
         #
@@ -310,7 +309,7 @@ module Imagekit
 
           # @!method initialize(confidence: nil, name: nil, source: nil)
           #   Some parameter documentations has been truncated, see
-          #   {Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::AITag} for more
+          #   {Imagekit::Models::UploadPreTransformSuccessEvent::Data::AITag} for more
           #   details.
           #
           #   @param confidence [Float] Confidence score of the tag.
@@ -320,33 +319,31 @@ module Imagekit
           #   @param source [String] Array of `AITags` associated with the image. If no `AITags` are set, it will be
         end
 
-        # @see Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data#extension_status
+        # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data#extension_status
         class ExtensionStatus < Imagekit::Internal::Type::BaseModel
           # @!attribute aws_auto_tagging
           #
-          #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging, nil]
+          #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging, nil]
           optional :aws_auto_tagging,
                    enum: -> {
-                     Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging
+                     Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging
                    },
                    api_name: :"aws-auto-tagging"
 
           # @!attribute google_auto_tagging
           #
-          #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging, nil]
+          #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging, nil]
           optional :google_auto_tagging,
                    enum: -> {
-                     Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging
+                     Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging
                    },
                    api_name: :"google-auto-tagging"
 
           # @!attribute remove_bg
           #
-          #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg, nil]
+          #   @return [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg, nil]
           optional :remove_bg,
-                   enum: -> {
-                     Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg
-                   },
+                   enum: -> { Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg },
                    api_name: :"remove-bg"
 
           # @!method initialize(aws_auto_tagging: nil, google_auto_tagging: nil, remove_bg: nil)
@@ -360,11 +357,11 @@ module Imagekit
           #
           #   If no extension was requested, then this parameter is not returned.
           #
-          #   @param aws_auto_tagging [Symbol, Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging]
-          #   @param google_auto_tagging [Symbol, Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging]
-          #   @param remove_bg [Symbol, Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg]
+          #   @param aws_auto_tagging [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging]
+          #   @param google_auto_tagging [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging]
+          #   @param remove_bg [Symbol, Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg]
 
-          # @see Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus#aws_auto_tagging
+          # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus#aws_auto_tagging
           module AwsAutoTagging
             extend Imagekit::Internal::Type::Enum
 
@@ -376,7 +373,7 @@ module Imagekit
             #   @return [Array<Symbol>]
           end
 
-          # @see Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus#google_auto_tagging
+          # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus#google_auto_tagging
           module GoogleAutoTagging
             extend Imagekit::Internal::Type::Enum
 
@@ -388,7 +385,7 @@ module Imagekit
             #   @return [Array<Symbol>]
           end
 
-          # @see Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus#remove_bg
+          # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data::ExtensionStatus#remove_bg
           module RemoveBg
             extend Imagekit::Internal::Type::Enum
 
@@ -401,7 +398,7 @@ module Imagekit
           end
         end
 
-        # @see Imagekit::Models::UploadPreTransformSuccessWebhookEvent::Data#version_info
+        # @see Imagekit::Models::UploadPreTransformSuccessEvent::Data#version_info
         class VersionInfo < Imagekit::Internal::Type::BaseModel
           # @!attribute id
           #   Unique identifier of the file version.
@@ -424,7 +421,7 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::UploadPreTransformSuccessWebhookEvent#request
+      # @see Imagekit::Models::UploadPreTransformSuccessEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute transformation
         #   The requested pre-transformation string.

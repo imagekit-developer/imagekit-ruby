@@ -9,10 +9,10 @@ module Imagekit
             Imagekit::VideoTransformationAcceptedEvent,
             Imagekit::VideoTransformationReadyEvent,
             Imagekit::VideoTransformationErrorEvent,
-            Imagekit::UploadPreTransformSuccessWebhookEvent,
-            Imagekit::UploadPreTransformErrorWebhookEvent,
-            Imagekit::UploadPostTransformSuccessWebhookEvent,
-            Imagekit::UploadPostTransformErrorWebhookEvent
+            Imagekit::UploadPreTransformSuccessEvent,
+            Imagekit::UploadPreTransformErrorEvent,
+            Imagekit::UploadPostTransformSuccessEvent,
+            Imagekit::UploadPostTransformErrorEvent
           )
         )
       end
@@ -28,10 +28,10 @@ module Imagekit
             Imagekit::VideoTransformationAcceptedEvent,
             Imagekit::VideoTransformationReadyEvent,
             Imagekit::VideoTransformationErrorEvent,
-            Imagekit::UploadPreTransformSuccessWebhookEvent,
-            Imagekit::UploadPreTransformErrorWebhookEvent,
-            Imagekit::UploadPostTransformSuccessWebhookEvent,
-            Imagekit::UploadPostTransformErrorWebhookEvent
+            Imagekit::UploadPreTransformSuccessEvent,
+            Imagekit::UploadPreTransformErrorEvent,
+            Imagekit::UploadPostTransformSuccessEvent,
+            Imagekit::UploadPostTransformErrorEvent
           )
         )
       end

@@ -125,13 +125,13 @@ module Imagekit
 
   UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent
 
-  UploadPostTransformErrorWebhookEvent = Imagekit::Models::UploadPostTransformErrorWebhookEvent
+  UploadPostTransformErrorEvent = Imagekit::Models::UploadPostTransformErrorEvent
 
-  UploadPostTransformSuccessWebhookEvent = Imagekit::Models::UploadPostTransformSuccessWebhookEvent
+  UploadPostTransformSuccessEvent = Imagekit::Models::UploadPostTransformSuccessEvent
 
-  UploadPreTransformErrorWebhookEvent = Imagekit::Models::UploadPreTransformErrorWebhookEvent
+  UploadPreTransformErrorEvent = Imagekit::Models::UploadPreTransformErrorEvent
 
-  UploadPreTransformSuccessWebhookEvent = Imagekit::Models::UploadPreTransformSuccessWebhookEvent
+  UploadPreTransformSuccessEvent = Imagekit::Models::UploadPreTransformSuccessEvent
 
   VideoOverlay = Imagekit::Models::VideoOverlay
 

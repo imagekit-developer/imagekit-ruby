@@ -1,0 +1,133 @@
+module Imagekit
+  module Models
+    type upload_post_transform_success_event =
+      {
+        id: String,
+        created_at: Time,
+        data: Imagekit::UploadPostTransformSuccessEvent::Data,
+        request: Imagekit::UploadPostTransformSuccessEvent::Request,
+        type: :"upload.post-transform.success"
+      }
+
+    class UploadPostTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor data: Imagekit::UploadPostTransformSuccessEvent::Data
+
+      attr_accessor request: Imagekit::UploadPostTransformSuccessEvent::Request
+
+      attr_accessor type: :"upload.post-transform.success"
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        data: Imagekit::UploadPostTransformSuccessEvent::Data,
+        request: Imagekit::UploadPostTransformSuccessEvent::Request,
+        ?type: :"upload.post-transform.success"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        data: Imagekit::UploadPostTransformSuccessEvent::Data,
+        request: Imagekit::UploadPostTransformSuccessEvent::Request,
+        type: :"upload.post-transform.success"
+      }
+
+      type data = { file_id: String, name: String, url: String }
+
+      class Data < Imagekit::Internal::Type::BaseModel
+        attr_accessor file_id: String
+
+        attr_accessor name: String
+
+        attr_accessor url: String
+
+        def initialize: (file_id: String, name: String, url: String) -> void
+
+        def to_hash: -> { file_id: String, name: String, url: String }
+      end
+
+      type request =
+        {
+          transformation: Imagekit::UploadPostTransformSuccessEvent::Request::Transformation,
+          x_request_id: String
+        }
+
+      class Request < Imagekit::Internal::Type::BaseModel
+        attr_accessor transformation: Imagekit::UploadPostTransformSuccessEvent::Request::Transformation
+
+        attr_accessor x_request_id: String
+
+        def initialize: (
+          transformation: Imagekit::UploadPostTransformSuccessEvent::Request::Transformation,
+          x_request_id: String
+        ) -> void
+
+        def to_hash: -> {
+          transformation: Imagekit::UploadPostTransformSuccessEvent::Request::Transformation,
+          x_request_id: String
+        }
+
+        type transformation =
+          {
+            type: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_,
+            protocol: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol,
+            value: String
+          }
+
+        class Transformation < Imagekit::Internal::Type::BaseModel
+          attr_accessor type: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_
+
+          attr_reader protocol: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol?
+
+          def protocol=: (
+            Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol
+          ) -> Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol
+
+          attr_reader value: String?
+
+          def value=: (String) -> String
+
+          def initialize: (
+            type: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_,
+            ?protocol: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol,
+            ?value: String
+          ) -> void
+
+          def to_hash: -> {
+            type: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_,
+            protocol: Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol,
+            value: String
+          }
+
+          type type_ = :transformation | :abs | :"gif-to-video" | :thumbnail
+
+          module Type
+            extend Imagekit::Internal::Type::Enum
+
+            TRANSFORMATION: :transformation
+            ABS: :abs
+            GIF_TO_VIDEO: :"gif-to-video"
+            THUMBNAIL: :thumbnail
+
+            def self?.values: -> ::Array[Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_]
+          end
+
+          type protocol = :hls | :dash
+
+          module Protocol
+            extend Imagekit::Internal::Type::Enum
+
+            HLS: :hls
+            DASH: :dash
+
+            def self?.values: -> ::Array[Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol]
+          end
+        end
+      end
+    end
+  end
+end

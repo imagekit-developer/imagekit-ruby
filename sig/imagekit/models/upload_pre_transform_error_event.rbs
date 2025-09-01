@@ -1,38 +1,38 @@
 module Imagekit
   module Models
-    type upload_pre_transform_error_webhook_event =
+    type upload_pre_transform_error_event =
       {
         id: String,
         created_at: Time,
-        data: Imagekit::UploadPreTransformErrorWebhookEvent::Data,
-        request: Imagekit::UploadPreTransformErrorWebhookEvent::Request,
+        data: Imagekit::UploadPreTransformErrorEvent::Data,
+        request: Imagekit::UploadPreTransformErrorEvent::Request,
         type: :"upload.pre-transform.error"
       }
 
-    class UploadPreTransformErrorWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPreTransformErrorEvent < Imagekit::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: Time
 
-      attr_accessor data: Imagekit::UploadPreTransformErrorWebhookEvent::Data
+      attr_accessor data: Imagekit::UploadPreTransformErrorEvent::Data
 
-      attr_accessor request: Imagekit::UploadPreTransformErrorWebhookEvent::Request
+      attr_accessor request: Imagekit::UploadPreTransformErrorEvent::Request
 
       attr_accessor type: :"upload.pre-transform.error"
 
       def initialize: (
         id: String,
         created_at: Time,
-        data: Imagekit::UploadPreTransformErrorWebhookEvent::Data,
-        request: Imagekit::UploadPreTransformErrorWebhookEvent::Request,
+        data: Imagekit::UploadPreTransformErrorEvent::Data,
+        request: Imagekit::UploadPreTransformErrorEvent::Request,
         ?type: :"upload.pre-transform.error"
       ) -> void
 
       def to_hash: -> {
         id: String,
         created_at: Time,
-        data: Imagekit::UploadPreTransformErrorWebhookEvent::Data,
-        request: Imagekit::UploadPreTransformErrorWebhookEvent::Request,
+        data: Imagekit::UploadPreTransformErrorEvent::Data,
+        request: Imagekit::UploadPreTransformErrorEvent::Request,
         type: :"upload.pre-transform.error"
       }
 
@@ -40,7 +40,7 @@ module Imagekit
         {
           name: String,
           path: String,
-          transformation: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation
+          transformation: Imagekit::UploadPreTransformErrorEvent::Data::Transformation
         }
 
       class Data < Imagekit::Internal::Type::BaseModel
@@ -48,34 +48,34 @@ module Imagekit
 
         attr_accessor path: String
 
-        attr_accessor transformation: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation
+        attr_accessor transformation: Imagekit::UploadPreTransformErrorEvent::Data::Transformation
 
         def initialize: (
           name: String,
           path: String,
-          transformation: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation
+          transformation: Imagekit::UploadPreTransformErrorEvent::Data::Transformation
         ) -> void
 
         def to_hash: -> {
           name: String,
           path: String,
-          transformation: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation
+          transformation: Imagekit::UploadPreTransformErrorEvent::Data::Transformation
         }
 
         type transformation =
           {
-            error: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error
+            error: Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error
           }
 
         class Transformation < Imagekit::Internal::Type::BaseModel
-          attr_accessor error: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error
+          attr_accessor error: Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error
 
           def initialize: (
-            error: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error
+            error: Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error
           ) -> void
 
           def to_hash: -> {
-            error: Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error
+            error: Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error
           }
 
           type error = { reason: String }

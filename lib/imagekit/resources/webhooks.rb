@@ -5,7 +5,7 @@ module Imagekit
     class Webhooks
       # @param payload [String] The raw webhook payload as a string
       #
-      # @return [Imagekit::Models::VideoTransformationAcceptedEvent, Imagekit::Models::VideoTransformationReadyEvent, Imagekit::Models::VideoTransformationErrorEvent, Imagekit::Models::UploadPreTransformSuccessWebhookEvent, Imagekit::Models::UploadPreTransformErrorWebhookEvent, Imagekit::Models::UploadPostTransformSuccessWebhookEvent, Imagekit::Models::UploadPostTransformErrorWebhookEvent]
+      # @return [Imagekit::Models::VideoTransformationAcceptedEvent, Imagekit::Models::VideoTransformationReadyEvent, Imagekit::Models::VideoTransformationErrorEvent, Imagekit::Models::UploadPreTransformSuccessEvent, Imagekit::Models::UploadPreTransformErrorEvent, Imagekit::Models::UploadPostTransformSuccessEvent, Imagekit::Models::UploadPostTransformErrorEvent]
       def unsafe_unwrap(payload)
         parsed = JSON.parse(payload, symbolize_names: true)
         Imagekit::Internal::Type::Converter.coerce(Imagekit::Models::UnsafeUnwrapWebhookEvent, parsed)
@@ -13,7 +13,7 @@ module Imagekit
 
       # @param payload [String] The raw webhook payload as a string
       #
-      # @return [Imagekit::Models::VideoTransformationAcceptedEvent, Imagekit::Models::VideoTransformationReadyEvent, Imagekit::Models::VideoTransformationErrorEvent, Imagekit::Models::UploadPreTransformSuccessWebhookEvent, Imagekit::Models::UploadPreTransformErrorWebhookEvent, Imagekit::Models::UploadPostTransformSuccessWebhookEvent, Imagekit::Models::UploadPostTransformErrorWebhookEvent]
+      # @return [Imagekit::Models::VideoTransformationAcceptedEvent, Imagekit::Models::VideoTransformationReadyEvent, Imagekit::Models::VideoTransformationErrorEvent, Imagekit::Models::UploadPreTransformSuccessEvent, Imagekit::Models::UploadPreTransformErrorEvent, Imagekit::Models::UploadPostTransformSuccessEvent, Imagekit::Models::UploadPostTransformErrorEvent]
       def unwrap(payload)
         parsed = JSON.parse(payload, symbolize_names: true)
         Imagekit::Internal::Type::Converter.coerce(Imagekit::Models::UnwrapWebhookEvent, parsed)

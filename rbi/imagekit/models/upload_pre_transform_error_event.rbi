@@ -2,11 +2,11 @@
 
 module Imagekit
   module Models
-    class UploadPreTransformErrorWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPreTransformErrorEvent < Imagekit::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Imagekit::UploadPreTransformErrorWebhookEvent,
+            Imagekit::UploadPreTransformErrorEvent,
             Imagekit::Internal::AnyHash
           )
         end
@@ -19,23 +19,20 @@ module Imagekit
       sig { returns(Time) }
       attr_accessor :created_at
 
-      sig { returns(Imagekit::UploadPreTransformErrorWebhookEvent::Data) }
+      sig { returns(Imagekit::UploadPreTransformErrorEvent::Data) }
       attr_reader :data
 
       sig do
-        params(
-          data: Imagekit::UploadPreTransformErrorWebhookEvent::Data::OrHash
-        ).void
+        params(data: Imagekit::UploadPreTransformErrorEvent::Data::OrHash).void
       end
       attr_writer :data
 
-      sig { returns(Imagekit::UploadPreTransformErrorWebhookEvent::Request) }
+      sig { returns(Imagekit::UploadPreTransformErrorEvent::Request) }
       attr_reader :request
 
       sig do
         params(
-          request:
-            Imagekit::UploadPreTransformErrorWebhookEvent::Request::OrHash
+          request: Imagekit::UploadPreTransformErrorEvent::Request::OrHash
         ).void
       end
       attr_writer :request
@@ -49,9 +46,8 @@ module Imagekit
         params(
           id: String,
           created_at: Time,
-          data: Imagekit::UploadPreTransformErrorWebhookEvent::Data::OrHash,
-          request:
-            Imagekit::UploadPreTransformErrorWebhookEvent::Request::OrHash,
+          data: Imagekit::UploadPreTransformErrorEvent::Data::OrHash,
+          request: Imagekit::UploadPreTransformErrorEvent::Request::OrHash,
           type: Symbol
         ).returns(T.attached_class)
       end
@@ -71,8 +67,8 @@ module Imagekit
           {
             id: String,
             created_at: Time,
-            data: Imagekit::UploadPreTransformErrorWebhookEvent::Data,
-            request: Imagekit::UploadPreTransformErrorWebhookEvent::Request,
+            data: Imagekit::UploadPreTransformErrorEvent::Data,
+            request: Imagekit::UploadPreTransformErrorEvent::Request,
             type: Symbol
           }
         )
@@ -84,7 +80,7 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::UploadPreTransformErrorWebhookEvent::Data,
+              Imagekit::UploadPreTransformErrorEvent::Data,
               Imagekit::Internal::AnyHash
             )
           end
@@ -98,16 +94,14 @@ module Imagekit
         attr_accessor :path
 
         sig do
-          returns(
-            Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation
-          )
+          returns(Imagekit::UploadPreTransformErrorEvent::Data::Transformation)
         end
         attr_reader :transformation
 
         sig do
           params(
             transformation:
-              Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::OrHash
+              Imagekit::UploadPreTransformErrorEvent::Data::Transformation::OrHash
           ).void
         end
         attr_writer :transformation
@@ -117,7 +111,7 @@ module Imagekit
             name: String,
             path: String,
             transformation:
-              Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::OrHash
+              Imagekit::UploadPreTransformErrorEvent::Data::Transformation::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -135,7 +129,7 @@ module Imagekit
               name: String,
               path: String,
               transformation:
-                Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation
+                Imagekit::UploadPreTransformErrorEvent::Data::Transformation
             }
           )
         end
@@ -146,14 +140,14 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation,
+                Imagekit::UploadPreTransformErrorEvent::Data::Transformation,
                 Imagekit::Internal::AnyHash
               )
             end
 
           sig do
             returns(
-              Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error
+              Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error
             )
           end
           attr_reader :error
@@ -161,7 +155,7 @@ module Imagekit
           sig do
             params(
               error:
-                Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error::OrHash
+                Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error::OrHash
             ).void
           end
           attr_writer :error
@@ -169,7 +163,7 @@ module Imagekit
           sig do
             params(
               error:
-                Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error::OrHash
+                Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error::OrHash
             ).returns(T.attached_class)
           end
           def self.new(error:)
@@ -179,7 +173,7 @@ module Imagekit
             override.returns(
               {
                 error:
-                  Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error
+                  Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error
               }
             )
           end
@@ -190,7 +184,7 @@ module Imagekit
             OrHash =
               T.type_alias do
                 T.any(
-                  Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error,
+                  Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error,
                   Imagekit::Internal::AnyHash
                 )
               end
@@ -217,7 +211,7 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::UploadPreTransformErrorWebhookEvent::Request,
+              Imagekit::UploadPreTransformErrorEvent::Request,
               Imagekit::Internal::AnyHash
             )
           end

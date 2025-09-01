@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPreTransformErrorWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPreTransformErrorEvent < Imagekit::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for the event.
       #
@@ -17,13 +17,13 @@ module Imagekit
 
       # @!attribute data
       #
-      #   @return [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data]
-      required :data, -> { Imagekit::UploadPreTransformErrorWebhookEvent::Data }
+      #   @return [Imagekit::Models::UploadPreTransformErrorEvent::Data]
+      required :data, -> { Imagekit::UploadPreTransformErrorEvent::Data }
 
       # @!attribute request
       #
-      #   @return [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Request]
-      required :request, -> { Imagekit::UploadPreTransformErrorWebhookEvent::Request }
+      #   @return [Imagekit::Models::UploadPreTransformErrorEvent::Request]
+      required :request, -> { Imagekit::UploadPreTransformErrorEvent::Request }
 
       # @!attribute type
       #
@@ -38,13 +38,13 @@ module Imagekit
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
-      #   @param data [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data]
+      #   @param data [Imagekit::Models::UploadPreTransformErrorEvent::Data]
       #
-      #   @param request [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Request]
+      #   @param request [Imagekit::Models::UploadPreTransformErrorEvent::Request]
       #
       #   @param type [Symbol, :"upload.pre-transform.error"]
 
-      # @see Imagekit::Models::UploadPreTransformErrorWebhookEvent#data
+      # @see Imagekit::Models::UploadPreTransformErrorEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute name
         #   Name of the file.
@@ -60,27 +60,27 @@ module Imagekit
 
         # @!attribute transformation
         #
-        #   @return [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data::Transformation]
-        required :transformation, -> { Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation }
+        #   @return [Imagekit::Models::UploadPreTransformErrorEvent::Data::Transformation]
+        required :transformation, -> { Imagekit::UploadPreTransformErrorEvent::Data::Transformation }
 
         # @!method initialize(name:, path:, transformation:)
         #   @param name [String] Name of the file.
         #
         #   @param path [String] Path of the file.
         #
-        #   @param transformation [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data::Transformation]
+        #   @param transformation [Imagekit::Models::UploadPreTransformErrorEvent::Data::Transformation]
 
-        # @see Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data#transformation
+        # @see Imagekit::Models::UploadPreTransformErrorEvent::Data#transformation
         class Transformation < Imagekit::Internal::Type::BaseModel
           # @!attribute error
           #
-          #   @return [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error]
-          required :error, -> { Imagekit::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error }
+          #   @return [Imagekit::Models::UploadPreTransformErrorEvent::Data::Transformation::Error]
+          required :error, -> { Imagekit::UploadPreTransformErrorEvent::Data::Transformation::Error }
 
           # @!method initialize(error:)
-          #   @param error [Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data::Transformation::Error]
+          #   @param error [Imagekit::Models::UploadPreTransformErrorEvent::Data::Transformation::Error]
 
-          # @see Imagekit::Models::UploadPreTransformErrorWebhookEvent::Data::Transformation#error
+          # @see Imagekit::Models::UploadPreTransformErrorEvent::Data::Transformation#error
           class Error < Imagekit::Internal::Type::BaseModel
             # @!attribute reason
             #   Reason for the pre-transformation failure.
@@ -94,7 +94,7 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::UploadPreTransformErrorWebhookEvent#request
+      # @see Imagekit::Models::UploadPreTransformErrorEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute transformation
         #   The requested pre-transformation string.

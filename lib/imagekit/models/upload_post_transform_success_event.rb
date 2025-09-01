@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPostTransformSuccessWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPostTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for the event.
       #
@@ -17,13 +17,13 @@ module Imagekit
 
       # @!attribute data
       #
-      #   @return [Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Data]
-      required :data, -> { Imagekit::UploadPostTransformSuccessWebhookEvent::Data }
+      #   @return [Imagekit::Models::UploadPostTransformSuccessEvent::Data]
+      required :data, -> { Imagekit::UploadPostTransformSuccessEvent::Data }
 
       # @!attribute request
       #
-      #   @return [Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request]
-      required :request, -> { Imagekit::UploadPostTransformSuccessWebhookEvent::Request }
+      #   @return [Imagekit::Models::UploadPostTransformSuccessEvent::Request]
+      required :request, -> { Imagekit::UploadPostTransformSuccessEvent::Request }
 
       # @!attribute type
       #
@@ -39,13 +39,13 @@ module Imagekit
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
-      #   @param data [Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Data]
+      #   @param data [Imagekit::Models::UploadPostTransformSuccessEvent::Data]
       #
-      #   @param request [Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request]
+      #   @param request [Imagekit::Models::UploadPostTransformSuccessEvent::Request]
       #
       #   @param type [Symbol, :"upload.post-transform.success"]
 
-      # @see Imagekit::Models::UploadPostTransformSuccessWebhookEvent#data
+      # @see Imagekit::Models::UploadPostTransformSuccessEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute file_id
         #   Unique identifier of the originally uploaded file.
@@ -73,12 +73,12 @@ module Imagekit
         #   @param url [String] URL of the generated post-transformation.
       end
 
-      # @see Imagekit::Models::UploadPostTransformSuccessWebhookEvent#request
+      # @see Imagekit::Models::UploadPostTransformSuccessEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute transformation
         #
-        #   @return [Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation]
-        required :transformation, -> { Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation }
+        #   @return [Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation]
+        required :transformation, -> { Imagekit::UploadPostTransformSuccessEvent::Request::Transformation }
 
         # @!attribute x_request_id
         #   Unique identifier for the originating request.
@@ -87,25 +87,24 @@ module Imagekit
         required :x_request_id, String
 
         # @!method initialize(transformation:, x_request_id:)
-        #   @param transformation [Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation]
+        #   @param transformation [Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation]
         #
         #   @param x_request_id [String] Unique identifier for the originating request.
 
-        # @see Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request#transformation
+        # @see Imagekit::Models::UploadPostTransformSuccessEvent::Request#transformation
         class Transformation < Imagekit::Internal::Type::BaseModel
           # @!attribute type
           #   Type of the requested post-transformation.
           #
-          #   @return [Symbol, Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type]
-          required :type,
-                   enum: -> { Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type }
+          #   @return [Symbol, Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::Type]
+          required :type, enum: -> { Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Type }
 
           # @!attribute protocol
           #   Only applicable if transformation type is 'abs'. Streaming protocol used.
           #
-          #   @return [Symbol, Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol, nil]
+          #   @return [Symbol, Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::Protocol, nil]
           optional :protocol,
-                   enum: -> { Imagekit::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol }
+                   enum: -> { Imagekit::UploadPostTransformSuccessEvent::Request::Transformation::Protocol }
 
           # @!attribute value
           #   Value for the requested transformation type.
@@ -114,15 +113,15 @@ module Imagekit
           optional :value, String
 
           # @!method initialize(type:, protocol: nil, value: nil)
-          #   @param type [Symbol, Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Type] Type of the requested post-transformation.
+          #   @param type [Symbol, Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::Type] Type of the requested post-transformation.
           #
-          #   @param protocol [Symbol, Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation::Protocol] Only applicable if transformation type is 'abs'. Streaming protocol used.
+          #   @param protocol [Symbol, Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation::Protocol] Only applicable if transformation type is 'abs'. Streaming protocol used.
           #
           #   @param value [String] Value for the requested transformation type.
 
           # Type of the requested post-transformation.
           #
-          # @see Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation#type
+          # @see Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation#type
           module Type
             extend Imagekit::Internal::Type::Enum
 
@@ -137,7 +136,7 @@ module Imagekit
 
           # Only applicable if transformation type is 'abs'. Streaming protocol used.
           #
-          # @see Imagekit::Models::UploadPostTransformSuccessWebhookEvent::Request::Transformation#protocol
+          # @see Imagekit::Models::UploadPostTransformSuccessEvent::Request::Transformation#protocol
           module Protocol
             extend Imagekit::Internal::Type::Enum
 

@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPostTransformErrorWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPostTransformErrorEvent < Imagekit::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for the event.
       #
@@ -17,13 +17,13 @@ module Imagekit
 
       # @!attribute data
       #
-      #   @return [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data]
-      required :data, -> { Imagekit::UploadPostTransformErrorWebhookEvent::Data }
+      #   @return [Imagekit::Models::UploadPostTransformErrorEvent::Data]
+      required :data, -> { Imagekit::UploadPostTransformErrorEvent::Data }
 
       # @!attribute request
       #
-      #   @return [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request]
-      required :request, -> { Imagekit::UploadPostTransformErrorWebhookEvent::Request }
+      #   @return [Imagekit::Models::UploadPostTransformErrorEvent::Request]
+      required :request, -> { Imagekit::UploadPostTransformErrorEvent::Request }
 
       # @!attribute type
       #
@@ -38,13 +38,13 @@ module Imagekit
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
-      #   @param data [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data]
+      #   @param data [Imagekit::Models::UploadPostTransformErrorEvent::Data]
       #
-      #   @param request [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request]
+      #   @param request [Imagekit::Models::UploadPostTransformErrorEvent::Request]
       #
       #   @param type [Symbol, :"upload.post-transform.error"]
 
-      # @see Imagekit::Models::UploadPostTransformErrorWebhookEvent#data
+      # @see Imagekit::Models::UploadPostTransformErrorEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute file_id
         #   Unique identifier of the originally uploaded file.
@@ -66,8 +66,8 @@ module Imagekit
 
         # @!attribute transformation
         #
-        #   @return [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data::Transformation]
-        required :transformation, -> { Imagekit::UploadPostTransformErrorWebhookEvent::Data::Transformation }
+        #   @return [Imagekit::Models::UploadPostTransformErrorEvent::Data::Transformation]
+        required :transformation, -> { Imagekit::UploadPostTransformErrorEvent::Data::Transformation }
 
         # @!attribute url
         #   URL of the attempted post-transformation.
@@ -82,21 +82,21 @@ module Imagekit
         #
         #   @param path [String] Path of the file.
         #
-        #   @param transformation [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data::Transformation]
+        #   @param transformation [Imagekit::Models::UploadPostTransformErrorEvent::Data::Transformation]
         #
         #   @param url [String] URL of the attempted post-transformation.
 
-        # @see Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data#transformation
+        # @see Imagekit::Models::UploadPostTransformErrorEvent::Data#transformation
         class Transformation < Imagekit::Internal::Type::BaseModel
           # @!attribute error
           #
-          #   @return [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data::Transformation::Error]
-          required :error, -> { Imagekit::UploadPostTransformErrorWebhookEvent::Data::Transformation::Error }
+          #   @return [Imagekit::Models::UploadPostTransformErrorEvent::Data::Transformation::Error]
+          required :error, -> { Imagekit::UploadPostTransformErrorEvent::Data::Transformation::Error }
 
           # @!method initialize(error:)
-          #   @param error [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data::Transformation::Error]
+          #   @param error [Imagekit::Models::UploadPostTransformErrorEvent::Data::Transformation::Error]
 
-          # @see Imagekit::Models::UploadPostTransformErrorWebhookEvent::Data::Transformation#error
+          # @see Imagekit::Models::UploadPostTransformErrorEvent::Data::Transformation#error
           class Error < Imagekit::Internal::Type::BaseModel
             # @!attribute reason
             #   Reason for the post-transformation failure.
@@ -110,12 +110,12 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::UploadPostTransformErrorWebhookEvent#request
+      # @see Imagekit::Models::UploadPostTransformErrorEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute transformation
         #
-        #   @return [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation]
-        required :transformation, -> { Imagekit::UploadPostTransformErrorWebhookEvent::Request::Transformation }
+        #   @return [Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation]
+        required :transformation, -> { Imagekit::UploadPostTransformErrorEvent::Request::Transformation }
 
         # @!attribute x_request_id
         #   Unique identifier for the originating request.
@@ -124,24 +124,24 @@ module Imagekit
         required :x_request_id, String
 
         # @!method initialize(transformation:, x_request_id:)
-        #   @param transformation [Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation]
+        #   @param transformation [Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation]
         #
         #   @param x_request_id [String] Unique identifier for the originating request.
 
-        # @see Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request#transformation
+        # @see Imagekit::Models::UploadPostTransformErrorEvent::Request#transformation
         class Transformation < Imagekit::Internal::Type::BaseModel
           # @!attribute type
           #   Type of the requested post-transformation.
           #
-          #   @return [Symbol, Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation::Type]
-          required :type, enum: -> { Imagekit::UploadPostTransformErrorWebhookEvent::Request::Transformation::Type }
+          #   @return [Symbol, Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation::Type]
+          required :type, enum: -> { Imagekit::UploadPostTransformErrorEvent::Request::Transformation::Type }
 
           # @!attribute protocol
           #   Only applicable if transformation type is 'abs'. Streaming protocol used.
           #
-          #   @return [Symbol, Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation::Protocol, nil]
+          #   @return [Symbol, Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation::Protocol, nil]
           optional :protocol,
-                   enum: -> { Imagekit::UploadPostTransformErrorWebhookEvent::Request::Transformation::Protocol }
+                   enum: -> { Imagekit::UploadPostTransformErrorEvent::Request::Transformation::Protocol }
 
           # @!attribute value
           #   Value for the requested transformation type.
@@ -150,15 +150,15 @@ module Imagekit
           optional :value, String
 
           # @!method initialize(type:, protocol: nil, value: nil)
-          #   @param type [Symbol, Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation::Type] Type of the requested post-transformation.
+          #   @param type [Symbol, Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation::Type] Type of the requested post-transformation.
           #
-          #   @param protocol [Symbol, Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation::Protocol] Only applicable if transformation type is 'abs'. Streaming protocol used.
+          #   @param protocol [Symbol, Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation::Protocol] Only applicable if transformation type is 'abs'. Streaming protocol used.
           #
           #   @param value [String] Value for the requested transformation type.
 
           # Type of the requested post-transformation.
           #
-          # @see Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation#type
+          # @see Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation#type
           module Type
             extend Imagekit::Internal::Type::Enum
 
@@ -173,7 +173,7 @@ module Imagekit
 
           # Only applicable if transformation type is 'abs'. Streaming protocol used.
           #
-          # @see Imagekit::Models::UploadPostTransformErrorWebhookEvent::Request::Transformation#protocol
+          # @see Imagekit::Models::UploadPostTransformErrorEvent::Request::Transformation#protocol
           module Protocol
             extend Imagekit::Internal::Type::Enum
 

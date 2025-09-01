@@ -2,11 +2,11 @@
 
 module Imagekit
   module Models
-    class UploadPreTransformSuccessWebhookEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPreTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Imagekit::UploadPreTransformSuccessWebhookEvent,
+            Imagekit::UploadPreTransformSuccessEvent,
             Imagekit::Internal::AnyHash
           )
         end
@@ -20,23 +20,22 @@ module Imagekit
       attr_accessor :created_at
 
       # Object containing details of a successful upload.
-      sig { returns(Imagekit::UploadPreTransformSuccessWebhookEvent::Data) }
+      sig { returns(Imagekit::UploadPreTransformSuccessEvent::Data) }
       attr_reader :data
 
       sig do
         params(
-          data: Imagekit::UploadPreTransformSuccessWebhookEvent::Data::OrHash
+          data: Imagekit::UploadPreTransformSuccessEvent::Data::OrHash
         ).void
       end
       attr_writer :data
 
-      sig { returns(Imagekit::UploadPreTransformSuccessWebhookEvent::Request) }
+      sig { returns(Imagekit::UploadPreTransformSuccessEvent::Request) }
       attr_reader :request
 
       sig do
         params(
-          request:
-            Imagekit::UploadPreTransformSuccessWebhookEvent::Request::OrHash
+          request: Imagekit::UploadPreTransformSuccessEvent::Request::OrHash
         ).void
       end
       attr_writer :request
@@ -51,9 +50,8 @@ module Imagekit
         params(
           id: String,
           created_at: Time,
-          data: Imagekit::UploadPreTransformSuccessWebhookEvent::Data::OrHash,
-          request:
-            Imagekit::UploadPreTransformSuccessWebhookEvent::Request::OrHash,
+          data: Imagekit::UploadPreTransformSuccessEvent::Data::OrHash,
+          request: Imagekit::UploadPreTransformSuccessEvent::Request::OrHash,
           type: Symbol
         ).returns(T.attached_class)
       end
@@ -74,8 +72,8 @@ module Imagekit
           {
             id: String,
             created_at: Time,
-            data: Imagekit::UploadPreTransformSuccessWebhookEvent::Data,
-            request: Imagekit::UploadPreTransformSuccessWebhookEvent::Request,
+            data: Imagekit::UploadPreTransformSuccessEvent::Data,
+            request: Imagekit::UploadPreTransformSuccessEvent::Request,
             type: Symbol
           }
         )
@@ -87,7 +85,7 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Data,
+              Imagekit::UploadPreTransformSuccessEvent::Data,
               Imagekit::Internal::AnyHash
             )
           end
@@ -96,9 +94,7 @@ module Imagekit
         sig do
           returns(
             T.nilable(
-              T::Array[
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::AITag
-              ]
+              T::Array[Imagekit::UploadPreTransformSuccessEvent::Data::AITag]
             )
           )
         end
@@ -172,7 +168,7 @@ module Imagekit
         sig do
           returns(
             T.nilable(
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus
+              Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus
             )
           )
         end
@@ -181,7 +177,7 @@ module Imagekit
         sig do
           params(
             extension_status:
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::OrHash
+              Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::OrHash
           ).void
         end
         attr_writer :extension_status
@@ -280,7 +276,7 @@ module Imagekit
         sig do
           returns(
             T.nilable(
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo
+              Imagekit::UploadPreTransformSuccessEvent::Data::VersionInfo
             )
           )
         end
@@ -289,7 +285,7 @@ module Imagekit
         sig do
           params(
             version_info:
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo::OrHash
+              Imagekit::UploadPreTransformSuccessEvent::Data::VersionInfo::OrHash
           ).void
         end
         attr_writer :version_info
@@ -314,7 +310,7 @@ module Imagekit
             ai_tags:
               T.nilable(
                 T::Array[
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::AITag::OrHash
+                  Imagekit::UploadPreTransformSuccessEvent::Data::AITag::OrHash
                 ]
               ),
             audio_codec: String,
@@ -325,7 +321,7 @@ module Imagekit
             duration: Integer,
             embedded_metadata: T::Hash[Symbol, T.anything],
             extension_status:
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::OrHash,
+              Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::OrHash,
             file_id: String,
             file_path: String,
             file_type: String,
@@ -339,7 +335,7 @@ module Imagekit
             thumbnail_url: String,
             url: String,
             version_info:
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo::OrHash,
+              Imagekit::UploadPreTransformSuccessEvent::Data::VersionInfo::OrHash,
             video_codec: String,
             width: Float
           ).returns(T.attached_class)
@@ -429,7 +425,7 @@ module Imagekit
               ai_tags:
                 T.nilable(
                   T::Array[
-                    Imagekit::UploadPreTransformSuccessWebhookEvent::Data::AITag
+                    Imagekit::UploadPreTransformSuccessEvent::Data::AITag
                   ]
                 ),
               audio_codec: String,
@@ -440,7 +436,7 @@ module Imagekit
               duration: Integer,
               embedded_metadata: T::Hash[Symbol, T.anything],
               extension_status:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus,
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus,
               file_id: String,
               file_path: String,
               file_type: String,
@@ -454,7 +450,7 @@ module Imagekit
               thumbnail_url: String,
               url: String,
               version_info:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo,
+                Imagekit::UploadPreTransformSuccessEvent::Data::VersionInfo,
               video_codec: String,
               width: Float
             }
@@ -467,7 +463,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::AITag,
+                Imagekit::UploadPreTransformSuccessEvent::Data::AITag,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -525,7 +521,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus,
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -533,7 +529,7 @@ module Imagekit
           sig do
             returns(
               T.nilable(
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
               )
             )
           end
@@ -542,7 +538,7 @@ module Imagekit
           sig do
             params(
               aws_auto_tagging:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::OrSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::OrSymbol
             ).void
           end
           attr_writer :aws_auto_tagging
@@ -550,7 +546,7 @@ module Imagekit
           sig do
             returns(
               T.nilable(
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
               )
             )
           end
@@ -559,7 +555,7 @@ module Imagekit
           sig do
             params(
               google_auto_tagging:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::OrSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::OrSymbol
             ).void
           end
           attr_writer :google_auto_tagging
@@ -567,7 +563,7 @@ module Imagekit
           sig do
             returns(
               T.nilable(
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
               )
             )
           end
@@ -576,7 +572,7 @@ module Imagekit
           sig do
             params(
               remove_bg:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::OrSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::OrSymbol
             ).void
           end
           attr_writer :remove_bg
@@ -593,11 +589,11 @@ module Imagekit
           sig do
             params(
               aws_auto_tagging:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::OrSymbol,
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::OrSymbol,
               google_auto_tagging:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::OrSymbol,
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::OrSymbol,
               remove_bg:
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::OrSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -611,11 +607,11 @@ module Imagekit
             override.returns(
               {
                 aws_auto_tagging:
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol,
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol,
                 google_auto_tagging:
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol,
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol,
                 remove_bg:
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
               }
             )
           end
@@ -629,7 +625,7 @@ module Imagekit
               T.type_alias do
                 T.all(
                   Symbol,
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -637,23 +633,23 @@ module Imagekit
             SUCCESS =
               T.let(
                 :success,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
               )
             FAILED =
               T.let(
                 :failed,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
                 ]
               )
             end
@@ -668,7 +664,7 @@ module Imagekit
               T.type_alias do
                 T.all(
                   Symbol,
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -676,23 +672,23 @@ module Imagekit
             SUCCESS =
               T.let(
                 :success,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
               )
             FAILED =
               T.let(
                 :failed,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::GoogleAutoTagging::TaggedSymbol
                 ]
               )
             end
@@ -707,7 +703,7 @@ module Imagekit
               T.type_alias do
                 T.all(
                   Symbol,
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -715,23 +711,23 @@ module Imagekit
             SUCCESS =
               T.let(
                 :success,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
               )
             PENDING =
               T.let(
                 :pending,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
               )
             FAILED =
               T.let(
                 :failed,
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
+                Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Imagekit::UploadPreTransformSuccessWebhookEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
+                  Imagekit::UploadPreTransformSuccessEvent::Data::ExtensionStatus::RemoveBg::TaggedSymbol
                 ]
               )
             end
@@ -744,7 +740,7 @@ module Imagekit
           OrHash =
             T.type_alias do
               T.any(
-                Imagekit::UploadPreTransformSuccessWebhookEvent::Data::VersionInfo,
+                Imagekit::UploadPreTransformSuccessEvent::Data::VersionInfo,
                 Imagekit::Internal::AnyHash
               )
             end
@@ -783,7 +779,7 @@ module Imagekit
         OrHash =
           T.type_alias do
             T.any(
-              Imagekit::UploadPreTransformSuccessWebhookEvent::Request,
+              Imagekit::UploadPreTransformSuccessEvent::Request,
               Imagekit::Internal::AnyHash
             )
           end
