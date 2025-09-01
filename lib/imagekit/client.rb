@@ -15,11 +15,14 @@ module Imagekit
     # Default max retry delay in seconds.
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
-    # Your ImageKit private key starts with `private_`.
+    # Your ImageKit private API key (it starts with `private_`). You can view and
+    # manage API keys in the
+    # [dashboard](https://imagekit.io/dashboard/developer/api-keys).
     # @return [String]
     attr_reader :private_api_key
 
-    # Do not set this, its value is ignored
+    # ImageKit Basic Auth only uses the username field and ignores the password. This
+    # field is unused.
     # @return [String, nil]
     attr_reader :password
 
@@ -64,10 +67,13 @@ module Imagekit
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param private_api_key [String, nil] Your ImageKit private key starts with `private_`. Defaults to
+    # @param private_api_key [String, nil] Your ImageKit private API key (it starts with `private_`). You can view and
+    # manage API keys in the
+    # [dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults to
     # `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
     #
-    # @param password [String, nil] Do not set this, its value is ignored Defaults to `ENV["ORG_MY_PASSWORD_TOKEN"]`
+    # @param password [String, nil] ImageKit Basic Auth only uses the username field and ignores the password. This
+    # field is unused. Defaults to `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
@@ -81,7 +87,7 @@ module Imagekit
     # @param max_retry_delay [Float]
     def initialize(
       private_api_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
-      password: ENV.fetch("ORG_MY_PASSWORD_TOKEN", "does_not_matter"),
+      password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
       base_url: ENV["IMAGE_KIT_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
