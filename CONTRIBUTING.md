@@ -43,13 +43,13 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "imagekit", git: "https://www.github.com/stainless-sdks/imagekit-ruby"
+gem "imagekit", git: "https://www.github.com/imagekit-developer/imagekit-ruby"
 ```
 
 Alternatively, reference local copy of the repo:
 
 ```bash
-$ git clone -- 'https://www.github.com/stainless-sdks/imagekit-ruby' '<path-to-repo>'
+$ git clone -- 'https://www.github.com/imagekit-developer/imagekit-ruby' '<path-to-repo>'
 ```
 
 ```ruby
