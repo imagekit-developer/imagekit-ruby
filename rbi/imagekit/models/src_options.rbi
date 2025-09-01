@@ -19,6 +19,22 @@ module Imagekit
       sig { returns(String) }
       attr_accessor :url_endpoint
 
+      # When you want the signed URL to expire, specified in seconds. If `expiresIn` is
+      # anything above 0, the URL will always be signed even if `signed` is set to
+      # false. If not specified and `signed` is `true`, the signed URL will not expire
+      # (valid indefinitely).
+      #
+      # Example: Setting `expiresIn: 3600` will make the URL expire 1 hour from
+      # generation time. After the expiry time, the signed URL will no longer be valid
+      # and ImageKit will return a 401 Unauthorized status code.
+      #
+      # [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+      sig { returns(T.nilable(Float)) }
+      attr_reader :expires_in
+
+      sig { params(expires_in: Float).void }
+      attr_writer :expires_in
+
       # These are additional query parameters that you want to add to the final URL.
       # They can be any query parameters and not necessarily related to ImageKit. This
       # is especially useful if you want to add a versioning parameter to your URLs.
@@ -27,6 +43,17 @@ module Imagekit
 
       sig { params(query_parameters: T::Hash[Symbol, String]).void }
       attr_writer :query_parameters
+
+      # Whether to sign the URL or not. Set this to `true` if you want to generate a
+      # signed URL. If `signed` is `true` and `expiresIn` is not specified, the signed
+      # URL will not expire (valid indefinitely). Note: If `expiresIn` is set to any
+      # value above 0, the URL will always be signed regardless of this setting.
+      # [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :signed
+
+      sig { params(signed: T::Boolean).void }
+      attr_writer :signed
 
       # An array of objects specifying the transformations to be applied in the URL. If
       # more than one transformation is specified, they are applied in the order they
@@ -60,7 +87,9 @@ module Imagekit
         params(
           src: String,
           url_endpoint: String,
+          expires_in: Float,
           query_parameters: T::Hash[Symbol, String],
+          signed: T::Boolean,
           transformation: T::Array[Imagekit::Transformation::OrHash],
           transformation_position: Imagekit::TransformationPosition::OrSymbol
         ).returns(T.attached_class)
@@ -73,10 +102,27 @@ module Imagekit
         # Get your urlEndpoint from the
         # [ImageKit dashboard](https://imagekit.io/dashboard/url-endpoints).
         url_endpoint:,
+        # When you want the signed URL to expire, specified in seconds. If `expiresIn` is
+        # anything above 0, the URL will always be signed even if `signed` is set to
+        # false. If not specified and `signed` is `true`, the signed URL will not expire
+        # (valid indefinitely).
+        #
+        # Example: Setting `expiresIn: 3600` will make the URL expire 1 hour from
+        # generation time. After the expiry time, the signed URL will no longer be valid
+        # and ImageKit will return a 401 Unauthorized status code.
+        #
+        # [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+        expires_in: nil,
         # These are additional query parameters that you want to add to the final URL.
         # They can be any query parameters and not necessarily related to ImageKit. This
         # is especially useful if you want to add a versioning parameter to your URLs.
         query_parameters: nil,
+        # Whether to sign the URL or not. Set this to `true` if you want to generate a
+        # signed URL. If `signed` is `true` and `expiresIn` is not specified, the signed
+        # URL will not expire (valid indefinitely). Note: If `expiresIn` is set to any
+        # value above 0, the URL will always be signed regardless of this setting.
+        # [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+        signed: nil,
         # An array of objects specifying the transformations to be applied in the URL. If
         # more than one transformation is specified, they are applied in the order they
         # are specified as chained transformations. See
@@ -95,7 +141,9 @@ module Imagekit
           {
             src: String,
             url_endpoint: String,
+            expires_in: Float,
             query_parameters: T::Hash[Symbol, String],
+            signed: T::Boolean,
             transformation: T::Array[Imagekit::Transformation],
             transformation_position: Imagekit::TransformationPosition::OrSymbol
           }
