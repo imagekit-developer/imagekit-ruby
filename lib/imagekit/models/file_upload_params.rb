@@ -18,8 +18,8 @@ module Imagekit
       #   When supplying a URL, the server must receive the response headers within 8
       #   seconds; otherwise the request fails with 400 Bad Request.
       #
-      #   @return [String]
-      required :file, String
+      #   @return [Pathname, StringIO, IO, String, Imagekit::FilePart]
+      required :file, Imagekit::Internal::Type::FileInput
 
       # @!attribute file_name
       #   The name with which the file has to be uploaded. The file name can contain:
@@ -240,7 +240,7 @@ module Imagekit
       #   Some parameter documentations has been truncated, see
       #   {Imagekit::Models::FileUploadParams} for more details.
       #
-      #   @param file [String] The API accepts any of the following:
+      #   @param file [Pathname, StringIO, IO, String, Imagekit::FilePart] The API accepts any of the following:
       #
       #   @param file_name [String] The name with which the file has to be uploaded.
       #
