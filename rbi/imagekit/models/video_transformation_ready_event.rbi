@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class VideoTransformationReadyEvent < Imagekit::Internal::Type::BaseModel
+    class VideoTransformationReadyEvent < Imagekit::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
@@ -10,10 +10,6 @@ module Imagekit
             Imagekit::Internal::AnyHash
           )
         end
-
-      # Unique identifier for the event.
-      sig { returns(String) }
-      attr_accessor :id
 
       # Timestamp when the event was created in ISO8601 format.
       sig { returns(Time) }
@@ -54,9 +50,12 @@ module Imagekit
       end
       attr_writer :timings
 
+      # Triggered when video encoding is finished and the transformed resource is ready
+      # to be served. This is the key event to listen for - update your database or CMS
+      # flags when you receive this so your application can start showing the
+      # transformed video to users.
       sig do
         params(
-          id: String,
           created_at: Time,
           data: Imagekit::VideoTransformationReadyEvent::Data::OrHash,
           request: Imagekit::VideoTransformationReadyEvent::Request::OrHash,
@@ -65,8 +64,6 @@ module Imagekit
         ).returns(T.attached_class)
       end
       def self.new(
-        # Unique identifier for the event.
-        id:,
         # Timestamp when the event was created in ISO8601 format.
         created_at:,
         data:,
@@ -81,7 +78,6 @@ module Imagekit
       sig do
         override.returns(
           {
-            id: String,
             created_at: Time,
             data: Imagekit::VideoTransformationReadyEvent::Data,
             request: Imagekit::VideoTransformationReadyEvent::Request,

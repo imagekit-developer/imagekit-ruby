@@ -2,13 +2,7 @@
 
 module Imagekit
   module Models
-    class VideoTransformationAcceptedEvent < Imagekit::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique identifier for the event.
-      #
-      #   @return [String]
-      required :id, String
-
+    class VideoTransformationAcceptedEvent < Imagekit::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp when the event was created in ISO8601 format.
       #
@@ -31,8 +25,10 @@ module Imagekit
       #   @return [Symbol, :"video.transformation.accepted"]
       required :type, const: :"video.transformation.accepted"
 
-      # @!method initialize(id:, created_at:, data:, request:, type: :"video.transformation.accepted")
-      #   @param id [String] Unique identifier for the event.
+      # @!method initialize(created_at:, data:, request:, type: :"video.transformation.accepted")
+      #   Triggered when a new video transformation request is accepted for processing.
+      #   This event confirms that ImageKit has received and queued your transformation
+      #   request. Use this for debugging and tracking transformation lifecycle.
       #
       #   @param created_at [Time] Timestamp when the event was created in ISO8601 format.
       #
@@ -42,7 +38,6 @@ module Imagekit
       #
       #   @param type [Symbol, :"video.transformation.accepted"]
 
-      # @see Imagekit::Models::VideoTransformationAcceptedEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute asset
         #   Information about the source video asset being transformed.
@@ -251,7 +246,6 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::VideoTransformationAcceptedEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute url
         #   Full URL of the transformation request that was submitted.

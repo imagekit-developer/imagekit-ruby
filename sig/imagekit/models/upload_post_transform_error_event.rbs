@@ -2,26 +2,36 @@ module Imagekit
   module Models
     type upload_post_transform_error_event =
       {
-        id: String,
         created_at: Time,
         data: Imagekit::UploadPostTransformErrorEvent::Data,
         request: Imagekit::UploadPostTransformErrorEvent::Request,
         type: :"upload.post-transform.error"
       }
 
-    class UploadPostTransformErrorEvent < Imagekit::Internal::Type::BaseModel
-      attr_accessor id: String
+    class UploadPostTransformErrorEvent < Imagekit::Models::BaseWebhookEvent
+      def created_at: -> Time
 
-      attr_accessor created_at: Time
+      def created_at=: (Time _) -> Time
 
-      attr_accessor data: Imagekit::UploadPostTransformErrorEvent::Data
+      def data: -> Imagekit::UploadPostTransformErrorEvent::Data
 
-      attr_accessor request: Imagekit::UploadPostTransformErrorEvent::Request
+      def data=: (
+        Imagekit::UploadPostTransformErrorEvent::Data _
+      ) -> Imagekit::UploadPostTransformErrorEvent::Data
 
-      attr_accessor type: :"upload.post-transform.error"
+      def request: -> Imagekit::UploadPostTransformErrorEvent::Request
+
+      def request=: (
+        Imagekit::UploadPostTransformErrorEvent::Request _
+      ) -> Imagekit::UploadPostTransformErrorEvent::Request
+
+      def `type`: -> :"upload.post-transform.error"
+
+      def type=: (
+        :"upload.post-transform.error" _
+      ) -> :"upload.post-transform.error"
 
       def initialize: (
-        id: String,
         created_at: Time,
         data: Imagekit::UploadPostTransformErrorEvent::Data,
         request: Imagekit::UploadPostTransformErrorEvent::Request,
@@ -29,7 +39,6 @@ module Imagekit
       ) -> void
 
       def to_hash: -> {
-        id: String,
         created_at: Time,
         data: Imagekit::UploadPostTransformErrorEvent::Data,
         request: Imagekit::UploadPostTransformErrorEvent::Request,

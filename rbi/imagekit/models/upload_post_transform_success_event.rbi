@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPostTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPostTransformSuccessEvent < Imagekit::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
@@ -10,10 +10,6 @@ module Imagekit
             Imagekit::Internal::AnyHash
           )
         end
-
-      # Unique identifier for the event.
-      sig { returns(String) }
-      attr_accessor :id
 
       # Timestamp of when the event occurred in ISO8601 format.
       sig { returns(Time) }
@@ -42,9 +38,11 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
+      # Triggered when a post-transformation completes successfully. The transformed
+      # version of the file is now ready and can be accessed via the provided URL. Note
+      # that each post-transformation generates a separate webhook event.
       sig do
         params(
-          id: String,
           created_at: Time,
           data: Imagekit::UploadPostTransformSuccessEvent::Data::OrHash,
           request: Imagekit::UploadPostTransformSuccessEvent::Request::OrHash,
@@ -52,8 +50,6 @@ module Imagekit
         ).returns(T.attached_class)
       end
       def self.new(
-        # Unique identifier for the event.
-        id:,
         # Timestamp of when the event occurred in ISO8601 format.
         created_at:,
         data:,
@@ -65,7 +61,6 @@ module Imagekit
       sig do
         override.returns(
           {
-            id: String,
             created_at: Time,
             data: Imagekit::UploadPostTransformSuccessEvent::Data,
             request: Imagekit::UploadPostTransformSuccessEvent::Request,

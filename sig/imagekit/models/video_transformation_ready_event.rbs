@@ -2,7 +2,6 @@ module Imagekit
   module Models
     type video_transformation_ready_event =
       {
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationReadyEvent::Data,
         request: Imagekit::VideoTransformationReadyEvent::Request,
@@ -10,25 +9,36 @@ module Imagekit
         timings: Imagekit::VideoTransformationReadyEvent::Timings
       }
 
-    class VideoTransformationReadyEvent < Imagekit::Internal::Type::BaseModel
-      attr_accessor id: String
+    class VideoTransformationReadyEvent < Imagekit::Models::BaseWebhookEvent
+      def created_at: -> Time
 
-      attr_accessor created_at: Time
+      def created_at=: (Time _) -> Time
 
-      attr_accessor data: Imagekit::VideoTransformationReadyEvent::Data
+      def data: -> Imagekit::VideoTransformationReadyEvent::Data
 
-      attr_accessor request: Imagekit::VideoTransformationReadyEvent::Request
+      def data=: (
+        Imagekit::VideoTransformationReadyEvent::Data _
+      ) -> Imagekit::VideoTransformationReadyEvent::Data
 
-      attr_accessor type: :"video.transformation.ready"
+      def request: -> Imagekit::VideoTransformationReadyEvent::Request
 
-      attr_reader timings: Imagekit::VideoTransformationReadyEvent::Timings?
+      def request=: (
+        Imagekit::VideoTransformationReadyEvent::Request _
+      ) -> Imagekit::VideoTransformationReadyEvent::Request
+
+      def `type`: -> :"video.transformation.ready"
+
+      def type=: (
+        :"video.transformation.ready" _
+      ) -> :"video.transformation.ready"
+
+      def timings: -> Imagekit::VideoTransformationReadyEvent::Timings?
 
       def timings=: (
-        Imagekit::VideoTransformationReadyEvent::Timings
+        Imagekit::VideoTransformationReadyEvent::Timings _
       ) -> Imagekit::VideoTransformationReadyEvent::Timings
 
       def initialize: (
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationReadyEvent::Data,
         request: Imagekit::VideoTransformationReadyEvent::Request,
@@ -37,7 +47,6 @@ module Imagekit
       ) -> void
 
       def to_hash: -> {
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationReadyEvent::Data,
         request: Imagekit::VideoTransformationReadyEvent::Request,

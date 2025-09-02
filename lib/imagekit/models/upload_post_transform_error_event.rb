@@ -2,13 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPostTransformErrorEvent < Imagekit::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique identifier for the event.
-      #
-      #   @return [String]
-      required :id, String
-
+    class UploadPostTransformErrorEvent < Imagekit::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp of when the event occurred in ISO8601 format.
       #
@@ -30,8 +24,9 @@ module Imagekit
       #   @return [Symbol, :"upload.post-transform.error"]
       required :type, const: :"upload.post-transform.error"
 
-      # @!method initialize(id:, created_at:, data:, request:, type: :"upload.post-transform.error")
-      #   @param id [String] Unique identifier for the event.
+      # @!method initialize(created_at:, data:, request:, type: :"upload.post-transform.error")
+      #   Triggered when a post-transformation fails. The original file remains available,
+      #   but the requested transformation could not be generated.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
@@ -41,7 +36,6 @@ module Imagekit
       #
       #   @param type [Symbol, :"upload.post-transform.error"]
 
-      # @see Imagekit::Models::UploadPostTransformErrorEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute file_id
         #   Unique identifier of the originally uploaded file.
@@ -107,7 +101,6 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::UploadPostTransformErrorEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute transformation
         #

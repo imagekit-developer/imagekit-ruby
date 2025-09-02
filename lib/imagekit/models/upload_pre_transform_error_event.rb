@@ -2,13 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPreTransformErrorEvent < Imagekit::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique identifier for the event.
-      #
-      #   @return [String]
-      required :id, String
-
+    class UploadPreTransformErrorEvent < Imagekit::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp of when the event occurred in ISO8601 format.
       #
@@ -30,8 +24,9 @@ module Imagekit
       #   @return [Symbol, :"upload.pre-transform.error"]
       required :type, const: :"upload.pre-transform.error"
 
-      # @!method initialize(id:, created_at:, data:, request:, type: :"upload.pre-transform.error")
-      #   @param id [String] Unique identifier for the event.
+      # @!method initialize(created_at:, data:, request:, type: :"upload.pre-transform.error")
+      #   Triggered when a pre-transformation fails. The file upload may have been
+      #   accepted, but the requested transformation could not be applied.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
@@ -41,7 +36,6 @@ module Imagekit
       #
       #   @param type [Symbol, :"upload.pre-transform.error"]
 
-      # @see Imagekit::Models::UploadPreTransformErrorEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute name
         #   Name of the file.
@@ -91,7 +85,6 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::UploadPreTransformErrorEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute transformation
         #   The requested pre-transformation string.

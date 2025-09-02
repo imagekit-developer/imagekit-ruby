@@ -2,26 +2,36 @@ module Imagekit
   module Models
     type upload_pre_transform_success_event =
       {
-        id: String,
         created_at: Time,
         data: Imagekit::UploadPreTransformSuccessEvent::Data,
         request: Imagekit::UploadPreTransformSuccessEvent::Request,
         type: :"upload.pre-transform.success"
       }
 
-    class UploadPreTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
-      attr_accessor id: String
+    class UploadPreTransformSuccessEvent < Imagekit::Models::BaseWebhookEvent
+      def created_at: -> Time
 
-      attr_accessor created_at: Time
+      def created_at=: (Time _) -> Time
 
-      attr_accessor data: Imagekit::UploadPreTransformSuccessEvent::Data
+      def data: -> Imagekit::UploadPreTransformSuccessEvent::Data
 
-      attr_accessor request: Imagekit::UploadPreTransformSuccessEvent::Request
+      def data=: (
+        Imagekit::UploadPreTransformSuccessEvent::Data _
+      ) -> Imagekit::UploadPreTransformSuccessEvent::Data
 
-      attr_accessor type: :"upload.pre-transform.success"
+      def request: -> Imagekit::UploadPreTransformSuccessEvent::Request
+
+      def request=: (
+        Imagekit::UploadPreTransformSuccessEvent::Request _
+      ) -> Imagekit::UploadPreTransformSuccessEvent::Request
+
+      def `type`: -> :"upload.pre-transform.success"
+
+      def type=: (
+        :"upload.pre-transform.success" _
+      ) -> :"upload.pre-transform.success"
 
       def initialize: (
-        id: String,
         created_at: Time,
         data: Imagekit::UploadPreTransformSuccessEvent::Data,
         request: Imagekit::UploadPreTransformSuccessEvent::Request,
@@ -29,7 +39,6 @@ module Imagekit
       ) -> void
 
       def to_hash: -> {
-        id: String,
         created_at: Time,
         data: Imagekit::UploadPreTransformSuccessEvent::Data,
         request: Imagekit::UploadPreTransformSuccessEvent::Request,

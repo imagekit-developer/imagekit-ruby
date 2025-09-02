@@ -7,6 +7,8 @@ module Imagekit
 
   BaseOverlay = Imagekit::Models::BaseOverlay
 
+  BaseWebhookEvent = Imagekit::Models::BaseWebhookEvent
+
   Beta = Imagekit::Models::Beta
 
   Cache = Imagekit::Models::Cache
