@@ -8,18 +8,12 @@ module Imagekit
       include Imagekit::Internal::Type::RequestParameters
 
       # @!attribute file
-      #   The API accepts any of the following:
+      #   A publicly reachable URL that ImageKit’s servers can fetch. The server must
+      #   receive the response headers within 8 seconds; otherwise the request fails with
+      #   400 Bad Request.
       #
-      #   - **Binary data** – send the raw bytes as `multipart/form-data`.
-      #   - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can
-      #     fetch.
-      #   - **Base64 string** – the file encoded as a Base64 data URI or plain Base64.
-      #
-      #   When supplying a URL, the server must receive the response headers within 8
-      #   seconds; otherwise the request fails with 400 Bad Request.
-      #
-      #   @return [Pathname, StringIO, IO, String, Imagekit::FilePart]
-      required :file, Imagekit::Internal::Type::FileInput
+      #   @return [String]
+      required :file, String
 
       # @!attribute file_name
       #   The name with which the file has to be uploaded. The file name can contain:
@@ -240,7 +234,7 @@ module Imagekit
       #   Some parameter documentations has been truncated, see
       #   {Imagekit::Models::FileUploadParams} for more details.
       #
-      #   @param file [Pathname, StringIO, IO, String, Imagekit::FilePart] The API accepts any of the following:
+      #   @param file [String] A publicly reachable URL that ImageKit’s servers can fetch. The server must rece
       #
       #   @param file_name [String] The name with which the file has to be uploaded.
       #
