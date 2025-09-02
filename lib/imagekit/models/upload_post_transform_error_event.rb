@@ -31,9 +31,6 @@ module Imagekit
       required :type, const: :"upload.post-transform.error"
 
       # @!method initialize(id:, created_at:, data:, request:, type: :"upload.post-transform.error")
-      #   Triggered when a post-transformation fails. The original file remains available,
-      #   but the requested transformation could not be generated.
-      #
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.

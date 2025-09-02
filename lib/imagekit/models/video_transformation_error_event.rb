@@ -32,11 +32,6 @@ module Imagekit
       required :type, const: :"video.transformation.error"
 
       # @!method initialize(id:, created_at:, data:, request:, type: :"video.transformation.error")
-      #   Triggered when an error occurs during video encoding. Listen to this webhook to
-      #   log error reasons and debug issues. Check your origin and URL endpoint settings
-      #   if the reason is related to download failure. For other errors, contact ImageKit
-      #   support.
-      #
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time] Timestamp when the event was created in ISO8601 format.

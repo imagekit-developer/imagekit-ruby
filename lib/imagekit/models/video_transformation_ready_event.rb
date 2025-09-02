@@ -38,11 +38,6 @@ module Imagekit
       optional :timings, -> { Imagekit::VideoTransformationReadyEvent::Timings }
 
       # @!method initialize(id:, created_at:, data:, request:, timings: nil, type: :"video.transformation.ready")
-      #   Triggered when video encoding is finished and the transformed resource is ready
-      #   to be served. This is the key event to listen for - update your database or CMS
-      #   flags when you receive this so your application can start showing the
-      #   transformed video to users.
-      #
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time] Timestamp when the event was created in ISO8601 format.

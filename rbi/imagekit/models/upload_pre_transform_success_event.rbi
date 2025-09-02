@@ -43,9 +43,6 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when a pre-transformation completes successfully. The file has been
-      # processed with the requested transformation and is now available in the Media
-      # Library.
       sig do
         params(
           id: String,

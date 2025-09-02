@@ -40,8 +40,6 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when a pre-transformation fails. The file upload may have been
-      # accepted, but the requested transformation could not be applied.
       sig do
         params(
           id: String,

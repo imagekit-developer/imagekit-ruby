@@ -40,8 +40,6 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when a post-transformation fails. The original file remains available,
-      # but the requested transformation could not be generated.
       sig do
         params(
           id: String,
