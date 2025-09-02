@@ -189,7 +189,7 @@ module Imagekit
       #   technologies.
       sig do
         params(
-          file: String,
+          file: Imagekit::Internal::FileInput,
           file_name: String,
           token: String,
           checks: String,

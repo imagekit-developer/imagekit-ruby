@@ -221,7 +221,7 @@ module Imagekit
       #
       # @overload upload(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, expire: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, public_key: nil, response_fields: nil, signature: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
       #
-      # @param file [String] The API accepts any of the following:
+      # @param file [Pathname, StringIO, IO, String, Imagekit::FilePart] The API accepts any of the following:
       #
       # @param file_name [String] The name with which the file has to be uploaded.
       #
