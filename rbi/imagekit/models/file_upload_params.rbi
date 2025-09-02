@@ -20,7 +20,7 @@ module Imagekit
       #
       # When supplying a URL, the server must receive the response headers within 8
       # seconds; otherwise the request fails with 400 Bad Request.
-      sig { returns(Imagekit::Internal::FileInput) }
+      sig { returns(String) }
       attr_accessor :file
 
       # The name with which the file has to be uploaded. The file name can contain:
@@ -290,7 +290,7 @@ module Imagekit
 
       sig do
         params(
-          file: Imagekit::Internal::FileInput,
+          file: String,
           file_name: String,
           token: String,
           checks: String,
@@ -462,7 +462,7 @@ module Imagekit
       sig do
         override.returns(
           {
-            file: Imagekit::Internal::FileInput,
+            file: String,
             file_name: String,
             token: String,
             checks: String,

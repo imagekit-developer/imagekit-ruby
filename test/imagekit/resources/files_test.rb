@@ -113,7 +113,8 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
   def test_upload_required_params
     skip("Prism tests are disabled")
 
-    response = @image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+    response =
+      @image_kit.files.upload(file: "https://www.example.com/path/to-image.jpg", file_name: "fileName")
 
     assert_pattern do
       response => Imagekit::Models::FileUploadResponse
