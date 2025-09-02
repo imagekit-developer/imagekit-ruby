@@ -44,7 +44,7 @@ module Imagekit
       ) -> Imagekit::Models::FileRenameResponse
 
       def upload: (
-        file: String,
+        file: Imagekit::Internal::file_input,
         file_name: String,
         ?token: String,
         ?checks: String,
