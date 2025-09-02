@@ -2,7 +2,7 @@ module Imagekit
   module Models
     type file_upload_params =
       {
-        file: Imagekit::Internal::file_input,
+        file: String,
         file_name: String,
         token: String,
         checks: String,
@@ -32,7 +32,7 @@ module Imagekit
       extend Imagekit::Internal::Type::RequestParameters::Converter
       include Imagekit::Internal::Type::RequestParameters
 
-      attr_accessor file: Imagekit::Internal::file_input
+      attr_accessor file: String
 
       attr_accessor file_name: String
 
@@ -127,7 +127,7 @@ module Imagekit
       def webhook_url=: (String) -> String
 
       def initialize: (
-        file: Imagekit::Internal::file_input,
+        file: String,
         file_name: String,
         ?token: String,
         ?checks: String,
@@ -154,7 +154,7 @@ module Imagekit
       ) -> void
 
       def to_hash: -> {
-        file: Imagekit::Internal::file_input,
+        file: String,
         file_name: String,
         token: String,
         checks: String,
