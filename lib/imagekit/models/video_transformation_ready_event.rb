@@ -2,13 +2,7 @@
 
 module Imagekit
   module Models
-    class VideoTransformationReadyEvent < Imagekit::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique identifier for the event.
-      #
-      #   @return [String]
-      required :id, String
-
+    class VideoTransformationReadyEvent < Imagekit::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp when the event was created in ISO8601 format.
       #
@@ -37,8 +31,11 @@ module Imagekit
       #   @return [Imagekit::Models::VideoTransformationReadyEvent::Timings, nil]
       optional :timings, -> { Imagekit::VideoTransformationReadyEvent::Timings }
 
-      # @!method initialize(id:, created_at:, data:, request:, timings: nil, type: :"video.transformation.ready")
-      #   @param id [String] Unique identifier for the event.
+      # @!method initialize(created_at:, data:, request:, timings: nil, type: :"video.transformation.ready")
+      #   Triggered when video encoding is finished and the transformed resource is ready
+      #   to be served. This is the key event to listen for - update your database or CMS
+      #   flags when you receive this so your application can start showing the
+      #   transformed video to users.
       #
       #   @param created_at [Time] Timestamp when the event was created in ISO8601 format.
       #
@@ -50,7 +47,6 @@ module Imagekit
       #
       #   @param type [Symbol, :"video.transformation.ready"]
 
-      # @see Imagekit::Models::VideoTransformationReadyEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute asset
         #   Information about the source video asset being transformed.
@@ -325,7 +321,6 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::VideoTransformationReadyEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute url
         #   Full URL of the transformation request that was submitted.
@@ -355,7 +350,6 @@ module Imagekit
         #   @param user_agent [String] User-Agent header from the original request that triggered the transformation.
       end
 
-      # @see Imagekit::Models::VideoTransformationReadyEvent#timings
       class Timings < Imagekit::Internal::Type::BaseModel
         # @!attribute download_duration
         #   Time spent downloading the source video from your origin or media library, in

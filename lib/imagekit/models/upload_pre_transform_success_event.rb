@@ -2,13 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPreTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique identifier for the event.
-      #
-      #   @return [String]
-      required :id, String
-
+    class UploadPreTransformSuccessEvent < Imagekit::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp of when the event occurred in ISO8601 format.
       #
@@ -31,8 +25,10 @@ module Imagekit
       #   @return [Symbol, :"upload.pre-transform.success"]
       required :type, const: :"upload.pre-transform.success"
 
-      # @!method initialize(id:, created_at:, data:, request:, type: :"upload.pre-transform.success")
-      #   @param id [String] Unique identifier for the event.
+      # @!method initialize(created_at:, data:, request:, type: :"upload.pre-transform.success")
+      #   Triggered when a pre-transformation completes successfully. The file has been
+      #   processed with the requested transformation and is now available in the Media
+      #   Library.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
@@ -42,7 +38,6 @@ module Imagekit
       #
       #   @param type [Symbol, :"upload.pre-transform.success"]
 
-      # @see Imagekit::Models::UploadPreTransformSuccessEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute ai_tags
         #   An array of tags assigned to the uploaded file by auto tagging.
@@ -439,7 +434,6 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::UploadPreTransformSuccessEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute transformation
         #   The requested pre-transformation string.

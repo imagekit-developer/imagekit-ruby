@@ -2,26 +2,36 @@ module Imagekit
   module Models
     type video_transformation_accepted_event =
       {
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationAcceptedEvent::Data,
         request: Imagekit::VideoTransformationAcceptedEvent::Request,
         type: :"video.transformation.accepted"
       }
 
-    class VideoTransformationAcceptedEvent < Imagekit::Internal::Type::BaseModel
-      attr_accessor id: String
+    class VideoTransformationAcceptedEvent < Imagekit::Models::BaseWebhookEvent
+      def created_at: -> Time
 
-      attr_accessor created_at: Time
+      def created_at=: (Time _) -> Time
 
-      attr_accessor data: Imagekit::VideoTransformationAcceptedEvent::Data
+      def data: -> Imagekit::VideoTransformationAcceptedEvent::Data
 
-      attr_accessor request: Imagekit::VideoTransformationAcceptedEvent::Request
+      def data=: (
+        Imagekit::VideoTransformationAcceptedEvent::Data _
+      ) -> Imagekit::VideoTransformationAcceptedEvent::Data
 
-      attr_accessor type: :"video.transformation.accepted"
+      def request: -> Imagekit::VideoTransformationAcceptedEvent::Request
+
+      def request=: (
+        Imagekit::VideoTransformationAcceptedEvent::Request _
+      ) -> Imagekit::VideoTransformationAcceptedEvent::Request
+
+      def `type`: -> :"video.transformation.accepted"
+
+      def type=: (
+        :"video.transformation.accepted" _
+      ) -> :"video.transformation.accepted"
 
       def initialize: (
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationAcceptedEvent::Data,
         request: Imagekit::VideoTransformationAcceptedEvent::Request,
@@ -29,7 +39,6 @@ module Imagekit
       ) -> void
 
       def to_hash: -> {
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationAcceptedEvent::Data,
         request: Imagekit::VideoTransformationAcceptedEvent::Request,

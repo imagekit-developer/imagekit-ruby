@@ -2,13 +2,7 @@
 
 module Imagekit
   module Models
-    class VideoTransformationErrorEvent < Imagekit::Internal::Type::BaseModel
-      # @!attribute id
-      #   Unique identifier for the event.
-      #
-      #   @return [String]
-      required :id, String
-
+    class VideoTransformationErrorEvent < Imagekit::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp when the event was created in ISO8601 format.
       #
@@ -31,8 +25,11 @@ module Imagekit
       #   @return [Symbol, :"video.transformation.error"]
       required :type, const: :"video.transformation.error"
 
-      # @!method initialize(id:, created_at:, data:, request:, type: :"video.transformation.error")
-      #   @param id [String] Unique identifier for the event.
+      # @!method initialize(created_at:, data:, request:, type: :"video.transformation.error")
+      #   Triggered when an error occurs during video encoding. Listen to this webhook to
+      #   log error reasons and debug issues. Check your origin and URL endpoint settings
+      #   if the reason is related to download failure. For other errors, contact ImageKit
+      #   support.
       #
       #   @param created_at [Time] Timestamp when the event was created in ISO8601 format.
       #
@@ -42,7 +39,6 @@ module Imagekit
       #
       #   @param type [Symbol, :"video.transformation.error"]
 
-      # @see Imagekit::Models::VideoTransformationErrorEvent#data
       class Data < Imagekit::Internal::Type::BaseModel
         # @!attribute asset
         #   Information about the source video asset being transformed.
@@ -297,7 +293,6 @@ module Imagekit
         end
       end
 
-      # @see Imagekit::Models::VideoTransformationErrorEvent#request
       class Request < Imagekit::Internal::Type::BaseModel
         # @!attribute url
         #   Full URL of the transformation request that was submitted.

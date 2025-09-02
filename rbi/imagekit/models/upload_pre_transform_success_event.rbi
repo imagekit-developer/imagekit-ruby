@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class UploadPreTransformSuccessEvent < Imagekit::Internal::Type::BaseModel
+    class UploadPreTransformSuccessEvent < Imagekit::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
@@ -10,10 +10,6 @@ module Imagekit
             Imagekit::Internal::AnyHash
           )
         end
-
-      # Unique identifier for the event.
-      sig { returns(String) }
-      attr_accessor :id
 
       # Timestamp of when the event occurred in ISO8601 format.
       sig { returns(Time) }
@@ -43,9 +39,11 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
+      # Triggered when a pre-transformation completes successfully. The file has been
+      # processed with the requested transformation and is now available in the Media
+      # Library.
       sig do
         params(
-          id: String,
           created_at: Time,
           data: Imagekit::UploadPreTransformSuccessEvent::Data::OrHash,
           request: Imagekit::UploadPreTransformSuccessEvent::Request::OrHash,
@@ -53,8 +51,6 @@ module Imagekit
         ).returns(T.attached_class)
       end
       def self.new(
-        # Unique identifier for the event.
-        id:,
         # Timestamp of when the event occurred in ISO8601 format.
         created_at:,
         # Object containing details of a successful upload.
@@ -67,7 +63,6 @@ module Imagekit
       sig do
         override.returns(
           {
-            id: String,
             created_at: Time,
             data: Imagekit::UploadPreTransformSuccessEvent::Data,
             request: Imagekit::UploadPreTransformSuccessEvent::Request,

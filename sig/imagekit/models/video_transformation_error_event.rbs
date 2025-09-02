@@ -2,26 +2,36 @@ module Imagekit
   module Models
     type video_transformation_error_event =
       {
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationErrorEvent::Data,
         request: Imagekit::VideoTransformationErrorEvent::Request,
         type: :"video.transformation.error"
       }
 
-    class VideoTransformationErrorEvent < Imagekit::Internal::Type::BaseModel
-      attr_accessor id: String
+    class VideoTransformationErrorEvent < Imagekit::Models::BaseWebhookEvent
+      def created_at: -> Time
 
-      attr_accessor created_at: Time
+      def created_at=: (Time _) -> Time
 
-      attr_accessor data: Imagekit::VideoTransformationErrorEvent::Data
+      def data: -> Imagekit::VideoTransformationErrorEvent::Data
 
-      attr_accessor request: Imagekit::VideoTransformationErrorEvent::Request
+      def data=: (
+        Imagekit::VideoTransformationErrorEvent::Data _
+      ) -> Imagekit::VideoTransformationErrorEvent::Data
 
-      attr_accessor type: :"video.transformation.error"
+      def request: -> Imagekit::VideoTransformationErrorEvent::Request
+
+      def request=: (
+        Imagekit::VideoTransformationErrorEvent::Request _
+      ) -> Imagekit::VideoTransformationErrorEvent::Request
+
+      def `type`: -> :"video.transformation.error"
+
+      def type=: (
+        :"video.transformation.error" _
+      ) -> :"video.transformation.error"
 
       def initialize: (
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationErrorEvent::Data,
         request: Imagekit::VideoTransformationErrorEvent::Request,
@@ -29,7 +39,6 @@ module Imagekit
       ) -> void
 
       def to_hash: -> {
-        id: String,
         created_at: Time,
         data: Imagekit::VideoTransformationErrorEvent::Data,
         request: Imagekit::VideoTransformationErrorEvent::Request,

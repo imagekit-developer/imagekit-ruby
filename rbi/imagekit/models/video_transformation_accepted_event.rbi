@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class VideoTransformationAcceptedEvent < Imagekit::Internal::Type::BaseModel
+    class VideoTransformationAcceptedEvent < Imagekit::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
@@ -10,10 +10,6 @@ module Imagekit
             Imagekit::Internal::AnyHash
           )
         end
-
-      # Unique identifier for the event.
-      sig { returns(String) }
-      attr_accessor :id
 
       # Timestamp when the event was created in ISO8601 format.
       sig { returns(Time) }
@@ -43,9 +39,11 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
+      # Triggered when a new video transformation request is accepted for processing.
+      # This event confirms that ImageKit has received and queued your transformation
+      # request. Use this for debugging and tracking transformation lifecycle.
       sig do
         params(
-          id: String,
           created_at: Time,
           data: Imagekit::VideoTransformationAcceptedEvent::Data::OrHash,
           request: Imagekit::VideoTransformationAcceptedEvent::Request::OrHash,
@@ -53,8 +51,6 @@ module Imagekit
         ).returns(T.attached_class)
       end
       def self.new(
-        # Unique identifier for the event.
-        id:,
         # Timestamp when the event was created in ISO8601 format.
         created_at:,
         data:,
@@ -67,7 +63,6 @@ module Imagekit
       sig do
         override.returns(
           {
-            id: String,
             created_at: Time,
             data: Imagekit::VideoTransformationAcceptedEvent::Data,
             request: Imagekit::VideoTransformationAcceptedEvent::Request,

@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class VideoTransformationErrorEvent < Imagekit::Internal::Type::BaseModel
+    class VideoTransformationErrorEvent < Imagekit::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
@@ -10,10 +10,6 @@ module Imagekit
             Imagekit::Internal::AnyHash
           )
         end
-
-      # Unique identifier for the event.
-      sig { returns(String) }
-      attr_accessor :id
 
       # Timestamp when the event was created in ISO8601 format.
       sig { returns(Time) }
@@ -41,9 +37,12 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
+      # Triggered when an error occurs during video encoding. Listen to this webhook to
+      # log error reasons and debug issues. Check your origin and URL endpoint settings
+      # if the reason is related to download failure. For other errors, contact ImageKit
+      # support.
       sig do
         params(
-          id: String,
           created_at: Time,
           data: Imagekit::VideoTransformationErrorEvent::Data::OrHash,
           request: Imagekit::VideoTransformationErrorEvent::Request::OrHash,
@@ -51,8 +50,6 @@ module Imagekit
         ).returns(T.attached_class)
       end
       def self.new(
-        # Unique identifier for the event.
-        id:,
         # Timestamp when the event was created in ISO8601 format.
         created_at:,
         data:,
@@ -65,7 +62,6 @@ module Imagekit
       sig do
         override.returns(
           {
-            id: String,
             created_at: Time,
             data: Imagekit::VideoTransformationErrorEvent::Data,
             request: Imagekit::VideoTransformationErrorEvent::Request,
