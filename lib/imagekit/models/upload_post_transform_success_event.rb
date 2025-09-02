@@ -31,10 +31,6 @@ module Imagekit
       required :type, const: :"upload.post-transform.success"
 
       # @!method initialize(id:, created_at:, data:, request:, type: :"upload.post-transform.success")
-      #   Triggered when a post-transformation completes successfully. The transformed
-      #   version of the file is now ready and can be accessed via the provided URL. Note
-      #   that each post-transformation generates a separate webhook event.
-      #
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.

@@ -41,10 +41,6 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when an error occurs during video encoding. Listen to this webhook to
-      # log error reasons and debug issues. Check your origin and URL endpoint settings
-      # if the reason is related to download failure. For other errors, contact ImageKit
-      # support.
       sig do
         params(
           id: String,

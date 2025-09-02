@@ -42,9 +42,6 @@ module Imagekit
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when a post-transformation completes successfully. The transformed
-      # version of the file is now ready and can be accessed via the provided URL. Note
-      # that each post-transformation generates a separate webhook event.
       sig do
         params(
           id: String,

@@ -32,10 +32,6 @@ module Imagekit
       required :type, const: :"video.transformation.accepted"
 
       # @!method initialize(id:, created_at:, data:, request:, type: :"video.transformation.accepted")
-      #   Triggered when a new video transformation request is accepted for processing.
-      #   This event confirms that ImageKit has received and queued your transformation
-      #   request. Use this for debugging and tracking transformation lifecycle.
-      #
       #   @param id [String] Unique identifier for the event.
       #
       #   @param created_at [Time] Timestamp when the event was created in ISO8601 format.
