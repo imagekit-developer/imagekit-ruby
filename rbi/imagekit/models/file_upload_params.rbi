@@ -11,16 +11,10 @@ module Imagekit
           T.any(Imagekit::FileUploadParams, Imagekit::Internal::AnyHash)
         end
 
-      # The API accepts any of the following:
-      #
-      # - **Binary data** – send the raw bytes as `multipart/form-data`.
-      # - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can
-      #   fetch.
-      # - **Base64 string** – the file encoded as a Base64 data URI or plain Base64.
-      #
-      # When supplying a URL, the server must receive the response headers within 8
-      # seconds; otherwise the request fails with 400 Bad Request.
-      sig { returns(Imagekit::Internal::FileInput) }
+      # The URL of the file to upload. A publicly reachable URL that ImageKit servers
+      # can fetch. The server must receive the response headers within 8 seconds;
+      # otherwise the request fails with 400 Bad Request.
+      sig { returns(String) }
       attr_accessor :file
 
       # The name with which the file has to be uploaded. The file name can contain:
@@ -290,7 +284,7 @@ module Imagekit
 
       sig do
         params(
-          file: Imagekit::Internal::FileInput,
+          file: String,
           file_name: String,
           token: String,
           checks: String,
@@ -325,15 +319,9 @@ module Imagekit
         ).returns(T.attached_class)
       end
       def self.new(
-        # The API accepts any of the following:
-        #
-        # - **Binary data** – send the raw bytes as `multipart/form-data`.
-        # - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can
-        #   fetch.
-        # - **Base64 string** – the file encoded as a Base64 data URI or plain Base64.
-        #
-        # When supplying a URL, the server must receive the response headers within 8
-        # seconds; otherwise the request fails with 400 Bad Request.
+        # The URL of the file to upload. A publicly reachable URL that ImageKit servers
+        # can fetch. The server must receive the response headers within 8 seconds;
+        # otherwise the request fails with 400 Bad Request.
         file:,
         # The name with which the file has to be uploaded. The file name can contain:
         #
@@ -462,7 +450,7 @@ module Imagekit
       sig do
         override.returns(
           {
-            file: Imagekit::Internal::FileInput,
+            file: String,
             file_name: String,
             token: String,
             checks: String,
