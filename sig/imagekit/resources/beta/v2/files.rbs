@@ -11,7 +11,7 @@ module Imagekit
             ?custom_coordinates: String,
             ?custom_metadata: ::Hash[Symbol, top],
             ?description: String,
-            ?extensions: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::extension],
+            ?extensions: Imagekit::Models::extensions,
             ?folder: String,
             ?is_private_file: bool,
             ?is_published: bool,

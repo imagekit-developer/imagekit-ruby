@@ -61,6 +61,11 @@ module Imagekit
 
   CustomMetadataFieldUpdateParams = Imagekit::Models::CustomMetadataFieldUpdateParams
 
+  ExtensionItem = Imagekit::Models::ExtensionItem
+
+  # @type [Imagekit::Internal::Type::Converter]
+  Extensions = Imagekit::Models::Extensions
+
   File = Imagekit::Models::File
 
   FileCopyParams = Imagekit::Models::FileCopyParams

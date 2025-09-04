@@ -200,9 +200,9 @@ module Imagekit
           extensions:
             T::Array[
               T.any(
-                Imagekit::FileUploadParams::Extension::RemoveBg::OrHash,
-                Imagekit::FileUploadParams::Extension::AIAutoDescription::OrHash,
-                Imagekit::FileUploadParams::Extension::AutoTaggingExtension::OrHash
+                Imagekit::ExtensionItem::RemoveBg::OrHash,
+                Imagekit::ExtensionItem::AIAutoDescription::OrHash,
+                Imagekit::ExtensionItem::AutoTaggingExtension::OrHash
               )
             ],
           folder: String,
