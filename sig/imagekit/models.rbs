@@ -21,6 +21,10 @@ module Imagekit
 
   class CustomMetadataFieldUpdateParams = Imagekit::Models::CustomMetadataFieldUpdateParams
 
+  type extension_item = Imagekit::Models::extension_item
+
+  Extensions: Imagekit::Internal::Type::Converter
+
   class File = Imagekit::Models::File
 
   class FileCopyParams = Imagekit::Models::FileCopyParams

@@ -52,7 +52,7 @@ module Imagekit
         ?custom_metadata: ::Hash[Symbol, top],
         ?description: String,
         ?expire: Integer,
-        ?extensions: ::Array[Imagekit::Models::FileUploadParams::extension],
+        ?extensions: Imagekit::Models::extensions,
         ?folder: String,
         ?is_private_file: bool,
         ?is_published: bool,

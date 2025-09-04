@@ -44,9 +44,9 @@ module Imagekit
               extensions:
                 T::Array[
                   T.any(
-                    Imagekit::Beta::V2::FileUploadParams::Extension::RemoveBg::OrHash,
-                    Imagekit::Beta::V2::FileUploadParams::Extension::AIAutoDescription::OrHash,
-                    Imagekit::Beta::V2::FileUploadParams::Extension::AutoTaggingExtension::OrHash
+                    Imagekit::ExtensionItem::RemoveBg::OrHash,
+                    Imagekit::ExtensionItem::AIAutoDescription::OrHash,
+                    Imagekit::ExtensionItem::AutoTaggingExtension::OrHash
                   )
                 ],
               folder: String,
