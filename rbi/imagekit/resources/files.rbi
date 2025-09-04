@@ -273,7 +273,7 @@ module Imagekit
         # the future. It should be in seconds. This field is only required for
         # authentication when uploading a file from the client side.
         expire: nil,
-        # Array of extensions to be applied to the image. Each extension can be configured
+        # Array of extensions to be applied to the asset. Each extension can be configured
         # with specific parameters based on the extension type.
         extensions: nil,
         # The folder path in which the image has to be uploaded. If the folder(s) didn't
