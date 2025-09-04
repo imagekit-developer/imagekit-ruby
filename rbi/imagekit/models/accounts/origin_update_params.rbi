@@ -15,15 +15,64 @@ module Imagekit
             )
           end
 
+        # Schema for origin request resources.
         sig do
-          params(request_options: Imagekit::RequestOptions::OrHash).returns(
-            T.attached_class
+          returns(
+            T.any(
+              Imagekit::Accounts::OriginRequest::S3,
+              Imagekit::Accounts::OriginRequest::S3Compatible,
+              Imagekit::Accounts::OriginRequest::CloudinaryBackup,
+              Imagekit::Accounts::OriginRequest::WebFolder,
+              Imagekit::Accounts::OriginRequest::WebProxy,
+              Imagekit::Accounts::OriginRequest::Gcs,
+              Imagekit::Accounts::OriginRequest::AzureBlob,
+              Imagekit::Accounts::OriginRequest::AkeneoPim
+            )
           )
         end
-        def self.new(request_options: {})
+        attr_accessor :origin_request
+
+        sig do
+          params(
+            origin_request:
+              T.any(
+                Imagekit::Accounts::OriginRequest::S3::OrHash,
+                Imagekit::Accounts::OriginRequest::S3Compatible::OrHash,
+                Imagekit::Accounts::OriginRequest::CloudinaryBackup::OrHash,
+                Imagekit::Accounts::OriginRequest::WebFolder::OrHash,
+                Imagekit::Accounts::OriginRequest::WebProxy::OrHash,
+                Imagekit::Accounts::OriginRequest::Gcs::OrHash,
+                Imagekit::Accounts::OriginRequest::AzureBlob::OrHash,
+                Imagekit::Accounts::OriginRequest::AkeneoPim::OrHash
+              ),
+            request_options: Imagekit::RequestOptions::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Schema for origin request resources.
+          origin_request:,
+          request_options: {}
+        )
         end
 
-        sig { override.returns({ request_options: Imagekit::RequestOptions }) }
+        sig do
+          override.returns(
+            {
+              origin_request:
+                T.any(
+                  Imagekit::Accounts::OriginRequest::S3,
+                  Imagekit::Accounts::OriginRequest::S3Compatible,
+                  Imagekit::Accounts::OriginRequest::CloudinaryBackup,
+                  Imagekit::Accounts::OriginRequest::WebFolder,
+                  Imagekit::Accounts::OriginRequest::WebProxy,
+                  Imagekit::Accounts::OriginRequest::Gcs,
+                  Imagekit::Accounts::OriginRequest::AzureBlob,
+                  Imagekit::Accounts::OriginRequest::AkeneoPim
+                ),
+              request_options: Imagekit::RequestOptions
+            }
+          )
+        end
         def to_hash
         end
       end

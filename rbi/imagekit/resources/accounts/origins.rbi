@@ -8,23 +8,13 @@ module Imagekit
         # Creates a new origin and returns the origin object.
         sig do
           params(
-            origin:
-              T.any(
-                Imagekit::Accounts::OriginRequest::S3::OrHash,
-                Imagekit::Accounts::OriginRequest::S3Compatible::OrHash,
-                Imagekit::Accounts::OriginRequest::CloudinaryBackup::OrHash,
-                Imagekit::Accounts::OriginRequest::WebFolder::OrHash,
-                Imagekit::Accounts::OriginRequest::WebProxy::OrHash,
-                Imagekit::Accounts::OriginRequest::Gcs::OrHash,
-                Imagekit::Accounts::OriginRequest::AzureBlob::OrHash,
-                Imagekit::Accounts::OriginRequest::AkeneoPim::OrHash
-              ),
+            origin_request: Imagekit::Accounts::OriginRequest,
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Accounts::OriginResponse::Variants)
         end
         def create(
           # Schema for origin request resources.
-          origin:,
+          origin_request:,
           request_options: {}
         )
         end
@@ -34,17 +24,7 @@ module Imagekit
         sig do
           params(
             id: String,
-            origin:
-              T.any(
-                Imagekit::Accounts::OriginRequest::S3::OrHash,
-                Imagekit::Accounts::OriginRequest::S3Compatible::OrHash,
-                Imagekit::Accounts::OriginRequest::CloudinaryBackup::OrHash,
-                Imagekit::Accounts::OriginRequest::WebFolder::OrHash,
-                Imagekit::Accounts::OriginRequest::WebProxy::OrHash,
-                Imagekit::Accounts::OriginRequest::Gcs::OrHash,
-                Imagekit::Accounts::OriginRequest::AzureBlob::OrHash,
-                Imagekit::Accounts::OriginRequest::AkeneoPim::OrHash
-              ),
+            origin_request: Imagekit::Accounts::OriginRequest,
             request_options: Imagekit::RequestOptions::OrHash
           ).returns(Imagekit::Accounts::OriginResponse::Variants)
         end
@@ -53,7 +33,7 @@ module Imagekit
           # a new origin.
           id,
           # Schema for origin request resources.
-          origin:,
+          origin_request:,
           request_options: {}
         )
         end

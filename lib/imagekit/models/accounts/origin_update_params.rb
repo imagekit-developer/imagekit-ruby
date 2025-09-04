@@ -8,7 +8,15 @@ module Imagekit
         extend Imagekit::Internal::Type::RequestParameters::Converter
         include Imagekit::Internal::Type::RequestParameters
 
-        # @!method initialize(request_options: {})
+        # @!attribute origin_request
+        #   Schema for origin request resources.
+        #
+        #   @return [Imagekit::Models::Accounts::OriginRequest::S3, Imagekit::Models::Accounts::OriginRequest::S3Compatible, Imagekit::Models::Accounts::OriginRequest::CloudinaryBackup, Imagekit::Models::Accounts::OriginRequest::WebFolder, Imagekit::Models::Accounts::OriginRequest::WebProxy, Imagekit::Models::Accounts::OriginRequest::Gcs, Imagekit::Models::Accounts::OriginRequest::AzureBlob, Imagekit::Models::Accounts::OriginRequest::AkeneoPim]
+        required :origin_request, union: -> { Imagekit::Accounts::OriginRequest }
+
+        # @!method initialize(origin_request:, request_options: {})
+        #   @param origin_request [Imagekit::Models::Accounts::OriginRequest::S3, Imagekit::Models::Accounts::OriginRequest::S3Compatible, Imagekit::Models::Accounts::OriginRequest::CloudinaryBackup, Imagekit::Models::Accounts::OriginRequest::WebFolder, Imagekit::Models::Accounts::OriginRequest::WebProxy, Imagekit::Models::Accounts::OriginRequest::Gcs, Imagekit::Models::Accounts::OriginRequest::AzureBlob, Imagekit::Models::Accounts::OriginRequest::AkeneoPim] Schema for origin request resources.
+        #
         #   @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}]
       end
     end

@@ -9,7 +9,14 @@ module Imagekit
 
       def update: (
         String file_id,
-        ?update: Imagekit::Models::FileUpdateParams::update,
+        ?custom_coordinates: String?,
+        ?custom_metadata: ::Hash[Symbol, top],
+        ?description: String,
+        ?extensions: Imagekit::Models::extensions,
+        ?remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
+        ?tags: ::Array[String]?,
+        ?webhook_url: String,
+        ?publish: Imagekit::FileUpdateParams::Publish,
         ?request_options: Imagekit::request_opts
       ) -> Imagekit::Models::FileUpdateResponse
 
