@@ -33,7 +33,10 @@ image_kit = Imagekit::Client.new(
   password: ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"] # This is the default and can be omitted
 )
 
-response = image_kit.files.upload(file: "https://www.example.com/public-url.jpg", file_name: "file-name.jpg")
+response = image_kit.files.upload(
+  file: StringIO.new("https://www.example.com/public-url.jpg"),
+  file_name: "file-name.jpg"
+)
 
 puts(response.videoCodec)
 ```
@@ -66,7 +69,10 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  file = image_kit.files.upload(file: "https://www.example.com/public-url.jpg", file_name: "file-name.jpg")
+  file = image_kit.files.upload(
+    file: StringIO.new("https://www.example.com/public-url.jpg"),
+    file_name: "file-name.jpg"
+  )
 rescue Imagekit::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -110,7 +116,7 @@ image_kit = Imagekit::Client.new(
 
 # Or, configure per-request:
 image_kit.files.upload(
-  file: "https://www.example.com/public-url.jpg",
+  file: StringIO.new("https://www.example.com/public-url.jpg"),
   file_name: "file-name.jpg",
   request_options: {max_retries: 5}
 )
@@ -128,7 +134,7 @@ image_kit = Imagekit::Client.new(
 
 # Or, configure per-request:
 image_kit.files.upload(
-  file: "https://www.example.com/public-url.jpg",
+  file: StringIO.new("https://www.example.com/public-url.jpg"),
   file_name: "file-name.jpg",
   request_options: {timeout: 5}
 )
@@ -163,7 +169,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 response =
   image_kit.files.upload(
-    file: "https://www.example.com/public-url.jpg",
+    file: StringIO.new("https://www.example.com/public-url.jpg"),
     file_name: "file-name.jpg",
     request_options: {
       extra_query: {my_query_parameter: value},
@@ -210,17 +216,26 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-image_kit.files.upload(file: "https://www.example.com/public-url.jpg", file_name: "file-name.jpg")
+image_kit.files.upload(
+  file: StringIO.new("https://www.example.com/public-url.jpg"),
+  file_name: "file-name.jpg"
+)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-image_kit.files.upload(file: "https://www.example.com/public-url.jpg", file_name: "file-name.jpg")
+image_kit.files.upload(
+  file: StringIO.new("https://www.example.com/public-url.jpg"),
+  file_name: "file-name.jpg"
+)
 
 # You can also splat a full Params class:
-params = Imagekit::FileUploadParams.new(file: "https://www.example.com/public-url.jpg", file_name: "file-name.jpg")
+params = Imagekit::FileUploadParams.new(
+  file: StringIO.new("https://www.example.com/public-url.jpg"),
+  file_name: "file-name.jpg"
+)
 image_kit.files.upload(**params)
 ```
 
