@@ -91,7 +91,7 @@ module Imagekit
       optional :expire, Integer
 
       # @!attribute extensions
-      #   Array of extensions to be applied to the image. Each extension can be configured
+      #   Array of extensions to be applied to the asset. Each extension can be configured
       #   with specific parameters based on the extension type.
       #
       #   @return [Array<Imagekit::Models::FileUploadParams::Extension::RemoveBg, Imagekit::Models::FileUploadParams::Extension::AIAutoDescription, Imagekit::Models::FileUploadParams::Extension::AutoTaggingExtension>, nil]
@@ -256,7 +256,7 @@ module Imagekit
       #
       #   @param expire [Integer] The time until your signature is valid. It must be a [Unix time](https://en.wiki
       #
-      #   @param extensions [Array<Imagekit::Models::FileUploadParams::Extension::RemoveBg, Imagekit::Models::FileUploadParams::Extension::AIAutoDescription, Imagekit::Models::FileUploadParams::Extension::AutoTaggingExtension>] Array of extensions to be applied to the image. Each extension can be configured
+      #   @param extensions [Array<Imagekit::Models::FileUploadParams::Extension::RemoveBg, Imagekit::Models::FileUploadParams::Extension::AIAutoDescription, Imagekit::Models::FileUploadParams::Extension::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
       #   @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
       #

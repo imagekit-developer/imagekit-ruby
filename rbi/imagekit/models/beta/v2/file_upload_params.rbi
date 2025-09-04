@@ -89,7 +89,7 @@ module Imagekit
           sig { params(description: String).void }
           attr_writer :description
 
-          # Array of extensions to be applied to the image. Each extension can be configured
+          # Array of extensions to be applied to the asset. Each extension can be configured
           # with specific parameters based on the extension type.
           sig do
             returns(
@@ -347,7 +347,7 @@ module Imagekit
             custom_metadata: nil,
             # Optional text to describe the contents of the file.
             description: nil,
-            # Array of extensions to be applied to the image. Each extension can be configured
+            # Array of extensions to be applied to the asset. Each extension can be configured
             # with specific parameters based on the extension type.
             extensions: nil,
             # The folder path in which the image has to be uploaded. If the folder(s) didn't
