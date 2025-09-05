@@ -91,6 +91,8 @@ module Imagekit
 
   module UnwrapWebhookEvent = Imagekit::Models::UnwrapWebhookEvent
 
+  module UpdateFileDetailsRequest = Imagekit::Models::UpdateFileDetailsRequest
+
   class UploadPostTransformErrorEvent = Imagekit::Models::UploadPostTransformErrorEvent
 
   class UploadPostTransformSuccessEvent = Imagekit::Models::UploadPostTransformSuccessEvent

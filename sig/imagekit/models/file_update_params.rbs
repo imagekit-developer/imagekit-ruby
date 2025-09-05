@@ -2,14 +2,7 @@ module Imagekit
   module Models
     type file_update_params =
       {
-        custom_coordinates: String?,
-        custom_metadata: ::Hash[Symbol, top],
-        description: String,
-        extensions: Imagekit::Models::extensions,
-        remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
-        tags: ::Array[String]?,
-        webhook_url: String,
-        publish: Imagekit::FileUpdateParams::Publish
+        update_file_details_request: Imagekit::Models::update_file_details_request
       }
       & Imagekit::Internal::Type::request_parameters
 
@@ -17,90 +10,21 @@ module Imagekit
       extend Imagekit::Internal::Type::RequestParameters::Converter
       include Imagekit::Internal::Type::RequestParameters
 
-      attr_accessor custom_coordinates: String?
+      def update_file_details_request: -> Imagekit::Models::update_file_details_request
 
-      attr_reader custom_metadata: ::Hash[Symbol, top]?
-
-      def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
-
-      attr_reader description: String?
-
-      def description=: (String) -> String
-
-      attr_reader extensions: Imagekit::Models::extensions?
-
-      def extensions=: (
-        Imagekit::Models::extensions
-      ) -> Imagekit::Models::extensions
-
-      attr_reader remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags?
-
-      def remove_ai_tags=: (
-        Imagekit::Models::FileUpdateParams::remove_ai_tags
-      ) -> Imagekit::Models::FileUpdateParams::remove_ai_tags
-
-      attr_accessor tags: ::Array[String]?
-
-      attr_reader webhook_url: String?
-
-      def webhook_url=: (String) -> String
-
-      attr_reader publish: Imagekit::FileUpdateParams::Publish?
-
-      def publish=: (
-        Imagekit::FileUpdateParams::Publish
-      ) -> Imagekit::FileUpdateParams::Publish
+      def update_file_details_request=: (
+        Imagekit::Models::update_file_details_request _
+      ) -> Imagekit::Models::update_file_details_request
 
       def initialize: (
-        ?custom_coordinates: String?,
-        ?custom_metadata: ::Hash[Symbol, top],
-        ?description: String,
-        ?extensions: Imagekit::Models::extensions,
-        ?remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
-        ?tags: ::Array[String]?,
-        ?webhook_url: String,
-        ?publish: Imagekit::FileUpdateParams::Publish,
+        update_file_details_request: Imagekit::Models::update_file_details_request,
         ?request_options: Imagekit::request_opts
       ) -> void
 
       def to_hash: -> {
-        custom_coordinates: String?,
-        custom_metadata: ::Hash[Symbol, top],
-        description: String,
-        extensions: Imagekit::Models::extensions,
-        remove_ai_tags: Imagekit::Models::FileUpdateParams::remove_ai_tags,
-        tags: ::Array[String]?,
-        webhook_url: String,
-        publish: Imagekit::FileUpdateParams::Publish,
+        update_file_details_request: Imagekit::Models::update_file_details_request,
         request_options: Imagekit::RequestOptions
       }
-
-      type remove_ai_tags = ::Array[String] | :all
-
-      module RemoveAITags
-        extend Imagekit::Internal::Type::Union
-
-        def self?.variants: -> ::Array[Imagekit::Models::FileUpdateParams::remove_ai_tags]
-
-        StringArray: Imagekit::Internal::Type::Converter
-      end
-
-      type publish = { is_published: bool, include_file_versions: bool }
-
-      class Publish < Imagekit::Internal::Type::BaseModel
-        attr_accessor is_published: bool
-
-        attr_reader include_file_versions: bool?
-
-        def include_file_versions=: (bool) -> bool
-
-        def initialize: (
-          is_published: bool,
-          ?include_file_versions: bool
-        ) -> void
-
-        def to_hash: -> { is_published: bool, include_file_versions: bool }
-      end
     end
   end
 end
