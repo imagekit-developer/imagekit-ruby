@@ -8,7 +8,7 @@ module Imagekit
 
       variant -> { Imagekit::UpdateFileRequest::UpdateFileDetails }
 
-      variant Imagekit::Internal::Type::Unknown
+      variant -> { Imagekit::UpdateFileRequest::ChangePublicationStatus }
 
       class UpdateFileDetails < Imagekit::Internal::Type::BaseModel
         # @!attribute custom_coordinates
@@ -115,8 +115,49 @@ module Imagekit
         end
       end
 
+      class ChangePublicationStatus < Imagekit::Internal::Type::BaseModel
+        # @!attribute publish
+        #   Configure the publication status of a file and its versions.
+        #
+        #   @return [Imagekit::Models::UpdateFileRequest::ChangePublicationStatus::Publish, nil]
+        optional :publish, -> { Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish }
+
+        # @!method initialize(publish: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Imagekit::Models::UpdateFileRequest::ChangePublicationStatus} for more details.
+        #
+        #   @param publish [Imagekit::Models::UpdateFileRequest::ChangePublicationStatus::Publish] Configure the publication status of a file and its versions.
+
+        # @see Imagekit::Models::UpdateFileRequest::ChangePublicationStatus#publish
+        class Publish < Imagekit::Internal::Type::BaseModel
+          # @!attribute is_published
+          #   Set to `true` to publish the file. Set to `false` to unpublish the file.
+          #
+          #   @return [Boolean]
+          required :is_published, Imagekit::Internal::Type::Boolean, api_name: :isPublished
+
+          # @!attribute include_file_versions
+          #   Set to `true` to publish/unpublish all versions of the file. Set to `false` to
+          #   publish/unpublish only the current version of the file.
+          #
+          #   @return [Boolean, nil]
+          optional :include_file_versions, Imagekit::Internal::Type::Boolean, api_name: :includeFileVersions
+
+          # @!method initialize(is_published:, include_file_versions: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Imagekit::Models::UpdateFileRequest::ChangePublicationStatus::Publish} for more
+          #   details.
+          #
+          #   Configure the publication status of a file and its versions.
+          #
+          #   @param is_published [Boolean] Set to `true` to publish the file. Set to `false` to unpublish the file.
+          #
+          #   @param include_file_versions [Boolean] Set to `true` to publish/unpublish all versions of the file. Set to `false` to p
+        end
+      end
+
       # @!method self.variants
-      #   @return [Array(Imagekit::Models::UpdateFileRequest::UpdateFileDetails, Object)]
+      #   @return [Array(Imagekit::Models::UpdateFileRequest::UpdateFileDetails, Imagekit::Models::UpdateFileRequest::ChangePublicationStatus)]
     end
   end
 end

@@ -1,15 +1,28 @@
 module Imagekit
   module Models
     type file_update_params =
-      {  } & Imagekit::Internal::Type::request_parameters
+      { update_file_request: Imagekit::Models::update_file_request }
+      & Imagekit::Internal::Type::request_parameters
 
-    class FileUpdateParams < Imagekit::Models::UpdateFileRequest
+    class FileUpdateParams < Imagekit::Internal::Type::BaseModel
       extend Imagekit::Internal::Type::RequestParameters::Converter
       include Imagekit::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Imagekit::request_opts) -> void
+      def update_file_request: -> Imagekit::Models::update_file_request
 
-      def to_hash: -> { request_options: Imagekit::RequestOptions }
+      def update_file_request=: (
+        Imagekit::Models::update_file_request _
+      ) -> Imagekit::Models::update_file_request
+
+      def initialize: (
+        update_file_request: Imagekit::Models::update_file_request,
+        ?request_options: Imagekit::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        update_file_request: Imagekit::Models::update_file_request,
+        request_options: Imagekit::RequestOptions
+      }
     end
   end
 end

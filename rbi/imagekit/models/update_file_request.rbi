@@ -8,7 +8,10 @@ module Imagekit
 
       Variants =
         T.type_alias do
-          T.any(Imagekit::UpdateFileRequest::UpdateFileDetails, T.anything)
+          T.any(
+            Imagekit::UpdateFileRequest::UpdateFileDetails,
+            Imagekit::UpdateFileRequest::ChangePublicationStatus
+          )
         end
 
       class UpdateFileDetails < Imagekit::Internal::Type::BaseModel
@@ -203,6 +206,103 @@ module Imagekit
               Imagekit::Internal::Type::ArrayOf[String],
               Imagekit::Internal::Type::Converter
             )
+        end
+      end
+
+      class ChangePublicationStatus < Imagekit::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Imagekit::UpdateFileRequest::ChangePublicationStatus,
+              Imagekit::Internal::AnyHash
+            )
+          end
+
+        # Configure the publication status of a file and its versions.
+        sig do
+          returns(
+            T.nilable(
+              Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish
+            )
+          )
+        end
+        attr_reader :publish
+
+        sig do
+          params(
+            publish:
+              Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish::OrHash
+          ).void
+        end
+        attr_writer :publish
+
+        sig do
+          params(
+            publish:
+              Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Configure the publication status of a file and its versions.
+          publish: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              publish:
+                Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Publish < Imagekit::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish,
+                Imagekit::Internal::AnyHash
+              )
+            end
+
+          # Set to `true` to publish the file. Set to `false` to unpublish the file.
+          sig { returns(T::Boolean) }
+          attr_accessor :is_published
+
+          # Set to `true` to publish/unpublish all versions of the file. Set to `false` to
+          # publish/unpublish only the current version of the file.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_reader :include_file_versions
+
+          sig { params(include_file_versions: T::Boolean).void }
+          attr_writer :include_file_versions
+
+          # Configure the publication status of a file and its versions.
+          sig do
+            params(
+              is_published: T::Boolean,
+              include_file_versions: T::Boolean
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Set to `true` to publish the file. Set to `false` to unpublish the file.
+            is_published:,
+            # Set to `true` to publish/unpublish all versions of the file. Set to `false` to
+            # publish/unpublish only the current version of the file.
+            include_file_versions: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              { is_published: T::Boolean, include_file_versions: T::Boolean }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
