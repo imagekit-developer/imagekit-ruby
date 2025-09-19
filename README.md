@@ -29,7 +29,7 @@ require "bundler/setup"
 require "imagekit"
 
 image_kit = Imagekit::Client.new(
-  private_api_key: ENV["IMAGEKIT_PRIVATE_API_KEY"], # This is the default and can be omitted
+  private_key: ENV["IMAGEKIT_PRIVATE_API_KEY"], # This is the default and can be omitted
   password: ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"] # This is the default and can be omitted
 )
 

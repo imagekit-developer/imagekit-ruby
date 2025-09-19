@@ -14,10 +14,10 @@ module Imagekit
     # manage API keys in the
     # [dashboard](https://imagekit.io/dashboard/developer/api-keys).
     sig { returns(String) }
-    attr_reader :private_api_key
+    attr_reader :private_key
 
-    # ImageKit Basic Auth only uses the username field and ignores the password. This
-    # field is unused.
+    # ImageKit Basic Auth only uses the `private_key` as username and ignores the
+    # password.
     sig { returns(T.nilable(String)) }
     attr_reader :password
 
@@ -58,7 +58,7 @@ module Imagekit
     # Creates and returns a new client for interacting with the API.
     sig do
       params(
-        private_api_key: T.nilable(String),
+        private_key: T.nilable(String),
         password: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
@@ -72,9 +72,9 @@ module Imagekit
       # manage API keys in the
       # [dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults to
       # `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
-      private_api_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
-      # ImageKit Basic Auth only uses the username field and ignores the password. This
-      # field is unused. Defaults to `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
+      private_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
+      # ImageKit Basic Auth only uses the `private_key` as username and ignores the
+      # password. Defaults to `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
       password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
