@@ -15,9 +15,8 @@ module Imagekit
     sig { returns(String) }
     attr_reader :private_key
 
-    # Leave this field unset. ImageKit uses Basic Authentication scheme that requires
-    # the `private_key` as the username and empty string as the password. The password
-    # field is automatically managed by the SDK and should not be set.
+    # ImageKit uses your API key as username and ignores the password. The SDK sets a
+    # dummy value. You can ignore this field.
     sig { returns(T.nilable(String)) }
     attr_reader :password
 
@@ -72,9 +71,8 @@ module Imagekit
       # [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults
       # to `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
       private_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
-      # Leave this field unset. ImageKit uses Basic Authentication scheme that requires
-      # the `private_key` as the username and empty string as the password. The password
-      # field is automatically managed by the SDK and should not be set. Defaults to
+      # ImageKit uses your API key as username and ignores the password. The SDK sets a
+      # dummy value. You can ignore this field. Defaults to
       # `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
       password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
       # Override the default base URL for the API, e.g.,
