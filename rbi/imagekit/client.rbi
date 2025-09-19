@@ -10,14 +10,14 @@ module Imagekit
 
     DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
 
-    # Your ImageKit private API key (it starts with `private_`). You can view and
-    # manage API keys in the
-    # [dashboard](https://imagekit.io/dashboard/developer/api-keys).
+    # Your ImageKit private API key (starts with `private_`). You can find this in the
+    # [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys).
     sig { returns(String) }
     attr_reader :private_key
 
-    # ImageKit Basic Auth only uses the `private_key` as username and ignores the
-    # password.
+    # Leave this field unset. ImageKit uses Basic Authentication scheme that requires
+    # the `private_key` as the username and empty string as the password. The password
+    # field is automatically managed by the SDK and should not be set.
     sig { returns(T.nilable(String)) }
     attr_reader :password
 
@@ -68,13 +68,14 @@ module Imagekit
       ).returns(T.attached_class)
     end
     def self.new(
-      # Your ImageKit private API key (it starts with `private_`). You can view and
-      # manage API keys in the
-      # [dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults to
-      # `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
+      # Your ImageKit private API key (starts with `private_`). You can find this in the
+      # [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults
+      # to `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
       private_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
-      # ImageKit Basic Auth only uses the `private_key` as username and ignores the
-      # password. Defaults to `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
+      # Leave this field unset. ImageKit uses Basic Authentication scheme that requires
+      # the `private_key` as the username and empty string as the password. The password
+      # field is automatically managed by the SDK and should not be set. Defaults to
+      # `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
       password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
