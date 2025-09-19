@@ -40,7 +40,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -57,7 +57,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password",
         max_retries: 3
       )
@@ -75,7 +75,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -96,7 +96,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password",
         max_retries: 3
       )
@@ -122,7 +122,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password",
         max_retries: 1
       )
@@ -145,7 +145,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password",
         max_retries: 1
       )
@@ -170,7 +170,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password",
         max_retries: 1
       )
@@ -189,7 +189,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -208,7 +208,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -231,7 +231,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -260,7 +260,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -298,7 +298,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -331,7 +331,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -367,7 +367,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 
@@ -391,7 +391,7 @@ class ImagekitTest < Minitest::Test
     image_kit =
       Imagekit::Client.new(
         base_url: "http://localhost",
-        private_api_key: "My Private API Key",
+        private_key: "My Private Key",
         password: "My Password"
       )
 

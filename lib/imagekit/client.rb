@@ -19,10 +19,10 @@ module Imagekit
     # manage API keys in the
     # [dashboard](https://imagekit.io/dashboard/developer/api-keys).
     # @return [String]
-    attr_reader :private_api_key
+    attr_reader :private_key
 
-    # ImageKit Basic Auth only uses the username field and ignores the password. This
-    # field is unused.
+    # ImageKit Basic Auth only uses the `private_key` as username and ignores the
+    # password.
     # @return [String, nil]
     attr_reader :password
 
@@ -54,9 +54,9 @@ module Imagekit
     #
     # @return [Hash{String=>String}]
     private def auth_headers
-      return {} if @private_api_key.nil? || @password.nil?
+      return {} if @private_key.nil? || @password.nil?
 
-      base64_credentials = ["#{@private_api_key}:#{@password}"].pack("m0")
+      base64_credentials = ["#{@private_key}:#{@password}"].pack("m0")
       {"authorization" => "Basic #{base64_credentials}"}
     end
 
@@ -67,13 +67,13 @@ module Imagekit
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param private_api_key [String, nil] Your ImageKit private API key (it starts with `private_`). You can view and
+    # @param private_key [String, nil] Your ImageKit private API key (it starts with `private_`). You can view and
     # manage API keys in the
     # [dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults to
     # `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
     #
-    # @param password [String, nil] ImageKit Basic Auth only uses the username field and ignores the password. This
-    # field is unused. Defaults to `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
+    # @param password [String, nil] ImageKit Basic Auth only uses the `private_key` as username and ignores the
+    # password. Defaults to `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
@@ -86,7 +86,7 @@ module Imagekit
     #
     # @param max_retry_delay [Float]
     def initialize(
-      private_api_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
+      private_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
       password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
       base_url: ENV["IMAGE_KIT_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
@@ -98,11 +98,11 @@ module Imagekit
 
       base_url ||= "https://api.imagekit.io"
 
-      if private_api_key.nil?
-        raise ArgumentError.new("private_api_key is required, and can be set via environ: \"IMAGEKIT_PRIVATE_API_KEY\"")
+      if private_key.nil?
+        raise ArgumentError.new("private_key is required, and can be set via environ: \"IMAGEKIT_PRIVATE_API_KEY\"")
       end
 
-      @private_api_key = private_api_key.to_s
+      @private_key = private_key.to_s
       @password = password.to_s
 
       super(

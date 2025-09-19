@@ -8,7 +8,7 @@ module Imagekit
 
     DEFAULT_MAX_RETRY_DELAY: Float
 
-    attr_reader private_api_key: String
+    attr_reader private_key: String
 
     attr_reader password: String?
 
@@ -33,7 +33,7 @@ module Imagekit
     def base_url_overridden?: -> bool
 
     def initialize: (
-      ?private_api_key: String?,
+      ?private_key: String?,
       ?password: String?,
       ?base_url: String?,
       ?max_retries: Integer,

@@ -50,7 +50,7 @@ class Imagekit::Test::SingletonClient < Imagekit::Client
   def initialize
     super(
       base_url: Imagekit::Test::SingletonClient::TEST_API_BASE_URL,
-      private_api_key: "My Private API Key",
+      private_key: "My Private Key",
       password: "My Password"
     )
   end
