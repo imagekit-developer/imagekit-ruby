@@ -19,25 +19,11 @@ module Imagekit
       # You can update `tags`, `customCoordinates`, `customMetadata`, publication
       # status, remove existing `AITags` and apply extensions using this API.
       #
-      # @overload update(file_id, body:, custom_coordinates: nil, custom_metadata: nil, description: nil, extensions: nil, remove_ai_tags: nil, tags: nil, webhook_url: nil, request_options: {})
+      # @overload update(file_id, update_file_request:, request_options: {})
       #
       # @param file_id [String] The unique `fileId` of the uploaded file. `fileId` is returned in list and searc
       #
-      # @param body [Object]
-      #
-      # @param custom_coordinates [String, nil] Define an important area in the image in the format `x,y,width,height` e.g. `10,
-      #
-      # @param custom_metadata [Hash{Symbol=>Object}] A key-value data to be associated with the asset. To unset a key, send `null` va
-      #
-      # @param description [String] Optional text to describe the contents of the file.
-      #
-      # @param extensions [Array<Imagekit::Models::ExtensionItem::RemoveBg, Imagekit::Models::ExtensionItem::AIAutoDescription, Imagekit::Models::ExtensionItem::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
-      #
-      # @param remove_ai_tags [Array<String>, Symbol, :all] An array of AITags associated with the file that you want to remove, e.g. `["car
-      #
-      # @param tags [Array<String>, nil] An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `nul
-      #
-      # @param webhook_url [String] The final status of extensions after they have completed execution will be deliv
+      # @param update_file_request [Imagekit::UpdateFileRequest] Schema for update file update request.
       #
       # @param request_options [Imagekit::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -46,6 +32,11 @@ module Imagekit
       # @see Imagekit::Models::FileUpdateParams
       def update(file_id, params)
         parsed, options = Imagekit::FileUpdateParams.dump_request(params)
+        case parsed
+        in {update_file_request: Hash => union, **rest}
+          parsed = {**rest, **union}
+        else
+        end
         @client.request(
           method: :patch,
           path: ["v1/files/%1$s/details", file_id],

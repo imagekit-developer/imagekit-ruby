@@ -6,7 +6,7 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
   def test_update
     skip("Prism tests are disabled")
 
-    response = @image_kit.files.update("fileId", body: {})
+    response = @image_kit.files.update("fileId")
 
     assert_pattern do
       response => Imagekit::Models::FileUpdateResponse

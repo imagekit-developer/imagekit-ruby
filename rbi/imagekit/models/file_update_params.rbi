@@ -2,7 +2,7 @@
 
 module Imagekit
   module Models
-    class FileUpdateParams < Imagekit::Models::UpdateFileRequest
+    class FileUpdateParams < Imagekit::Internal::Type::BaseModel
       extend Imagekit::Internal::Type::RequestParameters::Converter
       include Imagekit::Internal::Type::RequestParameters
 
@@ -11,15 +11,46 @@ module Imagekit
           T.any(Imagekit::FileUpdateParams, Imagekit::Internal::AnyHash)
         end
 
+      # Schema for update file update request.
       sig do
-        params(request_options: Imagekit::RequestOptions::OrHash).returns(
-          T.attached_class
+        returns(
+          T.any(
+            Imagekit::UpdateFileRequest::UpdateFileDetails,
+            Imagekit::UpdateFileRequest::ChangePublicationStatus
+          )
         )
       end
-      def self.new(request_options: {})
+      attr_accessor :update_file_request
+
+      sig do
+        params(
+          update_file_request:
+            T.any(
+              Imagekit::UpdateFileRequest::UpdateFileDetails::OrHash,
+              Imagekit::UpdateFileRequest::ChangePublicationStatus::OrHash
+            ),
+          request_options: Imagekit::RequestOptions::OrHash
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # Schema for update file update request.
+        update_file_request:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: Imagekit::RequestOptions }) }
+      sig do
+        override.returns(
+          {
+            update_file_request:
+              T.any(
+                Imagekit::UpdateFileRequest::UpdateFileDetails,
+                Imagekit::UpdateFileRequest::ChangePublicationStatus
+              ),
+            request_options: Imagekit::RequestOptions
+          }
+        )
+      end
       def to_hash
       end
     end

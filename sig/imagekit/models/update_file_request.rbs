@@ -1,7 +1,8 @@
 module Imagekit
   module Models
     type update_file_request =
-      Imagekit::UpdateFileRequest::UpdateFileDetails | top
+      Imagekit::UpdateFileRequest::UpdateFileDetails
+      | Imagekit::UpdateFileRequest::ChangePublicationStatus
 
     module UpdateFileRequest
       extend Imagekit::Internal::Type::Union
@@ -74,6 +75,44 @@ module Imagekit
           def self?.variants: -> ::Array[Imagekit::Models::UpdateFileRequest::UpdateFileDetails::remove_ai_tags]
 
           StringArray: Imagekit::Internal::Type::Converter
+        end
+      end
+
+      type change_publication_status =
+        {
+          publish: Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish
+        }
+
+      class ChangePublicationStatus < Imagekit::Internal::Type::BaseModel
+        attr_reader publish: Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish?
+
+        def publish=: (
+          Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish
+        ) -> Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish
+
+        def initialize: (
+          ?publish: Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish
+        ) -> void
+
+        def to_hash: -> {
+          publish: Imagekit::UpdateFileRequest::ChangePublicationStatus::Publish
+        }
+
+        type publish = { is_published: bool, include_file_versions: bool }
+
+        class Publish < Imagekit::Internal::Type::BaseModel
+          attr_accessor is_published: bool
+
+          attr_reader include_file_versions: bool?
+
+          def include_file_versions=: (bool) -> bool
+
+          def initialize: (
+            is_published: bool,
+            ?include_file_versions: bool
+          ) -> void
+
+          def to_hash: -> { is_published: bool, include_file_versions: bool }
         end
       end
 
