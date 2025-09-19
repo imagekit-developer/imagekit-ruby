@@ -15,14 +15,14 @@ module Imagekit
     # Default max retry delay in seconds.
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
-    # Your ImageKit private API key (it starts with `private_`). You can view and
-    # manage API keys in the
-    # [dashboard](https://imagekit.io/dashboard/developer/api-keys).
+    # Your ImageKit private API key (starts with `private_`). You can find this in the
+    # [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys).
     # @return [String]
     attr_reader :private_key
 
-    # ImageKit Basic Auth only uses the `private_key` as username and ignores the
-    # password.
+    # Leave this field unset. ImageKit uses Basic Authentication scheme that requires
+    # the `private_key` as the username and empty string as the password. The password
+    # field is automatically managed by the SDK and should not be set.
     # @return [String, nil]
     attr_reader :password
 
@@ -67,13 +67,14 @@ module Imagekit
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param private_key [String, nil] Your ImageKit private API key (it starts with `private_`). You can view and
-    # manage API keys in the
-    # [dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults to
-    # `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
+    # @param private_key [String, nil] Your ImageKit private API key (starts with `private_`). You can find this in the
+    # [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults
+    # to `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
     #
-    # @param password [String, nil] ImageKit Basic Auth only uses the `private_key` as username and ignores the
-    # password. Defaults to `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
+    # @param password [String, nil] Leave this field unset. ImageKit uses Basic Authentication scheme that requires
+    # the `private_key` as the username and empty string as the password. The password
+    # field is automatically managed by the SDK and should not be set. Defaults to
+    # `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
