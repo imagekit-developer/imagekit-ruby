@@ -2,12 +2,13 @@
 
 module Imagekit
   module Models
-    module UpdateFileDetailsRequest
+    # Schema for update file update request.
+    module UpdateFileRequest
       extend Imagekit::Internal::Type::Union
 
-      variant -> { Imagekit::UpdateFileDetailsRequest::UpdateFileDetails }
+      variant -> { Imagekit::UpdateFileRequest::UpdateFileDetails }
 
-      variant -> { Imagekit::UpdateFileDetailsRequest::ChangePublicationStatus }
+      variant Imagekit::Internal::Type::Unknown
 
       class UpdateFileDetails < Imagekit::Internal::Type::BaseModel
         # @!attribute custom_coordinates
@@ -52,7 +53,7 @@ module Imagekit
         #
         #   @return [Array<String>, Symbol, :all, nil]
         optional :remove_ai_tags,
-                 union: -> { Imagekit::UpdateFileDetailsRequest::UpdateFileDetails::RemoveAITags },
+                 union: -> { Imagekit::UpdateFileRequest::UpdateFileDetails::RemoveAITags },
                  api_name: :removeAITags
 
         # @!attribute tags
@@ -73,8 +74,7 @@ module Imagekit
 
         # @!method initialize(custom_coordinates: nil, custom_metadata: nil, description: nil, extensions: nil, remove_ai_tags: nil, tags: nil, webhook_url: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Imagekit::Models::UpdateFileDetailsRequest::UpdateFileDetails} for more
-        #   details.
+        #   {Imagekit::Models::UpdateFileRequest::UpdateFileDetails} for more details.
         #
         #   @param custom_coordinates [String, nil] Define an important area in the image in the format `x,y,width,height` e.g. `10,
         #
@@ -99,11 +99,11 @@ module Imagekit
         # Note: The remove operation for `AITags` executes before any of the `extensions`
         # are processed.
         #
-        # @see Imagekit::Models::UpdateFileDetailsRequest::UpdateFileDetails#remove_ai_tags
+        # @see Imagekit::Models::UpdateFileRequest::UpdateFileDetails#remove_ai_tags
         module RemoveAITags
           extend Imagekit::Internal::Type::Union
 
-          variant -> { Imagekit::Models::UpdateFileDetailsRequest::UpdateFileDetails::RemoveAITags::StringArray }
+          variant -> { Imagekit::Models::UpdateFileRequest::UpdateFileDetails::RemoveAITags::StringArray }
 
           variant const: :all
 
@@ -115,50 +115,8 @@ module Imagekit
         end
       end
 
-      class ChangePublicationStatus < Imagekit::Internal::Type::BaseModel
-        # @!attribute publish
-        #   Configure the publication status of a file and its versions.
-        #
-        #   @return [Imagekit::Models::UpdateFileDetailsRequest::ChangePublicationStatus::Publish, nil]
-        optional :publish, -> { Imagekit::UpdateFileDetailsRequest::ChangePublicationStatus::Publish }
-
-        # @!method initialize(publish: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Imagekit::Models::UpdateFileDetailsRequest::ChangePublicationStatus} for more
-        #   details.
-        #
-        #   @param publish [Imagekit::Models::UpdateFileDetailsRequest::ChangePublicationStatus::Publish] Configure the publication status of a file and its versions.
-
-        # @see Imagekit::Models::UpdateFileDetailsRequest::ChangePublicationStatus#publish
-        class Publish < Imagekit::Internal::Type::BaseModel
-          # @!attribute is_published
-          #   Set to `true` to publish the file. Set to `false` to unpublish the file.
-          #
-          #   @return [Boolean]
-          required :is_published, Imagekit::Internal::Type::Boolean, api_name: :isPublished
-
-          # @!attribute include_file_versions
-          #   Set to `true` to publish/unpublish all versions of the file. Set to `false` to
-          #   publish/unpublish only the current version of the file.
-          #
-          #   @return [Boolean, nil]
-          optional :include_file_versions, Imagekit::Internal::Type::Boolean, api_name: :includeFileVersions
-
-          # @!method initialize(is_published:, include_file_versions: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Imagekit::Models::UpdateFileDetailsRequest::ChangePublicationStatus::Publish}
-          #   for more details.
-          #
-          #   Configure the publication status of a file and its versions.
-          #
-          #   @param is_published [Boolean] Set to `true` to publish the file. Set to `false` to unpublish the file.
-          #
-          #   @param include_file_versions [Boolean] Set to `true` to publish/unpublish all versions of the file. Set to `false` to p
-        end
-      end
-
       # @!method self.variants
-      #   @return [Array(Imagekit::Models::UpdateFileDetailsRequest::UpdateFileDetails, Imagekit::Models::UpdateFileDetailsRequest::ChangePublicationStatus)]
+      #   @return [Array(Imagekit::Models::UpdateFileRequest::UpdateFileDetails, Object)]
     end
   end
 end
