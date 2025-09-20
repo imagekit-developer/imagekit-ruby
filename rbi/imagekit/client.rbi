@@ -69,8 +69,8 @@ module Imagekit
     def self.new(
       # Your ImageKit private API key (starts with `private_`). You can find this in the
       # [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults
-      # to `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
-      private_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
+      # to `ENV["IMAGEKIT_PRIVATE_KEY"]`
+      private_key: ENV["IMAGEKIT_PRIVATE_KEY"],
       # ImageKit uses your API key as username and ignores the password. The SDK sets a
       # dummy value. You can ignore this field. Defaults to
       # `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`

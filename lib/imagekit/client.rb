@@ -68,7 +68,7 @@ module Imagekit
     #
     # @param private_key [String, nil] Your ImageKit private API key (starts with `private_`). You can find this in the
     # [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys). Defaults
-    # to `ENV["IMAGEKIT_PRIVATE_API_KEY"]`
+    # to `ENV["IMAGEKIT_PRIVATE_KEY"]`
     #
     # @param password [String, nil] ImageKit uses your API key as username and ignores the password. The SDK sets a
     # dummy value. You can ignore this field. Defaults to
@@ -85,7 +85,7 @@ module Imagekit
     #
     # @param max_retry_delay [Float]
     def initialize(
-      private_key: ENV["IMAGEKIT_PRIVATE_API_KEY"],
+      private_key: ENV["IMAGEKIT_PRIVATE_KEY"],
       password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
       base_url: ENV["IMAGE_KIT_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
@@ -98,7 +98,7 @@ module Imagekit
       base_url ||= "https://api.imagekit.io"
 
       if private_key.nil?
-        raise ArgumentError.new("private_key is required, and can be set via environ: \"IMAGEKIT_PRIVATE_API_KEY\"")
+        raise ArgumentError.new("private_key is required, and can be set via environ: \"IMAGEKIT_PRIVATE_KEY\"")
       end
 
       @private_key = private_key.to_s
