@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    imagekit (0.0.1)
+    imagekit (0.0.2)
       connection_pool
 
 GEM
