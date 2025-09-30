@@ -222,6 +222,33 @@ module Imagekit
       end
       attr_writer :response_fields
 
+      # This field is included in the response only if the Path policy feature is
+      # available in the plan. It contains schema definitions for the custom metadata
+      # fields selected for the specified file path. Field selection can only be done
+      # when the Path policy feature is enabled.
+      #
+      # Keys are the names of the custom metadata fields; the value object has details
+      # about the custom metadata schema.
+      sig do
+        returns(
+          T.nilable(
+            T::Hash[Symbol, Imagekit::FileUploadParams::SelectedFieldsSchema]
+          )
+        )
+      end
+      attr_reader :selected_fields_schema
+
+      sig do
+        params(
+          selected_fields_schema:
+            T::Hash[
+              Symbol,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::OrHash
+            ]
+        ).void
+      end
+      attr_writer :selected_fields_schema
+
       # HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a
       # key. Learn how to create a signature on the page below. This should be in
       # lowercase.
@@ -316,6 +343,11 @@ module Imagekit
           public_key: String,
           response_fields:
             T::Array[Imagekit::FileUploadParams::ResponseField::OrSymbol],
+          selected_fields_schema:
+            T::Hash[
+              Symbol,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::OrHash
+            ],
           signature: String,
           tags: T::Array[String],
           transformation: Imagekit::FileUploadParams::Transformation::OrHash,
@@ -418,6 +450,14 @@ module Imagekit
         public_key: nil,
         # Array of response field keys to include in the API response body.
         response_fields: nil,
+        # This field is included in the response only if the Path policy feature is
+        # available in the plan. It contains schema definitions for the custom metadata
+        # fields selected for the specified file path. Field selection can only be done
+        # when the Path policy feature is enabled.
+        #
+        # Keys are the names of the custom metadata fields; the value object has details
+        # about the custom metadata schema.
+        selected_fields_schema: nil,
         # HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a
         # key. Learn how to create a signature on the page below. This should be in
         # lowercase.
@@ -488,6 +528,8 @@ module Imagekit
             public_key: String,
             response_fields:
               T::Array[Imagekit::FileUploadParams::ResponseField::OrSymbol],
+            selected_fields_schema:
+              T::Hash[Symbol, Imagekit::FileUploadParams::SelectedFieldsSchema],
             signature: String,
             tags: T::Array[String],
             transformation: Imagekit::FileUploadParams::Transformation,
@@ -553,6 +595,389 @@ module Imagekit
           )
         end
         def self.values
+        end
+      end
+
+      class SelectedFieldsSchema < Imagekit::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Imagekit::FileUploadParams::SelectedFieldsSchema,
+              Imagekit::Internal::AnyHash
+            )
+          end
+
+        # Type of the custom metadata field.
+        sig do
+          returns(
+            Imagekit::FileUploadParams::SelectedFieldsSchema::Type::OrSymbol
+          )
+        end
+        attr_accessor :type
+
+        # The default value for this custom metadata field. The value should match the
+        # `type` of custom metadata field.
+        sig do
+          returns(
+            T.nilable(
+              Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Variants
+            )
+          )
+        end
+        attr_reader :default_value
+
+        sig do
+          params(
+            default_value:
+              Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Variants
+          ).void
+        end
+        attr_writer :default_value
+
+        # Specifies if the custom metadata field is required or not.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :is_value_required
+
+        sig { params(is_value_required: T::Boolean).void }
+        attr_writer :is_value_required
+
+        # Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
+        sig { returns(T.nilable(Float)) }
+        attr_reader :max_length
+
+        sig { params(max_length: Float).void }
+        attr_writer :max_length
+
+        # Maximum value of the field. Only set if field type is `Date` or `Number`. For
+        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        # field, it will be a numeric value.
+        sig do
+          returns(
+            T.nilable(
+              Imagekit::FileUploadParams::SelectedFieldsSchema::MaxValue::Variants
+            )
+          )
+        end
+        attr_reader :max_value
+
+        sig do
+          params(
+            max_value:
+              Imagekit::FileUploadParams::SelectedFieldsSchema::MaxValue::Variants
+          ).void
+        end
+        attr_writer :max_value
+
+        # Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
+        sig { returns(T.nilable(Float)) }
+        attr_reader :min_length
+
+        sig { params(min_length: Float).void }
+        attr_writer :min_length
+
+        # Minimum value of the field. Only set if field type is `Date` or `Number`. For
+        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        # field, it will be a numeric value.
+        sig do
+          returns(
+            T.nilable(
+              Imagekit::FileUploadParams::SelectedFieldsSchema::MinValue::Variants
+            )
+          )
+        end
+        attr_reader :min_value
+
+        sig do
+          params(
+            min_value:
+              Imagekit::FileUploadParams::SelectedFieldsSchema::MinValue::Variants
+          ).void
+        end
+        attr_writer :min_value
+
+        # Indicates whether the custom metadata field is read only. A read only field
+        # cannot be modified after being set. This field is configurable only via the
+        # **Path policy** feature.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :read_only
+
+        sig { params(read_only: T::Boolean).void }
+        attr_writer :read_only
+
+        # An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::SelectOption::Variants
+              ]
+            )
+          )
+        end
+        attr_reader :select_options
+
+        sig do
+          params(
+            select_options:
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::SelectOption::Variants
+              ]
+          ).void
+        end
+        attr_writer :select_options
+
+        # Specifies if the selectOptions array is truncated. It is truncated when number
+        # of options are > 100.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :select_options_truncated
+
+        sig { params(select_options_truncated: T::Boolean).void }
+        attr_writer :select_options_truncated
+
+        sig do
+          params(
+            type:
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::OrSymbol,
+            default_value:
+              Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Variants,
+            is_value_required: T::Boolean,
+            max_length: Float,
+            max_value:
+              Imagekit::FileUploadParams::SelectedFieldsSchema::MaxValue::Variants,
+            min_length: Float,
+            min_value:
+              Imagekit::FileUploadParams::SelectedFieldsSchema::MinValue::Variants,
+            read_only: T::Boolean,
+            select_options:
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::SelectOption::Variants
+              ],
+            select_options_truncated: T::Boolean
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Type of the custom metadata field.
+          type:,
+          # The default value for this custom metadata field. The value should match the
+          # `type` of custom metadata field.
+          default_value: nil,
+          # Specifies if the custom metadata field is required or not.
+          is_value_required: nil,
+          # Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
+          max_length: nil,
+          # Maximum value of the field. Only set if field type is `Date` or `Number`. For
+          # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+          # field, it will be a numeric value.
+          max_value: nil,
+          # Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
+          min_length: nil,
+          # Minimum value of the field. Only set if field type is `Date` or `Number`. For
+          # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+          # field, it will be a numeric value.
+          min_value: nil,
+          # Indicates whether the custom metadata field is read only. A read only field
+          # cannot be modified after being set. This field is configurable only via the
+          # **Path policy** feature.
+          read_only: nil,
+          # An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
+          select_options: nil,
+          # Specifies if the selectOptions array is truncated. It is truncated when number
+          # of options are > 100.
+          select_options_truncated: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              type:
+                Imagekit::FileUploadParams::SelectedFieldsSchema::Type::OrSymbol,
+              default_value:
+                Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Variants,
+              is_value_required: T::Boolean,
+              max_length: Float,
+              max_value:
+                Imagekit::FileUploadParams::SelectedFieldsSchema::MaxValue::Variants,
+              min_length: Float,
+              min_value:
+                Imagekit::FileUploadParams::SelectedFieldsSchema::MinValue::Variants,
+              read_only: T::Boolean,
+              select_options:
+                T::Array[
+                  Imagekit::FileUploadParams::SelectedFieldsSchema::SelectOption::Variants
+                ],
+              select_options_truncated: T::Boolean
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Type of the custom metadata field.
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Imagekit::FileUploadParams::SelectedFieldsSchema::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          TEXT =
+            T.let(
+              :Text,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+            )
+          TEXTAREA =
+            T.let(
+              :Textarea,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+            )
+          NUMBER =
+            T.let(
+              :Number,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+            )
+          DATE =
+            T.let(
+              :Date,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+            )
+          BOOLEAN =
+            T.let(
+              :Boolean,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+            )
+          SINGLE_SELECT =
+            T.let(
+              :SingleSelect,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+            )
+          MULTI_SELECT =
+            T.let(
+              :MultiSelect,
+              Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The default value for this custom metadata field. The value should match the
+        # `type` of custom metadata field.
+        module DefaultValue
+          extend Imagekit::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                String,
+                Float,
+                T::Boolean,
+                T::Array[
+                  Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Mixed::Variants
+                ]
+              )
+            end
+
+          module Mixed
+            extend Imagekit::Internal::Type::Union
+
+            Variants = T.type_alias { T.any(String, Float, T::Boolean) }
+
+            sig do
+              override.returns(
+                T::Array[
+                  Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Mixed::Variants
+                ]
+              )
+            end
+            def self.variants
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+
+          MixedArray =
+            T.let(
+              Imagekit::Internal::Type::ArrayOf[
+                union:
+                  Imagekit::FileUploadParams::SelectedFieldsSchema::DefaultValue::Mixed
+              ],
+              Imagekit::Internal::Type::Converter
+            )
+        end
+
+        # Maximum value of the field. Only set if field type is `Date` or `Number`. For
+        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        # field, it will be a numeric value.
+        module MaxValue
+          extend Imagekit::Internal::Type::Union
+
+          Variants = T.type_alias { T.any(String, Float) }
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::MaxValue::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+        end
+
+        # Minimum value of the field. Only set if field type is `Date` or `Number`. For
+        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        # field, it will be a numeric value.
+        module MinValue
+          extend Imagekit::Internal::Type::Union
+
+          Variants = T.type_alias { T.any(String, Float) }
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::MinValue::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+        end
+
+        module SelectOption
+          extend Imagekit::Internal::Type::Union
+
+          Variants = T.type_alias { T.any(String, Float, T::Boolean) }
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekit::FileUploadParams::SelectedFieldsSchema::SelectOption::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
         end
       end
 

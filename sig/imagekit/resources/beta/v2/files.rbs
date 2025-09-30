@@ -20,6 +20,7 @@ module Imagekit
             ?overwrite_file: bool,
             ?overwrite_tags: bool,
             ?response_fields: ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field],
+            ?selected_fields_schema: ::Hash[Symbol, Imagekit::Beta::V2::FileUploadParams::SelectedFieldsSchema],
             ?tags: ::Array[String],
             ?transformation: Imagekit::Beta::V2::FileUploadParams::Transformation,
             ?use_unique_file_name: bool,
