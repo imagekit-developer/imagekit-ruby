@@ -54,7 +54,7 @@ module Imagekit
         required :type, enum: -> { Imagekit::CustomMetadataField::Schema::Type }
 
         # @!attribute default_value
-        #   The default value for this custom metadata field. Date type of default value
+        #   The default value for this custom metadata field. Data type of default value
         #   depends on the field type.
         #
         #   @return [String, Float, Boolean, Array<String, Float, Boolean>, nil]
@@ -122,7 +122,7 @@ module Imagekit
         #
         #   @param type [Symbol, Imagekit::Models::CustomMetadataField::Schema::Type] Type of the custom metadata field.
         #
-        #   @param default_value [String, Float, Boolean, Array<String, Float, Boolean>] The default value for this custom metadata field. Date type of default value dep
+        #   @param default_value [String, Float, Boolean, Array<String, Float, Boolean>] The default value for this custom metadata field. Data type of default value dep
         #
         #   @param is_value_required [Boolean] Specifies if the this custom metadata field is required or not.
         #
@@ -154,7 +154,7 @@ module Imagekit
           #   @return [Array<Symbol>]
         end
 
-        # The default value for this custom metadata field. Date type of default value
+        # The default value for this custom metadata field. Data type of default value
         # depends on the field type.
         #
         # @see Imagekit::Models::CustomMetadataField::Schema#default_value

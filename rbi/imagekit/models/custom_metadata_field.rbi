@@ -82,7 +82,7 @@ module Imagekit
         end
         attr_accessor :type
 
-        # The default value for this custom metadata field. Date type of default value
+        # The default value for this custom metadata field. Data type of default value
         # depends on the field type.
         sig do
           returns(
@@ -200,7 +200,7 @@ module Imagekit
         def self.new(
           # Type of the custom metadata field.
           type:,
-          # The default value for this custom metadata field. Date type of default value
+          # The default value for this custom metadata field. Data type of default value
           # depends on the field type.
           default_value: nil,
           # Specifies if the this custom metadata field is required or not.
@@ -302,7 +302,7 @@ module Imagekit
           end
         end
 
-        # The default value for this custom metadata field. Date type of default value
+        # The default value for this custom metadata field. Data type of default value
         # depends on the field type.
         module DefaultValue
           extend Imagekit::Internal::Type::Union
