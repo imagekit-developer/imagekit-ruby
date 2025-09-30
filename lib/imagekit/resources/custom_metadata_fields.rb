@@ -71,7 +71,14 @@ module Imagekit
       # the API returns only non deleted field objects, but you can include deleted
       # fields in the API response.
       #
-      # @overload list(include_deleted: nil, request_options: {})
+      # You can also filter results by a specific folder path to retrieve custom
+      # metadata fields applicable at that location. This path-specific filtering is
+      # useful when using the **Path policy** feature to determine which custom metadata
+      # fields are selected for a given path.
+      #
+      # @overload list(folder_path: nil, include_deleted: nil, request_options: {})
+      #
+      # @param folder_path [String] The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custo
       #
       # @param include_deleted [Boolean] Set it to `true` to include deleted field objects in the API response.
       #
@@ -85,7 +92,7 @@ module Imagekit
         @client.request(
           method: :get,
           path: "v1/customMetadataFields",
-          query: parsed.transform_keys(include_deleted: "includeDeleted"),
+          query: parsed.transform_keys(folder_path: "folderPath", include_deleted: "includeDeleted"),
           model: Imagekit::Internal::Type::ArrayOf[Imagekit::CustomMetadataField],
           options: options
         )

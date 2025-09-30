@@ -169,6 +169,7 @@ module Imagekit
             | :isPublished
             | :customMetadata
             | :metadata
+            | :selectedFieldsSchema
 
           module ResponseField
             extend Imagekit::Internal::Type::Enum
@@ -180,6 +181,7 @@ module Imagekit
             IS_PUBLISHED: :isPublished
             CUSTOM_METADATA: :customMetadata
             METADATA: :metadata
+            SELECTED_FIELDS_SCHEMA: :selectedFieldsSchema
 
             def self?.values: -> ::Array[Imagekit::Models::Beta::V2::FileUploadParams::response_field]
           end

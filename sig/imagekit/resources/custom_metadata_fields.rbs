@@ -16,6 +16,7 @@ module Imagekit
       ) -> Imagekit::CustomMetadataField
 
       def list: (
+        ?folder_path: String,
         ?include_deleted: bool,
         ?request_options: Imagekit::request_opts
       ) -> Imagekit::Models::custom_metadata_field_list_response
