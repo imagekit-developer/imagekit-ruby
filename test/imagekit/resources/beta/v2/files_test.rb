@@ -31,6 +31,7 @@ class Imagekit::Test::Resources::Beta::V2::FilesTest < Imagekit::Test::ResourceT
         is_published: Imagekit::Internal::Type::Boolean | nil,
         metadata: Imagekit::Metadata | nil,
         name: String | nil,
+        selected_fields_schema: ^(Imagekit::Internal::Type::HashOf[Imagekit::Models::Beta::V2::FileUploadResponse::SelectedFieldsSchema]) | nil,
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail_url: String | nil,

@@ -36,7 +36,7 @@ module Imagekit
           # - [Quick start guides](/docs/quick-start-guides) for various frameworks and
           #   technologies.
           #
-          # @overload upload(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, response_fields: nil, selected_fields_schema: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
+          # @overload upload(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, response_fields: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
           #
           # @param file [Pathname, StringIO, IO, String, Imagekit::FilePart] The API accepts any of the following:
           #
@@ -69,8 +69,6 @@ module Imagekit
           # @param overwrite_tags [Boolean] If the request does not have `tags`, and a file already exists at the exact loca
           #
           # @param response_fields [Array<Symbol, Imagekit::Models::Beta::V2::FileUploadParams::ResponseField>] Array of response field keys to include in the API response body.
-          #
-          # @param selected_fields_schema [Hash{Symbol=>Imagekit::Models::Beta::V2::FileUploadParams::SelectedFieldsSchema}] This field is included in the response only if the Path policy feature is availa
           #
           # @param tags [Array<String>] Set the tags while uploading the file.
           #

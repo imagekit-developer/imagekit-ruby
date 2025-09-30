@@ -224,7 +224,7 @@ module Imagekit
       # - [Quick start guides](/docs/quick-start-guides) for various frameworks and
       #   technologies.
       #
-      # @overload upload(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, expire: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, public_key: nil, response_fields: nil, selected_fields_schema: nil, signature: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
+      # @overload upload(file:, file_name:, token: nil, checks: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, expire: nil, extensions: nil, folder: nil, is_private_file: nil, is_published: nil, overwrite_ai_tags: nil, overwrite_custom_metadata: nil, overwrite_file: nil, overwrite_tags: nil, public_key: nil, response_fields: nil, signature: nil, tags: nil, transformation: nil, use_unique_file_name: nil, webhook_url: nil, request_options: {})
       #
       # @param file [Pathname, StringIO, IO, String, Imagekit::FilePart] The API accepts any of the following:
       #
@@ -261,8 +261,6 @@ module Imagekit
       # @param public_key [String] Your ImageKit.io public key. This field is only required for authentication when
       #
       # @param response_fields [Array<Symbol, Imagekit::Models::FileUploadParams::ResponseField>] Array of response field keys to include in the API response body.
-      #
-      # @param selected_fields_schema [Hash{Symbol=>Imagekit::Models::FileUploadParams::SelectedFieldsSchema}] This field is included in the response only if the Path policy feature is availa
       #
       # @param signature [String] HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a
       #

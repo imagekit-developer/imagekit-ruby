@@ -212,11 +212,6 @@ module Imagekit
           public_key: String,
           response_fields:
             T::Array[Imagekit::FileUploadParams::ResponseField::OrSymbol],
-          selected_fields_schema:
-            T::Hash[
-              Symbol,
-              Imagekit::FileUploadParams::SelectedFieldsSchema::OrHash
-            ],
           signature: String,
           tags: T::Array[String],
           transformation: Imagekit::FileUploadParams::Transformation::OrHash,
@@ -319,14 +314,6 @@ module Imagekit
         public_key: nil,
         # Array of response field keys to include in the API response body.
         response_fields: nil,
-        # This field is included in the response only if the Path policy feature is
-        # available in the plan. It contains schema definitions for the custom metadata
-        # fields selected for the specified file path. Field selection can only be done
-        # when the Path policy feature is enabled.
-        #
-        # Keys are the names of the custom metadata fields; the value object has details
-        # about the custom metadata schema.
-        selected_fields_schema: nil,
         # HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a
         # key. Learn how to create a signature on the page below. This should be in
         # lowercase.
