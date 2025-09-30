@@ -60,6 +60,11 @@ module Imagekit
                 T::Array[
                   Imagekit::Beta::V2::FileUploadParams::ResponseField::OrSymbol
                 ],
+              selected_fields_schema:
+                T::Hash[
+                  Symbol,
+                  Imagekit::Beta::V2::FileUploadParams::SelectedFieldsSchema::OrHash
+                ],
               tags: T::Array[String],
               transformation:
                 Imagekit::Beta::V2::FileUploadParams::Transformation::OrHash,
@@ -148,6 +153,14 @@ module Imagekit
             overwrite_tags: nil,
             # Array of response field keys to include in the API response body.
             response_fields: nil,
+            # This field is included in the response only if the Path policy feature is
+            # available in the plan. It contains schema definitions for the custom metadata
+            # fields selected for the specified file path. Field selection can only be done
+            # when the Path policy feature is enabled.
+            #
+            # Keys are the names of the custom metadata fields; the value object has details
+            # about the custom metadata schema.
+            selected_fields_schema: nil,
             # Set the tags while uploading the file. Provide an array of tag strings (e.g.
             # `["tag1", "tag2", "tag3"]`). The combined length of all tag characters must not
             # exceed 500, and the `%` character is not allowed. If this field is not specified
