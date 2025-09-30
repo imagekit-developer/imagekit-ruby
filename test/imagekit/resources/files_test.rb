@@ -139,6 +139,7 @@ class Imagekit::Test::Resources::FilesTest < Imagekit::Test::ResourceTest
         is_published: Imagekit::Internal::Type::Boolean | nil,
         metadata: Imagekit::Metadata | nil,
         name: String | nil,
+        selected_fields_schema: ^(Imagekit::Internal::Type::HashOf[Imagekit::Models::FileUploadResponse::SelectedFieldsSchema]) | nil,
         size: Float | nil,
         tags: ^(Imagekit::Internal::Type::ArrayOf[String]) | nil,
         thumbnail_url: String | nil,

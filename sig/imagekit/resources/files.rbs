@@ -62,7 +62,6 @@ module Imagekit
         ?overwrite_tags: bool,
         ?public_key: String,
         ?response_fields: ::Array[Imagekit::Models::FileUploadParams::response_field],
-        ?selected_fields_schema: ::Hash[Symbol, Imagekit::FileUploadParams::SelectedFieldsSchema],
         ?signature: String,
         ?tags: ::Array[String],
         ?transformation: Imagekit::FileUploadParams::Transformation,

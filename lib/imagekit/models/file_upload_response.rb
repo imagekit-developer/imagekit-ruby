@@ -140,6 +140,20 @@ module Imagekit
       #   @return [String, nil]
       optional :name, String
 
+      # @!attribute selected_fields_schema
+      #   This field is included in the response only if the Path policy feature is
+      #   available in the plan. It contains schema definitions for the custom metadata
+      #   fields selected for the specified file path. Field selection can only be done
+      #   when the Path policy feature is enabled.
+      #
+      #   Keys are the names of the custom metadata fields; the value object has details
+      #   about the custom metadata schema.
+      #
+      #   @return [Hash{Symbol=>Imagekit::Models::FileUploadResponse::SelectedFieldsSchema}, nil]
+      optional :selected_fields_schema,
+               -> { Imagekit::Internal::Type::HashOf[Imagekit::Models::FileUploadResponse::SelectedFieldsSchema] },
+               api_name: :selectedFieldsSchema
+
       # @!attribute size
       #   Size of the image file in Bytes.
       #
@@ -184,7 +198,7 @@ module Imagekit
       #   @return [Float, nil]
       optional :width, Float
 
-      # @!method initialize(ai_tags: nil, audio_codec: nil, bit_rate: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, duration: nil, embedded_metadata: nil, extension_status: nil, file_id: nil, file_path: nil, file_type: nil, height: nil, is_private_file: nil, is_published: nil, metadata: nil, name: nil, size: nil, tags: nil, thumbnail_url: nil, url: nil, version_info: nil, video_codec: nil, width: nil)
+      # @!method initialize(ai_tags: nil, audio_codec: nil, bit_rate: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, duration: nil, embedded_metadata: nil, extension_status: nil, file_id: nil, file_path: nil, file_type: nil, height: nil, is_private_file: nil, is_published: nil, metadata: nil, name: nil, selected_fields_schema: nil, size: nil, tags: nil, thumbnail_url: nil, url: nil, version_info: nil, video_codec: nil, width: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekit::Models::FileUploadResponse} for more details.
       #
@@ -223,6 +237,8 @@ module Imagekit
       #   @param metadata [Imagekit::Models::Metadata] Legacy metadata. Send `metadata` in `responseFields` in API request to get metad
       #
       #   @param name [String] Name of the asset.
+      #
+      #   @param selected_fields_schema [Hash{Symbol=>Imagekit::Models::FileUploadResponse::SelectedFieldsSchema}] This field is included in the response only if the Path policy feature is availa
       #
       #   @param size [Float] Size of the image file in Bytes.
       #
@@ -362,6 +378,210 @@ module Imagekit
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+      end
+
+      class SelectedFieldsSchema < Imagekit::Internal::Type::BaseModel
+        # @!attribute type
+        #   Type of the custom metadata field.
+        #
+        #   @return [Symbol, Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::Type]
+        required :type, enum: -> { Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::Type }
+
+        # @!attribute default_value
+        #   The default value for this custom metadata field. The value should match the
+        #   `type` of custom metadata field.
+        #
+        #   @return [String, Float, Boolean, Array<String, Float, Boolean>, nil]
+        optional :default_value,
+                 union: -> { Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::DefaultValue },
+                 api_name: :defaultValue
+
+        # @!attribute is_value_required
+        #   Specifies if the custom metadata field is required or not.
+        #
+        #   @return [Boolean, nil]
+        optional :is_value_required, Imagekit::Internal::Type::Boolean, api_name: :isValueRequired
+
+        # @!attribute max_length
+        #   Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
+        #
+        #   @return [Float, nil]
+        optional :max_length, Float, api_name: :maxLength
+
+        # @!attribute max_value
+        #   Maximum value of the field. Only set if field type is `Date` or `Number`. For
+        #   `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        #   field, it will be a numeric value.
+        #
+        #   @return [String, Float, nil]
+        optional :max_value,
+                 union: -> { Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::MaxValue },
+                 api_name: :maxValue
+
+        # @!attribute min_length
+        #   Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
+        #
+        #   @return [Float, nil]
+        optional :min_length, Float, api_name: :minLength
+
+        # @!attribute min_value
+        #   Minimum value of the field. Only set if field type is `Date` or `Number`. For
+        #   `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        #   field, it will be a numeric value.
+        #
+        #   @return [String, Float, nil]
+        optional :min_value,
+                 union: -> { Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::MinValue },
+                 api_name: :minValue
+
+        # @!attribute read_only
+        #   Indicates whether the custom metadata field is read only. A read only field
+        #   cannot be modified after being set. This field is configurable only via the
+        #   **Path policy** feature.
+        #
+        #   @return [Boolean, nil]
+        optional :read_only, Imagekit::Internal::Type::Boolean, api_name: :readOnly
+
+        # @!attribute select_options
+        #   An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
+        #
+        #   @return [Array<String, Float, Boolean>, nil]
+        optional :select_options,
+                 -> { Imagekit::Internal::Type::ArrayOf[union: Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::SelectOption] },
+                 api_name: :selectOptions
+
+        # @!attribute select_options_truncated
+        #   Specifies if the selectOptions array is truncated. It is truncated when number
+        #   of options are > 100.
+        #
+        #   @return [Boolean, nil]
+        optional :select_options_truncated,
+                 Imagekit::Internal::Type::Boolean,
+                 api_name: :selectOptionsTruncated
+
+        # @!method initialize(type:, default_value: nil, is_value_required: nil, max_length: nil, max_value: nil, min_length: nil, min_value: nil, read_only: nil, select_options: nil, select_options_truncated: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Imagekit::Models::FileUploadResponse::SelectedFieldsSchema} for more details.
+        #
+        #   @param type [Symbol, Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::Type] Type of the custom metadata field.
+        #
+        #   @param default_value [String, Float, Boolean, Array<String, Float, Boolean>] The default value for this custom metadata field. The value should match the `ty
+        #
+        #   @param is_value_required [Boolean] Specifies if the custom metadata field is required or not.
+        #
+        #   @param max_length [Float] Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
+        #
+        #   @param max_value [String, Float] Maximum value of the field. Only set if field type is `Date` or `Number`. For `D
+        #
+        #   @param min_length [Float] Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
+        #
+        #   @param min_value [String, Float] Minimum value of the field. Only set if field type is `Date` or `Number`. For `D
+        #
+        #   @param read_only [Boolean] Indicates whether the custom metadata field is read only. A read only field cann
+        #
+        #   @param select_options [Array<String, Float, Boolean>] An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
+        #
+        #   @param select_options_truncated [Boolean] Specifies if the selectOptions array is truncated. It is truncated when number o
+
+        # Type of the custom metadata field.
+        #
+        # @see Imagekit::Models::FileUploadResponse::SelectedFieldsSchema#type
+        module Type
+          extend Imagekit::Internal::Type::Enum
+
+          TEXT = :Text
+          TEXTAREA = :Textarea
+          NUMBER = :Number
+          DATE = :Date
+          BOOLEAN = :Boolean
+          SINGLE_SELECT = :SingleSelect
+          MULTI_SELECT = :MultiSelect
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The default value for this custom metadata field. The value should match the
+        # `type` of custom metadata field.
+        #
+        # @see Imagekit::Models::FileUploadResponse::SelectedFieldsSchema#default_value
+        module DefaultValue
+          extend Imagekit::Internal::Type::Union
+
+          variant String
+
+          variant Float
+
+          variant Imagekit::Internal::Type::Boolean
+
+          # Default value should be of type array when custom metadata field type is set to `MultiSelect`.
+          variant -> { Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::DefaultValue::MixedArray }
+
+          module Mixed
+            extend Imagekit::Internal::Type::Union
+
+            variant String
+
+            variant Float
+
+            variant Imagekit::Internal::Type::Boolean
+
+            # @!method self.variants
+            #   @return [Array(String, Float, Boolean)]
+          end
+
+          # @!method self.variants
+          #   @return [Array(String, Float, Boolean, Array<String, Float, Boolean>)]
+
+          # @type [Imagekit::Internal::Type::Converter]
+          MixedArray =
+            Imagekit::Internal::Type::ArrayOf[union: -> { Imagekit::Models::FileUploadResponse::SelectedFieldsSchema::DefaultValue::Mixed }]
+        end
+
+        # Maximum value of the field. Only set if field type is `Date` or `Number`. For
+        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        # field, it will be a numeric value.
+        #
+        # @see Imagekit::Models::FileUploadResponse::SelectedFieldsSchema#max_value
+        module MaxValue
+          extend Imagekit::Internal::Type::Union
+
+          variant String
+
+          variant Float
+
+          # @!method self.variants
+          #   @return [Array(String, Float)]
+        end
+
+        # Minimum value of the field. Only set if field type is `Date` or `Number`. For
+        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
+        # field, it will be a numeric value.
+        #
+        # @see Imagekit::Models::FileUploadResponse::SelectedFieldsSchema#min_value
+        module MinValue
+          extend Imagekit::Internal::Type::Union
+
+          variant String
+
+          variant Float
+
+          # @!method self.variants
+          #   @return [Array(String, Float)]
+        end
+
+        module SelectOption
+          extend Imagekit::Internal::Type::Union
+
+          variant String
+
+          variant Float
+
+          variant Imagekit::Internal::Type::Boolean
+
+          # @!method self.variants
+          #   @return [Array(String, Float, Boolean)]
         end
       end
 
