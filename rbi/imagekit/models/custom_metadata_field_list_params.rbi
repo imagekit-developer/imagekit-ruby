@@ -15,9 +15,9 @@ module Imagekit
         end
 
       # The folder path (e.g., `/path/to/folder`) for which to retrieve applicable
-      # custom metadata fields.
-      # Useful for determining path-specific field selections when the
-      # [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
+      # custom metadata fields. Useful for determining path-specific field selections
+      # when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in
+      # use.
       sig { returns(T.nilable(String)) }
       attr_reader :folder_path
 
@@ -40,9 +40,9 @@ module Imagekit
       end
       def self.new(
         # The folder path (e.g., `/path/to/folder`) for which to retrieve applicable
-        # custom metadata fields.
-        # Useful for determining path-specific field selections when the
-        # [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
+        # custom metadata fields. Useful for determining path-specific field selections
+        # when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in
+        # use.
         folder_path: nil,
         # Set it to `true` to include deleted field objects in the API response.
         include_deleted: nil,
