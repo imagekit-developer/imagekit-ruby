@@ -14,6 +14,16 @@ module Imagekit
           )
         end
 
+      # The folder path (e.g., `/path/to/folder`) for which to retrieve applicable
+      # custom metadata fields.
+      # Useful for determining path-specific field selections when the
+      # [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
+      sig { returns(T.nilable(String)) }
+      attr_reader :folder_path
+
+      sig { params(folder_path: String).void }
+      attr_writer :folder_path
+
       # Set it to `true` to include deleted field objects in the API response.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :include_deleted
@@ -23,11 +33,17 @@ module Imagekit
 
       sig do
         params(
+          folder_path: String,
           include_deleted: T::Boolean,
           request_options: Imagekit::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The folder path (e.g., `/path/to/folder`) for which to retrieve applicable
+        # custom metadata fields.
+        # Useful for determining path-specific field selections when the
+        # [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
+        folder_path: nil,
         # Set it to `true` to include deleted field objects in the API response.
         include_deleted: nil,
         request_options: {}
@@ -37,6 +53,7 @@ module Imagekit
       sig do
         override.returns(
           {
+            folder_path: String,
             include_deleted: T::Boolean,
             request_options: Imagekit::RequestOptions
           }

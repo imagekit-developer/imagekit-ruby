@@ -504,6 +504,11 @@ module Imagekit
                 :metadata,
                 Imagekit::Beta::V2::FileUploadParams::ResponseField::TaggedSymbol
               )
+            SELECTED_FIELDS_SCHEMA =
+              T.let(
+                :selectedFieldsSchema,
+                Imagekit::Beta::V2::FileUploadParams::ResponseField::TaggedSymbol
+              )
 
             sig do
               override.returns(

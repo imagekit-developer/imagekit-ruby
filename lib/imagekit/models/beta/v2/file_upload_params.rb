@@ -262,6 +262,7 @@ module Imagekit
             IS_PUBLISHED = :isPublished
             CUSTOM_METADATA = :customMetadata
             METADATA = :metadata
+            SELECTED_FIELDS_SCHEMA = :selectedFieldsSchema
 
             # @!method self.values
             #   @return [Array<Symbol>]
