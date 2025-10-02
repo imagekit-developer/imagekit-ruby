@@ -9,6 +9,71 @@ module Imagekit
           extend Imagekit::Internal::Type::RequestParameters::Converter
           include Imagekit::Internal::Type::RequestParameters
 
+          # Serialize upload options to handle proper formatting for ImageKit backend API.
+          # Special cases handled:
+          # - tags: converted to comma-separated string
+          # - responseFields: converted to comma-separated string
+          # - extensions: JSON stringified
+          # - customMetadata: JSON stringified
+          # - transformation: JSON stringified
+          #
+          # @api private
+          #
+          # @param params [Object]
+          #
+          # @return [Array(Object, Hash{Symbol=>Object})]
+          def self.dump_request(params)
+            state = {can_retry: true}
+            case (dumped = dump(params, state: state))
+            in Hash
+              serialized = serialize_upload_options(dumped)
+              options = Imagekit::Internal::Util.coerce_hash!(serialized[:request_options]).to_h
+              request_options = state.fetch(:can_retry) ? options : {**options, max_retries: 0}
+              [serialized.except(:request_options), request_options]
+            else
+              [dumped, nil]
+            end
+          end
+
+          # @api private
+          #
+          # @param upload_options [Hash{Symbol=>Object}]
+          #
+          # @return [Hash{Symbol=>Object}]
+          def self.serialize_upload_options(upload_options)
+            serialized = {}
+
+            upload_options.each do |key, value|
+              # Skip nil values
+              if value.nil?
+                serialized[key] = value
+                next
+              end
+
+              serialized[key] = case key
+              when :tags
+                # Tags should be comma-separated string
+                value.is_a?(Array) ? value.join(',') : value
+              when :responseFields
+                # Response fields should be comma-separated string
+                value.is_a?(Array) ? value.join(',') : value
+              when :extensions
+                # Extensions should be JSON stringified
+                value.is_a?(Array) ? JSON.generate(value) : value
+              when :customMetadata
+                # Custom metadata should be JSON stringified
+                value.is_a?(Hash) ? JSON.generate(value) : value
+              when :transformation
+                # Transformation should be JSON stringified
+                (value.is_a?(Hash) || value.respond_to?(:to_h)) ? JSON.generate(value) : value
+              else
+                value
+              end
+            end
+
+            serialized
+          end
+
           # @!attribute file
           #   The API accepts any of the following:
           #
