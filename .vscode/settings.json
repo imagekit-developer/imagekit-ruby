@@ -1,0 +1,37 @@
+{
+  "ruby.interpreter": "ruby",
+  "ruby.pathToBundler": "bundle",
+  "ruby.useLanguageServer": true,
+  "ruby.lint": {
+    "rubocop": true,
+    "ruby": true
+  },
+  "ruby.format": "rubocop",
+  "sorbet.enabled": true,
+  "sorbet.typeCheckingMode": "strict",
+  "sorbet.watchmanPath": "watchman",
+  "files.associations": {
+    "*.rb": "ruby",
+    "*.rbi": "ruby",
+    "*.rbs": "rbs",
+    "Gemfile": "ruby",
+    "Rakefile": "ruby"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.rubocop": "explicit"
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.suggest.insertMode": "replace"
+  },
+  "[rbs]": {
+    "editor.defaultFormatter": "soutaro.rbs-syntax",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  }
+}

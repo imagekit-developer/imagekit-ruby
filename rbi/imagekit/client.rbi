@@ -44,6 +44,9 @@ module Imagekit
     sig { returns(Imagekit::Resources::Webhooks) }
     attr_reader :webhooks
 
+    sig { returns(Imagekit::Helpers::Helper) }
+    attr_reader :helpers
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
