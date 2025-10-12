@@ -17,7 +17,7 @@ module Imagekit
       #
       # @param transformations [Array<Imagekit::Models::Transformation>] Array of transformation objects
       # @return [String] The transformation string (e.g., "w-400,h-300")
-      def generateTransformationString(transformations)
+      def buildTransformationString(transformations)
         # TODO: Implement actual transformation string generation
         # For now, return a fixed transformation string
         "w-400,h-300"

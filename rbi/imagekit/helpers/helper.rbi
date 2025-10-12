@@ -20,7 +20,7 @@ module Imagekit
           transformations: T::Array[Imagekit::Models::Transformation]
         ).returns(String)
       end
-      def generateTransformationString(transformations); end
+      def buildTransformationString(transformations); end
 
       # Gets authentication parameters for ImageKit requests
       sig do
