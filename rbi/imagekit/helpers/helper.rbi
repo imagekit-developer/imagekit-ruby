@@ -12,7 +12,7 @@ module Imagekit
           transformations: T::Array[Imagekit::Models::Transformation]
         ).returns(String)
       end
-      def buildURL(transformations); end
+      def build_url(transformations); end
 
       # Generates transformation string from transformation objects
       sig do
@@ -20,15 +20,16 @@ module Imagekit
           transformations: T::Array[Imagekit::Models::Transformation]
         ).returns(String)
       end
-      def buildTransformationString(transformations); end
+      def build_transformation_string(transformations); end
 
-      # Gets authentication parameters for ImageKit requests
+      # Generates authentication parameters for client-side file uploads
       sig do
-        params(token: T.nilable(String)).returns(
-          T::Hash[Symbol, T.any(String, Integer)]
-        )
+        params(
+          token: T.nilable(String),
+          expire: T.nilable(Integer)
+        ).returns(T::Hash[Symbol, T.any(String, Integer)])
       end
-      def GetAuthenticationParameters(token = nil); end
+      def get_authentication_parameters(token = nil, expire = nil); end
     end
   end
 end

@@ -4,13 +4,13 @@ module Imagekit
       def initialize: (client: Imagekit::Client) -> void
 
       # Builds a URL with transformations applied
-      def buildURL: (Array[Imagekit::Models::Transformation] transformations) -> String
+      def build_url: (Array[Imagekit::Models::Transformation] transformations) -> String
 
       # Generates transformation string from transformation objects
-      def buildTransformationString: (Array[Imagekit::Models::Transformation] transformations) -> String
+      def build_transformation_string: (Array[Imagekit::Models::Transformation] transformations) -> String
 
-      # Gets authentication parameters for ImageKit requests
-      def GetAuthenticationParameters: (?String? token) -> Hash[Symbol, (String | Integer)]
+      # Generates authentication parameters for client-side file uploads
+      def get_authentication_parameters: (?String? token, ?Integer? expire) -> Hash[Symbol, (String | Integer)]
     end
   end
 end
