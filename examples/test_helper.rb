@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
-
+# typed: true
 
 require_relative "../lib/imagekit"
 
@@ -21,7 +21,7 @@ transformations = [
 
 # Test all helper functions
 puts "Testing helper functions:"
-puts "1. buildURL: #{image_kit.helpers.buildURL(transformations)}"
-puts "2. generateTransformationString: #{image_kit.helpers.generateTransformationString(transformations)}"
-puts "3. GetAuthenticationParameters: #{image_kit.helpers.GetAuthenticationParameters}"
+puts "1. buildURL: #{image_kit.helper.buildURL(transformations)}"
+puts "2. generateTransformationString: #{image_kit.helper.generateTransformationString(transformations)}"
+puts "3. GetAuthenticationParameters: #{image_kit.helper.GetAuthenticationParameters}"
 puts "All helper functions are working!"

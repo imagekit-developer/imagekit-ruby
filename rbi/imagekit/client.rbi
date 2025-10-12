@@ -45,7 +45,7 @@ module Imagekit
     attr_reader :webhooks
 
     sig { returns(Imagekit::Helpers::Helper) }
-    attr_reader :helpers
+    attr_reader :helper
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }
