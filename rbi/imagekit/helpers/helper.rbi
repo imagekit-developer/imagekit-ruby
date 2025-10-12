@@ -9,10 +9,10 @@ module Imagekit
       # Builds a URL with transformations applied
       sig do
         params(
-          transformations: T::Array[Imagekit::Models::Transformation]
+          options: Imagekit::Models::SrcOptions
         ).returns(String)
       end
-      def build_url(transformations); end
+      def build_url(options); end
 
       # Generates transformation string from transformation objects
       sig do

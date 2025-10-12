@@ -5,9 +5,9 @@ module Imagekit
     class Helper
       # Builds a URL with transformations applied
       #
-      # @param transformations [Array<Imagekit::Models::Transformation>] Array of transformation objects
+      # @param options [Imagekit::Models::SrcOptions] Options for generating ImageKit URLs with transformations
       # @return [String] The built URL with transformations
-      def build_url(transformations)
+      def build_url(options)
         # TODO: Implement actual URL building logic
         # For now, return a fixed URL as requested
         "https://ik.imagekit.io/your_imagekit_id/sample-image.jpg?tr=w-400,h-300"
