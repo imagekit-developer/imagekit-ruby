@@ -147,9 +147,8 @@ module Imagekit
 
             # Handle overlay separately
             if key.to_s == "overlay" && (value.is_a?(Hash) || value.respond_to?(:to_h))
-              # Convert model object to hash if needed
-              overlay_hash = value.respond_to?(:to_h) ? value.to_h : value
-              raw_string = process_overlay(overlay_hash)
+              # Pass model object or hash directly to process_overlay
+              raw_string = process_overlay(value)
               if raw_string && !raw_string.strip.empty?
                 parsed_transform_step << raw_string
               end
@@ -324,26 +323,37 @@ module Imagekit
 
       # Process overlay transformation (full implementation)
       def process_overlay(overlay)
-        return "" unless overlay.is_a?(Hash)
+        return "" unless overlay
 
-        # Convert to symbol keys if needed
-        overlay_hash = {}
-        overlay.each { |k, v| overlay_hash[k.to_sym] = v }
+        # Get the overlay type - handle both model objects and hashes
+        if overlay.respond_to?(:type)
+          # Model object - access type directly
+          type = overlay.type
+          overlay_obj = overlay
+        elsif overlay.is_a?(Hash)
+          # Hash - look for type key
+          type = overlay[:type] || overlay["type"]
+          # Convert to symbol keys if needed
+          overlay_obj = {}
+          overlay.each { |k, v| overlay_obj[k.to_sym] = v }
+        else
+          return ""
+        end
 
-        # Determine overlay type
-        if overlay_hash[:text] || overlay_hash["text"]
-          process_text_overlay(overlay_hash)
-        elsif overlay_hash[:input] || overlay_hash["input"]
-          input = overlay_hash[:input] || overlay_hash["input"]
-          if input.to_s.end_with?(".mp4", ".webm", ".mov", ".avi")
-            process_video_overlay(overlay_hash)
-          elsif input.to_s.end_with?(".srt", ".vtt")
-            process_subtitle_overlay(overlay_hash)
-          else
-            process_image_overlay(overlay_hash)
-          end
-        elsif overlay_hash[:color] || overlay_hash["color"]
-          process_solid_color_overlay(overlay_hash)
+        return "" unless type
+
+        # Determine overlay type based on explicit type field
+        case type.to_s
+        when "text"
+          process_text_overlay(overlay_obj)
+        when "image"
+          process_image_overlay(overlay_obj)
+        when "video"
+          process_video_overlay(overlay_obj)
+        when "subtitle"
+          process_subtitle_overlay(overlay_obj)
+        when "solidColor"
+          process_solid_color_overlay(overlay_obj)
         else
           ""
         end
@@ -391,13 +401,13 @@ module Imagekit
 
       # Process text overlay
       def process_text_overlay(overlay)
-        text = overlay[:text] || overlay["text"] || ""
-        return "" if text.empty?
+        text = safe_get(overlay, :text)
+        return "" unless text && !text.to_s.empty?
 
         parts = ["l-text"]
 
         # Handle encoding using the processText function
-        encoding = overlay[:encoding] || overlay["encoding"] || "auto"
+        encoding = safe_get(overlay, :encoding) || "auto"
         parts << process_text(text, encoding)
 
         # Add other overlay properties (position, timing, transformations)
@@ -409,13 +419,13 @@ module Imagekit
 
       # Process image overlay
       def process_image_overlay(overlay)
-        input = overlay[:input] || overlay["input"] || ""
-        return "" if input.empty?
+        input = safe_get(overlay, :input)
+        return "" unless input && !input.to_s.empty?
 
         parts = ["l-image"]
 
         # Handle encoding using the process_input_path function
-        encoding = overlay[:encoding] || overlay["encoding"] || "auto"
+        encoding = safe_get(overlay, :encoding) || "auto"
         parts << process_input_path(input, encoding)
 
         # Add other overlay properties
@@ -427,13 +437,13 @@ module Imagekit
 
       # Process video overlay
       def process_video_overlay(overlay)
-        input = overlay[:input] || overlay["input"] || ""
-        return "" if input.empty?
+        input = safe_get(overlay, :input)
+        return "" unless input && !input.to_s.empty?
 
         parts = ["l-video"]
 
         # Handle encoding using the process_input_path function
-        encoding = overlay[:encoding] || overlay["encoding"] || "auto"
+        encoding = safe_get(overlay, :encoding) || "auto"
         parts << process_input_path(input, encoding)
 
         # Add other overlay properties
@@ -445,13 +455,13 @@ module Imagekit
 
       # Process subtitle overlay
       def process_subtitle_overlay(overlay)
-        input = overlay[:input] || overlay["input"] || ""
-        return "" if input.empty?
+        input = safe_get(overlay, :input)
+        return "" unless input && !input.to_s.empty?
 
         parts = ["l-subtitle"]
 
         # Handle encoding using the process_input_path function
-        encoding = overlay[:encoding] || overlay["encoding"] || "auto"
+        encoding = safe_get(overlay, :encoding) || "auto"
         parts << process_input_path(input, encoding)
 
         # Add other overlay properties
@@ -463,8 +473,8 @@ module Imagekit
 
       # Process solid color overlay
       def process_solid_color_overlay(overlay)
-        color = overlay[:color] || overlay["color"] || ""
-        return "" if color.empty?
+        color = safe_get(overlay, :color)
+        return "" unless color && !color.to_s.empty?
 
         parts = ["l-image", "i-ik_canvas", "bg-#{color}"]
 
@@ -478,21 +488,30 @@ module Imagekit
       # Safe property access that handles both hashes and model objects
       def safe_get(obj, key)
         return nil unless obj
-        if obj.respond_to?(:[])
-          # Try symbol first, then string for hash access
+
+        # For model objects, try method access first
+        if obj.respond_to?(key.to_sym)
           begin
-            obj[key.to_sym]
+            return obj.send(key.to_sym)
+          rescue StandardError
+            # Fall through to hash access if method fails
+          end
+        end
+
+        # For hashes, try symbol first, then string
+        if obj.respond_to?(:[])
+          begin
+            return obj[key.to_sym]
           rescue StandardError
             begin
-              obj[key.to_s]
+              return obj[key.to_s]
             rescue StandardError
-              nil
+              return nil
             end
           end
-        elsif obj.respond_to?(key.to_sym)
-          # For model objects, use method access
-          obj.send(key.to_sym)
         end
+
+        nil
       end
 
       # Add overlay properties like position, timing, transformations (matching Node.js)
