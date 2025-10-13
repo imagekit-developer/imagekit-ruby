@@ -51,11 +51,8 @@ module Imagekit
               end
 
               serialized[key] = case key
-                                when :tags
-                                  # Tags should be comma-separated string
-                                  value.is_a?(Array) ? value.join(",") : value
-                                when :responseFields
-                                  # Response fields should be comma-separated string
+                                when :tags, :responseFields
+                                  # Tags and response fields should be comma-separated strings
                                   value.is_a?(Array) ? value.join(",") : value
                                 when :extensions
                                   # Extensions should be JSON stringified
