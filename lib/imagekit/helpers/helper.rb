@@ -143,7 +143,7 @@ module Imagekit
           parsed_transform_step = []
 
           current_transform.each do |key, value|
-            next if value.nil?
+            next if value.nil? || value.to_s.empty?
 
             # Handle overlay separately
             if key.to_s == "overlay" && (value.is_a?(Hash) || value.respond_to?(:to_h))
@@ -309,8 +309,9 @@ module Imagekit
         
         return "" if cleaned_parts.empty?
         
-        # Join with separator and add leading slash
-        separator + cleaned_parts.join(separator)
+        # URL encode each part and join with separator, add leading slash
+        encoded_parts = cleaned_parts.map { |part| CGI.escape(part) }
+        separator + encoded_parts.join(separator)
       end
 
       # Process overlay transformation (full implementation)
