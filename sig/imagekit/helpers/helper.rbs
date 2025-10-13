@@ -7,10 +7,15 @@ module Imagekit
       def build_url: (Imagekit::Models::SrcOptions options) -> String
 
       # Generates transformation string from transformation objects
-      def build_transformation_string: (Array[Imagekit::Models::Transformation] transformations) -> String
+      def build_transformation_string: (
+        Array[Imagekit::Models::Transformation] transformations
+      ) -> String
 
       # Generates authentication parameters for client-side file uploads
-      def get_authentication_parameters: (?String? token, ?Integer? expire) -> Hash[Symbol, (String | Integer)]
+      def get_authentication_parameters: (
+        ?String? token,
+        ?Integer? expire
+      ) -> Hash[Symbol, (String | Integer)]
     end
   end
 end

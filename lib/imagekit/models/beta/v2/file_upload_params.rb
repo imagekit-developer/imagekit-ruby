@@ -51,23 +51,23 @@ module Imagekit
               end
 
               serialized[key] = case key
-              when :tags
-                # Tags should be comma-separated string
-                value.is_a?(Array) ? value.join(',') : value
-              when :responseFields
-                # Response fields should be comma-separated string
-                value.is_a?(Array) ? value.join(',') : value
-              when :extensions
-                # Extensions should be JSON stringified
-                value.is_a?(Array) ? JSON.generate(value) : value
-              when :customMetadata
-                # Custom metadata should be JSON stringified
-                value.is_a?(Hash) ? JSON.generate(value) : value
-              when :transformation
-                # Transformation should be JSON stringified
-                (value.is_a?(Hash) || value.respond_to?(:to_h)) ? JSON.generate(value) : value
-              else
-                value
+                                when :tags
+                                  # Tags should be comma-separated string
+                                  value.is_a?(Array) ? value.join(",") : value
+                                when :responseFields
+                                  # Response fields should be comma-separated string
+                                  value.is_a?(Array) ? value.join(",") : value
+                                when :extensions
+                                  # Extensions should be JSON stringified
+                                  value.is_a?(Array) ? JSON.generate(value) : value
+                                when :customMetadata
+                                  # Custom metadata should be JSON stringified
+                                  value.is_a?(Hash) ? JSON.generate(value) : value
+                                when :transformation
+                                  # Transformation should be JSON stringified
+                                  value.is_a?(Hash) || value.respond_to?(:to_h) ? JSON.generate(value) : value
+                                else
+                                  value
               end
             end
 

@@ -4,15 +4,13 @@ module Imagekit
   module Helpers
     class Helper
       sig { params(client: Imagekit::Client).void }
-      def initialize(client:); end
+      def initialize(client:)
+      end
 
       # Builds a URL with transformations applied
-      sig do
-        params(
-          options: Imagekit::Models::SrcOptions
-        ).returns(String)
+      sig { params(options: Imagekit::Models::SrcOptions).returns(String) }
+      def build_url(options)
       end
-      def build_url(options); end
 
       # Generates transformation string from transformation objects
       sig do
@@ -20,16 +18,17 @@ module Imagekit
           transformations: T::Array[Imagekit::Models::Transformation]
         ).returns(String)
       end
-      def build_transformation_string(transformations); end
+      def build_transformation_string(transformations)
+      end
 
       # Generates authentication parameters for client-side file uploads
       sig do
-        params(
-          token: T.nilable(String),
-          expire: T.nilable(Integer)
-        ).returns(T::Hash[Symbol, T.any(String, Integer)])
+        params(token: T.nilable(String), expire: T.nilable(Integer)).returns(
+          T::Hash[Symbol, T.any(String, Integer)]
+        )
       end
-      def get_authentication_parameters(token = nil, expire = nil); end
+      def get_authentication_parameters(token = nil, expire = nil)
+      end
     end
   end
 end

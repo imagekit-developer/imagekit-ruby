@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'transformation_utils'
-require_relative 'crypto_utils'
-require_relative 'uuid_utils'
-require 'uri'
-require 'cgi'
-require 'base64'
+require_relative "transformation_utils"
+require_relative "crypto_utils"
+require_relative "uuid_utils"
+require "uri"
+require "cgi"
+require "base64"
 
 module Imagekit
   module Helpers
@@ -14,8 +14,8 @@ module Imagekit
       TRANSFORMATION_PARAMETER = "tr"
       SIGNATURE_PARAMETER = "ik-s"
       TIMESTAMP_PARAMETER = "ik-t"
-      DEFAULT_TIMESTAMP = 9999999999
-      SIMPLE_OVERLAY_PATH_REGEX = /^[a-zA-Z0-9\-._\/ ]*$/
+      DEFAULT_TIMESTAMP = 9_999_999_999
+      SIMPLE_OVERLAY_PATH_REGEX = %r{^[a-zA-Z0-9\-._/ ]*$}
       SIMPLE_OVERLAY_TEXT_REGEX = /^[a-zA-Z0-9\-._ ]*$/
 
       # Builds a URL with transformations applied
@@ -25,7 +25,7 @@ module Imagekit
       def build_url(options)
         # Convert to hash if it's a model object
         opts = options.respond_to?(:to_h) ? options.to_h : options.dup
-        
+
         # Set defaults
         opts[:url_endpoint] ||= opts["url_endpoint"] || ""
         opts[:src] ||= opts["src"] || ""
@@ -35,7 +35,7 @@ module Imagekit
 
         src = opts[:src].to_s
         is_absolute_url = src.start_with?("http://", "https://")
-        
+
         begin
           if is_absolute_url
             url_obj = URI.parse(src)
@@ -56,7 +56,7 @@ module Imagekit
 
         # Build transformation string
         transformation_string = build_transformation_string(opts[:transformation] || opts["transformation"])
-        
+
         add_as_query = TransformationUtils.add_as_query_parameter?(opts) || is_src_parameter_used_for_url
         transformation_placeholder = "PLEASEREPLACEJUSTBEFORESIGN"
 
@@ -79,7 +79,7 @@ module Imagekit
         end
 
         # Build query string
-        if !existing_params.empty?
+        unless existing_params.empty?
           url_obj.query = existing_params.map { |k, v| "#{CGI.escape(k)}=#{CGI.escape(v.first)}" }.join("&")
         end
 
@@ -93,14 +93,14 @@ module Imagekit
         end
 
         # Replace placeholder with actual transformation string
-        if !transformation_string.empty?
+        unless transformation_string.empty?
           final_url = final_url.gsub(transformation_placeholder, transformation_string)
         end
 
         # Sign the URL if needed
         if opts[:signed] == true || (opts[:expires_in] && opts[:expires_in].to_i > 0)
           expiry_timestamp = get_signature_timestamp(opts[:expires_in])
-          
+
           url_signature = get_signature(
             private_key: @client.private_key,
             url: final_url,
@@ -112,7 +112,7 @@ module Imagekit
           final_url_uri = URI.parse(final_url)
           has_existing_params = final_url_uri.query && !final_url_uri.query.empty?
           separator = has_existing_params ? "&" : "?"
-          
+
           if expiry_timestamp && expiry_timestamp != DEFAULT_TIMESTAMP
             final_url = "#{final_url}#{separator}#{TIMESTAMP_PARAMETER}=#{expiry_timestamp}"
             final_url = "#{final_url}&#{SIGNATURE_PARAMETER}=#{url_signature}"
@@ -132,14 +132,14 @@ module Imagekit
         return "" unless transformations.is_a?(Array)
 
         parsed_transforms = []
-        
+
         transformations.each do |transform|
           next unless transform
-          
+
           # Convert to hash if it's a model object
           current_transform = transform.respond_to?(:to_h) ? transform.to_h : transform
           next unless current_transform.is_a?(Hash)
-          
+
           parsed_transform_step = []
 
           current_transform.each do |key, value|
@@ -158,7 +158,7 @@ module Imagekit
 
             transform_key = TransformationUtils.get_transform_key(key)
             transform_key = key.to_s if transform_key.empty?
-            
+
             next if transform_key.empty?
 
             # Handle special boolean effects
@@ -172,7 +172,7 @@ module Imagekit
 
             # Handle effects that can be boolean or have values
             value_effects = %w[e-sharpen e-shadow e-gradient e-usm e-dropshadow]
-            if value_effects.include?(transform_key) && 
+            if value_effects.include?(transform_key) &&
                (value.to_s.strip.empty? || value == true || value == "true")
               parsed_transform_step << transform_key
               next
@@ -209,7 +209,7 @@ module Imagekit
             parsed_transform_step << "#{transform_key}#{TransformationUtils.get_transform_key_value_delimiter}#{value}"
           end
 
-          if !parsed_transform_step.empty?
+          unless parsed_transform_step.empty?
             parsed_transforms << parsed_transform_step.join(TransformationUtils.get_transform_delimiter)
           end
         end
@@ -234,9 +234,9 @@ module Imagekit
         default_expire = Time.now.to_i + default_time_diff
 
         # Handle falsy values - empty string and nil should generate new token
-        final_token = (token.nil? || token.to_s.empty?) ? generate_token : token
+        final_token = token.nil? || token.to_s.empty? ? generate_token : token
         # Handle falsy values - nil and 0 should use default expire
-        final_expire = (expire.nil? || expire == 0) ? default_expire : expire
+        final_expire = expire.nil? || expire == 0 ? default_expire : expire
 
         get_authentication_parameters_internal(final_token, final_expire, @client.private_key)
       end
@@ -253,7 +253,7 @@ module Imagekit
       # Generate a 32-character hex token
       def generate_token
         # Generate 16 random bytes and convert to hex (32 characters)
-        require 'securerandom'
+        require("securerandom")
         SecureRandom.hex(16)
       end
 
@@ -287,7 +287,7 @@ module Imagekit
       # From Node.js: str.replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/g, encodeURIComponent)
       def encode_uri_path(str)
         # Only encode characters that are NOT in the RFC 3986 path character set
-        # unreserved = ALPHA / DIGIT / "-" / "." / "_" / "~"  
+        # unreserved = ALPHA / DIGIT / "-" / "." / "_" / "~"
         # sub-delims = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
         # pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
         str.gsub(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/) { |match| CGI.escape(match) }
@@ -296,32 +296,28 @@ module Imagekit
       # Join path parts (Node.js pathJoin algorithm without encoding)
       def path_join(parts, separator = "/")
         return "" if parts.nil? || parts.empty?
-        
+
         # Clean up parts and join
         cleaned_parts = []
-        
+
         parts.each do |part|
           part = part.to_s.strip
           next if part.empty?
-          
+
           # Remove leading slashes from all parts
-          while part.start_with?(separator)
-            part = part[1..-1]
-          end
-          
+          part = part[1..-1] while part.start_with?(separator)
+
           # Remove trailing slashes from all parts
-          while part.end_with?(separator)
-            part = part[0..-2]
-          end
-          
+          part = part[0..-2] while part.end_with?(separator)
+
           cleaned_parts << part unless part.empty?
         end
-        
+
         return "" if cleaned_parts.empty?
-        
+
         # Join with separator and add leading slash (Node.js style)
         result = separator + cleaned_parts.join(separator)
-        
+
         # Apply encoding to special characters only, preserving path structure
         result.gsub(/[^\x00-\x7F]/) { |char| CGI.escape(char) }
       end
@@ -333,15 +329,15 @@ module Imagekit
         # Convert to symbol keys if needed
         overlay_hash = {}
         overlay.each { |k, v| overlay_hash[k.to_sym] = v }
-        
+
         # Determine overlay type
         if overlay_hash[:text] || overlay_hash["text"]
           process_text_overlay(overlay_hash)
         elsif overlay_hash[:input] || overlay_hash["input"]
           input = overlay_hash[:input] || overlay_hash["input"]
-          if input.to_s.end_with?('.mp4', '.webm', '.mov', '.avi')
+          if input.to_s.end_with?(".mp4", ".webm", ".mov", ".avi")
             process_video_overlay(overlay_hash)
-          elsif input.to_s.end_with?('.srt', '.vtt')
+          elsif input.to_s.end_with?(".srt", ".vtt")
             process_subtitle_overlay(overlay_hash)
           else
             process_image_overlay(overlay_hash)
@@ -357,15 +353,15 @@ module Imagekit
       def process_input_path(str, encoding)
         # Remove leading and trailing slashes
         str = remove_trailing_slash(remove_leading_slash(str))
-        
+
         case encoding.to_s
         when "plain"
-          "i-#{str.gsub("/", "@@")}"
+          "i-#{str.gsub('/', '@@')}"
         when "base64"
           "ie-#{CGI.escape(Base64.strict_encode64(str))}"
         else # auto
           if str.match?(SIMPLE_OVERLAY_PATH_REGEX)
-            "i-#{str.gsub("/", "@@")}"
+            "i-#{str.gsub('/', '@@')}"
           else
             "ie-#{CGI.escape(Base64.strict_encode64(str))}"
           end
@@ -390,10 +386,8 @@ module Imagekit
 
       # URI encode like JavaScript's encodeURIComponent (uses %20 instead of +)
       def uri_encode(str)
-        CGI.escape(str).gsub('+', '%20')
+        CGI.escape(str).gsub("+", "%20")
       end
-
-
 
       # Process text overlay
       def process_text_overlay(overlay)
@@ -401,14 +395,14 @@ module Imagekit
         return "" if text.empty?
 
         parts = ["l-text"]
-        
+
         # Handle encoding using the processText function
         encoding = overlay[:encoding] || overlay["encoding"] || "auto"
         parts << process_text(text, encoding)
 
         # Add other overlay properties (position, timing, transformations)
         add_overlay_properties(parts, overlay)
-        
+
         parts << "l-end"
         parts.join(",")
       end
@@ -419,14 +413,14 @@ module Imagekit
         return "" if input.empty?
 
         parts = ["l-image"]
-        
+
         # Handle encoding using the process_input_path function
         encoding = overlay[:encoding] || overlay["encoding"] || "auto"
         parts << process_input_path(input, encoding)
 
         # Add other overlay properties
         add_overlay_properties(parts, overlay)
-        
+
         parts << "l-end"
         parts.join(",")
       end
@@ -437,14 +431,14 @@ module Imagekit
         return "" if input.empty?
 
         parts = ["l-video"]
-        
+
         # Handle encoding using the process_input_path function
         encoding = overlay[:encoding] || overlay["encoding"] || "auto"
         parts << process_input_path(input, encoding)
 
         # Add other overlay properties
         add_overlay_properties(parts, overlay)
-        
+
         parts << "l-end"
         parts.join(",")
       end
@@ -455,14 +449,14 @@ module Imagekit
         return "" if input.empty?
 
         parts = ["l-subtitle"]
-        
+
         # Handle encoding using the process_input_path function
         encoding = overlay[:encoding] || overlay["encoding"] || "auto"
         parts << process_input_path(input, encoding)
 
         # Add other overlay properties
         add_overlay_properties(parts, overlay)
-        
+
         parts << "l-end"
         parts.join(",")
       end
@@ -473,10 +467,10 @@ module Imagekit
         return "" if color.empty?
 
         parts = ["l-image", "i-ik_canvas", "bg-#{color}"]
-        
+
         # Add other overlay properties
         add_overlay_properties(parts, overlay)
-        
+
         parts << "l-end"
         parts.join(",")
       end
@@ -486,7 +480,15 @@ module Imagekit
         return nil unless obj
         if obj.respond_to?(:[])
           # Try symbol first, then string for hash access
-          obj[key.to_sym] rescue (obj[key.to_s] rescue nil)
+          begin
+            obj[key.to_sym]
+          rescue StandardError
+            begin
+              obj[key.to_s]
+            rescue StandardError
+              nil
+            end
+          end
         elsif obj.respond_to?(key.to_sym)
           # For model objects, use method access
           obj.send(key.to_sym)
@@ -499,43 +501,41 @@ module Imagekit
         position = safe_get(overlay, :position)
         if position
           x = safe_get(position, :x)
-          y = safe_get(position, :y) || safe_get(position, :y_) 
+          y = safe_get(position, :y) || safe_get(position, :y_)
           focus = safe_get(position, :focus)
-          
+
           parts << "lx-#{x}" if x
-          parts << "ly-#{y}" if y  
+          parts << "ly-#{y}" if y
           parts << "lfo-#{focus}" if focus
         end
 
-        # Add timing properties  
+        # Add timing properties
         timing = safe_get(overlay, :timing)
         if timing
           start = safe_get(timing, :start)
           end_time = safe_get(timing, :end) || safe_get(timing, :end_)
           duration = safe_get(timing, :duration)
-          
+
           parts << "lso-#{start.to_i}" if start
-          parts << "leo-#{end_time.to_i}" if end_time  
+          parts << "leo-#{end_time.to_i}" if end_time
           parts << "ldu-#{duration}" if duration
         end
 
         # Add transformation properties
         transformations = safe_get(overlay, :transformation)
-        if transformations && transformations.is_a?(Array)
-          transformation_string = build_transformation_string(transformations)
-          if transformation_string && !transformation_string.strip.empty?
-            parts << transformation_string
-          end
-        end
+        return unless transformations && transformations.is_a?(Array)
+        transformation_string = build_transformation_string(transformations)
+        return unless transformation_string && !transformation_string.strip.empty?
+        parts << transformation_string
       end
 
       # Calculate expiry timestamp for URL signing
       def get_signature_timestamp(seconds)
         return DEFAULT_TIMESTAMP unless seconds && seconds.to_i > 0
-        
+
         sec = seconds.to_i
         return DEFAULT_TIMESTAMP if sec <= 0
-        
+
         Time.now.to_i + sec
       end
 
