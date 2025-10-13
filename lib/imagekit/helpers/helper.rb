@@ -57,7 +57,8 @@ module Imagekit
         # Build transformation string
         transformation_string = build_transformation_string(opts[:transformation])
 
-        add_as_query = TransformationUtils.add_as_query_parameter?(opts) || is_src_parameter_used_for_url
+        add_as_query = Imagekit::Helpers::TransformationUtils.add_as_query_parameter?(opts) ||
+                       is_src_parameter_used_for_url
         transformation_placeholder = "PLEASEREPLACEJUSTBEFORESIGN"
 
         unless is_absolute_url
@@ -71,7 +72,7 @@ module Imagekit
           end
 
           if !transformation_string.empty? && !add_as_query
-            path_parts << "#{TRANSFORMATION_PARAMETER}#{TransformationUtils.get_chain_transform_delimiter}#{transformation_placeholder}"
+            path_parts << "#{TRANSFORMATION_PARAMETER}#{Imagekit::Helpers::TransformationUtils.get_chain_transform_delimiter}#{transformation_placeholder}"
           end
 
           path_parts << src
@@ -98,7 +99,7 @@ module Imagekit
         end
 
         # Sign the URL if needed
-        if opts[:signed] == true || (opts[:expires_in] && opts[:expires_in].to_i > 0)
+        if opts[:signed] == true || (opts[:expires_in] && opts[:expires_in].to_i.positive?)
           expiry_timestamp = get_signature_timestamp(opts[:expires_in])
 
           url_signature = get_signature(
@@ -154,7 +155,7 @@ module Imagekit
               next
             end
 
-            transform_key = TransformationUtils.get_transform_key(key)
+            transform_key = Imagekit::Helpers::TransformationUtils.get_transform_key(key)
             transform_key = key.to_s if transform_key.empty?
 
             next if transform_key.empty?
@@ -204,15 +205,15 @@ module Imagekit
               value = value.to_i if value == value.to_i
             end
 
-            parsed_transform_step << "#{transform_key}#{TransformationUtils.get_transform_key_value_delimiter}#{value}"
+            parsed_transform_step << "#{transform_key}#{Imagekit::Helpers::TransformationUtils.get_transform_key_value_delimiter}#{value}"
           end
 
           unless parsed_transform_step.empty?
-            parsed_transforms << parsed_transform_step.join(TransformationUtils.get_transform_delimiter)
+            parsed_transforms << parsed_transform_step.join(Imagekit::Helpers::TransformationUtils.get_transform_delimiter)
           end
         end
 
-        parsed_transforms.join(TransformationUtils.get_chain_transform_delimiter)
+        parsed_transforms.join(Imagekit::Helpers::TransformationUtils.get_chain_transform_delimiter)
       end
 
       # Generates authentication parameters for client-side file uploads using ImageKit's Upload API V1.
@@ -234,7 +235,7 @@ module Imagekit
         # Handle falsy values - empty string and nil should generate new token
         final_token = token.nil? || token.to_s.empty? ? generate_token : token
         # Handle falsy values - nil and 0 should use default expire
-        final_expire = expire.nil? || expire == 0 ? default_expire : expire
+        final_expire = expire.nil? || expire.zero? ? default_expire : expire
 
         get_authentication_parameters_internal(final_token, final_expire, @client.private_key)
       end
@@ -263,7 +264,7 @@ module Imagekit
           signature: ""
         }
 
-        signature = CryptoUtils.create_hmac_sha1(private_key, token.to_s + expire.to_s)
+        signature = Imagekit::Helpers::CryptoUtils.create_hmac_sha1(private_key, token.to_s + expire.to_s)
         auth_parameters[:signature] = signature
 
         auth_parameters
@@ -278,7 +279,7 @@ module Imagekit
       # Remove leading slash from string
       def remove_leading_slash(str)
         return str unless str.is_a?(String) && str.start_with?("/")
-        str[1..-1]
+        str[1..]
       end
 
       # RFC 3986 path encoding - matches Node.js encodeURIPath exactly
@@ -303,7 +304,7 @@ module Imagekit
           next if part.empty?
 
           # Remove leading slashes from all parts
-          part = part[1..-1] while part.start_with?(separator)
+          part = part[1..] while part.start_with?(separator)
 
           # Remove trailing slashes from all parts
           part = part[0..-2] while part.end_with?(separator)
@@ -515,7 +516,7 @@ module Imagekit
 
       # Calculate expiry timestamp for URL signing
       def get_signature_timestamp(seconds)
-        return DEFAULT_TIMESTAMP unless seconds && seconds.to_i > 0
+        return DEFAULT_TIMESTAMP unless seconds && seconds.to_i.positive?
 
         sec = seconds.to_i
         return DEFAULT_TIMESTAMP if sec <= 0
@@ -531,14 +532,14 @@ module Imagekit
         endpoint_with_slash = add_trailing_slash(url_endpoint)
         string_to_sign = url.gsub(endpoint_with_slash, "") + expiry_timestamp.to_s
 
-        CryptoUtils.create_hmac_sha1(private_key, string_to_sign)
+        Imagekit::Helpers::CryptoUtils.create_hmac_sha1(private_key, string_to_sign)
       end
 
       # Add trailing slash to string if not present
       def add_trailing_slash(str)
         return str unless str.is_a?(String)
         return str if str.end_with?("/")
-        str + "/"
+        "#{str}/"
       end
     end
   end
