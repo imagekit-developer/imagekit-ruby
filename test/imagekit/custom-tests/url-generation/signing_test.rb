@@ -89,7 +89,7 @@ class SigningTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/demo/sdk-testing-files/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80.png?tr=l-text,ie-4KS54KS%2F4KSo4KWN4KSm4KWA,fs-32,ff-sdk-testing-files@@Poppins-Regular_Q15GrYWmL.ttf,co-red,l-end&ik-s=705e41579d368caa6530a4375355325277fcfe5c"
+    expected = "https://ik.imagekit.io/demo/sdk-testing-files/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80.png?tr=l-text,ie-4KS54KS%2F4KSo4KWN4KSm4KWA,co-red,fs-32,ff-sdk-testing-files@@Poppins-Regular_Q15GrYWmL.ttf,l-end&ik-s=ac9f24a03080102555e492185533c1ae6bd93fa7"
     assert_equal(expected, url)
   end
 
@@ -119,7 +119,7 @@ class SigningTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/demo/tr:l-text,ie-4KS54KS%2F4KSo4KWN4KSm4KWA,fs-32,ff-sdk-testing-files@@Poppins-Regular_Q15GrYWmL.ttf,co-red,l-end/sdk-testing-files/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80.png?ik-s=20958f6126fd67c90653f55a49f2b7bb938d9d1c"
+    expected = "https://ik.imagekit.io/demo/tr:l-text,ie-4KS54KS%2F4KSo4KWN4KSm4KWA,co-red,fs-32,ff-sdk-testing-files@@Poppins-Regular_Q15GrYWmL.ttf,l-end/sdk-testing-files/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80.png?ik-s=69f2ecbb7364bbbad24616e1f7f1bac5a560fc71"
     assert_equal(expected, url)
   end
 
@@ -138,7 +138,7 @@ class SigningTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/demo/sdk-testing-files/future-search.png?cache=false&version=1.0&ik-s=03767bb6f0898c04e42f65714af65d937c696d66"
+    expected = "https://ik.imagekit.io/demo/sdk-testing-files/future-search.png?version=1.0&cache=false&ik-s=f2e5a1b8b6a0b03fd63789dfc6413a94acef9fd8"
     assert_equal(expected, url)
   end
 

@@ -283,7 +283,17 @@ module Imagekit
         str[1..-1]
       end
 
-      # Join path parts
+      # RFC 3986 path encoding - matches Node.js encodeURIPath exactly
+      # From Node.js: str.replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/g, encodeURIComponent)
+      def encode_uri_path(str)
+        # Only encode characters that are NOT in the RFC 3986 path character set
+        # unreserved = ALPHA / DIGIT / "-" / "." / "_" / "~"  
+        # sub-delims = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
+        # pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
+        str.gsub(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/) { |match| CGI.escape(match) }
+      end
+
+      # Join path parts (Node.js pathJoin algorithm without encoding)
       def path_join(parts, separator = "/")
         return "" if parts.nil? || parts.empty?
         
@@ -309,9 +319,11 @@ module Imagekit
         
         return "" if cleaned_parts.empty?
         
-        # URL encode each part and join with separator, add leading slash
-        encoded_parts = cleaned_parts.map { |part| CGI.escape(part) }
-        separator + encoded_parts.join(separator)
+        # Join with separator and add leading slash (Node.js style)
+        result = separator + cleaned_parts.join(separator)
+        
+        # Apply encoding to special characters only, preserving path structure
+        result.gsub(/[^\x00-\x7F]/) { |char| CGI.escape(char) }
       end
 
       # Process overlay transformation (full implementation)
