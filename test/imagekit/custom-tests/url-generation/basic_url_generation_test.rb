@@ -31,7 +31,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/"
+    expected = "https://ik.imagekit.io/test_url_endpoint"
     assert_equal(expected, url)
   end
 
@@ -93,7 +93,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300:rt-90"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400:rt-90"
     assert_equal(expected, url)
   end
 
@@ -114,7 +114,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/tr:w-400,h-300/test_path.jpg"
+    expected = "https://ik.imagekit.io/test_url_endpoint/tr:h-300,w-400/test_path.jpg"
     assert_equal(expected, url)
   end
 
@@ -135,7 +135,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -156,7 +156,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://my.custom.domain.com/test_path.jpg?tr=w-400,h-300"
+    expected = "https://my.custom.domain.com/test_path.jpg?tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -177,7 +177,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/imagekit_id/new-endpoint/test_path.jpg?t1=v1&tr=w-400,h-300"
+    expected = "https://ik.imagekit.io/imagekit_id/new-endpoint/test_path.jpg?t1=v1&tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -198,7 +198,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -219,7 +219,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint_alt/test_path.jpg?tr=w-400,h-300"
+    expected = "https://ik.imagekit.io/test_url_endpoint_alt/test_path.jpg?tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -240,7 +240,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -261,7 +261,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path_alt.jpg?tr=w-400,h-300"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path_alt.jpg?tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -288,7 +288,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path_alt.jpg?t1=v1&t2=v2&t3=v3&tr=w-400,h-300"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path_alt.jpg?t1=v1&t2=v2&t3=v3&tr=h-300,w-400"
     assert_equal(expected, url)
   end
 
@@ -312,7 +312,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300:rt-90"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400:rt-90"
     assert_equal(expected, url)
   end
 
@@ -336,7 +336,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300:rndm_trnsf-abcd"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400:rndm_trnsf-abcd"
     assert_equal(expected, url)
   end
 
@@ -358,7 +358,7 @@ class BasicURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300,b-20_FF0000"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400,b-20_FF0000"
     assert_equal(expected, url)
   end
 
