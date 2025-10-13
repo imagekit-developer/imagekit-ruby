@@ -23,13 +23,13 @@ module Imagekit
       # @param options [Imagekit::Models::SrcOptions] Options for generating ImageKit URLs with transformations
       # @return [String] The built URL with transformations
       def build_url(options)
-        # Convert to hash if it's a model object
-        opts = options.respond_to?(:to_h) ? options.to_h : options.dup
+        # Convert model to hash - all inputs are expected to be BaseModel objects
+        opts = options.to_h
 
         # Set defaults
-        opts[:url_endpoint] ||= opts["url_endpoint"] || ""
-        opts[:src] ||= opts["src"] || ""
-        opts[:transformation_position] ||= opts["transformation_position"] || :query
+        opts[:url_endpoint] ||= ""
+        opts[:src] ||= ""
+        opts[:transformation_position] ||= :query
 
         return "" if opts[:src].nil? || opts[:src].empty?
 
@@ -48,14 +48,14 @@ module Imagekit
         end
 
         # Add query parameters
-        query_params = opts[:query_parameters] || opts["query_parameters"] || {}
+        query_params = opts[:query_parameters] || {}
         existing_params = CGI.parse(url_obj.query || "")
         query_params.each do |key, value|
           existing_params[key.to_s] = [value.to_s]
         end
 
         # Build transformation string
-        transformation_string = build_transformation_string(opts[:transformation] || opts["transformation"])
+        transformation_string = build_transformation_string(opts[:transformation])
 
         add_as_query = TransformationUtils.add_as_query_parameter?(opts) || is_src_parameter_used_for_url
         transformation_placeholder = "PLEASEREPLACEJUSTBEFORESIGN"
@@ -136,9 +136,8 @@ module Imagekit
         transformations.each do |transform|
           next unless transform
 
-          # Convert to hash if it's a model object
-          current_transform = transform.respond_to?(:to_h) ? transform.to_h : transform
-          next unless current_transform.is_a?(Hash)
+          # Convert model to hash - all transformation inputs are expected to be BaseModel objects
+          current_transform = transform.to_h
 
           parsed_transform_step = []
 
@@ -146,8 +145,8 @@ module Imagekit
             next if value.nil? || value.to_s.empty?
 
             # Handle overlay separately
-            if key.to_s == "overlay" && (value.is_a?(Hash) || value.respond_to?(:to_h))
-              # Pass model object or hash directly to process_overlay
+            if key.to_s == "overlay" && value
+              # Pass model object directly to process_overlay
               raw_string = process_overlay(value)
               if raw_string && !raw_string.strip.empty?
                 parsed_transform_step << raw_string
@@ -325,35 +324,22 @@ module Imagekit
       def process_overlay(overlay)
         return "" unless overlay
 
-        # Get the overlay type - handle both model objects and hashes
-        if overlay.respond_to?(:type)
-          # Model object - access type directly
-          type = overlay.type
-          overlay_obj = overlay
-        elsif overlay.is_a?(Hash)
-          # Hash - look for type key
-          type = overlay[:type] || overlay["type"]
-          # Convert to symbol keys if needed
-          overlay_obj = {}
-          overlay.each { |k, v| overlay_obj[k.to_sym] = v }
-        else
-          return ""
-        end
-
+        # All overlay inputs are expected to be BaseModel objects with type accessor
+        type = overlay.type
         return "" unless type
 
         # Determine overlay type based on explicit type field
         case type.to_s
         when "text"
-          process_text_overlay(overlay_obj)
+          process_text_overlay(overlay)
         when "image"
-          process_image_overlay(overlay_obj)
+          process_image_overlay(overlay)
         when "video"
-          process_video_overlay(overlay_obj)
+          process_video_overlay(overlay)
         when "subtitle"
-          process_subtitle_overlay(overlay_obj)
+          process_subtitle_overlay(overlay)
         when "solidColor"
-          process_solid_color_overlay(overlay_obj)
+          process_solid_color_overlay(overlay)
         else
           ""
         end
@@ -485,33 +471,12 @@ module Imagekit
         parts.join(",")
       end
 
-      # Safe property access that handles both hashes and model objects
+      # Safe property access for model objects
       def safe_get(obj, key)
         return nil unless obj
 
-        # For model objects, try method access first
-        if obj.respond_to?(key.to_sym)
-          begin
-            return obj.send(key.to_sym)
-          rescue StandardError
-            # Fall through to hash access if method fails
-          end
-        end
-
-        # For hashes, try symbol first, then string
-        if obj.respond_to?(:[])
-          begin
-            return obj[key.to_sym]
-          rescue StandardError
-            begin
-              return obj[key.to_s]
-            rescue StandardError
-              return nil
-            end
-          end
-        end
-
-        nil
+        # All inputs are expected to be BaseModel objects with property accessors
+        obj.respond_to?(key.to_sym) ? obj.send(key.to_sym) : nil
       end
 
       # Add overlay properties like position, timing, transformations (matching Node.js)
@@ -520,7 +485,7 @@ module Imagekit
         position = safe_get(overlay, :position)
         if position
           x = safe_get(position, :x)
-          y = safe_get(position, :y) || safe_get(position, :y_)
+          y = safe_get(position, :y_)
           focus = safe_get(position, :focus)
 
           parts << "lx-#{x}" if x
@@ -532,7 +497,7 @@ module Imagekit
         timing = safe_get(overlay, :timing)
         if timing
           start = safe_get(timing, :start)
-          end_time = safe_get(timing, :end) || safe_get(timing, :end_)
+          end_time = safe_get(timing, :end_)
           duration = safe_get(timing, :duration)
 
           parts << "lso-#{start.to_i}" if start
