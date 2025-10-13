@@ -100,7 +100,7 @@ module Imagekit
 
       base_url ||= "https://api.imagekit.io"
 
-      if private_key.nil?
+      if private_key.nil? || private_key.to_s.empty?
         raise ArgumentError.new("private_key is required, and can be set via environ: \"IMAGEKIT_PRIVATE_KEY\"")
       end
 
