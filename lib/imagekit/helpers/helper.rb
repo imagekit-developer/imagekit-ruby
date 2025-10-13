@@ -3,9 +3,6 @@
 require_relative "transformation_utils"
 require_relative "crypto_utils"
 require_relative "uuid_utils"
-require "uri"
-require "cgi"
-require "base64"
 
 module Imagekit
   module Helpers
