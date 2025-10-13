@@ -71,7 +71,9 @@ class BuildTransformationStringTest < Minitest::Test
   def test_should_handle_transformation_with_overlay
     transformation = [
       Imagekit::Models::Transformation.new(
-        overlay_text: "Hello"
+        overlay: Imagekit::Models::TextOverlay.new(
+          text: "Hello"
+        )
       )
     ]
 
