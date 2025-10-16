@@ -33,6 +33,15 @@ module Imagekit
             Net::HTTP.new(url.host, port).tap do
               _1.use_ssl = %w[https wss].include?(url.scheme)
               _1.max_retries = 0
+
+              # Temporary workaround for SSL verification issue on some
+              # platforms. Similar to: https://github.com/stripe/stripe-ruby/pull/397
+              if _1.use_ssl?
+                cert_store = OpenSSL::X509::Store.new
+                cert_store.set_default_paths
+                _1.cert_store = cert_store
+                _1.verify_mode = OpenSSL::SSL::VERIFY_PEER
+              end
             end
           end
 
