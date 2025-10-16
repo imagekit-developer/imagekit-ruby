@@ -36,6 +36,10 @@ module Imagekit
 
               # Temporary workaround for SSL verification issue on some
               # platforms. Similar to: https://github.com/stripe/stripe-ruby/pull/397
+              # Without this fix you may see errors like:
+              # .rbenv/versions/3.2.0/lib/ruby/3.2.0/net/protocol.rb:46:in `connect_nonblock':
+              # SSL_connect returned=1 errno=0 peeraddr=52.23.130.57:443 state=error:
+              # certificate verify failed (unable to get certificate CRL) (OpenSSL::SSL::SSLError)
               if _1.use_ssl?
                 cert_store = OpenSSL::X509::Store.new
                 cert_store.set_default_paths
