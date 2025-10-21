@@ -246,42 +246,28 @@ module Imagekit
       # - DPR-based (x descriptors): When width is provided without sizes
       # - Fallback (w descriptors): Uses device breakpoints when neither is provided
       #
-      # @param options [Hash] Options for generating responsive image attributes
-      # @option options [String] :src Required. The relative or absolute path of the image
-      # @option options [String] :url_endpoint Required. Your ImageKit URL endpoint
-      # @option options [Integer] :width The intended display width in pixels, used only when sizes is not provided.
-      #   Triggers a DPR-based strategy (1x and 2x variants) and generates x descriptors in srcSet. Ignored if sizes is present.
-      # @option options [String] :sizes The value for the HTML sizes attribute (e.g., "100vw" or "(min-width:768px) 50vw, 100vw").
-      #   If it includes one or more vw units, breakpoints smaller than the corresponding percentage of the smallest device width are excluded.
-      #   If it contains no vw units, the full breakpoint list is used. Enables a width-based strategy and generates w descriptors in srcSet.
-      # @option options [Array<Integer>] :device_breakpoints Custom list of device-width breakpoints in pixels.
-      #   These define common screen widths for responsive image generation. Defaults to [640, 750, 828, 1080, 1200, 1920, 2048, 3840]. Sorted automatically.
-      # @option options [Array<Integer>] :image_breakpoints Custom list of image-specific breakpoints in pixels.
-      #   Useful for generating small variants (e.g., placeholders or thumbnails). Merged with device_breakpoints before calculating srcSet.
-      #   Defaults to [16, 32, 48, 64, 96, 128, 256, 384]. Sorted automatically.
-      # @option options [Array<Hash>] :transformation Array of transformation objects to apply
-      # @option options [Symbol] :transformation_position Where to add transformations (:path or :query)
-      # @option options [Hash] :query_parameters Additional query parameters to add to URLs
-      # @return [Hash] Hash containing responsive image attributes suitable for an HTML <img> element:
-      #   - :src - URL for the largest candidate (assigned to plain src)
-      #   - :src_set - Candidate set with w or x descriptors (if generated)
-      #   - :sizes - sizes attribute value (returned or synthesized as "100vw")
-      #   - :width - Width as a number (if width was provided)
-      def get_responsive_image_attributes(options = {})
+      # @param options [Imagekit::Models::GetImageAttributesOptions] Options for generating responsive image attributes
+      # @return [Imagekit::Models::ResponsiveImageAttributes] Responsive image attributes suitable for an HTML <img> element
+      def get_responsive_image_attributes(options)
+        # Convert model to hash for easier access
+        opts = options.is_a?(Imagekit::Internal::Type::BaseModel) ? options.to_h : options
+
         # Default breakpoint pools
         default_device_breakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840]
         default_image_breakpoints = [16, 32, 48, 64, 96, 128, 256, 384]
 
         # Extract options
-        src = options[:src]
-        url_endpoint = options[:url_endpoint]
-        width = options[:width]
-        sizes = options[:sizes]
-        device_breakpoints = options[:device_breakpoints] || default_device_breakpoints
-        image_breakpoints = options[:image_breakpoints] || default_image_breakpoints
-        transformation = options[:transformation] || []
-        transformation_position = options[:transformation_position]
-        query_parameters = options[:query_parameters]
+        src = opts[:src]
+        url_endpoint = opts[:url_endpoint]
+        width = opts[:width]
+        sizes = opts[:sizes]
+        device_breakpoints = opts[:device_breakpoints] || default_device_breakpoints
+        image_breakpoints = opts[:image_breakpoints] || default_image_breakpoints
+        transformation = opts[:transformation] || []
+        transformation_position = opts[:transformation_position]
+        query_parameters = opts[:query_parameters]
+        expires_in = opts[:expires_in]
+        signed = opts[:signed]
 
         # Sort and merge breakpoints
         sorted_device_breakpoints = device_breakpoints.sort
@@ -306,6 +292,8 @@ module Imagekit
               url_endpoint: url_endpoint,
               query_parameters: query_parameters,
               transformation_position: transformation_position,
+              expires_in: expires_in,
+              signed: signed,
               transformation: transformation + [
                 Imagekit::Models::Transformation.new(width: w, crop: "at_max") # never upscale beyond original
               ]
@@ -322,15 +310,13 @@ module Imagekit
 
         final_sizes = sizes || (descriptor_kind == :w ? "100vw" : nil)
 
-        # Build result - include only when defined
-        result = {
-          src: build_url_fn.call(candidates.last) # largest candidate
-        }
-        result[:src_set] = src_set if src_set
-        result[:sizes] = final_sizes if final_sizes
-        result[:width] = width if width
-
-        result
+        # Build and return ResponsiveImageAttributes model
+        Imagekit::Models::ResponsiveImageAttributes.new(
+          src: build_url_fn.call(candidates.last), # largest candidate
+          src_set: src_set,
+          sizes: final_sizes,
+          width: width
+        )
       end
 
       # @api private

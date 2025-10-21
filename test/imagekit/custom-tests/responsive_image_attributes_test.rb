@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../test_helper"
+require_relative "../test_helper"
 
 class ResponsiveImageAttributesTest < Minitest::Test
   def setup
@@ -20,10 +20,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=w-640,c-at_max 640w, https://ik.imagekit.io/demo/sample.jpg?tr=w-750,c-at_max 750w, https://ik.imagekit.io/demo/sample.jpg?tr=w-828,c-at_max 828w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1080,c-at_max 1080w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1200,c-at_max 1200w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1920,c-at_max 1920w, https://ik.imagekit.io/demo/sample.jpg?tr=w-2048,c-at_max 2048w, https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max 3840w",
-      sizes: "100vw"
+      sizes: "100vw",
+      width: nil
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_sizes_provided_100vw
@@ -37,10 +38,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=w-640,c-at_max 640w, https://ik.imagekit.io/demo/sample.jpg?tr=w-750,c-at_max 750w, https://ik.imagekit.io/demo/sample.jpg?tr=w-828,c-at_max 828w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1080,c-at_max 1080w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1200,c-at_max 1200w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1920,c-at_max 1920w, https://ik.imagekit.io/demo/sample.jpg?tr=w-2048,c-at_max 2048w, https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max 3840w",
-      sizes: "100vw"
+      sizes: "100vw",
+      width: nil
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_width_only_dpr_strategy
@@ -54,10 +56,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=w-828,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=w-640,c-at_max 1x, https://ik.imagekit.io/demo/sample.jpg?tr=w-828,c-at_max 2x",
-      width: 400
+      sizes: nil,
+      width: 400.0
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_custom_breakpoints
@@ -72,10 +75,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=w-800,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=w-200,c-at_max 200w, https://ik.imagekit.io/demo/sample.jpg?tr=w-400,c-at_max 400w, https://ik.imagekit.io/demo/sample.jpg?tr=w-800,c-at_max 800w",
-      sizes: "100vw"
+      sizes: "100vw",
+      width: nil
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_preserves_caller_transformations
@@ -90,10 +94,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=h-300:w-1080,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=h-300:w-640,c-at_max 1x, https://ik.imagekit.io/demo/sample.jpg?tr=h-300:w-1080,c-at_max 2x",
-      width: 500
+      sizes: nil,
+      width: 500.0
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_both_sizes_and_width_passed
@@ -109,10 +114,10 @@ class ResponsiveImageAttributesTest < Minitest::Test
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=w-384,c-at_max 384w, https://ik.imagekit.io/demo/sample.jpg?tr=w-640,c-at_max 640w, https://ik.imagekit.io/demo/sample.jpg?tr=w-750,c-at_max 750w, https://ik.imagekit.io/demo/sample.jpg?tr=w-828,c-at_max 828w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1080,c-at_max 1080w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1200,c-at_max 1200w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1920,c-at_max 1920w, https://ik.imagekit.io/demo/sample.jpg?tr=w-2048,c-at_max 2048w, https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max 3840w",
       sizes: "50vw",
-      width: 600
+      width: 600.0
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_multiple_transformations
@@ -130,10 +135,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=h-300:e-bgremove:w-1080,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=h-300:e-bgremove:w-640,c-at_max 1x, https://ik.imagekit.io/demo/sample.jpg?tr=h-300:e-bgremove:w-1080,c-at_max 2x",
-      width: 450
+      sizes: nil,
+      width: 450.0
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_sizes_causes_breakpoint_pruning_33vw_path
@@ -147,10 +153,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=w-256,c-at_max 256w, https://ik.imagekit.io/demo/sample.jpg?tr=w-384,c-at_max 384w, https://ik.imagekit.io/demo/sample.jpg?tr=w-640,c-at_max 640w, https://ik.imagekit.io/demo/sample.jpg?tr=w-750,c-at_max 750w, https://ik.imagekit.io/demo/sample.jpg?tr=w-828,c-at_max 828w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1080,c-at_max 1080w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1200,c-at_max 1200w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1920,c-at_max 1920w, https://ik.imagekit.io/demo/sample.jpg?tr=w-2048,c-at_max 2048w, https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max 3840w",
-      sizes: "(min-width: 800px) 33vw, 100vw"
+      sizes: "(min-width: 800px) 33vw, 100vw",
+      width: nil
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_using_query_parameters_and_transformation_position
@@ -170,10 +177,11 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/tr:h-300:e-bgremove:w-1080,c-at_max/sample.jpg?key=value",
       src_set: "https://ik.imagekit.io/demo/tr:h-300:e-bgremove:w-640,c-at_max/sample.jpg?key=value 1x, https://ik.imagekit.io/demo/tr:h-300:e-bgremove:w-1080,c-at_max/sample.jpg?key=value 2x",
-      width: 450
+      sizes: nil,
+      width: 450.0
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 
   def test_fallback_when_no_usable_vw_tokens
@@ -187,9 +195,10 @@ class ResponsiveImageAttributesTest < Minitest::Test
     expected = {
       src: "https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max",
       src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=w-16,c-at_max 16w, https://ik.imagekit.io/demo/sample.jpg?tr=w-32,c-at_max 32w, https://ik.imagekit.io/demo/sample.jpg?tr=w-48,c-at_max 48w, https://ik.imagekit.io/demo/sample.jpg?tr=w-64,c-at_max 64w, https://ik.imagekit.io/demo/sample.jpg?tr=w-96,c-at_max 96w, https://ik.imagekit.io/demo/sample.jpg?tr=w-128,c-at_max 128w, https://ik.imagekit.io/demo/sample.jpg?tr=w-256,c-at_max 256w, https://ik.imagekit.io/demo/sample.jpg?tr=w-384,c-at_max 384w, https://ik.imagekit.io/demo/sample.jpg?tr=w-640,c-at_max 640w, https://ik.imagekit.io/demo/sample.jpg?tr=w-750,c-at_max 750w, https://ik.imagekit.io/demo/sample.jpg?tr=w-828,c-at_max 828w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1080,c-at_max 1080w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1200,c-at_max 1200w, https://ik.imagekit.io/demo/sample.jpg?tr=w-1920,c-at_max 1920w, https://ik.imagekit.io/demo/sample.jpg?tr=w-2048,c-at_max 2048w, https://ik.imagekit.io/demo/sample.jpg?tr=w-3840,c-at_max 3840w",
-      sizes: "100%"
+      sizes: "100%",
+      width: nil
     }
 
-    assert_equal(expected, result)
+    assert_equal(expected, result.to_h)
   end
 end
