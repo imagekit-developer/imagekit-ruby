@@ -237,6 +237,102 @@ module Imagekit
         get_authentication_parameters_internal(final_token, final_expire, @client.private_key)
       end
 
+      # Generates responsive image attributes for use in HTML <img> tags.
+      #
+      # This method creates optimized srcset and sizes attributes for responsive images,
+      # enabling browsers to select the most appropriate image size based on the device's
+      # screen width and resolution. Supports three strategies:
+      # - Width-based (w descriptors): When sizes attribute is provided
+      # - DPR-based (x descriptors): When width is provided without sizes
+      # - Fallback (w descriptors): Uses device breakpoints when neither is provided
+      #
+      # @param options [Hash] Options for generating responsive image attributes
+      # @option options [String] :src Required. The relative or absolute path of the image
+      # @option options [String] :url_endpoint Required. Your ImageKit URL endpoint
+      # @option options [Integer] :width The intended display width in pixels, used only when sizes is not provided.
+      #   Triggers a DPR-based strategy (1x and 2x variants) and generates x descriptors in srcSet. Ignored if sizes is present.
+      # @option options [String] :sizes The value for the HTML sizes attribute (e.g., "100vw" or "(min-width:768px) 50vw, 100vw").
+      #   If it includes one or more vw units, breakpoints smaller than the corresponding percentage of the smallest device width are excluded.
+      #   If it contains no vw units, the full breakpoint list is used. Enables a width-based strategy and generates w descriptors in srcSet.
+      # @option options [Array<Integer>] :device_breakpoints Custom list of device-width breakpoints in pixels.
+      #   These define common screen widths for responsive image generation. Defaults to [640, 750, 828, 1080, 1200, 1920, 2048, 3840]. Sorted automatically.
+      # @option options [Array<Integer>] :image_breakpoints Custom list of image-specific breakpoints in pixels.
+      #   Useful for generating small variants (e.g., placeholders or thumbnails). Merged with device_breakpoints before calculating srcSet.
+      #   Defaults to [16, 32, 48, 64, 96, 128, 256, 384]. Sorted automatically.
+      # @option options [Array<Hash>] :transformation Array of transformation objects to apply
+      # @option options [Symbol] :transformation_position Where to add transformations (:path or :query)
+      # @option options [Hash] :query_parameters Additional query parameters to add to URLs
+      # @return [Hash] Hash containing responsive image attributes suitable for an HTML <img> element:
+      #   - :src - URL for the largest candidate (assigned to plain src)
+      #   - :src_set - Candidate set with w or x descriptors (if generated)
+      #   - :sizes - sizes attribute value (returned or synthesized as "100vw")
+      #   - :width - Width as a number (if width was provided)
+      def get_responsive_image_attributes(options = {})
+        # Default breakpoint pools
+        default_device_breakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840]
+        default_image_breakpoints = [16, 32, 48, 64, 96, 128, 256, 384]
+
+        # Extract options
+        src = options[:src]
+        url_endpoint = options[:url_endpoint]
+        width = options[:width]
+        sizes = options[:sizes]
+        device_breakpoints = options[:device_breakpoints] || default_device_breakpoints
+        image_breakpoints = options[:image_breakpoints] || default_image_breakpoints
+        transformation = options[:transformation] || []
+        transformation_position = options[:transformation_position]
+        query_parameters = options[:query_parameters]
+
+        # Sort and merge breakpoints
+        sorted_device_breakpoints = device_breakpoints.sort
+        sorted_image_breakpoints = image_breakpoints.sort
+        all_breakpoints = (sorted_image_breakpoints + sorted_device_breakpoints).sort.uniq
+
+        # Compute candidate widths and descriptor kind
+        result = compute_candidate_widths(
+          all_breakpoints: all_breakpoints,
+          device_breakpoints: sorted_device_breakpoints,
+          explicit_width: width,
+          sizes_attr: sizes
+        )
+        candidates = result[:candidates]
+        descriptor_kind = result[:descriptor_kind]
+
+        # Helper to build a single ImageKit URL
+        build_url_fn = lambda do |w|
+          build_url(
+            Imagekit::Models::SrcOptions.new(
+              src: src,
+              url_endpoint: url_endpoint,
+              query_parameters: query_parameters,
+              transformation_position: transformation_position,
+              transformation: transformation + [
+                Imagekit::Models::Transformation.new(width: w, crop: "at_max") # never upscale beyond original
+              ]
+            )
+          )
+        end
+
+        # Build srcset
+        src_set_entries = candidates.map.with_index do |w, i|
+          descriptor = descriptor_kind == :w ? "#{w}w" : "#{i + 1}x"
+          "#{build_url_fn.call(w)} #{descriptor}"
+        end
+        src_set = src_set_entries.empty? ? nil : src_set_entries.join(", ")
+
+        final_sizes = sizes || (descriptor_kind == :w ? "100vw" : nil)
+
+        # Build result - include only when defined
+        result = {
+          src: build_url_fn.call(candidates.last) # largest candidate
+        }
+        result[:src_set] = src_set if src_set
+        result[:sizes] = final_sizes if final_sizes
+        result[:width] = width if width
+
+        result
+      end
+
       # @api private
       #
       # @param client [Imagekit::Client]
@@ -245,6 +341,50 @@ module Imagekit
       end
 
       private
+
+      # Compute candidate widths for responsive images.
+      # Implements three strategies:
+      # 1. Width-based srcSet (w) when sizes attribute contains vw units
+      # 2. Fallback to device breakpoints when no width or sizes provided
+      # 3. DPR-based srcSet (x) with 1x and 2x variants when width is provided
+      def compute_candidate_widths(
+        all_breakpoints:,
+        device_breakpoints:,
+        explicit_width: nil,
+        sizes_attr: nil
+      )
+        # Strategy 1: Width-based srcSet (w) using viewport vw hints
+        if sizes_attr
+          vw_tokens = sizes_attr.scan(/(?:^|\s)(1?\d{1,2})vw/).flatten.map(&:to_i)
+
+          if vw_tokens.any?
+            # Find the smallest vw percentage
+            smallest_ratio = vw_tokens.min / 100.0
+            # Calculate minimum required pixels
+            min_required_px = device_breakpoints.first * smallest_ratio
+            # Filter breakpoints >= min_required_px
+            candidates = all_breakpoints.select { |bp| bp >= min_required_px }
+            return {candidates: candidates, descriptor_kind: :w}
+          end
+
+          # No usable vw found: fallback to all breakpoints
+          return {candidates: all_breakpoints, descriptor_kind: :w}
+        end
+
+        # Strategy 2: Fallback using device breakpoints if no explicit width
+        return {candidates: device_breakpoints, descriptor_kind: :w} unless explicit_width
+
+        # Strategy 3: Use 1x and 2x nearest breakpoints for x descriptor
+        # Find the first breakpoint >= target (or use the largest)
+        nearest = lambda do |target|
+          all_breakpoints.find { |bp| bp >= target } || all_breakpoints.last
+        end
+
+        # Generate unique 1x and 2x variants
+        unique = [nearest.call(explicit_width), nearest.call(explicit_width * 2)].uniq
+
+        {candidates: unique, descriptor_kind: :x}
+      end
 
       # Generate a 32-character hex token
       def generate_token
