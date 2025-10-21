@@ -21,7 +21,7 @@ module Imagekit
       # appropriate format based on the input text. To always use base64
       # (`ie-{base64}`), set this parameter to `base64`. To always use plain text
       # (`i-{input}`), set it to `plain`.
-      sig { returns(T.nilable(Imagekit::TextOverlay::Encoding::OrSymbol)) }
+      sig { returns(T.nilable(Imagekit::TextOverlay::Encoding::TaggedSymbol)) }
       attr_reader :encoding
 
       sig { params(encoding: Imagekit::TextOverlay::Encoding::OrSymbol).void }
@@ -69,7 +69,7 @@ module Imagekit
           {
             text: String,
             type: Symbol,
-            encoding: Imagekit::TextOverlay::Encoding::OrSymbol,
+            encoding: Imagekit::TextOverlay::Encoding::TaggedSymbol,
             transformation: T::Array[Imagekit::TextOverlayTransformation]
           }
         )

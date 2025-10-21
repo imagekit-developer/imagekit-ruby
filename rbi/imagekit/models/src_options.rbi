@@ -71,7 +71,7 @@ module Imagekit
       # e.g., `?tr=w-100,h-100`. If you want to add the transformation string in the
       # path of the URL, set this to `path`. Learn more in the
       # [Transformations guide](https://imagekit.io/docs/transformations).
-      sig { returns(T.nilable(Imagekit::TransformationPosition::OrSymbol)) }
+      sig { returns(T.nilable(Imagekit::TransformationPosition::TaggedSymbol)) }
       attr_reader :transformation_position
 
       sig do
@@ -145,7 +145,8 @@ module Imagekit
             query_parameters: T::Hash[Symbol, String],
             signed: T::Boolean,
             transformation: T::Array[Imagekit::Transformation],
-            transformation_position: Imagekit::TransformationPosition::OrSymbol
+            transformation_position:
+              Imagekit::TransformationPosition::TaggedSymbol
           }
         )
       end
