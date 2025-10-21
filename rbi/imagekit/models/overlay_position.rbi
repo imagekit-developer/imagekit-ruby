@@ -10,7 +10,7 @@ module Imagekit
 
       # Specifies the position of the overlay relative to the parent image or video.
       # Maps to `lfo` in the URL.
-      sig { returns(T.nilable(Imagekit::OverlayPosition::Focus::TaggedSymbol)) }
+      sig { returns(T.nilable(Imagekit::OverlayPosition::Focus::OrSymbol)) }
       attr_reader :focus
 
       sig { params(focus: Imagekit::OverlayPosition::Focus::OrSymbol).void }
@@ -67,7 +67,7 @@ module Imagekit
       sig do
         override.returns(
           {
-            focus: Imagekit::OverlayPosition::Focus::TaggedSymbol,
+            focus: Imagekit::OverlayPosition::Focus::OrSymbol,
             x: Imagekit::OverlayPosition::X::Variants,
             y_: Imagekit::OverlayPosition::Y::Variants
           }

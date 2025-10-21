@@ -31,13 +31,7 @@ module Imagekit
       # or provide a string for a custom gradient. Only works if the base asset is an
       # image. See
       # [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
-      sig do
-        returns(
-          T.nilable(
-            Imagekit::SolidColorOverlayTransformation::Gradient::Variants
-          )
-        )
-      end
+      sig { returns(T.nilable(T.any(T::Boolean, String))) }
       attr_reader :gradient
 
       sig { params(gradient: T.any(T::Boolean, String)).void }
@@ -63,11 +57,7 @@ module Imagekit
       # Specifies the corner radius of the solid color overlay. Set to `max` for
       # circular or oval shape. See
       # [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
-      sig do
-        returns(
-          T.nilable(Imagekit::SolidColorOverlayTransformation::Radius::Variants)
-        )
-      end
+      sig { returns(T.nilable(T.any(Float, Symbol))) }
       attr_reader :radius
 
       sig { params(radius: T.any(Float, Symbol)).void }
@@ -132,10 +122,9 @@ module Imagekit
           {
             alpha: Float,
             background: String,
-            gradient:
-              Imagekit::SolidColorOverlayTransformation::Gradient::Variants,
+            gradient: T.any(T::Boolean, String),
             height: Imagekit::SolidColorOverlayTransformation::Height::Variants,
-            radius: Imagekit::SolidColorOverlayTransformation::Radius::Variants,
+            radius: T.any(Float, Symbol),
             width: Imagekit::SolidColorOverlayTransformation::Width::Variants
           }
         )
