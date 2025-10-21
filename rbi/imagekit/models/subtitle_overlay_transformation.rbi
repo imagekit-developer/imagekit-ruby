@@ -82,7 +82,7 @@ module Imagekit
       sig do
         returns(
           T.nilable(
-            Imagekit::SubtitleOverlayTransformation::Typography::OrSymbol
+            Imagekit::SubtitleOverlayTransformation::Typography::TaggedSymbol
           )
         )
       end
@@ -164,7 +164,7 @@ module Imagekit
             font_shadow: String,
             font_size: Float,
             typography:
-              Imagekit::SubtitleOverlayTransformation::Typography::OrSymbol
+              Imagekit::SubtitleOverlayTransformation::Typography::TaggedSymbol
           }
         )
       end

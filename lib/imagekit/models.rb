@@ -98,6 +98,8 @@ module Imagekit
 
   Folders = Imagekit::Models::Folders
 
+  GetImageAttributesOptions = Imagekit::Models::GetImageAttributesOptions
+
   ImageOverlay = Imagekit::Models::ImageOverlay
 
   Metadata = Imagekit::Models::Metadata
@@ -107,6 +109,8 @@ module Imagekit
   OverlayPosition = Imagekit::Models::OverlayPosition
 
   OverlayTiming = Imagekit::Models::OverlayTiming
+
+  ResponsiveImageAttributes = Imagekit::Models::ResponsiveImageAttributes
 
   SolidColorOverlay = Imagekit::Models::SolidColorOverlay
 

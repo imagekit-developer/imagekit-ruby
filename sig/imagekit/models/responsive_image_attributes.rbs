@@ -1,0 +1,36 @@
+module Imagekit
+  module Models
+    type responsive_image_attributes =
+      { src: String, sizes: String, src_set: String, width: Float }
+
+    class ResponsiveImageAttributes < Imagekit::Internal::Type::BaseModel
+      attr_accessor src: String
+
+      attr_reader sizes: String?
+
+      def sizes=: (String) -> String
+
+      attr_reader src_set: String?
+
+      def src_set=: (String) -> String
+
+      attr_reader width: Float?
+
+      def width=: (Float) -> Float
+
+      def initialize: (
+        src: String,
+        ?sizes: String,
+        ?src_set: String,
+        ?width: Float
+      ) -> void
+
+      def to_hash: -> {
+        src: String,
+        sizes: String,
+        src_set: String,
+        width: Float
+      }
+    end
+  end
+end
