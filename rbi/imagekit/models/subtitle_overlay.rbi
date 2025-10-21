@@ -20,9 +20,7 @@ module Imagekit
       # format automatically. To always use base64 encoding (`ie-{base64}`), set this
       # parameter to `base64`. To always use plain text (`i-{input}`), set it to
       # `plain`.
-      sig do
-        returns(T.nilable(Imagekit::SubtitleOverlay::Encoding::TaggedSymbol))
-      end
+      sig { returns(T.nilable(Imagekit::SubtitleOverlay::Encoding::OrSymbol)) }
       attr_reader :encoding
 
       sig do
@@ -75,7 +73,7 @@ module Imagekit
           {
             input: String,
             type: Symbol,
-            encoding: Imagekit::SubtitleOverlay::Encoding::TaggedSymbol,
+            encoding: Imagekit::SubtitleOverlay::Encoding::OrSymbol,
             transformation: T::Array[Imagekit::SubtitleOverlayTransformation]
           }
         )

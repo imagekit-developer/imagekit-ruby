@@ -24,9 +24,7 @@ module Imagekit
       # the default drop shadow, or provide a string for a custom drop shadow. Supported
       # inside overlay. See
       # [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::AIDropShadow::Variants))
-      end
+      sig { returns(T.nilable(T.any(T::Boolean, String))) }
       attr_reader :ai_drop_shadow
 
       sig { params(ai_drop_shadow: T.any(T::Boolean, String)).void }
@@ -46,7 +44,7 @@ module Imagekit
       # [AI Background Removal](https://imagekit.io/docs/ai-transformations#imagekit-background-removal-e-bgremove).
       sig do
         returns(
-          T.nilable(Imagekit::Transformation::AIRemoveBackground::TaggedBoolean)
+          T.nilable(Imagekit::Transformation::AIRemoveBackground::OrBoolean)
         )
       end
       attr_reader :ai_remove_background
@@ -66,7 +64,7 @@ module Imagekit
       sig do
         returns(
           T.nilable(
-            Imagekit::Transformation::AIRemoveBackgroundExternal::TaggedBoolean
+            Imagekit::Transformation::AIRemoveBackgroundExternal::OrBoolean
           )
         )
       end
@@ -83,9 +81,7 @@ module Imagekit
       # Performs AI-based retouching to improve faces or product shots. Not supported
       # inside overlay. See
       # [AI Retouch](https://imagekit.io/docs/ai-transformations#retouch-e-retouch).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::AIRetouch::TaggedBoolean))
-      end
+      sig { returns(T.nilable(Imagekit::Transformation::AIRetouch::OrBoolean)) }
       attr_reader :ai_retouch
 
       sig do
@@ -96,9 +92,7 @@ module Imagekit
       # Upscales images beyond their original dimensions using AI. Not supported inside
       # overlay. See
       # [AI Upscale](https://imagekit.io/docs/ai-transformations#upscale-e-upscale).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::AIUpscale::TaggedBoolean))
-      end
+      sig { returns(T.nilable(Imagekit::Transformation::AIUpscale::OrBoolean)) }
       attr_reader :ai_upscale
 
       sig do
@@ -112,7 +106,7 @@ module Imagekit
       # original image. Not supported inside overlay. See
       # [AI Generate Variations](https://imagekit.io/docs/ai-transformations#generate-variations-of-an-image-e-genvar).
       sig do
-        returns(T.nilable(Imagekit::Transformation::AIVariation::TaggedBoolean))
+        returns(T.nilable(Imagekit::Transformation::AIVariation::OrBoolean))
       end
       attr_reader :ai_variation
 
@@ -141,9 +135,7 @@ module Imagekit
 
       # Specifies the audio codec, e.g., `aac`, `opus`, or `none`. See
       # [Audio codec](https://imagekit.io/docs/video-optimization#audio-codec---ac).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::AudioCodec::TaggedSymbol))
-      end
+      sig { returns(T.nilable(Imagekit::Transformation::AudioCodec::OrSymbol)) }
       attr_reader :audio_codec
 
       sig do
@@ -199,9 +191,7 @@ module Imagekit
       # Automatically enhances the contrast of an image (contrast stretch). See
       # [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
       sig do
-        returns(
-          T.nilable(Imagekit::Transformation::ContrastStretch::TaggedBoolean)
-        )
+        returns(T.nilable(Imagekit::Transformation::ContrastStretch::OrBoolean))
       end
       attr_reader :contrast_stretch
 
@@ -214,7 +204,7 @@ module Imagekit
 
       # Crop modes for image resizing. See
       # [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
-      sig { returns(T.nilable(Imagekit::Transformation::Crop::TaggedSymbol)) }
+      sig { returns(T.nilable(Imagekit::Transformation::Crop::OrSymbol)) }
       attr_reader :crop
 
       sig { params(crop: Imagekit::Transformation::Crop::OrSymbol).void }
@@ -222,9 +212,7 @@ module Imagekit
 
       # Additional crop modes for image resizing. See
       # [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::CropMode::TaggedSymbol))
-      end
+      sig { returns(T.nilable(Imagekit::Transformation::CropMode::OrSymbol)) }
       attr_reader :crop_mode
 
       sig do
@@ -277,7 +265,7 @@ module Imagekit
       # Flips or mirrors an image either horizontally, vertically, or both. Acceptable
       # values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or
       # `v_h`. See [Flip](https://imagekit.io/docs/effects-and-enhancements#flip---fl).
-      sig { returns(T.nilable(Imagekit::Transformation::Flip::TaggedSymbol)) }
+      sig { returns(T.nilable(Imagekit::Transformation::Flip::OrSymbol)) }
       attr_reader :flip
 
       sig { params(flip: Imagekit::Transformation::Flip::OrSymbol).void }
@@ -304,7 +292,7 @@ module Imagekit
       # format parameter. See
       # [Image format](https://imagekit.io/docs/image-optimization#format---f) and
       # [Video format](https://imagekit.io/docs/video-optimization#format---f).
-      sig { returns(T.nilable(Imagekit::Transformation::Format::TaggedSymbol)) }
+      sig { returns(T.nilable(Imagekit::Transformation::Format::OrSymbol)) }
       attr_reader :format_
 
       sig { params(format_: Imagekit::Transformation::Format::OrSymbol).void }
@@ -313,7 +301,7 @@ module Imagekit
       # Creates a linear gradient with two colors. Pass `true` for a default gradient,
       # or provide a string for a custom gradient. See
       # [Gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
-      sig { returns(T.nilable(Imagekit::Transformation::Gradient::Variants)) }
+      sig { returns(T.nilable(T.any(T::Boolean, String))) }
       attr_reader :gradient
 
       sig { params(gradient: T.any(T::Boolean, String)).void }
@@ -321,9 +309,7 @@ module Imagekit
 
       # Enables a grayscale effect for images. See
       # [Grayscale](https://imagekit.io/docs/effects-and-enhancements#grayscale---e-grayscale).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::Grayscale::TaggedBoolean))
-      end
+      sig { returns(T.nilable(Imagekit::Transformation::Grayscale::OrBoolean)) }
       attr_reader :grayscale
 
       sig do
@@ -429,7 +415,7 @@ module Imagekit
       # Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular
       # or oval shape. See
       # [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
-      sig { returns(T.nilable(Imagekit::Transformation::Radius::Variants)) }
+      sig { returns(T.nilable(T.any(Float, Symbol))) }
       attr_reader :radius
 
       sig { params(radius: T.any(Float, Symbol)).void }
@@ -460,7 +446,7 @@ module Imagekit
       # For AI-based drop shadows, refer to aiDropShadow. Pass `true` for a default
       # shadow, or provide a string for a custom shadow. See
       # [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
-      sig { returns(T.nilable(Imagekit::Transformation::Shadow::Variants)) }
+      sig { returns(T.nilable(T.any(T::Boolean, String))) }
       attr_reader :shadow
 
       sig { params(shadow: T.any(T::Boolean, String)).void }
@@ -469,7 +455,7 @@ module Imagekit
       # Sharpens the input image, highlighting edges and finer details. Pass `true` for
       # default sharpening, or provide a numeric value for custom sharpening. See
       # [Sharpen](https://imagekit.io/docs/effects-and-enhancements#sharpen---e-sharpen).
-      sig { returns(T.nilable(Imagekit::Transformation::Sharpen::Variants)) }
+      sig { returns(T.nilable(T.any(T::Boolean, Float))) }
       attr_reader :sharpen
 
       sig { params(sharpen: T.any(T::Boolean, Float)).void }
@@ -494,9 +480,7 @@ module Imagekit
       # `480`, `720`, `1080`]. See
       # [Adaptive Bitrate Streaming](https://imagekit.io/docs/adaptive-bitrate-streaming).
       sig do
-        returns(
-          T.nilable(T::Array[Imagekit::StreamingResolution::TaggedSymbol])
-        )
+        returns(T.nilable(T::Array[Imagekit::StreamingResolution::OrSymbol]))
       end
       attr_reader :streaming_resolutions
 
@@ -512,7 +496,7 @@ module Imagekit
       # This parameter trims the background, leaving only the central object in the
       # output image. See
       # [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
-      sig { returns(T.nilable(Imagekit::Transformation::Trim::Variants)) }
+      sig { returns(T.nilable(T.any(T::Boolean, Float))) }
       attr_reader :trim
 
       sig { params(trim: T.any(T::Boolean, Float)).void }
@@ -521,9 +505,7 @@ module Imagekit
       # Applies Unsharp Masking (USM), an image sharpening technique. Pass `true` for a
       # default unsharp mask, or provide a string for a custom unsharp mask. See
       # [Unsharp Mask](https://imagekit.io/docs/effects-and-enhancements#unsharp-mask---e-usm).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::UnsharpMask::Variants))
-      end
+      sig { returns(T.nilable(T.any(T::Boolean, String))) }
       attr_reader :unsharp_mask
 
       sig { params(unsharp_mask: T.any(T::Boolean, String)).void }
@@ -531,9 +513,7 @@ module Imagekit
 
       # Specifies the video codec, e.g., `h264`, `vp9`, `av1`, or `none`. See
       # [Video codec](https://imagekit.io/docs/video-optimization#video-codec---vc).
-      sig do
-        returns(T.nilable(Imagekit::Transformation::VideoCodec::TaggedSymbol))
-      end
+      sig { returns(T.nilable(Imagekit::Transformation::VideoCodec::OrSymbol)) }
       attr_reader :video_codec
 
       sig do
@@ -903,34 +883,34 @@ module Imagekit
         override.returns(
           {
             ai_change_background: String,
-            ai_drop_shadow: Imagekit::Transformation::AIDropShadow::Variants,
+            ai_drop_shadow: T.any(T::Boolean, String),
             ai_edit: String,
             ai_remove_background:
-              Imagekit::Transformation::AIRemoveBackground::TaggedBoolean,
+              Imagekit::Transformation::AIRemoveBackground::OrBoolean,
             ai_remove_background_external:
-              Imagekit::Transformation::AIRemoveBackgroundExternal::TaggedBoolean,
-            ai_retouch: Imagekit::Transformation::AIRetouch::TaggedBoolean,
-            ai_upscale: Imagekit::Transformation::AIUpscale::TaggedBoolean,
-            ai_variation: Imagekit::Transformation::AIVariation::TaggedBoolean,
+              Imagekit::Transformation::AIRemoveBackgroundExternal::OrBoolean,
+            ai_retouch: Imagekit::Transformation::AIRetouch::OrBoolean,
+            ai_upscale: Imagekit::Transformation::AIUpscale::OrBoolean,
+            ai_variation: Imagekit::Transformation::AIVariation::OrBoolean,
             aspect_ratio: Imagekit::Transformation::AspectRatio::Variants,
-            audio_codec: Imagekit::Transformation::AudioCodec::TaggedSymbol,
+            audio_codec: Imagekit::Transformation::AudioCodec::OrSymbol,
             background: String,
             blur: Float,
             border: String,
             color_profile: T::Boolean,
             contrast_stretch:
-              Imagekit::Transformation::ContrastStretch::TaggedBoolean,
-            crop: Imagekit::Transformation::Crop::TaggedSymbol,
-            crop_mode: Imagekit::Transformation::CropMode::TaggedSymbol,
+              Imagekit::Transformation::ContrastStretch::OrBoolean,
+            crop: Imagekit::Transformation::Crop::OrSymbol,
+            crop_mode: Imagekit::Transformation::CropMode::OrSymbol,
             default_image: String,
             dpr: Float,
             duration: Imagekit::Transformation::Duration::Variants,
             end_offset: Imagekit::Transformation::EndOffset::Variants,
-            flip: Imagekit::Transformation::Flip::TaggedSymbol,
+            flip: Imagekit::Transformation::Flip::OrSymbol,
             focus: String,
-            format_: Imagekit::Transformation::Format::TaggedSymbol,
-            gradient: Imagekit::Transformation::Gradient::Variants,
-            grayscale: Imagekit::Transformation::Grayscale::TaggedBoolean,
+            format_: Imagekit::Transformation::Format::OrSymbol,
+            gradient: T.any(T::Boolean, String),
+            grayscale: Imagekit::Transformation::Grayscale::OrBoolean,
             height: Imagekit::Transformation::Height::Variants,
             lossless: T::Boolean,
             metadata: T::Boolean,
@@ -941,17 +921,17 @@ module Imagekit
             page: Imagekit::Transformation::Page::Variants,
             progressive: T::Boolean,
             quality: Float,
-            radius: Imagekit::Transformation::Radius::Variants,
+            radius: T.any(Float, Symbol),
             raw: String,
             rotation: Imagekit::Transformation::Rotation::Variants,
-            shadow: Imagekit::Transformation::Shadow::Variants,
-            sharpen: Imagekit::Transformation::Sharpen::Variants,
+            shadow: T.any(T::Boolean, String),
+            sharpen: T.any(T::Boolean, Float),
             start_offset: Imagekit::Transformation::StartOffset::Variants,
             streaming_resolutions:
-              T::Array[Imagekit::StreamingResolution::TaggedSymbol],
-            trim: Imagekit::Transformation::Trim::Variants,
-            unsharp_mask: Imagekit::Transformation::UnsharpMask::Variants,
-            video_codec: Imagekit::Transformation::VideoCodec::TaggedSymbol,
+              T::Array[Imagekit::StreamingResolution::OrSymbol],
+            trim: T.any(T::Boolean, Float),
+            unsharp_mask: T.any(T::Boolean, String),
+            video_codec: Imagekit::Transformation::VideoCodec::OrSymbol,
             width: Imagekit::Transformation::Width::Variants,
             x: Imagekit::Transformation::X::Variants,
             x_center: Imagekit::Transformation::XCenter::Variants,

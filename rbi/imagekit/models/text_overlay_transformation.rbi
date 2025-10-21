@@ -29,9 +29,7 @@ module Imagekit
 
       # Flip the text overlay horizontally, vertically, or both.
       sig do
-        returns(
-          T.nilable(Imagekit::TextOverlayTransformation::Flip::TaggedSymbol)
-        )
+        returns(T.nilable(Imagekit::TextOverlayTransformation::Flip::OrSymbol))
       end
       attr_reader :flip
 
@@ -80,7 +78,7 @@ module Imagekit
       sig do
         returns(
           T.nilable(
-            Imagekit::TextOverlayTransformation::InnerAlignment::TaggedSymbol
+            Imagekit::TextOverlayTransformation::InnerAlignment::OrSymbol
           )
         )
       end
@@ -131,11 +129,7 @@ module Imagekit
 
       # Specifies the corner radius of the text overlay. Set to `max` to achieve a
       # circular or oval shape.
-      sig do
-        returns(
-          T.nilable(Imagekit::TextOverlayTransformation::Radius::Variants)
-        )
-      end
+      sig { returns(T.nilable(T.any(Float, Symbol))) }
       attr_reader :radius
 
       sig { params(radius: T.any(Float, Symbol)).void }
@@ -259,16 +253,16 @@ module Imagekit
           {
             alpha: Float,
             background: String,
-            flip: Imagekit::TextOverlayTransformation::Flip::TaggedSymbol,
+            flip: Imagekit::TextOverlayTransformation::Flip::OrSymbol,
             font_color: String,
             font_family: String,
             font_size: Imagekit::TextOverlayTransformation::FontSize::Variants,
             inner_alignment:
-              Imagekit::TextOverlayTransformation::InnerAlignment::TaggedSymbol,
+              Imagekit::TextOverlayTransformation::InnerAlignment::OrSymbol,
             line_height:
               Imagekit::TextOverlayTransformation::LineHeight::Variants,
             padding: Imagekit::TextOverlayTransformation::Padding::Variants,
-            radius: Imagekit::TextOverlayTransformation::Radius::Variants,
+            radius: T.any(Float, Symbol),
             rotation: Imagekit::TextOverlayTransformation::Rotation::Variants,
             typography: String,
             width: Imagekit::TextOverlayTransformation::Width::Variants
