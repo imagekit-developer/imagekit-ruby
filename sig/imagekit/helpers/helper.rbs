@@ -16,6 +16,11 @@ module Imagekit
         ?String? token,
         ?Integer? expire
       ) -> Hash[Symbol, (String | Integer)]
+
+      # Generates responsive image attributes for use in HTML <img> tags
+      def get_responsive_image_attributes: (
+        Imagekit::Models::GetImageAttributesOptions options
+      ) -> Imagekit::Models::ResponsiveImageAttributes
     end
   end
 end

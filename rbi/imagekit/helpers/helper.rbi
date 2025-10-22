@@ -29,6 +29,15 @@ module Imagekit
       end
       def get_authentication_parameters(token = nil, expire = nil)
       end
+
+      # Generates responsive image attributes for use in HTML <img> tags
+      sig do
+        params(options: Imagekit::Models::GetImageAttributesOptions).returns(
+          Imagekit::Models::ResponsiveImageAttributes
+        )
+      end
+      def get_responsive_image_attributes(options)
+      end
     end
   end
 end
