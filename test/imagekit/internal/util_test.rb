@@ -343,6 +343,29 @@ class Imagekit::Test::UtilFusedEnumTest < Minitest::Test
     assert_equal(0, steps)
   end
 
+  def test_thread_interrupts
+    once = 0
+    que = Queue.new
+    enum = Enumerator.new do |y|
+      10.times { y << _1 }
+    ensure
+      once = once.succ
+    end
+
+    fused_1 = Imagekit::Internal::Util.fused_enum(enum, external: true) { loop { enum.next } }
+    fused_2 = Imagekit::Internal::Util.chain_fused(fused_1) { fused_1.each(&_1) }
+    fused_3 = Imagekit::Internal::Util.chain_fused(fused_2) { fused_2.each(&_1) }
+
+    th = ::Thread.new do
+      que << "🐶"
+      fused_3.each { sleep(10) }
+    end
+
+    assert_equal("🐶", que.pop)
+    th.kill.join
+    assert_equal(1, once)
+  end
+
   def test_closing
     arr = [1, 2, 3]
     once = 0
