@@ -184,6 +184,36 @@ class ResponsiveImageAttributesTest < Minitest::Test
     assert_equal(expected, result.to_h)
   end
 
+  # Hash-based API test - verify that plain hashes work for responsive image attributes
+  def test_should_work_with_plain_hashes_for_responsive_image_attributes
+    # Using plain hashes instead of model objects
+    result = @client.helper.get_responsive_image_attributes(
+      {
+        src: "sample.jpg",
+        url_endpoint: "https://ik.imagekit.io/demo",
+        width: 450,
+        transformation: [
+          {
+            height: 300
+          },
+          {
+            ai_remove_background: true
+          }
+        ]
+      }
+    )
+
+    # Multiple caller transformations should be combined appropriately
+    expected = {
+      src: "https://ik.imagekit.io/demo/sample.jpg?tr=h-300:e-bgremove:w-1080,c-at_max",
+      src_set: "https://ik.imagekit.io/demo/sample.jpg?tr=h-300:e-bgremove:w-640,c-at_max 1x, https://ik.imagekit.io/demo/sample.jpg?tr=h-300:e-bgremove:w-1080,c-at_max 2x",
+      sizes: nil,
+      width: 450
+    }
+
+    assert_equal(expected, result.to_h)
+  end
+
   def test_fallback_when_no_usable_vw_tokens
     result = @client.helper.get_responsive_image_attributes(
       src: "sample.jpg",

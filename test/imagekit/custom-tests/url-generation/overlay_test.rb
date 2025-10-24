@@ -724,4 +724,40 @@ class OverlayTest < Minitest::Test
     expected = "https://ik.imagekit.io/demo/sample.jpg?tr=l-text,i-Minimal%20Text,l-end"
     assert_equal(expected, url)
   end
+
+  # Hash-based API test - verify that plain hashes work for overlays
+  def test_should_work_with_plain_hashes_for_text_overlay
+    # Using plain hashes for everything including overlay
+    url = @client.helper.build_url(
+      {
+        src: "/base-image.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :path,
+        transformation: [
+          {
+            width: 300,
+            height: 200,
+            overlay: {
+              type: :text,
+              text: "Hello World",
+              position: {
+                x: "10",
+                y_: "20",
+                focus: :center
+              },
+              transformation: [
+                {
+                  font_size: 20,
+                  font_color: "FF0000"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/tr:w-300,h-200,l-text,i-Hello%20World,lx-10,ly-20,lfo-center,fs-20,co-FF0000,l-end/base-image.jpg"
+    assert_equal(expected, url)
+  end
 end

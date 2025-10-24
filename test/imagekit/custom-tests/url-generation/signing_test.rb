@@ -209,4 +209,28 @@ class SigningTest < Minitest::Test
     expected = "https://ik.imagekit.io/demo/tr:w-300,h-200/sdk-testing-files/future-search.png?version=2.0&ik-s=dd1ee8f83d019bc59fd57a5fc4674a11eb8a3496"
     assert_equal(expected, url)
   end
+
+  # Hash-based API test - verify that plain hashes work for signed URLs
+  def test_should_work_with_plain_hashes_for_signed_url_with_transformations
+    # Using plain hashes instead of model objects
+    url = @client.helper.build_url(
+      {
+        src: "sdk-testing-files/future-search.png",
+        url_endpoint: "https://ik.imagekit.io/demo/",
+        transformation: [
+          {
+            width: 300,
+            height: 200
+          }
+        ],
+        query_parameters: {
+          "version" => "2.0"
+        },
+        signed: true
+      }
+    )
+
+    expected = "https://ik.imagekit.io/demo/sdk-testing-files/future-search.png?version=2.0&tr=w-300,h-200&ik-s=601d97a7834b7554f4dabf0d3fc3a219ceeb6b31"
+    assert_equal(expected, url)
+  end
 end

@@ -448,8 +448,12 @@ module Imagekit
       def process_overlay(overlay)
         return "" unless overlay
 
-        # All overlay inputs are expected to be BaseModel objects with type accessor
-        type = overlay.type
+        # Support both BaseModel objects and plain hashes
+        type = if overlay.is_a?(Hash)
+          overlay[:type] || overlay["type"]
+        else
+          overlay.type
+        end
         return "" unless type
 
         # Determine overlay type based on explicit type field
@@ -595,12 +599,18 @@ module Imagekit
         parts.join(",")
       end
 
-      # Safe property access for model objects
+      # Safe property access for model objects and hashes
       def safe_get(obj, key)
         return nil unless obj
 
-        # All inputs are expected to be BaseModel objects with property accessors
-        obj.respond_to?(key.to_sym) ? obj.send(key.to_sym) : nil
+        # Support both BaseModel objects and plain hashes
+        if obj.is_a?(Hash)
+          obj[key.to_sym] || obj[key.to_s]
+        elsif obj.respond_to?(key.to_sym)
+          obj.send(key.to_sym)
+        else
+          nil
+        end
       end
 
       # Add overlay properties like position, timing, transformations (matching Node.js)
