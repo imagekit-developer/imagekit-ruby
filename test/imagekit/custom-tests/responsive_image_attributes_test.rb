@@ -281,4 +281,26 @@ class ResponsiveImageAttributesTest < Minitest::Test
 
     assert_equal(expected, result.to_h)
   end
+
+  # Test to verify signed URLs work correctly in responsive image attributes
+  def test_should_generate_signed_urls_in_srcset
+    result = @client.helper.get_responsive_image_attributes(
+      {
+        src: "sdk-testing-files/future-search.png",
+        url_endpoint: "https://ik.imagekit.io/demo",
+        device_breakpoints: [640, 1280],
+        image_breakpoints: [],
+        signed: true
+      }
+    )
+
+    expected = {
+      src: "https://ik.imagekit.io/demo/sdk-testing-files/future-search.png?tr=w-1280,c-at_max&ik-s=cce0258e8b27bee5d4b642bcee996c5fac11a907",
+      src_set: "https://ik.imagekit.io/demo/sdk-testing-files/future-search.png?tr=w-640,c-at_max&ik-s=d326eadc97c62b0896dc1bb872355a47c8b71943 640w, https://ik.imagekit.io/demo/sdk-testing-files/future-search.png?tr=w-1280,c-at_max&ik-s=cce0258e8b27bee5d4b642bcee996c5fac11a907 1280w",
+      sizes: "100vw",
+      width: nil
+    }
+
+    assert_equal(expected, result.to_h)
+  end
 end
