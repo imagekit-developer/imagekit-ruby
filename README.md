@@ -1,6 +1,36 @@
 # Image Kit Ruby API library
 
-The Image Kit Ruby library provides convenient access to the Image Kit REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/imagekit-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Image Kit Ruby library provides convenient access to the Image Kit REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](#sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [File uploads](#file-uploads)
+- [URL Generation](#url-generation)
+  - [Basic URL generation](#basic-url-generation)
+  - [URL generation with transformations](#url-generation-with-transformations)
+  - [URL generation with image overlay](#url-generation-with-image-overlay)
+  - [URL generation with text overlay](#url-generation-with-text-overlay)
+  - [Signed URLs for secure delivery](#signed-urls-for-secure-delivery)
+  - [Chained transformations](#chained-transformations)
+  - [Using raw parameter for custom transformations](#using-raw-parameter-for-custom-transformations)
+- [Helper Methods](#helper-methods)
+  - [Authentication parameters for client-side uploads](#authentication-parameters-for-client-side-uploads)
+  - [Responsive image attributes](#responsive-image-attributes)
+- [Handling errors](#handling-errors)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+- [Advanced concepts](#advanced-concepts)
+  - [BaseModel](#basemodel)
+  - [Making custom or undocumented requests](#making-custom-or-undocumented-requests)
+  - [Concurrency & connection pooling](#concurrency--connection-pooling)
+- [Sorbet](#sorbet)
+  - [Enums](#enums)
+- [Versioning](#versioning)
+- [Requirements](#requirements)
+- [Contributing](#contributing)
 
 ## Documentation
 
@@ -56,6 +86,442 @@ puts(response.videoCodec)
 ```
 
 Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
+
+## URL Generation
+
+The ImageKit SDK provides a powerful `helper.build_url()` method for generating optimized image and video URLs with transformations. Here are examples ranging from simple URLs to complex transformations with overlays and signed URLs.
+
+### Basic URL generation
+
+Generate a simple URL without any transformations:
+
+```ruby
+require "imagekit"
+
+image_kit = Imagekit::Client.new(
+  private_key: ENV["IMAGEKIT_PRIVATE_KEY"]
+)
+
+# Basic URL without transformations
+url = image_kit.helper.build_url({
+  src: "/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id"
+})
+
+puts url
+# Output: https://ik.imagekit.io/your_imagekit_id/default-image.jpg
+```
+
+You can also use absolute URLs:
+
+```ruby
+url = image_kit.helper.build_url({
+  src: "https://ik.imagekit.io/your_imagekit_id/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id"
+})
+```
+
+### URL generation with transformations
+
+Apply common transformations like resizing, cropping, and format conversion:
+
+```ruby
+# URL with basic transformations
+url = image_kit.helper.build_url({
+  src: "/path/to/image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 400,
+      height: 300,
+      crop: :maintain_ratio,
+      quality: 80,
+      format_: :webp
+    }
+  ]
+})
+# Output: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg?tr=w-400,h-300,c-maintain_ratio,q-80,f-webp
+```
+
+More transformation examples:
+
+```ruby
+# Image resizing and cropping
+url = image_kit.helper.build_url({
+  src: "/product.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 800,
+      height: 600,
+      crop: :at_max,
+      focus: "auto"
+    }
+  ]
+})
+
+# Image effects
+url = image_kit.helper.build_url({
+  src: "/photo.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      blur: 10,
+      grayscale: true,
+      radius: 20
+    }
+  ]
+})
+
+# Format and quality optimization
+url = image_kit.helper.build_url({
+  src: "/image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      format_: :auto,
+      quality: 85,
+      progressive: true
+    }
+  ]
+})
+```
+
+### URL generation with image overlay
+
+Add image overlays to your base image:
+
+```ruby
+# URL with image overlay
+url = image_kit.helper.build_url({
+  src: "/path/to/base-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 500,
+      height: 400,
+      overlay: {
+        type: :image,
+        input: "/path/to/overlay-logo.png",
+        position: {
+          x: 10,
+          y_: 10
+        },
+        transformation: [
+          {
+            width: 100,
+            height: 50
+          }
+        ]
+      }
+    }
+  ]
+})
+# Output: URL with image overlay positioned at x:10, y:10
+```
+
+### URL generation with text overlay
+
+Add customized text overlays:
+
+```ruby
+# URL with text overlay
+url = image_kit.helper.build_url({
+  src: "/path/to/base-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 600,
+      height: 400,
+      overlay: {
+        type: :text,
+        text: "Sample Text Overlay",
+        position: {
+          x: 50,
+          y_: 50,
+          focus: :center
+        },
+        transformation: [
+          {
+            font_size: 40,
+            font_family: "Arial",
+            font_color: "FFFFFF",
+            typography: "b"  # bold
+          }
+        ]
+      }
+    }
+  ]
+})
+# Output: URL with bold white Arial text overlay at center position
+```
+
+You can combine multiple overlays for complex compositions:
+
+```ruby
+# URL with multiple overlays (text + image)
+url = image_kit.helper.build_url({
+  src: "/path/to/base-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 800,
+      height: 600,
+      overlay: {
+        type: :text,
+        text: "Header Text",
+        position: { x: 20, y_: 20 },
+        transformation: [{ font_size: 30, font_color: "000000" }]
+      }
+    },
+    {
+      overlay: {
+        type: :image,
+        input: "/watermark.png",
+        position: { focus: :bottom_right },
+        transformation: [{ width: 100, opacity: 70 }]
+      }
+    }
+  ]
+})
+# Output: URL with text overlay at top-left and semi-transparent watermark at bottom-right
+```
+
+### Signed URLs for secure delivery
+
+Generate signed URLs that expire after a specified time for secure content delivery:
+
+```ruby
+# Generate a signed URL that expires in 1 hour (3600 seconds)
+url = image_kit.helper.build_url({
+  src: "/private/secure-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 400,
+      height: 300,
+      quality: 90
+    }
+  ],
+  signed: true,
+  expires_in: 3600  # URL expires in 1 hour
+})
+# Output: URL with signature parameters (?ik-t=timestamp&ik-s=signature)
+
+# Generate a signed URL that doesn't expire
+url = image_kit.helper.build_url({
+  src: "/private/secure-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  signed: true
+  # No expires_in means the URL won't expire
+})
+# Output: URL with signature parameter (?ik-s=signature)
+```
+
+### Chained transformations
+
+Apply multiple transformation steps by passing multiple transformation objects. Each transformation is applied sequentially:
+
+```ruby
+# First resize, then apply effects
+url = image_kit.helper.build_url({
+  src: "/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 400,
+      height: 300
+    },
+    {
+      rotation: 90,
+      blur: 5
+    }
+  ]
+})
+# Output: https://ik.imagekit.io/your_imagekit_id/default-image.jpg?tr=w-400,h-300:rt-90,bl-5
+```
+
+### Using raw parameter for custom transformations
+
+ImageKit frequently adds new transformation parameters that might not yet be documented in the SDK. You can use the `raw` parameter to access these features or create custom transformation strings:
+
+```ruby
+# Using raw parameter for custom transformations
+url = image_kit.helper.build_url({
+  src: "/path/to/image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation: [
+    {
+      width: 400,
+      height: 300,
+      raw: "something-new"
+    }
+  ]
+})
+# Output: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg?tr=w-400,h-300,something-new
+```
+
+You can control where transformations appear in the URL:
+
+```ruby
+# Add transformations to the URL path instead of query parameters
+url = image_kit.helper.build_url({
+  src: "/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  transformation_position: :path,
+  transformation: [
+    {
+      width: 400,
+      height: 300
+    }
+  ]
+})
+# Output: https://ik.imagekit.io/your_imagekit_id/tr:w-400,h-300/default-image.jpg
+```
+
+Add custom query parameters:
+
+```ruby
+url = image_kit.helper.build_url({
+  src: "/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  query_parameters: {
+    version: "1",
+    cache: "max"
+  }
+})
+```
+
+## Helper Methods
+
+The SDK provides several helper methods for common ImageKit operations.
+
+### Authentication parameters for client-side uploads
+
+Generate authentication parameters for secure client-side file uploads. These parameters allow you to securely upload files directly from the browser without exposing your private API key:
+
+```ruby
+require "imagekit"
+
+image_kit = Imagekit::Client.new(
+  private_key: ENV["IMAGEKIT_PRIVATE_KEY"]
+)
+
+# Generate authentication parameters with default expiry (30 minutes)
+auth_params = image_kit.helper.get_authentication_parameters
+
+puts auth_params
+# Output: { token: "unique-token", expire: 1234567890, signature: "signature-hash" }
+```
+
+Customize the token and expiration:
+
+```ruby
+# Custom token and expiry (1 hour from now)
+auth_params = image_kit.helper.get_authentication_parameters(
+  token: "my-custom-token",
+  expire: Time.now.to_i + 3600
+)
+# Output: { token: "my-custom-token", expire: 1234567890, signature: "generated-signature" }
+```
+
+These authentication parameters can be used in client-side upload forms to securely upload files without exposing your private API key.
+
+### Responsive image attributes
+
+Generate responsive image attributes for HTML `<img>` tags. This creates optimized `srcset` and `sizes` attributes for responsive images:
+
+```ruby
+# Width-based responsive images (generates w descriptors)
+attrs = image_kit.helper.get_responsive_image_attributes({
+  src: "/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  sizes: "(min-width: 768px) 50vw, 100vw",
+  transformation: [
+    {
+      quality: 80,
+      format_: :auto
+    }
+  ]
+})
+
+puts attrs.src
+# Largest candidate URL
+
+puts attrs.src_set
+# URL1 640w, URL2 750w, URL3 1080w, ...
+
+puts attrs.sizes
+# (min-width: 768px) 50vw, 100vw
+```
+
+DPR-based responsive images (generates x descriptors):
+
+```ruby
+# When width is provided without sizes, generates 1x and 2x variants
+attrs = image_kit.helper.get_responsive_image_attributes({
+  src: "/profile.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  width: 400,
+  transformation: [
+    {
+      quality: 85
+    }
+  ]
+})
+
+puts attrs.src_set
+# URL1 1x, URL2 2x
+
+puts attrs.width
+# 400
+```
+
+Custom breakpoints for device widths:
+
+```ruby
+attrs = image_kit.helper.get_responsive_image_attributes({
+  src: "/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  sizes: "100vw",
+  device_breakpoints: [320, 640, 1024, 1920],
+  image_breakpoints: [16, 32, 64],
+  transformation: [
+    {
+      crop: :at_max
+    }
+  ]
+})
+```
+
+The returned attributes can be directly used in your HTML:
+
+```erb
+<img
+  src="<%= attrs.src %>"
+  srcset="<%= attrs.src_set %>"
+  sizes="<%= attrs.sizes %>"
+  alt="Responsive image"
+/>
+```
+
+Generate signed responsive image URLs:
+
+```ruby
+# Generate signed responsive image URLs
+attrs = image_kit.helper.get_responsive_image_attributes({
+  src: "/default-image.jpg",
+  url_endpoint: "https://ik.imagekit.io/your_imagekit_id",
+  sizes: "100vw",
+  signed: true,
+  expires_in: 3600,
+  transformation: [
+    {
+      quality: 80
+    }
+  ]
+})
+```
 
 ### Handling errors
 
