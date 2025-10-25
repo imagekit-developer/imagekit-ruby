@@ -53,36 +53,35 @@ require "bundler/setup"
 require "imagekit"
 
 image_kit = Imagekit::Client.new(
-  private_key: ENV["IMAGEKIT_PRIVATE_KEY"], # This is the default and can be omitted
-  password: ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"] # This is the default and can be omitted
+  private_key: ENV["IMAGEKIT_PRIVATE_KEY"] # This is the default and can be omitted
 )
 
 response = image_kit.files.upload(
-  file: StringIO.new("https://www.example.com/public-url.jpg"),
+  file: Pathname("/path/to/file"),
   file_name: "file-name.jpg"
 )
 
-puts(response.videoCodec)
+puts(response.file_id)
 ```
 
 ### File uploads
 
-Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.
+Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, or an `IO` stream.
 
 ```ruby
 require "pathname"
 
-# Use `Pathname` to send the filename and/or avoid paging a large file into memory:
+# Use `Pathname` to stream from disk (memory efficient, supports retries):
 response = image_kit.files.upload(file: Pathname("/path/to/file"))
 
-# Alternatively, pass file contents or a `StringIO` directly:
+# Or pass file contents directly
 response = image_kit.files.upload(file: File.read("/path/to/file"))
 
-# Or, to control the filename and/or content type:
-file = Imagekit::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
+# Or control filename and content type with FilePart:
+file = Imagekit::FilePart.new(File.read("/path/to/file"), filename: "custom.jpg", content_type: "image/jpeg")
 response = image_kit.files.upload(file: file)
 
-puts(response.videoCodec)
+puts(response.file_id)
 ```
 
 Note that you can also pass a raw `IO` descriptor, but this disables retries, as the library can't be sure if the descriptor is a file or pipe (which cannot be rewound).
