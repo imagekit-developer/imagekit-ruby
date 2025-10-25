@@ -303,8 +303,10 @@ module Imagekit
 
         # Build srcset
         src_set_entries = candidates.map.with_index do |w, i|
-          descriptor = descriptor_kind == :w ? "#{w}w" : "#{i + 1}x"
-          "#{build_url_fn.call(w)} #{descriptor}"
+          # Ensure width is an integer for proper descriptor format (e.g., "640w" not "640.0w")
+          width_int = w.to_i
+          descriptor = descriptor_kind == :w ? "#{width_int}w" : "#{i + 1}x"
+          "#{build_url_fn.call(width_int)} #{descriptor}"
         end
         src_set = src_set_entries.empty? ? nil : src_set_entries.join(", ")
 
@@ -312,7 +314,7 @@ module Imagekit
 
         # Build and return ResponsiveImageAttributes model
         Imagekit::Models::ResponsiveImageAttributes.new(
-          src: build_url_fn.call(candidates.last), # largest candidate
+          src: build_url_fn.call(candidates.last.to_i), # largest candidate as integer
           src_set: src_set,
           sizes: final_sizes,
           width: width

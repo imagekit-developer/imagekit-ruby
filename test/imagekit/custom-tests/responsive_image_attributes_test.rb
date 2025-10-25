@@ -214,6 +214,56 @@ class ResponsiveImageAttributesTest < Minitest::Test
     assert_equal(expected, result.to_h)
   end
 
+  # Test to verify that srcset uses integer descriptors (640w) not float (640.0w)
+  # This tests both model object and hash approaches
+  def test_should_use_integer_descriptors_in_srcset_with_model_object
+    # Using GetImageAttributesOptions model with Float array (as defined in schema)
+    result = @client.helper.get_responsive_image_attributes(
+      Imagekit::Models::GetImageAttributesOptions.new(
+        src: "sample.jpg",
+        url_endpoint: "https://ik.imagekit.io/demo",
+        device_breakpoints: [320.0, 640.0, 1280.0], # SDK converts to floats
+        image_breakpoints: []
+      )
+    )
+
+    src_set = result.src_set
+
+    # Should have integer descriptors like "320w", NOT "320.0w"
+    assert_includes(src_set, "320w")
+    assert_includes(src_set, "640w")
+    assert_includes(src_set, "1280w")
+
+    # Should NOT have float descriptors
+    refute_includes(src_set, "320.0w")
+    refute_includes(src_set, "640.0w")
+    refute_includes(src_set, "1280.0w")
+  end
+
+  def test_should_use_integer_descriptors_in_srcset_with_hash
+    # Using plain hash with integer breakpoints
+    result = @client.helper.get_responsive_image_attributes(
+      {
+        src: "sample.jpg",
+        url_endpoint: "https://ik.imagekit.io/demo",
+        device_breakpoints: [320, 640, 1280],
+        image_breakpoints: []
+      }
+    )
+
+    src_set = result.src_set
+
+    # Should have integer descriptors like "320w", NOT "320.0w"
+    assert_includes(src_set, "320w")
+    assert_includes(src_set, "640w")
+    assert_includes(src_set, "1280w")
+
+    # Should NOT have float descriptors
+    refute_includes(src_set, "320.0w")
+    refute_includes(src_set, "640.0w")
+    refute_includes(src_set, "1280.0w")
+  end
+
   def test_fallback_when_no_usable_vw_tokens
     result = @client.helper.get_responsive_image_attributes(
       src: "sample.jpg",
