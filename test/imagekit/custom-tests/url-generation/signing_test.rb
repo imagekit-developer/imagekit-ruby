@@ -5,8 +5,7 @@ require_relative "../../test_helper"
 class SigningTest < Minitest::Test
   def setup
     @client = Imagekit::Client.new(
-      private_key: "dummy-key",
-      password: "test_password"
+      private_key: "dummy-key"
     )
   end
 

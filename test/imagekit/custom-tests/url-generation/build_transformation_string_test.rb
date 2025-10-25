@@ -5,8 +5,7 @@ require_relative "../../test_helper"
 class BuildTransformationStringTest < Minitest::Test
   def setup
     @client = Imagekit::Client.new(
-      private_key: "test-key",
-      password: "test_password"
+      private_key: "test-key"
     )
   end
 

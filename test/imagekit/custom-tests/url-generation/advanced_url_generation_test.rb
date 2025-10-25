@@ -5,8 +5,7 @@ require_relative "../../test_helper"
 class AdvancedURLGenerationTest < Minitest::Test
   def setup
     @client = Imagekit::Client.new(
-      private_key: "My Private API Key",
-      password: "test_password"
+      private_key: "My Private API Key"
     )
   end
 
