@@ -28,7 +28,7 @@ module Imagekit
 
     attr_reader webhooks: Imagekit::Resources::Webhooks
 
-    attr_reader helper: Imagekit::Helpers::Helper
+    attr_reader helper: Imagekit::Helper
 
     private def auth_headers: -> ::Hash[String, String]
 

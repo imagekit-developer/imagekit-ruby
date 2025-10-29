@@ -1,26 +1,24 @@
 module Imagekit
-  module Helpers
-    class Helper
-      def initialize: (client: Imagekit::Client) -> void
+  class Helper
+    def initialize: (client: Imagekit::Client) -> void
 
-      # Builds a URL with transformations applied
-      def build_url: (Imagekit::Models::SrcOptions options) -> String
+    # Builds a URL with transformations applied
+    def build_url: (Imagekit::Models::SrcOptions options) -> String
 
-      # Generates transformation string from transformation objects
-      def build_transformation_string: (
-        Array[Imagekit::Models::Transformation] transformations
-      ) -> String
+    # Generates transformation string from transformation objects
+    def build_transformation_string: (
+      Array[Imagekit::Models::Transformation] transformations
+    ) -> String
 
-      # Generates authentication parameters for client-side file uploads
-      def get_authentication_parameters: (
-        ?String? token,
-        ?Integer? expire
-      ) -> Hash[Symbol, (String | Integer)]
+    # Generates authentication parameters for client-side file uploads
+    def get_authentication_parameters: (
+      ?String? token,
+      ?Integer? expire
+    ) -> Hash[Symbol, (String | Integer)]
 
-      # Generates responsive image attributes for use in HTML <img> tags
-      def get_responsive_image_attributes: (
-        Imagekit::Models::GetImageAttributesOptions options
-      ) -> Imagekit::Models::ResponsiveImageAttributes
-    end
+    # Generates responsive image attributes for use in HTML <img> tags
+    def get_responsive_image_attributes: (
+      Imagekit::Models::GetImageAttributesOptions options
+    ) -> Imagekit::Models::ResponsiveImageAttributes
   end
 end

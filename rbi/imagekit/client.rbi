@@ -44,7 +44,7 @@ module Imagekit
     sig { returns(Imagekit::Resources::Webhooks) }
     attr_reader :webhooks
 
-    sig { returns(Imagekit::Helpers::Helper) }
+    sig { returns(Imagekit::Helper) }
     attr_reader :helper
 
     # @api private

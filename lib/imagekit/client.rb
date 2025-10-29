@@ -49,7 +49,7 @@ module Imagekit
     # @return [Imagekit::Resources::Webhooks]
     attr_reader :webhooks
 
-    # @return [Imagekit::Helpers::Helper]
+    # @return [Imagekit::Helper]
     attr_reader :helper
 
     # @api private
@@ -123,7 +123,7 @@ module Imagekit
       @accounts = Imagekit::Resources::Accounts.new(client: self)
       @beta = Imagekit::Resources::Beta.new(client: self)
       @webhooks = Imagekit::Resources::Webhooks.new(client: self)
-      @helper = Imagekit::Helpers::Helper.new(client: self)
+      @helper = Imagekit::Helper.new(client: self)
     end
   end
 end
