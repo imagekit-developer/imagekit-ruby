@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    imagekit (0.0.1)
+    imagekitio (0.0.1)
       connection_pool
 
 GEM
@@ -203,7 +203,7 @@ PLATFORMS
 
 DEPENDENCIES
   async
-  imagekit!
+  imagekitio!
   minitest
   minitest-focus
   minitest-hooks

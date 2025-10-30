@@ -1,0 +1,59 @@
+module Imagekitio
+  module Models
+    type text_overlay =
+      {
+        text: String,
+        type: :text,
+        encoding: Imagekitio::Models::TextOverlay::encoding,
+        transformation: ::Array[Imagekitio::TextOverlayTransformation]
+      }
+
+    class TextOverlay < Imagekitio::Models::BaseOverlay
+      def text: -> String
+
+      def text=: (String _) -> String
+
+      def `type`: -> :text
+
+      def type=: (:text _) -> :text
+
+      def encoding: -> Imagekitio::Models::TextOverlay::encoding?
+
+      def encoding=: (
+        Imagekitio::Models::TextOverlay::encoding _
+      ) -> Imagekitio::Models::TextOverlay::encoding
+
+      def transformation: -> ::Array[Imagekitio::TextOverlayTransformation]?
+
+      def transformation=: (
+        ::Array[Imagekitio::TextOverlayTransformation] _
+      ) -> ::Array[Imagekitio::TextOverlayTransformation]
+
+      def initialize: (
+        text: String,
+        ?encoding: Imagekitio::Models::TextOverlay::encoding,
+        ?transformation: ::Array[Imagekitio::TextOverlayTransformation],
+        ?type: :text
+      ) -> void
+
+      def to_hash: -> {
+        text: String,
+        type: :text,
+        encoding: Imagekitio::Models::TextOverlay::encoding,
+        transformation: ::Array[Imagekitio::TextOverlayTransformation]
+      }
+
+      type encoding = :auto | :plain | :base64
+
+      module Encoding
+        extend Imagekitio::Internal::Type::Enum
+
+        AUTO: :auto
+        PLAIN: :plain
+        BASE64: :base64
+
+        def self?.values: -> ::Array[Imagekitio::Models::TextOverlay::encoding]
+      end
+    end
+  end
+end

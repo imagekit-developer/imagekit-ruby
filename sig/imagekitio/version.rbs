@@ -1,0 +1,3 @@
+module Imagekitio
+  VERSION: String
+end

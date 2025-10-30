@@ -4,7 +4,7 @@ The Image Kit Ruby library provides convenient access to the Image Kit REST API 
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/imagekit).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/imagekitio).
 
 The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs/api-reference).
 
@@ -15,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "imagekit", "~> 0.0.1"
+gem "imagekitio", "~> 0.0.1"
 ```
 
 <!-- x-release-please-end -->
@@ -24,9 +24,9 @@ gem "imagekit", "~> 0.0.1"
 
 ```ruby
 require "bundler/setup"
-require "imagekit"
+require "imagekitio"
 
-image_kit = Imagekit::Client.new(
+image_kit = Imagekitio::Client.new(
   private_key: ENV["IMAGEKIT_PRIVATE_KEY"], # This is the default and can be omitted
   password: ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"] # This is the default and can be omitted
 )
@@ -53,7 +53,7 @@ response = image_kit.files.upload(file: Pathname("/path/to/file"))
 response = image_kit.files.upload(file: File.read("/path/to/file"))
 
 # Or, to control the filename and/or content type:
-file = Imagekit::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
+file = Imagekitio::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
 response = image_kit.files.upload(file: file)
 
 puts(response.videoCodec)
@@ -63,7 +63,7 @@ Note that you can also pass a raw `IO` descriptor, but this disables retries, as
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Imagekit::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Imagekitio::Errors::APIError` will be thrown:
 
 ```ruby
 begin
@@ -71,12 +71,12 @@ begin
     file: StringIO.new("https://www.example.com/public-url.jpg"),
     file_name: "file-name.jpg"
   )
-rescue Imagekit::Errors::APIConnectionError => e
+rescue Imagekitio::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue Imagekit::Errors::RateLimitError => e
+rescue Imagekitio::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue Imagekit::Errors::APIStatusError => e
+rescue Imagekitio::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -108,7 +108,7 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-image_kit = Imagekit::Client.new(
+image_kit = Imagekitio::Client.new(
   max_retries: 0 # default is 2
 )
 
@@ -126,7 +126,7 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-image_kit = Imagekit::Client.new(
+image_kit = Imagekitio::Client.new(
   timeout: nil # default is 60
 )
 
@@ -138,7 +138,7 @@ image_kit.files.upload(
 )
 ```
 
-On timeout, `Imagekit::Errors::APITimeoutError` is raised.
+On timeout, `Imagekitio::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -146,7 +146,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `Imagekit::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `Imagekitio::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -199,9 +199,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `Imagekit::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `Imagekitio::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `Imagekit::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `Imagekitio::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -230,7 +230,7 @@ image_kit.files.upload(
 )
 
 # You can also splat a full Params class:
-params = Imagekit::FileUploadParams.new(
+params = Imagekitio::FileUploadParams.new(
   file: StringIO.new("https://www.example.com/public-url.jpg"),
   file_name: "file-name.jpg"
 )
@@ -243,10 +243,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :all
-puts(Imagekit::AssetListParams::FileType::ALL)
+puts(Imagekitio::AssetListParams::FileType::ALL)
 
-# Revealed type: `T.all(Imagekit::AssetListParams::FileType, Symbol)`
-T.reveal_type(Imagekit::AssetListParams::FileType::ALL)
+# Revealed type: `T.all(Imagekitio::AssetListParams::FileType, Symbol)`
+T.reveal_type(Imagekitio::AssetListParams::FileType::ALL)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -254,7 +254,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 image_kit.assets.list(
-  file_type: Imagekit::AssetListParams::FileType::ALL,
+  file_type: Imagekitio::AssetListParams::FileType::ALL,
   # …
 )
 

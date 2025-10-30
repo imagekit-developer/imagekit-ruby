@@ -1,0 +1,120 @@
+module Imagekitio
+  module Models
+    type file_update_response =
+      {
+        extension_status: Imagekitio::Models::FileUpdateResponse::ExtensionStatus
+      }
+
+    class FileUpdateResponse < Imagekitio::Models::File
+      def extension_status: -> Imagekitio::Models::FileUpdateResponse::ExtensionStatus?
+
+      def extension_status=: (
+        Imagekitio::Models::FileUpdateResponse::ExtensionStatus _
+      ) -> Imagekitio::Models::FileUpdateResponse::ExtensionStatus
+
+      def initialize: (
+        ?extension_status: Imagekitio::Models::FileUpdateResponse::ExtensionStatus
+      ) -> void
+
+      def to_hash: -> {
+        extension_status: Imagekitio::Models::FileUpdateResponse::ExtensionStatus
+      }
+
+      type extension_status =
+        {
+          ai_auto_description: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::ai_auto_description,
+          aws_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::aws_auto_tagging,
+          google_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::google_auto_tagging,
+          remove_bg: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::remove_bg
+        }
+
+      class ExtensionStatus < Imagekitio::Internal::Type::BaseModel
+        attr_reader ai_auto_description: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::ai_auto_description?
+
+        def ai_auto_description=: (
+          Imagekitio::Models::FileUpdateResponse::ExtensionStatus::ai_auto_description
+        ) -> Imagekitio::Models::FileUpdateResponse::ExtensionStatus::ai_auto_description
+
+        attr_reader aws_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::aws_auto_tagging?
+
+        def aws_auto_tagging=: (
+          Imagekitio::Models::FileUpdateResponse::ExtensionStatus::aws_auto_tagging
+        ) -> Imagekitio::Models::FileUpdateResponse::ExtensionStatus::aws_auto_tagging
+
+        attr_reader google_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::google_auto_tagging?
+
+        def google_auto_tagging=: (
+          Imagekitio::Models::FileUpdateResponse::ExtensionStatus::google_auto_tagging
+        ) -> Imagekitio::Models::FileUpdateResponse::ExtensionStatus::google_auto_tagging
+
+        attr_reader remove_bg: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::remove_bg?
+
+        def remove_bg=: (
+          Imagekitio::Models::FileUpdateResponse::ExtensionStatus::remove_bg
+        ) -> Imagekitio::Models::FileUpdateResponse::ExtensionStatus::remove_bg
+
+        def initialize: (
+          ?ai_auto_description: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::ai_auto_description,
+          ?aws_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::aws_auto_tagging,
+          ?google_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::google_auto_tagging,
+          ?remove_bg: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::remove_bg
+        ) -> void
+
+        def to_hash: -> {
+          ai_auto_description: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::ai_auto_description,
+          aws_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::aws_auto_tagging,
+          google_auto_tagging: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::google_auto_tagging,
+          remove_bg: Imagekitio::Models::FileUpdateResponse::ExtensionStatus::remove_bg
+        }
+
+        type ai_auto_description = :success | :pending | :failed
+
+        module AIAutoDescription
+          extend Imagekitio::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekitio::Models::FileUpdateResponse::ExtensionStatus::ai_auto_description]
+        end
+
+        type aws_auto_tagging = :success | :pending | :failed
+
+        module AwsAutoTagging
+          extend Imagekitio::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekitio::Models::FileUpdateResponse::ExtensionStatus::aws_auto_tagging]
+        end
+
+        type google_auto_tagging = :success | :pending | :failed
+
+        module GoogleAutoTagging
+          extend Imagekitio::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekitio::Models::FileUpdateResponse::ExtensionStatus::google_auto_tagging]
+        end
+
+        type remove_bg = :success | :pending | :failed
+
+        module RemoveBg
+          extend Imagekitio::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekitio::Models::FileUpdateResponse::ExtensionStatus::remove_bg]
+        end
+      end
+    end
+  end
+end

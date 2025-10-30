@@ -1,0 +1,76 @@
+module Imagekitio
+  module Resources
+    class Files
+      attr_reader bulk: Imagekitio::Resources::Files::Bulk
+
+      attr_reader versions: Imagekitio::Resources::Files::Versions
+
+      attr_reader metadata: Imagekitio::Resources::Files::Metadata
+
+      def update: (
+        String file_id,
+        update_file_request: Imagekitio::Models::UpdateFileRequest,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FileUpdateResponse
+
+      def delete: (
+        String file_id,
+        ?request_options: Imagekitio::request_opts
+      ) -> nil
+
+      def copy: (
+        destination_path: String,
+        source_file_path: String,
+        ?include_file_versions: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FileCopyResponse
+
+      def get: (
+        String file_id,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::File
+
+      def move: (
+        destination_path: String,
+        source_file_path: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FileMoveResponse
+
+      def rename: (
+        file_path: String,
+        new_file_name: String,
+        ?purge_cache: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FileRenameResponse
+
+      def upload: (
+        file: Imagekitio::Internal::file_input,
+        file_name: String,
+        ?token: String,
+        ?checks: String,
+        ?custom_coordinates: String,
+        ?custom_metadata: ::Hash[Symbol, top],
+        ?description: String,
+        ?expire: Integer,
+        ?extensions: Imagekitio::Models::extensions,
+        ?folder: String,
+        ?is_private_file: bool,
+        ?is_published: bool,
+        ?overwrite_ai_tags: bool,
+        ?overwrite_custom_metadata: bool,
+        ?overwrite_file: bool,
+        ?overwrite_tags: bool,
+        ?public_key: String,
+        ?response_fields: ::Array[Imagekitio::Models::FileUploadParams::response_field],
+        ?signature: String,
+        ?tags: ::Array[String],
+        ?transformation: Imagekitio::FileUploadParams::Transformation,
+        ?use_unique_file_name: bool,
+        ?webhook_url: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FileUploadResponse
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

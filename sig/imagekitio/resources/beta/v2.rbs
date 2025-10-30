@@ -1,0 +1,11 @@
+module Imagekitio
+  module Resources
+    class Beta
+      class V2
+        attr_reader files: Imagekitio::Resources::Beta::V2::Files
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

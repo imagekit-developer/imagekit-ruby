@@ -1,0 +1,40 @@
+module Imagekitio
+  module Resources
+    class Folders
+      attr_reader job: Imagekitio::Resources::Folders::Job
+
+      def create: (
+        folder_name: String,
+        parent_folder_path: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FolderCreateResponse
+
+      def delete: (
+        folder_path: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FolderDeleteResponse
+
+      def copy: (
+        destination_path: String,
+        source_folder_path: String,
+        ?include_versions: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FolderCopyResponse
+
+      def move: (
+        destination_path: String,
+        source_folder_path: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FolderMoveResponse
+
+      def rename: (
+        folder_path: String,
+        new_folder_name: String,
+        ?purge_cache: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::FolderRenameResponse
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

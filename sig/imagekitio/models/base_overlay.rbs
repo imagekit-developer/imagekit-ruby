@@ -1,0 +1,31 @@
+module Imagekitio
+  module Models
+    type base_overlay =
+      {
+        position: Imagekitio::OverlayPosition,
+        timing: Imagekitio::OverlayTiming
+      }
+
+    class BaseOverlay < Imagekitio::Internal::Type::BaseModel
+      attr_reader position: Imagekitio::OverlayPosition?
+
+      def position=: (
+        Imagekitio::OverlayPosition
+      ) -> Imagekitio::OverlayPosition
+
+      attr_reader timing: Imagekitio::OverlayTiming?
+
+      def timing=: (Imagekitio::OverlayTiming) -> Imagekitio::OverlayTiming
+
+      def initialize: (
+        ?position: Imagekitio::OverlayPosition,
+        ?timing: Imagekitio::OverlayTiming
+      ) -> void
+
+      def to_hash: -> {
+        position: Imagekitio::OverlayPosition,
+        timing: Imagekitio::OverlayTiming
+      }
+    end
+  end
+end

@@ -1,0 +1,64 @@
+module Imagekitio
+  module Models
+    type src_options =
+      {
+        src: String,
+        url_endpoint: String,
+        expires_in: Float,
+        query_parameters: ::Hash[Symbol, String],
+        signed: bool,
+        transformation: ::Array[Imagekitio::Transformation],
+        transformation_position: Imagekitio::Models::transformation_position
+      }
+
+    class SrcOptions < Imagekitio::Internal::Type::BaseModel
+      attr_accessor src: String
+
+      attr_accessor url_endpoint: String
+
+      attr_reader expires_in: Float?
+
+      def expires_in=: (Float) -> Float
+
+      attr_reader query_parameters: ::Hash[Symbol, String]?
+
+      def query_parameters=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader signed: bool?
+
+      def signed=: (bool) -> bool
+
+      attr_reader transformation: ::Array[Imagekitio::Transformation]?
+
+      def transformation=: (
+        ::Array[Imagekitio::Transformation]
+      ) -> ::Array[Imagekitio::Transformation]
+
+      attr_reader transformation_position: Imagekitio::Models::transformation_position?
+
+      def transformation_position=: (
+        Imagekitio::Models::transformation_position
+      ) -> Imagekitio::Models::transformation_position
+
+      def initialize: (
+        src: String,
+        url_endpoint: String,
+        ?expires_in: Float,
+        ?query_parameters: ::Hash[Symbol, String],
+        ?signed: bool,
+        ?transformation: ::Array[Imagekitio::Transformation],
+        ?transformation_position: Imagekitio::Models::transformation_position
+      ) -> void
+
+      def to_hash: -> {
+        src: String,
+        url_endpoint: String,
+        expires_in: Float,
+        query_parameters: ::Hash[Symbol, String],
+        signed: bool,
+        transformation: ::Array[Imagekitio::Transformation],
+        transformation_position: Imagekitio::Models::transformation_position
+      }
+    end
+  end
+end

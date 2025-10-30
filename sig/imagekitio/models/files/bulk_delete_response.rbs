@@ -1,0 +1,20 @@
+module Imagekitio
+  module Models
+    module Files
+      type bulk_delete_response =
+        { successfully_deleted_file_ids: ::Array[String] }
+
+      class BulkDeleteResponse < Imagekitio::Internal::Type::BaseModel
+        attr_reader successfully_deleted_file_ids: ::Array[String]?
+
+        def successfully_deleted_file_ids=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          ?successfully_deleted_file_ids: ::Array[String]
+        ) -> void
+
+        def to_hash: -> { successfully_deleted_file_ids: ::Array[String] }
+      end
+    end
+  end
+end

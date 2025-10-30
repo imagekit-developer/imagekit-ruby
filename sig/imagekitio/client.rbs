@@ -1,0 +1,45 @@
+module Imagekitio
+  class Client < Imagekitio::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader private_key: String
+
+    attr_reader password: String?
+
+    attr_reader custom_metadata_fields: Imagekitio::Resources::CustomMetadataFields
+
+    attr_reader files: Imagekitio::Resources::Files
+
+    attr_reader assets: Imagekitio::Resources::Assets
+
+    attr_reader cache: Imagekitio::Resources::Cache
+
+    attr_reader folders: Imagekitio::Resources::Folders
+
+    attr_reader accounts: Imagekitio::Resources::Accounts
+
+    attr_reader beta: Imagekitio::Resources::Beta
+
+    attr_reader webhooks: Imagekitio::Resources::Webhooks
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def base_url_overridden?: -> bool
+
+    def initialize: (
+      ?private_key: String?,
+      ?password: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

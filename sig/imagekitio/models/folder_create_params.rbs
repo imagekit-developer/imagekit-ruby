@@ -1,0 +1,28 @@
+module Imagekitio
+  module Models
+    type folder_create_params =
+      { folder_name: String, parent_folder_path: String }
+      & Imagekitio::Internal::Type::request_parameters
+
+    class FolderCreateParams < Imagekitio::Internal::Type::BaseModel
+      extend Imagekitio::Internal::Type::RequestParameters::Converter
+      include Imagekitio::Internal::Type::RequestParameters
+
+      attr_accessor folder_name: String
+
+      attr_accessor parent_folder_path: String
+
+      def initialize: (
+        folder_name: String,
+        parent_folder_path: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        folder_name: String,
+        parent_folder_path: String,
+        request_options: Imagekitio::RequestOptions
+      }
+    end
+  end
+end

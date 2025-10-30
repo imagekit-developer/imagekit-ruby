@@ -1,0 +1,97 @@
+module Imagekitio
+  module Models
+    type solid_color_overlay_transformation =
+      {
+        alpha: Float,
+        background: String,
+        gradient: Imagekitio::Models::SolidColorOverlayTransformation::gradient,
+        height: Imagekitio::Models::SolidColorOverlayTransformation::height,
+        radius: Imagekitio::Models::SolidColorOverlayTransformation::radius,
+        width: Imagekitio::Models::SolidColorOverlayTransformation::width
+      }
+
+    class SolidColorOverlayTransformation < Imagekitio::Internal::Type::BaseModel
+      attr_reader alpha: Float?
+
+      def alpha=: (Float) -> Float
+
+      attr_reader background: String?
+
+      def background=: (String) -> String
+
+      attr_reader gradient: Imagekitio::Models::SolidColorOverlayTransformation::gradient?
+
+      def gradient=: (
+        Imagekitio::Models::SolidColorOverlayTransformation::gradient
+      ) -> Imagekitio::Models::SolidColorOverlayTransformation::gradient
+
+      attr_reader height: Imagekitio::Models::SolidColorOverlayTransformation::height?
+
+      def height=: (
+        Imagekitio::Models::SolidColorOverlayTransformation::height
+      ) -> Imagekitio::Models::SolidColorOverlayTransformation::height
+
+      attr_reader radius: Imagekitio::Models::SolidColorOverlayTransformation::radius?
+
+      def radius=: (
+        Imagekitio::Models::SolidColorOverlayTransformation::radius
+      ) -> Imagekitio::Models::SolidColorOverlayTransformation::radius
+
+      attr_reader width: Imagekitio::Models::SolidColorOverlayTransformation::width?
+
+      def width=: (
+        Imagekitio::Models::SolidColorOverlayTransformation::width
+      ) -> Imagekitio::Models::SolidColorOverlayTransformation::width
+
+      def initialize: (
+        ?alpha: Float,
+        ?background: String,
+        ?gradient: Imagekitio::Models::SolidColorOverlayTransformation::gradient,
+        ?height: Imagekitio::Models::SolidColorOverlayTransformation::height,
+        ?radius: Imagekitio::Models::SolidColorOverlayTransformation::radius,
+        ?width: Imagekitio::Models::SolidColorOverlayTransformation::width
+      ) -> void
+
+      def to_hash: -> {
+        alpha: Float,
+        background: String,
+        gradient: Imagekitio::Models::SolidColorOverlayTransformation::gradient,
+        height: Imagekitio::Models::SolidColorOverlayTransformation::height,
+        radius: Imagekitio::Models::SolidColorOverlayTransformation::radius,
+        width: Imagekitio::Models::SolidColorOverlayTransformation::width
+      }
+
+      type gradient = true | String
+
+      module Gradient
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::SolidColorOverlayTransformation::gradient]
+      end
+
+      type height = Float | String
+
+      module Height
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::SolidColorOverlayTransformation::height]
+      end
+
+      type radius = Float | :max
+
+      module Radius
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::SolidColorOverlayTransformation::radius]
+      end
+
+      type width = Float | String
+
+      module Width
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::SolidColorOverlayTransformation::width]
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module Imagekitio
+  module Models
+    type unwrap_webhook_event =
+      Imagekitio::VideoTransformationAcceptedEvent
+      | Imagekitio::VideoTransformationReadyEvent
+      | Imagekitio::VideoTransformationErrorEvent
+      | Imagekitio::UploadPreTransformSuccessEvent
+      | Imagekitio::UploadPreTransformErrorEvent
+      | Imagekitio::UploadPostTransformSuccessEvent
+      | Imagekitio::UploadPostTransformErrorEvent
+
+    module UnwrapWebhookEvent
+      extend Imagekitio::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Imagekitio::Models::unwrap_webhook_event]
+    end
+  end
+end

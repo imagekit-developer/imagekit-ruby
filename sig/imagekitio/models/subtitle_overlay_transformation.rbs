@@ -1,0 +1,78 @@
+module Imagekitio
+  module Models
+    type subtitle_overlay_transformation =
+      {
+        background: String,
+        color: String,
+        font_family: String,
+        font_outline: String,
+        font_shadow: String,
+        font_size: Float,
+        typography: Imagekitio::Models::SubtitleOverlayTransformation::typography
+      }
+
+    class SubtitleOverlayTransformation < Imagekitio::Internal::Type::BaseModel
+      attr_reader background: String?
+
+      def background=: (String) -> String
+
+      attr_reader color: String?
+
+      def color=: (String) -> String
+
+      attr_reader font_family: String?
+
+      def font_family=: (String) -> String
+
+      attr_reader font_outline: String?
+
+      def font_outline=: (String) -> String
+
+      attr_reader font_shadow: String?
+
+      def font_shadow=: (String) -> String
+
+      attr_reader font_size: Float?
+
+      def font_size=: (Float) -> Float
+
+      attr_reader typography: Imagekitio::Models::SubtitleOverlayTransformation::typography?
+
+      def typography=: (
+        Imagekitio::Models::SubtitleOverlayTransformation::typography
+      ) -> Imagekitio::Models::SubtitleOverlayTransformation::typography
+
+      def initialize: (
+        ?background: String,
+        ?color: String,
+        ?font_family: String,
+        ?font_outline: String,
+        ?font_shadow: String,
+        ?font_size: Float,
+        ?typography: Imagekitio::Models::SubtitleOverlayTransformation::typography
+      ) -> void
+
+      def to_hash: -> {
+        background: String,
+        color: String,
+        font_family: String,
+        font_outline: String,
+        font_shadow: String,
+        font_size: Float,
+        typography: Imagekitio::Models::SubtitleOverlayTransformation::typography
+      }
+
+      type typography = :b | :i | :b_i
+
+      module Typography
+        extend Imagekitio::Internal::Type::Enum
+
+        B: :b
+        I: :i
+        B_I: :b_i
+
+        def self?.values: -> ::Array[Imagekitio::Models::SubtitleOverlayTransformation::typography]
+      end
+    end
+  end
+end

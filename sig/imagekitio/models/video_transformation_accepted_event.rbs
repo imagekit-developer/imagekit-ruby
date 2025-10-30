@@ -1,0 +1,261 @@
+module Imagekitio
+  module Models
+    type video_transformation_accepted_event =
+      {
+        created_at: Time,
+        data: Imagekitio::VideoTransformationAcceptedEvent::Data,
+        request: Imagekitio::VideoTransformationAcceptedEvent::Request,
+        type: :"video.transformation.accepted"
+      }
+
+    class VideoTransformationAcceptedEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::VideoTransformationAcceptedEvent::Data
+
+      def data=: (
+        Imagekitio::VideoTransformationAcceptedEvent::Data _
+      ) -> Imagekitio::VideoTransformationAcceptedEvent::Data
+
+      def request: -> Imagekitio::VideoTransformationAcceptedEvent::Request
+
+      def request=: (
+        Imagekitio::VideoTransformationAcceptedEvent::Request _
+      ) -> Imagekitio::VideoTransformationAcceptedEvent::Request
+
+      def `type`: -> :"video.transformation.accepted"
+
+      def type=: (
+        :"video.transformation.accepted" _
+      ) -> :"video.transformation.accepted"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::VideoTransformationAcceptedEvent::Data,
+        request: Imagekitio::VideoTransformationAcceptedEvent::Request,
+        ?type: :"video.transformation.accepted"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::VideoTransformationAcceptedEvent::Data,
+        request: Imagekitio::VideoTransformationAcceptedEvent::Request,
+        type: :"video.transformation.accepted"
+      }
+
+      type data =
+        {
+          asset: Imagekitio::VideoTransformationAcceptedEvent::Data::Asset,
+          transformation: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation
+        }
+
+      class Data < Imagekitio::Internal::Type::BaseModel
+        attr_accessor asset: Imagekitio::VideoTransformationAcceptedEvent::Data::Asset
+
+        attr_accessor transformation: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation
+
+        def initialize: (
+          asset: Imagekitio::VideoTransformationAcceptedEvent::Data::Asset,
+          transformation: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation
+        ) -> void
+
+        def to_hash: -> {
+          asset: Imagekitio::VideoTransformationAcceptedEvent::Data::Asset,
+          transformation: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation
+        }
+
+        type asset = { url: String }
+
+        class Asset < Imagekitio::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
+
+        type transformation =
+          {
+            type: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::type_,
+            options: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation::Options
+          }
+
+        class Transformation < Imagekitio::Internal::Type::BaseModel
+          attr_accessor type: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::type_
+
+          attr_reader options: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation::Options?
+
+          def options=: (
+            Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation::Options
+          ) -> Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation::Options
+
+          def initialize: (
+            type: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::type_,
+            ?options: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation::Options
+          ) -> void
+
+          def to_hash: -> {
+            type: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::type_,
+            options: Imagekitio::VideoTransformationAcceptedEvent::Data::Transformation::Options
+          }
+
+          type type_ =
+            :"video-transformation" | :"gif-to-video" | :"video-thumbnail"
+
+          module Type
+            extend Imagekitio::Internal::Type::Enum
+
+            VIDEO_TRANSFORMATION: :"video-transformation"
+            GIF_TO_VIDEO: :"gif-to-video"
+            VIDEO_THUMBNAIL: :"video-thumbnail"
+
+            def self?.values: -> ::Array[Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::type_]
+          end
+
+          type options =
+            {
+              audio_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::audio_codec,
+              auto_rotate: bool,
+              format_: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::format_,
+              quality: Integer,
+              stream_protocol: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol,
+              variants: ::Array[String],
+              video_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec
+            }
+
+          class Options < Imagekitio::Internal::Type::BaseModel
+            attr_reader audio_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::audio_codec?
+
+            def audio_codec=: (
+              Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::audio_codec
+            ) -> Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::audio_codec
+
+            attr_reader auto_rotate: bool?
+
+            def auto_rotate=: (bool) -> bool
+
+            attr_reader format_: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::format_?
+
+            def format_=: (
+              Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::format_
+            ) -> Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::format_
+
+            attr_reader quality: Integer?
+
+            def quality=: (Integer) -> Integer
+
+            attr_reader stream_protocol: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol?
+
+            def stream_protocol=: (
+              Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol
+            ) -> Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol
+
+            attr_reader variants: ::Array[String]?
+
+            def variants=: (::Array[String]) -> ::Array[String]
+
+            attr_reader video_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec?
+
+            def video_codec=: (
+              Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec
+            ) -> Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec
+
+            def initialize: (
+              ?audio_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::audio_codec,
+              ?auto_rotate: bool,
+              ?format_: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::format_,
+              ?quality: Integer,
+              ?stream_protocol: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol,
+              ?variants: ::Array[String],
+              ?video_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec
+            ) -> void
+
+            def to_hash: -> {
+              audio_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::audio_codec,
+              auto_rotate: bool,
+              format_: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::format_,
+              quality: Integer,
+              stream_protocol: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol,
+              variants: ::Array[String],
+              video_codec: Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec
+            }
+
+            type audio_codec = :aac | :opus
+
+            module AudioCodec
+              extend Imagekitio::Internal::Type::Enum
+
+              AAC: :aac
+              OPUS: :opus
+
+              def self?.values: -> ::Array[Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::audio_codec]
+            end
+
+            type format_ = :mp4 | :webm | :jpg | :png | :webp
+
+            module Format
+              extend Imagekitio::Internal::Type::Enum
+
+              MP4: :mp4
+              WEBM: :webm
+              JPG: :jpg
+              PNG: :png
+              WEBP: :webp
+
+              def self?.values: -> ::Array[Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::format_]
+            end
+
+            type stream_protocol = :HLS | :DASH
+
+            module StreamProtocol
+              extend Imagekitio::Internal::Type::Enum
+
+              HLS: :HLS
+              DASH: :DASH
+
+              def self?.values: -> ::Array[Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::stream_protocol]
+            end
+
+            type video_codec = :h264 | :vp9 | :av1
+
+            module VideoCodec
+              extend Imagekitio::Internal::Type::Enum
+
+              H264: :h264
+              VP9: :vp9
+              AV1: :av1
+
+              def self?.values: -> ::Array[Imagekitio::Models::VideoTransformationAcceptedEvent::Data::Transformation::Options::video_codec]
+            end
+          end
+        end
+      end
+
+      type request = { url: String, x_request_id: String, user_agent: String }
+
+      class Request < Imagekitio::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor x_request_id: String
+
+        attr_reader user_agent: String?
+
+        def user_agent=: (String) -> String
+
+        def initialize: (
+          url: String,
+          x_request_id: String,
+          ?user_agent: String
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          x_request_id: String,
+          user_agent: String
+        }
+      end
+    end
+  end
+end

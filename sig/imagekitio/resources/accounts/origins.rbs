@@ -1,0 +1,34 @@
+module Imagekitio
+  module Resources
+    class Accounts
+      class Origins
+        def create: (
+          origin_request: Imagekitio::Models::Accounts::OriginRequest,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Accounts::origin_response
+
+        def update: (
+          String id,
+          origin_request: Imagekitio::Models::Accounts::OriginRequest,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Accounts::origin_response
+
+        def list: (
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Accounts::origin_list_response
+
+        def delete: (
+          String id,
+          ?request_options: Imagekitio::request_opts
+        ) -> nil
+
+        def get: (
+          String id,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Accounts::origin_response
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,85 @@
+module Imagekitio
+  module Models
+    type overlay_position =
+      {
+        focus: Imagekitio::Models::OverlayPosition::focus,
+        x: Imagekitio::Models::OverlayPosition::x,
+        y_: Imagekitio::Models::OverlayPosition::y_
+      }
+
+    class OverlayPosition < Imagekitio::Internal::Type::BaseModel
+      attr_reader focus: Imagekitio::Models::OverlayPosition::focus?
+
+      def focus=: (
+        Imagekitio::Models::OverlayPosition::focus
+      ) -> Imagekitio::Models::OverlayPosition::focus
+
+      attr_reader x: Imagekitio::Models::OverlayPosition::x?
+
+      def x=: (
+        Imagekitio::Models::OverlayPosition::x
+      ) -> Imagekitio::Models::OverlayPosition::x
+
+      attr_reader y_: Imagekitio::Models::OverlayPosition::y_?
+
+      def y_=: (
+        Imagekitio::Models::OverlayPosition::y_
+      ) -> Imagekitio::Models::OverlayPosition::y_
+
+      def initialize: (
+        ?focus: Imagekitio::Models::OverlayPosition::focus,
+        ?x: Imagekitio::Models::OverlayPosition::x,
+        ?y_: Imagekitio::Models::OverlayPosition::y_
+      ) -> void
+
+      def to_hash: -> {
+        focus: Imagekitio::Models::OverlayPosition::focus,
+        x: Imagekitio::Models::OverlayPosition::x,
+        y_: Imagekitio::Models::OverlayPosition::y_
+      }
+
+      type focus =
+        :center
+        | :top
+        | :left
+        | :bottom
+        | :right
+        | :top_left
+        | :top_right
+        | :bottom_left
+        | :bottom_right
+
+      module Focus
+        extend Imagekitio::Internal::Type::Enum
+
+        CENTER: :center
+        TOP: :top
+        LEFT: :left
+        BOTTOM: :bottom
+        RIGHT: :right
+        TOP_LEFT: :top_left
+        TOP_RIGHT: :top_right
+        BOTTOM_LEFT: :bottom_left
+        BOTTOM_RIGHT: :bottom_right
+
+        def self?.values: -> ::Array[Imagekitio::Models::OverlayPosition::focus]
+      end
+
+      type x = Float | String
+
+      module X
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::OverlayPosition::x]
+      end
+
+      type y_ = Float | String
+
+      module Y
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::OverlayPosition::y_]
+      end
+    end
+  end
+end

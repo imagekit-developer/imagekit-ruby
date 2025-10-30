@@ -1,0 +1,138 @@
+module Imagekitio
+  module Models
+    type asset_list_params =
+      {
+        file_type: Imagekitio::Models::AssetListParams::file_type,
+        limit: Integer,
+        path: String,
+        search_query: String,
+        skip: Integer,
+        sort: Imagekitio::Models::AssetListParams::sort,
+        type: Imagekitio::Models::AssetListParams::type_
+      }
+      & Imagekitio::Internal::Type::request_parameters
+
+    class AssetListParams < Imagekitio::Internal::Type::BaseModel
+      extend Imagekitio::Internal::Type::RequestParameters::Converter
+      include Imagekitio::Internal::Type::RequestParameters
+
+      attr_reader file_type: Imagekitio::Models::AssetListParams::file_type?
+
+      def file_type=: (
+        Imagekitio::Models::AssetListParams::file_type
+      ) -> Imagekitio::Models::AssetListParams::file_type
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader search_query: String?
+
+      def search_query=: (String) -> String
+
+      attr_reader skip: Integer?
+
+      def skip=: (Integer) -> Integer
+
+      attr_reader sort: Imagekitio::Models::AssetListParams::sort?
+
+      def sort=: (
+        Imagekitio::Models::AssetListParams::sort
+      ) -> Imagekitio::Models::AssetListParams::sort
+
+      attr_reader type: Imagekitio::Models::AssetListParams::type_?
+
+      def type=: (
+        Imagekitio::Models::AssetListParams::type_
+      ) -> Imagekitio::Models::AssetListParams::type_
+
+      def initialize: (
+        ?file_type: Imagekitio::Models::AssetListParams::file_type,
+        ?limit: Integer,
+        ?path: String,
+        ?search_query: String,
+        ?skip: Integer,
+        ?sort: Imagekitio::Models::AssetListParams::sort,
+        ?type: Imagekitio::Models::AssetListParams::type_,
+        ?request_options: Imagekitio::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file_type: Imagekitio::Models::AssetListParams::file_type,
+        limit: Integer,
+        path: String,
+        search_query: String,
+        skip: Integer,
+        sort: Imagekitio::Models::AssetListParams::sort,
+        type: Imagekitio::Models::AssetListParams::type_,
+        request_options: Imagekitio::RequestOptions
+      }
+
+      type file_type = :all | :image | :"non-image"
+
+      module FileType
+        extend Imagekitio::Internal::Type::Enum
+
+        ALL: :all
+        IMAGE: :image
+        NON_IMAGE: :"non-image"
+
+        def self?.values: -> ::Array[Imagekitio::Models::AssetListParams::file_type]
+      end
+
+      type sort =
+        :ASC_NAME
+        | :DESC_NAME
+        | :ASC_CREATED
+        | :DESC_CREATED
+        | :ASC_UPDATED
+        | :DESC_UPDATED
+        | :ASC_HEIGHT
+        | :DESC_HEIGHT
+        | :ASC_WIDTH
+        | :DESC_WIDTH
+        | :ASC_SIZE
+        | :DESC_SIZE
+        | :ASC_RELEVANCE
+        | :DESC_RELEVANCE
+
+      module Sort
+        extend Imagekitio::Internal::Type::Enum
+
+        ASC_NAME: :ASC_NAME
+        DESC_NAME: :DESC_NAME
+        ASC_CREATED: :ASC_CREATED
+        DESC_CREATED: :DESC_CREATED
+        ASC_UPDATED: :ASC_UPDATED
+        DESC_UPDATED: :DESC_UPDATED
+        ASC_HEIGHT: :ASC_HEIGHT
+        DESC_HEIGHT: :DESC_HEIGHT
+        ASC_WIDTH: :ASC_WIDTH
+        DESC_WIDTH: :DESC_WIDTH
+        ASC_SIZE: :ASC_SIZE
+        DESC_SIZE: :DESC_SIZE
+        ASC_RELEVANCE: :ASC_RELEVANCE
+        DESC_RELEVANCE: :DESC_RELEVANCE
+
+        def self?.values: -> ::Array[Imagekitio::Models::AssetListParams::sort]
+      end
+
+      type type_ = :file | :"file-version" | :folder | :all
+
+      module Type
+        extend Imagekitio::Internal::Type::Enum
+
+        FILE: :file
+        FILE_VERSION: :"file-version"
+        FOLDER: :folder
+        ALL: :all
+
+        def self?.values: -> ::Array[Imagekitio::Models::AssetListParams::type_]
+      end
+    end
+  end
+end

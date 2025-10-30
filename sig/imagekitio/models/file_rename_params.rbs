@@ -1,0 +1,34 @@
+module Imagekitio
+  module Models
+    type file_rename_params =
+      { file_path: String, new_file_name: String, purge_cache: bool }
+      & Imagekitio::Internal::Type::request_parameters
+
+    class FileRenameParams < Imagekitio::Internal::Type::BaseModel
+      extend Imagekitio::Internal::Type::RequestParameters::Converter
+      include Imagekitio::Internal::Type::RequestParameters
+
+      attr_accessor file_path: String
+
+      attr_accessor new_file_name: String
+
+      attr_reader purge_cache: bool?
+
+      def purge_cache=: (bool) -> bool
+
+      def initialize: (
+        file_path: String,
+        new_file_name: String,
+        ?purge_cache: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file_path: String,
+        new_file_name: String,
+        purge_cache: bool,
+        request_options: Imagekitio::RequestOptions
+      }
+    end
+  end
+end

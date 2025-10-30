@@ -1,0 +1,16 @@
+module Imagekitio
+  module Models
+    type overlay =
+      Imagekitio::TextOverlay
+      | Imagekitio::ImageOverlay
+      | Imagekitio::VideoOverlay
+      | Imagekitio::SubtitleOverlay
+      | Imagekitio::SolidColorOverlay
+
+    module Overlay
+      extend Imagekitio::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Imagekitio::Models::overlay]
+    end
+  end
+end

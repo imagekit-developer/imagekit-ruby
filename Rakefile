@@ -162,7 +162,7 @@ multitask(:"build:gem") do
     sig/*
   GLOB
 
-  sh(*%w[gem build -- imagekit.gemspec])
+  sh(*%w[gem build -- imagekitio.gemspec])
   rm_rf(ignore_file)
 end
 

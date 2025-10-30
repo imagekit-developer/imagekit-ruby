@@ -1,0 +1,119 @@
+module Imagekitio
+  module Accounts = Imagekitio::Models::Accounts
+
+  class AssetListParams = Imagekitio::Models::AssetListParams
+
+  class BaseOverlay = Imagekitio::Models::BaseOverlay
+
+  class BaseWebhookEvent = Imagekitio::Models::BaseWebhookEvent
+
+  module Beta = Imagekitio::Models::Beta
+
+  module Cache = Imagekitio::Models::Cache
+
+  class CustomMetadataField = Imagekitio::Models::CustomMetadataField
+
+  class CustomMetadataFieldCreateParams = Imagekitio::Models::CustomMetadataFieldCreateParams
+
+  class CustomMetadataFieldDeleteParams = Imagekitio::Models::CustomMetadataFieldDeleteParams
+
+  class CustomMetadataFieldListParams = Imagekitio::Models::CustomMetadataFieldListParams
+
+  class CustomMetadataFieldUpdateParams = Imagekitio::Models::CustomMetadataFieldUpdateParams
+
+  type extension_item = Imagekitio::Models::extension_item
+
+  Extensions: Imagekitio::Internal::Type::Converter
+
+  class File = Imagekitio::Models::File
+
+  class FileCopyParams = Imagekitio::Models::FileCopyParams
+
+  class FileDeleteParams = Imagekitio::Models::FileDeleteParams
+
+  class FileGetParams = Imagekitio::Models::FileGetParams
+
+  class FileMoveParams = Imagekitio::Models::FileMoveParams
+
+  class FileRenameParams = Imagekitio::Models::FileRenameParams
+
+  module Files = Imagekitio::Models::Files
+
+  class FileUpdateParams = Imagekitio::Models::FileUpdateParams
+
+  class FileUploadParams = Imagekitio::Models::FileUploadParams
+
+  class Folder = Imagekitio::Models::Folder
+
+  class FolderCopyParams = Imagekitio::Models::FolderCopyParams
+
+  class FolderCreateParams = Imagekitio::Models::FolderCreateParams
+
+  class FolderDeleteParams = Imagekitio::Models::FolderDeleteParams
+
+  class FolderMoveParams = Imagekitio::Models::FolderMoveParams
+
+  class FolderRenameParams = Imagekitio::Models::FolderRenameParams
+
+  module Folders = Imagekitio::Models::Folders
+
+  class GetImageAttributesOptions = Imagekitio::Models::GetImageAttributesOptions
+
+  class ImageOverlay = Imagekitio::Models::ImageOverlay
+
+  class Metadata = Imagekitio::Models::Metadata
+
+  module Overlay = Imagekitio::Models::Overlay
+
+  class OverlayPosition = Imagekitio::Models::OverlayPosition
+
+  class OverlayTiming = Imagekitio::Models::OverlayTiming
+
+  class ResponsiveImageAttributes = Imagekitio::Models::ResponsiveImageAttributes
+
+  class SolidColorOverlay = Imagekitio::Models::SolidColorOverlay
+
+  class SolidColorOverlayTransformation = Imagekitio::Models::SolidColorOverlayTransformation
+
+  class SrcOptions = Imagekitio::Models::SrcOptions
+
+  module StreamingResolution = Imagekitio::Models::StreamingResolution
+
+  class SubtitleOverlay = Imagekitio::Models::SubtitleOverlay
+
+  class SubtitleOverlayTransformation = Imagekitio::Models::SubtitleOverlayTransformation
+
+  class TextOverlay = Imagekitio::Models::TextOverlay
+
+  class TextOverlayTransformation = Imagekitio::Models::TextOverlayTransformation
+
+  class Transformation = Imagekitio::Models::Transformation
+
+  module TransformationPosition = Imagekitio::Models::TransformationPosition
+
+  module UnsafeUnwrapWebhookEvent = Imagekitio::Models::UnsafeUnwrapWebhookEvent
+
+  module UnwrapWebhookEvent = Imagekitio::Models::UnwrapWebhookEvent
+
+  module UpdateFileRequest = Imagekitio::Models::UpdateFileRequest
+
+  class UploadPostTransformErrorEvent = Imagekitio::Models::UploadPostTransformErrorEvent
+
+  class UploadPostTransformSuccessEvent = Imagekitio::Models::UploadPostTransformSuccessEvent
+
+  class UploadPreTransformErrorEvent = Imagekitio::Models::UploadPreTransformErrorEvent
+
+  class UploadPreTransformSuccessEvent = Imagekitio::Models::UploadPreTransformSuccessEvent
+
+  class VideoOverlay = Imagekitio::Models::VideoOverlay
+
+  class VideoTransformationAcceptedEvent = Imagekitio::Models::VideoTransformationAcceptedEvent
+
+  class VideoTransformationErrorEvent = Imagekitio::Models::VideoTransformationErrorEvent
+
+  class VideoTransformationReadyEvent = Imagekitio::Models::VideoTransformationReadyEvent
+
+  class WebhookUnsafeUnwrapParams = Imagekitio::Models::WebhookUnsafeUnwrapParams
+
+  class WebhookUnwrapParams = Imagekitio::Models::WebhookUnwrapParams
+end
