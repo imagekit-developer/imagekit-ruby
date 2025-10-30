@@ -25,7 +25,7 @@ module Imagekitio
         case (dumped = dump(params, state: state))
         in Hash
           serialized = serialize_upload_options(dumped)
-          options = Imagekit::Internal::Util.coerce_hash!(serialized[:request_options]).to_h
+          options = Imagekitio::Internal::Util.coerce_hash!(serialized[:request_options]).to_h
           request_options = state.fetch(:can_retry) ? options : {**options, max_retries: 0}
           [serialized.except(:request_options), request_options]
         else
