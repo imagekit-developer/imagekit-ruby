@@ -1,0 +1,9 @@
+module Imagekitio
+  module Models
+    module Files
+      type version_list_response = ::Array[Imagekitio::File]
+
+      VersionListResponse: Imagekitio::Internal::Type::Converter
+    end
+  end
+end

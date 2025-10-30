@@ -1,0 +1,10 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type origin_list_response =
+        ::Array[Imagekitio::Models::Accounts::origin_response]
+
+      OriginListResponse: Imagekitio::Internal::Type::Converter
+    end
+  end
+end

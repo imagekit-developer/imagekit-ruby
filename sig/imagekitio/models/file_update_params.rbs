@@ -1,0 +1,28 @@
+module Imagekitio
+  module Models
+    type file_update_params =
+      { update_file_request: Imagekitio::Models::update_file_request }
+      & Imagekitio::Internal::Type::request_parameters
+
+    class FileUpdateParams < Imagekitio::Internal::Type::BaseModel
+      extend Imagekitio::Internal::Type::RequestParameters::Converter
+      include Imagekitio::Internal::Type::RequestParameters
+
+      def update_file_request: -> Imagekitio::Models::update_file_request
+
+      def update_file_request=: (
+        Imagekitio::Models::update_file_request _
+      ) -> Imagekitio::Models::update_file_request
+
+      def initialize: (
+        update_file_request: Imagekitio::Models::update_file_request,
+        ?request_options: Imagekitio::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        update_file_request: Imagekitio::Models::update_file_request,
+        request_options: Imagekitio::RequestOptions
+      }
+    end
+  end
+end

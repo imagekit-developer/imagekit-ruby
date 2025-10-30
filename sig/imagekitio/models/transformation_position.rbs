@@ -1,0 +1,14 @@
+module Imagekitio
+  module Models
+    type transformation_position = :path | :query
+
+    module TransformationPosition
+      extend Imagekitio::Internal::Type::Enum
+
+      PATH: :path
+      QUERY: :query
+
+      def self?.values: -> ::Array[Imagekitio::Models::transformation_position]
+    end
+  end
+end

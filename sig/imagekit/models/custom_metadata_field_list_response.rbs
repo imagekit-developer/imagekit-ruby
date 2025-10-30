@@ -1,8 +1,0 @@
-module Imagekit
-  module Models
-    type custom_metadata_field_list_response =
-      ::Array[Imagekit::CustomMetadataField]
-
-    CustomMetadataFieldListResponse: Imagekit::Internal::Type::Converter
-  end
-end

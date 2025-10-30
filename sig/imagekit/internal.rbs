@@ -1,9 +1,0 @@
-module Imagekit
-  module Internal
-    extend Imagekit::Internal::Util::SorbetRuntimeSupport
-
-    type file_input = Pathname | StringIO | IO | String | Imagekit::FilePart
-
-    OMIT: Object
-  end
-end

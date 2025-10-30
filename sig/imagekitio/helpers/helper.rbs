@@ -1,0 +1,24 @@
+module Imagekitio
+  class Helper
+    def initialize: (client: Imagekitio::Client) -> void
+
+    # Builds a URL with transformations applied
+    def build_url: (Imagekitio::Models::SrcOptions options) -> String
+
+    # Generates transformation string from transformation objects
+    def build_transformation_string: (
+      Array[Imagekitio::Models::Transformation] transformations
+    ) -> String
+
+    # Generates authentication parameters for client-side file uploads
+    def get_authentication_parameters: (
+      ?String? token,
+      ?Integer? expire
+    ) -> Hash[Symbol, (String | Integer)]
+
+    # Generates responsive image attributes for use in HTML <img> tags
+    def get_responsive_image_attributes: (
+      Imagekitio::Models::GetImageAttributesOptions options
+    ) -> Imagekitio::Models::ResponsiveImageAttributes
+  end
+end

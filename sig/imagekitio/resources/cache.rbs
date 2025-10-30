@@ -1,0 +1,9 @@
+module Imagekitio
+  module Resources
+    class Cache
+      attr_reader invalidation: Imagekitio::Resources::Cache::Invalidation
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

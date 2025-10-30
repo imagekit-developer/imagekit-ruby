@@ -1,0 +1,20 @@
+module Imagekitio
+  module Models
+    module Files
+      type bulk_remove_tags_response =
+        { successfully_updated_file_ids: ::Array[String] }
+
+      class BulkRemoveTagsResponse < Imagekitio::Internal::Type::BaseModel
+        attr_reader successfully_updated_file_ids: ::Array[String]?
+
+        def successfully_updated_file_ids=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          ?successfully_updated_file_ids: ::Array[String]
+        ) -> void
+
+        def to_hash: -> { successfully_updated_file_ids: ::Array[String] }
+      end
+    end
+  end
+end

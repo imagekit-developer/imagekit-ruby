@@ -1,0 +1,43 @@
+module Imagekitio
+  module Models
+    type get_image_attributes_options =
+      {
+        device_breakpoints: ::Array[Float],
+        image_breakpoints: ::Array[Float],
+        sizes: String,
+        width: Float
+      }
+
+    class GetImageAttributesOptions < Imagekitio::Models::SrcOptions
+      def device_breakpoints: -> ::Array[Float]?
+
+      def device_breakpoints=: (::Array[Float] _) -> ::Array[Float]
+
+      def image_breakpoints: -> ::Array[Float]?
+
+      def image_breakpoints=: (::Array[Float] _) -> ::Array[Float]
+
+      def sizes: -> String?
+
+      def sizes=: (String _) -> String
+
+      def width: -> Float?
+
+      def width=: (Float _) -> Float
+
+      def initialize: (
+        ?device_breakpoints: ::Array[Float],
+        ?image_breakpoints: ::Array[Float],
+        ?sizes: String,
+        ?width: Float
+      ) -> void
+
+      def to_hash: -> {
+        device_breakpoints: ::Array[Float],
+        image_breakpoints: ::Array[Float],
+        sizes: String,
+        width: Float
+      }
+    end
+  end
+end

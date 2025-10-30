@@ -1,0 +1,26 @@
+module Imagekitio
+  module Models
+    module Files
+      type bulk_delete_params =
+        { file_ids: ::Array[String] }
+        & Imagekitio::Internal::Type::request_parameters
+
+      class BulkDeleteParams < Imagekitio::Internal::Type::BaseModel
+        extend Imagekitio::Internal::Type::RequestParameters::Converter
+        include Imagekitio::Internal::Type::RequestParameters
+
+        attr_accessor file_ids: ::Array[String]
+
+        def initialize: (
+          file_ids: ::Array[String],
+          ?request_options: Imagekitio::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          file_ids: ::Array[String],
+          request_options: Imagekitio::RequestOptions
+        }
+      end
+    end
+  end
+end

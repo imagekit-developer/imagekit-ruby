@@ -1,0 +1,19 @@
+module Imagekitio
+  module Resources
+    class Cache
+      class Invalidation
+        def create: (
+          url: String,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Cache::InvalidationCreateResponse
+
+        def get: (
+          String request_id,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Cache::InvalidationGetResponse
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

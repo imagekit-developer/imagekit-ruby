@@ -1,0 +1,32 @@
+module Imagekitio
+  module Resources
+    class CustomMetadataFields
+      def create: (
+        label: String,
+        name: String,
+        schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::CustomMetadataField
+
+      def update: (
+        String id,
+        ?label: String,
+        ?schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::CustomMetadataField
+
+      def list: (
+        ?folder_path: String,
+        ?include_deleted: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::custom_metadata_field_list_response
+
+      def delete: (
+        String id,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::CustomMetadataFieldDeleteResponse
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

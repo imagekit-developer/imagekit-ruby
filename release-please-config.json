@@ -60,7 +60,7 @@
     }
   ],
   "release-type": "ruby",
-  "version-file": "lib/imagekit/version.rb",
+  "version-file": "lib/imagekitio/version.rb",
   "extra-files": [
     {
       "type": "ruby-readme",

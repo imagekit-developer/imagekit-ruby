@@ -1,0 +1,115 @@
+module Imagekitio
+  module Models
+    type upload_pre_transform_error_event =
+      {
+        created_at: Time,
+        data: Imagekitio::UploadPreTransformErrorEvent::Data,
+        request: Imagekitio::UploadPreTransformErrorEvent::Request,
+        type: :"upload.pre-transform.error"
+      }
+
+    class UploadPreTransformErrorEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::UploadPreTransformErrorEvent::Data
+
+      def data=: (
+        Imagekitio::UploadPreTransformErrorEvent::Data _
+      ) -> Imagekitio::UploadPreTransformErrorEvent::Data
+
+      def request: -> Imagekitio::UploadPreTransformErrorEvent::Request
+
+      def request=: (
+        Imagekitio::UploadPreTransformErrorEvent::Request _
+      ) -> Imagekitio::UploadPreTransformErrorEvent::Request
+
+      def `type`: -> :"upload.pre-transform.error"
+
+      def type=: (
+        :"upload.pre-transform.error" _
+      ) -> :"upload.pre-transform.error"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::UploadPreTransformErrorEvent::Data,
+        request: Imagekitio::UploadPreTransformErrorEvent::Request,
+        ?type: :"upload.pre-transform.error"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::UploadPreTransformErrorEvent::Data,
+        request: Imagekitio::UploadPreTransformErrorEvent::Request,
+        type: :"upload.pre-transform.error"
+      }
+
+      type data =
+        {
+          name: String,
+          path: String,
+          transformation: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation
+        }
+
+      class Data < Imagekitio::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_accessor path: String
+
+        attr_accessor transformation: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation
+
+        def initialize: (
+          name: String,
+          path: String,
+          transformation: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          path: String,
+          transformation: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation
+        }
+
+        type transformation =
+          {
+            error: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation::Error
+          }
+
+        class Transformation < Imagekitio::Internal::Type::BaseModel
+          attr_accessor error: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation::Error
+
+          def initialize: (
+            error: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation::Error
+          ) -> void
+
+          def to_hash: -> {
+            error: Imagekitio::UploadPreTransformErrorEvent::Data::Transformation::Error
+          }
+
+          type error = { reason: String }
+
+          class Error < Imagekitio::Internal::Type::BaseModel
+            attr_accessor reason: String
+
+            def initialize: (reason: String) -> void
+
+            def to_hash: -> { reason: String }
+          end
+        end
+      end
+
+      type request = { transformation: String, x_request_id: String }
+
+      class Request < Imagekitio::Internal::Type::BaseModel
+        attr_accessor transformation: String
+
+        attr_accessor x_request_id: String
+
+        def initialize: (transformation: String, x_request_id: String) -> void
+
+        def to_hash: -> { transformation: String, x_request_id: String }
+      end
+    end
+  end
+end

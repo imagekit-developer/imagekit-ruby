@@ -1,0 +1,72 @@
+module Imagekitio
+  module Models
+    module Folders
+      type job_get_response =
+        {
+          job_id: String,
+          purge_request_id: String,
+          status: Imagekitio::Models::Folders::JobGetResponse::status,
+          type: Imagekitio::Models::Folders::JobGetResponse::type_
+        }
+
+      class JobGetResponse < Imagekitio::Internal::Type::BaseModel
+        attr_reader job_id: String?
+
+        def job_id=: (String) -> String
+
+        attr_reader purge_request_id: String?
+
+        def purge_request_id=: (String) -> String
+
+        attr_reader status: Imagekitio::Models::Folders::JobGetResponse::status?
+
+        def status=: (
+          Imagekitio::Models::Folders::JobGetResponse::status
+        ) -> Imagekitio::Models::Folders::JobGetResponse::status
+
+        attr_reader type: Imagekitio::Models::Folders::JobGetResponse::type_?
+
+        def type=: (
+          Imagekitio::Models::Folders::JobGetResponse::type_
+        ) -> Imagekitio::Models::Folders::JobGetResponse::type_
+
+        def initialize: (
+          ?job_id: String,
+          ?purge_request_id: String,
+          ?status: Imagekitio::Models::Folders::JobGetResponse::status,
+          ?type: Imagekitio::Models::Folders::JobGetResponse::type_
+        ) -> void
+
+        def to_hash: -> {
+          job_id: String,
+          purge_request_id: String,
+          status: Imagekitio::Models::Folders::JobGetResponse::status,
+          type: Imagekitio::Models::Folders::JobGetResponse::type_
+        }
+
+        type status = :Pending | :Completed
+
+        module Status
+          extend Imagekitio::Internal::Type::Enum
+
+          PENDING: :Pending
+          COMPLETED: :Completed
+
+          def self?.values: -> ::Array[Imagekitio::Models::Folders::JobGetResponse::status]
+        end
+
+        type type_ = :COPY_FOLDER | :MOVE_FOLDER | :RENAME_FOLDER
+
+        module Type
+          extend Imagekitio::Internal::Type::Enum
+
+          COPY_FOLDER: :COPY_FOLDER
+          MOVE_FOLDER: :MOVE_FOLDER
+          RENAME_FOLDER: :RENAME_FOLDER
+
+          def self?.values: -> ::Array[Imagekitio::Models::Folders::JobGetResponse::type_]
+        end
+      end
+    end
+  end
+end

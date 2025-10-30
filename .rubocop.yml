@@ -40,9 +40,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "Imagekit::Internal::Type::BaseModel$"
+    - "Imagekitio::Internal::Type::BaseModel$"
     - "^\\s*[A-Z0-9_]+ = :"
-    - "Imagekit::(Models|Resources|Test)::"
+    - "Imagekitio::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:

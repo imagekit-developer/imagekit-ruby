@@ -1,0 +1,32 @@
+module Imagekitio
+  module Resources
+    class Files
+      class Versions
+        def list: (
+          String file_id,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Files::version_list_response
+
+        def delete: (
+          String version_id,
+          file_id: String,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Files::VersionDeleteResponse
+
+        def get: (
+          String version_id,
+          file_id: String,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::File
+
+        def restore: (
+          String version_id,
+          file_id: String,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::File
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,10 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type url_endpoint_list_response =
+        ::Array[Imagekitio::Accounts::URLEndpointResponse]
+
+      URLEndpointListResponse: Imagekitio::Internal::Type::Converter
+    end
+  end
+end

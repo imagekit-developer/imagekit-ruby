@@ -1,0 +1,763 @@
+module Imagekitio
+  module Models
+    type transformation =
+      {
+        ai_change_background: String,
+        ai_drop_shadow: Imagekitio::Models::Transformation::ai_drop_shadow,
+        ai_edit: String,
+        ai_remove_background: Imagekitio::Models::Transformation::ai_remove_background,
+        ai_remove_background_external: Imagekitio::Models::Transformation::ai_remove_background_external,
+        ai_retouch: Imagekitio::Models::Transformation::ai_retouch,
+        ai_upscale: Imagekitio::Models::Transformation::ai_upscale,
+        ai_variation: Imagekitio::Models::Transformation::ai_variation,
+        aspect_ratio: Imagekitio::Models::Transformation::aspect_ratio,
+        audio_codec: Imagekitio::Models::Transformation::audio_codec,
+        background: String,
+        blur: Float,
+        border: String,
+        color_profile: bool,
+        contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
+        crop: Imagekitio::Models::Transformation::crop,
+        crop_mode: Imagekitio::Models::Transformation::crop_mode,
+        default_image: String,
+        dpr: Float,
+        duration: Imagekitio::Models::Transformation::duration,
+        end_offset: Imagekitio::Models::Transformation::end_offset,
+        flip: Imagekitio::Models::Transformation::flip,
+        focus: String,
+        format_: Imagekitio::Models::Transformation::format_,
+        gradient: Imagekitio::Models::Transformation::gradient,
+        grayscale: Imagekitio::Models::Transformation::grayscale,
+        height: Imagekitio::Models::Transformation::height,
+        lossless: bool,
+        metadata: bool,
+        named: String,
+        opacity: Float,
+        original: bool,
+        overlay: Imagekitio::Models::overlay,
+        page: Imagekitio::Models::Transformation::page,
+        progressive: bool,
+        quality: Float,
+        radius: Imagekitio::Models::Transformation::radius,
+        raw: String,
+        rotation: Imagekitio::Models::Transformation::rotation,
+        shadow: Imagekitio::Models::Transformation::shadow,
+        sharpen: Imagekitio::Models::Transformation::sharpen,
+        start_offset: Imagekitio::Models::Transformation::start_offset,
+        streaming_resolutions: ::Array[Imagekitio::Models::streaming_resolution],
+        trim: Imagekitio::Models::Transformation::trim,
+        unsharp_mask: Imagekitio::Models::Transformation::unsharp_mask,
+        video_codec: Imagekitio::Models::Transformation::video_codec,
+        width: Imagekitio::Models::Transformation::width,
+        x: Imagekitio::Models::Transformation::x,
+        x_center: Imagekitio::Models::Transformation::x_center,
+        y_: Imagekitio::Models::Transformation::y_,
+        y_center: Imagekitio::Models::Transformation::y_center,
+        zoom: Float
+      }
+
+    class Transformation < Imagekitio::Internal::Type::BaseModel
+      attr_reader ai_change_background: String?
+
+      def ai_change_background=: (String) -> String
+
+      attr_reader ai_drop_shadow: Imagekitio::Models::Transformation::ai_drop_shadow?
+
+      def ai_drop_shadow=: (
+        Imagekitio::Models::Transformation::ai_drop_shadow
+      ) -> Imagekitio::Models::Transformation::ai_drop_shadow
+
+      attr_reader ai_edit: String?
+
+      def ai_edit=: (String) -> String
+
+      attr_reader ai_remove_background: Imagekitio::Models::Transformation::ai_remove_background?
+
+      def ai_remove_background=: (
+        Imagekitio::Models::Transformation::ai_remove_background
+      ) -> Imagekitio::Models::Transformation::ai_remove_background
+
+      attr_reader ai_remove_background_external: Imagekitio::Models::Transformation::ai_remove_background_external?
+
+      def ai_remove_background_external=: (
+        Imagekitio::Models::Transformation::ai_remove_background_external
+      ) -> Imagekitio::Models::Transformation::ai_remove_background_external
+
+      attr_reader ai_retouch: Imagekitio::Models::Transformation::ai_retouch?
+
+      def ai_retouch=: (
+        Imagekitio::Models::Transformation::ai_retouch
+      ) -> Imagekitio::Models::Transformation::ai_retouch
+
+      attr_reader ai_upscale: Imagekitio::Models::Transformation::ai_upscale?
+
+      def ai_upscale=: (
+        Imagekitio::Models::Transformation::ai_upscale
+      ) -> Imagekitio::Models::Transformation::ai_upscale
+
+      attr_reader ai_variation: Imagekitio::Models::Transformation::ai_variation?
+
+      def ai_variation=: (
+        Imagekitio::Models::Transformation::ai_variation
+      ) -> Imagekitio::Models::Transformation::ai_variation
+
+      attr_reader aspect_ratio: Imagekitio::Models::Transformation::aspect_ratio?
+
+      def aspect_ratio=: (
+        Imagekitio::Models::Transformation::aspect_ratio
+      ) -> Imagekitio::Models::Transformation::aspect_ratio
+
+      attr_reader audio_codec: Imagekitio::Models::Transformation::audio_codec?
+
+      def audio_codec=: (
+        Imagekitio::Models::Transformation::audio_codec
+      ) -> Imagekitio::Models::Transformation::audio_codec
+
+      attr_reader background: String?
+
+      def background=: (String) -> String
+
+      attr_reader blur: Float?
+
+      def blur=: (Float) -> Float
+
+      attr_reader border: String?
+
+      def border=: (String) -> String
+
+      attr_reader color_profile: bool?
+
+      def color_profile=: (bool) -> bool
+
+      attr_reader contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch?
+
+      def contrast_stretch=: (
+        Imagekitio::Models::Transformation::contrast_stretch
+      ) -> Imagekitio::Models::Transformation::contrast_stretch
+
+      attr_reader crop: Imagekitio::Models::Transformation::crop?
+
+      def crop=: (
+        Imagekitio::Models::Transformation::crop
+      ) -> Imagekitio::Models::Transformation::crop
+
+      attr_reader crop_mode: Imagekitio::Models::Transformation::crop_mode?
+
+      def crop_mode=: (
+        Imagekitio::Models::Transformation::crop_mode
+      ) -> Imagekitio::Models::Transformation::crop_mode
+
+      attr_reader default_image: String?
+
+      def default_image=: (String) -> String
+
+      attr_reader dpr: Float?
+
+      def dpr=: (Float) -> Float
+
+      attr_reader duration: Imagekitio::Models::Transformation::duration?
+
+      def duration=: (
+        Imagekitio::Models::Transformation::duration
+      ) -> Imagekitio::Models::Transformation::duration
+
+      attr_reader end_offset: Imagekitio::Models::Transformation::end_offset?
+
+      def end_offset=: (
+        Imagekitio::Models::Transformation::end_offset
+      ) -> Imagekitio::Models::Transformation::end_offset
+
+      attr_reader flip: Imagekitio::Models::Transformation::flip?
+
+      def flip=: (
+        Imagekitio::Models::Transformation::flip
+      ) -> Imagekitio::Models::Transformation::flip
+
+      attr_reader focus: String?
+
+      def focus=: (String) -> String
+
+      attr_reader format_: Imagekitio::Models::Transformation::format_?
+
+      def format_=: (
+        Imagekitio::Models::Transformation::format_
+      ) -> Imagekitio::Models::Transformation::format_
+
+      attr_reader gradient: Imagekitio::Models::Transformation::gradient?
+
+      def gradient=: (
+        Imagekitio::Models::Transformation::gradient
+      ) -> Imagekitio::Models::Transformation::gradient
+
+      attr_reader grayscale: Imagekitio::Models::Transformation::grayscale?
+
+      def grayscale=: (
+        Imagekitio::Models::Transformation::grayscale
+      ) -> Imagekitio::Models::Transformation::grayscale
+
+      attr_reader height: Imagekitio::Models::Transformation::height?
+
+      def height=: (
+        Imagekitio::Models::Transformation::height
+      ) -> Imagekitio::Models::Transformation::height
+
+      attr_reader lossless: bool?
+
+      def lossless=: (bool) -> bool
+
+      attr_reader metadata: bool?
+
+      def metadata=: (bool) -> bool
+
+      attr_reader named: String?
+
+      def named=: (String) -> String
+
+      attr_reader opacity: Float?
+
+      def opacity=: (Float) -> Float
+
+      attr_reader original: bool?
+
+      def original=: (bool) -> bool
+
+      attr_reader overlay: Imagekitio::Models::overlay?
+
+      def overlay=: (Imagekitio::Models::overlay) -> Imagekitio::Models::overlay
+
+      attr_reader page: Imagekitio::Models::Transformation::page?
+
+      def page=: (
+        Imagekitio::Models::Transformation::page
+      ) -> Imagekitio::Models::Transformation::page
+
+      attr_reader progressive: bool?
+
+      def progressive=: (bool) -> bool
+
+      attr_reader quality: Float?
+
+      def quality=: (Float) -> Float
+
+      attr_reader radius: Imagekitio::Models::Transformation::radius?
+
+      def radius=: (
+        Imagekitio::Models::Transformation::radius
+      ) -> Imagekitio::Models::Transformation::radius
+
+      attr_reader raw: String?
+
+      def raw=: (String) -> String
+
+      attr_reader rotation: Imagekitio::Models::Transformation::rotation?
+
+      def rotation=: (
+        Imagekitio::Models::Transformation::rotation
+      ) -> Imagekitio::Models::Transformation::rotation
+
+      attr_reader shadow: Imagekitio::Models::Transformation::shadow?
+
+      def shadow=: (
+        Imagekitio::Models::Transformation::shadow
+      ) -> Imagekitio::Models::Transformation::shadow
+
+      attr_reader sharpen: Imagekitio::Models::Transformation::sharpen?
+
+      def sharpen=: (
+        Imagekitio::Models::Transformation::sharpen
+      ) -> Imagekitio::Models::Transformation::sharpen
+
+      attr_reader start_offset: Imagekitio::Models::Transformation::start_offset?
+
+      def start_offset=: (
+        Imagekitio::Models::Transformation::start_offset
+      ) -> Imagekitio::Models::Transformation::start_offset
+
+      attr_reader streaming_resolutions: ::Array[Imagekitio::Models::streaming_resolution]?
+
+      def streaming_resolutions=: (
+        ::Array[Imagekitio::Models::streaming_resolution]
+      ) -> ::Array[Imagekitio::Models::streaming_resolution]
+
+      attr_reader trim: Imagekitio::Models::Transformation::trim?
+
+      def trim=: (
+        Imagekitio::Models::Transformation::trim
+      ) -> Imagekitio::Models::Transformation::trim
+
+      attr_reader unsharp_mask: Imagekitio::Models::Transformation::unsharp_mask?
+
+      def unsharp_mask=: (
+        Imagekitio::Models::Transformation::unsharp_mask
+      ) -> Imagekitio::Models::Transformation::unsharp_mask
+
+      attr_reader video_codec: Imagekitio::Models::Transformation::video_codec?
+
+      def video_codec=: (
+        Imagekitio::Models::Transformation::video_codec
+      ) -> Imagekitio::Models::Transformation::video_codec
+
+      attr_reader width: Imagekitio::Models::Transformation::width?
+
+      def width=: (
+        Imagekitio::Models::Transformation::width
+      ) -> Imagekitio::Models::Transformation::width
+
+      attr_reader x: Imagekitio::Models::Transformation::x?
+
+      def x=: (
+        Imagekitio::Models::Transformation::x
+      ) -> Imagekitio::Models::Transformation::x
+
+      attr_reader x_center: Imagekitio::Models::Transformation::x_center?
+
+      def x_center=: (
+        Imagekitio::Models::Transformation::x_center
+      ) -> Imagekitio::Models::Transformation::x_center
+
+      attr_reader y_: Imagekitio::Models::Transformation::y_?
+
+      def y_=: (
+        Imagekitio::Models::Transformation::y_
+      ) -> Imagekitio::Models::Transformation::y_
+
+      attr_reader y_center: Imagekitio::Models::Transformation::y_center?
+
+      def y_center=: (
+        Imagekitio::Models::Transformation::y_center
+      ) -> Imagekitio::Models::Transformation::y_center
+
+      attr_reader zoom: Float?
+
+      def zoom=: (Float) -> Float
+
+      def initialize: (
+        ?ai_change_background: String,
+        ?ai_drop_shadow: Imagekitio::Models::Transformation::ai_drop_shadow,
+        ?ai_edit: String,
+        ?ai_remove_background: Imagekitio::Models::Transformation::ai_remove_background,
+        ?ai_remove_background_external: Imagekitio::Models::Transformation::ai_remove_background_external,
+        ?ai_retouch: Imagekitio::Models::Transformation::ai_retouch,
+        ?ai_upscale: Imagekitio::Models::Transformation::ai_upscale,
+        ?ai_variation: Imagekitio::Models::Transformation::ai_variation,
+        ?aspect_ratio: Imagekitio::Models::Transformation::aspect_ratio,
+        ?audio_codec: Imagekitio::Models::Transformation::audio_codec,
+        ?background: String,
+        ?blur: Float,
+        ?border: String,
+        ?color_profile: bool,
+        ?contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
+        ?crop: Imagekitio::Models::Transformation::crop,
+        ?crop_mode: Imagekitio::Models::Transformation::crop_mode,
+        ?default_image: String,
+        ?dpr: Float,
+        ?duration: Imagekitio::Models::Transformation::duration,
+        ?end_offset: Imagekitio::Models::Transformation::end_offset,
+        ?flip: Imagekitio::Models::Transformation::flip,
+        ?focus: String,
+        ?format_: Imagekitio::Models::Transformation::format_,
+        ?gradient: Imagekitio::Models::Transformation::gradient,
+        ?grayscale: Imagekitio::Models::Transformation::grayscale,
+        ?height: Imagekitio::Models::Transformation::height,
+        ?lossless: bool,
+        ?metadata: bool,
+        ?named: String,
+        ?opacity: Float,
+        ?original: bool,
+        ?overlay: Imagekitio::Models::overlay,
+        ?page: Imagekitio::Models::Transformation::page,
+        ?progressive: bool,
+        ?quality: Float,
+        ?radius: Imagekitio::Models::Transformation::radius,
+        ?raw: String,
+        ?rotation: Imagekitio::Models::Transformation::rotation,
+        ?shadow: Imagekitio::Models::Transformation::shadow,
+        ?sharpen: Imagekitio::Models::Transformation::sharpen,
+        ?start_offset: Imagekitio::Models::Transformation::start_offset,
+        ?streaming_resolutions: ::Array[Imagekitio::Models::streaming_resolution],
+        ?trim: Imagekitio::Models::Transformation::trim,
+        ?unsharp_mask: Imagekitio::Models::Transformation::unsharp_mask,
+        ?video_codec: Imagekitio::Models::Transformation::video_codec,
+        ?width: Imagekitio::Models::Transformation::width,
+        ?x: Imagekitio::Models::Transformation::x,
+        ?x_center: Imagekitio::Models::Transformation::x_center,
+        ?y_: Imagekitio::Models::Transformation::y_,
+        ?y_center: Imagekitio::Models::Transformation::y_center,
+        ?zoom: Float
+      ) -> void
+
+      def to_hash: -> {
+        ai_change_background: String,
+        ai_drop_shadow: Imagekitio::Models::Transformation::ai_drop_shadow,
+        ai_edit: String,
+        ai_remove_background: Imagekitio::Models::Transformation::ai_remove_background,
+        ai_remove_background_external: Imagekitio::Models::Transformation::ai_remove_background_external,
+        ai_retouch: Imagekitio::Models::Transformation::ai_retouch,
+        ai_upscale: Imagekitio::Models::Transformation::ai_upscale,
+        ai_variation: Imagekitio::Models::Transformation::ai_variation,
+        aspect_ratio: Imagekitio::Models::Transformation::aspect_ratio,
+        audio_codec: Imagekitio::Models::Transformation::audio_codec,
+        background: String,
+        blur: Float,
+        border: String,
+        color_profile: bool,
+        contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
+        crop: Imagekitio::Models::Transformation::crop,
+        crop_mode: Imagekitio::Models::Transformation::crop_mode,
+        default_image: String,
+        dpr: Float,
+        duration: Imagekitio::Models::Transformation::duration,
+        end_offset: Imagekitio::Models::Transformation::end_offset,
+        flip: Imagekitio::Models::Transformation::flip,
+        focus: String,
+        format_: Imagekitio::Models::Transformation::format_,
+        gradient: Imagekitio::Models::Transformation::gradient,
+        grayscale: Imagekitio::Models::Transformation::grayscale,
+        height: Imagekitio::Models::Transformation::height,
+        lossless: bool,
+        metadata: bool,
+        named: String,
+        opacity: Float,
+        original: bool,
+        overlay: Imagekitio::Models::overlay,
+        page: Imagekitio::Models::Transformation::page,
+        progressive: bool,
+        quality: Float,
+        radius: Imagekitio::Models::Transformation::radius,
+        raw: String,
+        rotation: Imagekitio::Models::Transformation::rotation,
+        shadow: Imagekitio::Models::Transformation::shadow,
+        sharpen: Imagekitio::Models::Transformation::sharpen,
+        start_offset: Imagekitio::Models::Transformation::start_offset,
+        streaming_resolutions: ::Array[Imagekitio::Models::streaming_resolution],
+        trim: Imagekitio::Models::Transformation::trim,
+        unsharp_mask: Imagekitio::Models::Transformation::unsharp_mask,
+        video_codec: Imagekitio::Models::Transformation::video_codec,
+        width: Imagekitio::Models::Transformation::width,
+        x: Imagekitio::Models::Transformation::x,
+        x_center: Imagekitio::Models::Transformation::x_center,
+        y_: Imagekitio::Models::Transformation::y_,
+        y_center: Imagekitio::Models::Transformation::y_center,
+        zoom: Float
+      }
+
+      type ai_drop_shadow = true | String
+
+      module AIDropShadow
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::ai_drop_shadow]
+      end
+
+      type ai_remove_background = true
+
+      module AIRemoveBackground
+        extend Imagekitio::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::ai_remove_background]
+      end
+
+      type ai_remove_background_external = true
+
+      module AIRemoveBackgroundExternal
+        extend Imagekitio::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::ai_remove_background_external]
+      end
+
+      type ai_retouch = true
+
+      module AIRetouch
+        extend Imagekitio::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::ai_retouch]
+      end
+
+      type ai_upscale = true
+
+      module AIUpscale
+        extend Imagekitio::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::ai_upscale]
+      end
+
+      type ai_variation = true
+
+      module AIVariation
+        extend Imagekitio::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::ai_variation]
+      end
+
+      type aspect_ratio = Float | String
+
+      module AspectRatio
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::aspect_ratio]
+      end
+
+      type audio_codec = :aac | :opus | :none
+
+      module AudioCodec
+        extend Imagekitio::Internal::Type::Enum
+
+        AAC: :aac
+        OPUS: :opus
+        NONE: :none
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::audio_codec]
+      end
+
+      type contrast_stretch = true
+
+      module ContrastStretch
+        extend Imagekitio::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::contrast_stretch]
+      end
+
+      type crop =
+        :force | :at_max | :at_max_enlarge | :at_least | :maintain_ratio
+
+      module Crop
+        extend Imagekitio::Internal::Type::Enum
+
+        FORCE: :force
+        AT_MAX: :at_max
+        AT_MAX_ENLARGE: :at_max_enlarge
+        AT_LEAST: :at_least
+        MAINTAIN_RATIO: :maintain_ratio
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::crop]
+      end
+
+      type crop_mode = :pad_resize | :extract | :pad_extract
+
+      module CropMode
+        extend Imagekitio::Internal::Type::Enum
+
+        PAD_RESIZE: :pad_resize
+        EXTRACT: :extract
+        PAD_EXTRACT: :pad_extract
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::crop_mode]
+      end
+
+      type duration = Float | String
+
+      module Duration
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::duration]
+      end
+
+      type end_offset = Float | String
+
+      module EndOffset
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::end_offset]
+      end
+
+      type flip = :h | :v | :h_v | :v_h
+
+      module Flip
+        extend Imagekitio::Internal::Type::Enum
+
+        H: :h
+        V: :v
+        H_V: :h_v
+        V_H: :v_h
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::flip]
+      end
+
+      type format_ =
+        :auto
+        | :webp
+        | :jpg
+        | :jpeg
+        | :png
+        | :gif
+        | :svg
+        | :mp4
+        | :webm
+        | :avif
+        | :orig
+
+      module Format
+        extend Imagekitio::Internal::Type::Enum
+
+        AUTO: :auto
+        WEBP: :webp
+        JPG: :jpg
+        JPEG: :jpeg
+        PNG: :png
+        GIF: :gif
+        SVG: :svg
+        MP4: :mp4
+        WEBM: :webm
+        AVIF: :avif
+        ORIG: :orig
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::format_]
+      end
+
+      type gradient = true | String
+
+      module Gradient
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::gradient]
+      end
+
+      type grayscale = true
+
+      module Grayscale
+        extend Imagekitio::Internal::Type::Enum
+
+        TRUE: true
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::grayscale]
+      end
+
+      type height = Float | String
+
+      module Height
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::height]
+      end
+
+      type page = Float | String
+
+      module Page
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::page]
+      end
+
+      type radius = Float | :max
+
+      module Radius
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::radius]
+      end
+
+      type rotation = Float | String
+
+      module Rotation
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::rotation]
+      end
+
+      type shadow = true | String
+
+      module Shadow
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::shadow]
+      end
+
+      type sharpen = true | Float
+
+      module Sharpen
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::sharpen]
+      end
+
+      type start_offset = Float | String
+
+      module StartOffset
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::start_offset]
+      end
+
+      type trim = true | Float
+
+      module Trim
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::trim]
+      end
+
+      type unsharp_mask = true | String
+
+      module UnsharpMask
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::unsharp_mask]
+      end
+
+      type video_codec = :h264 | :vp9 | :av1 | :none
+
+      module VideoCodec
+        extend Imagekitio::Internal::Type::Enum
+
+        H264: :h264
+        VP9: :vp9
+        AV1: :av1
+        NONE: :none
+
+        def self?.values: -> ::Array[Imagekitio::Models::Transformation::video_codec]
+      end
+
+      type width = Float | String
+
+      module Width
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::width]
+      end
+
+      type x = Float | String
+
+      module X
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::x]
+      end
+
+      type x_center = Float | String
+
+      module XCenter
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::x_center]
+      end
+
+      type y_ = Float | String
+
+      module Y
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::y_]
+      end
+
+      type y_center = Float | String
+
+      module YCenter
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::y_center]
+      end
+    end
+  end
+end
