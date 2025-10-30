@@ -99,9 +99,9 @@ The ImageKit SDK provides a powerful `helper.build_url()` method for generating 
 Generate a simple URL without any transformations:
 
 ```ruby
-require "imagekit"
+require "imagekitio"
 
-image_kit = Imagekit::Client.new(
+image_kit = Imagekitio::Client.new(
   private_key: ENV["IMAGEKIT_PRIVATE_KEY"]
 )
 
@@ -404,9 +404,9 @@ The SDK provides several helper methods for common ImageKit operations.
 Generate authentication parameters for secure client-side file uploads. These parameters allow you to securely upload files directly from the browser without exposing your private API key:
 
 ```ruby
-require "imagekit"
+require "imagekitio"
 
-image_kit = Imagekit::Client.new(
+image_kit = Imagekitio::Client.new(
   private_key: ENV["IMAGEKIT_PRIVATE_KEY"]
 )
 
