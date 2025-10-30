@@ -1,9 +1,9 @@
 module Imagekitio
   module Models
     type extension_item =
-      Imagekitio::ExtensionItem::RemoveBg
-      | Imagekitio::ExtensionItem::AIAutoDescription
-      | Imagekitio::ExtensionItem::AutoTaggingExtension
+      ExtensionItem::RemoveBg
+      | ExtensionItem::AIAutoDescription
+      | ExtensionItem::AutoTaggingExtension
 
     module ExtensionItem
       extend Imagekitio::Internal::Type::Union
@@ -11,26 +11,26 @@ module Imagekitio
       type remove_bg =
         {
           name: :"remove-bg",
-          options: Imagekitio::ExtensionItem::RemoveBg::Options
+          options: RemoveBg::Options
         }
 
       class RemoveBg < Imagekitio::Internal::Type::BaseModel
         attr_accessor name: :"remove-bg"
 
-        attr_reader options: Imagekitio::ExtensionItem::RemoveBg::Options?
+        attr_reader options: RemoveBg::Options?
 
         def options=: (
-          Imagekitio::ExtensionItem::RemoveBg::Options
-        ) -> Imagekitio::ExtensionItem::RemoveBg::Options
+          RemoveBg::Options
+        ) -> RemoveBg::Options
 
         def initialize: (
-          ?options: Imagekitio::ExtensionItem::RemoveBg::Options,
+          ?options: RemoveBg::Options,
           ?name: :"remove-bg"
         ) -> void
 
         def to_hash: -> {
           name: :"remove-bg",
-          options: Imagekitio::ExtensionItem::RemoveBg::Options
+          options: RemoveBg::Options
         }
 
         type options =

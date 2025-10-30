@@ -65,7 +65,7 @@ class HelperAuthenticationTest < Minitest::Test
     expected_expire = Time.now.to_i + (60 * 30)
     # Allow a 10 second tolerance for test execution time
     assert(
-      expire_result >= expected_expire - 10 && expire_result <= expected_expire + 10,
+      expire_result.between?(expected_expire - 10, expected_expire + 10),
       "Expected expire to be close to #{expected_expire} (30 minutes from now), got #{expire_result}"
     )
 

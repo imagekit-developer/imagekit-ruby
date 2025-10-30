@@ -136,6 +136,7 @@ module Imagekitio
 
       parsed_transforms = []
 
+      # rubocop:disable Metrics/BlockLength
       transformations.each do |transform|
         next unless transform
 
@@ -144,6 +145,7 @@ module Imagekitio
 
         parsed_transform_step = []
 
+        # rubocop:disable Metrics/BlockLength
         current_transform.each do |key, value|
           next if value.nil? || value.to_s.empty?
 
@@ -209,11 +211,13 @@ module Imagekitio
 
           parsed_transform_step << "#{transform_key}#{Imagekitio::TransformationUtils.get_transform_key_value_delimiter}#{value}"
         end
+        # rubocop:enable Metrics/BlockLength
 
         unless parsed_transform_step.empty?
           parsed_transforms << parsed_transform_step.join(Imagekitio::TransformationUtils.get_transform_delimiter)
         end
       end
+      # rubocop:enable Metrics/BlockLength
 
       parsed_transforms.join(Imagekitio::TransformationUtils.get_chain_transform_delimiter)
     end
