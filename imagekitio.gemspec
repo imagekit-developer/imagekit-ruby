@@ -5,8 +5,8 @@ require_relative "lib/imagekitio/version"
 Gem::Specification.new do |s|
   s.name = "imagekitio"
   s.version = Imagekitio::VERSION
-  s.summary = "Ruby library to access the Image Kit API"
-  s.authors = ["Image Kit"]
+  s.summary = "Ruby library to access the ImageKit API"
+  s.authors = ["ImageKit"]
   s.email = "developer@imagekit.io"
   s.homepage = "https://gemdocs.org/gems/imagekitio"
   s.metadata["homepage_uri"] = s.homepage
