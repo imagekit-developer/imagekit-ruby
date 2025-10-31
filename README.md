@@ -1,12 +1,12 @@
 # ImageKit.io Ruby SDK
 
-The ImageKit Ruby library provides convenient access to the ImageKit REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/imagekit-developer/imagekit-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The ImageKit Ruby library provides convenient access to the ImageKit REST API from any Ruby 3.2.0+ application. The library supports building and transforming URLs, generating signed URLs for secure content delivery, and handling file uploads. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/imagekit-developer/imagekit-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 ## Documentation
 
 Complete documentation and integration guides are available at the [official ImageKit Ruby documentation](https://imagekit.io/docs/integration/ruby). Additional resources include the [REST API documentation](https://imagekit.io/docs/api-reference) and [gem documentation on RubyDoc](https://gemdocs.org/gems/imagekitio).
 
-If you're using Ruby on Rails, ImageKit integrates seamlessly with [Active Storage](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-active-storage) and [CarrierWave](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-carrierwave) for powerful file upload handling.
+If you're using Ruby on Rails, ImageKit integrates seamlessly with [Active Storage](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-active-storage) and [CarrierWave](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-carrierwave) for file upload handling and view helpers for generating responsive `img` tags and `video` tags with transformations.
 
 ## Table of Contents
 
