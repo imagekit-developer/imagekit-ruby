@@ -2,6 +2,20 @@
 
 The ImageKit Ruby library provides convenient access to the ImageKit REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/imagekit-developer/imagekit-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
+## Documentation
+
+- **Official ImageKit Ruby Documentation**: [https://imagekit.io/docs/integration/ruby](https://imagekit.io/docs/integration/ruby)
+- **REST API Documentation**: [https://imagekit.io/docs/api-reference](https://imagekit.io/docs/api-reference)
+- **Gem Documentation (RubyDoc)**: [https://gemdocs.org/gems/imagekitio](https://gemdocs.org/gems/imagekitio)
+
+### Ruby on Rails Integration
+
+If you're using Ruby on Rails, ImageKit can be easily integrated with popular file upload libraries:
+
+- **Active Storage**: Learn how to integrate ImageKit with Rails Active Storage for seamless file uploads and transformations. See the [Active Storage integration guide](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-active-storage).
+
+- **CarrierWave**: Integrate ImageKit with CarrierWave for powerful file upload handling in your Rails applications. See the [CarrierWave integration guide](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-carrierwave).
+
 ## Table of Contents
 
 - [Documentation](#documentation)
@@ -31,12 +45,6 @@ The ImageKit Ruby library provides convenient access to the ImageKit REST API fr
 - [Versioning](#versioning)
 - [Requirements](#requirements)
 - [Contributing](#contributing)
-
-## Documentation
-
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/imagekitio).
-
-The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs/api-reference).
 
 ## Installation
 
