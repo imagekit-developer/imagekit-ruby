@@ -4,17 +4,9 @@ The ImageKit Ruby library provides convenient access to the ImageKit REST API fr
 
 ## Documentation
 
-- **Official ImageKit Ruby Documentation**: [https://imagekit.io/docs/integration/ruby](https://imagekit.io/docs/integration/ruby)
-- **REST API Documentation**: [https://imagekit.io/docs/api-reference](https://imagekit.io/docs/api-reference)
-- **Gem Documentation (RubyDoc)**: [https://gemdocs.org/gems/imagekitio](https://gemdocs.org/gems/imagekitio)
+Complete documentation and integration guides are available at the [official ImageKit Ruby documentation](https://imagekit.io/docs/integration/ruby). Additional resources include the [REST API documentation](https://imagekit.io/docs/api-reference) and [gem documentation on RubyDoc](https://gemdocs.org/gems/imagekitio).
 
-### Ruby on Rails Integration
-
-If you're using Ruby on Rails, ImageKit can be easily integrated with popular file upload libraries:
-
-- **Active Storage**: Learn how to integrate ImageKit with Rails Active Storage for seamless file uploads and transformations. See the [Active Storage integration guide](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-active-storage).
-
-- **CarrierWave**: Integrate ImageKit with CarrierWave for powerful file upload handling in your Rails applications. See the [CarrierWave integration guide](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-carrierwave).
+If you're using Ruby on Rails, ImageKit integrates seamlessly with [Active Storage](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-active-storage) and [CarrierWave](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-carrierwave) for powerful file upload handling.
 
 ## Table of Contents
 
