@@ -4,9 +4,9 @@ The ImageKit Ruby library provides convenient access to the ImageKit REST API fr
 
 ## Documentation
 
-Complete documentation and integration guides are available at the [official ImageKit Ruby documentation](https://imagekit.io/docs/integration/ruby). Additional resources include the [REST API documentation](https://imagekit.io/docs/api-reference) and [gem documentation on RubyDoc](https://gemdocs.org/gems/imagekitio).
+The official [ImageKit Ruby documentation](https://imagekit.io/docs/integration/ruby) provides complete integration guides and examples.
 
-If you're using Ruby on Rails, ImageKit integrates seamlessly with [Active Storage](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-active-storage) and [CarrierWave](https://imagekit.io/docs/integration/ruby/ruby-on-rails-with-carrierwave) for file upload handling and view helpers for generating responsive `img` tags and `video` tags with transformations.
+If you're using Ruby on Rails, the [ImageKit Rails gem](https://github.com/imagekit-developer/imagekit-rails) builds on top of this SDK to provide [Rails-specific integrations](https://imagekit.io/docs/integration/ruby/ruby-on-rails) including Active Storage and view helpers.
 
 ## Table of Contents
 
