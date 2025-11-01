@@ -53,7 +53,6 @@ gem "imagekitio", "~> 0.0.1"
 ## Usage
 
 ```ruby
-require "bundler/setup"
 require "imagekitio"
 
 image_kit = Imagekitio::Client.new(
