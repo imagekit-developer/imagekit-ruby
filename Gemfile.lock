@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/stainless-api/syntax_tree-rbs.git
-  revision: c30b50219918be7cfe3ef803a00b59d1e77fcada
+  remote: https://github.com/ruby-syntax-tree/syntax_tree-rbs.git
+  revision: f94bc3060682ffbd126e4d5086ffedc89073d626
   branch: main
   specs:
     syntax_tree-rbs (1.0.0)
