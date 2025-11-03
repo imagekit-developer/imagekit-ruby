@@ -1,0 +1,8 @@
+module Imagekitio
+  module Models
+    type custom_metadata_field_list_response =
+      ::Array[Imagekitio::CustomMetadataField]
+
+    CustomMetadataFieldListResponse: Imagekitio::Internal::Type::Converter
+  end
+end

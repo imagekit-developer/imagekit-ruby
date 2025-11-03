@@ -1,0 +1,27 @@
+module Imagekitio
+  module Resources
+    class Webhooks
+      def unsafe_unwrap: (
+        String payload
+      ) -> (Imagekitio::VideoTransformationAcceptedEvent
+      | Imagekitio::VideoTransformationReadyEvent
+      | Imagekitio::VideoTransformationErrorEvent
+      | Imagekitio::UploadPreTransformSuccessEvent
+      | Imagekitio::UploadPreTransformErrorEvent
+      | Imagekitio::UploadPostTransformSuccessEvent
+      | Imagekitio::UploadPostTransformErrorEvent)
+
+      def unwrap: (
+        String payload
+      ) -> (Imagekitio::VideoTransformationAcceptedEvent
+      | Imagekitio::VideoTransformationReadyEvent
+      | Imagekitio::VideoTransformationErrorEvent
+      | Imagekitio::UploadPreTransformSuccessEvent
+      | Imagekitio::UploadPreTransformErrorEvent
+      | Imagekitio::UploadPostTransformSuccessEvent
+      | Imagekitio::UploadPostTransformErrorEvent)
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

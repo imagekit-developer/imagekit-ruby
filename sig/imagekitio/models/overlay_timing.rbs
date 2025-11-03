@@ -1,0 +1,66 @@
+module Imagekitio
+  module Models
+    type overlay_timing =
+      {
+        duration: Imagekitio::Models::OverlayTiming::duration,
+        end_: Imagekitio::Models::OverlayTiming::end_,
+        start: Imagekitio::Models::OverlayTiming::start
+      }
+
+    class OverlayTiming < Imagekitio::Internal::Type::BaseModel
+      attr_reader duration: Imagekitio::Models::OverlayTiming::duration?
+
+      def duration=: (
+        Imagekitio::Models::OverlayTiming::duration
+      ) -> Imagekitio::Models::OverlayTiming::duration
+
+      attr_reader end_: Imagekitio::Models::OverlayTiming::end_?
+
+      def end_=: (
+        Imagekitio::Models::OverlayTiming::end_
+      ) -> Imagekitio::Models::OverlayTiming::end_
+
+      attr_reader start: Imagekitio::Models::OverlayTiming::start?
+
+      def start=: (
+        Imagekitio::Models::OverlayTiming::start
+      ) -> Imagekitio::Models::OverlayTiming::start
+
+      def initialize: (
+        ?duration: Imagekitio::Models::OverlayTiming::duration,
+        ?end_: Imagekitio::Models::OverlayTiming::end_,
+        ?start: Imagekitio::Models::OverlayTiming::start
+      ) -> void
+
+      def to_hash: -> {
+        duration: Imagekitio::Models::OverlayTiming::duration,
+        end_: Imagekitio::Models::OverlayTiming::end_,
+        start: Imagekitio::Models::OverlayTiming::start
+      }
+
+      type duration = Float | String
+
+      module Duration
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::OverlayTiming::duration]
+      end
+
+      type end_ = Float | String
+
+      module End
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::OverlayTiming::end_]
+      end
+
+      type start = Float | String
+
+      module Start
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::OverlayTiming::start]
+      end
+    end
+  end
+end

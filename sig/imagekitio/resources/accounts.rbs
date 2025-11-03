@@ -1,0 +1,13 @@
+module Imagekitio
+  module Resources
+    class Accounts
+      attr_reader usage: Imagekitio::Resources::Accounts::Usage
+
+      attr_reader origins: Imagekitio::Resources::Accounts::Origins
+
+      attr_reader url_endpoints: Imagekitio::Resources::Accounts::URLEndpoints
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

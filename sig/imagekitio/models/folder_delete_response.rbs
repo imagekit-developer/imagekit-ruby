@@ -1,0 +1,11 @@
+module Imagekitio
+  module Models
+    type folder_delete_response = {  }
+
+    class FolderDeleteResponse < Imagekitio::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
+  end
+end

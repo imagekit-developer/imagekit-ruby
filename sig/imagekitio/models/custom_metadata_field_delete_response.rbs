@@ -1,0 +1,11 @@
+module Imagekitio
+  module Models
+    type custom_metadata_field_delete_response = {  }
+
+    class CustomMetadataFieldDeleteResponse < Imagekitio::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
+  end
+end

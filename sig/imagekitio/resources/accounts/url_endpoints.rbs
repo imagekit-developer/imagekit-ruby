@@ -1,0 +1,40 @@
+module Imagekitio
+  module Resources
+    class Accounts
+      class URLEndpoints
+        def create: (
+          description: String,
+          ?origins: ::Array[String],
+          ?url_prefix: String,
+          ?url_rewriter: Imagekitio::Models::Accounts::URLEndpointRequest::url_rewriter,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Accounts::URLEndpointResponse
+
+        def update: (
+          String id,
+          description: String,
+          ?origins: ::Array[String],
+          ?url_prefix: String,
+          ?url_rewriter: Imagekitio::Models::Accounts::URLEndpointRequest::url_rewriter,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Accounts::URLEndpointResponse
+
+        def list: (
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Accounts::url_endpoint_list_response
+
+        def delete: (
+          String id,
+          ?request_options: Imagekitio::request_opts
+        ) -> nil
+
+        def get: (
+          String id,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Accounts::URLEndpointResponse
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

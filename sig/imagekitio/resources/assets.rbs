@@ -1,0 +1,18 @@
+module Imagekitio
+  module Resources
+    class Assets
+      def list: (
+        ?file_type: Imagekitio::Models::AssetListParams::file_type,
+        ?limit: Integer,
+        ?path: String,
+        ?search_query: String,
+        ?skip: Integer,
+        ?sort: Imagekitio::Models::AssetListParams::sort,
+        ?type: Imagekitio::Models::AssetListParams::type_,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::asset_list_response
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Imagekitio
+  module Internal
+    module Type
+      type request_parameters = { request_options: Imagekitio::request_opts }
+
+      module RequestParameters
+        attr_reader request_options: Imagekitio::request_opts
+
+        def request_options=: (
+          Imagekitio::request_opts
+        ) -> Imagekitio::request_opts
+
+        module Converter
+          def dump_request: (top params) -> [top, ::Hash[Symbol, top]]
+        end
+      end
+    end
+  end
+end

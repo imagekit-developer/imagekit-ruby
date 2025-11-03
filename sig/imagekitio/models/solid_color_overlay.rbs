@@ -1,0 +1,38 @@
+module Imagekitio
+  module Models
+    type solid_color_overlay =
+      {
+        color: String,
+        type: :solidColor,
+        transformation: ::Array[Imagekitio::SolidColorOverlayTransformation]
+      }
+
+    class SolidColorOverlay < Imagekitio::Models::BaseOverlay
+      def color: -> String
+
+      def color=: (String _) -> String
+
+      def `type`: -> :solidColor
+
+      def type=: (:solidColor _) -> :solidColor
+
+      def transformation: -> ::Array[Imagekitio::SolidColorOverlayTransformation]?
+
+      def transformation=: (
+        ::Array[Imagekitio::SolidColorOverlayTransformation] _
+      ) -> ::Array[Imagekitio::SolidColorOverlayTransformation]
+
+      def initialize: (
+        color: String,
+        ?transformation: ::Array[Imagekitio::SolidColorOverlayTransformation],
+        ?type: :solidColor
+      ) -> void
+
+      def to_hash: -> {
+        color: String,
+        type: :solidColor,
+        transformation: ::Array[Imagekitio::SolidColorOverlayTransformation]
+      }
+    end
+  end
+end

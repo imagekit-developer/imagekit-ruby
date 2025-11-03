@@ -1,0 +1,11 @@
+module Imagekitio
+  module Models
+    type folder_create_response = {  }
+
+    class FolderCreateResponse < Imagekitio::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
+  end
+end

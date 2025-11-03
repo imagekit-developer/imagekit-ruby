@@ -1,0 +1,132 @@
+module Imagekitio
+  module Models
+    type extension_item =
+      ExtensionItem::RemoveBg
+      | ExtensionItem::AIAutoDescription
+      | ExtensionItem::AutoTaggingExtension
+
+    module ExtensionItem
+      extend Imagekitio::Internal::Type::Union
+
+      type remove_bg =
+        {
+          name: :"remove-bg",
+          options: RemoveBg::Options
+        }
+
+      class RemoveBg < Imagekitio::Internal::Type::BaseModel
+        attr_accessor name: :"remove-bg"
+
+        attr_reader options: RemoveBg::Options?
+
+        def options=: (
+          RemoveBg::Options
+        ) -> RemoveBg::Options
+
+        def initialize: (
+          ?options: RemoveBg::Options,
+          ?name: :"remove-bg"
+        ) -> void
+
+        def to_hash: -> {
+          name: :"remove-bg",
+          options: RemoveBg::Options
+        }
+
+        type options =
+          {
+            add_shadow: bool,
+            bg_color: String,
+            bg_image_url: String,
+            semitransparency: bool
+          }
+
+        class Options < Imagekitio::Internal::Type::BaseModel
+          attr_reader add_shadow: bool?
+
+          def add_shadow=: (bool) -> bool
+
+          attr_reader bg_color: String?
+
+          def bg_color=: (String) -> String
+
+          attr_reader bg_image_url: String?
+
+          def bg_image_url=: (String) -> String
+
+          attr_reader semitransparency: bool?
+
+          def semitransparency=: (bool) -> bool
+
+          def initialize: (
+            ?add_shadow: bool,
+            ?bg_color: String,
+            ?bg_image_url: String,
+            ?semitransparency: bool
+          ) -> void
+
+          def to_hash: -> {
+            add_shadow: bool,
+            bg_color: String,
+            bg_image_url: String,
+            semitransparency: bool
+          }
+        end
+      end
+
+      type auto_tagging_extension =
+        {
+          max_tags: Integer,
+          min_confidence: Integer,
+          name: Imagekitio::Models::ExtensionItem::AutoTaggingExtension::name_
+        }
+
+      class AutoTaggingExtension < Imagekitio::Internal::Type::BaseModel
+        attr_accessor max_tags: Integer
+
+        attr_accessor min_confidence: Integer
+
+        attr_accessor name: Imagekitio::Models::ExtensionItem::AutoTaggingExtension::name_
+
+        def initialize: (
+          max_tags: Integer,
+          min_confidence: Integer,
+          name: Imagekitio::Models::ExtensionItem::AutoTaggingExtension::name_
+        ) -> void
+
+        def to_hash: -> {
+          max_tags: Integer,
+          min_confidence: Integer,
+          name: Imagekitio::Models::ExtensionItem::AutoTaggingExtension::name_
+        }
+
+        type name_ = :"google-auto-tagging" | :"aws-auto-tagging"
+
+        module Name
+          extend Imagekitio::Internal::Type::Enum
+
+          GOOGLE_AUTO_TAGGING: :"google-auto-tagging"
+          AWS_AUTO_TAGGING: :"aws-auto-tagging"
+
+          def self?.values: -> ::Array[Imagekitio::Models::ExtensionItem::AutoTaggingExtension::name_]
+        end
+      end
+
+      type ai_auto_description = { name: :"ai-auto-description" }
+
+      class AIAutoDescription < Imagekitio::Internal::Type::BaseModel
+        attr_accessor name: :"ai-auto-description"
+
+        def initialize: (?name: :"ai-auto-description") -> void
+
+        def to_hash: -> { name: :"ai-auto-description" }
+      end
+
+      def self?.variants: -> ::Array[Imagekitio::Models::extension_item]
+    end
+
+    type extensions = ::Array[Imagekitio::Models::extension_item]
+
+    Extensions: Imagekitio::Internal::Type::Converter
+  end
+end

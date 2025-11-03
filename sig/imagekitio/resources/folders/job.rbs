@@ -1,0 +1,14 @@
+module Imagekitio
+  module Resources
+    class Folders
+      class Job
+        def get: (
+          String job_id,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Folders::JobGetResponse
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,142 @@
+module Imagekitio
+  module Models
+    type upload_post_transform_success_event =
+      {
+        created_at: Time,
+        data: Imagekitio::UploadPostTransformSuccessEvent::Data,
+        request: Imagekitio::UploadPostTransformSuccessEvent::Request,
+        type: :"upload.post-transform.success"
+      }
+
+    class UploadPostTransformSuccessEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::UploadPostTransformSuccessEvent::Data
+
+      def data=: (
+        Imagekitio::UploadPostTransformSuccessEvent::Data _
+      ) -> Imagekitio::UploadPostTransformSuccessEvent::Data
+
+      def request: -> Imagekitio::UploadPostTransformSuccessEvent::Request
+
+      def request=: (
+        Imagekitio::UploadPostTransformSuccessEvent::Request _
+      ) -> Imagekitio::UploadPostTransformSuccessEvent::Request
+
+      def `type`: -> :"upload.post-transform.success"
+
+      def type=: (
+        :"upload.post-transform.success" _
+      ) -> :"upload.post-transform.success"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::UploadPostTransformSuccessEvent::Data,
+        request: Imagekitio::UploadPostTransformSuccessEvent::Request,
+        ?type: :"upload.post-transform.success"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::UploadPostTransformSuccessEvent::Data,
+        request: Imagekitio::UploadPostTransformSuccessEvent::Request,
+        type: :"upload.post-transform.success"
+      }
+
+      type data = { file_id: String, name: String, url: String }
+
+      class Data < Imagekitio::Internal::Type::BaseModel
+        attr_accessor file_id: String
+
+        attr_accessor name: String
+
+        attr_accessor url: String
+
+        def initialize: (file_id: String, name: String, url: String) -> void
+
+        def to_hash: -> { file_id: String, name: String, url: String }
+      end
+
+      type request =
+        {
+          transformation: Imagekitio::UploadPostTransformSuccessEvent::Request::Transformation,
+          x_request_id: String
+        }
+
+      class Request < Imagekitio::Internal::Type::BaseModel
+        attr_accessor transformation: Imagekitio::UploadPostTransformSuccessEvent::Request::Transformation
+
+        attr_accessor x_request_id: String
+
+        def initialize: (
+          transformation: Imagekitio::UploadPostTransformSuccessEvent::Request::Transformation,
+          x_request_id: String
+        ) -> void
+
+        def to_hash: -> {
+          transformation: Imagekitio::UploadPostTransformSuccessEvent::Request::Transformation,
+          x_request_id: String
+        }
+
+        type transformation =
+          {
+            type: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_,
+            protocol: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol,
+            value: String
+          }
+
+        class Transformation < Imagekitio::Internal::Type::BaseModel
+          attr_accessor type: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_
+
+          attr_reader protocol: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol?
+
+          def protocol=: (
+            Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol
+          ) -> Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol
+
+          attr_reader value: String?
+
+          def value=: (String) -> String
+
+          def initialize: (
+            type: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_,
+            ?protocol: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol,
+            ?value: String
+          ) -> void
+
+          def to_hash: -> {
+            type: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_,
+            protocol: Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol,
+            value: String
+          }
+
+          type type_ = :transformation | :abs | :"gif-to-video" | :thumbnail
+
+          module Type
+            extend Imagekitio::Internal::Type::Enum
+
+            TRANSFORMATION: :transformation
+            ABS: :abs
+            GIF_TO_VIDEO: :"gif-to-video"
+            THUMBNAIL: :thumbnail
+
+            def self?.values: -> ::Array[Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::type_]
+          end
+
+          type protocol = :hls | :dash
+
+          module Protocol
+            extend Imagekitio::Internal::Type::Enum
+
+            HLS: :hls
+            DASH: :dash
+
+            def self?.values: -> ::Array[Imagekitio::Models::UploadPostTransformSuccessEvent::Request::Transformation::protocol]
+          end
+        end
+      end
+    end
+  end
+end

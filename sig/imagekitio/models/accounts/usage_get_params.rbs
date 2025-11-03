@@ -1,0 +1,30 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type usage_get_params =
+        { end_date: Date, start_date: Date }
+        & Imagekitio::Internal::Type::request_parameters
+
+      class UsageGetParams < Imagekitio::Internal::Type::BaseModel
+        extend Imagekitio::Internal::Type::RequestParameters::Converter
+        include Imagekitio::Internal::Type::RequestParameters
+
+        attr_accessor end_date: Date
+
+        attr_accessor start_date: Date
+
+        def initialize: (
+          end_date: Date,
+          start_date: Date,
+          ?request_options: Imagekitio::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          end_date: Date,
+          start_date: Date,
+          request_options: Imagekitio::RequestOptions
+        }
+      end
+    end
+  end
+end

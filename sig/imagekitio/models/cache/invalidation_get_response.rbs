@@ -1,0 +1,35 @@
+module Imagekitio
+  module Models
+    module Cache
+      type invalidation_get_response =
+        { status: Imagekitio::Models::Cache::InvalidationGetResponse::status }
+
+      class InvalidationGetResponse < Imagekitio::Internal::Type::BaseModel
+        attr_reader status: Imagekitio::Models::Cache::InvalidationGetResponse::status?
+
+        def status=: (
+          Imagekitio::Models::Cache::InvalidationGetResponse::status
+        ) -> Imagekitio::Models::Cache::InvalidationGetResponse::status
+
+        def initialize: (
+          ?status: Imagekitio::Models::Cache::InvalidationGetResponse::status
+        ) -> void
+
+        def to_hash: -> {
+          status: Imagekitio::Models::Cache::InvalidationGetResponse::status
+        }
+
+        type status = :Pending | :Completed
+
+        module Status
+          extend Imagekitio::Internal::Type::Enum
+
+          PENDING: :Pending
+          COMPLETED: :Completed
+
+          def self?.values: -> ::Array[Imagekitio::Models::Cache::InvalidationGetResponse::status]
+        end
+      end
+    end
+  end
+end

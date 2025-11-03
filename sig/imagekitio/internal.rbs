@@ -1,0 +1,9 @@
+module Imagekitio
+  module Internal
+    extend Imagekitio::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Imagekitio::FilePart
+
+    OMIT: Object
+  end
+end

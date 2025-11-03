@@ -1,0 +1,179 @@
+module Imagekitio
+  module Models
+    type custom_metadata_field_create_params =
+      {
+        label: String,
+        name: String,
+        schema: Imagekitio::CustomMetadataFieldCreateParams::Schema
+      }
+      & Imagekitio::Internal::Type::request_parameters
+
+    class CustomMetadataFieldCreateParams < Imagekitio::Internal::Type::BaseModel
+      extend Imagekitio::Internal::Type::RequestParameters::Converter
+      include Imagekitio::Internal::Type::RequestParameters
+
+      attr_accessor label: String
+
+      attr_accessor name: String
+
+      attr_accessor schema: Imagekitio::CustomMetadataFieldCreateParams::Schema
+
+      def initialize: (
+        label: String,
+        name: String,
+        schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+        ?request_options: Imagekitio::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        label: String,
+        name: String,
+        schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+        request_options: Imagekitio::RequestOptions
+      }
+
+      type schema =
+        {
+          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_,
+          default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value,
+          is_value_required: bool,
+          max_length: Float,
+          max_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value,
+          min_length: Float,
+          min_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value,
+          select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+        }
+
+      class Schema < Imagekitio::Internal::Type::BaseModel
+        attr_accessor type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_
+
+        attr_reader default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value?
+
+        def default_value=: (
+          Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value
+        ) -> Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value
+
+        attr_reader is_value_required: bool?
+
+        def is_value_required=: (bool) -> bool
+
+        attr_reader max_length: Float?
+
+        def max_length=: (Float) -> Float
+
+        attr_reader max_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value?
+
+        def max_value=: (
+          Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value
+        ) -> Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value
+
+        attr_reader min_length: Float?
+
+        def min_length=: (Float) -> Float
+
+        attr_reader min_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value?
+
+        def min_value=: (
+          Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value
+        ) -> Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value
+
+        attr_reader select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]?
+
+        def select_options=: (
+          ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+        ) -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+
+        def initialize: (
+          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_,
+          ?default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value,
+          ?is_value_required: bool,
+          ?max_length: Float,
+          ?max_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value,
+          ?min_length: Float,
+          ?min_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value,
+          ?select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+        ) -> void
+
+        def to_hash: -> {
+          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_,
+          default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value,
+          is_value_required: bool,
+          max_length: Float,
+          max_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value,
+          min_length: Float,
+          min_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value,
+          select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+        }
+
+        type type_ =
+          :Text
+          | :Textarea
+          | :Number
+          | :Date
+          | :Boolean
+          | :SingleSelect
+          | :MultiSelect
+
+        module Type
+          extend Imagekitio::Internal::Type::Enum
+
+          TEXT: :Text
+          TEXTAREA: :Textarea
+          NUMBER: :Number
+          DATE: :Date
+          BOOLEAN: :Boolean
+          SINGLE_SELECT: :SingleSelect
+          MULTI_SELECT: :MultiSelect
+
+          def self?.values: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_]
+        end
+
+        type default_value =
+          String
+          | Float
+          | bool
+          | ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::DefaultValue::mixed]
+
+        module DefaultValue
+          extend Imagekitio::Internal::Type::Union
+
+          type mixed = String | Float | bool
+
+          module Mixed
+            extend Imagekitio::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::DefaultValue::mixed]
+          end
+
+          def self?.variants: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value]
+
+          MixedArray: Imagekitio::Internal::Type::Converter
+        end
+
+        type max_value = String | Float
+
+        module MaxValue
+          extend Imagekitio::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value]
+        end
+
+        type min_value = String | Float
+
+        module MinValue
+          extend Imagekitio::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value]
+        end
+
+        type select_option = String | Float | bool
+
+        module SelectOption
+          extend Imagekitio::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+        end
+      end
+    end
+  end
+end

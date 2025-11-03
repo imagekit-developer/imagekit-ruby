@@ -1,0 +1,13 @@
+module Imagekitio
+  module Models
+    module Files
+      type version_delete_response = {  }
+
+      class VersionDeleteResponse < Imagekitio::Internal::Type::BaseModel
+        def initialize: -> void
+
+        def to_hash: -> {  }
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+module Imagekitio
+  module Models
+    type asset_list_response_item = Imagekitio::Folder | Imagekitio::File
+
+    module AssetListResponseItem
+      extend Imagekitio::Internal::Type::Union
+
+      def self?.variants: -> ::Array[Imagekitio::Models::asset_list_response_item]
+    end
+
+    type asset_list_response =
+      ::Array[Imagekitio::Models::asset_list_response_item]
+
+    AssetListResponse: Imagekitio::Internal::Type::Converter
+  end
+end

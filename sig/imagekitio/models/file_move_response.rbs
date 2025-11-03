@@ -1,0 +1,11 @@
+module Imagekitio
+  module Models
+    type file_move_response = {  }
+
+    class FileMoveResponse < Imagekitio::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
+  end
+end

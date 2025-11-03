@@ -1,0 +1,195 @@
+module Imagekitio
+  module Models
+    type text_overlay_transformation =
+      {
+        alpha: Float,
+        background: String,
+        flip: Imagekitio::Models::TextOverlayTransformation::flip,
+        font_color: String,
+        font_family: String,
+        font_size: Imagekitio::Models::TextOverlayTransformation::font_size,
+        inner_alignment: Imagekitio::Models::TextOverlayTransformation::inner_alignment,
+        line_height: Imagekitio::Models::TextOverlayTransformation::line_height,
+        padding: Imagekitio::Models::TextOverlayTransformation::padding,
+        radius: Imagekitio::Models::TextOverlayTransformation::radius,
+        rotation: Imagekitio::Models::TextOverlayTransformation::rotation,
+        typography: String,
+        width: Imagekitio::Models::TextOverlayTransformation::width
+      }
+
+    class TextOverlayTransformation < Imagekitio::Internal::Type::BaseModel
+      attr_reader alpha: Float?
+
+      def alpha=: (Float) -> Float
+
+      attr_reader background: String?
+
+      def background=: (String) -> String
+
+      attr_reader flip: Imagekitio::Models::TextOverlayTransformation::flip?
+
+      def flip=: (
+        Imagekitio::Models::TextOverlayTransformation::flip
+      ) -> Imagekitio::Models::TextOverlayTransformation::flip
+
+      attr_reader font_color: String?
+
+      def font_color=: (String) -> String
+
+      attr_reader font_family: String?
+
+      def font_family=: (String) -> String
+
+      attr_reader font_size: Imagekitio::Models::TextOverlayTransformation::font_size?
+
+      def font_size=: (
+        Imagekitio::Models::TextOverlayTransformation::font_size
+      ) -> Imagekitio::Models::TextOverlayTransformation::font_size
+
+      attr_reader inner_alignment: Imagekitio::Models::TextOverlayTransformation::inner_alignment?
+
+      def inner_alignment=: (
+        Imagekitio::Models::TextOverlayTransformation::inner_alignment
+      ) -> Imagekitio::Models::TextOverlayTransformation::inner_alignment
+
+      attr_reader line_height: Imagekitio::Models::TextOverlayTransformation::line_height?
+
+      def line_height=: (
+        Imagekitio::Models::TextOverlayTransformation::line_height
+      ) -> Imagekitio::Models::TextOverlayTransformation::line_height
+
+      attr_reader padding: Imagekitio::Models::TextOverlayTransformation::padding?
+
+      def padding=: (
+        Imagekitio::Models::TextOverlayTransformation::padding
+      ) -> Imagekitio::Models::TextOverlayTransformation::padding
+
+      attr_reader radius: Imagekitio::Models::TextOverlayTransformation::radius?
+
+      def radius=: (
+        Imagekitio::Models::TextOverlayTransformation::radius
+      ) -> Imagekitio::Models::TextOverlayTransformation::radius
+
+      attr_reader rotation: Imagekitio::Models::TextOverlayTransformation::rotation?
+
+      def rotation=: (
+        Imagekitio::Models::TextOverlayTransformation::rotation
+      ) -> Imagekitio::Models::TextOverlayTransformation::rotation
+
+      attr_reader typography: String?
+
+      def typography=: (String) -> String
+
+      attr_reader width: Imagekitio::Models::TextOverlayTransformation::width?
+
+      def width=: (
+        Imagekitio::Models::TextOverlayTransformation::width
+      ) -> Imagekitio::Models::TextOverlayTransformation::width
+
+      def initialize: (
+        ?alpha: Float,
+        ?background: String,
+        ?flip: Imagekitio::Models::TextOverlayTransformation::flip,
+        ?font_color: String,
+        ?font_family: String,
+        ?font_size: Imagekitio::Models::TextOverlayTransformation::font_size,
+        ?inner_alignment: Imagekitio::Models::TextOverlayTransformation::inner_alignment,
+        ?line_height: Imagekitio::Models::TextOverlayTransformation::line_height,
+        ?padding: Imagekitio::Models::TextOverlayTransformation::padding,
+        ?radius: Imagekitio::Models::TextOverlayTransformation::radius,
+        ?rotation: Imagekitio::Models::TextOverlayTransformation::rotation,
+        ?typography: String,
+        ?width: Imagekitio::Models::TextOverlayTransformation::width
+      ) -> void
+
+      def to_hash: -> {
+        alpha: Float,
+        background: String,
+        flip: Imagekitio::Models::TextOverlayTransformation::flip,
+        font_color: String,
+        font_family: String,
+        font_size: Imagekitio::Models::TextOverlayTransformation::font_size,
+        inner_alignment: Imagekitio::Models::TextOverlayTransformation::inner_alignment,
+        line_height: Imagekitio::Models::TextOverlayTransformation::line_height,
+        padding: Imagekitio::Models::TextOverlayTransformation::padding,
+        radius: Imagekitio::Models::TextOverlayTransformation::radius,
+        rotation: Imagekitio::Models::TextOverlayTransformation::rotation,
+        typography: String,
+        width: Imagekitio::Models::TextOverlayTransformation::width
+      }
+
+      type flip = :h | :v | :h_v | :v_h
+
+      module Flip
+        extend Imagekitio::Internal::Type::Enum
+
+        H: :h
+        V: :v
+        H_V: :h_v
+        V_H: :v_h
+
+        def self?.values: -> ::Array[Imagekitio::Models::TextOverlayTransformation::flip]
+      end
+
+      type font_size = Float | String
+
+      module FontSize
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::TextOverlayTransformation::font_size]
+      end
+
+      type inner_alignment = :left | :right | :center
+
+      module InnerAlignment
+        extend Imagekitio::Internal::Type::Enum
+
+        LEFT: :left
+        RIGHT: :right
+        CENTER: :center
+
+        def self?.values: -> ::Array[Imagekitio::Models::TextOverlayTransformation::inner_alignment]
+      end
+
+      type line_height = Float | String
+
+      module LineHeight
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::TextOverlayTransformation::line_height]
+      end
+
+      type padding = Float | String
+
+      module Padding
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::TextOverlayTransformation::padding]
+      end
+
+      type radius = Float | :max
+
+      module Radius
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::TextOverlayTransformation::radius]
+      end
+
+      type rotation = Float | String
+
+      module Rotation
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::TextOverlayTransformation::rotation]
+      end
+
+      type width = Float | String
+
+      module Width
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::TextOverlayTransformation::width]
+      end
+    end
+  end
+end

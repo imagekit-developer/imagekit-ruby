@@ -1,0 +1,59 @@
+module Imagekitio
+  module Models
+    type video_overlay =
+      {
+        input: String,
+        type: :video,
+        encoding: Imagekitio::Models::VideoOverlay::encoding,
+        transformation: ::Array[Imagekitio::Transformation]
+      }
+
+    class VideoOverlay < Imagekitio::Models::BaseOverlay
+      def input: -> String
+
+      def input=: (String _) -> String
+
+      def `type`: -> :video
+
+      def type=: (:video _) -> :video
+
+      def encoding: -> Imagekitio::Models::VideoOverlay::encoding?
+
+      def encoding=: (
+        Imagekitio::Models::VideoOverlay::encoding _
+      ) -> Imagekitio::Models::VideoOverlay::encoding
+
+      def transformation: -> ::Array[Imagekitio::Transformation]?
+
+      def transformation=: (
+        ::Array[Imagekitio::Transformation] _
+      ) -> ::Array[Imagekitio::Transformation]
+
+      def initialize: (
+        input: String,
+        ?encoding: Imagekitio::Models::VideoOverlay::encoding,
+        ?transformation: ::Array[Imagekitio::Transformation],
+        ?type: :video
+      ) -> void
+
+      def to_hash: -> {
+        input: String,
+        type: :video,
+        encoding: Imagekitio::Models::VideoOverlay::encoding,
+        transformation: ::Array[Imagekitio::Transformation]
+      }
+
+      type encoding = :auto | :plain | :base64
+
+      module Encoding
+        extend Imagekitio::Internal::Type::Enum
+
+        AUTO: :auto
+        PLAIN: :plain
+        BASE64: :base64
+
+        def self?.values: -> ::Array[Imagekitio::Models::VideoOverlay::encoding]
+      end
+    end
+  end
+end

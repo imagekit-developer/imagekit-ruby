@@ -1,0 +1,32 @@
+module Imagekitio
+  module Resources
+    class Files
+      class Bulk
+        def delete: (
+          file_ids: ::Array[String],
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Files::BulkDeleteResponse
+
+        def add_tags: (
+          file_ids: ::Array[String],
+          tags: ::Array[String],
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Files::BulkAddTagsResponse
+
+        def remove_ai_tags: (
+          ai_tags: ::Array[String],
+          file_ids: ::Array[String],
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Files::BulkRemoveAITagsResponse
+
+        def remove_tags: (
+          file_ids: ::Array[String],
+          tags: ::Array[String],
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Files::BulkRemoveTagsResponse
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

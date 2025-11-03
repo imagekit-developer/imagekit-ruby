@@ -1,0 +1,38 @@
+module Imagekitio
+  module Models
+    type file_copy_params =
+      {
+        destination_path: String,
+        source_file_path: String,
+        include_file_versions: bool
+      }
+      & Imagekitio::Internal::Type::request_parameters
+
+    class FileCopyParams < Imagekitio::Internal::Type::BaseModel
+      extend Imagekitio::Internal::Type::RequestParameters::Converter
+      include Imagekitio::Internal::Type::RequestParameters
+
+      attr_accessor destination_path: String
+
+      attr_accessor source_file_path: String
+
+      attr_reader include_file_versions: bool?
+
+      def include_file_versions=: (bool) -> bool
+
+      def initialize: (
+        destination_path: String,
+        source_file_path: String,
+        ?include_file_versions: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        destination_path: String,
+        source_file_path: String,
+        include_file_versions: bool,
+        request_options: Imagekitio::RequestOptions
+      }
+    end
+  end
+end

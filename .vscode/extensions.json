@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "shopify.ruby-lsp",
+    "sorbet.sorbet-vscode-extension", 
+    "soutaro.rbs-syntax",
+    "bradlc.vscode-tailwindcss",
+    "github.copilot",
+    "github.copilot-chat"
+  ],
+  "unwantedRecommendations": [
+    "rebornix.ruby",
+    "castwide.solargraph"
+  ]
+}
