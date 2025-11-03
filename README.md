@@ -15,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "imagekitio", "~> 0.0.1"
+gem "imagekitio", "~> 4.0.0"
 ```
 
 <!-- x-release-please-end -->

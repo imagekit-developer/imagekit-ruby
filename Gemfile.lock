@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    imagekitio (0.0.1)
+    imagekitio (4.0.0)
       connection_pool
 
 GEM
