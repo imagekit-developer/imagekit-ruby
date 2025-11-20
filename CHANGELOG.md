@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.0.1 (2025-11-20)
+
+Full Changelog: [v4.0.0...v4.0.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.0.0...v4.0.1)
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([2bc0835](https://github.com/imagekit-developer/imagekit-ruby/commit/2bc0835981c29b717f0ad3a7d78c3c78027874e0))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([8d89fb2](https://github.com/imagekit-developer/imagekit-ruby/commit/8d89fb2c1654420f83bb7efedcc9056c5a7e3c79))
+* **client:** send user-agent header ([796027d](https://github.com/imagekit-developer/imagekit-ruby/commit/796027d185c93067c32bac98323d8a82aeaf9bfe))
+* explicitly require "base64" gem ([1b4181d](https://github.com/imagekit-developer/imagekit-ruby/commit/1b4181d4e57d2c12306f6d3f43b832f63ab68053))
+
 ## 4.0.0 (2025-11-03)
 
 Full Changelog: [v0.0.1...v4.0.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v0.0.1...v4.0.0)
