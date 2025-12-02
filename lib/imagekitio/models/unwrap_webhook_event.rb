@@ -8,6 +8,8 @@ module Imagekitio
     module UnwrapWebhookEvent
       extend Imagekitio::Internal::Type::Union
 
+      discriminator :type
+
       # Triggered when a new video transformation request is accepted for processing. This event confirms that ImageKit has received and queued your transformation request. Use this for debugging and tracking transformation lifecycle.
       variant -> { Imagekitio::VideoTransformationAcceptedEvent }
 
