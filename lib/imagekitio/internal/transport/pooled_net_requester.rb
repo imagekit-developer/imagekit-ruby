@@ -16,10 +16,11 @@ module Imagekitio
         class << self
           # @api private
           #
+          # @param cert_store [OpenSSL::X509::Store]
           # @param url [URI::Generic]
           #
           # @return [Net::HTTP]
-          def connect(url)
+          def connect(cert_store:, url:)
             port =
               case [url.port, url.scheme]
               in [Integer, _]
@@ -34,18 +35,7 @@ module Imagekitio
               _1.use_ssl = %w[https wss].include?(url.scheme)
               _1.max_retries = 0
 
-              # Temporary workaround for SSL verification issue on some
-              # platforms. Similar to: https://github.com/stripe/stripe-ruby/pull/397
-              # Without this fix you may see errors like:
-              # .rbenv/versions/3.2.0/lib/ruby/3.2.0/net/protocol.rb:46:in `connect_nonblock':
-              # SSL_connect returned=1 errno=0 peeraddr=52.23.130.57:443 state=error:
-              # certificate verify failed (unable to get certificate CRL) (OpenSSL::SSL::SSLError)
-              if _1.use_ssl?
-                cert_store = OpenSSL::X509::Store.new
-                cert_store.set_default_paths
-                _1.cert_store = cert_store
-                _1.verify_mode = OpenSSL::SSL::VERIFY_PEER
-              end
+              (_1.cert_store = cert_store) if _1.use_ssl?
             end
           end
 
@@ -115,7 +105,7 @@ module Imagekitio
           pool =
             @mutex.synchronize do
               @pools[origin] ||= ConnectionPool.new(size: @size) do
-                self.class.connect(url)
+                self.class.connect(cert_store: @cert_store, url: url)
               end
             end
 
@@ -205,6 +195,7 @@ module Imagekitio
         def initialize(size: self.class::DEFAULT_MAX_CONNECTIONS)
           @mutex = Mutex.new
           @size = size
+          @cert_store = OpenSSL::X509::Store.new.tap(&:set_default_paths)
           @pools = {}
         end
 
