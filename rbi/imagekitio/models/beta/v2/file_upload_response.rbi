@@ -519,6 +519,23 @@ module Imagekitio
             sig do
               returns(
                 T.nilable(
+                  Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::TaggedSymbol
+                )
+              )
+            end
+            attr_reader :ai_tasks
+
+            sig do
+              params(
+                ai_tasks:
+                  Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::OrSymbol
+              ).void
+            end
+            attr_writer :ai_tasks
+
+            sig do
+              returns(
+                T.nilable(
                   Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AwsAutoTagging::TaggedSymbol
                 )
               )
@@ -580,6 +597,8 @@ module Imagekitio
               params(
                 ai_auto_description:
                   Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription::OrSymbol,
+                ai_tasks:
+                  Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::OrSymbol,
                 aws_auto_tagging:
                   Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AwsAutoTagging::OrSymbol,
                 google_auto_tagging:
@@ -590,6 +609,7 @@ module Imagekitio
             end
             def self.new(
               ai_auto_description: nil,
+              ai_tasks: nil,
               aws_auto_tagging: nil,
               google_auto_tagging: nil,
               remove_bg: nil
@@ -601,6 +621,8 @@ module Imagekitio
                 {
                   ai_auto_description:
                     Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol,
+                  ai_tasks:
+                    Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::TaggedSymbol,
                   aws_auto_tagging:
                     Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AwsAutoTagging::TaggedSymbol,
                   google_auto_tagging:
@@ -645,6 +667,45 @@ module Imagekitio
                 override.returns(
                   T::Array[
                     Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            module AITasks
+              extend Imagekitio::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              SUCCESS =
+                T.let(
+                  :success,
+                  Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::TaggedSymbol
+                )
+              PENDING =
+                T.let(
+                  :pending,
+                  Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::TaggedSymbol
+                )
+              FAILED =
+                T.let(
+                  :failed,
+                  Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks::TaggedSymbol
                   ]
                 )
               end
