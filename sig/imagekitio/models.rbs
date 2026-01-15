@@ -23,6 +23,8 @@ module Imagekitio
 
   type extension_item = Imagekitio::Models::extension_item
 
+  module ExtensionConfig = Imagekitio::Models::ExtensionConfig
+
   Extensions: Imagekitio::Internal::Type::Converter
 
   class File = Imagekitio::Models::File
@@ -70,6 +72,18 @@ module Imagekitio
   class OverlayTiming = Imagekitio::Models::OverlayTiming
 
   class ResponsiveImageAttributes = Imagekitio::Models::ResponsiveImageAttributes
+
+  class SavedExtension = Imagekitio::Models::SavedExtension
+
+  class SavedExtensionCreateParams = Imagekitio::Models::SavedExtensionCreateParams
+
+  class SavedExtensionDeleteParams = Imagekitio::Models::SavedExtensionDeleteParams
+
+  class SavedExtensionGetParams = Imagekitio::Models::SavedExtensionGetParams
+
+  class SavedExtensionListParams = Imagekitio::Models::SavedExtensionListParams
+
+  class SavedExtensionUpdateParams = Imagekitio::Models::SavedExtensionUpdateParams
 
   class SolidColorOverlay = Imagekitio::Models::SolidColorOverlay
 

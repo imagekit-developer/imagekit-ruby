@@ -50,7 +50,7 @@ module Imagekitio
           parsed, options = Imagekitio::Files::MetadataGetFromURLParams.dump_request(params)
           @client.request(
             method: :get,
-            path: "v1/files/metadata",
+            path: "v1/metadata",
             query: parsed,
             model: Imagekitio::Metadata,
             options: options

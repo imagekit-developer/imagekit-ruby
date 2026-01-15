@@ -104,6 +104,12 @@ module Imagekitio
       #
       #   - A solid color: e.g., `red`, `F3F3F3`, `AAFF0010`. See
       #     [Solid color background](https://imagekit.io/docs/effects-and-enhancements#solid-color-background).
+      #   - Dominant color: `dominant` extracts the dominant color from the image. See
+      #     [Dominant color background](https://imagekit.io/docs/effects-and-enhancements#dominant-color-background).
+      #   - Gradient: `gradient_dominant` or `gradient_dominant_2` creates a gradient
+      #     using the dominant colors. Optionally specify palette size (2 or 4), e.g.,
+      #     `gradient_dominant_4`. See
+      #     [Gradient background](https://imagekit.io/docs/effects-and-enhancements#gradient-background).
       #   - A blurred background: e.g., `blurred`, `blurred_25_N15`, etc. See
       #     [Blurred background](https://imagekit.io/docs/effects-and-enhancements#blurred-background).
       #   - Expand the image boundaries using generative fill: `genfill`. Not supported
@@ -139,6 +145,19 @@ module Imagekitio
       #   @return [Boolean, nil]
       optional :color_profile, Imagekitio::Internal::Type::Boolean, api_name: :colorProfile
 
+      # @!attribute color_replace
+      #   Replaces colors in the image. Supports three formats:
+      #
+      #   - `toColor` - Replace dominant color with the specified color.
+      #   - `toColor_tolerance` - Replace dominant color with specified tolerance (0-100).
+      #   - `toColor_tolerance_fromColor` - Replace a specific color with another within
+      #     tolerance range. Colors can be hex codes (e.g., `FF0022`) or names (e.g.,
+      #     `red`, `blue`). See
+      #     [Color replacement](https://imagekit.io/docs/effects-and-enhancements#color-replace---cr).
+      #
+      #   @return [String, nil]
+      optional :color_replace, String, api_name: :colorReplace
+
       # @!attribute contrast_stretch
       #   Automatically enhances the contrast of an image (contrast stretch). See
       #   [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
@@ -170,10 +189,25 @@ module Imagekitio
       #   @return [String, nil]
       optional :default_image, String, api_name: :defaultImage
 
+      # @!attribute distort
+      #   Distorts the shape of an image. Supports two modes:
+      #
+      #   - Perspective distortion: `p-x1_y1_x2_y2_x3_y3_x4_y4` changes the position of
+      #     the four corners starting clockwise from top-left.
+      #   - Arc distortion: `a-degrees` curves the image upwards (positive values) or
+      #     downwards (negative values). See
+      #     [Distort effect](https://imagekit.io/docs/effects-and-enhancements#distort---e-distort).
+      #
+      #   @return [String, nil]
+      optional :distort, String
+
       # @!attribute dpr
       #   Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio
-      #   (DPR) calculation. See
-      #   [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
+      #   (DPR) calculation. Also accepts arithmetic expressions.
+      #
+      #   - Learn about
+      #     [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+      #   - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
       #
       #   @return [Float, nil]
       optional :dpr, Float
@@ -330,11 +364,16 @@ module Imagekitio
       optional :quality, Float
 
       # @!attribute radius
-      #   Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular
-      #   or oval shape. See
-      #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      #   Specifies the corner radius for rounded corners.
       #
-      #   @return [Float, Symbol, :max, nil]
+      #   - Single value (positive integer): Applied to all corners (e.g., `20`).
+      #   - `max`: Creates a circular or oval shape.
+      #   - Per-corner array: Provide four underscore-separated values representing
+      #     top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #     `10_20_30_40`). See
+      #     [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      #
+      #   @return [Float, Symbol, :max, String, nil]
       optional :radius, union: -> { Imagekitio::Transformation::Radius }
 
       # @!attribute raw
@@ -459,7 +498,7 @@ module Imagekitio
       #   @return [Float, nil]
       optional :zoom, Float
 
-      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, color_profile: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
+      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, color_profile: nil, color_replace: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, distort: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::Transformation} for more details.
       #
@@ -498,6 +537,8 @@ module Imagekitio
       #
       #   @param color_profile [Boolean] Indicates whether the output image should retain the original color profile.
       #
+      #   @param color_replace [String] Replaces colors in the image. Supports three formats:
+      #
       #   @param contrast_stretch [Boolean, Imagekitio::Models::Transformation::ContrastStretch] Automatically enhances the contrast of an image (contrast stretch).
       #
       #   @param crop [Symbol, Imagekitio::Models::Transformation::Crop] Crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs
@@ -505,6 +546,8 @@ module Imagekitio
       #   @param crop_mode [Symbol, Imagekitio::Models::Transformation::CropMode] Additional crop modes for image resizing. See [Crop modes & focus](https://image
       #
       #   @param default_image [String] Specifies a fallback image if the resource is not found, e.g., a URL or file pat
+      #
+      #   @param distort [String] Distorts the shape of an image. Supports two modes:
       #
       #   @param dpr [Float] Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio (DP
       #
@@ -542,7 +585,7 @@ module Imagekitio
       #
       #   @param quality [Float] Specifies the quality of the output image for lossy formats such as JPEG, WebP,
       #
-      #   @param radius [Float, Symbol, :max] Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular
+      #   @param radius [Float, Symbol, :max, String] Specifies the corner radius for rounded corners.
       #
       #   @param raw [String] Pass any transformation not directly supported by the SDK.
       #
@@ -886,9 +929,14 @@ module Imagekitio
         #   @return [Array(Float, String)]
       end
 
-      # Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular
-      # or oval shape. See
-      # [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      # Specifies the corner radius for rounded corners.
+      #
+      # - Single value (positive integer): Applied to all corners (e.g., `20`).
+      # - `max`: Creates a circular or oval shape.
+      # - Per-corner array: Provide four underscore-separated values representing
+      #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #   `10_20_30_40`). See
+      #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
       #
       # @see Imagekitio::Models::Transformation#radius
       module Radius
@@ -898,8 +946,10 @@ module Imagekitio
 
         variant const: :max
 
+        variant String
+
         # @!method self.variants
-        #   @return [Array(Float, Symbol, :max)]
+        #   @return [Array(Float, Symbol, :max, String)]
       end
 
       # Specifies the rotation angle in degrees. Positive values rotate the image

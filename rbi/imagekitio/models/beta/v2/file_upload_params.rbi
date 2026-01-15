@@ -98,6 +98,8 @@ module Imagekitio
                   T.any(
                     Imagekitio::ExtensionItem::RemoveBg,
                     Imagekitio::ExtensionItem::AIAutoDescription,
+                    Imagekitio::ExtensionItem::AITasks,
+                    Imagekitio::ExtensionItem::SavedExtension,
                     Imagekitio::ExtensionItem::AutoTaggingExtension
                   )
                 ]
@@ -113,6 +115,8 @@ module Imagekitio
                   T.any(
                     Imagekitio::ExtensionItem::RemoveBg::OrHash,
                     Imagekitio::ExtensionItem::AIAutoDescription::OrHash,
+                    Imagekitio::ExtensionItem::AITasks::OrHash,
+                    Imagekitio::ExtensionItem::SavedExtension::OrHash,
                     Imagekitio::ExtensionItem::AutoTaggingExtension::OrHash
                   )
                 ]
@@ -280,6 +284,8 @@ module Imagekitio
                   T.any(
                     Imagekitio::ExtensionItem::RemoveBg::OrHash,
                     Imagekitio::ExtensionItem::AIAutoDescription::OrHash,
+                    Imagekitio::ExtensionItem::AITasks::OrHash,
+                    Imagekitio::ExtensionItem::SavedExtension::OrHash,
                     Imagekitio::ExtensionItem::AutoTaggingExtension::OrHash
                   )
                 ],
@@ -431,6 +437,8 @@ module Imagekitio
                     T.any(
                       Imagekitio::ExtensionItem::RemoveBg,
                       Imagekitio::ExtensionItem::AIAutoDescription,
+                      Imagekitio::ExtensionItem::AITasks,
+                      Imagekitio::ExtensionItem::SavedExtension,
                       Imagekitio::ExtensionItem::AutoTaggingExtension
                     )
                   ],

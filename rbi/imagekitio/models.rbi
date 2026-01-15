@@ -27,6 +27,8 @@ module Imagekitio
   CustomMetadataFieldUpdateParams =
     Imagekitio::Models::CustomMetadataFieldUpdateParams
 
+  ExtensionConfig = Imagekitio::Models::ExtensionConfig
+
   ExtensionItem = Imagekitio::Models::ExtensionItem
 
   Extensions =
@@ -77,6 +79,18 @@ module Imagekitio
   OverlayTiming = Imagekitio::Models::OverlayTiming
 
   ResponsiveImageAttributes = Imagekitio::Models::ResponsiveImageAttributes
+
+  SavedExtension = Imagekitio::Models::SavedExtension
+
+  SavedExtensionCreateParams = Imagekitio::Models::SavedExtensionCreateParams
+
+  SavedExtensionDeleteParams = Imagekitio::Models::SavedExtensionDeleteParams
+
+  SavedExtensionGetParams = Imagekitio::Models::SavedExtensionGetParams
+
+  SavedExtensionListParams = Imagekitio::Models::SavedExtensionListParams
+
+  SavedExtensionUpdateParams = Imagekitio::Models::SavedExtensionUpdateParams
 
   SolidColorOverlay = Imagekitio::Models::SolidColorOverlay
 

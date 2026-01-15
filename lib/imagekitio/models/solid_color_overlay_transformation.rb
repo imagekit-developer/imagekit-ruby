@@ -4,8 +4,8 @@ module Imagekitio
   module Models
     class SolidColorOverlayTransformation < Imagekitio::Internal::Type::BaseModel
       # @!attribute alpha
-      #   Specifies the transparency level of the solid color overlay. Accepts integers
-      #   from `1` to `9`.
+      #   Specifies the transparency level of the overlaid solid color layer. Supports
+      #   integers from `1` to `9`.
       #
       #   @return [Float, nil]
       optional :alpha, Float
@@ -35,11 +35,16 @@ module Imagekitio
       optional :height, union: -> { Imagekitio::SolidColorOverlayTransformation::Height }
 
       # @!attribute radius
-      #   Specifies the corner radius of the solid color overlay. Set to `max` for
-      #   circular or oval shape. See
-      #   [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      #   Specifies the corner radius of the solid color overlay.
       #
-      #   @return [Float, Symbol, :max, nil]
+      #   - Single value (positive integer): Applied to all corners (e.g., `20`).
+      #   - `max`: Creates a circular or oval shape.
+      #   - Per-corner array: Provide four underscore-separated values representing
+      #     top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #     `10_20_30_40`). See
+      #     [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      #
+      #   @return [Float, Symbol, :max, String, nil]
       optional :radius, union: -> { Imagekitio::SolidColorOverlayTransformation::Radius }
 
       # @!attribute width
@@ -54,7 +59,7 @@ module Imagekitio
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::SolidColorOverlayTransformation} for more details.
       #
-      #   @param alpha [Float] Specifies the transparency level of the solid color overlay. Accepts integers fr
+      #   @param alpha [Float] Specifies the transparency level of the overlaid solid color layer. Supports int
       #
       #   @param background [String] Specifies the background color of the solid color overlay. Accepts an RGB hex co
       #
@@ -62,7 +67,7 @@ module Imagekitio
       #
       #   @param height [Float, String] Controls the height of the solid color overlay. Accepts a numeric value or an ar
       #
-      #   @param radius [Float, Symbol, :max] Specifies the corner radius of the solid color overlay. Set to `max` for circula
+      #   @param radius [Float, Symbol, :max, String] Specifies the corner radius of the solid color overlay.
       #
       #   @param width [Float, String] Controls the width of the solid color overlay. Accepts a numeric value or an ari
 
@@ -99,9 +104,14 @@ module Imagekitio
         #   @return [Array(Float, String)]
       end
 
-      # Specifies the corner radius of the solid color overlay. Set to `max` for
-      # circular or oval shape. See
-      # [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      # Specifies the corner radius of the solid color overlay.
+      #
+      # - Single value (positive integer): Applied to all corners (e.g., `20`).
+      # - `max`: Creates a circular or oval shape.
+      # - Per-corner array: Provide four underscore-separated values representing
+      #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #   `10_20_30_40`). See
+      #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
       #
       # @see Imagekitio::Models::SolidColorOverlayTransformation#radius
       module Radius
@@ -111,8 +121,10 @@ module Imagekitio
 
         variant const: :max
 
+        variant String
+
         # @!method self.variants
-        #   @return [Array(Float, Symbol, :max)]
+        #   @return [Array(Float, Symbol, :max, String)]
       end
 
       # Controls the width of the solid color overlay. Accepts a numeric value or an

@@ -2,11 +2,18 @@ module Imagekitio
   module Models
     type base_overlay =
       {
+        layer_mode: Imagekitio::Models::BaseOverlay::layer_mode,
         position: Imagekitio::OverlayPosition,
         timing: Imagekitio::OverlayTiming
       }
 
     class BaseOverlay < Imagekitio::Internal::Type::BaseModel
+      attr_reader layer_mode: Imagekitio::Models::BaseOverlay::layer_mode?
+
+      def layer_mode=: (
+        Imagekitio::Models::BaseOverlay::layer_mode
+      ) -> Imagekitio::Models::BaseOverlay::layer_mode
+
       attr_reader position: Imagekitio::OverlayPosition?
 
       def position=: (
@@ -18,14 +25,29 @@ module Imagekitio
       def timing=: (Imagekitio::OverlayTiming) -> Imagekitio::OverlayTiming
 
       def initialize: (
+        ?layer_mode: Imagekitio::Models::BaseOverlay::layer_mode,
         ?position: Imagekitio::OverlayPosition,
         ?timing: Imagekitio::OverlayTiming
       ) -> void
 
       def to_hash: -> {
+        layer_mode: Imagekitio::Models::BaseOverlay::layer_mode,
         position: Imagekitio::OverlayPosition,
         timing: Imagekitio::OverlayTiming
       }
+
+      type layer_mode = :multiply | :cutter | :cutout | :displace
+
+      module LayerMode
+        extend Imagekitio::Internal::Type::Enum
+
+        MULTIPLY: :multiply
+        CUTTER: :cutter
+        CUTOUT: :cutout
+        DISPLACE: :displace
+
+        def self?.values: -> ::Array[Imagekitio::Models::BaseOverlay::layer_mode]
+      end
     end
   end
 end
