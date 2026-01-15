@@ -82,6 +82,9 @@ module Imagekitio
       "unsharp_mask" => "e-usm",
       "unsharpMask" => "e-usm",
       "gradient" => "e-gradient",
+      "color_replace" => "cr",
+      "colorReplace" => "cr",
+      "distort" => "e-distort",
 
       # Other flags & finishing
       "progressive" => "pr",
@@ -108,6 +111,10 @@ module Imagekitio
       "typography" => "tg",
       "line_height" => "lh",
       "lineHeight" => "lh",
+
+      # Overlay transformations
+      "layer_mode" => "lm",
+      "layerMode" => "lm",
 
       # Subtitles transformations
       "font_outline" => "fol",

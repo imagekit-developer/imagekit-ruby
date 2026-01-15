@@ -431,6 +431,9 @@ class AdvancedURLGenerationTest < Minitest::Test
         sharpen: 10.0,
         unsharp_mask: "2-2-0.8-0.024",
         gradient: "from-red_to-white",
+        # New transformations
+        color_replace: "FF0000_50_0000FF",
+        distort: "p-100_50_200_150_300_250_400_350",
         original: true,
         page: "2_4",
         raw: "h-200,w-300,l-image,i-logo.png,l-end"
@@ -446,7 +449,27 @@ class AdvancedURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400,ar-4-3,q-40,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,rt-90,bl-10,n-some_name,pr-true,lo-true,t-5,md-true,cp-true,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,fl-h,o-0.8,z-2,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-bgremove,e-contrast,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400,ar-4-3,q-40,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,rt-90,bl-10,n-some_name,pr-true,lo-true,t-5,md-true,cp-true,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,fl-h,o-0.8,z-2,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-bgremove,e-contrast,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,cr-FF0000_50_0000FF,e-distort-p-100_50_200_150_300_250_400_350,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end"
+    assert_equal(expected, url)
+  end
+
+  def test_should_generate_the_correct_url_for_radius_with_string_value
+    transformation = [
+      Imagekitio::Models::Transformation.new(
+        radius: "10_20_30_40"
+      )
+    ]
+
+    url = @client.helper.build_url(
+      Imagekitio::Models::SrcOptions.new(
+        src: "/test_path1.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :query,
+        transformation: transformation
+      )
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path1.jpg?tr=r-10_20_30_40"
     assert_equal(expected, url)
   end
 
