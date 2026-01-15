@@ -1,0 +1,604 @@
+module Imagekitio
+  module Models
+    type extension_config =
+      Imagekitio::ExtensionConfig::RemoveBg
+      | Imagekitio::ExtensionConfig::AIAutoDescription
+      | Imagekitio::ExtensionConfig::AITasks
+      | Imagekitio::ExtensionConfig::AutoTaggingExtension
+
+    module ExtensionConfig
+      extend Imagekitio::Internal::Type::Union
+
+      type remove_bg =
+        {
+          name: :"remove-bg",
+          options: Imagekitio::ExtensionConfig::RemoveBg::Options
+        }
+
+      class RemoveBg < Imagekitio::Internal::Type::BaseModel
+        attr_accessor name: :"remove-bg"
+
+        attr_reader options: Imagekitio::ExtensionConfig::RemoveBg::Options?
+
+        def options=: (
+          Imagekitio::ExtensionConfig::RemoveBg::Options
+        ) -> Imagekitio::ExtensionConfig::RemoveBg::Options
+
+        def initialize: (
+          ?options: Imagekitio::ExtensionConfig::RemoveBg::Options,
+          ?name: :"remove-bg"
+        ) -> void
+
+        def to_hash: -> {
+          name: :"remove-bg",
+          options: Imagekitio::ExtensionConfig::RemoveBg::Options
+        }
+
+        type options =
+          {
+            add_shadow: bool,
+            bg_color: String,
+            bg_image_url: String,
+            semitransparency: bool
+          }
+
+        class Options < Imagekitio::Internal::Type::BaseModel
+          attr_reader add_shadow: bool?
+
+          def add_shadow=: (bool) -> bool
+
+          attr_reader bg_color: String?
+
+          def bg_color=: (String) -> String
+
+          attr_reader bg_image_url: String?
+
+          def bg_image_url=: (String) -> String
+
+          attr_reader semitransparency: bool?
+
+          def semitransparency=: (bool) -> bool
+
+          def initialize: (
+            ?add_shadow: bool,
+            ?bg_color: String,
+            ?bg_image_url: String,
+            ?semitransparency: bool
+          ) -> void
+
+          def to_hash: -> {
+            add_shadow: bool,
+            bg_color: String,
+            bg_image_url: String,
+            semitransparency: bool
+          }
+        end
+      end
+
+      type auto_tagging_extension =
+        {
+          max_tags: Integer,
+          min_confidence: Integer,
+          name: Imagekitio::Models::ExtensionConfig::AutoTaggingExtension::name_
+        }
+
+      class AutoTaggingExtension < Imagekitio::Internal::Type::BaseModel
+        attr_accessor max_tags: Integer
+
+        attr_accessor min_confidence: Integer
+
+        attr_accessor name: Imagekitio::Models::ExtensionConfig::AutoTaggingExtension::name_
+
+        def initialize: (
+          max_tags: Integer,
+          min_confidence: Integer,
+          name: Imagekitio::Models::ExtensionConfig::AutoTaggingExtension::name_
+        ) -> void
+
+        def to_hash: -> {
+          max_tags: Integer,
+          min_confidence: Integer,
+          name: Imagekitio::Models::ExtensionConfig::AutoTaggingExtension::name_
+        }
+
+        type name_ = :"google-auto-tagging" | :"aws-auto-tagging"
+
+        module Name
+          extend Imagekitio::Internal::Type::Enum
+
+          GOOGLE_AUTO_TAGGING: :"google-auto-tagging"
+          AWS_AUTO_TAGGING: :"aws-auto-tagging"
+
+          def self?.values: -> ::Array[Imagekitio::Models::ExtensionConfig::AutoTaggingExtension::name_]
+        end
+      end
+
+      type ai_auto_description = { name: :"ai-auto-description" }
+
+      class AIAutoDescription < Imagekitio::Internal::Type::BaseModel
+        attr_accessor name: :"ai-auto-description"
+
+        def initialize: (?name: :"ai-auto-description") -> void
+
+        def to_hash: -> { name: :"ai-auto-description" }
+      end
+
+      type ai_tasks =
+        {
+          name: :"ai-tasks",
+          tasks: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::task]
+        }
+
+      class AITasks < Imagekitio::Internal::Type::BaseModel
+        attr_accessor name: :"ai-tasks"
+
+        attr_accessor tasks: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::task]
+
+        def initialize: (
+          tasks: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::task],
+          ?name: :"ai-tasks"
+        ) -> void
+
+        def to_hash: -> {
+          name: :"ai-tasks",
+          tasks: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::task]
+        }
+
+        type task =
+          Imagekitio::ExtensionConfig::AITasks::Task::SelectTags
+          | Imagekitio::ExtensionConfig::AITasks::Task::SelectMetadata
+          | Imagekitio::ExtensionConfig::AITasks::Task::YesNo
+
+        module Task
+          extend Imagekitio::Internal::Type::Union
+
+          type select_tags =
+            {
+              instruction: String,
+              type: :select_tags,
+              vocabulary: ::Array[String],
+              max_selections: Integer,
+              min_selections: Integer
+            }
+
+          class SelectTags < Imagekitio::Internal::Type::BaseModel
+            attr_accessor instruction: String
+
+            attr_accessor type: :select_tags
+
+            attr_accessor vocabulary: ::Array[String]
+
+            attr_reader max_selections: Integer?
+
+            def max_selections=: (Integer) -> Integer
+
+            attr_reader min_selections: Integer?
+
+            def min_selections=: (Integer) -> Integer
+
+            def initialize: (
+              instruction: String,
+              vocabulary: ::Array[String],
+              ?max_selections: Integer,
+              ?min_selections: Integer,
+              ?type: :select_tags
+            ) -> void
+
+            def to_hash: -> {
+              instruction: String,
+              type: :select_tags,
+              vocabulary: ::Array[String],
+              max_selections: Integer,
+              min_selections: Integer
+            }
+          end
+
+          type select_metadata =
+            {
+              field: String,
+              instruction: String,
+              type: :select_metadata,
+              max_selections: Integer,
+              min_selections: Integer,
+              vocabulary: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectMetadata::vocabulary]
+            }
+
+          class SelectMetadata < Imagekitio::Internal::Type::BaseModel
+            attr_accessor field: String
+
+            attr_accessor instruction: String
+
+            attr_accessor type: :select_metadata
+
+            attr_reader max_selections: Integer?
+
+            def max_selections=: (Integer) -> Integer
+
+            attr_reader min_selections: Integer?
+
+            def min_selections=: (Integer) -> Integer
+
+            attr_reader vocabulary: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectMetadata::vocabulary]?
+
+            def vocabulary=: (
+              ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectMetadata::vocabulary]
+            ) -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectMetadata::vocabulary]
+
+            def initialize: (
+              field: String,
+              instruction: String,
+              ?max_selections: Integer,
+              ?min_selections: Integer,
+              ?vocabulary: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectMetadata::vocabulary],
+              ?type: :select_metadata
+            ) -> void
+
+            def to_hash: -> {
+              field: String,
+              instruction: String,
+              type: :select_metadata,
+              max_selections: Integer,
+              min_selections: Integer,
+              vocabulary: ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectMetadata::vocabulary]
+            }
+
+            type vocabulary = String | Float | bool
+
+            module Vocabulary
+              extend Imagekitio::Internal::Type::Union
+
+              def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectMetadata::vocabulary]
+            end
+          end
+
+          type yes_no =
+            {
+              instruction: String,
+              type: :yes_no,
+              on_no: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo,
+              on_unknown: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown,
+              on_yes: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes
+            }
+
+          class YesNo < Imagekitio::Internal::Type::BaseModel
+            attr_accessor instruction: String
+
+            attr_accessor type: :yes_no
+
+            attr_reader on_no: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo?
+
+            def on_no=: (
+              Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo
+            ) -> Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo
+
+            attr_reader on_unknown: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown?
+
+            def on_unknown=: (
+              Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown
+            ) -> Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown
+
+            attr_reader on_yes: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes?
+
+            def on_yes=: (
+              Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes
+            ) -> Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes
+
+            def initialize: (
+              instruction: String,
+              ?on_no: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo,
+              ?on_unknown: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown,
+              ?on_yes: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes,
+              ?type: :yes_no
+            ) -> void
+
+            def to_hash: -> {
+              instruction: String,
+              type: :yes_no,
+              on_no: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo,
+              on_unknown: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown,
+              on_yes: Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes
+            }
+
+            type on_no =
+              {
+                add_tags: ::Array[String],
+                remove_tags: ::Array[String],
+                set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata],
+                unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::UnsetMetadata]
+              }
+
+            class OnNo < Imagekitio::Internal::Type::BaseModel
+              attr_reader add_tags: ::Array[String]?
+
+              def add_tags=: (::Array[String]) -> ::Array[String]
+
+              attr_reader remove_tags: ::Array[String]?
+
+              def remove_tags=: (::Array[String]) -> ::Array[String]
+
+              attr_reader set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata]?
+
+              def set_metadata=: (
+                ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata]
+              ) -> ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata]
+
+              attr_reader unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::UnsetMetadata]?
+
+              def unset_metadata=: (
+                ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::UnsetMetadata]
+              ) -> ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::UnsetMetadata]
+
+              def initialize: (
+                ?add_tags: ::Array[String],
+                ?remove_tags: ::Array[String],
+                ?set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata],
+                ?unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::UnsetMetadata]
+              ) -> void
+
+              def to_hash: -> {
+                add_tags: ::Array[String],
+                remove_tags: ::Array[String],
+                set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata],
+                unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnNo::UnsetMetadata]
+              }
+
+              type set_metadata =
+                {
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata::value
+                }
+
+              class SetMetadata < Imagekitio::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                attr_accessor value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata::value
+
+                def initialize: (
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata::value
+                ) -> void
+
+                def to_hash: -> {
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata::value
+                }
+
+                type value =
+                  String
+                  | Float
+                  | bool
+                  | ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata::Value::mixed]
+
+                module Value
+                  extend Imagekitio::Internal::Type::Union
+
+                  type mixed = String | Float | bool
+
+                  module Mixed
+                    extend Imagekitio::Internal::Type::Union
+
+                    def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata::Value::mixed]
+                  end
+
+                  def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnNo::SetMetadata::value]
+
+                  MixedArray: Imagekitio::Internal::Type::Converter
+                end
+              end
+
+              type unset_metadata = { field: String }
+
+              class UnsetMetadata < Imagekitio::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                def initialize: (field: String) -> void
+
+                def to_hash: -> { field: String }
+              end
+            end
+
+            type on_unknown =
+              {
+                add_tags: ::Array[String],
+                remove_tags: ::Array[String],
+                set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata],
+                unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::UnsetMetadata]
+              }
+
+            class OnUnknown < Imagekitio::Internal::Type::BaseModel
+              attr_reader add_tags: ::Array[String]?
+
+              def add_tags=: (::Array[String]) -> ::Array[String]
+
+              attr_reader remove_tags: ::Array[String]?
+
+              def remove_tags=: (::Array[String]) -> ::Array[String]
+
+              attr_reader set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata]?
+
+              def set_metadata=: (
+                ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata]
+              ) -> ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata]
+
+              attr_reader unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::UnsetMetadata]?
+
+              def unset_metadata=: (
+                ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::UnsetMetadata]
+              ) -> ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::UnsetMetadata]
+
+              def initialize: (
+                ?add_tags: ::Array[String],
+                ?remove_tags: ::Array[String],
+                ?set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata],
+                ?unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::UnsetMetadata]
+              ) -> void
+
+              def to_hash: -> {
+                add_tags: ::Array[String],
+                remove_tags: ::Array[String],
+                set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata],
+                unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::UnsetMetadata]
+              }
+
+              type set_metadata =
+                {
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata::value
+                }
+
+              class SetMetadata < Imagekitio::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                attr_accessor value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata::value
+
+                def initialize: (
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata::value
+                ) -> void
+
+                def to_hash: -> {
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata::value
+                }
+
+                type value =
+                  String
+                  | Float
+                  | bool
+                  | ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata::Value::mixed]
+
+                module Value
+                  extend Imagekitio::Internal::Type::Union
+
+                  type mixed = String | Float | bool
+
+                  module Mixed
+                    extend Imagekitio::Internal::Type::Union
+
+                    def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata::Value::mixed]
+                  end
+
+                  def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnUnknown::SetMetadata::value]
+
+                  MixedArray: Imagekitio::Internal::Type::Converter
+                end
+              end
+
+              type unset_metadata = { field: String }
+
+              class UnsetMetadata < Imagekitio::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                def initialize: (field: String) -> void
+
+                def to_hash: -> { field: String }
+              end
+            end
+
+            type on_yes =
+              {
+                add_tags: ::Array[String],
+                remove_tags: ::Array[String],
+                set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata],
+                unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::UnsetMetadata]
+              }
+
+            class OnYes < Imagekitio::Internal::Type::BaseModel
+              attr_reader add_tags: ::Array[String]?
+
+              def add_tags=: (::Array[String]) -> ::Array[String]
+
+              attr_reader remove_tags: ::Array[String]?
+
+              def remove_tags=: (::Array[String]) -> ::Array[String]
+
+              attr_reader set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata]?
+
+              def set_metadata=: (
+                ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata]
+              ) -> ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata]
+
+              attr_reader unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::UnsetMetadata]?
+
+              def unset_metadata=: (
+                ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::UnsetMetadata]
+              ) -> ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::UnsetMetadata]
+
+              def initialize: (
+                ?add_tags: ::Array[String],
+                ?remove_tags: ::Array[String],
+                ?set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata],
+                ?unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::UnsetMetadata]
+              ) -> void
+
+              def to_hash: -> {
+                add_tags: ::Array[String],
+                remove_tags: ::Array[String],
+                set_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata],
+                unset_metadata: ::Array[Imagekitio::ExtensionConfig::AITasks::Task::YesNo::OnYes::UnsetMetadata]
+              }
+
+              type set_metadata =
+                {
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata::value
+                }
+
+              class SetMetadata < Imagekitio::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                attr_accessor value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata::value
+
+                def initialize: (
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata::value
+                ) -> void
+
+                def to_hash: -> {
+                  field: String,
+                  value: Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata::value
+                }
+
+                type value =
+                  String
+                  | Float
+                  | bool
+                  | ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata::Value::mixed]
+
+                module Value
+                  extend Imagekitio::Internal::Type::Union
+
+                  type mixed = String | Float | bool
+
+                  module Mixed
+                    extend Imagekitio::Internal::Type::Union
+
+                    def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata::Value::mixed]
+                  end
+
+                  def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::Task::YesNo::OnYes::SetMetadata::value]
+
+                  MixedArray: Imagekitio::Internal::Type::Converter
+                end
+              end
+
+              type unset_metadata = { field: String }
+
+              class UnsetMetadata < Imagekitio::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                def initialize: (field: String) -> void
+
+                def to_hash: -> { field: String }
+              end
+            end
+          end
+
+          def self?.variants: -> ::Array[Imagekitio::Models::ExtensionConfig::AITasks::task]
+        end
+      end
+
+      def self?.variants: -> ::Array[Imagekitio::Models::extension_config]
+    end
+  end
+end

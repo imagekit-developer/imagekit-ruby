@@ -1,0 +1,7 @@
+module Imagekitio
+  module Models
+    type saved_extension_list_response = ::Array[Imagekitio::SavedExtension]
+
+    SavedExtensionListResponse: Imagekitio::Internal::Type::Converter
+  end
+end

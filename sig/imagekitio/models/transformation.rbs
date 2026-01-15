@@ -16,10 +16,12 @@ module Imagekitio
         blur: Float,
         border: String,
         color_profile: bool,
+        color_replace: String,
         contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
         crop: Imagekitio::Models::Transformation::crop,
         crop_mode: Imagekitio::Models::Transformation::crop_mode,
         default_image: String,
+        distort: String,
         dpr: Float,
         duration: Imagekitio::Models::Transformation::duration,
         end_offset: Imagekitio::Models::Transformation::end_offset,
@@ -129,6 +131,10 @@ module Imagekitio
 
       def color_profile=: (bool) -> bool
 
+      attr_reader color_replace: String?
+
+      def color_replace=: (String) -> String
+
       attr_reader contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch?
 
       def contrast_stretch=: (
@@ -150,6 +156,10 @@ module Imagekitio
       attr_reader default_image: String?
 
       def default_image=: (String) -> String
+
+      attr_reader distort: String?
+
+      def distort=: (String) -> String
 
       attr_reader dpr: Float?
 
@@ -346,10 +356,12 @@ module Imagekitio
         ?blur: Float,
         ?border: String,
         ?color_profile: bool,
+        ?color_replace: String,
         ?contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
         ?crop: Imagekitio::Models::Transformation::crop,
         ?crop_mode: Imagekitio::Models::Transformation::crop_mode,
         ?default_image: String,
+        ?distort: String,
         ?dpr: Float,
         ?duration: Imagekitio::Models::Transformation::duration,
         ?end_offset: Imagekitio::Models::Transformation::end_offset,
@@ -401,10 +413,12 @@ module Imagekitio
         blur: Float,
         border: String,
         color_profile: bool,
+        color_replace: String,
         contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
         crop: Imagekitio::Models::Transformation::crop,
         crop_mode: Imagekitio::Models::Transformation::crop_mode,
         default_image: String,
+        distort: String,
         dpr: Float,
         duration: Imagekitio::Models::Transformation::duration,
         end_offset: Imagekitio::Models::Transformation::end_offset,
@@ -650,7 +664,7 @@ module Imagekitio
         def self?.variants: -> ::Array[Imagekitio::Models::Transformation::page]
       end
 
-      type radius = Float | :max
+      type radius = Float | :max | String
 
       module Radius
         extend Imagekitio::Internal::Type::Union

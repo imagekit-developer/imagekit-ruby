@@ -20,6 +20,12 @@ module Imagekitio
       # format automatically. To always use base64 encoding (`ie-{base64}`), set this
       # parameter to `base64`. To always use plain text (`i-{input}`), set it to
       # `plain`.
+      #
+      # Regardless of the encoding method:
+      #
+      # - Leading and trailing slashes are removed.
+      # - Remaining slashes within the path are replaced with `@@` when using plain
+      #   text.
       sig { returns(T.nilable(Imagekitio::VideoOverlay::Encoding::OrSymbol)) }
       attr_reader :encoding
 
@@ -53,6 +59,12 @@ module Imagekitio
         # format automatically. To always use base64 encoding (`ie-{base64}`), set this
         # parameter to `base64`. To always use plain text (`i-{input}`), set it to
         # `plain`.
+        #
+        # Regardless of the encoding method:
+        #
+        # - Leading and trailing slashes are removed.
+        # - Remaining slashes within the path are replaced with `@@` when using plain
+        #   text.
         encoding: nil,
         # Array of transformation to be applied to the overlay video. Except
         # `streamingResolutions`, all other video transformations are supported. See
@@ -80,6 +92,12 @@ module Imagekitio
       # format automatically. To always use base64 encoding (`ie-{base64}`), set this
       # parameter to `base64`. To always use plain text (`i-{input}`), set it to
       # `plain`.
+      #
+      # Regardless of the encoding method:
+      #
+      # - Leading and trailing slashes are removed.
+      # - Remaining slashes within the path are replaced with `@@` when using plain
+      #   text.
       module Encoding
         extend Imagekitio::Internal::Type::Enum
 

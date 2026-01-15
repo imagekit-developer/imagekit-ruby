@@ -16,6 +16,8 @@ module Imagekitio
 
     attr_reader files: Imagekitio::Resources::Files
 
+    attr_reader saved_extensions: Imagekitio::Resources::SavedExtensions
+
     attr_reader assets: Imagekitio::Resources::Assets
 
     attr_reader cache: Imagekitio::Resources::Cache

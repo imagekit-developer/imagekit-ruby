@@ -38,7 +38,7 @@ module Imagekitio
         #   Array of extensions to be applied to the asset. Each extension can be configured
         #   with specific parameters based on the extension type.
         #
-        #   @return [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>, nil]
+        #   @return [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AITasks, Imagekitio::Models::ExtensionItem::SavedExtension, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>, nil]
         optional :extensions, -> { Imagekitio::Internal::Type::ArrayOf[union: Imagekitio::ExtensionItem] }
 
         # @!attribute remove_ai_tags
@@ -82,7 +82,7 @@ module Imagekitio
         #
         #   @param description [String] Optional text to describe the contents of the file.
         #
-        #   @param extensions [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
+        #   @param extensions [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AITasks, Imagekitio::Models::ExtensionItem::SavedExtension, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
         #
         #   @param remove_ai_tags [Array<String>, Symbol, :all] An array of AITags associated with the file that you want to remove, e.g. `["car
         #

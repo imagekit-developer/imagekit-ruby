@@ -167,7 +167,7 @@ module Imagekitio
         def self?.variants: -> ::Array[Imagekitio::Models::TextOverlayTransformation::padding]
       end
 
-      type radius = Float | :max
+      type radius = Float | :max | String
 
       module Radius
         extend Imagekitio::Internal::Type::Union

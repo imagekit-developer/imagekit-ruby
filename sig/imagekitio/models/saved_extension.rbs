@@ -1,0 +1,59 @@
+module Imagekitio
+  module Models
+    type saved_extension =
+      {
+        id: String,
+        config: Imagekitio::Models::extension_config,
+        created_at: Time,
+        description: String,
+        name: String,
+        updated_at: Time
+      }
+
+    class SavedExtension < Imagekitio::Internal::Type::BaseModel
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader config: Imagekitio::Models::extension_config?
+
+      def config=: (
+        Imagekitio::Models::extension_config
+      ) -> Imagekitio::Models::extension_config
+
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader updated_at: Time?
+
+      def updated_at=: (Time) -> Time
+
+      def initialize: (
+        ?id: String,
+        ?config: Imagekitio::Models::extension_config,
+        ?created_at: Time,
+        ?description: String,
+        ?name: String,
+        ?updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        config: Imagekitio::Models::extension_config,
+        created_at: Time,
+        description: String,
+        name: String,
+        updated_at: Time
+      }
+    end
+  end
+end

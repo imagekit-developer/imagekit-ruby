@@ -21,6 +21,9 @@ module Imagekitio
       # appropriate format based on the input text. To always use base64
       # (`ie-{base64}`), set this parameter to `base64`. To always use plain text
       # (`i-{input}`), set it to `plain`.
+      #
+      # Regardless of the encoding method, the input text is always percent-encoded to
+      # ensure it is URL-safe.
       sig { returns(T.nilable(Imagekitio::TextOverlay::Encoding::OrSymbol)) }
       attr_reader :encoding
 
@@ -60,6 +63,9 @@ module Imagekitio
         # appropriate format based on the input text. To always use base64
         # (`ie-{base64}`), set this parameter to `base64`. To always use plain text
         # (`i-{input}`), set it to `plain`.
+        #
+        # Regardless of the encoding method, the input text is always percent-encoded to
+        # ensure it is URL-safe.
         encoding: nil,
         # Control styling of the text overlay. See
         # [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
@@ -86,6 +92,9 @@ module Imagekitio
       # appropriate format based on the input text. To always use base64
       # (`ie-{base64}`), set this parameter to `base64`. To always use plain text
       # (`i-{input}`), set it to `plain`.
+      #
+      # Regardless of the encoding method, the input text is always percent-encoded to
+      # ensure it is URL-safe.
       module Encoding
         extend Imagekitio::Internal::Type::Enum
 

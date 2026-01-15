@@ -94,7 +94,7 @@ module Imagekitio
       #   Array of extensions to be applied to the asset. Each extension can be configured
       #   with specific parameters based on the extension type.
       #
-      #   @return [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>, nil]
+      #   @return [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AITasks, Imagekitio::Models::ExtensionItem::SavedExtension, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>, nil]
       optional :extensions, -> { Imagekitio::Internal::Type::ArrayOf[union: Imagekitio::ExtensionItem] }
 
       # @!attribute folder
@@ -255,7 +255,7 @@ module Imagekitio
       #
       #   @param expire [Integer] The time until your signature is valid. It must be a [Unix time](https://en.wiki
       #
-      #   @param extensions [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
+      #   @param extensions [Array<Imagekitio::Models::ExtensionItem::RemoveBg, Imagekitio::Models::ExtensionItem::AIAutoDescription, Imagekitio::Models::ExtensionItem::AITasks, Imagekitio::Models::ExtensionItem::SavedExtension, Imagekitio::Models::ExtensionItem::AutoTaggingExtension>] Array of extensions to be applied to the asset. Each extension can be configured
       #
       #   @param folder [String] The folder path in which the image has to be uploaded. If the folder(s) didn't e
       #

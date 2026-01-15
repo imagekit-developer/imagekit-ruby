@@ -31,8 +31,9 @@ module Imagekitio
       sig { params(color: String).void }
       attr_writer :color
 
-      # Font family for subtitles. Refer to the
-      # [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
+      # Sets the font family of subtitle text. Refer to the
+      # [supported fonts documented](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list)
+      # in the ImageKit transformations guide.
       sig { returns(T.nilable(String)) }
       attr_reader :font_family
 
@@ -122,8 +123,9 @@ module Imagekitio
         #
         # [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
         color: nil,
-        # Font family for subtitles. Refer to the
-        # [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
+        # Sets the font family of subtitle text. Refer to the
+        # [supported fonts documented](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list)
+        # in the ImageKit transformations guide.
         font_family: nil,
         # Sets the font outline of the subtitle text. Requires the outline width (an
         # integer) and the outline color (as an RGB color code, RGBA color code, or
