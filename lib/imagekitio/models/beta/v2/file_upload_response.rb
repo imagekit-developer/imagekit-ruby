@@ -299,6 +299,13 @@ module Imagekitio
                      enum: -> { Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription },
                      api_name: :"ai-auto-description"
 
+            # @!attribute ai_tasks
+            #
+            #   @return [Symbol, Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks, nil]
+            optional :ai_tasks,
+                     enum: -> { Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks },
+                     api_name: :"ai-tasks"
+
             # @!attribute aws_auto_tagging
             #
             #   @return [Symbol, Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AwsAutoTagging, nil]
@@ -320,7 +327,7 @@ module Imagekitio
                      enum: -> { Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::RemoveBg },
                      api_name: :"remove-bg"
 
-            # @!method initialize(ai_auto_description: nil, aws_auto_tagging: nil, google_auto_tagging: nil, remove_bg: nil)
+            # @!method initialize(ai_auto_description: nil, ai_tasks: nil, aws_auto_tagging: nil, google_auto_tagging: nil, remove_bg: nil)
             #   Extension names with their processing status at the time of completion of the
             #   request. It could have one of the following status values:
             #
@@ -332,12 +339,25 @@ module Imagekitio
             #   If no extension was requested, then this parameter is not returned.
             #
             #   @param ai_auto_description [Symbol, Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AIAutoDescription]
+            #   @param ai_tasks [Symbol, Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AITasks]
             #   @param aws_auto_tagging [Symbol, Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::AwsAutoTagging]
             #   @param google_auto_tagging [Symbol, Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::GoogleAutoTagging]
             #   @param remove_bg [Symbol, Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus::RemoveBg]
 
             # @see Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus#ai_auto_description
             module AIAutoDescription
+              extend Imagekitio::Internal::Type::Enum
+
+              SUCCESS = :success
+              PENDING = :pending
+              FAILED = :failed
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Imagekitio::Models::Beta::V2::FileUploadResponse::ExtensionStatus#ai_tasks
+            module AITasks
               extend Imagekitio::Internal::Type::Enum
 
               SUCCESS = :success
