@@ -18,7 +18,6 @@ require "set"
 require "stringio"
 require "time"
 require "uri"
-require "base64"
 # rubocop:enable Lint/RedundantRequireStatement
 
 # We already ship the preferred sorbet manifests in the package itself.
