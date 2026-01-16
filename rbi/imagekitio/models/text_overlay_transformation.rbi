@@ -27,7 +27,9 @@ module Imagekitio
       sig { params(background: String).void }
       attr_writer :background
 
-      # Flip the text overlay horizontally, vertically, or both.
+      # Flip/mirror the text horizontally, vertically, or in both directions. Acceptable
+      # values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or
+      # `v_h`.
       sig do
         returns(
           T.nilable(Imagekitio::TextOverlayTransformation::Flip::OrSymbol)
@@ -94,10 +96,9 @@ module Imagekitio
       end
       attr_writer :inner_alignment
 
-      # Specifies the line height of the text overlay. Accepts integer values
-      # representing line height in points. It can also accept
-      # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations)
-      # such as `bw_mul_0.2`, or `bh_div_20`.
+      # Specifies the line height for multi-line text overlays. It will come into effect
+      # only if the text wraps over multiple lines. Accepts either an integer value or
+      # an arithmetic expression.
       sig do
         returns(
           T.nilable(Imagekitio::TextOverlayTransformation::LineHeight::Variants)
@@ -130,12 +131,18 @@ module Imagekitio
       end
       attr_writer :padding
 
-      # Specifies the corner radius of the text overlay. Set to `max` to achieve a
-      # circular or oval shape.
-      sig { returns(T.nilable(T.any(Float, Symbol))) }
+      # Specifies the corner radius:
+      #
+      # - Single value (positive integer): Applied to all corners (e.g., `20`).
+      # - `max`: Creates a circular or oval shape.
+      # - Per-corner array: Provide four underscore-separated values representing
+      #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #   `10_20_30_40`). See
+      #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      sig { returns(T.nilable(T.any(Float, Symbol, String))) }
       attr_reader :radius
 
-      sig { params(radius: T.any(Float, Symbol)).void }
+      sig { params(radius: T.any(Float, Symbol, String)).void }
       attr_writer :radius
 
       # Specifies the rotation angle of the text overlay. Accepts a numeric value for
@@ -196,7 +203,7 @@ module Imagekitio
           line_height:
             Imagekitio::TextOverlayTransformation::LineHeight::Variants,
           padding: Imagekitio::TextOverlayTransformation::Padding::Variants,
-          radius: T.any(Float, Symbol),
+          radius: T.any(Float, Symbol, String),
           rotation: Imagekitio::TextOverlayTransformation::Rotation::Variants,
           typography: String,
           width: Imagekitio::TextOverlayTransformation::Width::Variants
@@ -209,7 +216,9 @@ module Imagekitio
         # Specifies the background color of the text overlay. Accepts an RGB hex code, an
         # RGBA code, or a color name.
         background: nil,
-        # Flip the text overlay horizontally, vertically, or both.
+        # Flip/mirror the text horizontally, vertically, or in both directions. Acceptable
+        # values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or
+        # `v_h`.
         flip: nil,
         # Specifies the font color of the overlaid text. Accepts an RGB hex code (e.g.,
         # `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
@@ -226,17 +235,22 @@ module Imagekitio
         # Specifies the inner alignment of the text when width is more than the text
         # length.
         inner_alignment: nil,
-        # Specifies the line height of the text overlay. Accepts integer values
-        # representing line height in points. It can also accept
-        # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations)
-        # such as `bw_mul_0.2`, or `bh_div_20`.
+        # Specifies the line height for multi-line text overlays. It will come into effect
+        # only if the text wraps over multiple lines. Accepts either an integer value or
+        # an arithmetic expression.
         line_height: nil,
         # Specifies the padding around the overlaid text. Can be provided as a single
         # positive integer or multiple values separated by underscores (following CSS
         # shorthand order). Arithmetic expressions are also accepted.
         padding: nil,
-        # Specifies the corner radius of the text overlay. Set to `max` to achieve a
-        # circular or oval shape.
+        # Specifies the corner radius:
+        #
+        # - Single value (positive integer): Applied to all corners (e.g., `20`).
+        # - `max`: Creates a circular or oval shape.
+        # - Per-corner array: Provide four underscore-separated values representing
+        #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+        #   `10_20_30_40`). See
+        #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
         radius: nil,
         # Specifies the rotation angle of the text overlay. Accepts a numeric value for
         # clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
@@ -270,7 +284,7 @@ module Imagekitio
             line_height:
               Imagekitio::TextOverlayTransformation::LineHeight::Variants,
             padding: Imagekitio::TextOverlayTransformation::Padding::Variants,
-            radius: T.any(Float, Symbol),
+            radius: T.any(Float, Symbol, String),
             rotation: Imagekitio::TextOverlayTransformation::Rotation::Variants,
             typography: String,
             width: Imagekitio::TextOverlayTransformation::Width::Variants
@@ -280,7 +294,9 @@ module Imagekitio
       def to_hash
       end
 
-      # Flip the text overlay horizontally, vertically, or both.
+      # Flip/mirror the text horizontally, vertically, or in both directions. Acceptable
+      # values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or
+      # `v_h`.
       module Flip
         extend Imagekitio::Internal::Type::Enum
 
@@ -360,10 +376,9 @@ module Imagekitio
         end
       end
 
-      # Specifies the line height of the text overlay. Accepts integer values
-      # representing line height in points. It can also accept
-      # [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations)
-      # such as `bw_mul_0.2`, or `bh_div_20`.
+      # Specifies the line height for multi-line text overlays. It will come into effect
+      # only if the text wraps over multiple lines. Accepts either an integer value or
+      # an arithmetic expression.
       module LineHeight
         extend Imagekitio::Internal::Type::Union
 
@@ -397,12 +412,18 @@ module Imagekitio
         end
       end
 
-      # Specifies the corner radius of the text overlay. Set to `max` to achieve a
-      # circular or oval shape.
+      # Specifies the corner radius:
+      #
+      # - Single value (positive integer): Applied to all corners (e.g., `20`).
+      # - `max`: Creates a circular or oval shape.
+      # - Per-corner array: Provide four underscore-separated values representing
+      #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #   `10_20_30_40`). See
+      #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
       module Radius
         extend Imagekitio::Internal::Type::Union
 
-        Variants = T.type_alias { T.any(Float, Symbol) }
+        Variants = T.type_alias { T.any(Float, Symbol, String) }
 
         sig do
           override.returns(

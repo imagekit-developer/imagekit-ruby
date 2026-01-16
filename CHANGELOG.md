@@ -1,5 +1,39 @@
 # Changelog
 
+## 4.1.0 (2026-01-16)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* add layer_mode property to overlays and new transformation options ([97042ce](https://github.com/imagekit-developer/imagekit-ruby/commit/97042ce9bffaf101ab98dd7394caaf4df9a873ea))
+* **api:** Add saved extensions API and enhance transformation options ([f1dc75e](https://github.com/imagekit-developer/imagekit-ruby/commit/f1dc75ecbe0a4a39472fdc10e9dc8f02e75ddc07))
+
+
+### Bug Fixes
+
+* add ai-tasks property to response schemas with enum values ([aad5e54](https://github.com/imagekit-developer/imagekit-ruby/commit/aad5e5413676af916e8149f07ae78aaff7c5c313))
+* better thread safety via early initializing SSL store during HTTP client creation ([2bc0835](https://github.com/imagekit-developer/imagekit-ruby/commit/2bc0835981c29b717f0ad3a7d78c3c78027874e0))
+* calling `break` out of streams should be instantaneous ([55bf4a9](https://github.com/imagekit-developer/imagekit-ruby/commit/55bf4a9b768f18f4adad903b2c9d93178a670151))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([dd32cb1](https://github.com/imagekit-developer/imagekit-ruby/commit/dd32cb1572bc155db85ed898011374889996b3fd))
+* remove redundant base64 require statement ([4c73b42](https://github.com/imagekit-developer/imagekit-ruby/commit/4c73b425564e980b21dfd1f3554f8a2e45aaeecf))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([8d89fb2](https://github.com/imagekit-developer/imagekit-ruby/commit/8d89fb2c1654420f83bb7efedcc9056c5a7e3c79))
+* **client:** send user-agent header ([796027d](https://github.com/imagekit-developer/imagekit-ruby/commit/796027d185c93067c32bac98323d8a82aeaf9bfe))
+* explicitly require "base64" gem ([1b4181d](https://github.com/imagekit-developer/imagekit-ruby/commit/1b4181d4e57d2c12306f6d3f43b832f63ab68053))
+* **internal:** codegen related update ([3a93def](https://github.com/imagekit-developer/imagekit-ruby/commit/3a93def2d09609b359824a627183833ae59d74e1))
+* **internal:** codegen related update ([4c161f0](https://github.com/imagekit-developer/imagekit-ruby/commit/4c161f048927df137a12d33a5a1b79af1c561b8b))
+* move `cgi` into dependencies for ruby 4 ([54261ef](https://github.com/imagekit-developer/imagekit-ruby/commit/54261ef9f24e206d2180dc0a205464154af4c3ed))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([777f8cf](https://github.com/imagekit-developer/imagekit-ruby/commit/777f8cf5cc692eed3e8f6217caf25a85d17201f7))
+* remove MCP Server section from README ([db0f71c](https://github.com/imagekit-developer/imagekit-ruby/commit/db0f71cce159f4c395fe8c7c0526d4108934fc6b))
+
 ## 4.0.0 (2025-11-03)
 
 Full Changelog: [v0.0.1...v4.0.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v0.0.1...v4.0.0)

@@ -6,16 +6,28 @@ module Imagekitio
       # @api private
       #
       # @example
-      #   # `overlay` is a `Imagekitio::Overlay`
-      #   case overlay
-      #   when Imagekitio::TextOverlay
-      #     # ...
-      #   when Imagekitio::ImageOverlay
-      #     # ...
-      #   when Imagekitio::VideoOverlay
-      #     # ...
+      #   # `extension_config` is a `Imagekitio::ExtensionConfig`
+      #   case extension_config
+      #   when Imagekitio::ExtensionConfig::RemoveBg
+      #     puts(extension_config.name)
+      #   when Imagekitio::ExtensionConfig::AIAutoDescription
+      #     puts(extension_config.name)
+      #   when Imagekitio::ExtensionConfig::AITasks
+      #     puts(extension_config.tasks)
       #   else
-      #     puts(overlay)
+      #     puts(extension_config)
+      #   end
+      #
+      # @example
+      #   case extension_config
+      #   in {name: :"remove-bg", options: options}
+      #     puts(options)
+      #   in {name: :"ai-auto-description"}
+      #     # ...
+      #   in {name: :"ai-tasks", tasks: tasks}
+      #     puts(tasks)
+      #   else
+      #     puts(extension_config)
       #   end
       module Union
         include Imagekitio::Internal::Type::Converter

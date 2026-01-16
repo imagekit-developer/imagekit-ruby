@@ -213,6 +213,7 @@ module Imagekitio
       type extension_status =
         {
           ai_auto_description: Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_auto_description,
+          ai_tasks: Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_tasks,
           aws_auto_tagging: Imagekitio::Models::FileUploadResponse::ExtensionStatus::aws_auto_tagging,
           google_auto_tagging: Imagekitio::Models::FileUploadResponse::ExtensionStatus::google_auto_tagging,
           remove_bg: Imagekitio::Models::FileUploadResponse::ExtensionStatus::remove_bg
@@ -224,6 +225,12 @@ module Imagekitio
         def ai_auto_description=: (
           Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_auto_description
         ) -> Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_auto_description
+
+        attr_reader ai_tasks: Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_tasks?
+
+        def ai_tasks=: (
+          Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_tasks
+        ) -> Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_tasks
 
         attr_reader aws_auto_tagging: Imagekitio::Models::FileUploadResponse::ExtensionStatus::aws_auto_tagging?
 
@@ -245,6 +252,7 @@ module Imagekitio
 
         def initialize: (
           ?ai_auto_description: Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_auto_description,
+          ?ai_tasks: Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_tasks,
           ?aws_auto_tagging: Imagekitio::Models::FileUploadResponse::ExtensionStatus::aws_auto_tagging,
           ?google_auto_tagging: Imagekitio::Models::FileUploadResponse::ExtensionStatus::google_auto_tagging,
           ?remove_bg: Imagekitio::Models::FileUploadResponse::ExtensionStatus::remove_bg
@@ -252,6 +260,7 @@ module Imagekitio
 
         def to_hash: -> {
           ai_auto_description: Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_auto_description,
+          ai_tasks: Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_tasks,
           aws_auto_tagging: Imagekitio::Models::FileUploadResponse::ExtensionStatus::aws_auto_tagging,
           google_auto_tagging: Imagekitio::Models::FileUploadResponse::ExtensionStatus::google_auto_tagging,
           remove_bg: Imagekitio::Models::FileUploadResponse::ExtensionStatus::remove_bg
@@ -267,6 +276,18 @@ module Imagekitio
           FAILED: :failed
 
           def self?.values: -> ::Array[Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_auto_description]
+        end
+
+        type ai_tasks = :success | :pending | :failed
+
+        module AITasks
+          extend Imagekitio::Internal::Type::Enum
+
+          SUCCESS: :success
+          PENDING: :pending
+          FAILED: :failed
+
+          def self?.values: -> ::Array[Imagekitio::Models::FileUploadResponse::ExtensionStatus::ai_tasks]
         end
 
         type aws_auto_tagging = :success | :pending | :failed

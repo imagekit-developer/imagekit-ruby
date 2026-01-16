@@ -1,0 +1,33 @@
+module Imagekitio
+  module Resources
+    class SavedExtensions
+      def create: (
+        config: Imagekitio::Models::extension_config,
+        description: String,
+        name: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::SavedExtension
+
+      def update: (
+        String id,
+        ?config: Imagekitio::Models::extension_config,
+        ?description: String,
+        ?name: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::SavedExtension
+
+      def list: (
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::saved_extension_list_response
+
+      def delete: (String id, ?request_options: Imagekitio::request_opts) -> nil
+
+      def get: (
+        String id,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::SavedExtension
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

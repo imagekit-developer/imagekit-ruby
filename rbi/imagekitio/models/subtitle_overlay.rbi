@@ -20,6 +20,12 @@ module Imagekitio
       # format automatically. To always use base64 encoding (`ie-{base64}`), set this
       # parameter to `base64`. To always use plain text (`i-{input}`), set it to
       # `plain`.
+      #
+      # Regardless of the encoding method:
+      #
+      # - Leading and trailing slashes are removed.
+      # - Remaining slashes within the path are replaced with `@@` when using plain
+      #   text.
       sig do
         returns(T.nilable(Imagekitio::SubtitleOverlay::Encoding::OrSymbol))
       end
@@ -62,6 +68,12 @@ module Imagekitio
         # format automatically. To always use base64 encoding (`ie-{base64}`), set this
         # parameter to `base64`. To always use plain text (`i-{input}`), set it to
         # `plain`.
+        #
+        # Regardless of the encoding method:
+        #
+        # - Leading and trailing slashes are removed.
+        # - Remaining slashes within the path are replaced with `@@` when using plain
+        #   text.
         encoding: nil,
         # Control styling of the subtitle. See
         # [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
@@ -88,6 +100,12 @@ module Imagekitio
       # format automatically. To always use base64 encoding (`ie-{base64}`), set this
       # parameter to `base64`. To always use plain text (`i-{input}`), set it to
       # `plain`.
+      #
+      # Regardless of the encoding method:
+      #
+      # - Leading and trailing slashes are removed.
+      # - Remaining slashes within the path are replaced with `@@` when using plain
+      #   text.
       module Encoding
         extend Imagekitio::Internal::Type::Enum
 

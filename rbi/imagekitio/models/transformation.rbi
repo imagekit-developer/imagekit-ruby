@@ -160,6 +160,12 @@ module Imagekitio
       #
       # - A solid color: e.g., `red`, `F3F3F3`, `AAFF0010`. See
       #   [Solid color background](https://imagekit.io/docs/effects-and-enhancements#solid-color-background).
+      # - Dominant color: `dominant` extracts the dominant color from the image. See
+      #   [Dominant color background](https://imagekit.io/docs/effects-and-enhancements#dominant-color-background).
+      # - Gradient: `gradient_dominant` or `gradient_dominant_2` creates a gradient
+      #   using the dominant colors. Optionally specify palette size (2 or 4), e.g.,
+      #   `gradient_dominant_4`. See
+      #   [Gradient background](https://imagekit.io/docs/effects-and-enhancements#gradient-background).
       # - A blurred background: e.g., `blurred`, `blurred_25_N15`, etc. See
       #   [Blurred background](https://imagekit.io/docs/effects-and-enhancements#blurred-background).
       # - Expand the image boundaries using generative fill: `genfill`. Not supported
@@ -199,6 +205,20 @@ module Imagekitio
 
       sig { params(color_profile: T::Boolean).void }
       attr_writer :color_profile
+
+      # Replaces colors in the image. Supports three formats:
+      #
+      # - `toColor` - Replace dominant color with the specified color.
+      # - `toColor_tolerance` - Replace dominant color with specified tolerance (0-100).
+      # - `toColor_tolerance_fromColor` - Replace a specific color with another within
+      #   tolerance range. Colors can be hex codes (e.g., `FF0022`) or names (e.g.,
+      #   `red`, `blue`). See
+      #   [Color replacement](https://imagekit.io/docs/effects-and-enhancements#color-replace---cr).
+      sig { returns(T.nilable(String)) }
+      attr_reader :color_replace
+
+      sig { params(color_replace: String).void }
+      attr_writer :color_replace
 
       # Automatically enhances the contrast of an image (contrast stretch). See
       # [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
@@ -244,9 +264,25 @@ module Imagekitio
       sig { params(default_image: String).void }
       attr_writer :default_image
 
+      # Distorts the shape of an image. Supports two modes:
+      #
+      # - Perspective distortion: `p-x1_y1_x2_y2_x3_y3_x4_y4` changes the position of
+      #   the four corners starting clockwise from top-left.
+      # - Arc distortion: `a-degrees` curves the image upwards (positive values) or
+      #   downwards (negative values). See
+      #   [Distort effect](https://imagekit.io/docs/effects-and-enhancements#distort---e-distort).
+      sig { returns(T.nilable(String)) }
+      attr_reader :distort
+
+      sig { params(distort: String).void }
+      attr_writer :distort
+
       # Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio
-      # (DPR) calculation. See
-      # [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
+      # (DPR) calculation. Also accepts arithmetic expressions.
+      #
+      # - Learn about
+      #   [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+      # - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
       sig { returns(T.nilable(Float)) }
       attr_reader :dpr
 
@@ -431,13 +467,18 @@ module Imagekitio
       sig { params(quality: Float).void }
       attr_writer :quality
 
-      # Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular
-      # or oval shape. See
-      # [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
-      sig { returns(T.nilable(T.any(Float, Symbol))) }
+      # Specifies the corner radius for rounded corners.
+      #
+      # - Single value (positive integer): Applied to all corners (e.g., `20`).
+      # - `max`: Creates a circular or oval shape.
+      # - Per-corner array: Provide four underscore-separated values representing
+      #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #   `10_20_30_40`). See
+      #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      sig { returns(T.nilable(T.any(Float, Symbol, String))) }
       attr_reader :radius
 
-      sig { params(radius: T.any(Float, Symbol)).void }
+      sig { params(radius: T.any(Float, Symbol, String)).void }
       attr_writer :radius
 
       # Pass any transformation not directly supported by the SDK. This transformation
@@ -624,11 +665,13 @@ module Imagekitio
           blur: Float,
           border: String,
           color_profile: T::Boolean,
+          color_replace: String,
           contrast_stretch:
             Imagekitio::Transformation::ContrastStretch::OrBoolean,
           crop: Imagekitio::Transformation::Crop::OrSymbol,
           crop_mode: Imagekitio::Transformation::CropMode::OrSymbol,
           default_image: String,
+          distort: String,
           dpr: Float,
           duration: Imagekitio::Transformation::Duration::Variants,
           end_offset: Imagekitio::Transformation::EndOffset::Variants,
@@ -647,7 +690,7 @@ module Imagekitio
           page: Imagekitio::Transformation::Page::Variants,
           progressive: T::Boolean,
           quality: Float,
-          radius: T.any(Float, Symbol),
+          radius: T.any(Float, Symbol, String),
           raw: String,
           rotation: Imagekitio::Transformation::Rotation::Variants,
           shadow: T.any(T::Boolean, String),
@@ -719,6 +762,12 @@ module Imagekitio
         #
         # - A solid color: e.g., `red`, `F3F3F3`, `AAFF0010`. See
         #   [Solid color background](https://imagekit.io/docs/effects-and-enhancements#solid-color-background).
+        # - Dominant color: `dominant` extracts the dominant color from the image. See
+        #   [Dominant color background](https://imagekit.io/docs/effects-and-enhancements#dominant-color-background).
+        # - Gradient: `gradient_dominant` or `gradient_dominant_2` creates a gradient
+        #   using the dominant colors. Optionally specify palette size (2 or 4), e.g.,
+        #   `gradient_dominant_4`. See
+        #   [Gradient background](https://imagekit.io/docs/effects-and-enhancements#gradient-background).
         # - A blurred background: e.g., `blurred`, `blurred_25_N15`, etc. See
         #   [Blurred background](https://imagekit.io/docs/effects-and-enhancements#blurred-background).
         # - Expand the image boundaries using generative fill: `genfill`. Not supported
@@ -739,6 +788,15 @@ module Imagekitio
         # Indicates whether the output image should retain the original color profile. See
         # [Color profile](https://imagekit.io/docs/image-optimization#color-profile---cp).
         color_profile: nil,
+        # Replaces colors in the image. Supports three formats:
+        #
+        # - `toColor` - Replace dominant color with the specified color.
+        # - `toColor_tolerance` - Replace dominant color with specified tolerance (0-100).
+        # - `toColor_tolerance_fromColor` - Replace a specific color with another within
+        #   tolerance range. Colors can be hex codes (e.g., `FF0022`) or names (e.g.,
+        #   `red`, `blue`). See
+        #   [Color replacement](https://imagekit.io/docs/effects-and-enhancements#color-replace---cr).
+        color_replace: nil,
         # Automatically enhances the contrast of an image (contrast stretch). See
         # [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
         contrast_stretch: nil,
@@ -752,9 +810,20 @@ module Imagekitio
         # path. See
         # [Default image](https://imagekit.io/docs/image-transformation#default-image---di).
         default_image: nil,
+        # Distorts the shape of an image. Supports two modes:
+        #
+        # - Perspective distortion: `p-x1_y1_x2_y2_x3_y3_x4_y4` changes the position of
+        #   the four corners starting clockwise from top-left.
+        # - Arc distortion: `a-degrees` curves the image upwards (positive values) or
+        #   downwards (negative values). See
+        #   [Distort effect](https://imagekit.io/docs/effects-and-enhancements#distort---e-distort).
+        distort: nil,
         # Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio
-        # (DPR) calculation. See
-        # [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
+        # (DPR) calculation. Also accepts arithmetic expressions.
+        #
+        # - Learn about
+        #   [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+        # - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
         dpr: nil,
         # Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
         # Typically used with startOffset to indicate the length from the start offset.
@@ -839,9 +908,14 @@ module Imagekitio
         # quality, while a lower value produces a smaller file size with reduced quality.
         # See [Quality](https://imagekit.io/docs/image-optimization#quality---q).
         quality: nil,
-        # Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular
-        # or oval shape. See
-        # [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+        # Specifies the corner radius for rounded corners.
+        #
+        # - Single value (positive integer): Applied to all corners (e.g., `20`).
+        # - `max`: Creates a circular or oval shape.
+        # - Per-corner array: Provide four underscore-separated values representing
+        #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+        #   `10_20_30_40`). See
+        #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
         radius: nil,
         # Pass any transformation not directly supported by the SDK. This transformation
         # string is appended to the URL as provided.
@@ -925,11 +999,13 @@ module Imagekitio
             blur: Float,
             border: String,
             color_profile: T::Boolean,
+            color_replace: String,
             contrast_stretch:
               Imagekitio::Transformation::ContrastStretch::OrBoolean,
             crop: Imagekitio::Transformation::Crop::OrSymbol,
             crop_mode: Imagekitio::Transformation::CropMode::OrSymbol,
             default_image: String,
+            distort: String,
             dpr: Float,
             duration: Imagekitio::Transformation::Duration::Variants,
             end_offset: Imagekitio::Transformation::EndOffset::Variants,
@@ -948,7 +1024,7 @@ module Imagekitio
             page: Imagekitio::Transformation::Page::Variants,
             progressive: T::Boolean,
             quality: Float,
-            radius: T.any(Float, Symbol),
+            radius: T.any(Float, Symbol, String),
             raw: String,
             rotation: Imagekitio::Transformation::Rotation::Variants,
             shadow: T.any(T::Boolean, String),
@@ -1417,13 +1493,18 @@ module Imagekitio
         end
       end
 
-      # Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular
-      # or oval shape. See
-      # [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+      # Specifies the corner radius for rounded corners.
+      #
+      # - Single value (positive integer): Applied to all corners (e.g., `20`).
+      # - `max`: Creates a circular or oval shape.
+      # - Per-corner array: Provide four underscore-separated values representing
+      #   top-left, top-right, bottom-right, and bottom-left corners respectively (e.g.,
+      #   `10_20_30_40`). See
+      #   [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
       module Radius
         extend Imagekitio::Internal::Type::Union
 
-        Variants = T.type_alias { T.any(Float, Symbol) }
+        Variants = T.type_alias { T.any(Float, Symbol, String) }
 
         sig do
           override.returns(

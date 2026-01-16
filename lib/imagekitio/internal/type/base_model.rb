@@ -440,6 +440,7 @@ module Imagekitio
         # @example
         #   # `base_overlay` is a `Imagekitio::BaseOverlay`
         #   base_overlay => {
+        #     layer_mode: layer_mode,
         #     position: position,
         #     timing: timing
         #   }

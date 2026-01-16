@@ -46,6 +46,8 @@ module Imagekitio
                   T.any(
                     Imagekitio::ExtensionItem::RemoveBg::OrHash,
                     Imagekitio::ExtensionItem::AIAutoDescription::OrHash,
+                    Imagekitio::ExtensionItem::AITasks::OrHash,
+                    Imagekitio::ExtensionItem::SavedExtension::OrHash,
                     Imagekitio::ExtensionItem::AutoTaggingExtension::OrHash
                   )
                 ],

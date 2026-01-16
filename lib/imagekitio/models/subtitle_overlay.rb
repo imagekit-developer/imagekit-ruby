@@ -21,6 +21,12 @@ module Imagekitio
       #   parameter to `base64`. To always use plain text (`i-{input}`), set it to
       #   `plain`.
       #
+      #   Regardless of the encoding method:
+      #
+      #   - Leading and trailing slashes are removed.
+      #   - Remaining slashes within the path are replaced with `@@` when using plain
+      #     text.
+      #
       #   @return [Symbol, Imagekitio::Models::SubtitleOverlay::Encoding, nil]
       optional :encoding, enum: -> { Imagekitio::SubtitleOverlay::Encoding }
 
@@ -49,6 +55,12 @@ module Imagekitio
       # format automatically. To always use base64 encoding (`ie-{base64}`), set this
       # parameter to `base64`. To always use plain text (`i-{input}`), set it to
       # `plain`.
+      #
+      # Regardless of the encoding method:
+      #
+      # - Leading and trailing slashes are removed.
+      # - Remaining slashes within the path are replaced with `@@` when using plain
+      #   text.
       module Encoding
         extend Imagekitio::Internal::Type::Enum
 

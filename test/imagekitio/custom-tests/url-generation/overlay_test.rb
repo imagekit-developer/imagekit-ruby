@@ -724,6 +724,103 @@ class OverlayTest < Minitest::Test
     assert_equal(expected, url)
   end
 
+  # Layer mode tests
+  def test_should_generate_url_with_image_overlay_and_multiply_layer_mode
+    transformation = [
+      Imagekitio::Models::Transformation.new(
+        overlay: Imagekitio::Models::ImageOverlay.new(
+          input: "overlay.png",
+          layer_mode: :multiply
+        )
+      )
+    ]
+
+    url = @client.helper.build_url(
+      Imagekitio::Models::SrcOptions.new(
+        src: "/base-image.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :path,
+        transformation: transformation
+      )
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/tr:l-image,i-overlay.png,lm-multiply,l-end/base-image.jpg"
+    assert_equal(expected, url)
+  end
+
+  def test_should_generate_url_with_image_overlay_and_displace_layer_mode
+    transformation = [
+      Imagekitio::Models::Transformation.new(
+        overlay: Imagekitio::Models::ImageOverlay.new(
+          input: "displacement-map.png",
+          layer_mode: :displace,
+          position: Imagekitio::Models::OverlayPosition.new(
+            x: "10",
+            y_: "20"
+          )
+        )
+      )
+    ]
+
+    url = @client.helper.build_url(
+      Imagekitio::Models::SrcOptions.new(
+        src: "/base-image.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :path,
+        transformation: transformation
+      )
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/tr:l-image,i-displacement-map.png,lm-displace,lx-10,ly-20,l-end/base-image.jpg"
+    assert_equal(expected, url)
+  end
+
+  def test_should_generate_url_with_image_overlay_and_cutout_layer_mode
+    transformation = [
+      Imagekitio::Models::Transformation.new(
+        overlay: Imagekitio::Models::ImageOverlay.new(
+          input: "mask.png",
+          layer_mode: :cutout
+        )
+      )
+    ]
+
+    url = @client.helper.build_url(
+      Imagekitio::Models::SrcOptions.new(
+        src: "/base-image.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :path,
+        transformation: transformation
+      )
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/tr:l-image,i-mask.png,lm-cutout,l-end/base-image.jpg"
+    assert_equal(expected, url)
+  end
+
+  def test_should_generate_url_with_image_overlay_and_cutter_layer_mode
+    transformation = [
+      Imagekitio::Models::Transformation.new(
+        overlay: Imagekitio::Models::ImageOverlay.new(
+          input: "shape.png",
+          layer_mode: :cutter
+        )
+      )
+    ]
+
+    url = @client.helper.build_url(
+      Imagekitio::Models::SrcOptions.new(
+        src: "/base-image.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :path,
+        transformation: transformation
+      )
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/tr:l-image,i-shape.png,lm-cutter,l-end/base-image.jpg"
+    assert_equal(expected, url)
+  end
+
   # Hash-based API test - verify that plain hashes work for overlays
   def test_should_work_with_plain_hashes_for_text_overlay
     # Using plain hashes for everything including overlay

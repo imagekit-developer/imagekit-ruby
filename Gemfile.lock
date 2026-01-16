@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/stainless-api/syntax_tree-rbs.git
-  revision: c30b50219918be7cfe3ef803a00b59d1e77fcada
+  remote: https://github.com/ruby-syntax-tree/syntax_tree-rbs.git
+  revision: f94bc3060682ffbd126e4d5086ffedc89073d626
   branch: main
   specs:
     syntax_tree-rbs (1.0.0)
@@ -11,7 +11,8 @@ GIT
 PATH
   remote: .
   specs:
-    imagekitio (4.0.0)
+    imagekitio (4.1.0)
+      cgi
       connection_pool
 
 GEM
@@ -42,6 +43,7 @@ GEM
     base64 (0.3.0)
     benchmark (0.5.0)
     bigdecimal (3.3.1)
+    cgi (0.5.1)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     console (1.34.2)

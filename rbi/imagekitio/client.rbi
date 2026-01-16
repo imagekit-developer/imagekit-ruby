@@ -26,6 +26,9 @@ module Imagekitio
     sig { returns(Imagekitio::Resources::Files) }
     attr_reader :files
 
+    sig { returns(Imagekitio::Resources::SavedExtensions) }
+    attr_reader :saved_extensions
+
     sig { returns(Imagekitio::Resources::Assets) }
     attr_reader :assets
 

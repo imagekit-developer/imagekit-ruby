@@ -626,6 +626,10 @@ module Imagekitio
 
     # Add overlay properties like position, timing, transformations (matching Node.js)
     def add_overlay_properties(parts, overlay)
+      # Add layer_mode property
+      layer_mode = safe_get(overlay, :layer_mode)
+      parts << "lm-#{layer_mode}" if layer_mode
+
       # Add position properties
       position = safe_get(overlay, :position)
       if position

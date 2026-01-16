@@ -586,6 +586,23 @@ module Imagekitio
           sig do
             returns(
               T.nilable(
+                Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::TaggedSymbol
+              )
+            )
+          end
+          attr_reader :ai_tasks
+
+          sig do
+            params(
+              ai_tasks:
+                Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::OrSymbol
+            ).void
+          end
+          attr_writer :ai_tasks
+
+          sig do
+            returns(
+              T.nilable(
                 Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol
               )
             )
@@ -647,6 +664,8 @@ module Imagekitio
             params(
               ai_auto_description:
                 Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::OrSymbol,
+              ai_tasks:
+                Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::OrSymbol,
               aws_auto_tagging:
                 Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::OrSymbol,
               google_auto_tagging:
@@ -657,6 +676,7 @@ module Imagekitio
           end
           def self.new(
             ai_auto_description: nil,
+            ai_tasks: nil,
             aws_auto_tagging: nil,
             google_auto_tagging: nil,
             remove_bg: nil
@@ -668,6 +688,8 @@ module Imagekitio
               {
                 ai_auto_description:
                   Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol,
+                ai_tasks:
+                  Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::TaggedSymbol,
                 aws_auto_tagging:
                   Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AwsAutoTagging::TaggedSymbol,
                 google_auto_tagging:
@@ -712,6 +734,45 @@ module Imagekitio
               override.returns(
                 T::Array[
                   Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AIAutoDescription::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          module AITasks
+            extend Imagekitio::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            SUCCESS =
+              T.let(
+                :success,
+                Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::TaggedSymbol
+              )
+            PENDING =
+              T.let(
+                :pending,
+                Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::TaggedSymbol
+              )
+            FAILED =
+              T.let(
+                :failed,
+                Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus::AITasks::TaggedSymbol
                 ]
               )
             end
