@@ -173,13 +173,6 @@ module Imagekitio
             #   @return [Symbol, :select_tags]
             required :type, const: :select_tags
 
-            # @!attribute vocabulary
-            #   Array of possible tag values. Combined length of all strings must not exceed 500
-            #   characters. Cannot contain the `%` character.
-            #
-            #   @return [Array<String>]
-            required :vocabulary, Imagekitio::Internal::Type::ArrayOf[String]
-
             # @!attribute max_selections
             #   Maximum number of tags to select from the vocabulary.
             #
@@ -192,18 +185,25 @@ module Imagekitio
             #   @return [Integer, nil]
             optional :min_selections, Integer
 
-            # @!method initialize(instruction:, vocabulary:, max_selections: nil, min_selections: nil, type: :select_tags)
+            # @!attribute vocabulary
+            #   Array of possible tag values. Combined length of all strings must not exceed 500
+            #   characters. Cannot contain the `%` character.
+            #
+            #   @return [Array<String>, nil]
+            optional :vocabulary, Imagekitio::Internal::Type::ArrayOf[String]
+
+            # @!method initialize(instruction:, max_selections: nil, min_selections: nil, vocabulary: nil, type: :select_tags)
             #   Some parameter documentations has been truncated, see
             #   {Imagekitio::Models::ExtensionConfig::AITasks::Task::SelectTags} for more
             #   details.
             #
             #   @param instruction [String] The question or instruction for the AI to analyze the image.
             #
-            #   @param vocabulary [Array<String>] Array of possible tag values. Combined length of all strings must not exceed 500
-            #
             #   @param max_selections [Integer] Maximum number of tags to select from the vocabulary.
             #
             #   @param min_selections [Integer] Minimum number of tags to select from the vocabulary.
+            #
+            #   @param vocabulary [Array<String>] Array of possible tag values. Combined length of all strings must not exceed 500
             #
             #   @param type [Symbol, :select_tags] Task type that analyzes the image and adds matching tags from a vocabulary.
           end
