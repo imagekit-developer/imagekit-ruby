@@ -157,17 +157,15 @@ module Imagekitio
             {
               instruction: String,
               type: :select_tags,
-              vocabulary: ::Array[String],
               max_selections: Integer,
-              min_selections: Integer
+              min_selections: Integer,
+              vocabulary: ::Array[String]
             }
 
           class SelectTags < Imagekitio::Internal::Type::BaseModel
             attr_accessor instruction: String
 
             attr_accessor type: :select_tags
-
-            attr_accessor vocabulary: ::Array[String]
 
             attr_reader max_selections: Integer?
 
@@ -177,20 +175,24 @@ module Imagekitio
 
             def min_selections=: (Integer) -> Integer
 
+            attr_reader vocabulary: ::Array[String]?
+
+            def vocabulary=: (::Array[String]) -> ::Array[String]
+
             def initialize: (
               instruction: String,
-              vocabulary: ::Array[String],
               ?max_selections: Integer,
               ?min_selections: Integer,
+              ?vocabulary: ::Array[String],
               ?type: :select_tags
             ) -> void
 
             def to_hash: -> {
               instruction: String,
               type: :select_tags,
-              vocabulary: ::Array[String],
               max_selections: Integer,
-              min_selections: Integer
+              min_selections: Integer,
+              vocabulary: ::Array[String]
             }
           end
 

@@ -360,11 +360,6 @@ module Imagekitio
             sig { returns(Symbol) }
             attr_accessor :type
 
-            # Array of possible tag values. Combined length of all strings must not exceed 500
-            # characters. Cannot contain the `%` character.
-            sig { returns(T::Array[String]) }
-            attr_accessor :vocabulary
-
             # Maximum number of tags to select from the vocabulary.
             sig { returns(T.nilable(Integer)) }
             attr_reader :max_selections
@@ -379,25 +374,33 @@ module Imagekitio
             sig { params(min_selections: Integer).void }
             attr_writer :min_selections
 
+            # Array of possible tag values. Combined length of all strings must not exceed 500
+            # characters. Cannot contain the `%` character.
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_reader :vocabulary
+
+            sig { params(vocabulary: T::Array[String]).void }
+            attr_writer :vocabulary
+
             sig do
               params(
                 instruction: String,
-                vocabulary: T::Array[String],
                 max_selections: Integer,
                 min_selections: Integer,
+                vocabulary: T::Array[String],
                 type: Symbol
               ).returns(T.attached_class)
             end
             def self.new(
               # The question or instruction for the AI to analyze the image.
               instruction:,
-              # Array of possible tag values. Combined length of all strings must not exceed 500
-              # characters. Cannot contain the `%` character.
-              vocabulary:,
               # Maximum number of tags to select from the vocabulary.
               max_selections: nil,
               # Minimum number of tags to select from the vocabulary.
               min_selections: nil,
+              # Array of possible tag values. Combined length of all strings must not exceed 500
+              # characters. Cannot contain the `%` character.
+              vocabulary: nil,
               # Task type that analyzes the image and adds matching tags from a vocabulary.
               type: :select_tags
             )
@@ -408,9 +411,9 @@ module Imagekitio
                 {
                   instruction: String,
                   type: Symbol,
-                  vocabulary: T::Array[String],
                   max_selections: Integer,
-                  min_selections: Integer
+                  min_selections: Integer,
+                  vocabulary: T::Array[String]
                 }
               )
             end
