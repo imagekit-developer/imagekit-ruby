@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.1.1 (2026-01-20)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.0...v4.1.1)
+
+### Bug Fixes
+
+* vocab field is required ([1ebdd2d](https://github.com/imagekit-developer/imagekit-ruby/commit/1ebdd2dff81b620d7d7dd7dea842424790b503f4))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([1e2d69e](https://github.com/imagekit-developer/imagekit-ruby/commit/1e2d69e80f0550dc26aea92609f1a355f5335270))
+
 ## 4.1.0 (2026-01-16)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.0.0...v4.1.0)
