@@ -583,7 +583,7 @@ module Imagekitio
       input = safe_get(overlay, :input)
       return "" unless input && !input.to_s.empty?
 
-      parts = ["l-subtitle"]
+      parts = ["l-subtitles"]
 
       # Handle encoding using the process_input_path function
       encoding = safe_get(overlay, :encoding) || "auto"

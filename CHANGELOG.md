@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.1.2 (2026-01-29)
+
+Full Changelog: [v4.1.1...v4.1.2](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.1...v4.1.2)
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([84672e6](https://github.com/imagekit-developer/imagekit-ruby/commit/84672e63bc4b4621e1c35ce3d1a9029566b0e1e7))
+* update overlay parameter from 'l-subtitle' to 'l-subtitles' in URL generation ([2acbe47](https://github.com/imagekit-developer/imagekit-ruby/commit/2acbe47f75d0235bd8bfc6213acac361e0b3a07e))
+
 ## 4.1.1 (2026-01-20)
 
 Full Changelog: [v4.1.0...v4.1.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.0...v4.1.1)
