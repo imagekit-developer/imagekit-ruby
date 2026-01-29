@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    imagekitio (4.1.1)
+    imagekitio (4.1.2)
       cgi
       connection_pool
 
