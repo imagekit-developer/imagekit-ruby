@@ -10,6 +10,20 @@ module Imagekitio
       sig { returns(T.nilable(T::Array[Imagekitio::File::AITag])) }
       attr_accessor :ai_tags
 
+      # The audio codec used in the video (only for video/audio).
+      sig { returns(T.nilable(String)) }
+      attr_reader :audio_codec
+
+      sig { params(audio_codec: String).void }
+      attr_writer :audio_codec
+
+      # The bit rate of the video in kbps (only for video).
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :bit_rate
+
+      sig { params(bit_rate: Integer).void }
+      attr_writer :bit_rate
+
       # Date and time when the file was uploaded. The date and time is in ISO8601
       # format.
       sig { returns(T.nilable(Time)) }
@@ -36,6 +50,21 @@ module Imagekitio
 
       sig { params(description: String).void }
       attr_writer :description
+
+      # The duration of the video in seconds (only for video).
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :duration
+
+      sig { params(duration: Integer).void }
+      attr_writer :duration
+
+      # Consolidated embedded metadata associated with the file. It includes exif, iptc,
+      # and xmp data.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_reader :embedded_metadata
+
+      sig { params(embedded_metadata: T::Hash[Symbol, T.anything]).void }
+      attr_writer :embedded_metadata
 
       # Unique identifier of the asset.
       sig { returns(T.nilable(String)) }
@@ -174,6 +203,13 @@ module Imagekitio
       sig { params(version_info: Imagekitio::File::VersionInfo::OrHash).void }
       attr_writer :version_info
 
+      # The video codec used in the video (only for video).
+      sig { returns(T.nilable(String)) }
+      attr_reader :video_codec
+
+      sig { params(video_codec: String).void }
+      attr_writer :video_codec
+
       # Width of the file.
       sig { returns(T.nilable(Float)) }
       attr_reader :width
@@ -185,10 +221,14 @@ module Imagekitio
       sig do
         params(
           ai_tags: T.nilable(T::Array[Imagekitio::File::AITag::OrHash]),
+          audio_codec: String,
+          bit_rate: Integer,
           created_at: Time,
           custom_coordinates: T.nilable(String),
           custom_metadata: T::Hash[Symbol, T.anything],
           description: String,
+          duration: Integer,
+          embedded_metadata: T::Hash[Symbol, T.anything],
           file_id: String,
           file_path: String,
           file_type: String,
@@ -207,12 +247,17 @@ module Imagekitio
           updated_at: Time,
           url: String,
           version_info: Imagekitio::File::VersionInfo::OrHash,
+          video_codec: String,
           width: Float
         ).returns(T.attached_class)
       end
       def self.new(
         # An array of tags assigned to the file by auto tagging.
         ai_tags: nil,
+        # The audio codec used in the video (only for video/audio).
+        audio_codec: nil,
+        # The bit rate of the video in kbps (only for video).
+        bit_rate: nil,
         # Date and time when the file was uploaded. The date and time is in ISO8601
         # format.
         created_at: nil,
@@ -223,6 +268,11 @@ module Imagekitio
         # Optional text to describe the contents of the file. Can be set by the user or
         # the ai-auto-description extension.
         description: nil,
+        # The duration of the video in seconds (only for video).
+        duration: nil,
+        # Consolidated embedded metadata associated with the file. It includes exif, iptc,
+        # and xmp data.
+        embedded_metadata: nil,
         # Unique identifier of the asset.
         file_id: nil,
         # Path of the file. This is the path you would use in the URL to access the file.
@@ -269,6 +319,8 @@ module Imagekitio
         url: nil,
         # An object with details of the file version.
         version_info: nil,
+        # The video codec used in the video (only for video).
+        video_codec: nil,
         # Width of the file.
         width: nil
       )
@@ -278,10 +330,14 @@ module Imagekitio
         override.returns(
           {
             ai_tags: T.nilable(T::Array[Imagekitio::File::AITag]),
+            audio_codec: String,
+            bit_rate: Integer,
             created_at: Time,
             custom_coordinates: T.nilable(String),
             custom_metadata: T::Hash[Symbol, T.anything],
             description: String,
+            duration: Integer,
+            embedded_metadata: T::Hash[Symbol, T.anything],
             file_id: String,
             file_path: String,
             file_type: String,
@@ -300,6 +356,7 @@ module Imagekitio
             updated_at: Time,
             url: String,
             version_info: Imagekitio::File::VersionInfo,
+            video_codec: String,
             width: Float
           }
         )

@@ -3,10 +3,14 @@ module Imagekitio
     type file =
       {
         ai_tags: ::Array[Imagekitio::File::AITag]?,
+        audio_codec: String,
+        bit_rate: Integer,
         created_at: Time,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
         description: String,
+        duration: Integer,
+        embedded_metadata: ::Hash[Symbol, top],
         file_id: String,
         file_path: String,
         file_type: String,
@@ -24,11 +28,20 @@ module Imagekitio
         updated_at: Time,
         url: String,
         version_info: Imagekitio::File::VersionInfo,
+        video_codec: String,
         width: Float
       }
 
     class File < Imagekitio::Internal::Type::BaseModel
       attr_accessor ai_tags: ::Array[Imagekitio::File::AITag]?
+
+      attr_reader audio_codec: String?
+
+      def audio_codec=: (String) -> String
+
+      attr_reader bit_rate: Integer?
+
+      def bit_rate=: (Integer) -> Integer
 
       attr_reader created_at: Time?
 
@@ -43,6 +56,14 @@ module Imagekitio
       attr_reader description: String?
 
       def description=: (String) -> String
+
+      attr_reader duration: Integer?
+
+      def duration=: (Integer) -> Integer
+
+      attr_reader embedded_metadata: ::Hash[Symbol, top]?
+
+      def embedded_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
       attr_reader file_id: String?
 
@@ -116,16 +137,24 @@ module Imagekitio
         Imagekitio::File::VersionInfo
       ) -> Imagekitio::File::VersionInfo
 
+      attr_reader video_codec: String?
+
+      def video_codec=: (String) -> String
+
       attr_reader width: Float?
 
       def width=: (Float) -> Float
 
       def initialize: (
         ?ai_tags: ::Array[Imagekitio::File::AITag]?,
+        ?audio_codec: String,
+        ?bit_rate: Integer,
         ?created_at: Time,
         ?custom_coordinates: String?,
         ?custom_metadata: ::Hash[Symbol, top],
         ?description: String,
+        ?duration: Integer,
+        ?embedded_metadata: ::Hash[Symbol, top],
         ?file_id: String,
         ?file_path: String,
         ?file_type: String,
@@ -143,15 +172,20 @@ module Imagekitio
         ?updated_at: Time,
         ?url: String,
         ?version_info: Imagekitio::File::VersionInfo,
+        ?video_codec: String,
         ?width: Float
       ) -> void
 
       def to_hash: -> {
         ai_tags: ::Array[Imagekitio::File::AITag]?,
+        audio_codec: String,
+        bit_rate: Integer,
         created_at: Time,
         custom_coordinates: String?,
         custom_metadata: ::Hash[Symbol, top],
         description: String,
+        duration: Integer,
+        embedded_metadata: ::Hash[Symbol, top],
         file_id: String,
         file_path: String,
         file_type: String,
@@ -169,6 +203,7 @@ module Imagekitio
         updated_at: Time,
         url: String,
         version_info: Imagekitio::File::VersionInfo,
+        video_codec: String,
         width: Float
       }
 
