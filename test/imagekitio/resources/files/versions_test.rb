@@ -41,10 +41,14 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
     assert_pattern do
       response => {
         ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::File::AITag]) | nil,
+        audio_codec: String | nil,
+        bit_rate: Integer | nil,
         created_at: Time | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::Internal::Type::Unknown]) | nil,
         description: String | nil,
+        duration: Integer | nil,
+        embedded_metadata: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::Internal::Type::Unknown]) | nil,
         file_id: String | nil,
         file_path: String | nil,
         file_type: String | nil,
@@ -62,6 +66,7 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
         updated_at: Time | nil,
         url: String | nil,
         version_info: Imagekitio::File::VersionInfo | nil,
+        video_codec: String | nil,
         width: Float | nil
       }
     end
@@ -79,10 +84,14 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
     assert_pattern do
       response => {
         ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::File::AITag]) | nil,
+        audio_codec: String | nil,
+        bit_rate: Integer | nil,
         created_at: Time | nil,
         custom_coordinates: String | nil,
         custom_metadata: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::Internal::Type::Unknown]) | nil,
         description: String | nil,
+        duration: Integer | nil,
+        embedded_metadata: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::Internal::Type::Unknown]) | nil,
         file_id: String | nil,
         file_path: String | nil,
         file_type: String | nil,
@@ -100,6 +109,7 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
         updated_at: Time | nil,
         url: String | nil,
         version_info: Imagekitio::File::VersionInfo | nil,
+        video_codec: String | nil,
         width: Float | nil
       }
     end

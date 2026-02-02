@@ -13,6 +13,18 @@ module Imagekitio
                api_name: :AITags,
                nil?: true
 
+      # @!attribute audio_codec
+      #   The audio codec used in the video (only for video/audio).
+      #
+      #   @return [String, nil]
+      optional :audio_codec, String, api_name: :audioCodec
+
+      # @!attribute bit_rate
+      #   The bit rate of the video in kbps (only for video).
+      #
+      #   @return [Integer, nil]
+      optional :bit_rate, Integer, api_name: :bitRate
+
       # @!attribute created_at
       #   Date and time when the file was uploaded. The date and time is in ISO8601
       #   format.
@@ -40,6 +52,21 @@ module Imagekitio
       #
       #   @return [String, nil]
       optional :description, String
+
+      # @!attribute duration
+      #   The duration of the video in seconds (only for video).
+      #
+      #   @return [Integer, nil]
+      optional :duration, Integer
+
+      # @!attribute embedded_metadata
+      #   Consolidated embedded metadata associated with the file. It includes exif, iptc,
+      #   and xmp data.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :embedded_metadata,
+               Imagekitio::Internal::Type::HashOf[Imagekitio::Internal::Type::Unknown],
+               api_name: :embeddedMetadata
 
       # @!attribute file_id
       #   Unique identifier of the asset.
@@ -157,19 +184,29 @@ module Imagekitio
       #   @return [Imagekitio::Models::File::VersionInfo, nil]
       optional :version_info, -> { Imagekitio::File::VersionInfo }, api_name: :versionInfo
 
+      # @!attribute video_codec
+      #   The video codec used in the video (only for video).
+      #
+      #   @return [String, nil]
+      optional :video_codec, String, api_name: :videoCodec
+
       # @!attribute width
       #   Width of the file.
       #
       #   @return [Float, nil]
       optional :width, Float
 
-      # @!method initialize(ai_tags: nil, created_at: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, file_id: nil, file_path: nil, file_type: nil, has_alpha: nil, height: nil, is_private_file: nil, is_published: nil, mime: nil, name: nil, selected_fields_schema: nil, size: nil, tags: nil, thumbnail: nil, type: nil, updated_at: nil, url: nil, version_info: nil, width: nil)
+      # @!method initialize(ai_tags: nil, audio_codec: nil, bit_rate: nil, created_at: nil, custom_coordinates: nil, custom_metadata: nil, description: nil, duration: nil, embedded_metadata: nil, file_id: nil, file_path: nil, file_type: nil, has_alpha: nil, height: nil, is_private_file: nil, is_published: nil, mime: nil, name: nil, selected_fields_schema: nil, size: nil, tags: nil, thumbnail: nil, type: nil, updated_at: nil, url: nil, version_info: nil, video_codec: nil, width: nil)
       #   Some parameter documentations has been truncated, see {Imagekitio::Models::File}
       #   for more details.
       #
       #   Object containing details of a file or file version.
       #
       #   @param ai_tags [Array<Imagekitio::Models::File::AITag>, nil] An array of tags assigned to the file by auto tagging.
+      #
+      #   @param audio_codec [String] The audio codec used in the video (only for video/audio).
+      #
+      #   @param bit_rate [Integer] The bit rate of the video in kbps (only for video).
       #
       #   @param created_at [Time] Date and time when the file was uploaded. The date and time is in ISO8601 format
       #
@@ -178,6 +215,10 @@ module Imagekitio
       #   @param custom_metadata [Hash{Symbol=>Object}] An object with custom metadata for the file.
       #
       #   @param description [String] Optional text to describe the contents of the file. Can be set by the user or th
+      #
+      #   @param duration [Integer] The duration of the video in seconds (only for video).
+      #
+      #   @param embedded_metadata [Hash{Symbol=>Object}] Consolidated embedded metadata associated with the file. It includes exif, iptc,
       #
       #   @param file_id [String] Unique identifier of the asset.
       #
@@ -212,6 +253,8 @@ module Imagekitio
       #   @param url [String] URL of the file.
       #
       #   @param version_info [Imagekitio::Models::File::VersionInfo] An object with details of the file version.
+      #
+      #   @param video_codec [String] The video codec used in the video (only for video).
       #
       #   @param width [Float] Width of the file.
 
