@@ -3,6 +3,7 @@ module Imagekitio
     type folder =
       {
         created_at: Time,
+        custom_metadata: ::Hash[Symbol, top],
         folder_id: String,
         folder_path: String,
         name: String,
@@ -14,6 +15,10 @@ module Imagekitio
       attr_reader created_at: Time?
 
       def created_at=: (Time) -> Time
+
+      attr_reader custom_metadata: ::Hash[Symbol, top]?
+
+      def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
       attr_reader folder_id: String?
 
@@ -39,6 +44,7 @@ module Imagekitio
 
       def initialize: (
         ?created_at: Time,
+        ?custom_metadata: ::Hash[Symbol, top],
         ?folder_id: String,
         ?folder_path: String,
         ?name: String,
@@ -48,6 +54,7 @@ module Imagekitio
 
       def to_hash: -> {
         created_at: Time,
+        custom_metadata: ::Hash[Symbol, top],
         folder_id: String,
         folder_path: String,
         name: String,
