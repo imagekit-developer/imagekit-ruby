@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.2.0 (2026-02-02)
+
+Full Changelog: [v4.1.2...v4.2.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.2...v4.2.0)
+
+### Features
+
+* **api:** add customMetadata property to folder schema ([8038b9e](https://github.com/imagekit-developer/imagekit-ruby/commit/8038b9ecc161c7d25c65a35c2d54149ace184479))
+
+
+### Bug Fixes
+
+* **api:** add missing embeddedMetadata and video properties to FileDetails ([898add4](https://github.com/imagekit-developer/imagekit-ruby/commit/898add425e5839e85fc8cca8bd8035923ec39463))
+
 ## 4.1.2 (2026-01-29)
 
 Full Changelog: [v4.1.1...v4.1.2](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.1...v4.1.2)

@@ -10,6 +10,15 @@ module Imagekitio
       #   @return [Time, nil]
       optional :created_at, Time, api_name: :createdAt
 
+      # @!attribute custom_metadata
+      #   An object with custom metadata for the folder. Returns empty object if no custom
+      #   metadata is set.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :custom_metadata,
+               Imagekitio::Internal::Type::HashOf[Imagekitio::Internal::Type::Unknown],
+               api_name: :customMetadata
+
       # @!attribute folder_id
       #   Unique identifier of the asset.
       #
@@ -44,11 +53,13 @@ module Imagekitio
       #   @return [Time, nil]
       optional :updated_at, Time, api_name: :updatedAt
 
-      # @!method initialize(created_at: nil, folder_id: nil, folder_path: nil, name: nil, type: nil, updated_at: nil)
+      # @!method initialize(created_at: nil, custom_metadata: nil, folder_id: nil, folder_path: nil, name: nil, type: nil, updated_at: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::Folder} for more details.
       #
       #   @param created_at [Time] Date and time when the folder was created. The date and time is in ISO8601 forma
+      #
+      #   @param custom_metadata [Hash{Symbol=>Object}] An object with custom metadata for the folder. Returns empty object if no custom
       #
       #   @param folder_id [String] Unique identifier of the asset.
       #

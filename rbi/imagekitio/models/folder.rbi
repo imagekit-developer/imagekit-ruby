@@ -16,6 +16,14 @@ module Imagekitio
       sig { params(created_at: Time).void }
       attr_writer :created_at
 
+      # An object with custom metadata for the folder. Returns empty object if no custom
+      # metadata is set.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_reader :custom_metadata
+
+      sig { params(custom_metadata: T::Hash[Symbol, T.anything]).void }
+      attr_writer :custom_metadata
+
       # Unique identifier of the asset.
       sig { returns(T.nilable(String)) }
       attr_reader :folder_id
@@ -58,6 +66,7 @@ module Imagekitio
       sig do
         params(
           created_at: Time,
+          custom_metadata: T::Hash[Symbol, T.anything],
           folder_id: String,
           folder_path: String,
           name: String,
@@ -69,6 +78,9 @@ module Imagekitio
         # Date and time when the folder was created. The date and time is in ISO8601
         # format.
         created_at: nil,
+        # An object with custom metadata for the folder. Returns empty object if no custom
+        # metadata is set.
+        custom_metadata: nil,
         # Unique identifier of the asset.
         folder_id: nil,
         # Path of the folder. This is the path you would use in the URL to access the
@@ -90,6 +102,7 @@ module Imagekitio
         override.returns(
           {
             created_at: Time,
+            custom_metadata: T::Hash[Symbol, T.anything],
             folder_id: String,
             folder_path: String,
             name: String,
