@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Imagekitio::Test::Resources::Cache::InvalidationTest < Imagekitio::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.cache.invalidation.create(url: "https://ik.imagekit.io/your_imagekit_id/default-image.jpg")
@@ -21,7 +21,7 @@ class Imagekitio::Test::Resources::Cache::InvalidationTest < Imagekitio::Test::R
   end
 
   def test_get
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.cache.invalidation.get("requestId")
 

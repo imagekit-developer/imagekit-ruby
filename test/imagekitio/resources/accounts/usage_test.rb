@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Imagekitio::Test::Resources::Accounts::UsageTest < Imagekitio::Test::ResourceTest
   def test_get_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.accounts.usage.get(end_date: "2019-12-27", start_date: "2019-12-27")
 

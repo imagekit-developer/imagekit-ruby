@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Imagekitio::Test::Resources::Files::BulkTest < Imagekitio::Test::ResourceTest
   def test_delete_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.files.bulk.delete(file_ids: %w[598821f949c0a938d57563bd 598821f949c0a938d57563be])
@@ -21,7 +21,7 @@ class Imagekitio::Test::Resources::Files::BulkTest < Imagekitio::Test::ResourceT
   end
 
   def test_add_tags_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.files.bulk.add_tags(
@@ -41,7 +41,7 @@ class Imagekitio::Test::Resources::Files::BulkTest < Imagekitio::Test::ResourceT
   end
 
   def test_remove_ai_tags_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.files.bulk.remove_ai_tags(
@@ -61,7 +61,7 @@ class Imagekitio::Test::Resources::Files::BulkTest < Imagekitio::Test::ResourceT
   end
 
   def test_remove_tags_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.files.bulk.remove_tags(

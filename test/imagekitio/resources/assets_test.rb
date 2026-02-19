@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Imagekitio::Test::Resources::AssetsTest < Imagekitio::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.assets.list
 

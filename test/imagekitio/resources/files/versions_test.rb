@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.versions.list("fileId")
 
@@ -14,7 +14,7 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
   end
 
   def test_delete_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.versions.delete("versionId", file_id: "fileId")
 
@@ -30,7 +30,7 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
   end
 
   def test_get_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.versions.get("versionId", file_id: "fileId")
 
@@ -73,7 +73,7 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
   end
 
   def test_restore_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.versions.restore("versionId", file_id: "fileId")
 
