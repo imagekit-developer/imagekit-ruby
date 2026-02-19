@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Imagekitio::Test::Resources::FoldersTest < Imagekitio::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.folders.create(folder_name: "summer", parent_folder_path: "/product/images/")
 
@@ -20,7 +20,7 @@ class Imagekitio::Test::Resources::FoldersTest < Imagekitio::Test::ResourceTest
   end
 
   def test_delete_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.folders.delete(folder_path: "/folder/to/delete/")
 
@@ -36,7 +36,7 @@ class Imagekitio::Test::Resources::FoldersTest < Imagekitio::Test::ResourceTest
   end
 
   def test_copy_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.folders.copy(
@@ -56,7 +56,7 @@ class Imagekitio::Test::Resources::FoldersTest < Imagekitio::Test::ResourceTest
   end
 
   def test_move_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.folders.move(
@@ -76,7 +76,7 @@ class Imagekitio::Test::Resources::FoldersTest < Imagekitio::Test::ResourceTest
   end
 
   def test_rename_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.folders.rename(folder_path: "/path/of/folder", new_folder_name: "new-folder-name")
 

@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Imagekitio::Test::Resources::Beta::V2::FilesTest < Imagekitio::Test::ResourceTest
   def test_upload_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.beta.v2.files.upload(file: Pathname(__FILE__), file_name: "fileName")
 

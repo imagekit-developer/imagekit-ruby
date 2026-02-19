@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.accounts.origins.create(
@@ -114,7 +114,7 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.accounts.origins.update(
@@ -225,7 +225,7 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.accounts.origins.list
 
@@ -235,7 +235,7 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.accounts.origins.delete("id")
 
@@ -245,7 +245,7 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_get
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.accounts.origins.get("id")
 

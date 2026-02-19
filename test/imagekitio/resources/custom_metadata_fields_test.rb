@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.custom_metadata_fields.create(label: "price", name: "price", schema: {type: :Number})
@@ -24,7 +24,7 @@ class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.custom_metadata_fields.update("id")
 
@@ -43,7 +43,7 @@ class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.custom_metadata_fields.list
 
@@ -53,7 +53,7 @@ class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.custom_metadata_fields.delete("id")
 
