@@ -209,8 +209,8 @@ module Imagekitio
       #     [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       #   - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
       #
-      #   @return [Float, nil]
-      optional :dpr, Float
+      #   @return [Float, String, nil]
+      optional :dpr, union: -> { Imagekitio::Transformation::Dpr }
 
       # @!attribute duration
       #   Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
@@ -549,7 +549,7 @@ module Imagekitio
       #
       #   @param distort [String] Distorts the shape of an image. Supports two modes:
       #
-      #   @param dpr [Float] Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio (DP
+      #   @param dpr [Float, String] Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio (DP
       #
       #   @param duration [Float, String] Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
       #
@@ -783,6 +783,25 @@ module Imagekitio
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio
+      # (DPR) calculation. Also accepts arithmetic expressions.
+      #
+      # - Learn about
+      #   [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+      # - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
+      #
+      # @see Imagekitio::Models::Transformation#dpr
+      module Dpr
+        extend Imagekitio::Internal::Type::Union
+
+        variant Float
+
+        variant String
+
+        # @!method self.variants
+        #   @return [Array(Float, String)]
       end
 
       # Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
