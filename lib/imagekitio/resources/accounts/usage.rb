@@ -25,10 +25,11 @@ module Imagekitio
         # @see Imagekitio::Models::Accounts::UsageGetParams
         def get(params)
           parsed, options = Imagekitio::Accounts::UsageGetParams.dump_request(params)
+          query = Imagekitio::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "v1/accounts/usage",
-            query: parsed.transform_keys(end_date: "endDate", start_date: "startDate"),
+            query: query.transform_keys(end_date: "endDate", start_date: "startDate"),
             model: Imagekitio::Models::Accounts::UsageGetResponse,
             options: options
           )

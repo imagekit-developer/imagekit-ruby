@@ -48,10 +48,11 @@ module Imagekitio
         # @see Imagekitio::Models::Files::MetadataGetFromURLParams
         def get_from_url(params)
           parsed, options = Imagekitio::Files::MetadataGetFromURLParams.dump_request(params)
+          query = Imagekitio::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "v1/metadata",
-            query: parsed,
+            query: query,
             model: Imagekitio::Metadata,
             options: options
           )
