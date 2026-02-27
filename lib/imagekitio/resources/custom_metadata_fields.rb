@@ -89,10 +89,11 @@ module Imagekitio
       # @see Imagekitio::Models::CustomMetadataFieldListParams
       def list(params = {})
         parsed, options = Imagekitio::CustomMetadataFieldListParams.dump_request(params)
+        query = Imagekitio::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "v1/customMetadataFields",
-          query: parsed.transform_keys(folder_path: "folderPath", include_deleted: "includeDeleted"),
+          query: query.transform_keys(folder_path: "folderPath", include_deleted: "includeDeleted"),
           model: Imagekitio::Internal::Type::ArrayOf[Imagekitio::CustomMetadataField],
           options: options
         )
