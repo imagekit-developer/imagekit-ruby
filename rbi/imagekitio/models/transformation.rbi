@@ -283,10 +283,10 @@ module Imagekitio
       # - Learn about
       #   [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
       # - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
-      sig { returns(T.nilable(Imagekitio::Transformation::Dpr::Variants)) }
+      sig { returns(T.nilable(Float)) }
       attr_reader :dpr
 
-      sig { params(dpr: Imagekitio::Transformation::Dpr::Variants).void }
+      sig { params(dpr: Float).void }
       attr_writer :dpr
 
       # Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
@@ -672,7 +672,7 @@ module Imagekitio
           crop_mode: Imagekitio::Transformation::CropMode::OrSymbol,
           default_image: String,
           distort: String,
-          dpr: Imagekitio::Transformation::Dpr::Variants,
+          dpr: Float,
           duration: Imagekitio::Transformation::Duration::Variants,
           end_offset: Imagekitio::Transformation::EndOffset::Variants,
           flip: Imagekitio::Transformation::Flip::OrSymbol,
@@ -1006,7 +1006,7 @@ module Imagekitio
             crop_mode: Imagekitio::Transformation::CropMode::OrSymbol,
             default_image: String,
             distort: String,
-            dpr: Imagekitio::Transformation::Dpr::Variants,
+            dpr: Float,
             duration: Imagekitio::Transformation::Duration::Variants,
             end_offset: Imagekitio::Transformation::EndOffset::Variants,
             flip: Imagekitio::Transformation::Flip::OrSymbol,
@@ -1320,24 +1320,6 @@ module Imagekitio
           )
         end
         def self.values
-        end
-      end
-
-      # Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio
-      # (DPR) calculation. Also accepts arithmetic expressions.
-      #
-      # - Learn about
-      #   [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
-      # - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
-      module Dpr
-        extend Imagekitio::Internal::Type::Union
-
-        Variants = T.type_alias { T.any(Float, String) }
-
-        sig do
-          override.returns(T::Array[Imagekitio::Transformation::Dpr::Variants])
-        end
-        def self.variants
         end
       end
 

@@ -22,7 +22,7 @@ module Imagekitio
         crop_mode: Imagekitio::Models::Transformation::crop_mode,
         default_image: String,
         distort: String,
-        dpr: Imagekitio::Models::Transformation::dpr,
+        dpr: Float,
         duration: Imagekitio::Models::Transformation::duration,
         end_offset: Imagekitio::Models::Transformation::end_offset,
         flip: Imagekitio::Models::Transformation::flip,
@@ -161,11 +161,9 @@ module Imagekitio
 
       def distort=: (String) -> String
 
-      attr_reader dpr: Imagekitio::Models::Transformation::dpr?
+      attr_reader dpr: Float?
 
-      def dpr=: (
-        Imagekitio::Models::Transformation::dpr
-      ) -> Imagekitio::Models::Transformation::dpr
+      def dpr=: (Float) -> Float
 
       attr_reader duration: Imagekitio::Models::Transformation::duration?
 
@@ -364,7 +362,7 @@ module Imagekitio
         ?crop_mode: Imagekitio::Models::Transformation::crop_mode,
         ?default_image: String,
         ?distort: String,
-        ?dpr: Imagekitio::Models::Transformation::dpr,
+        ?dpr: Float,
         ?duration: Imagekitio::Models::Transformation::duration,
         ?end_offset: Imagekitio::Models::Transformation::end_offset,
         ?flip: Imagekitio::Models::Transformation::flip,
@@ -421,7 +419,7 @@ module Imagekitio
         crop_mode: Imagekitio::Models::Transformation::crop_mode,
         default_image: String,
         distort: String,
-        dpr: Imagekitio::Models::Transformation::dpr,
+        dpr: Float,
         duration: Imagekitio::Models::Transformation::duration,
         end_offset: Imagekitio::Models::Transformation::end_offset,
         flip: Imagekitio::Models::Transformation::flip,
@@ -570,14 +568,6 @@ module Imagekitio
         PAD_EXTRACT: :pad_extract
 
         def self?.values: -> ::Array[Imagekitio::Models::Transformation::crop_mode]
-      end
-
-      type dpr = Float | String
-
-      module Dpr
-        extend Imagekitio::Internal::Type::Union
-
-        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::dpr]
       end
 
       type duration = Float | String
