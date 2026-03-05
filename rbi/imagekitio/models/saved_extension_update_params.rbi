@@ -14,6 +14,9 @@ module Imagekitio
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # Configuration object for an extension (base extensions only, not saved extension
       # references).
       sig do
@@ -59,6 +62,7 @@ module Imagekitio
 
       sig do
         params(
+          id: String,
           config:
             T.any(
               Imagekitio::ExtensionConfig::RemoveBg::OrHash,
@@ -72,6 +76,7 @@ module Imagekitio
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # Configuration object for an extension (base extensions only, not saved extension
         # references).
         config: nil,
@@ -86,6 +91,7 @@ module Imagekitio
       sig do
         override.returns(
           {
+            id: String,
             config:
               T.any(
                 Imagekitio::ExtensionConfig::RemoveBg,

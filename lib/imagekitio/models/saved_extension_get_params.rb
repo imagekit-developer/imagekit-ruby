@@ -7,7 +7,13 @@ module Imagekitio
       extend Imagekitio::Internal::Type::RequestParameters::Converter
       include Imagekitio::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
+      # @!method initialize(id:, request_options: {})
+      #   @param id [String]
       #   @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}]
     end
   end

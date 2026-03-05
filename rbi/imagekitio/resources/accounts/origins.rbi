@@ -8,7 +8,17 @@ module Imagekitio
         # Creates a new origin and returns the origin object.
         sig do
           params(
-            origin_request: Imagekitio::Accounts::OriginRequest,
+            origin_request:
+              T.any(
+                Imagekitio::Accounts::OriginRequest::S3::OrHash,
+                Imagekitio::Accounts::OriginRequest::S3Compatible::OrHash,
+                Imagekitio::Accounts::OriginRequest::CloudinaryBackup::OrHash,
+                Imagekitio::Accounts::OriginRequest::WebFolder::OrHash,
+                Imagekitio::Accounts::OriginRequest::WebProxy::OrHash,
+                Imagekitio::Accounts::OriginRequest::Gcs::OrHash,
+                Imagekitio::Accounts::OriginRequest::AzureBlob::OrHash,
+                Imagekitio::Accounts::OriginRequest::AkeneoPim::OrHash
+              ),
             request_options: Imagekitio::RequestOptions::OrHash
           ).returns(Imagekitio::Accounts::OriginResponse::Variants)
         end
@@ -24,7 +34,17 @@ module Imagekitio
         sig do
           params(
             id: String,
-            origin_request: Imagekitio::Accounts::OriginRequest,
+            origin_request:
+              T.any(
+                Imagekitio::Accounts::OriginRequest::S3::OrHash,
+                Imagekitio::Accounts::OriginRequest::S3Compatible::OrHash,
+                Imagekitio::Accounts::OriginRequest::CloudinaryBackup::OrHash,
+                Imagekitio::Accounts::OriginRequest::WebFolder::OrHash,
+                Imagekitio::Accounts::OriginRequest::WebProxy::OrHash,
+                Imagekitio::Accounts::OriginRequest::Gcs::OrHash,
+                Imagekitio::Accounts::OriginRequest::AzureBlob::OrHash,
+                Imagekitio::Accounts::OriginRequest::AkeneoPim::OrHash
+              ),
             request_options: Imagekitio::RequestOptions::OrHash
           ).returns(Imagekitio::Accounts::OriginResponse::Variants)
         end

@@ -3,13 +3,13 @@ module Imagekitio
     class Accounts
       class Origins
         def create: (
-          origin_request: Imagekitio::Models::Accounts::OriginRequest,
+          origin_request: Imagekitio::Models::Accounts::origin_request,
           ?request_options: Imagekitio::request_opts
         ) -> Imagekitio::Models::Accounts::origin_response
 
         def update: (
           String id,
-          origin_request: Imagekitio::Models::Accounts::OriginRequest,
+          origin_request: Imagekitio::Models::Accounts::origin_request,
           ?request_options: Imagekitio::request_opts
         ) -> Imagekitio::Models::Accounts::origin_response
 

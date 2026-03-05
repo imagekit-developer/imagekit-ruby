@@ -18,18 +18,26 @@ module Imagekitio
         sig { returns(String) }
         attr_accessor :file_id
 
+        sig { returns(String) }
+        attr_accessor :version_id
+
         sig do
           params(
             file_id: String,
+            version_id: String,
             request_options: Imagekitio::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(file_id:, request_options: {})
+        def self.new(file_id:, version_id:, request_options: {})
         end
 
         sig do
           override.returns(
-            { file_id: String, request_options: Imagekitio::RequestOptions }
+            {
+              file_id: String,
+              version_id: String,
+              request_options: Imagekitio::RequestOptions
+            }
           )
         end
         def to_hash

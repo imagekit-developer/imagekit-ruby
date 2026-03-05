@@ -7,6 +7,11 @@ module Imagekitio
       extend Imagekitio::Internal::Type::RequestParameters::Converter
       include Imagekitio::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute label
       #   Human readable name of the custom metadata field. This should be unique across
       #   all non deleted custom metadata fields. This name is displayed as form field
@@ -25,9 +30,11 @@ module Imagekitio
       #   @return [Imagekitio::Models::CustomMetadataFieldUpdateParams::Schema, nil]
       optional :schema, -> { Imagekitio::CustomMetadataFieldUpdateParams::Schema }
 
-      # @!method initialize(label: nil, schema: nil, request_options: {})
+      # @!method initialize(id:, label: nil, schema: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::CustomMetadataFieldUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param label [String] Human readable name of the custom metadata field. This should be unique across a
       #

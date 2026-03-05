@@ -18,7 +18,11 @@ module Imagekitio
       sig do
         params(
           file_id: String,
-          update_file_request: Imagekitio::UpdateFileRequest,
+          update_file_request:
+            T.any(
+              Imagekitio::UpdateFileRequest::UpdateFileDetails::OrHash,
+              Imagekitio::UpdateFileRequest::ChangePublicationStatus::OrHash
+            ),
           request_options: Imagekitio::RequestOptions::OrHash
         ).returns(Imagekitio::Models::FileUpdateResponse)
       end
