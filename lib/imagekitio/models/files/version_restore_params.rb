@@ -13,8 +13,14 @@ module Imagekitio
         #   @return [String]
         required :file_id, String
 
-        # @!method initialize(file_id:, request_options: {})
+        # @!attribute version_id
+        #
+        #   @return [String]
+        required :version_id, String
+
+        # @!method initialize(file_id:, version_id:, request_options: {})
         #   @param file_id [String]
+        #   @param version_id [String]
         #   @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}]
       end
     end

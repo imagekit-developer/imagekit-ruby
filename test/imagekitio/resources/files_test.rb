@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
-  def test_update
+  def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @image_kit.files.update("fileId")
+    response = @image_kit.files.update("fileId", update_file_request: {})
 
     assert_pattern do
       response => Imagekitio::Models::FileUpdateResponse

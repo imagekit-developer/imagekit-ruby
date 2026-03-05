@@ -23,7 +23,7 @@ module Imagekitio
       #
       # @param file_id [String] The unique `fileId` of the uploaded file. `fileId` is returned in list and searc
       #
-      # @param update_file_request [Imagekitio::UpdateFileRequest] Schema for update file update request.
+      # @param update_file_request [Imagekitio::Models::UpdateFileRequest::UpdateFileDetails, Imagekitio::Models::UpdateFileRequest::ChangePublicationStatus] Schema for update file update request.
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -32,15 +32,10 @@ module Imagekitio
       # @see Imagekitio::Models::FileUpdateParams
       def update(file_id, params)
         parsed, options = Imagekitio::FileUpdateParams.dump_request(params)
-        case parsed
-        in {update_file_request: Hash => union, **rest}
-          parsed = {**rest, **union}
-        else
-        end
         @client.request(
           method: :patch,
           path: ["v1/files/%1$s/details", file_id],
-          body: parsed,
+          body: parsed[:update_file_request],
           model: Imagekitio::Models::FileUpdateResponse,
           options: options
         )

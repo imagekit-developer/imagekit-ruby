@@ -7,6 +7,11 @@ module Imagekitio
       extend Imagekitio::Internal::Type::RequestParameters::Converter
       include Imagekitio::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute config
       #   Configuration object for an extension (base extensions only, not saved extension
       #   references).
@@ -26,9 +31,11 @@ module Imagekitio
       #   @return [String, nil]
       optional :name, String
 
-      # @!method initialize(config: nil, description: nil, name: nil, request_options: {})
+      # @!method initialize(id:, config: nil, description: nil, name: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::SavedExtensionUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param config [Imagekitio::Models::ExtensionConfig::RemoveBg, Imagekitio::Models::ExtensionConfig::AIAutoDescription, Imagekitio::Models::ExtensionConfig::AITasks, Imagekitio::Models::ExtensionConfig::AutoTaggingExtension] Configuration object for an extension (base extensions only, not saved extension
       #
