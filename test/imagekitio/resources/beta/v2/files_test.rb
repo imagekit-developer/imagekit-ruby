@@ -6,7 +6,7 @@ class Imagekitio::Test::Resources::Beta::V2::FilesTest < Imagekitio::Test::Resou
   def test_upload_required_params
     skip("Mock server tests are disabled")
 
-    response = @image_kit.beta.v2.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+    response = @image_kit.beta.v2.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
 
     assert_pattern do
       response => Imagekitio::Models::Beta::V2::FileUploadResponse
