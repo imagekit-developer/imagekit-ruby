@@ -119,7 +119,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
   def test_upload_required_params
     skip("Mock server tests are disabled")
 
-    response = @image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+    response = @image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
 
     assert_pattern do
       response => Imagekitio::Models::FileUploadResponse
