@@ -12,7 +12,9 @@ module Imagekitio
       | Imagekitio::UploadPostTransformErrorEvent)
 
       def unwrap: (
-        String payload
+        String payload,
+        headers: ::Hash[String, String],
+        ?key: String?
       ) -> (Imagekitio::VideoTransformationAcceptedEvent
       | Imagekitio::VideoTransformationReadyEvent
       | Imagekitio::VideoTransformationErrorEvent

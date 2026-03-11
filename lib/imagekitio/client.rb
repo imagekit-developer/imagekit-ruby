@@ -25,6 +25,13 @@ module Imagekitio
     # @return [String, nil]
     attr_reader :password
 
+    # Your ImageKit webhook secret for verifying webhook signatures (starts with
+    # `whsec_`). You can find this in the
+    # [ImageKit dashboard](https://imagekit.io/dashboard/developer/webhooks). Only
+    # required if you're using webhooks.
+    # @return [String, nil]
+    attr_reader :webhook_secret
+
     # @return [Imagekitio::Resources::CustomMetadataFields]
     attr_reader :custom_metadata_fields
 
@@ -77,6 +84,11 @@ module Imagekitio
     # dummy value. You can ignore this field. Defaults to
     # `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
     #
+    # @param webhook_secret [String, nil] Your ImageKit webhook secret for verifying webhook signatures (starts with
+    # `whsec_`). You can find this in the
+    # [ImageKit dashboard](https://imagekit.io/dashboard/developer/webhooks). Only
+    # required if you're using webhooks. Defaults to `ENV["IMAGEKIT_WEBHOOK_SECRET"]`
+    #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
     #
@@ -90,6 +102,7 @@ module Imagekitio
     def initialize(
       private_key: ENV["IMAGEKIT_PRIVATE_KEY"],
       password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
+      webhook_secret: ENV["IMAGEKIT_WEBHOOK_SECRET"],
       base_url: ENV["IMAGE_KIT_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -106,6 +119,7 @@ module Imagekitio
 
       @private_key = private_key.to_s
       @password = password.to_s
+      @webhook_secret = webhook_secret&.to_s
 
       super(
         base_url: base_url,

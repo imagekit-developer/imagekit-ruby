@@ -13,8 +13,18 @@ module Imagekitio
 
       # @param payload [String] The raw webhook payload as a string
       #
+      # @param headers [Hash{String=>String}] The raw HTTP headers that came with the payload
+      #
+      # @param key [String, nil] The webhook signing key
+      #
       # @return [Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent]
-      def unwrap(payload)
+      def unwrap(payload, headers:, key: @client.webhook_secret)
+        if key.nil?
+          raise ArgumentError.new("Cannot verify a webhook without a key on either the client's webhook_secret or passed in as an argument")
+        end
+
+        ::StandardWebhooks::Webhook.new(key).verify(payload, headers)
+
         parsed = JSON.parse(payload, symbolize_names: true)
         Imagekitio::Internal::Type::Converter.coerce(Imagekitio::Models::UnwrapWebhookEvent, parsed)
       end
