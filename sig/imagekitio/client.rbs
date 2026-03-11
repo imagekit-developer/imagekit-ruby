@@ -12,6 +12,8 @@ module Imagekitio
 
     attr_reader password: String?
 
+    attr_reader webhook_secret: String?
+
     attr_reader custom_metadata_fields: Imagekitio::Resources::CustomMetadataFields
 
     attr_reader files: Imagekitio::Resources::Files
@@ -39,6 +41,7 @@ module Imagekitio
     def initialize: (
       ?private_key: String?,
       ?password: String?,
+      ?webhook_secret: String?,
       ?base_url: String?,
       ?max_retries: Integer,
       ?timeout: Float,

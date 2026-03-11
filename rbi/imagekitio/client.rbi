@@ -20,6 +20,13 @@ module Imagekitio
     sig { returns(T.nilable(String)) }
     attr_reader :password
 
+    # Your ImageKit webhook secret for verifying webhook signatures (starts with
+    # `whsec_`). You can find this in the
+    # [ImageKit dashboard](https://imagekit.io/dashboard/developer/webhooks). Only
+    # required if you're using webhooks.
+    sig { returns(T.nilable(String)) }
+    attr_reader :webhook_secret
+
     sig { returns(Imagekitio::Resources::CustomMetadataFields) }
     attr_reader :custom_metadata_fields
 
@@ -65,6 +72,7 @@ module Imagekitio
       params(
         private_key: T.nilable(String),
         password: T.nilable(String),
+        webhook_secret: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
         timeout: Float,
@@ -81,6 +89,11 @@ module Imagekitio
       # dummy value. You can ignore this field. Defaults to
       # `ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"]`
       password: ENV.fetch("OPTIONAL_IMAGEKIT_IGNORES_THIS", "do_not_set"),
+      # Your ImageKit webhook secret for verifying webhook signatures (starts with
+      # `whsec_`). You can find this in the
+      # [ImageKit dashboard](https://imagekit.io/dashboard/developer/webhooks). Only
+      # required if you're using webhooks. Defaults to `ENV["IMAGEKIT_WEBHOOK_SECRET"]`
+      webhook_secret: ENV["IMAGEKIT_WEBHOOK_SECRET"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
       base_url: ENV["IMAGE_KIT_BASE_URL"],

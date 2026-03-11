@@ -30,6 +30,7 @@ end
 
 # Gems.
 require "connection_pool"
+require "standardwebhooks"
 
 # Package files.
 require_relative "imagekitio/version"
