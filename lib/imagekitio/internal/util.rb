@@ -157,7 +157,7 @@ module Imagekitio
           in Hash | nil => coerced
             coerced
           else
-            message = "Expected a #{Hash} or #{Imagekitio::Internal::Type::BaseModel}, got #{data.inspect}"
+            message = "Expected a #{Hash} or #{Imagekitio::Internal::Type::BaseModel}, got #{input.inspect}"
             raise ArgumentError.new(message)
           end
         end
