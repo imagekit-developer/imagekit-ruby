@@ -1,5 +1,43 @@
 # Changelog
 
+## 4.3.0 (2026-04-06)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** add support for x_center, y_center, and anchor_point in overlay positioning ([dcbcf76](https://github.com/imagekit-developer/imagekit-ruby/commit/dcbcf7610f2a484689f5c83a8779ab3dd4c5b092))
+* **api:** dpr type update ([650aa0f](https://github.com/imagekit-developer/imagekit-ruby/commit/650aa0f905b4a586c036ae2f019bd7cfb7775d40))
+* **api:** Introduce lxc, lyc, lap parameters in overlays. ([5a87ef0](https://github.com/imagekit-developer/imagekit-ruby/commit/5a87ef064bc9c14d1d62bbd338b64d7718888460))
+* **api:** revert dpr breaking change ([525e6a8](https://github.com/imagekit-developer/imagekit-ruby/commit/525e6a8a59f0f4a17ab17468aebc4b8ccdce182c))
+* **client:** add webhook support ([2a65217](https://github.com/imagekit-developer/imagekit-ruby/commit/2a65217314672d643372aafed4c83adf19c0566f))
+
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([88f5590](https://github.com/imagekit-developer/imagekit-ruby/commit/88f5590fc3bb8b7766d4698892aff762f80d3629))
+* **client:** add types for path params, and update structure of unions nested in params ([dd1e1ec](https://github.com/imagekit-developer/imagekit-ruby/commit/dd1e1ec791f563877bc2262b0aea91f4df9b2ced))
+* **client:** always add content-length to post body, even when empty ([e156b70](https://github.com/imagekit-developer/imagekit-ruby/commit/e156b70c82c9b38de49307218fb3f687f651aa5b))
+* **client:** loosen json header parsing ([9fc1fc6](https://github.com/imagekit-developer/imagekit-ruby/commit/9fc1fc60c60173f92f1f99fabe38f9ec826d940d))
+* **client:** serialize query parameters properly ([bbfc6e0](https://github.com/imagekit-developer/imagekit-ruby/commit/bbfc6e0d80da5661600a888e8c915d336919fe36))
+* **internal:** correct multipart form field name encoding ([f3c20a9](https://github.com/imagekit-developer/imagekit-ruby/commit/f3c20a9740682cb96e90eecfd617f204cd28a491))
+* properly mock time in ruby ci tests ([8f0a0a9](https://github.com/imagekit-developer/imagekit-ruby/commit/8f0a0a93ebc66d8d56d5e47950607f8d67f37514))
+* variable name typo ([1d32dc3](https://github.com/imagekit-developer/imagekit-ruby/commit/1d32dc3ec09c80961cc58ecfd40b2449957a2ac9))
+
+
+### Chores
+
+* **ci:** add build step ([c213724](https://github.com/imagekit-developer/imagekit-ruby/commit/c213724d793c735b09c784a5a285cf394f79d528))
+* **ci:** skip lint on metadata-only changes ([62e401f](https://github.com/imagekit-developer/imagekit-ruby/commit/62e401f6fc35fa3bc0e16593bab8e4a477536d4f))
+* **ci:** skip uploading artifacts on stainless-internal branches ([fbc0465](https://github.com/imagekit-developer/imagekit-ruby/commit/fbc0465b3c2fc05da7a61fe74fab19189be90305))
+* **ci:** support opting out of skipping builds on metadata-only commits ([af71b49](https://github.com/imagekit-developer/imagekit-ruby/commit/af71b4919ea7eb3bf704ed6a83eaa9301b5201f9))
+* **docs:** remove www prefix ([a4b9610](https://github.com/imagekit-developer/imagekit-ruby/commit/a4b961058ac8967dcfef109421dbca9ee3eedf0b))
+* **internal:** remove mock server code ([c8aa3b8](https://github.com/imagekit-developer/imagekit-ruby/commit/c8aa3b8c2320102d8e29941f78f1f1ade06cab00))
+* **internal:** tweak CI branches ([125e8b4](https://github.com/imagekit-developer/imagekit-ruby/commit/125e8b4b0f3676378a863bacfc3cc93bf7b3f6ee))
+* **internal:** update gitignore ([741331c](https://github.com/imagekit-developer/imagekit-ruby/commit/741331c210a1af49f43ff77f593293e42882c15b))
+* update mock server docs ([1e5ed9e](https://github.com/imagekit-developer/imagekit-ruby/commit/1e5ed9ea31388b76995c292fc22f9ed773ad6f40))
+* update placeholder string ([cff7f1b](https://github.com/imagekit-developer/imagekit-ruby/commit/cff7f1b4cf7a249e7dd6f426c992472238a8c6e1))
+
 ## 4.2.0 (2026-02-02)
 
 Full Changelog: [v4.1.2...v4.2.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.2...v4.2.0)
