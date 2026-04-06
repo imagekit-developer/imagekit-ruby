@@ -34,10 +34,11 @@ module Imagekitio
       # @see Imagekitio::Models::AssetListParams
       def list(params = {})
         parsed, options = Imagekitio::AssetListParams.dump_request(params)
+        query = Imagekitio::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "v1/files",
-          query: parsed.transform_keys(file_type: "fileType", search_query: "searchQuery"),
+          query: query.transform_keys(file_type: "fileType", search_query: "searchQuery"),
           model: Imagekitio::Internal::Type::ArrayOf[union: Imagekitio::Models::AssetListResponseItem],
           options: options
         )

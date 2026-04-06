@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Imagekitio::Test::Resources::Files::MetadataTest < Imagekitio::Test::ResourceTest
   def test_get
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.metadata.get("fileId")
 
@@ -33,7 +33,7 @@ class Imagekitio::Test::Resources::Files::MetadataTest < Imagekitio::Test::Resou
   end
 
   def test_get_from_url_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.metadata.get_from_url(url: "https://example.com")
 

@@ -635,11 +635,17 @@ module Imagekitio
       if position
         x = safe_get(position, :x)
         y = safe_get(position, :y_)
+        x_center = safe_get(position, :x_center)
+        y_center = safe_get(position, :y_center)
         focus = safe_get(position, :focus)
+        anchor_point = safe_get(position, :anchor_point)
 
         parts << "lx-#{x}" if x
         parts << "ly-#{y}" if y
+        parts << "lxc-#{x_center}" if x_center
+        parts << "lyc-#{y_center}" if y_center
         parts << "lfo-#{focus}" if focus
+        parts << "lap-#{anchor_point}" if anchor_point
       end
 
       # Add timing properties

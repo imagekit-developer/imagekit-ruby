@@ -4,17 +4,17 @@ require_relative "../../test_helper"
 
 class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.accounts.origins.create(
-        base_url: "https://akeneo.company.com",
-        client_id: "akeneo-client-id",
-        client_secret: "akeneo-client-secret",
-        name: "US S3 Storage",
-        password: "strongpassword123",
-        type: :AKENEO_PIM,
-        username: "integration-user"
+        origin_request: {
+          accessKey: "AKIATEST123",
+          bucket: "test-bucket",
+          name: "My S3 Origin",
+          secretKey: "secrettest123",
+          type: :S3
+        }
       )
 
     assert_pattern do
@@ -114,18 +114,18 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.accounts.origins.update(
         "id",
-        base_url: "https://akeneo.company.com",
-        client_id: "akeneo-client-id",
-        client_secret: "akeneo-client-secret",
-        name: "US S3 Storage",
-        password: "strongpassword123",
-        type: :AKENEO_PIM,
-        username: "integration-user"
+        origin_request: {
+          accessKey: "AKIATEST123",
+          bucket: "test-bucket",
+          name: "My S3 Origin",
+          secretKey: "secrettest123",
+          type: :S3
+        }
       )
 
     assert_pattern do
@@ -225,7 +225,7 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.accounts.origins.list
 
@@ -235,7 +235,7 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.accounts.origins.delete("id")
 
@@ -245,7 +245,7 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
   end
 
   def test_get
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.accounts.origins.get("id")
 

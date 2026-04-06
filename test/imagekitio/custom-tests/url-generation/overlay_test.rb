@@ -856,4 +856,32 @@ class OverlayTest < Minitest::Test
     expected = "https://ik.imagekit.io/test_url_endpoint/tr:w-300,h-200,l-text,i-Hello%20World,lx-10,ly-20,lfo-center,fs-20,co-FF0000,l-end/base-image.jpg"
     assert_equal(expected, url)
   end
+
+  # Test for x_center, y_center, and anchor_point
+  def test_should_generate_url_with_overlay_using_xcenter_ycenter_and_anchorpoint
+    # Using hash format to avoid type conversion issues with arithmetic expressions
+    url = @client.helper.build_url(
+      {
+        src: "/base-image.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :path,
+        transformation: [
+          {
+            overlay: {
+              type: :image,
+              input: "logo.png",
+              position: {
+                x_center: "bw_mul_0.5",
+                y_center: "bh_mul_0.5",
+                anchor_point: :top_left
+              }
+            }
+          }
+        ]
+      }
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/tr:l-image,i-logo.png,lxc-bw_mul_0.5,lyc-bh_mul_0.5,lap-top_left,l-end/base-image.jpg"
+    assert_equal(expected, url)
+  end
 end

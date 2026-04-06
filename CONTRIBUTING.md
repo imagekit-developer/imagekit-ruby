@@ -43,13 +43,13 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "imagekitio", git: "https://www.github.com/imagekit-developer/imagekit-ruby"
+gem "imagekitio", git: "https://github.com/imagekit-developer/imagekit-ruby"
 ```
 
 Alternatively, reference local copy of the repo:
 
 ```bash
-$ git clone -- 'https://www.github.com/imagekit-developer/imagekit-ruby' '<path-to-repo>'
+$ git clone -- 'https://github.com/imagekit-developer/imagekit-ruby' '<path-to-repo>'
 ```
 
 ```ruby
@@ -65,12 +65,6 @@ $ bundle exec rake
 ```
 
 ## Running tests
-
-Most tests require you to [set up a mock server](https://github.com/stoplightio/prism) against the OpenAPI spec to run the tests.
-
-```bash
-$ npx prism mock path/to/your/openapi.yml
-```
 
 ```bash
 $ bundle exec rake test

@@ -15,63 +15,16 @@ module Imagekitio
             )
           end
 
-        # Schema for origin request resources.
         sig do
-          returns(
-            T.any(
-              Imagekitio::Accounts::OriginRequest::S3,
-              Imagekitio::Accounts::OriginRequest::S3Compatible,
-              Imagekitio::Accounts::OriginRequest::CloudinaryBackup,
-              Imagekitio::Accounts::OriginRequest::WebFolder,
-              Imagekitio::Accounts::OriginRequest::WebProxy,
-              Imagekitio::Accounts::OriginRequest::Gcs,
-              Imagekitio::Accounts::OriginRequest::AzureBlob,
-              Imagekitio::Accounts::OriginRequest::AkeneoPim
-            )
+          params(request_options: Imagekitio::RequestOptions::OrHash).returns(
+            T.attached_class
           )
         end
-        attr_accessor :origin_request
-
-        sig do
-          params(
-            origin_request:
-              T.any(
-                Imagekitio::Accounts::OriginRequest::S3::OrHash,
-                Imagekitio::Accounts::OriginRequest::S3Compatible::OrHash,
-                Imagekitio::Accounts::OriginRequest::CloudinaryBackup::OrHash,
-                Imagekitio::Accounts::OriginRequest::WebFolder::OrHash,
-                Imagekitio::Accounts::OriginRequest::WebProxy::OrHash,
-                Imagekitio::Accounts::OriginRequest::Gcs::OrHash,
-                Imagekitio::Accounts::OriginRequest::AzureBlob::OrHash,
-                Imagekitio::Accounts::OriginRequest::AkeneoPim::OrHash
-              ),
-            request_options: Imagekitio::RequestOptions::OrHash
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Schema for origin request resources.
-          origin_request:,
-          request_options: {}
-        )
+        def self.new(request_options: {})
         end
 
         sig do
-          override.returns(
-            {
-              origin_request:
-                T.any(
-                  Imagekitio::Accounts::OriginRequest::S3,
-                  Imagekitio::Accounts::OriginRequest::S3Compatible,
-                  Imagekitio::Accounts::OriginRequest::CloudinaryBackup,
-                  Imagekitio::Accounts::OriginRequest::WebFolder,
-                  Imagekitio::Accounts::OriginRequest::WebProxy,
-                  Imagekitio::Accounts::OriginRequest::Gcs,
-                  Imagekitio::Accounts::OriginRequest::AzureBlob,
-                  Imagekitio::Accounts::OriginRequest::AkeneoPim
-                ),
-              request_options: Imagekitio::RequestOptions
-            }
-          )
+          override.returns({ request_options: Imagekitio::RequestOptions })
         end
         def to_hash
         end

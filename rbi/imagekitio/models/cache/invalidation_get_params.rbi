@@ -15,16 +15,22 @@ module Imagekitio
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :request_id
+
         sig do
-          params(request_options: Imagekitio::RequestOptions::OrHash).returns(
-            T.attached_class
-          )
+          params(
+            request_id: String,
+            request_options: Imagekitio::RequestOptions::OrHash
+          ).returns(T.attached_class)
         end
-        def self.new(request_options: {})
+        def self.new(request_id:, request_options: {})
         end
 
         sig do
-          override.returns({ request_options: Imagekitio::RequestOptions })
+          override.returns(
+            { request_id: String, request_options: Imagekitio::RequestOptions }
+          )
         end
         def to_hash
         end

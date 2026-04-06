@@ -45,7 +45,7 @@ class ImagekitioTest < Minitest::Test
       )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
-      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+      image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 3)
@@ -63,7 +63,7 @@ class ImagekitioTest < Minitest::Test
       )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
-      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+      image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 4)
@@ -81,7 +81,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {max_retries: 3}
       )
@@ -103,7 +103,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {max_retries: 4}
       )
@@ -128,7 +128,7 @@ class ImagekitioTest < Minitest::Test
       )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
-      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+      image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -136,9 +136,11 @@ class ImagekitioTest < Minitest::Test
   end
 
   def test_client_retry_after_date
+    time_now = Time.now
+
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(
       status: 500,
-      headers: {"retry-after" => (Time.now + 10).httpdate},
+      headers: {"retry-after" => (time_now + 10).httpdate},
       body: {}
     )
 
@@ -150,11 +152,11 @@ class ImagekitioTest < Minitest::Test
         max_retries: 1
       )
 
+    Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(Imagekitio::Errors::InternalServerError) do
-      Thread.current.thread_variable_set(:time_now, Time.now)
-      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
-      Thread.current.thread_variable_set(:time_now, nil)
+      image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
     end
+    Thread.current.thread_variable_set(:time_now, nil)
 
     assert_requested(:any, /./, times: 2)
     assert_in_delta(10, Thread.current.thread_variable_get(:mock_sleep).last, 1.0)
@@ -176,7 +178,7 @@ class ImagekitioTest < Minitest::Test
       )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
-      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+      image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -194,7 +196,7 @@ class ImagekitioTest < Minitest::Test
       )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
-      image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+      image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
     end
 
     3.times do
@@ -214,7 +216,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
@@ -237,7 +239,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
@@ -266,7 +268,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {extra_headers: {}}
       )
@@ -304,7 +306,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {extra_headers: {}}
       )
@@ -337,7 +339,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -373,7 +375,7 @@ class ImagekitioTest < Minitest::Test
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
-        file: Pathname(__FILE__),
+        file: StringIO.new("Example data"),
         file_name: "fileName",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -395,7 +397,7 @@ class ImagekitioTest < Minitest::Test
         password: "My Password"
       )
 
-    image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+    image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")

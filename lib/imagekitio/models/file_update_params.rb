@@ -7,15 +7,13 @@ module Imagekitio
       extend Imagekitio::Internal::Type::RequestParameters::Converter
       include Imagekitio::Internal::Type::RequestParameters
 
-      # @!attribute update_file_request
-      #   Schema for update file update request.
+      # @!attribute file_id
       #
-      #   @return [Imagekitio::Models::UpdateFileRequest::UpdateFileDetails, Imagekitio::Models::UpdateFileRequest::ChangePublicationStatus]
-      required :update_file_request, union: -> { Imagekitio::UpdateFileRequest }
+      #   @return [String]
+      required :file_id, String
 
-      # @!method initialize(update_file_request:, request_options: {})
-      #   @param update_file_request [Imagekitio::Models::UpdateFileRequest::UpdateFileDetails, Imagekitio::Models::UpdateFileRequest::ChangePublicationStatus] Schema for update file update request.
-      #
+      # @!method initialize(file_id:, request_options: {})
+      #   @param file_id [String]
       #   @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}]
     end
   end

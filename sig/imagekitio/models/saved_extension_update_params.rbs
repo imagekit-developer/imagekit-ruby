@@ -2,6 +2,7 @@ module Imagekitio
   module Models
     type saved_extension_update_params =
       {
+        id: String,
         config: Imagekitio::Models::extension_config,
         description: String,
         name: String
@@ -11,6 +12,8 @@ module Imagekitio
     class SavedExtensionUpdateParams < Imagekitio::Internal::Type::BaseModel
       extend Imagekitio::Internal::Type::RequestParameters::Converter
       include Imagekitio::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_reader config: Imagekitio::Models::extension_config?
 
@@ -27,6 +30,7 @@ module Imagekitio
       def name=: (String) -> String
 
       def initialize: (
+        id: String,
         ?config: Imagekitio::Models::extension_config,
         ?description: String,
         ?name: String,
@@ -34,6 +38,7 @@ module Imagekitio
       ) -> void
 
       def to_hash: -> {
+        id: String,
         config: Imagekitio::Models::extension_config,
         description: String,
         name: String,

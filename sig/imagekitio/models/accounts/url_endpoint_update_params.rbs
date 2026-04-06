@@ -2,15 +2,25 @@ module Imagekitio
   module Models
     module Accounts
       type url_endpoint_update_params =
-        {  } & Imagekitio::Internal::Type::request_parameters
+        { id: String } & Imagekitio::Internal::Type::request_parameters
 
       class URLEndpointUpdateParams < Imagekitio::Models::Accounts::URLEndpointRequest
         extend Imagekitio::Internal::Type::RequestParameters::Converter
         include Imagekitio::Internal::Type::RequestParameters
 
-        def initialize: (?request_options: Imagekitio::request_opts) -> void
+        def id: -> String
 
-        def to_hash: -> { request_options: Imagekitio::RequestOptions }
+        def id=: (String _) -> String
+
+        def initialize: (
+          id: String,
+          ?request_options: Imagekitio::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          request_options: Imagekitio::RequestOptions
+        }
       end
     end
   end

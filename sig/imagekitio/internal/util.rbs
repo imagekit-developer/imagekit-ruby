@@ -45,7 +45,11 @@ module Imagekitio
         -> top?
       } -> top?
 
+      RFC_3986_NOT_PCHARS: Regexp
+
       def self?.uri_origin: (URI::Generic uri) -> String
+
+      def self?.encode_path: (String | Integer path) -> String
 
       def self?.interpolate_path: (String | ::Array[String] path) -> String
 
@@ -105,6 +109,16 @@ module Imagekitio
 
       JSON_CONTENT: Regexp
       JSONL_CONTENT: Regexp
+
+      def encode_query_params: (
+        ::Hash[Symbol, top] query
+      ) -> ::Hash[Symbol, top]
+
+      private def write_query_param_element!: (
+        ::Hash[Symbol, top] collection,
+        String key,
+        top element
+      ) -> nil
 
       def self?.write_multipart_content: (
         Enumerator::Yielder y,

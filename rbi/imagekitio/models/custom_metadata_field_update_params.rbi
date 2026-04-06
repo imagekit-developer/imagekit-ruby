@@ -14,6 +14,9 @@ module Imagekitio
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # Human readable name of the custom metadata field. This should be unique across
       # all non deleted custom metadata fields. This name is displayed as form field
       # label to the users while setting field value on an asset in the media library
@@ -42,12 +45,14 @@ module Imagekitio
 
       sig do
         params(
+          id: String,
           label: String,
           schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema::OrHash,
           request_options: Imagekitio::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # Human readable name of the custom metadata field. This should be unique across
         # all non deleted custom metadata fields. This name is displayed as form field
         # label to the users while setting field value on an asset in the media library
@@ -65,6 +70,7 @@ module Imagekitio
       sig do
         override.returns(
           {
+            id: String,
             label: String,
             schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema,
             request_options: Imagekitio::RequestOptions

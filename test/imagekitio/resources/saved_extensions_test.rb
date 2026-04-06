@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Imagekitio::Test::Resources::SavedExtensionsTest < Imagekitio::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.saved_extensions.create(
@@ -30,7 +30,7 @@ class Imagekitio::Test::Resources::SavedExtensionsTest < Imagekitio::Test::Resou
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.saved_extensions.update("id")
 
@@ -51,7 +51,7 @@ class Imagekitio::Test::Resources::SavedExtensionsTest < Imagekitio::Test::Resou
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.saved_extensions.list
 
@@ -61,7 +61,7 @@ class Imagekitio::Test::Resources::SavedExtensionsTest < Imagekitio::Test::Resou
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.saved_extensions.delete("id")
 
@@ -71,7 +71,7 @@ class Imagekitio::Test::Resources::SavedExtensionsTest < Imagekitio::Test::Resou
   end
 
   def test_get
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.saved_extensions.get("id")
 

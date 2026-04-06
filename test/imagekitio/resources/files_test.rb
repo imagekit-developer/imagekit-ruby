@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
-  def test_update
-    skip("Prism tests are disabled")
+  def test_update_required_params
+    skip("Mock server tests are disabled")
 
-    response = @image_kit.files.update("fileId")
+    response = @image_kit.files.update("fileId", update_file_request: {})
 
     assert_pattern do
       response => Imagekitio::Models::FileUpdateResponse
@@ -14,7 +14,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.delete("fileId")
 
@@ -24,7 +24,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
   end
 
   def test_copy_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.files.copy(destination_path: "/folder/to/copy/into/", source_file_path: "/path/to/file.jpg")
@@ -41,7 +41,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
   end
 
   def test_get
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.get("fileId")
 
@@ -84,7 +84,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
   end
 
   def test_move_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @image_kit.files.move(destination_path: "/folder/to/move/into/", source_file_path: "/path/to/file.jpg")
@@ -101,7 +101,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
   end
 
   def test_rename_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @image_kit.files.rename(file_path: "/path/to/file.jpg", new_file_name: "newFileName.jpg")
 
@@ -117,9 +117,9 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
   end
 
   def test_upload_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
-    response = @image_kit.files.upload(file: Pathname(__FILE__), file_name: "fileName")
+    response = @image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
 
     assert_pattern do
       response => Imagekitio::Models::FileUploadResponse

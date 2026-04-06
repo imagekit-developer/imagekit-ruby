@@ -9,7 +9,7 @@ module Imagekitio
 
       def update: (
         String file_id,
-        update_file_request: Imagekitio::Models::UpdateFileRequest,
+        update_file_request: Imagekitio::Models::update_file_request,
         ?request_options: Imagekitio::request_opts
       ) -> Imagekitio::Models::FileUpdateResponse
 
