@@ -32,22 +32,22 @@ module Imagekitio
       variant -> { Imagekitio::UploadPostTransformErrorEvent }
 
       # Triggered when a file is created.
-      variant -> { Imagekitio::FileCreatedWebhookEvent }
+      variant -> { Imagekitio::FileCreateEvent }
 
       # Triggered when a file is updated.
-      variant -> { Imagekitio::FileUpdatedWebhookEvent }
+      variant -> { Imagekitio::FileUpdateEvent }
 
       # Triggered when a file is deleted.
-      variant -> { Imagekitio::FileDeletedWebhookEvent }
+      variant -> { Imagekitio::FileDeleteEvent }
 
       # Triggered when a file version is created.
-      variant -> { Imagekitio::FileVersionCreatedWebhookEvent }
+      variant -> { Imagekitio::FileVersionCreateEvent }
 
       # Triggered when a file version is deleted.
-      variant -> { Imagekitio::FileVersionDeletedWebhookEvent }
+      variant -> { Imagekitio::FileVersionDeleteEvent }
 
       # @!method self.variants
-      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreatedWebhookEvent, Imagekitio::Models::FileUpdatedWebhookEvent, Imagekitio::Models::FileDeletedWebhookEvent, Imagekitio::Models::FileVersionCreatedWebhookEvent, Imagekitio::Models::FileVersionDeletedWebhookEvent)]
+      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreateEvent, Imagekitio::Models::FileUpdateEvent, Imagekitio::Models::FileDeleteEvent, Imagekitio::Models::FileVersionCreateEvent, Imagekitio::Models::FileVersionDeleteEvent)]
     end
   end
 end

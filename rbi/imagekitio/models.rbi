@@ -38,9 +38,9 @@ module Imagekitio
 
   FileCopyParams = Imagekitio::Models::FileCopyParams
 
-  FileCreatedWebhookEvent = Imagekitio::Models::FileCreatedWebhookEvent
+  FileCreateEvent = Imagekitio::Models::FileCreateEvent
 
-  FileDeletedWebhookEvent = Imagekitio::Models::FileDeletedWebhookEvent
+  FileDeleteEvent = Imagekitio::Models::FileDeleteEvent
 
   FileDeleteParams = Imagekitio::Models::FileDeleteParams
 
@@ -52,17 +52,15 @@ module Imagekitio
 
   Files = Imagekitio::Models::Files
 
-  FileUpdatedWebhookEvent = Imagekitio::Models::FileUpdatedWebhookEvent
+  FileUpdateEvent = Imagekitio::Models::FileUpdateEvent
 
   FileUpdateParams = Imagekitio::Models::FileUpdateParams
 
   FileUploadParams = Imagekitio::Models::FileUploadParams
 
-  FileVersionCreatedWebhookEvent =
-    Imagekitio::Models::FileVersionCreatedWebhookEvent
+  FileVersionCreateEvent = Imagekitio::Models::FileVersionCreateEvent
 
-  FileVersionDeletedWebhookEvent =
-    Imagekitio::Models::FileVersionDeletedWebhookEvent
+  FileVersionDeleteEvent = Imagekitio::Models::FileVersionDeleteEvent
 
   Folder = Imagekitio::Models::Folder
 

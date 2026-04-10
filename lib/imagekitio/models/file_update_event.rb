@@ -2,7 +2,7 @@
 
 module Imagekitio
   module Models
-    class FileCreatedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileUpdateEvent < Imagekitio::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp of when the event occurred in ISO8601 format.
       #
@@ -18,17 +18,17 @@ module Imagekitio
       # @!attribute type
       #   Type of the webhook event.
       #
-      #   @return [Symbol, :"file.created"]
-      required :type, const: :"file.created"
+      #   @return [Symbol, :"file.updated"]
+      required :type, const: :"file.updated"
 
-      # @!method initialize(created_at:, data:, type: :"file.created")
-      #   Triggered when a file is created.
+      # @!method initialize(created_at:, data:, type: :"file.updated")
+      #   Triggered when a file is updated.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
       #   @param data [Imagekitio::Models::File] Object containing details of a file or file version.
       #
-      #   @param type [Symbol, :"file.created"] Type of the webhook event.
+      #   @param type [Symbol, :"file.updated"] Type of the webhook event.
     end
   end
 end

@@ -2,11 +2,11 @@
 
 module Imagekitio
   module Models
-    class FileDeletedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileVersionDeleteEvent < Imagekitio::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
-            Imagekitio::FileDeletedWebhookEvent,
+            Imagekitio::FileVersionDeleteEvent,
             Imagekitio::Internal::AnyHash
           )
         end
@@ -15,11 +15,11 @@ module Imagekitio
       sig { returns(Time) }
       attr_accessor :created_at
 
-      sig { returns(Imagekitio::FileDeletedWebhookEvent::Data) }
+      sig { returns(Imagekitio::FileVersionDeleteEvent::Data) }
       attr_reader :data
 
       sig do
-        params(data: Imagekitio::FileDeletedWebhookEvent::Data::OrHash).void
+        params(data: Imagekitio::FileVersionDeleteEvent::Data::OrHash).void
       end
       attr_writer :data
 
@@ -27,11 +27,11 @@ module Imagekitio
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when a file is deleted.
+      # Triggered when a file version is deleted.
       sig do
         params(
           created_at: Time,
-          data: Imagekitio::FileDeletedWebhookEvent::Data::OrHash,
+          data: Imagekitio::FileVersionDeleteEvent::Data::OrHash,
           type: Symbol
         ).returns(T.attached_class)
       end
@@ -40,7 +40,7 @@ module Imagekitio
         created_at:,
         data:,
         # Type of the webhook event.
-        type: :"file.deleted"
+        type: :"file-version.deleted"
       )
       end
 
@@ -48,7 +48,7 @@ module Imagekitio
         override.returns(
           {
             created_at: Time,
-            data: Imagekitio::FileDeletedWebhookEvent::Data,
+            data: Imagekitio::FileVersionDeleteEvent::Data,
             type: Symbol
           }
         )
@@ -60,7 +60,7 @@ module Imagekitio
         OrHash =
           T.type_alias do
             T.any(
-              Imagekitio::FileDeletedWebhookEvent::Data,
+              Imagekitio::FileVersionDeleteEvent::Data,
               Imagekitio::Internal::AnyHash
             )
           end
@@ -69,14 +69,22 @@ module Imagekitio
         sig { returns(String) }
         attr_accessor :file_id
 
-        sig { params(file_id: String).returns(T.attached_class) }
+        # The unique `versionId` of the deleted file version.
+        sig { returns(String) }
+        attr_accessor :version_id
+
+        sig do
+          params(file_id: String, version_id: String).returns(T.attached_class)
+        end
         def self.new(
           # The unique `fileId` of the deleted file.
-          file_id:
+          file_id:,
+          # The unique `versionId` of the deleted file version.
+          version_id:
         )
         end
 
-        sig { override.returns({ file_id: String }) }
+        sig { override.returns({ file_id: String, version_id: String }) }
         def to_hash
         end
       end
