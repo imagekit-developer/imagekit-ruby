@@ -32,6 +32,8 @@ module Imagekitio
 
     attr_reader webhooks: Imagekitio::Resources::Webhooks
 
+    private def auth_headers: -> ::Hash[String, String]
+
     def base_url_overridden?: -> bool
 
     def initialize: (
