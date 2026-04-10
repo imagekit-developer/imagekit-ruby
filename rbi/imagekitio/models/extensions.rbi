@@ -371,8 +371,10 @@ module Imagekitio
             sig { params(min_selections: Integer).void }
             attr_writer :min_selections
 
-            # Array of possible tag values. Combined length of all strings must not exceed 500
-            # characters. Cannot contain the `%` character.
+            # Array of possible tag values. The combined length of all strings must not exceed
+            # 500 characters, and values cannot include the `%` character. When providing
+            # large vocabularies (more than 30 items), the AI may not follow the list
+            # strictly.
             sig { returns(T.nilable(T::Array[String])) }
             attr_reader :vocabulary
 
@@ -395,8 +397,10 @@ module Imagekitio
               max_selections: nil,
               # Minimum number of tags to select from the vocabulary.
               min_selections: nil,
-              # Array of possible tag values. Combined length of all strings must not exceed 500
-              # characters. Cannot contain the `%` character.
+              # Array of possible tag values. The combined length of all strings must not exceed
+              # 500 characters, and values cannot include the `%` character. When providing
+              # large vocabularies (more than 30 items), the AI may not follow the list
+              # strictly.
               vocabulary: nil,
               # Task type that analyzes the image and adds matching tags from a vocabulary.
               type: :select_tags
@@ -454,7 +458,10 @@ module Imagekitio
             sig { params(min_selections: Integer).void }
             attr_writer :min_selections
 
-            # Array of possible values matching the custom metadata field type.
+            # An array of possible values matching the custom metadata field type. If not
+            # provided for SingleSelect or MultiSelect field types, all values from the custom
+            # metadata field definition will be used. When providing large vocabularies (above
+            # 30 items), the AI may not strictly adhere to the list.
             sig do
               returns(
                 T.nilable(
@@ -498,7 +505,10 @@ module Imagekitio
               max_selections: nil,
               # Minimum number of values to select from the vocabulary.
               min_selections: nil,
-              # Array of possible values matching the custom metadata field type.
+              # An array of possible values matching the custom metadata field type. If not
+              # provided for SingleSelect or MultiSelect field types, all values from the custom
+              # metadata field definition will be used. When providing large vocabularies (above
+              # 30 items), the AI may not strictly adhere to the list.
               vocabulary: nil,
               # Task type that analyzes the image and sets a custom metadata field value from a
               # vocabulary.
