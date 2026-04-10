@@ -2,21 +2,12 @@ module Imagekitio
   module Models
     type overlay_position =
       {
-        anchor_point: Imagekitio::Models::OverlayPosition::anchor_point,
         focus: Imagekitio::Models::OverlayPosition::focus,
         x: Imagekitio::Models::OverlayPosition::x,
-        x_center: Imagekitio::Models::OverlayPosition::x_center,
-        y_: Imagekitio::Models::OverlayPosition::y_,
-        y_center: Imagekitio::Models::OverlayPosition::y_center
+        y_: Imagekitio::Models::OverlayPosition::y_
       }
 
     class OverlayPosition < Imagekitio::Internal::Type::BaseModel
-      attr_reader anchor_point: Imagekitio::Models::OverlayPosition::anchor_point?
-
-      def anchor_point=: (
-        Imagekitio::Models::OverlayPosition::anchor_point
-      ) -> Imagekitio::Models::OverlayPosition::anchor_point
-
       attr_reader focus: Imagekitio::Models::OverlayPosition::focus?
 
       def focus=: (
@@ -29,68 +20,23 @@ module Imagekitio
         Imagekitio::Models::OverlayPosition::x
       ) -> Imagekitio::Models::OverlayPosition::x
 
-      attr_reader x_center: Imagekitio::Models::OverlayPosition::x_center?
-
-      def x_center=: (
-        Imagekitio::Models::OverlayPosition::x_center
-      ) -> Imagekitio::Models::OverlayPosition::x_center
-
       attr_reader y_: Imagekitio::Models::OverlayPosition::y_?
 
       def y_=: (
         Imagekitio::Models::OverlayPosition::y_
       ) -> Imagekitio::Models::OverlayPosition::y_
 
-      attr_reader y_center: Imagekitio::Models::OverlayPosition::y_center?
-
-      def y_center=: (
-        Imagekitio::Models::OverlayPosition::y_center
-      ) -> Imagekitio::Models::OverlayPosition::y_center
-
       def initialize: (
-        ?anchor_point: Imagekitio::Models::OverlayPosition::anchor_point,
         ?focus: Imagekitio::Models::OverlayPosition::focus,
         ?x: Imagekitio::Models::OverlayPosition::x,
-        ?x_center: Imagekitio::Models::OverlayPosition::x_center,
-        ?y_: Imagekitio::Models::OverlayPosition::y_,
-        ?y_center: Imagekitio::Models::OverlayPosition::y_center
+        ?y_: Imagekitio::Models::OverlayPosition::y_
       ) -> void
 
       def to_hash: -> {
-        anchor_point: Imagekitio::Models::OverlayPosition::anchor_point,
         focus: Imagekitio::Models::OverlayPosition::focus,
         x: Imagekitio::Models::OverlayPosition::x,
-        x_center: Imagekitio::Models::OverlayPosition::x_center,
-        y_: Imagekitio::Models::OverlayPosition::y_,
-        y_center: Imagekitio::Models::OverlayPosition::y_center
+        y_: Imagekitio::Models::OverlayPosition::y_
       }
-
-      type anchor_point =
-        :top
-        | :left
-        | :right
-        | :bottom
-        | :top_left
-        | :top_right
-        | :bottom_left
-        | :bottom_right
-        | :center
-
-      module AnchorPoint
-        extend Imagekitio::Internal::Type::Enum
-
-        TOP: :top
-        LEFT: :left
-        RIGHT: :right
-        BOTTOM: :bottom
-        TOP_LEFT: :top_left
-        TOP_RIGHT: :top_right
-        BOTTOM_LEFT: :bottom_left
-        BOTTOM_RIGHT: :bottom_right
-        CENTER: :center
-
-        def self?.values: -> ::Array[Imagekitio::Models::OverlayPosition::anchor_point]
-      end
 
       type focus =
         :center
@@ -127,28 +73,12 @@ module Imagekitio
         def self?.variants: -> ::Array[Imagekitio::Models::OverlayPosition::x]
       end
 
-      type x_center = Float | String
-
-      module XCenter
-        extend Imagekitio::Internal::Type::Union
-
-        def self?.variants: -> ::Array[Imagekitio::Models::OverlayPosition::x_center]
-      end
-
       type y_ = Float | String
 
       module Y
         extend Imagekitio::Internal::Type::Union
 
         def self?.variants: -> ::Array[Imagekitio::Models::OverlayPosition::y_]
-      end
-
-      type y_center = Float | String
-
-      module YCenter
-        extend Imagekitio::Internal::Type::Union
-
-        def self?.variants: -> ::Array[Imagekitio::Models::OverlayPosition::y_center]
       end
     end
   end

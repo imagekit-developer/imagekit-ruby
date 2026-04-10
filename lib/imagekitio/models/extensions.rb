@@ -186,10 +186,8 @@ module Imagekitio
             optional :min_selections, Integer
 
             # @!attribute vocabulary
-            #   Array of possible tag values. The combined length of all strings must not exceed
-            #   500 characters, and values cannot include the `%` character. When providing
-            #   large vocabularies (more than 30 items), the AI may not follow the list
-            #   strictly.
+            #   Array of possible tag values. Combined length of all strings must not exceed 500
+            #   characters. Cannot contain the `%` character.
             #
             #   @return [Array<String>, nil]
             optional :vocabulary, Imagekitio::Internal::Type::ArrayOf[String]
@@ -204,7 +202,7 @@ module Imagekitio
             #
             #   @param min_selections [Integer] Minimum number of tags to select from the vocabulary.
             #
-            #   @param vocabulary [Array<String>] Array of possible tag values. The combined length of all strings must not exceed
+            #   @param vocabulary [Array<String>] Array of possible tag values. Combined length of all strings must not exceed 500
             #
             #   @param type [Symbol, :select_tags] Task type that analyzes the image and adds matching tags from a vocabulary.
           end
@@ -242,10 +240,7 @@ module Imagekitio
             optional :min_selections, Integer
 
             # @!attribute vocabulary
-            #   An array of possible values matching the custom metadata field type. If not
-            #   provided for SingleSelect or MultiSelect field types, all values from the custom
-            #   metadata field definition will be used. When providing large vocabularies (above
-            #   30 items), the AI may not strictly adhere to the list.
+            #   Array of possible values matching the custom metadata field type.
             #
             #   @return [Array<String, Float, Boolean>, nil]
             optional :vocabulary,
@@ -264,7 +259,7 @@ module Imagekitio
             #
             #   @param min_selections [Integer] Minimum number of values to select from the vocabulary.
             #
-            #   @param vocabulary [Array<String, Float, Boolean>] An array of possible values matching the custom metadata field type. If not prov
+            #   @param vocabulary [Array<String, Float, Boolean>] Array of possible values matching the custom metadata field type.
             #
             #   @param type [Symbol, :select_metadata] Task type that analyzes the image and sets a custom metadata field value from a
 

@@ -61,6 +61,16 @@ module Imagekitio
 
   CustomMetadataFieldUpdateParams = Imagekitio::Models::CustomMetadataFieldUpdateParams
 
+  DamFileCreateEvent = Imagekitio::Models::DamFileCreateEvent
+
+  DamFileDeleteEvent = Imagekitio::Models::DamFileDeleteEvent
+
+  DamFileUpdateEvent = Imagekitio::Models::DamFileUpdateEvent
+
+  DamFileVersionCreateEvent = Imagekitio::Models::DamFileVersionCreateEvent
+
+  DamFileVersionDeleteEvent = Imagekitio::Models::DamFileVersionDeleteEvent
+
   ExtensionConfig = Imagekitio::Models::ExtensionConfig
 
   ExtensionItem = Imagekitio::Models::ExtensionItem

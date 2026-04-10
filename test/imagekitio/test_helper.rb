@@ -48,11 +48,7 @@ class Imagekitio::Test::SingletonClient < Imagekitio::Client
   TEST_API_BASE_URL = ENV.fetch("TEST_API_BASE_URL", "http://localhost:4010")
 
   def initialize
-    super(
-      base_url: Imagekitio::Test::SingletonClient::TEST_API_BASE_URL,
-      private_key: "My Private Key",
-      password: "My Password"
-    )
+    super(base_url: Imagekitio::Test::SingletonClient::TEST_API_BASE_URL, private_key: "My Private Key")
   end
 end
 

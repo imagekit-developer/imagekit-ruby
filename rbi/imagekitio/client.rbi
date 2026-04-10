@@ -55,11 +55,6 @@ module Imagekitio
     attr_reader :webhooks
 
     # @api private
-    sig { override.returns(T::Hash[String, String]) }
-    private def auth_headers
-    end
-
-    # @api private
     sig { returns(T::Boolean) }
     def base_url_overridden?
     end

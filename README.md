@@ -35,10 +35,7 @@ gem "imagekitio", "~> 4.3.0"
 require "bundler/setup"
 require "imagekitio"
 
-image_kit = Imagekitio::Client.new(
-  private_key: ENV["IMAGEKIT_PRIVATE_KEY"], # This is the default and can be omitted
-  password: ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"] # This is the default and can be omitted
-)
+image_kit = Imagekitio::Client.new(private_key: "My Private Key")
 
 response = image_kit.files.upload(
   file: StringIO.new("https://www.example.com/public-url.jpg"),
@@ -118,7 +115,8 @@ You can use the `max_retries` option to configure or disable this:
 ```ruby
 # Configure the default for all requests:
 image_kit = Imagekitio::Client.new(
-  max_retries: 0 # default is 2
+  max_retries: 0, # default is 2
+  private_key: "My Private Key"
 )
 
 # Or, configure per-request:
@@ -136,7 +134,8 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 ```ruby
 # Configure the default for all requests:
 image_kit = Imagekitio::Client.new(
-  timeout: nil # default is 60
+  timeout: nil, # default is 60
+  private_key: "My Private Key"
 )
 
 # Or, configure per-request:
