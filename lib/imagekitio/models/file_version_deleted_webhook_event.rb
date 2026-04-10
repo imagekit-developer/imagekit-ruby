@@ -2,7 +2,7 @@
 
 module Imagekitio
   module Models
-    class DamFileVersionDeleteEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileVersionDeletedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp of when the event occurred in ISO8601 format.
       #
@@ -11,8 +11,8 @@ module Imagekitio
 
       # @!attribute data
       #
-      #   @return [Imagekitio::Models::DamFileVersionDeleteEvent::Data]
-      required :data, -> { Imagekitio::DamFileVersionDeleteEvent::Data }
+      #   @return [Imagekitio::Models::FileVersionDeletedWebhookEvent::Data]
+      required :data, -> { Imagekitio::FileVersionDeletedWebhookEvent::Data }
 
       # @!attribute type
       #   Type of the webhook event.
@@ -25,7 +25,7 @@ module Imagekitio
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
-      #   @param data [Imagekitio::Models::DamFileVersionDeleteEvent::Data]
+      #   @param data [Imagekitio::Models::FileVersionDeletedWebhookEvent::Data]
       #
       #   @param type [Symbol, :"file-version.deleted"] Type of the webhook event.
 

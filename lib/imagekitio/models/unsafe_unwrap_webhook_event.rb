@@ -32,22 +32,22 @@ module Imagekitio
       variant -> { Imagekitio::UploadPostTransformErrorEvent }
 
       # Triggered when a file is created.
-      variant -> { Imagekitio::DamFileCreateEvent }
+      variant -> { Imagekitio::FileCreatedWebhookEvent }
 
       # Triggered when a file is updated.
-      variant -> { Imagekitio::DamFileUpdateEvent }
+      variant -> { Imagekitio::FileUpdatedWebhookEvent }
 
       # Triggered when a file is deleted.
-      variant -> { Imagekitio::DamFileDeleteEvent }
+      variant -> { Imagekitio::FileDeletedWebhookEvent }
 
       # Triggered when a file version is created.
-      variant -> { Imagekitio::DamFileVersionCreateEvent }
+      variant -> { Imagekitio::FileVersionCreatedWebhookEvent }
 
       # Triggered when a file version is deleted.
-      variant -> { Imagekitio::DamFileVersionDeleteEvent }
+      variant -> { Imagekitio::FileVersionDeletedWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::DamFileCreateEvent, Imagekitio::Models::DamFileUpdateEvent, Imagekitio::Models::DamFileDeleteEvent, Imagekitio::Models::DamFileVersionCreateEvent, Imagekitio::Models::DamFileVersionDeleteEvent)]
+      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreatedWebhookEvent, Imagekitio::Models::FileUpdatedWebhookEvent, Imagekitio::Models::FileDeletedWebhookEvent, Imagekitio::Models::FileVersionCreatedWebhookEvent, Imagekitio::Models::FileVersionDeletedWebhookEvent)]
     end
   end
 end

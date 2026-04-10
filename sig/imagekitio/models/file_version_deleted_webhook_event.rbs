@@ -1,22 +1,22 @@
 module Imagekitio
   module Models
-    type dam_file_version_delete_event =
+    type file_version_deleted_webhook_event =
       {
         created_at: Time,
-        data: Imagekitio::DamFileVersionDeleteEvent::Data,
+        data: Imagekitio::FileVersionDeletedWebhookEvent::Data,
         type: :"file-version.deleted"
       }
 
-    class DamFileVersionDeleteEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileVersionDeletedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
       def created_at: -> Time
 
       def created_at=: (Time _) -> Time
 
-      def data: -> Imagekitio::DamFileVersionDeleteEvent::Data
+      def data: -> Imagekitio::FileVersionDeletedWebhookEvent::Data
 
       def data=: (
-        Imagekitio::DamFileVersionDeleteEvent::Data _
-      ) -> Imagekitio::DamFileVersionDeleteEvent::Data
+        Imagekitio::FileVersionDeletedWebhookEvent::Data _
+      ) -> Imagekitio::FileVersionDeletedWebhookEvent::Data
 
       def `type`: -> :"file-version.deleted"
 
@@ -24,13 +24,13 @@ module Imagekitio
 
       def initialize: (
         created_at: Time,
-        data: Imagekitio::DamFileVersionDeleteEvent::Data,
+        data: Imagekitio::FileVersionDeletedWebhookEvent::Data,
         ?type: :"file-version.deleted"
       ) -> void
 
       def to_hash: -> {
         created_at: Time,
-        data: Imagekitio::DamFileVersionDeleteEvent::Data,
+        data: Imagekitio::FileVersionDeletedWebhookEvent::Data,
         type: :"file-version.deleted"
       }
 

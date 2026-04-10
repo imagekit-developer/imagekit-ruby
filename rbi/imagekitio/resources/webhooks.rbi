@@ -13,11 +13,11 @@ module Imagekitio
             Imagekitio::UploadPreTransformErrorEvent,
             Imagekitio::UploadPostTransformSuccessEvent,
             Imagekitio::UploadPostTransformErrorEvent,
-            Imagekitio::DamFileCreateEvent,
-            Imagekitio::DamFileUpdateEvent,
-            Imagekitio::DamFileDeleteEvent,
-            Imagekitio::DamFileVersionCreateEvent,
-            Imagekitio::DamFileVersionDeleteEvent
+            Imagekitio::FileCreatedWebhookEvent,
+            Imagekitio::FileUpdatedWebhookEvent,
+            Imagekitio::FileDeletedWebhookEvent,
+            Imagekitio::FileVersionCreatedWebhookEvent,
+            Imagekitio::FileVersionDeletedWebhookEvent
           )
         )
       end
@@ -41,11 +41,11 @@ module Imagekitio
             Imagekitio::UploadPreTransformErrorEvent,
             Imagekitio::UploadPostTransformSuccessEvent,
             Imagekitio::UploadPostTransformErrorEvent,
-            Imagekitio::DamFileCreateEvent,
-            Imagekitio::DamFileUpdateEvent,
-            Imagekitio::DamFileDeleteEvent,
-            Imagekitio::DamFileVersionCreateEvent,
-            Imagekitio::DamFileVersionDeleteEvent
+            Imagekitio::FileCreatedWebhookEvent,
+            Imagekitio::FileUpdatedWebhookEvent,
+            Imagekitio::FileDeletedWebhookEvent,
+            Imagekitio::FileVersionCreatedWebhookEvent,
+            Imagekitio::FileVersionDeletedWebhookEvent
           )
         )
       end
