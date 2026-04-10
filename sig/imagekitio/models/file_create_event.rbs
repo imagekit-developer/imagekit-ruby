@@ -1,9 +1,9 @@
 module Imagekitio
   module Models
-    type file_updated_webhook_event =
-      { created_at: Time, data: Imagekitio::File, type: :"file.updated" }
+    type file_create_event =
+      { created_at: Time, data: Imagekitio::File, type: :"file.created" }
 
-    class FileUpdatedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileCreateEvent < Imagekitio::Models::BaseWebhookEvent
       def created_at: -> Time
 
       def created_at=: (Time _) -> Time
@@ -12,20 +12,20 @@ module Imagekitio
 
       def data=: (Imagekitio::File _) -> Imagekitio::File
 
-      def `type`: -> :"file.updated"
+      def `type`: -> :"file.created"
 
-      def type=: (:"file.updated" _) -> :"file.updated"
+      def type=: (:"file.created" _) -> :"file.created"
 
       def initialize: (
         created_at: Time,
         data: Imagekitio::File,
-        ?type: :"file.updated"
+        ?type: :"file.created"
       ) -> void
 
       def to_hash: -> {
         created_at: Time,
         data: Imagekitio::File,
-        type: :"file.updated"
+        type: :"file.created"
       }
     end
   end

@@ -10,11 +10,11 @@ module Imagekitio
       | Imagekitio::UploadPreTransformErrorEvent
       | Imagekitio::UploadPostTransformSuccessEvent
       | Imagekitio::UploadPostTransformErrorEvent
-      | Imagekitio::FileCreatedWebhookEvent
-      | Imagekitio::FileUpdatedWebhookEvent
-      | Imagekitio::FileDeletedWebhookEvent
-      | Imagekitio::FileVersionCreatedWebhookEvent
-      | Imagekitio::FileVersionDeletedWebhookEvent)
+      | Imagekitio::FileCreateEvent
+      | Imagekitio::FileUpdateEvent
+      | Imagekitio::FileDeleteEvent
+      | Imagekitio::FileVersionCreateEvent
+      | Imagekitio::FileVersionDeleteEvent)
 
       def unwrap: (
         String payload,
@@ -27,11 +27,11 @@ module Imagekitio
       | Imagekitio::UploadPreTransformErrorEvent
       | Imagekitio::UploadPostTransformSuccessEvent
       | Imagekitio::UploadPostTransformErrorEvent
-      | Imagekitio::FileCreatedWebhookEvent
-      | Imagekitio::FileUpdatedWebhookEvent
-      | Imagekitio::FileDeletedWebhookEvent
-      | Imagekitio::FileVersionCreatedWebhookEvent
-      | Imagekitio::FileVersionDeletedWebhookEvent)
+      | Imagekitio::FileCreateEvent
+      | Imagekitio::FileUpdateEvent
+      | Imagekitio::FileDeleteEvent
+      | Imagekitio::FileVersionCreateEvent
+      | Imagekitio::FileVersionDeleteEvent)
 
       def initialize: (client: Imagekitio::Client) -> void
     end
