@@ -2,11 +2,11 @@
 
 module Imagekitio
   module Models
-    class DamFileVersionCreateEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileVersionCreatedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
-            Imagekitio::DamFileVersionCreateEvent,
+            Imagekitio::FileVersionCreatedWebhookEvent,
             Imagekitio::Internal::AnyHash
           )
         end

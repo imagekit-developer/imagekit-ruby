@@ -2,7 +2,7 @@
 
 module Imagekitio
   module Models
-    class DamFileUpdateEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileUpdatedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
       # @!attribute created_at
       #   Timestamp of when the event occurred in ISO8601 format.
       #

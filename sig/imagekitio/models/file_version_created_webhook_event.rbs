@@ -1,13 +1,13 @@
 module Imagekitio
   module Models
-    type dam_file_version_create_event =
+    type file_version_created_webhook_event =
       {
         created_at: Time,
         data: Imagekitio::File,
         type: :"file-version.created"
       }
 
-    class DamFileVersionCreateEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileVersionCreatedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
       def created_at: -> Time
 
       def created_at=: (Time _) -> Time

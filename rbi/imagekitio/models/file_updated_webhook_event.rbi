@@ -2,10 +2,13 @@
 
 module Imagekitio
   module Models
-    class DamFileCreateEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileUpdatedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
-          T.any(Imagekitio::DamFileCreateEvent, Imagekitio::Internal::AnyHash)
+          T.any(
+            Imagekitio::FileUpdatedWebhookEvent,
+            Imagekitio::Internal::AnyHash
+          )
         end
 
       # Timestamp of when the event occurred in ISO8601 format.
@@ -23,7 +26,7 @@ module Imagekitio
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when a file is created.
+      # Triggered when a file is updated.
       sig do
         params(
           created_at: Time,
@@ -37,7 +40,7 @@ module Imagekitio
         # Object containing details of a file or file version.
         data:,
         # Type of the webhook event.
-        type: :"file.created"
+        type: :"file.updated"
       )
       end
 

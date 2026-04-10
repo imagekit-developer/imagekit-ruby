@@ -2,11 +2,11 @@
 
 module Imagekitio
   module Models
-    class DamFileVersionDeleteEvent < Imagekitio::Models::BaseWebhookEvent
+    class FileVersionDeletedWebhookEvent < Imagekitio::Models::BaseWebhookEvent
       OrHash =
         T.type_alias do
           T.any(
-            Imagekitio::DamFileVersionDeleteEvent,
+            Imagekitio::FileVersionDeletedWebhookEvent,
             Imagekitio::Internal::AnyHash
           )
         end
@@ -15,11 +15,13 @@ module Imagekitio
       sig { returns(Time) }
       attr_accessor :created_at
 
-      sig { returns(Imagekitio::DamFileVersionDeleteEvent::Data) }
+      sig { returns(Imagekitio::FileVersionDeletedWebhookEvent::Data) }
       attr_reader :data
 
       sig do
-        params(data: Imagekitio::DamFileVersionDeleteEvent::Data::OrHash).void
+        params(
+          data: Imagekitio::FileVersionDeletedWebhookEvent::Data::OrHash
+        ).void
       end
       attr_writer :data
 
@@ -31,7 +33,7 @@ module Imagekitio
       sig do
         params(
           created_at: Time,
-          data: Imagekitio::DamFileVersionDeleteEvent::Data::OrHash,
+          data: Imagekitio::FileVersionDeletedWebhookEvent::Data::OrHash,
           type: Symbol
         ).returns(T.attached_class)
       end
@@ -48,7 +50,7 @@ module Imagekitio
         override.returns(
           {
             created_at: Time,
-            data: Imagekitio::DamFileVersionDeleteEvent::Data,
+            data: Imagekitio::FileVersionDeletedWebhookEvent::Data,
             type: Symbol
           }
         )
@@ -60,7 +62,7 @@ module Imagekitio
         OrHash =
           T.type_alias do
             T.any(
-              Imagekitio::DamFileVersionDeleteEvent::Data,
+              Imagekitio::FileVersionDeletedWebhookEvent::Data,
               Imagekitio::Internal::AnyHash
             )
           end

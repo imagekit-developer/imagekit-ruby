@@ -27,16 +27,6 @@ module Imagekitio
   CustomMetadataFieldUpdateParams =
     Imagekitio::Models::CustomMetadataFieldUpdateParams
 
-  DamFileCreateEvent = Imagekitio::Models::DamFileCreateEvent
-
-  DamFileDeleteEvent = Imagekitio::Models::DamFileDeleteEvent
-
-  DamFileUpdateEvent = Imagekitio::Models::DamFileUpdateEvent
-
-  DamFileVersionCreateEvent = Imagekitio::Models::DamFileVersionCreateEvent
-
-  DamFileVersionDeleteEvent = Imagekitio::Models::DamFileVersionDeleteEvent
-
   ExtensionConfig = Imagekitio::Models::ExtensionConfig
 
   ExtensionItem = Imagekitio::Models::ExtensionItem
@@ -48,6 +38,10 @@ module Imagekitio
 
   FileCopyParams = Imagekitio::Models::FileCopyParams
 
+  FileCreatedWebhookEvent = Imagekitio::Models::FileCreatedWebhookEvent
+
+  FileDeletedWebhookEvent = Imagekitio::Models::FileDeletedWebhookEvent
+
   FileDeleteParams = Imagekitio::Models::FileDeleteParams
 
   FileGetParams = Imagekitio::Models::FileGetParams
@@ -58,9 +52,17 @@ module Imagekitio
 
   Files = Imagekitio::Models::Files
 
+  FileUpdatedWebhookEvent = Imagekitio::Models::FileUpdatedWebhookEvent
+
   FileUpdateParams = Imagekitio::Models::FileUpdateParams
 
   FileUploadParams = Imagekitio::Models::FileUploadParams
+
+  FileVersionCreatedWebhookEvent =
+    Imagekitio::Models::FileVersionCreatedWebhookEvent
+
+  FileVersionDeletedWebhookEvent =
+    Imagekitio::Models::FileVersionDeletedWebhookEvent
 
   Folder = Imagekitio::Models::Folder
 

@@ -21,16 +21,6 @@ module Imagekitio
 
   class CustomMetadataFieldUpdateParams = Imagekitio::Models::CustomMetadataFieldUpdateParams
 
-  class DamFileCreateEvent = Imagekitio::Models::DamFileCreateEvent
-
-  class DamFileDeleteEvent = Imagekitio::Models::DamFileDeleteEvent
-
-  class DamFileUpdateEvent = Imagekitio::Models::DamFileUpdateEvent
-
-  class DamFileVersionCreateEvent = Imagekitio::Models::DamFileVersionCreateEvent
-
-  class DamFileVersionDeleteEvent = Imagekitio::Models::DamFileVersionDeleteEvent
-
   type extension_item = Imagekitio::Models::extension_item
 
   module ExtensionConfig = Imagekitio::Models::ExtensionConfig
@@ -40,6 +30,10 @@ module Imagekitio
   class File = Imagekitio::Models::File
 
   class FileCopyParams = Imagekitio::Models::FileCopyParams
+
+  class FileCreatedWebhookEvent = Imagekitio::Models::FileCreatedWebhookEvent
+
+  class FileDeletedWebhookEvent = Imagekitio::Models::FileDeletedWebhookEvent
 
   class FileDeleteParams = Imagekitio::Models::FileDeleteParams
 
@@ -51,9 +45,15 @@ module Imagekitio
 
   module Files = Imagekitio::Models::Files
 
+  class FileUpdatedWebhookEvent = Imagekitio::Models::FileUpdatedWebhookEvent
+
   class FileUpdateParams = Imagekitio::Models::FileUpdateParams
 
   class FileUploadParams = Imagekitio::Models::FileUploadParams
+
+  class FileVersionCreatedWebhookEvent = Imagekitio::Models::FileVersionCreatedWebhookEvent
+
+  class FileVersionDeletedWebhookEvent = Imagekitio::Models::FileVersionDeletedWebhookEvent
 
   class Folder = Imagekitio::Models::Folder
 
