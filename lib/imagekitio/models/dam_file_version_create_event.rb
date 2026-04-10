@@ -10,9 +10,10 @@ module Imagekitio
       required :created_at, Time
 
       # @!attribute data
+      #   Object containing details of a file or file version.
       #
-      #   @return [Object]
-      required :data, Imagekitio::Internal::Type::Unknown
+      #   @return [Imagekitio::Models::File]
+      required :data, -> { Imagekitio::File }
 
       # @!attribute type
       #   Type of the webhook event.
@@ -25,7 +26,7 @@ module Imagekitio
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
-      #   @param data [Object]
+      #   @param data [Imagekitio::Models::File] Object containing details of a file or file version.
       #
       #   @param type [Symbol, :"file-version.created"] Type of the webhook event.
     end
