@@ -15,8 +15,12 @@ module Imagekitio
       sig { returns(Time) }
       attr_accessor :created_at
 
-      sig { returns(T.anything) }
-      attr_accessor :data
+      # Object containing details of a file or file version.
+      sig { returns(Imagekitio::File) }
+      attr_reader :data
+
+      sig { params(data: Imagekitio::File::OrHash).void }
+      attr_writer :data
 
       # Type of the webhook event.
       sig { returns(Symbol) }
@@ -24,13 +28,16 @@ module Imagekitio
 
       # Triggered when a file version is created.
       sig do
-        params(created_at: Time, data: T.anything, type: Symbol).returns(
-          T.attached_class
-        )
+        params(
+          created_at: Time,
+          data: Imagekitio::File::OrHash,
+          type: Symbol
+        ).returns(T.attached_class)
       end
       def self.new(
         # Timestamp of when the event occurred in ISO8601 format.
         created_at:,
+        # Object containing details of a file or file version.
         data:,
         # Type of the webhook event.
         type: :"file-version.created"
@@ -38,7 +45,9 @@ module Imagekitio
       end
 
       sig do
-        override.returns({ created_at: Time, data: T.anything, type: Symbol })
+        override.returns(
+          { created_at: Time, data: Imagekitio::File, type: Symbol }
+        )
       end
       def to_hash
       end
