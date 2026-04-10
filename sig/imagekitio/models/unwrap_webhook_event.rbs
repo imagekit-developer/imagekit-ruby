@@ -8,6 +8,11 @@ module Imagekitio
       | Imagekitio::UploadPreTransformErrorEvent
       | Imagekitio::UploadPostTransformSuccessEvent
       | Imagekitio::UploadPostTransformErrorEvent
+      | Imagekitio::DamFileCreateEvent
+      | Imagekitio::DamFileUpdateEvent
+      | Imagekitio::DamFileDeleteEvent
+      | Imagekitio::DamFileVersionCreateEvent
+      | Imagekitio::DamFileVersionDeleteEvent
 
     module UnwrapWebhookEvent
       extend Imagekitio::Internal::Type::Union

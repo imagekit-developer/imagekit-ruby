@@ -31,8 +31,23 @@ module Imagekitio
       # Triggered when a post-transformation fails. The original file remains available, but the requested transformation could not be generated.
       variant -> { Imagekitio::UploadPostTransformErrorEvent }
 
+      # Triggered when a file is created.
+      variant -> { Imagekitio::DamFileCreateEvent }
+
+      # Triggered when a file is updated.
+      variant -> { Imagekitio::DamFileUpdateEvent }
+
+      # Triggered when a file is deleted.
+      variant -> { Imagekitio::DamFileDeleteEvent }
+
+      # Triggered when a file version is created.
+      variant -> { Imagekitio::DamFileVersionCreateEvent }
+
+      # Triggered when a file version is deleted.
+      variant -> { Imagekitio::DamFileVersionDeleteEvent }
+
       # @!method self.variants
-      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent)]
+      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::DamFileCreateEvent, Imagekitio::Models::DamFileUpdateEvent, Imagekitio::Models::DamFileDeleteEvent, Imagekitio::Models::DamFileVersionCreateEvent, Imagekitio::Models::DamFileVersionDeleteEvent)]
     end
   end
 end

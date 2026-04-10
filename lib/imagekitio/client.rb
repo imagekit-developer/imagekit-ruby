@@ -64,16 +64,6 @@ module Imagekitio
 
     # @api private
     #
-    # @return [Hash{String=>String}]
-    private def auth_headers
-      return {} if @private_key.nil? || @password.nil?
-
-      base64_credentials = ["#{@private_key}:#{@password}"].pack("m0")
-      {"authorization" => "Basic #{base64_credentials}"}
-    end
-
-    # @api private
-    #
     # @return [Boolean]
     def base_url_overridden? = @base_url_overridden
 

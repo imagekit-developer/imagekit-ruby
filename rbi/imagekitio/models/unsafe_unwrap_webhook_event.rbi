@@ -17,7 +17,12 @@ module Imagekitio
             Imagekitio::UploadPreTransformSuccessEvent,
             Imagekitio::UploadPreTransformErrorEvent,
             Imagekitio::UploadPostTransformSuccessEvent,
-            Imagekitio::UploadPostTransformErrorEvent
+            Imagekitio::UploadPostTransformErrorEvent,
+            Imagekitio::DamFileCreateEvent,
+            Imagekitio::DamFileUpdateEvent,
+            Imagekitio::DamFileDeleteEvent,
+            Imagekitio::DamFileVersionCreateEvent,
+            Imagekitio::DamFileVersionDeleteEvent
           )
         end
 

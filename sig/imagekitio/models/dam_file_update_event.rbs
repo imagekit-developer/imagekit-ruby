@@ -1,0 +1,32 @@
+module Imagekitio
+  module Models
+    type dam_file_update_event =
+      { created_at: Time, data: Imagekitio::File, type: :"file.updated" }
+
+    class DamFileUpdateEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::File
+
+      def data=: (Imagekitio::File _) -> Imagekitio::File
+
+      def `type`: -> :"file.updated"
+
+      def type=: (:"file.updated" _) -> :"file.updated"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::File,
+        ?type: :"file.updated"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::File,
+        type: :"file.updated"
+      }
+    end
+  end
+end
