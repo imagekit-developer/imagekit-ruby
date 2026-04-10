@@ -57,7 +57,6 @@ require "imagekitio"
 
 image_kit = Imagekitio::Client.new(
   private_key: ENV["IMAGEKIT_PRIVATE_KEY"], # This is the default and can be omitted
-  password: ENV["OPTIONAL_IMAGEKIT_IGNORES_THIS"] # This is the default and can be omitted
 )
 
 response = image_kit.files.upload(
