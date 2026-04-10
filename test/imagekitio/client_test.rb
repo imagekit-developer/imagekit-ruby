@@ -37,7 +37,12 @@ class ImagekitioTest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
@@ -50,7 +55,12 @@ class ImagekitioTest < Minitest::Test
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
     image_kit =
-      Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key", max_retries: 3)
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password",
+        max_retries: 3
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
@@ -62,7 +72,12 @@ class ImagekitioTest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
@@ -79,7 +94,12 @@ class ImagekitioTest < Minitest::Test
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
     image_kit =
-      Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key", max_retries: 3)
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password",
+        max_retries: 3
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
@@ -100,7 +120,12 @@ class ImagekitioTest < Minitest::Test
     )
 
     image_kit =
-      Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key", max_retries: 1)
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password",
+        max_retries: 1
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
@@ -120,7 +145,12 @@ class ImagekitioTest < Minitest::Test
     )
 
     image_kit =
-      Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key", max_retries: 1)
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password",
+        max_retries: 1
+      )
 
     Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(Imagekitio::Errors::InternalServerError) do
@@ -140,7 +170,12 @@ class ImagekitioTest < Minitest::Test
     )
 
     image_kit =
-      Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key", max_retries: 1)
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password",
+        max_retries: 1
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
@@ -153,7 +188,12 @@ class ImagekitioTest < Minitest::Test
   def test_retry_count_header
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
@@ -167,7 +207,12 @@ class ImagekitioTest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
@@ -185,7 +230,12 @@ class ImagekitioTest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 500, body: {})
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::InternalServerError) do
       image_kit.files.upload(
@@ -209,7 +259,12 @@ class ImagekitioTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
@@ -242,7 +297,12 @@ class ImagekitioTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
@@ -270,7 +330,12 @@ class ImagekitioTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
@@ -301,7 +366,12 @@ class ImagekitioTest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     assert_raises(Imagekitio::Errors::APIConnectionError) do
       image_kit.files.upload(
@@ -320,7 +390,12 @@ class ImagekitioTest < Minitest::Test
   def test_default_headers
     stub_request(:post, "http://localhost/api/v1/files/upload").to_return_json(status: 200, body: {})
 
-    image_kit = Imagekitio::Client.new(base_url: "http://localhost", private_key: "My Private Key")
+    image_kit =
+      Imagekitio::Client.new(
+        base_url: "http://localhost",
+        private_key: "My Private Key",
+        password: "My Password"
+      )
 
     image_kit.files.upload(file: StringIO.new("Example data"), file_name: "fileName")
 
