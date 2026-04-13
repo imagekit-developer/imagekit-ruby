@@ -1,5 +1,40 @@
 # Changelog
 
+## 4.4.0 (2026-04-13)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* **api:** add missing types in ruby ([6a074df](https://github.com/imagekit-developer/imagekit-ruby/commit/6a074df0249e9ac9969c2bc4b8d12d9abbd1e233))
+* **api:** dam related webhook events ([d2ffbf3](https://github.com/imagekit-developer/imagekit-ruby/commit/d2ffbf33cabaddffbb97d4c7bc7e54be100a3c67))
+* **api:** fix spec indentation ([74e7a6a](https://github.com/imagekit-developer/imagekit-ruby/commit/74e7a6ae49a83d6faa29796443309f20633b430d))
+* **api:** indentation fix ([fae3b74](https://github.com/imagekit-developer/imagekit-ruby/commit/fae3b74e0de1bdd3e5a29c6061f546aacfc423cb))
+* **api:** merge with main to bring back missing parameters ([78377b5](https://github.com/imagekit-developer/imagekit-ruby/commit/78377b55c03f7818a5f2ae57d19464dfae58763a))
+* **api:** update webhook event names and remove DAM prefix ([c621b14](https://github.com/imagekit-developer/imagekit-ruby/commit/c621b14ca3a92b3428bd3a41156539aba3668097))
+
+
+### Bug Fixes
+
+* **api:** extract shared schemas to prevent Go webhook union breaking changes ([0325862](https://github.com/imagekit-developer/imagekit-ruby/commit/032586298410662b5f45b9b4189cc23ef74c1e40))
+* **api:** fix references of schema ([3d07367](https://github.com/imagekit-developer/imagekit-ruby/commit/3d073676557eaac1a3ce9447866936e707f45566))
+* **api:** rename DamFile events to File for consistency ([5998787](https://github.com/imagekit-developer/imagekit-ruby/commit/5998787a6607eb936b51b46b92e24679ac2dd321))
+* **docs:** remove redundant information about versioning in README ([a546963](https://github.com/imagekit-developer/imagekit-ruby/commit/a546963ec88a011e18426a2a9ad46893e8e45eec))
+* **docs:** remove redundant sub-item for webhook signature verification in README ([03f4b45](https://github.com/imagekit-developer/imagekit-ruby/commit/03f4b4580157f6c5a81905b549801e9abb2f3c2c))
+* **docs:** remove unnecessary password parameter from example ([77c9134](https://github.com/imagekit-developer/imagekit-ruby/commit/77c9134775b106ac5107579f3059390870ced790))
+* multipart encoding for file arrays ([5f02f3a](https://github.com/imagekit-developer/imagekit-ruby/commit/5f02f3a700d92bdcba063ce82d64c82fc70d37f8))
+* **webhooks:** encode webhook key in Base64 before verification ([db0b711](https://github.com/imagekit-developer/imagekit-ruby/commit/db0b711f50b3e992f36dd3f30ef74dac502a44a2))
+
+
+### Documentation
+
+* add webhook verification section to README ([ceb1927](https://github.com/imagekit-developer/imagekit-ruby/commit/ceb1927213edf8467e8e584a4b43999f0cedcf20))
+
+
+### Refactors
+
+* AITags to singular AITag schema with array items pattern ([01a4f00](https://github.com/imagekit-developer/imagekit-ruby/commit/01a4f00f0ce0b7f308f8f84351327c2a25a77408))
+
 ## 4.3.0 (2026-04-06)
 
 Full Changelog: [v4.2.0...v4.3.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.2.0...v4.3.0)
