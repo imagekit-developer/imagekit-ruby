@@ -25,6 +25,8 @@ If you're using Ruby on Rails, the [ImageKit Rails gem](https://github.com/image
 - [Helper Methods](#helper-methods)
   - [Authentication parameters for client-side uploads](#authentication-parameters-for-client-side-uploads)
   - [Responsive image attributes](#responsive-image-attributes)
+- [Webhook verification](#webhook-verification)
+  - [Verifying webhook signatures](#verifying-webhook-signatures)
 - [Handling errors](#handling-errors)
   - [Retries](#retries)
   - [Timeouts](#timeouts)
@@ -524,6 +526,12 @@ attrs = image_kit.helper.get_responsive_image_attributes({
   ]
 })
 ```
+
+## Webhook verification
+
+The ImageKit SDK provides utilities to verify webhook signatures for secure event handling. This ensures that webhook requests are actually coming from ImageKit and haven't been tampered with.
+
+For detailed information about webhook setup, signature verification, and handling different webhook events, refer to the [ImageKit webhook documentation](https://imagekit.io/docs/webhooks#verify-webhook-signature).
 
 ### Handling errors
 
