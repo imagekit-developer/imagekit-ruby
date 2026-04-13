@@ -31,8 +31,23 @@ module Imagekitio
       # Triggered when a post-transformation fails. The original file remains available, but the requested transformation could not be generated.
       variant -> { Imagekitio::UploadPostTransformErrorEvent }
 
+      # Triggered when a file is created.
+      variant -> { Imagekitio::FileCreateEvent }
+
+      # Triggered when a file is updated.
+      variant -> { Imagekitio::FileUpdateEvent }
+
+      # Triggered when a file is deleted.
+      variant -> { Imagekitio::FileDeleteEvent }
+
+      # Triggered when a file version is created.
+      variant -> { Imagekitio::FileVersionCreateEvent }
+
+      # Triggered when a file version is deleted.
+      variant -> { Imagekitio::FileVersionDeleteEvent }
+
       # @!method self.variants
-      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent)]
+      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreateEvent, Imagekitio::Models::FileUpdateEvent, Imagekitio::Models::FileDeleteEvent, Imagekitio::Models::FileVersionCreateEvent, Imagekitio::Models::FileVersionDeleteEvent)]
     end
   end
 end

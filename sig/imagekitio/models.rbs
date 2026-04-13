@@ -1,6 +1,8 @@
 module Imagekitio
   module Accounts = Imagekitio::Models::Accounts
 
+  class AITag = Imagekitio::Models::AITag
+
   class AssetListParams = Imagekitio::Models::AssetListParams
 
   class BaseOverlay = Imagekitio::Models::BaseOverlay
@@ -10,6 +12,8 @@ module Imagekitio
   module Beta = Imagekitio::Models::Beta
 
   module Cache = Imagekitio::Models::Cache
+
+  CustomMetadata: Imagekitio::Internal::Type::Converter
 
   class CustomMetadataField = Imagekitio::Models::CustomMetadataField
 
@@ -21,6 +25,8 @@ module Imagekitio
 
   class CustomMetadataFieldUpdateParams = Imagekitio::Models::CustomMetadataFieldUpdateParams
 
+  EmbeddedMetadata: Imagekitio::Internal::Type::Converter
+
   type extension_item = Imagekitio::Models::extension_item
 
   module ExtensionConfig = Imagekitio::Models::ExtensionConfig
@@ -30,6 +36,10 @@ module Imagekitio
   class File = Imagekitio::Models::File
 
   class FileCopyParams = Imagekitio::Models::FileCopyParams
+
+  class FileCreateEvent = Imagekitio::Models::FileCreateEvent
+
+  class FileDeleteEvent = Imagekitio::Models::FileDeleteEvent
 
   class FileDeleteParams = Imagekitio::Models::FileDeleteParams
 
@@ -41,9 +51,15 @@ module Imagekitio
 
   module Files = Imagekitio::Models::Files
 
+  class FileUpdateEvent = Imagekitio::Models::FileUpdateEvent
+
   class FileUpdateParams = Imagekitio::Models::FileUpdateParams
 
   class FileUploadParams = Imagekitio::Models::FileUploadParams
+
+  class FileVersionCreateEvent = Imagekitio::Models::FileVersionCreateEvent
+
+  class FileVersionDeleteEvent = Imagekitio::Models::FileVersionDeleteEvent
 
   class Folder = Imagekitio::Models::Folder
 
@@ -85,6 +101,10 @@ module Imagekitio
 
   class SavedExtensionUpdateParams = Imagekitio::Models::SavedExtensionUpdateParams
 
+  SelectedFieldsSchema: Imagekitio::Internal::Type::Converter
+
+  class SelectedFieldsSchemaItem = Imagekitio::Models::SelectedFieldsSchemaItem
+
   class SolidColorOverlay = Imagekitio::Models::SolidColorOverlay
 
   class SolidColorOverlayTransformation = Imagekitio::Models::SolidColorOverlayTransformation
@@ -118,6 +138,8 @@ module Imagekitio
   class UploadPreTransformErrorEvent = Imagekitio::Models::UploadPreTransformErrorEvent
 
   class UploadPreTransformSuccessEvent = Imagekitio::Models::UploadPreTransformSuccessEvent
+
+  class VersionInfo = Imagekitio::Models::VersionInfo
 
   class VideoOverlay = Imagekitio::Models::VideoOverlay
 

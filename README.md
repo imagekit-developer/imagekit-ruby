@@ -25,6 +25,7 @@ If you're using Ruby on Rails, the [ImageKit Rails gem](https://github.com/image
 - [Helper Methods](#helper-methods)
   - [Authentication parameters for client-side uploads](#authentication-parameters-for-client-side-uploads)
   - [Responsive image attributes](#responsive-image-attributes)
+- [Webhook verification](#webhook-verification)
 - [Handling errors](#handling-errors)
   - [Retries](#retries)
   - [Timeouts](#timeouts)
@@ -45,7 +46,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "imagekitio", "~> 4.3.0"
+gem "imagekitio", "~> 4.4.0"
 ```
 
 <!-- x-release-please-end -->
@@ -525,6 +526,12 @@ attrs = image_kit.helper.get_responsive_image_attributes({
 })
 ```
 
+## Webhook verification
+
+The ImageKit SDK provides utilities to verify webhook signatures for secure event handling. This ensures that webhook requests are actually coming from ImageKit and haven't been tampered with.
+
+For detailed information about webhook setup, signature verification, and handling different webhook events, refer to the [ImageKit webhook documentation](https://imagekit.io/docs/webhooks#verify-webhook-signature).
+
 ### Handling errors
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Imagekitio::Errors::APIError` will be thrown:
@@ -731,7 +738,7 @@ image_kit.assets.list(
 
 ## Versioning
 
-This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.
+This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions.
 
 This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.
 

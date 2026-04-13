@@ -51,7 +51,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::File::AITag]) | nil,
+        ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::AITag]) | nil,
         audio_codec: String | nil,
         bit_rate: Integer | nil,
         created_at: Time | nil,
@@ -69,14 +69,14 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
         is_published: Imagekitio::Internal::Type::Boolean | nil,
         mime: String | nil,
         name: String | nil,
-        selected_fields_schema: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::File::SelectedFieldsSchema]) | nil,
+        selected_fields_schema: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::SelectedFieldsSchemaItem]) | nil,
         size: Float | nil,
         tags: ^(Imagekitio::Internal::Type::ArrayOf[String]) | nil,
         thumbnail: String | nil,
         type: Imagekitio::File::Type | nil,
         updated_at: Time | nil,
         url: String | nil,
-        version_info: Imagekitio::File::VersionInfo | nil,
+        version_info: Imagekitio::VersionInfo | nil,
         video_codec: String | nil,
         width: Float | nil
       }
@@ -127,7 +127,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::Models::FileUploadResponse::AITag]) | nil,
+        ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::AITag]) | nil,
         audio_codec: String | nil,
         bit_rate: Integer | nil,
         custom_coordinates: String | nil,
@@ -144,12 +144,12 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
         is_published: Imagekitio::Internal::Type::Boolean | nil,
         metadata: Imagekitio::Metadata | nil,
         name: String | nil,
-        selected_fields_schema: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::Models::FileUploadResponse::SelectedFieldsSchema]) | nil,
+        selected_fields_schema: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::SelectedFieldsSchemaItem]) | nil,
         size: Float | nil,
         tags: ^(Imagekitio::Internal::Type::ArrayOf[String]) | nil,
         thumbnail_url: String | nil,
         url: String | nil,
-        version_info: Imagekitio::Models::FileUploadResponse::VersionInfo | nil,
+        version_info: Imagekitio::VersionInfo | nil,
         video_codec: String | nil,
         width: Float | nil
       }

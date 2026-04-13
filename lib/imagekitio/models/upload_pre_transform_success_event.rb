@@ -42,11 +42,9 @@ module Imagekitio
         # @!attribute ai_tags
         #   An array of tags assigned to the uploaded file by auto tagging.
         #
-        #   @return [Array<Imagekitio::Models::UploadPreTransformSuccessEvent::Data::AITag>, nil]
+        #   @return [Array<Imagekitio::Models::AITag>, nil]
         optional :ai_tags,
-                 -> {
-                   Imagekitio::Internal::Type::ArrayOf[Imagekitio::UploadPreTransformSuccessEvent::Data::AITag]
-                 },
+                 -> { Imagekitio::Internal::Type::ArrayOf[Imagekitio::AITag] },
                  api_name: :AITags,
                  nil?: true
 
@@ -186,11 +184,9 @@ module Imagekitio
         #   Keys are the names of the custom metadata fields; the value object has details
         #   about the custom metadata schema.
         #
-        #   @return [Hash{Symbol=>Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema}, nil]
+        #   @return [Hash{Symbol=>Imagekitio::Models::SelectedFieldsSchemaItem}, nil]
         optional :selected_fields_schema,
-                 -> {
-                   Imagekitio::Internal::Type::HashOf[Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema]
-                 },
+                 -> { Imagekitio::Internal::Type::HashOf[Imagekitio::SelectedFieldsSchemaItem] },
                  api_name: :selectedFieldsSchema
 
         # @!attribute size
@@ -222,10 +218,8 @@ module Imagekitio
         # @!attribute version_info
         #   An object containing the file or file version's `id` (versionId) and `name`.
         #
-        #   @return [Imagekitio::Models::UploadPreTransformSuccessEvent::Data::VersionInfo, nil]
-        optional :version_info,
-                 -> { Imagekitio::UploadPreTransformSuccessEvent::Data::VersionInfo },
-                 api_name: :versionInfo
+        #   @return [Imagekitio::Models::VersionInfo, nil]
+        optional :version_info, -> { Imagekitio::VersionInfo }, api_name: :versionInfo
 
         # @!attribute video_codec
         #   The video codec used in the video (only for video).
@@ -245,7 +239,7 @@ module Imagekitio
         #
         #   Object containing details of a successful upload.
         #
-        #   @param ai_tags [Array<Imagekitio::Models::UploadPreTransformSuccessEvent::Data::AITag>, nil] An array of tags assigned to the uploaded file by auto tagging.
+        #   @param ai_tags [Array<Imagekitio::Models::AITag>, nil] An array of tags assigned to the uploaded file by auto tagging.
         #
         #   @param audio_codec [String] The audio codec used in the video (only for video).
         #
@@ -279,7 +273,7 @@ module Imagekitio
         #
         #   @param name [String] Name of the asset.
         #
-        #   @param selected_fields_schema [Hash{Symbol=>Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema}] This field is included in the response only if the Path policy feature is availa
+        #   @param selected_fields_schema [Hash{Symbol=>Imagekitio::Models::SelectedFieldsSchemaItem}] This field is included in the response only if the Path policy feature is availa
         #
         #   @param size [Float] Size of the image file in Bytes.
         #
@@ -289,44 +283,11 @@ module Imagekitio
         #
         #   @param url [String] A publicly accessible URL of the file.
         #
-        #   @param version_info [Imagekitio::Models::UploadPreTransformSuccessEvent::Data::VersionInfo] An object containing the file or file version's `id` (versionId) and `name`.
+        #   @param version_info [Imagekitio::Models::VersionInfo] An object containing the file or file version's `id` (versionId) and `name`.
         #
         #   @param video_codec [String] The video codec used in the video (only for video).
         #
         #   @param width [Float] Width of the image in pixels (Only for Images)
-
-        class AITag < Imagekitio::Internal::Type::BaseModel
-          # @!attribute confidence
-          #   Confidence score of the tag.
-          #
-          #   @return [Float, nil]
-          optional :confidence, Float
-
-          # @!attribute name
-          #   Name of the tag.
-          #
-          #   @return [String, nil]
-          optional :name, String
-
-          # @!attribute source
-          #   Array of `AITags` associated with the image. If no `AITags` are set, it will be
-          #   null. These tags can be added using the `google-auto-tagging` or
-          #   `aws-auto-tagging` extensions.
-          #
-          #   @return [String, nil]
-          optional :source, String
-
-          # @!method initialize(confidence: nil, name: nil, source: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Imagekitio::Models::UploadPreTransformSuccessEvent::Data::AITag} for more
-          #   details.
-          #
-          #   @param confidence [Float] Confidence score of the tag.
-          #
-          #   @param name [String] Name of the tag.
-          #
-          #   @param source [String] Array of `AITags` associated with the image. If no `AITags` are set, it will be
-        end
 
         # @see Imagekitio::Models::UploadPreTransformSuccessEvent::Data#extension_status
         class ExtensionStatus < Imagekitio::Internal::Type::BaseModel
@@ -447,243 +408,6 @@ module Imagekitio
             # @!method self.values
             #   @return [Array<Symbol>]
           end
-        end
-
-        class SelectedFieldsSchema < Imagekitio::Internal::Type::BaseModel
-          # @!attribute type
-          #   Type of the custom metadata field.
-          #
-          #   @return [Symbol, Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::Type]
-          required :type, enum: -> { Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::Type }
-
-          # @!attribute default_value
-          #   The default value for this custom metadata field. The value should match the
-          #   `type` of custom metadata field.
-          #
-          #   @return [String, Float, Boolean, Array<String, Float, Boolean>, nil]
-          optional :default_value,
-                   union: -> {
-                     Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::DefaultValue
-                   },
-                   api_name: :defaultValue
-
-          # @!attribute is_value_required
-          #   Specifies if the custom metadata field is required or not.
-          #
-          #   @return [Boolean, nil]
-          optional :is_value_required, Imagekitio::Internal::Type::Boolean, api_name: :isValueRequired
-
-          # @!attribute max_length
-          #   Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
-          #
-          #   @return [Float, nil]
-          optional :max_length, Float, api_name: :maxLength
-
-          # @!attribute max_value
-          #   Maximum value of the field. Only set if field type is `Date` or `Number`. For
-          #   `Date` type field, the value will be in ISO8601 string format. For `Number` type
-          #   field, it will be a numeric value.
-          #
-          #   @return [String, Float, nil]
-          optional :max_value,
-                   union: -> {
-                     Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::MaxValue
-                   },
-                   api_name: :maxValue
-
-          # @!attribute min_length
-          #   Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
-          #
-          #   @return [Float, nil]
-          optional :min_length, Float, api_name: :minLength
-
-          # @!attribute min_value
-          #   Minimum value of the field. Only set if field type is `Date` or `Number`. For
-          #   `Date` type field, the value will be in ISO8601 string format. For `Number` type
-          #   field, it will be a numeric value.
-          #
-          #   @return [String, Float, nil]
-          optional :min_value,
-                   union: -> {
-                     Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::MinValue
-                   },
-                   api_name: :minValue
-
-          # @!attribute read_only
-          #   Indicates whether the custom metadata field is read only. A read only field
-          #   cannot be modified after being set. This field is configurable only via the
-          #   **Path policy** feature.
-          #
-          #   @return [Boolean, nil]
-          optional :read_only, Imagekitio::Internal::Type::Boolean, api_name: :readOnly
-
-          # @!attribute select_options
-          #   An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
-          #
-          #   @return [Array<String, Float, Boolean>, nil]
-          optional :select_options,
-                   -> {
-                     Imagekitio::Internal::Type::ArrayOf[union: Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::SelectOption]
-                   },
-                   api_name: :selectOptions
-
-          # @!attribute select_options_truncated
-          #   Specifies if the selectOptions array is truncated. It is truncated when number
-          #   of options are > 100.
-          #
-          #   @return [Boolean, nil]
-          optional :select_options_truncated,
-                   Imagekitio::Internal::Type::Boolean,
-                   api_name: :selectOptionsTruncated
-
-          # @!method initialize(type:, default_value: nil, is_value_required: nil, max_length: nil, max_value: nil, min_length: nil, min_value: nil, read_only: nil, select_options: nil, select_options_truncated: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema}
-          #   for more details.
-          #
-          #   @param type [Symbol, Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::Type] Type of the custom metadata field.
-          #
-          #   @param default_value [String, Float, Boolean, Array<String, Float, Boolean>] The default value for this custom metadata field. The value should match the `ty
-          #
-          #   @param is_value_required [Boolean] Specifies if the custom metadata field is required or not.
-          #
-          #   @param max_length [Float] Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
-          #
-          #   @param max_value [String, Float] Maximum value of the field. Only set if field type is `Date` or `Number`. For `D
-          #
-          #   @param min_length [Float] Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
-          #
-          #   @param min_value [String, Float] Minimum value of the field. Only set if field type is `Date` or `Number`. For `D
-          #
-          #   @param read_only [Boolean] Indicates whether the custom metadata field is read only. A read only field cann
-          #
-          #   @param select_options [Array<String, Float, Boolean>] An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
-          #
-          #   @param select_options_truncated [Boolean] Specifies if the selectOptions array is truncated. It is truncated when number o
-
-          # Type of the custom metadata field.
-          #
-          # @see Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema#type
-          module Type
-            extend Imagekitio::Internal::Type::Enum
-
-            TEXT = :Text
-            TEXTAREA = :Textarea
-            NUMBER = :Number
-            DATE = :Date
-            BOOLEAN = :Boolean
-            SINGLE_SELECT = :SingleSelect
-            MULTI_SELECT = :MultiSelect
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # The default value for this custom metadata field. The value should match the
-          # `type` of custom metadata field.
-          #
-          # @see Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema#default_value
-          module DefaultValue
-            extend Imagekitio::Internal::Type::Union
-
-            variant String
-
-            variant Float
-
-            variant Imagekitio::Internal::Type::Boolean
-
-            # Default value should be of type array when custom metadata field type is set to `MultiSelect`.
-            variant -> { Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::DefaultValue::MixedArray }
-
-            module Mixed
-              extend Imagekitio::Internal::Type::Union
-
-              variant String
-
-              variant Float
-
-              variant Imagekitio::Internal::Type::Boolean
-
-              # @!method self.variants
-              #   @return [Array(String, Float, Boolean)]
-            end
-
-            # @!method self.variants
-            #   @return [Array(String, Float, Boolean, Array<String, Float, Boolean>)]
-
-            # @type [Imagekitio::Internal::Type::Converter]
-            MixedArray =
-              Imagekitio::Internal::Type::ArrayOf[union: -> {
-                Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema::DefaultValue::Mixed
-              }]
-          end
-
-          # Maximum value of the field. Only set if field type is `Date` or `Number`. For
-          # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-          # field, it will be a numeric value.
-          #
-          # @see Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema#max_value
-          module MaxValue
-            extend Imagekitio::Internal::Type::Union
-
-            variant String
-
-            variant Float
-
-            # @!method self.variants
-            #   @return [Array(String, Float)]
-          end
-
-          # Minimum value of the field. Only set if field type is `Date` or `Number`. For
-          # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-          # field, it will be a numeric value.
-          #
-          # @see Imagekitio::Models::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema#min_value
-          module MinValue
-            extend Imagekitio::Internal::Type::Union
-
-            variant String
-
-            variant Float
-
-            # @!method self.variants
-            #   @return [Array(String, Float)]
-          end
-
-          module SelectOption
-            extend Imagekitio::Internal::Type::Union
-
-            variant String
-
-            variant Float
-
-            variant Imagekitio::Internal::Type::Boolean
-
-            # @!method self.variants
-            #   @return [Array(String, Float, Boolean)]
-          end
-        end
-
-        # @see Imagekitio::Models::UploadPreTransformSuccessEvent::Data#version_info
-        class VersionInfo < Imagekitio::Internal::Type::BaseModel
-          # @!attribute id
-          #   Unique identifier of the file version.
-          #
-          #   @return [String, nil]
-          optional :id, String
-
-          # @!attribute name
-          #   Name of the file version.
-          #
-          #   @return [String, nil]
-          optional :name, String
-
-          # @!method initialize(id: nil, name: nil)
-          #   An object containing the file or file version's `id` (versionId) and `name`.
-          #
-          #   @param id [String] Unique identifier of the file version.
-          #
-          #   @param name [String] Name of the file version.
         end
       end
 

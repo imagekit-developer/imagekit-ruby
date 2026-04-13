@@ -1,0 +1,7 @@
+module Imagekitio
+  module Models
+    type custom_metadata = ::Hash[Symbol, top]
+
+    CustomMetadata: Imagekitio::Internal::Type::Converter
+  end
+end
