@@ -13,9 +13,7 @@ module Imagekitio
               )
             end
 
-          # Array of `AITags` associated with the image. If no `AITags` are set, it will be
-          # null. These tags can be added using the `google-auto-tagging` or
-          # `aws-auto-tagging` extensions.
+          # An array of tags assigned to the uploaded file by auto tagging.
           sig do
             returns(
               T.nilable(
@@ -303,9 +301,7 @@ module Imagekitio
             ).returns(T.attached_class)
           end
           def self.new(
-            # Array of `AITags` associated with the image. If no `AITags` are set, it will be
-            # null. These tags can be added using the `google-auto-tagging` or
-            # `aws-auto-tagging` extensions.
+            # An array of tags assigned to the uploaded file by auto tagging.
             ai_tags: nil,
             # The audio codec used in the video (only for video).
             audio_codec: nil,

@@ -6,9 +6,8 @@ module Imagekitio
       OrHash =
         T.type_alias { T.any(Imagekitio::File, Imagekitio::Internal::AnyHash) }
 
-      # Array of `AITags` associated with the image. If no `AITags` are set, it will be
-      # null. These tags can be added using the `google-auto-tagging` or
-      # `aws-auto-tagging` extensions.
+      # Array of AI-generated tags associated with the image. If no AITags are set, it
+      # will be null.
       sig { returns(T.nilable(T::Array[Imagekitio::File::AITag])) }
       attr_accessor :ai_tags
 
@@ -38,11 +37,7 @@ module Imagekitio
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_coordinates
 
-      # A key-value data associated with the asset. Use `responseField` in API request
-      # to get `customMetadata` in the upload API response. Before setting any custom
-      # metadata on an asset, you have to create the field using custom metadata fields
-      # API. Send `customMetadata` in `responseFields` in API request to get the value
-      # of this field.
+      # An object with custom metadata for the file.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_reader :custom_metadata
 
@@ -65,8 +60,7 @@ module Imagekitio
       attr_writer :duration
 
       # Consolidated embedded metadata associated with the file. It includes exif, iptc,
-      # and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get
-      # embeddedMetadata in the upload API response.
+      # and xmp data.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_reader :embedded_metadata
 
@@ -203,7 +197,7 @@ module Imagekitio
       sig { params(url: String).void }
       attr_writer :url
 
-      # An object containing the file or file version's `id` (versionId) and `name`.
+      # An object with details of the file version.
       sig { returns(T.nilable(Imagekitio::File::VersionInfo)) }
       attr_reader :version_info
 
@@ -259,9 +253,8 @@ module Imagekitio
         ).returns(T.attached_class)
       end
       def self.new(
-        # Array of `AITags` associated with the image. If no `AITags` are set, it will be
-        # null. These tags can be added using the `google-auto-tagging` or
-        # `aws-auto-tagging` extensions.
+        # Array of AI-generated tags associated with the image. If no AITags are set, it
+        # will be null.
         ai_tags: nil,
         # The audio codec used in the video (only for video/audio).
         audio_codec: nil,
@@ -272,11 +265,7 @@ module Imagekitio
         created_at: nil,
         # An string with custom coordinates of the file.
         custom_coordinates: nil,
-        # A key-value data associated with the asset. Use `responseField` in API request
-        # to get `customMetadata` in the upload API response. Before setting any custom
-        # metadata on an asset, you have to create the field using custom metadata fields
-        # API. Send `customMetadata` in `responseFields` in API request to get the value
-        # of this field.
+        # An object with custom metadata for the file.
         custom_metadata: nil,
         # Optional text to describe the contents of the file. Can be set by the user or
         # the ai-auto-description extension.
@@ -284,8 +273,7 @@ module Imagekitio
         # The duration of the video in seconds (only for video).
         duration: nil,
         # Consolidated embedded metadata associated with the file. It includes exif, iptc,
-        # and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get
-        # embeddedMetadata in the upload API response.
+        # and xmp data.
         embedded_metadata: nil,
         # Unique identifier of the asset.
         file_id: nil,
@@ -331,7 +319,7 @@ module Imagekitio
         updated_at: nil,
         # URL of the file.
         url: nil,
-        # An object containing the file or file version's `id` (versionId) and `name`.
+        # An object with details of the file version.
         version_info: nil,
         # The video codec used in the video (only for video).
         video_codec: nil,

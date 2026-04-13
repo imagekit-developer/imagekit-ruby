@@ -7,9 +7,7 @@ module Imagekitio
         # @see Imagekitio::Resources::Beta::V2::Files#upload
         class FileUploadResponse < Imagekitio::Internal::Type::BaseModel
           # @!attribute ai_tags
-          #   Array of `AITags` associated with the image. If no `AITags` are set, it will be
-          #   null. These tags can be added using the `google-auto-tagging` or
-          #   `aws-auto-tagging` extensions.
+          #   An array of tags assigned to the uploaded file by auto tagging.
           #
           #   @return [Array<Imagekitio::Models::Beta::V2::FileUploadResponse::AITag>, nil]
           optional :ai_tags,
@@ -210,7 +208,7 @@ module Imagekitio
           #
           #   Object containing details of a successful upload.
           #
-          #   @param ai_tags [Array<Imagekitio::Models::Beta::V2::FileUploadResponse::AITag>, nil] Array of `AITags` associated with the image. If no `AITags` are set, it will be
+          #   @param ai_tags [Array<Imagekitio::Models::Beta::V2::FileUploadResponse::AITag>, nil] An array of tags assigned to the uploaded file by auto tagging.
           #
           #   @param audio_codec [String] The audio codec used in the video (only for video).
           #
