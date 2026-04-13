@@ -378,57 +378,6 @@ module Imagekitio
       def to_hash
       end
 
-      class AITag < Imagekitio::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(Imagekitio::File::AITag, Imagekitio::Internal::AnyHash)
-          end
-
-        # Confidence score of the tag.
-        sig { returns(T.nilable(Float)) }
-        attr_reader :confidence
-
-        sig { params(confidence: Float).void }
-        attr_writer :confidence
-
-        # Name of the tag.
-        sig { returns(T.nilable(String)) }
-        attr_reader :name
-
-        sig { params(name: String).void }
-        attr_writer :name
-
-        # Source of the tag. Possible values are `google-auto-tagging` and
-        # `aws-auto-tagging`.
-        sig { returns(T.nilable(String)) }
-        attr_reader :source
-
-        sig { params(source: String).void }
-        attr_writer :source
-
-        sig do
-          params(confidence: Float, name: String, source: String).returns(
-            T.attached_class
-          )
-        end
-        def self.new(
-          # Confidence score of the tag.
-          confidence: nil,
-          # Name of the tag.
-          name: nil,
-          # Source of the tag. Possible values are `google-auto-tagging` and
-          # `aws-auto-tagging`.
-          source: nil
-        )
-        end
-
-        sig do
-          override.returns({ confidence: Float, name: String, source: String })
-        end
-        def to_hash
-        end
-      end
-
       # Type of the asset.
       module Type
         extend Imagekitio::Internal::Type::Enum
@@ -442,41 +391,6 @@ module Imagekitio
 
         sig { override.returns(T::Array[Imagekitio::File::Type::TaggedSymbol]) }
         def self.values
-        end
-      end
-
-      class VersionInfo < Imagekitio::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(Imagekitio::File::VersionInfo, Imagekitio::Internal::AnyHash)
-          end
-
-        # Unique identifier of the file version.
-        sig { returns(T.nilable(String)) }
-        attr_reader :id
-
-        sig { params(id: String).void }
-        attr_writer :id
-
-        # Name of the file version.
-        sig { returns(T.nilable(String)) }
-        attr_reader :name
-
-        sig { params(name: String).void }
-        attr_writer :name
-
-        # An object containing the file or file version's `id` (versionId) and `name`.
-        sig { params(id: String, name: String).returns(T.attached_class) }
-        def self.new(
-          # Unique identifier of the file version.
-          id: nil,
-          # Name of the file version.
-          name: nil
-        )
-        end
-
-        sig { override.returns({ id: String, name: String }) }
-        def to_hash
         end
       end
     end

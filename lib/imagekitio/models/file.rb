@@ -265,37 +265,6 @@ module Imagekitio
       #
       #   @param width [Float] Width of the file.
 
-      class AITag < Imagekitio::Internal::Type::BaseModel
-        # @!attribute confidence
-        #   Confidence score of the tag.
-        #
-        #   @return [Float, nil]
-        optional :confidence, Float
-
-        # @!attribute name
-        #   Name of the tag.
-        #
-        #   @return [String, nil]
-        optional :name, String
-
-        # @!attribute source
-        #   Source of the tag. Possible values are `google-auto-tagging` and
-        #   `aws-auto-tagging`.
-        #
-        #   @return [String, nil]
-        optional :source, String
-
-        # @!method initialize(confidence: nil, name: nil, source: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Imagekitio::Models::File::AITag} for more details.
-        #
-        #   @param confidence [Float] Confidence score of the tag.
-        #
-        #   @param name [String] Name of the tag.
-        #
-        #   @param source [String] Source of the tag. Possible values are `google-auto-tagging` and `aws-auto-taggi
-      end
-
       # Type of the asset.
       #
       # @see Imagekitio::Models::File#type
@@ -307,28 +276,6 @@ module Imagekitio
 
         # @!method self.values
         #   @return [Array<Symbol>]
-      end
-
-      # @see Imagekitio::Models::File#version_info
-      class VersionInfo < Imagekitio::Internal::Type::BaseModel
-        # @!attribute id
-        #   Unique identifier of the file version.
-        #
-        #   @return [String, nil]
-        optional :id, String
-
-        # @!attribute name
-        #   Name of the file version.
-        #
-        #   @return [String, nil]
-        optional :name, String
-
-        # @!method initialize(id: nil, name: nil)
-        #   An object containing the file or file version's `id` (versionId) and `name`.
-        #
-        #   @param id [String] Unique identifier of the file version.
-        #
-        #   @param name [String] Name of the file version.
       end
     end
   end
