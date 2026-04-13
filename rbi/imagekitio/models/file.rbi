@@ -6,7 +6,9 @@ module Imagekitio
       OrHash =
         T.type_alias { T.any(Imagekitio::File, Imagekitio::Internal::AnyHash) }
 
-      # An array of tags assigned to the file by auto tagging.
+      # Array of `AITags` associated with the image. If no `AITags` are set, it will be
+      # null. These tags can be added using the `google-auto-tagging` or
+      # `aws-auto-tagging` extensions.
       sig { returns(T.nilable(T::Array[Imagekitio::File::AITag])) }
       attr_accessor :ai_tags
 
@@ -36,7 +38,11 @@ module Imagekitio
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_coordinates
 
-      # An object with custom metadata for the file.
+      # A key-value data associated with the asset. Use `responseField` in API request
+      # to get `customMetadata` in the upload API response. Before setting any custom
+      # metadata on an asset, you have to create the field using custom metadata fields
+      # API. Send `customMetadata` in `responseFields` in API request to get the value
+      # of this field.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_reader :custom_metadata
 
@@ -59,7 +65,8 @@ module Imagekitio
       attr_writer :duration
 
       # Consolidated embedded metadata associated with the file. It includes exif, iptc,
-      # and xmp data.
+      # and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get
+      # embeddedMetadata in the upload API response.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_reader :embedded_metadata
 
@@ -196,7 +203,7 @@ module Imagekitio
       sig { params(url: String).void }
       attr_writer :url
 
-      # An object with details of the file version.
+      # An object containing the file or file version's `id` (versionId) and `name`.
       sig { returns(T.nilable(Imagekitio::File::VersionInfo)) }
       attr_reader :version_info
 
@@ -252,7 +259,9 @@ module Imagekitio
         ).returns(T.attached_class)
       end
       def self.new(
-        # An array of tags assigned to the file by auto tagging.
+        # Array of `AITags` associated with the image. If no `AITags` are set, it will be
+        # null. These tags can be added using the `google-auto-tagging` or
+        # `aws-auto-tagging` extensions.
         ai_tags: nil,
         # The audio codec used in the video (only for video/audio).
         audio_codec: nil,
@@ -263,7 +272,11 @@ module Imagekitio
         created_at: nil,
         # An string with custom coordinates of the file.
         custom_coordinates: nil,
-        # An object with custom metadata for the file.
+        # A key-value data associated with the asset. Use `responseField` in API request
+        # to get `customMetadata` in the upload API response. Before setting any custom
+        # metadata on an asset, you have to create the field using custom metadata fields
+        # API. Send `customMetadata` in `responseFields` in API request to get the value
+        # of this field.
         custom_metadata: nil,
         # Optional text to describe the contents of the file. Can be set by the user or
         # the ai-auto-description extension.
@@ -271,7 +284,8 @@ module Imagekitio
         # The duration of the video in seconds (only for video).
         duration: nil,
         # Consolidated embedded metadata associated with the file. It includes exif, iptc,
-        # and xmp data.
+        # and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get
+        # embeddedMetadata in the upload API response.
         embedded_metadata: nil,
         # Unique identifier of the asset.
         file_id: nil,
@@ -317,7 +331,7 @@ module Imagekitio
         updated_at: nil,
         # URL of the file.
         url: nil,
-        # An object with details of the file version.
+        # An object containing the file or file version's `id` (versionId) and `name`.
         version_info: nil,
         # The video codec used in the video (only for video).
         video_codec: nil,
@@ -415,382 +429,6 @@ module Imagekitio
         end
       end
 
-      class SelectedFieldsSchema < Imagekitio::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              Imagekitio::File::SelectedFieldsSchema,
-              Imagekitio::Internal::AnyHash
-            )
-          end
-
-        # Type of the custom metadata field.
-        sig do
-          returns(Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol)
-        end
-        attr_accessor :type
-
-        # The default value for this custom metadata field. The value should match the
-        # `type` of custom metadata field.
-        sig do
-          returns(
-            T.nilable(
-              Imagekitio::File::SelectedFieldsSchema::DefaultValue::Variants
-            )
-          )
-        end
-        attr_reader :default_value
-
-        sig do
-          params(
-            default_value:
-              Imagekitio::File::SelectedFieldsSchema::DefaultValue::Variants
-          ).void
-        end
-        attr_writer :default_value
-
-        # Specifies if the custom metadata field is required or not.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_reader :is_value_required
-
-        sig { params(is_value_required: T::Boolean).void }
-        attr_writer :is_value_required
-
-        # Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
-        sig { returns(T.nilable(Float)) }
-        attr_reader :max_length
-
-        sig { params(max_length: Float).void }
-        attr_writer :max_length
-
-        # Maximum value of the field. Only set if field type is `Date` or `Number`. For
-        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-        # field, it will be a numeric value.
-        sig do
-          returns(
-            T.nilable(
-              Imagekitio::File::SelectedFieldsSchema::MaxValue::Variants
-            )
-          )
-        end
-        attr_reader :max_value
-
-        sig do
-          params(
-            max_value:
-              Imagekitio::File::SelectedFieldsSchema::MaxValue::Variants
-          ).void
-        end
-        attr_writer :max_value
-
-        # Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
-        sig { returns(T.nilable(Float)) }
-        attr_reader :min_length
-
-        sig { params(min_length: Float).void }
-        attr_writer :min_length
-
-        # Minimum value of the field. Only set if field type is `Date` or `Number`. For
-        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-        # field, it will be a numeric value.
-        sig do
-          returns(
-            T.nilable(
-              Imagekitio::File::SelectedFieldsSchema::MinValue::Variants
-            )
-          )
-        end
-        attr_reader :min_value
-
-        sig do
-          params(
-            min_value:
-              Imagekitio::File::SelectedFieldsSchema::MinValue::Variants
-          ).void
-        end
-        attr_writer :min_value
-
-        # Indicates whether the custom metadata field is read only. A read only field
-        # cannot be modified after being set. This field is configurable only via the
-        # **Path policy** feature.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_reader :read_only
-
-        sig { params(read_only: T::Boolean).void }
-        attr_writer :read_only
-
-        # An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
-        sig do
-          returns(
-            T.nilable(
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::SelectOption::Variants
-              ]
-            )
-          )
-        end
-        attr_reader :select_options
-
-        sig do
-          params(
-            select_options:
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::SelectOption::Variants
-              ]
-          ).void
-        end
-        attr_writer :select_options
-
-        # Specifies if the selectOptions array is truncated. It is truncated when number
-        # of options are > 100.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_reader :select_options_truncated
-
-        sig { params(select_options_truncated: T::Boolean).void }
-        attr_writer :select_options_truncated
-
-        sig do
-          params(
-            type: Imagekitio::File::SelectedFieldsSchema::Type::OrSymbol,
-            default_value:
-              Imagekitio::File::SelectedFieldsSchema::DefaultValue::Variants,
-            is_value_required: T::Boolean,
-            max_length: Float,
-            max_value:
-              Imagekitio::File::SelectedFieldsSchema::MaxValue::Variants,
-            min_length: Float,
-            min_value:
-              Imagekitio::File::SelectedFieldsSchema::MinValue::Variants,
-            read_only: T::Boolean,
-            select_options:
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::SelectOption::Variants
-              ],
-            select_options_truncated: T::Boolean
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Type of the custom metadata field.
-          type:,
-          # The default value for this custom metadata field. The value should match the
-          # `type` of custom metadata field.
-          default_value: nil,
-          # Specifies if the custom metadata field is required or not.
-          is_value_required: nil,
-          # Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
-          max_length: nil,
-          # Maximum value of the field. Only set if field type is `Date` or `Number`. For
-          # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-          # field, it will be a numeric value.
-          max_value: nil,
-          # Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
-          min_length: nil,
-          # Minimum value of the field. Only set if field type is `Date` or `Number`. For
-          # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-          # field, it will be a numeric value.
-          min_value: nil,
-          # Indicates whether the custom metadata field is read only. A read only field
-          # cannot be modified after being set. This field is configurable only via the
-          # **Path policy** feature.
-          read_only: nil,
-          # An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
-          select_options: nil,
-          # Specifies if the selectOptions array is truncated. It is truncated when number
-          # of options are > 100.
-          select_options_truncated: nil
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              type: Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol,
-              default_value:
-                Imagekitio::File::SelectedFieldsSchema::DefaultValue::Variants,
-              is_value_required: T::Boolean,
-              max_length: Float,
-              max_value:
-                Imagekitio::File::SelectedFieldsSchema::MaxValue::Variants,
-              min_length: Float,
-              min_value:
-                Imagekitio::File::SelectedFieldsSchema::MinValue::Variants,
-              read_only: T::Boolean,
-              select_options:
-                T::Array[
-                  Imagekitio::File::SelectedFieldsSchema::SelectOption::Variants
-                ],
-              select_options_truncated: T::Boolean
-            }
-          )
-        end
-        def to_hash
-        end
-
-        # Type of the custom metadata field.
-        module Type
-          extend Imagekitio::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Imagekitio::File::SelectedFieldsSchema::Type)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          TEXT =
-            T.let(
-              :Text,
-              Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-            )
-          TEXTAREA =
-            T.let(
-              :Textarea,
-              Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-            )
-          NUMBER =
-            T.let(
-              :Number,
-              Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-            )
-          DATE =
-            T.let(
-              :Date,
-              Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-            )
-          BOOLEAN =
-            T.let(
-              :Boolean,
-              Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-            )
-          SINGLE_SELECT =
-            T.let(
-              :SingleSelect,
-              Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-            )
-          MULTI_SELECT =
-            T.let(
-              :MultiSelect,
-              Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::Type::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The default value for this custom metadata field. The value should match the
-        # `type` of custom metadata field.
-        module DefaultValue
-          extend Imagekitio::Internal::Type::Union
-
-          Variants =
-            T.type_alias do
-              T.any(
-                String,
-                Float,
-                T::Boolean,
-                T::Array[
-                  Imagekitio::File::SelectedFieldsSchema::DefaultValue::Mixed::Variants
-                ]
-              )
-            end
-
-          module Mixed
-            extend Imagekitio::Internal::Type::Union
-
-            Variants = T.type_alias { T.any(String, Float, T::Boolean) }
-
-            sig do
-              override.returns(
-                T::Array[
-                  Imagekitio::File::SelectedFieldsSchema::DefaultValue::Mixed::Variants
-                ]
-              )
-            end
-            def self.variants
-            end
-          end
-
-          sig do
-            override.returns(
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::DefaultValue::Variants
-              ]
-            )
-          end
-          def self.variants
-          end
-
-          MixedArray =
-            T.let(
-              Imagekitio::Internal::Type::ArrayOf[
-                union:
-                  Imagekitio::File::SelectedFieldsSchema::DefaultValue::Mixed
-              ],
-              Imagekitio::Internal::Type::Converter
-            )
-        end
-
-        # Maximum value of the field. Only set if field type is `Date` or `Number`. For
-        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-        # field, it will be a numeric value.
-        module MaxValue
-          extend Imagekitio::Internal::Type::Union
-
-          Variants = T.type_alias { T.any(String, Float) }
-
-          sig do
-            override.returns(
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::MaxValue::Variants
-              ]
-            )
-          end
-          def self.variants
-          end
-        end
-
-        # Minimum value of the field. Only set if field type is `Date` or `Number`. For
-        # `Date` type field, the value will be in ISO8601 string format. For `Number` type
-        # field, it will be a numeric value.
-        module MinValue
-          extend Imagekitio::Internal::Type::Union
-
-          Variants = T.type_alias { T.any(String, Float) }
-
-          sig do
-            override.returns(
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::MinValue::Variants
-              ]
-            )
-          end
-          def self.variants
-          end
-        end
-
-        module SelectOption
-          extend Imagekitio::Internal::Type::Union
-
-          Variants = T.type_alias { T.any(String, Float, T::Boolean) }
-
-          sig do
-            override.returns(
-              T::Array[
-                Imagekitio::File::SelectedFieldsSchema::SelectOption::Variants
-              ]
-            )
-          end
-          def self.variants
-          end
-        end
-      end
-
       # Type of the asset.
       module Type
         extend Imagekitio::Internal::Type::Enum
@@ -827,7 +465,7 @@ module Imagekitio
         sig { params(name: String).void }
         attr_writer :name
 
-        # An object with details of the file version.
+        # An object containing the file or file version's `id` (versionId) and `name`.
         sig { params(id: String, name: String).returns(T.attached_class) }
         def self.new(
           # Unique identifier of the file version.
