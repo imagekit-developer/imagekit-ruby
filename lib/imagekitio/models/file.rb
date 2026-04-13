@@ -5,9 +5,8 @@ module Imagekitio
     # @see Imagekitio::Resources::Files#get
     class File < Imagekitio::Internal::Type::BaseModel
       # @!attribute ai_tags
-      #   Array of `AITags` associated with the image. If no `AITags` are set, it will be
-      #   null. These tags can be added using the `google-auto-tagging` or
-      #   `aws-auto-tagging` extensions.
+      #   Array of AI-generated tags associated with the image. If no AITags are set, it
+      #   will be null.
       #
       #   @return [Array<Imagekitio::Models::File::AITag>, nil]
       optional :ai_tags,
@@ -41,11 +40,7 @@ module Imagekitio
       optional :custom_coordinates, String, api_name: :customCoordinates, nil?: true
 
       # @!attribute custom_metadata
-      #   A key-value data associated with the asset. Use `responseField` in API request
-      #   to get `customMetadata` in the upload API response. Before setting any custom
-      #   metadata on an asset, you have to create the field using custom metadata fields
-      #   API. Send `customMetadata` in `responseFields` in API request to get the value
-      #   of this field.
+      #   An object with custom metadata for the file.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :custom_metadata,
@@ -67,8 +62,7 @@ module Imagekitio
 
       # @!attribute embedded_metadata
       #   Consolidated embedded metadata associated with the file. It includes exif, iptc,
-      #   and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get
-      #   embeddedMetadata in the upload API response.
+      #   and xmp data.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :embedded_metadata,
@@ -186,7 +180,7 @@ module Imagekitio
       optional :url, String
 
       # @!attribute version_info
-      #   An object containing the file or file version's `id` (versionId) and `name`.
+      #   An object with details of the file version.
       #
       #   @return [Imagekitio::Models::File::VersionInfo, nil]
       optional :version_info, -> { Imagekitio::File::VersionInfo }, api_name: :versionInfo
@@ -209,7 +203,7 @@ module Imagekitio
       #
       #   Object containing details of a file or file version.
       #
-      #   @param ai_tags [Array<Imagekitio::Models::File::AITag>, nil] Array of `AITags` associated with the image. If no `AITags` are set, it will be
+      #   @param ai_tags [Array<Imagekitio::Models::File::AITag>, nil] Array of AI-generated tags associated with the image. If no AITags are set, it w
       #
       #   @param audio_codec [String] The audio codec used in the video (only for video/audio).
       #
@@ -219,7 +213,7 @@ module Imagekitio
       #
       #   @param custom_coordinates [String, nil] An string with custom coordinates of the file.
       #
-      #   @param custom_metadata [Hash{Symbol=>Object}] A key-value data associated with the asset. Use `responseField` in API request t
+      #   @param custom_metadata [Hash{Symbol=>Object}] An object with custom metadata for the file.
       #
       #   @param description [String] Optional text to describe the contents of the file. Can be set by the user or th
       #
@@ -259,7 +253,7 @@ module Imagekitio
       #
       #   @param url [String] URL of the file.
       #
-      #   @param version_info [Imagekitio::Models::File::VersionInfo] An object containing the file or file version's `id` (versionId) and `name`.
+      #   @param version_info [Imagekitio::Models::File::VersionInfo] An object with details of the file version.
       #
       #   @param video_codec [String] The video codec used in the video (only for video).
       #
