@@ -14,7 +14,7 @@ class Imagekitio::Test::Resources::Beta::V2::FilesTest < Imagekitio::Test::Resou
 
     assert_pattern do
       response => {
-        ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::Models::Beta::V2::FileUploadResponse::AITag]) | nil,
+        ai_tags: ^(Imagekitio::Internal::Type::ArrayOf[Imagekitio::AITag]) | nil,
         audio_codec: String | nil,
         bit_rate: Integer | nil,
         custom_coordinates: String | nil,
@@ -31,12 +31,12 @@ class Imagekitio::Test::Resources::Beta::V2::FilesTest < Imagekitio::Test::Resou
         is_published: Imagekitio::Internal::Type::Boolean | nil,
         metadata: Imagekitio::Metadata | nil,
         name: String | nil,
-        selected_fields_schema: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::Models::Beta::V2::FileUploadResponse::SelectedFieldsSchema]) | nil,
+        selected_fields_schema: ^(Imagekitio::Internal::Type::HashOf[Imagekitio::SelectedFieldsSchemaItem]) | nil,
         size: Float | nil,
         tags: ^(Imagekitio::Internal::Type::ArrayOf[String]) | nil,
         thumbnail_url: String | nil,
         url: String | nil,
-        version_info: Imagekitio::Models::Beta::V2::FileUploadResponse::VersionInfo | nil,
+        version_info: Imagekitio::VersionInfo | nil,
         video_codec: String | nil,
         width: Float | nil
       }

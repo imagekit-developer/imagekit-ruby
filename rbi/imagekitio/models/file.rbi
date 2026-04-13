@@ -8,7 +8,7 @@ module Imagekitio
 
       # Array of AI-generated tags associated with the image. If no AITags are set, it
       # will be null.
-      sig { returns(T.nilable(T::Array[Imagekitio::File::AITag])) }
+      sig { returns(T.nilable(T::Array[Imagekitio::AITag])) }
       attr_accessor :ai_tags
 
       # The audio codec used in the video (only for video/audio).
@@ -142,7 +142,7 @@ module Imagekitio
       # about the custom metadata schema.
       sig do
         returns(
-          T.nilable(T::Hash[Symbol, Imagekitio::File::SelectedFieldsSchema])
+          T.nilable(T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem])
         )
       end
       attr_reader :selected_fields_schema
@@ -150,7 +150,7 @@ module Imagekitio
       sig do
         params(
           selected_fields_schema:
-            T::Hash[Symbol, Imagekitio::File::SelectedFieldsSchema::OrHash]
+            T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem::OrHash]
         ).void
       end
       attr_writer :selected_fields_schema
@@ -198,10 +198,10 @@ module Imagekitio
       attr_writer :url
 
       # An object with details of the file version.
-      sig { returns(T.nilable(Imagekitio::File::VersionInfo)) }
+      sig { returns(T.nilable(Imagekitio::VersionInfo)) }
       attr_reader :version_info
 
-      sig { params(version_info: Imagekitio::File::VersionInfo::OrHash).void }
+      sig { params(version_info: Imagekitio::VersionInfo::OrHash).void }
       attr_writer :version_info
 
       # The video codec used in the video (only for video).
@@ -221,7 +221,7 @@ module Imagekitio
       # Object containing details of a file or file version.
       sig do
         params(
-          ai_tags: T.nilable(T::Array[Imagekitio::File::AITag::OrHash]),
+          ai_tags: T.nilable(T::Array[Imagekitio::AITag::OrHash]),
           audio_codec: String,
           bit_rate: Integer,
           created_at: Time,
@@ -240,14 +240,14 @@ module Imagekitio
           mime: String,
           name: String,
           selected_fields_schema:
-            T::Hash[Symbol, Imagekitio::File::SelectedFieldsSchema::OrHash],
+            T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem::OrHash],
           size: Float,
           tags: T.nilable(T::Array[String]),
           thumbnail: String,
           type: Imagekitio::File::Type::OrSymbol,
           updated_at: Time,
           url: String,
-          version_info: Imagekitio::File::VersionInfo::OrHash,
+          version_info: Imagekitio::VersionInfo::OrHash,
           video_codec: String,
           width: Float
         ).returns(T.attached_class)
@@ -331,7 +331,7 @@ module Imagekitio
       sig do
         override.returns(
           {
-            ai_tags: T.nilable(T::Array[Imagekitio::File::AITag]),
+            ai_tags: T.nilable(T::Array[Imagekitio::AITag]),
             audio_codec: String,
             bit_rate: Integer,
             created_at: Time,
@@ -350,14 +350,14 @@ module Imagekitio
             mime: String,
             name: String,
             selected_fields_schema:
-              T::Hash[Symbol, Imagekitio::File::SelectedFieldsSchema],
+              T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem],
             size: Float,
             tags: T.nilable(T::Array[String]),
             thumbnail: String,
             type: Imagekitio::File::Type::TaggedSymbol,
             updated_at: Time,
             url: String,
-            version_info: Imagekitio::File::VersionInfo,
+            version_info: Imagekitio::VersionInfo,
             video_codec: String,
             width: Float
           }

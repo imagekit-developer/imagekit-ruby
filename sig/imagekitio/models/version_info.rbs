@@ -1,0 +1,19 @@
+module Imagekitio
+  module Models
+    type version_info = { id: String, name: String }
+
+    class VersionInfo < Imagekitio::Internal::Type::BaseModel
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      def initialize: (?id: String, ?name: String) -> void
+
+      def to_hash: -> { id: String, name: String }
+    end
+  end
+end

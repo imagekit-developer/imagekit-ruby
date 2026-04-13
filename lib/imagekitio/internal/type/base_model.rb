@@ -438,11 +438,11 @@ module Imagekitio
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `base_overlay` is a `Imagekitio::BaseOverlay`
-        #   base_overlay => {
-        #     layer_mode: layer_mode,
-        #     position: position,
-        #     timing: timing
+        #   # `ai_tag` is a `Imagekitio::AITag`
+        #   ai_tag => {
+        #     confidence: confidence,
+        #     name: name,
+        #     source: source
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

@@ -8,9 +8,9 @@ module Imagekitio
       #   Array of AI-generated tags associated with the image. If no AITags are set, it
       #   will be null.
       #
-      #   @return [Array<Imagekitio::Models::File::AITag>, nil]
+      #   @return [Array<Imagekitio::Models::AITag>, nil]
       optional :ai_tags,
-               -> { Imagekitio::Internal::Type::ArrayOf[Imagekitio::File::AITag] },
+               -> { Imagekitio::Internal::Type::ArrayOf[Imagekitio::AITag] },
                api_name: :AITags,
                nil?: true
 
@@ -135,9 +135,9 @@ module Imagekitio
       #   Keys are the names of the custom metadata fields; the value object has details
       #   about the custom metadata schema.
       #
-      #   @return [Hash{Symbol=>Imagekitio::Models::File::SelectedFieldsSchema}, nil]
+      #   @return [Hash{Symbol=>Imagekitio::Models::SelectedFieldsSchemaItem}, nil]
       optional :selected_fields_schema,
-               -> { Imagekitio::Internal::Type::HashOf[Imagekitio::File::SelectedFieldsSchema] },
+               -> { Imagekitio::Internal::Type::HashOf[Imagekitio::SelectedFieldsSchemaItem] },
                api_name: :selectedFieldsSchema
 
       # @!attribute size
@@ -182,8 +182,8 @@ module Imagekitio
       # @!attribute version_info
       #   An object with details of the file version.
       #
-      #   @return [Imagekitio::Models::File::VersionInfo, nil]
-      optional :version_info, -> { Imagekitio::File::VersionInfo }, api_name: :versionInfo
+      #   @return [Imagekitio::Models::VersionInfo, nil]
+      optional :version_info, -> { Imagekitio::VersionInfo }, api_name: :versionInfo
 
       # @!attribute video_codec
       #   The video codec used in the video (only for video).
@@ -203,7 +203,7 @@ module Imagekitio
       #
       #   Object containing details of a file or file version.
       #
-      #   @param ai_tags [Array<Imagekitio::Models::File::AITag>, nil] Array of AI-generated tags associated with the image. If no AITags are set, it w
+      #   @param ai_tags [Array<Imagekitio::Models::AITag>, nil] Array of AI-generated tags associated with the image. If no AITags are set, it w
       #
       #   @param audio_codec [String] The audio codec used in the video (only for video/audio).
       #
@@ -239,7 +239,7 @@ module Imagekitio
       #
       #   @param name [String] Name of the asset.
       #
-      #   @param selected_fields_schema [Hash{Symbol=>Imagekitio::Models::File::SelectedFieldsSchema}] This field is included in the response only if the Path policy feature is availa
+      #   @param selected_fields_schema [Hash{Symbol=>Imagekitio::Models::SelectedFieldsSchemaItem}] This field is included in the response only if the Path policy feature is availa
       #
       #   @param size [Float] Size of the file in bytes.
       #
@@ -253,7 +253,7 @@ module Imagekitio
       #
       #   @param url [String] URL of the file.
       #
-      #   @param version_info [Imagekitio::Models::File::VersionInfo] An object with details of the file version.
+      #   @param version_info [Imagekitio::Models::VersionInfo] An object with details of the file version.
       #
       #   @param video_codec [String] The video codec used in the video (only for video).
       #
