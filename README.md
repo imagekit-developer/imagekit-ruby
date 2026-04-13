@@ -26,7 +26,6 @@ If you're using Ruby on Rails, the [ImageKit Rails gem](https://github.com/image
   - [Authentication parameters for client-side uploads](#authentication-parameters-for-client-side-uploads)
   - [Responsive image attributes](#responsive-image-attributes)
 - [Webhook verification](#webhook-verification)
-  - [Verifying webhook signatures](#verifying-webhook-signatures)
 - [Handling errors](#handling-errors)
   - [Retries](#retries)
   - [Timeouts](#timeouts)
