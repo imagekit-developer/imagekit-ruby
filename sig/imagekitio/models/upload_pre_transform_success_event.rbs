@@ -47,14 +47,14 @@ module Imagekitio
 
       type data =
         {
-          ai_tags: ::Array[Imagekitio::UploadPreTransformSuccessEvent::Data::AITag]?,
+          ai_tags: ::Array[Imagekitio::AITag]?,
           audio_codec: String,
           bit_rate: Integer,
           custom_coordinates: String?,
-          custom_metadata: ::Hash[Symbol, top],
+          custom_metadata: Imagekitio::Models::custom_metadata,
           description: String,
           duration: Integer,
-          embedded_metadata: ::Hash[Symbol, top],
+          embedded_metadata: Imagekitio::Models::embedded_metadata,
           extension_status: Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus,
           file_id: String,
           file_path: String,
@@ -64,18 +64,18 @@ module Imagekitio
           is_published: bool,
           metadata: Imagekitio::Metadata,
           name: String,
-          selected_fields_schema: ::Hash[Symbol, Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema],
+          selected_fields_schema: Imagekitio::Models::selected_fields_schema,
           size: Float,
           tags: ::Array[String]?,
           thumbnail_url: String,
           url: String,
-          version_info: Imagekitio::UploadPreTransformSuccessEvent::Data::VersionInfo,
+          version_info: Imagekitio::VersionInfo,
           video_codec: String,
           width: Float
         }
 
       class Data < Imagekitio::Internal::Type::BaseModel
-        attr_accessor ai_tags: ::Array[Imagekitio::UploadPreTransformSuccessEvent::Data::AITag]?
+        attr_accessor ai_tags: ::Array[Imagekitio::AITag]?
 
         attr_reader audio_codec: String?
 
@@ -87,9 +87,11 @@ module Imagekitio
 
         attr_accessor custom_coordinates: String?
 
-        attr_reader custom_metadata: ::Hash[Symbol, top]?
+        attr_reader custom_metadata: Imagekitio::Models::custom_metadata?
 
-        def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+        def custom_metadata=: (
+          Imagekitio::Models::custom_metadata
+        ) -> Imagekitio::Models::custom_metadata
 
         attr_reader description: String?
 
@@ -99,9 +101,11 @@ module Imagekitio
 
         def duration=: (Integer) -> Integer
 
-        attr_reader embedded_metadata: ::Hash[Symbol, top]?
+        attr_reader embedded_metadata: Imagekitio::Models::embedded_metadata?
 
-        def embedded_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+        def embedded_metadata=: (
+          Imagekitio::Models::embedded_metadata
+        ) -> Imagekitio::Models::embedded_metadata
 
         attr_reader extension_status: Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus?
 
@@ -141,11 +145,11 @@ module Imagekitio
 
         def name=: (String) -> String
 
-        attr_reader selected_fields_schema: ::Hash[Symbol, Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema]?
+        attr_reader selected_fields_schema: Imagekitio::Models::selected_fields_schema?
 
         def selected_fields_schema=: (
-          ::Hash[Symbol, Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema]
-        ) -> ::Hash[Symbol, Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema]
+          Imagekitio::Models::selected_fields_schema
+        ) -> Imagekitio::Models::selected_fields_schema
 
         attr_reader size: Float?
 
@@ -161,11 +165,9 @@ module Imagekitio
 
         def url=: (String) -> String
 
-        attr_reader version_info: Imagekitio::UploadPreTransformSuccessEvent::Data::VersionInfo?
+        attr_reader version_info: Imagekitio::VersionInfo?
 
-        def version_info=: (
-          Imagekitio::UploadPreTransformSuccessEvent::Data::VersionInfo
-        ) -> Imagekitio::UploadPreTransformSuccessEvent::Data::VersionInfo
+        def version_info=: (Imagekitio::VersionInfo) -> Imagekitio::VersionInfo
 
         attr_reader video_codec: String?
 
@@ -176,14 +178,14 @@ module Imagekitio
         def width=: (Float) -> Float
 
         def initialize: (
-          ?ai_tags: ::Array[Imagekitio::UploadPreTransformSuccessEvent::Data::AITag]?,
+          ?ai_tags: ::Array[Imagekitio::AITag]?,
           ?audio_codec: String,
           ?bit_rate: Integer,
           ?custom_coordinates: String?,
-          ?custom_metadata: ::Hash[Symbol, top],
+          ?custom_metadata: Imagekitio::Models::custom_metadata,
           ?description: String,
           ?duration: Integer,
-          ?embedded_metadata: ::Hash[Symbol, top],
+          ?embedded_metadata: Imagekitio::Models::embedded_metadata,
           ?extension_status: Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus,
           ?file_id: String,
           ?file_path: String,
@@ -193,25 +195,25 @@ module Imagekitio
           ?is_published: bool,
           ?metadata: Imagekitio::Metadata,
           ?name: String,
-          ?selected_fields_schema: ::Hash[Symbol, Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema],
+          ?selected_fields_schema: Imagekitio::Models::selected_fields_schema,
           ?size: Float,
           ?tags: ::Array[String]?,
           ?thumbnail_url: String,
           ?url: String,
-          ?version_info: Imagekitio::UploadPreTransformSuccessEvent::Data::VersionInfo,
+          ?version_info: Imagekitio::VersionInfo,
           ?video_codec: String,
           ?width: Float
         ) -> void
 
         def to_hash: -> {
-          ai_tags: ::Array[Imagekitio::UploadPreTransformSuccessEvent::Data::AITag]?,
+          ai_tags: ::Array[Imagekitio::AITag]?,
           audio_codec: String,
           bit_rate: Integer,
           custom_coordinates: String?,
-          custom_metadata: ::Hash[Symbol, top],
+          custom_metadata: Imagekitio::Models::custom_metadata,
           description: String,
           duration: Integer,
-          embedded_metadata: ::Hash[Symbol, top],
+          embedded_metadata: Imagekitio::Models::embedded_metadata,
           extension_status: Imagekitio::UploadPreTransformSuccessEvent::Data::ExtensionStatus,
           file_id: String,
           file_path: String,
@@ -221,12 +223,12 @@ module Imagekitio
           is_published: bool,
           metadata: Imagekitio::Metadata,
           name: String,
-          selected_fields_schema: ::Hash[Symbol, Imagekitio::UploadPreTransformSuccessEvent::Data::SelectedFieldsSchema],
+          selected_fields_schema: Imagekitio::Models::selected_fields_schema,
           size: Float,
           tags: ::Array[String]?,
           thumbnail_url: String,
           url: String,
-          version_info: Imagekitio::UploadPreTransformSuccessEvent::Data::VersionInfo,
+          version_info: Imagekitio::VersionInfo,
           video_codec: String,
           width: Float
         }

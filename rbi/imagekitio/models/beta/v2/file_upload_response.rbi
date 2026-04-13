@@ -14,15 +14,7 @@ module Imagekitio
             end
 
           # An array of tags assigned to the uploaded file by auto tagging.
-          sig do
-            returns(
-              T.nilable(
-                T::Array[
-                  Imagekitio::Models::Beta::V2::FileUploadResponse::AITag
-                ]
-              )
-            )
-          end
+          sig { returns(T.nilable(T::Array[Imagekitio::AITag])) }
           attr_accessor :ai_tags
 
           # The audio codec used in the video (only for video).
@@ -179,12 +171,7 @@ module Imagekitio
           # about the custom metadata schema.
           sig do
             returns(
-              T.nilable(
-                T::Hash[
-                  Symbol,
-                  Imagekitio::Models::Beta::V2::FileUploadResponse::SelectedFieldsSchema
-                ]
-              )
+              T.nilable(T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem])
             )
           end
           attr_reader :selected_fields_schema
@@ -192,10 +179,7 @@ module Imagekitio
           sig do
             params(
               selected_fields_schema:
-                T::Hash[
-                  Symbol,
-                  Imagekitio::Models::Beta::V2::FileUploadResponse::SelectedFieldsSchema::OrHash
-                ]
+                T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem::OrHash]
             ).void
           end
           attr_writer :selected_fields_schema
@@ -228,21 +212,10 @@ module Imagekitio
           attr_writer :url
 
           # An object containing the file or file version's `id` (versionId) and `name`.
-          sig do
-            returns(
-              T.nilable(
-                Imagekitio::Models::Beta::V2::FileUploadResponse::VersionInfo
-              )
-            )
-          end
+          sig { returns(T.nilable(Imagekitio::VersionInfo)) }
           attr_reader :version_info
 
-          sig do
-            params(
-              version_info:
-                Imagekitio::Models::Beta::V2::FileUploadResponse::VersionInfo::OrHash
-            ).void
-          end
+          sig { params(version_info: Imagekitio::VersionInfo::OrHash).void }
           attr_writer :version_info
 
           # The video codec used in the video (only for video).
@@ -262,12 +235,7 @@ module Imagekitio
           # Object containing details of a successful upload.
           sig do
             params(
-              ai_tags:
-                T.nilable(
-                  T::Array[
-                    Imagekitio::Models::Beta::V2::FileUploadResponse::AITag::OrHash
-                  ]
-                ),
+              ai_tags: T.nilable(T::Array[Imagekitio::AITag::OrHash]),
               audio_codec: String,
               bit_rate: Integer,
               custom_coordinates: T.nilable(String),
@@ -286,16 +254,12 @@ module Imagekitio
               metadata: Imagekitio::Metadata::OrHash,
               name: String,
               selected_fields_schema:
-                T::Hash[
-                  Symbol,
-                  Imagekitio::Models::Beta::V2::FileUploadResponse::SelectedFieldsSchema::OrHash
-                ],
+                T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem::OrHash],
               size: Float,
               tags: T.nilable(T::Array[String]),
               thumbnail_url: String,
               url: String,
-              version_info:
-                Imagekitio::Models::Beta::V2::FileUploadResponse::VersionInfo::OrHash,
+              version_info: Imagekitio::VersionInfo::OrHash,
               video_codec: String,
               width: Float
             ).returns(T.attached_class)
@@ -390,12 +354,7 @@ module Imagekitio
           sig do
             override.returns(
               {
-                ai_tags:
-                  T.nilable(
-                    T::Array[
-                      Imagekitio::Models::Beta::V2::FileUploadResponse::AITag
-                    ]
-                  ),
+                ai_tags: T.nilable(T::Array[Imagekitio::AITag]),
                 audio_codec: String,
                 bit_rate: Integer,
                 custom_coordinates: T.nilable(String),
@@ -414,16 +373,12 @@ module Imagekitio
                 metadata: Imagekitio::Metadata,
                 name: String,
                 selected_fields_schema:
-                  T::Hash[
-                    Symbol,
-                    Imagekitio::Models::Beta::V2::FileUploadResponse::SelectedFieldsSchema
-                  ],
+                  T::Hash[Symbol, Imagekitio::SelectedFieldsSchemaItem],
                 size: Float,
                 tags: T.nilable(T::Array[String]),
                 thumbnail_url: String,
                 url: String,
-                version_info:
-                  Imagekitio::Models::Beta::V2::FileUploadResponse::VersionInfo,
+                version_info: Imagekitio::VersionInfo,
                 video_codec: String,
                 width: Float
               }

@@ -3,6 +3,8 @@
 module Imagekitio
   Accounts = Imagekitio::Models::Accounts
 
+  AITag = Imagekitio::Models::AITag
+
   AssetListParams = Imagekitio::Models::AssetListParams
 
   BaseOverlay = Imagekitio::Models::BaseOverlay
@@ -12,6 +14,12 @@ module Imagekitio
   Beta = Imagekitio::Models::Beta
 
   Cache = Imagekitio::Models::Cache
+
+  CustomMetadata =
+    T.let(
+      Imagekitio::Models::CustomMetadata,
+      Imagekitio::Internal::Type::Converter
+    )
 
   CustomMetadataField = Imagekitio::Models::CustomMetadataField
 
@@ -26,6 +34,12 @@ module Imagekitio
 
   CustomMetadataFieldUpdateParams =
     Imagekitio::Models::CustomMetadataFieldUpdateParams
+
+  EmbeddedMetadata =
+    T.let(
+      Imagekitio::Models::EmbeddedMetadata,
+      Imagekitio::Internal::Type::Converter
+    )
 
   ExtensionConfig = Imagekitio::Models::ExtensionConfig
 
@@ -102,6 +116,14 @@ module Imagekitio
 
   SavedExtensionUpdateParams = Imagekitio::Models::SavedExtensionUpdateParams
 
+  SelectedFieldsSchema =
+    T.let(
+      Imagekitio::Models::SelectedFieldsSchema,
+      Imagekitio::Internal::Type::Converter
+    )
+
+  SelectedFieldsSchemaItem = Imagekitio::Models::SelectedFieldsSchemaItem
+
   SolidColorOverlay = Imagekitio::Models::SolidColorOverlay
 
   SolidColorOverlayTransformation =
@@ -141,6 +163,8 @@ module Imagekitio
 
   UploadPreTransformSuccessEvent =
     Imagekitio::Models::UploadPreTransformSuccessEvent
+
+  VersionInfo = Imagekitio::Models::VersionInfo
 
   VideoOverlay = Imagekitio::Models::VideoOverlay
 

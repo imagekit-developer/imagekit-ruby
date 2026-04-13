@@ -7,9 +7,9 @@ module Imagekitio
       # @!attribute ai_tags
       #   An array of tags assigned to the uploaded file by auto tagging.
       #
-      #   @return [Array<Imagekitio::Models::FileUploadResponse::AITag>, nil]
+      #   @return [Array<Imagekitio::Models::AITag>, nil]
       optional :ai_tags,
-               -> { Imagekitio::Internal::Type::ArrayOf[Imagekitio::Models::FileUploadResponse::AITag] },
+               -> { Imagekitio::Internal::Type::ArrayOf[Imagekitio::AITag] },
                api_name: :AITags,
                nil?: true
 
@@ -149,9 +149,9 @@ module Imagekitio
       #   Keys are the names of the custom metadata fields; the value object has details
       #   about the custom metadata schema.
       #
-      #   @return [Hash{Symbol=>Imagekitio::Models::FileUploadResponse::SelectedFieldsSchema}, nil]
+      #   @return [Hash{Symbol=>Imagekitio::Models::SelectedFieldsSchemaItem}, nil]
       optional :selected_fields_schema,
-               -> { Imagekitio::Internal::Type::HashOf[Imagekitio::Models::FileUploadResponse::SelectedFieldsSchema] },
+               -> { Imagekitio::Internal::Type::HashOf[Imagekitio::SelectedFieldsSchemaItem] },
                api_name: :selectedFieldsSchema
 
       # @!attribute size
@@ -183,8 +183,8 @@ module Imagekitio
       # @!attribute version_info
       #   An object containing the file or file version's `id` (versionId) and `name`.
       #
-      #   @return [Imagekitio::Models::FileUploadResponse::VersionInfo, nil]
-      optional :version_info, -> { Imagekitio::Models::FileUploadResponse::VersionInfo }, api_name: :versionInfo
+      #   @return [Imagekitio::Models::VersionInfo, nil]
+      optional :version_info, -> { Imagekitio::VersionInfo }, api_name: :versionInfo
 
       # @!attribute video_codec
       #   The video codec used in the video (only for video).
@@ -204,7 +204,7 @@ module Imagekitio
       #
       #   Object containing details of a successful upload.
       #
-      #   @param ai_tags [Array<Imagekitio::Models::FileUploadResponse::AITag>, nil] An array of tags assigned to the uploaded file by auto tagging.
+      #   @param ai_tags [Array<Imagekitio::Models::AITag>, nil] An array of tags assigned to the uploaded file by auto tagging.
       #
       #   @param audio_codec [String] The audio codec used in the video (only for video).
       #
@@ -238,7 +238,7 @@ module Imagekitio
       #
       #   @param name [String] Name of the asset.
       #
-      #   @param selected_fields_schema [Hash{Symbol=>Imagekitio::Models::FileUploadResponse::SelectedFieldsSchema}] This field is included in the response only if the Path policy feature is availa
+      #   @param selected_fields_schema [Hash{Symbol=>Imagekitio::Models::SelectedFieldsSchemaItem}] This field is included in the response only if the Path policy feature is availa
       #
       #   @param size [Float] Size of the image file in Bytes.
       #
@@ -248,7 +248,7 @@ module Imagekitio
       #
       #   @param url [String] A publicly accessible URL of the file.
       #
-      #   @param version_info [Imagekitio::Models::FileUploadResponse::VersionInfo] An object containing the file or file version's `id` (versionId) and `name`.
+      #   @param version_info [Imagekitio::Models::VersionInfo] An object containing the file or file version's `id` (versionId) and `name`.
       #
       #   @param video_codec [String] The video codec used in the video (only for video).
       #

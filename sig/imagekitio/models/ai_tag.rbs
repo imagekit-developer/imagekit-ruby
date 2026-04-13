@@ -1,0 +1,27 @@
+module Imagekitio
+  module Models
+    type ai_tag = { confidence: Float, name: String, source: String }
+
+    class AITag < Imagekitio::Internal::Type::BaseModel
+      attr_reader confidence: Float?
+
+      def confidence=: (Float) -> Float
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader source: String?
+
+      def source=: (String) -> String
+
+      def initialize: (
+        ?confidence: Float,
+        ?name: String,
+        ?source: String
+      ) -> void
+
+      def to_hash: -> { confidence: Float, name: String, source: String }
+    end
+  end
+end
