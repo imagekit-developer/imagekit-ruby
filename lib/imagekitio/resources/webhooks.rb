@@ -23,7 +23,8 @@ module Imagekitio
           raise ArgumentError.new("Cannot verify a webhook without a key on either the client's webhook_secret or passed in as an argument")
         end
 
-        ::StandardWebhooks::Webhook.new(key).verify(payload, headers)
+        encoded_key = Base64.strict_encode64(key)
+        ::StandardWebhooks::Webhook.new(encoded_key).verify(payload, headers)
 
         parsed = JSON.parse(payload, symbolize_names: true)
         Imagekitio::Internal::Type::Converter.coerce(Imagekitio::Models::UnwrapWebhookEvent, parsed)
