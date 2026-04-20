@@ -43,8 +43,6 @@ module Imagekitio
 
   ExtensionConfig = Imagekitio::Models::ExtensionConfig
 
-  ExtensionItem = Imagekitio::Models::ExtensionItem
-
   Extensions =
     T.let(Imagekitio::Models::Extensions, Imagekitio::Internal::Type::Converter)
 

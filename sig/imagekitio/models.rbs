@@ -27,8 +27,6 @@ module Imagekitio
 
   EmbeddedMetadata: Imagekitio::Internal::Type::Converter
 
-  type extension_item = Imagekitio::Models::extension_item
-
   module ExtensionConfig = Imagekitio::Models::ExtensionConfig
 
   Extensions: Imagekitio::Internal::Type::Converter
