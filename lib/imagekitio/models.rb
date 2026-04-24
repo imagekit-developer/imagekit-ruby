@@ -71,8 +71,6 @@ module Imagekitio
 
   ExtensionConfig = Imagekitio::Models::ExtensionConfig
 
-  ExtensionItem = Imagekitio::Models::ExtensionItem
-
   # @type [Imagekitio::Internal::Type::Converter]
   Extensions = Imagekitio::Models::Extensions
 
