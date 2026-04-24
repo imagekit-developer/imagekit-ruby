@@ -29,6 +29,8 @@ module Imagekitio
 
   module ExtensionConfig = Imagekitio::Models::ExtensionConfig
 
+  module ExtensionItem = Imagekitio::Models::ExtensionItem
+
   Extensions: Imagekitio::Internal::Type::Converter
 
   class File = Imagekitio::Models::File
