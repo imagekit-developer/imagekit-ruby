@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.4.1 (2026-04-24)
+
+Full Changelog: [v4.4.0...v4.4.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.4.0...v4.4.1)
+
+### Features
+
+* **api:** manual updates ([7b8cad3](https://github.com/imagekit-developer/imagekit-ruby/commit/7b8cad330f21f2e8f94fc6fbee3a70fe87bc30a1))
+* **api:** manual updates ([f462715](https://github.com/imagekit-developer/imagekit-ruby/commit/f462715e564b25253986276423572442c1d20d29))
+
+
+### Chores
+
+* configure new SDK language ([6e8aa01](https://github.com/imagekit-developer/imagekit-ruby/commit/6e8aa014bbf00f69237d9a787de2c03f27b19c56))
+* **internal:** more robust bootstrap script ([3192433](https://github.com/imagekit-developer/imagekit-ruby/commit/31924332fb8e956f8dc2c2c72c0285122197522f))
+
 ## 4.4.0 (2026-04-13)
 
 Full Changelog: [v4.3.0...v4.4.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.3.0...v4.4.0)
