@@ -84,6 +84,7 @@ module Imagekitio
       "gradient" => "e-gradient",
       "color_replace" => "cr",
       "colorReplace" => "cr",
+      "colorize" => "e-colorize",
       "distort" => "e-distort",
 
       # Other flags & finishing
