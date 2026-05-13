@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.5.0 (2026-05-13)
+
+Full Changelog: [v4.4.1...v4.5.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.4.1...v4.5.0)
+
+### Features
+
+* **api:** add no-enlarge crop modes and colorize transformation ([1b56303](https://github.com/imagekit-developer/imagekit-ruby/commit/1b56303ef5c67cb1a4b36d4a1c06b147f22c5987))
+* support setting headers via env ([cd32783](https://github.com/imagekit-developer/imagekit-ruby/commit/cd32783efe49d795b8a5de49eb44039cda375d2e))
+* **transformation:** add colorize transformation support in URL generation ([3454064](https://github.com/imagekit-developer/imagekit-ruby/commit/34540646f7ee8a1deabeea629f366d28bc71f734))
+
+
+### Chores
+
+* **internal:** codegen related update ([7e0543d](https://github.com/imagekit-developer/imagekit-ruby/commit/7e0543d8714ff251de1a32f471dc7bd8bfa17dab))
+
 ## 4.4.1 (2026-04-24)
 
 Full Changelog: [v4.4.0...v4.4.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.4.0...v4.4.1)
