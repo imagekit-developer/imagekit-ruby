@@ -138,6 +138,18 @@ module Imagekitio
       #   @return [String, nil]
       optional :border, String
 
+      # @!attribute colorize
+      #   Applies a color tint to the image. Accepts color and intensity as optional
+      #   parameters.
+      #
+      #   - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`). Default is gray
+      #     color.
+      #   - `in-intensity` - Intensity of the color (0-100). Default is 35. See
+      #     [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
+      #
+      #   @return [String, nil]
+      optional :colorize, String
+
       # @!attribute color_profile
       #   Indicates whether the output image should retain the original color profile. See
       #   [Color profile](https://imagekit.io/docs/image-optimization#color-profile---cp).
@@ -498,7 +510,7 @@ module Imagekitio
       #   @return [Float, nil]
       optional :zoom, Float
 
-      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, color_profile: nil, color_replace: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, distort: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
+      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, colorize: nil, color_profile: nil, color_replace: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, distort: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::Transformation} for more details.
       #
@@ -534,6 +546,8 @@ module Imagekitio
       #   @param blur [Float] Specifies the Gaussian blur level. Accepts an integer value between 1 and 100, o
       #
       #   @param border [String] Adds a border to the output media. Accepts a string in the format `<border-width
+      #
+      #   @param colorize [String] Applies a color tint to the image. Accepts color and intensity as optional param
       #
       #   @param color_profile [Boolean] Indicates whether the output image should retain the original color profile.
       #
@@ -765,6 +779,7 @@ module Imagekitio
         AT_MAX_ENLARGE = :at_max_enlarge
         AT_LEAST = :at_least
         MAINTAIN_RATIO = :maintain_ratio
+        MAINTAIN_RATIO_NO_ENLARGE = :maintain_ratio_no_enlarge
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -780,6 +795,8 @@ module Imagekitio
         PAD_RESIZE = :pad_resize
         EXTRACT = :extract
         PAD_EXTRACT = :pad_extract
+        PAD_RESIZE_NO_ENLARGE = :pad_resize_no_enlarge
+        PAD_EXTRACT_NO_SHRINK = :pad_extract_no_shrink
 
         # @!method self.values
         #   @return [Array<Symbol>]

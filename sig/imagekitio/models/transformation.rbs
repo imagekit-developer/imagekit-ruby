@@ -15,6 +15,7 @@ module Imagekitio
         background: String,
         blur: Float,
         border: String,
+        colorize: String,
         color_profile: bool,
         color_replace: String,
         contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
@@ -126,6 +127,10 @@ module Imagekitio
       attr_reader border: String?
 
       def border=: (String) -> String
+
+      attr_reader colorize: String?
+
+      def colorize=: (String) -> String
 
       attr_reader color_profile: bool?
 
@@ -355,6 +360,7 @@ module Imagekitio
         ?background: String,
         ?blur: Float,
         ?border: String,
+        ?colorize: String,
         ?color_profile: bool,
         ?color_replace: String,
         ?contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
@@ -412,6 +418,7 @@ module Imagekitio
         background: String,
         blur: Float,
         border: String,
+        colorize: String,
         color_profile: bool,
         color_replace: String,
         contrast_stretch: Imagekitio::Models::Transformation::contrast_stretch,
@@ -544,7 +551,12 @@ module Imagekitio
       end
 
       type crop =
-        :force | :at_max | :at_max_enlarge | :at_least | :maintain_ratio
+        :force
+        | :at_max
+        | :at_max_enlarge
+        | :at_least
+        | :maintain_ratio
+        | :maintain_ratio_no_enlarge
 
       module Crop
         extend Imagekitio::Internal::Type::Enum
@@ -554,11 +566,17 @@ module Imagekitio
         AT_MAX_ENLARGE: :at_max_enlarge
         AT_LEAST: :at_least
         MAINTAIN_RATIO: :maintain_ratio
+        MAINTAIN_RATIO_NO_ENLARGE: :maintain_ratio_no_enlarge
 
         def self?.values: -> ::Array[Imagekitio::Models::Transformation::crop]
       end
 
-      type crop_mode = :pad_resize | :extract | :pad_extract
+      type crop_mode =
+        :pad_resize
+        | :extract
+        | :pad_extract
+        | :pad_resize_no_enlarge
+        | :pad_extract_no_shrink
 
       module CropMode
         extend Imagekitio::Internal::Type::Enum
@@ -566,6 +584,8 @@ module Imagekitio
         PAD_RESIZE: :pad_resize
         EXTRACT: :extract
         PAD_EXTRACT: :pad_extract
+        PAD_RESIZE_NO_ENLARGE: :pad_resize_no_enlarge
+        PAD_EXTRACT_NO_SHRINK: :pad_extract_no_shrink
 
         def self?.values: -> ::Array[Imagekitio::Models::Transformation::crop_mode]
       end

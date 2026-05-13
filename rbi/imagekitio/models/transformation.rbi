@@ -198,6 +198,19 @@ module Imagekitio
       sig { params(border: String).void }
       attr_writer :border
 
+      # Applies a color tint to the image. Accepts color and intensity as optional
+      # parameters.
+      #
+      # - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`). Default is gray
+      #   color.
+      # - `in-intensity` - Intensity of the color (0-100). Default is 35. See
+      #   [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
+      sig { returns(T.nilable(String)) }
+      attr_reader :colorize
+
+      sig { params(colorize: String).void }
+      attr_writer :colorize
+
       # Indicates whether the output image should retain the original color profile. See
       # [Color profile](https://imagekit.io/docs/image-optimization#color-profile---cp).
       sig { returns(T.nilable(T::Boolean)) }
@@ -664,6 +677,7 @@ module Imagekitio
           background: String,
           blur: Float,
           border: String,
+          colorize: String,
           color_profile: T::Boolean,
           color_replace: String,
           contrast_stretch:
@@ -785,6 +799,14 @@ module Imagekitio
         # expression like `ih_div_20_FF00FF`. See
         # [Border](https://imagekit.io/docs/effects-and-enhancements#border---b).
         border: nil,
+        # Applies a color tint to the image. Accepts color and intensity as optional
+        # parameters.
+        #
+        # - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`). Default is gray
+        #   color.
+        # - `in-intensity` - Intensity of the color (0-100). Default is 35. See
+        #   [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
+        colorize: nil,
         # Indicates whether the output image should retain the original color profile. See
         # [Color profile](https://imagekit.io/docs/image-optimization#color-profile---cp).
         color_profile: nil,
@@ -998,6 +1020,7 @@ module Imagekitio
             background: String,
             blur: Float,
             border: String,
+            colorize: String,
             color_profile: T::Boolean,
             color_replace: String,
             contrast_stretch:
@@ -1285,6 +1308,11 @@ module Imagekitio
           T.let(:at_least, Imagekitio::Transformation::Crop::TaggedSymbol)
         MAINTAIN_RATIO =
           T.let(:maintain_ratio, Imagekitio::Transformation::Crop::TaggedSymbol)
+        MAINTAIN_RATIO_NO_ENLARGE =
+          T.let(
+            :maintain_ratio_no_enlarge,
+            Imagekitio::Transformation::Crop::TaggedSymbol
+          )
 
         sig do
           override.returns(
@@ -1311,6 +1339,16 @@ module Imagekitio
         PAD_EXTRACT =
           T.let(
             :pad_extract,
+            Imagekitio::Transformation::CropMode::TaggedSymbol
+          )
+        PAD_RESIZE_NO_ENLARGE =
+          T.let(
+            :pad_resize_no_enlarge,
+            Imagekitio::Transformation::CropMode::TaggedSymbol
+          )
+        PAD_EXTRACT_NO_SHRINK =
+          T.let(
+            :pad_extract_no_shrink,
             Imagekitio::Transformation::CropMode::TaggedSymbol
           )
 
