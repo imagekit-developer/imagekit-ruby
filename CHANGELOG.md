@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.5.1 (2026-05-17)
+
+Full Changelog: [v4.5.0...v4.5.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.5.0...v4.5.1)
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([9ae7bf6](https://github.com/imagekit-developer/imagekit-ruby/commit/9ae7bf673a15fc01cf7e25b6c508dd20fa6a38f7))
+
 ## 4.5.0 (2026-05-13)
 
 Full Changelog: [v4.4.1...v4.5.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.4.1...v4.5.0)
