@@ -28,7 +28,7 @@ module Imagekitio
     # Your ImageKit webhook secret for verifying webhook signatures (starts with
     # `whsec_`). You can find this in the
     # [ImageKit dashboard](https://imagekit.io/dashboard/developer/webhooks). Only
-    # required if you're using webhooks.
+    # required if you are re using webhooks.
     # @return [String, nil]
     attr_reader :webhook_secret
 
@@ -90,7 +90,8 @@ module Imagekitio
     # @param webhook_secret [String, nil] Your ImageKit webhook secret for verifying webhook signatures (starts with
     # `whsec_`). You can find this in the
     # [ImageKit dashboard](https://imagekit.io/dashboard/developer/webhooks). Only
-    # required if you're using webhooks. Defaults to `ENV["IMAGEKIT_WEBHOOK_SECRET"]`
+    # required if you are re using webhooks. Defaults to
+    # `ENV["IMAGEKIT_WEBHOOK_SECRET"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["IMAGE_KIT_BASE_URL"]`
