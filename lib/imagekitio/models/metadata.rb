@@ -174,6 +174,11 @@ module Imagekitio
           #   @return [Float, nil]
           optional :aperture_value, Float, api_name: :ApertureValue
 
+          # @!attribute brightness_value
+          #
+          #   @return [Float, nil]
+          optional :brightness_value, Float, api_name: :BrightnessValue
+
           # @!attribute color_space
           #
           #   @return [Integer, nil]
@@ -246,8 +251,13 @@ module Imagekitio
 
           # @!attribute focal_length
           #
+          #   @return [Float, nil]
+          optional :focal_length, Float, api_name: :FocalLength
+
+          # @!attribute focal_length_in35mm_format
+          #
           #   @return [Integer, nil]
-          optional :focal_length, Integer, api_name: :FocalLength
+          optional :focal_length_in35mm_format, Integer, api_name: :FocalLengthIn35mmFormat
 
           # @!attribute focal_plane_resolution_unit
           #
@@ -274,6 +284,21 @@ module Imagekitio
           #   @return [Integer, nil]
           optional :iso, Integer, api_name: :ISO
 
+          # @!attribute lens_model
+          #
+          #   @return [String, nil]
+          optional :lens_model, String, api_name: :LensModel
+
+          # @!attribute light_source
+          #
+          #   @return [Integer, nil]
+          optional :light_source, Integer, api_name: :LightSource
+
+          # @!attribute max_aperture_value
+          #
+          #   @return [Float, nil]
+          optional :max_aperture_value, Float, api_name: :MaxApertureValue
+
           # @!attribute metering_mode
           #
           #   @return [Integer, nil]
@@ -283,6 +308,16 @@ module Imagekitio
           #
           #   @return [Integer, nil]
           optional :scene_capture_type, Integer, api_name: :SceneCaptureType
+
+          # @!attribute scene_type
+          #
+          #   @return [String, nil]
+          optional :scene_type, String, api_name: :SceneType
+
+          # @!attribute sensing_method
+          #
+          #   @return [Integer, nil]
+          optional :sensing_method, Integer, api_name: :SensingMethod
 
           # @!attribute shutter_speed_value
           #
@@ -294,15 +329,21 @@ module Imagekitio
           #   @return [String, nil]
           optional :sub_sec_time, String, api_name: :SubSecTime
 
+          # @!attribute user_comment
+          #
+          #   @return [String, nil]
+          optional :user_comment, String, api_name: :UserComment
+
           # @!attribute white_balance
           #
           #   @return [Integer, nil]
           optional :white_balance, Integer, api_name: :WhiteBalance
 
-          # @!method initialize(aperture_value: nil, color_space: nil, create_date: nil, custom_rendered: nil, date_time_original: nil, exif_image_height: nil, exif_image_width: nil, exif_version: nil, exposure_compensation: nil, exposure_mode: nil, exposure_program: nil, exposure_time: nil, flash: nil, flashpix_version: nil, f_number: nil, focal_length: nil, focal_plane_resolution_unit: nil, focal_plane_x_resolution: nil, focal_plane_y_resolution: nil, interop_offset: nil, iso: nil, metering_mode: nil, scene_capture_type: nil, shutter_speed_value: nil, sub_sec_time: nil, white_balance: nil)
+          # @!method initialize(aperture_value: nil, brightness_value: nil, color_space: nil, create_date: nil, custom_rendered: nil, date_time_original: nil, exif_image_height: nil, exif_image_width: nil, exif_version: nil, exposure_compensation: nil, exposure_mode: nil, exposure_program: nil, exposure_time: nil, flash: nil, flashpix_version: nil, f_number: nil, focal_length: nil, focal_length_in35mm_format: nil, focal_plane_resolution_unit: nil, focal_plane_x_resolution: nil, focal_plane_y_resolution: nil, interop_offset: nil, iso: nil, lens_model: nil, light_source: nil, max_aperture_value: nil, metering_mode: nil, scene_capture_type: nil, scene_type: nil, sensing_method: nil, shutter_speed_value: nil, sub_sec_time: nil, user_comment: nil, white_balance: nil)
           #   Object containing Exif details.
           #
           #   @param aperture_value [Float]
+          #   @param brightness_value [Float]
           #   @param color_space [Integer]
           #   @param create_date [String]
           #   @param custom_rendered [Integer]
@@ -317,34 +358,111 @@ module Imagekitio
           #   @param flash [Integer]
           #   @param flashpix_version [String]
           #   @param f_number [Float]
-          #   @param focal_length [Integer]
+          #   @param focal_length [Float]
+          #   @param focal_length_in35mm_format [Integer]
           #   @param focal_plane_resolution_unit [Integer]
           #   @param focal_plane_x_resolution [Float]
           #   @param focal_plane_y_resolution [Float]
           #   @param interop_offset [Integer]
           #   @param iso [Integer]
+          #   @param lens_model [String]
+          #   @param light_source [Integer]
+          #   @param max_aperture_value [Float]
           #   @param metering_mode [Integer]
           #   @param scene_capture_type [Integer]
+          #   @param scene_type [String]
+          #   @param sensing_method [Integer]
           #   @param shutter_speed_value [Float]
           #   @param sub_sec_time [String]
+          #   @param user_comment [String]
           #   @param white_balance [Integer]
         end
 
         # @see Imagekitio::Models::Metadata::Exif#gps
         class Gps < Imagekitio::Internal::Type::BaseModel
+          # @!attribute gps_altitude
+          #
+          #   @return [Float, nil]
+          optional :gps_altitude, Float, api_name: :GPSAltitude
+
+          # @!attribute gps_altitude_ref
+          #
+          #   @return [Integer, nil]
+          optional :gps_altitude_ref, Integer, api_name: :GPSAltitudeRef
+
+          # @!attribute gps_date_stamp
+          #
+          #   @return [String, nil]
+          optional :gps_date_stamp, String, api_name: :GPSDateStamp
+
+          # @!attribute gps_img_direction
+          #
+          #   @return [Float, nil]
+          optional :gps_img_direction, Float, api_name: :GPSImgDirection
+
+          # @!attribute gps_img_direction_ref
+          #
+          #   @return [String, nil]
+          optional :gps_img_direction_ref, String, api_name: :GPSImgDirectionRef
+
+          # @!attribute gps_latitude
+          #
+          #   @return [Array<Float>, nil]
+          optional :gps_latitude, Imagekitio::Internal::Type::ArrayOf[Float], api_name: :GPSLatitude
+
+          # @!attribute gps_latitude_ref
+          #
+          #   @return [String, nil]
+          optional :gps_latitude_ref, String, api_name: :GPSLatitudeRef
+
+          # @!attribute gps_longitude
+          #
+          #   @return [Array<Float>, nil]
+          optional :gps_longitude, Imagekitio::Internal::Type::ArrayOf[Float], api_name: :GPSLongitude
+
+          # @!attribute gps_longitude_ref
+          #
+          #   @return [String, nil]
+          optional :gps_longitude_ref, String, api_name: :GPSLongitudeRef
+
+          # @!attribute gps_time_stamp
+          #
+          #   @return [Array<Float>, nil]
+          optional :gps_time_stamp, Imagekitio::Internal::Type::ArrayOf[Float], api_name: :GPSTimeStamp
+
           # @!attribute gps_version_id
           #
           #   @return [Array<Integer>, nil]
           optional :gps_version_id, Imagekitio::Internal::Type::ArrayOf[Integer], api_name: :GPSVersionID
 
-          # @!method initialize(gps_version_id: nil)
+          # @!method initialize(gps_altitude: nil, gps_altitude_ref: nil, gps_date_stamp: nil, gps_img_direction: nil, gps_img_direction_ref: nil, gps_latitude: nil, gps_latitude_ref: nil, gps_longitude: nil, gps_longitude_ref: nil, gps_time_stamp: nil, gps_version_id: nil)
           #   Object containing GPS information.
           #
+          #   @param gps_altitude [Float]
+          #   @param gps_altitude_ref [Integer]
+          #   @param gps_date_stamp [String]
+          #   @param gps_img_direction [Float]
+          #   @param gps_img_direction_ref [String]
+          #   @param gps_latitude [Array<Float>]
+          #   @param gps_latitude_ref [String]
+          #   @param gps_longitude [Array<Float>]
+          #   @param gps_longitude_ref [String]
+          #   @param gps_time_stamp [Array<Float>]
           #   @param gps_version_id [Array<Integer>]
         end
 
         # @see Imagekitio::Models::Metadata::Exif#image
         class Image < Imagekitio::Internal::Type::BaseModel
+          # @!attribute artist
+          #
+          #   @return [String, nil]
+          optional :artist, String, api_name: :Artist
+
+          # @!attribute copyright
+          #
+          #   @return [String, nil]
+          optional :copyright, String, api_name: :Copyright
+
           # @!attribute exif_offset
           #
           #   @return [Integer, nil]
@@ -354,6 +472,11 @@ module Imagekitio
           #
           #   @return [Integer, nil]
           optional :gps_info, Integer, api_name: :GPSInfo
+
+          # @!attribute image_description
+          #
+          #   @return [String, nil]
+          optional :image_description, String, api_name: :ImageDescription
 
           # @!attribute make
           #
@@ -387,8 +510,8 @@ module Imagekitio
 
           # @!attribute x_resolution
           #
-          #   @return [Integer, nil]
-          optional :x_resolution, Integer, api_name: :XResolution
+          #   @return [Float, nil]
+          optional :x_resolution, Float, api_name: :XResolution
 
           # @!attribute y_cb_cr_positioning
           #
@@ -397,23 +520,26 @@ module Imagekitio
 
           # @!attribute y_resolution
           #
-          #   @return [Integer, nil]
-          optional :y_resolution, Integer, api_name: :YResolution
+          #   @return [Float, nil]
+          optional :y_resolution, Float, api_name: :YResolution
 
-          # @!method initialize(exif_offset: nil, gps_info: nil, make: nil, model: nil, modify_date: nil, orientation: nil, resolution_unit: nil, software: nil, x_resolution: nil, y_cb_cr_positioning: nil, y_resolution: nil)
+          # @!method initialize(artist: nil, copyright: nil, exif_offset: nil, gps_info: nil, image_description: nil, make: nil, model: nil, modify_date: nil, orientation: nil, resolution_unit: nil, software: nil, x_resolution: nil, y_cb_cr_positioning: nil, y_resolution: nil)
           #   Object containing EXIF image information.
           #
+          #   @param artist [String]
+          #   @param copyright [String]
           #   @param exif_offset [Integer]
           #   @param gps_info [Integer]
+          #   @param image_description [String]
           #   @param make [String]
           #   @param model [String]
           #   @param modify_date [String]
           #   @param orientation [Integer]
           #   @param resolution_unit [Integer]
           #   @param software [String]
-          #   @param x_resolution [Integer]
+          #   @param x_resolution [Float]
           #   @param y_cb_cr_positioning [Integer]
-          #   @param y_resolution [Integer]
+          #   @param y_resolution [Float]
         end
 
         # @see Imagekitio::Models::Metadata::Exif#interoperability
@@ -459,13 +585,13 @@ module Imagekitio
 
           # @!attribute x_resolution
           #
-          #   @return [Integer, nil]
-          optional :x_resolution, Integer, api_name: :XResolution
+          #   @return [Float, nil]
+          optional :x_resolution, Float, api_name: :XResolution
 
           # @!attribute y_resolution
           #
-          #   @return [Integer, nil]
-          optional :y_resolution, Integer, api_name: :YResolution
+          #   @return [Float, nil]
+          optional :y_resolution, Float, api_name: :YResolution
 
           # @!method initialize(compression: nil, resolution_unit: nil, thumbnail_length: nil, thumbnail_offset: nil, x_resolution: nil, y_resolution: nil)
           #   Object containing Thumbnail information.
@@ -474,8 +600,8 @@ module Imagekitio
           #   @param resolution_unit [Integer]
           #   @param thumbnail_length [Integer]
           #   @param thumbnail_offset [Integer]
-          #   @param x_resolution [Integer]
-          #   @param y_resolution [Integer]
+          #   @param x_resolution [Float]
+          #   @param y_resolution [Float]
         end
       end
     end
