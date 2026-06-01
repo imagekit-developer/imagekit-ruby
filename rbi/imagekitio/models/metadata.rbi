@@ -288,12 +288,6 @@ module Imagekitio
           sig { params(aperture_value: Float).void }
           attr_writer :aperture_value
 
-          sig { returns(T.nilable(Float)) }
-          attr_reader :brightness_value
-
-          sig { params(brightness_value: Float).void }
-          attr_writer :brightness_value
-
           sig { returns(T.nilable(Integer)) }
           attr_reader :color_space
 
@@ -378,17 +372,11 @@ module Imagekitio
           sig { params(f_number: Float).void }
           attr_writer :f_number
 
-          sig { returns(T.nilable(Float)) }
+          sig { returns(T.nilable(Integer)) }
           attr_reader :focal_length
 
-          sig { params(focal_length: Float).void }
+          sig { params(focal_length: Integer).void }
           attr_writer :focal_length
-
-          sig { returns(T.nilable(Integer)) }
-          attr_reader :focal_length_in35mm_format
-
-          sig { params(focal_length_in35mm_format: Integer).void }
-          attr_writer :focal_length_in35mm_format
 
           sig { returns(T.nilable(Integer)) }
           attr_reader :focal_plane_resolution_unit
@@ -420,24 +408,6 @@ module Imagekitio
           sig { params(iso: Integer).void }
           attr_writer :iso
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :lens_model
-
-          sig { params(lens_model: String).void }
-          attr_writer :lens_model
-
-          sig { returns(T.nilable(Integer)) }
-          attr_reader :light_source
-
-          sig { params(light_source: Integer).void }
-          attr_writer :light_source
-
-          sig { returns(T.nilable(Float)) }
-          attr_reader :max_aperture_value
-
-          sig { params(max_aperture_value: Float).void }
-          attr_writer :max_aperture_value
-
           sig { returns(T.nilable(Integer)) }
           attr_reader :metering_mode
 
@@ -449,18 +419,6 @@ module Imagekitio
 
           sig { params(scene_capture_type: Integer).void }
           attr_writer :scene_capture_type
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :scene_type
-
-          sig { params(scene_type: String).void }
-          attr_writer :scene_type
-
-          sig { returns(T.nilable(Integer)) }
-          attr_reader :sensing_method
-
-          sig { params(sensing_method: Integer).void }
-          attr_writer :sensing_method
 
           sig { returns(T.nilable(Float)) }
           attr_reader :shutter_speed_value
@@ -474,12 +432,6 @@ module Imagekitio
           sig { params(sub_sec_time: String).void }
           attr_writer :sub_sec_time
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :user_comment
-
-          sig { params(user_comment: String).void }
-          attr_writer :user_comment
-
           sig { returns(T.nilable(Integer)) }
           attr_reader :white_balance
 
@@ -490,7 +442,6 @@ module Imagekitio
           sig do
             params(
               aperture_value: Float,
-              brightness_value: Float,
               color_space: Integer,
               create_date: String,
               custom_rendered: Integer,
@@ -505,29 +456,21 @@ module Imagekitio
               flash: Integer,
               flashpix_version: String,
               f_number: Float,
-              focal_length: Float,
-              focal_length_in35mm_format: Integer,
+              focal_length: Integer,
               focal_plane_resolution_unit: Integer,
               focal_plane_x_resolution: Float,
               focal_plane_y_resolution: Float,
               interop_offset: Integer,
               iso: Integer,
-              lens_model: String,
-              light_source: Integer,
-              max_aperture_value: Float,
               metering_mode: Integer,
               scene_capture_type: Integer,
-              scene_type: String,
-              sensing_method: Integer,
               shutter_speed_value: Float,
               sub_sec_time: String,
-              user_comment: String,
               white_balance: Integer
             ).returns(T.attached_class)
           end
           def self.new(
             aperture_value: nil,
-            brightness_value: nil,
             color_space: nil,
             create_date: nil,
             custom_rendered: nil,
@@ -543,22 +486,15 @@ module Imagekitio
             flashpix_version: nil,
             f_number: nil,
             focal_length: nil,
-            focal_length_in35mm_format: nil,
             focal_plane_resolution_unit: nil,
             focal_plane_x_resolution: nil,
             focal_plane_y_resolution: nil,
             interop_offset: nil,
             iso: nil,
-            lens_model: nil,
-            light_source: nil,
-            max_aperture_value: nil,
             metering_mode: nil,
             scene_capture_type: nil,
-            scene_type: nil,
-            sensing_method: nil,
             shutter_speed_value: nil,
             sub_sec_time: nil,
-            user_comment: nil,
             white_balance: nil
           )
           end
@@ -567,7 +503,6 @@ module Imagekitio
             override.returns(
               {
                 aperture_value: Float,
-                brightness_value: Float,
                 color_space: Integer,
                 create_date: String,
                 custom_rendered: Integer,
@@ -582,23 +517,16 @@ module Imagekitio
                 flash: Integer,
                 flashpix_version: String,
                 f_number: Float,
-                focal_length: Float,
-                focal_length_in35mm_format: Integer,
+                focal_length: Integer,
                 focal_plane_resolution_unit: Integer,
                 focal_plane_x_resolution: Float,
                 focal_plane_y_resolution: Float,
                 interop_offset: Integer,
                 iso: Integer,
-                lens_model: String,
-                light_source: Integer,
-                max_aperture_value: Float,
                 metering_mode: Integer,
                 scene_capture_type: Integer,
-                scene_type: String,
-                sensing_method: Integer,
                 shutter_speed_value: Float,
                 sub_sec_time: String,
-                user_comment: String,
                 white_balance: Integer
               }
             )
@@ -616,66 +544,6 @@ module Imagekitio
               )
             end
 
-          sig { returns(T.nilable(Float)) }
-          attr_reader :gps_altitude
-
-          sig { params(gps_altitude: Float).void }
-          attr_writer :gps_altitude
-
-          sig { returns(T.nilable(Integer)) }
-          attr_reader :gps_altitude_ref
-
-          sig { params(gps_altitude_ref: Integer).void }
-          attr_writer :gps_altitude_ref
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :gps_date_stamp
-
-          sig { params(gps_date_stamp: String).void }
-          attr_writer :gps_date_stamp
-
-          sig { returns(T.nilable(Float)) }
-          attr_reader :gps_img_direction
-
-          sig { params(gps_img_direction: Float).void }
-          attr_writer :gps_img_direction
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :gps_img_direction_ref
-
-          sig { params(gps_img_direction_ref: String).void }
-          attr_writer :gps_img_direction_ref
-
-          sig { returns(T.nilable(T::Array[Float])) }
-          attr_reader :gps_latitude
-
-          sig { params(gps_latitude: T::Array[Float]).void }
-          attr_writer :gps_latitude
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :gps_latitude_ref
-
-          sig { params(gps_latitude_ref: String).void }
-          attr_writer :gps_latitude_ref
-
-          sig { returns(T.nilable(T::Array[Float])) }
-          attr_reader :gps_longitude
-
-          sig { params(gps_longitude: T::Array[Float]).void }
-          attr_writer :gps_longitude
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :gps_longitude_ref
-
-          sig { params(gps_longitude_ref: String).void }
-          attr_writer :gps_longitude_ref
-
-          sig { returns(T.nilable(T::Array[Float])) }
-          attr_reader :gps_time_stamp
-
-          sig { params(gps_time_stamp: T::Array[Float]).void }
-          attr_writer :gps_time_stamp
-
           sig { returns(T.nilable(T::Array[Integer])) }
           attr_reader :gps_version_id
 
@@ -684,52 +552,12 @@ module Imagekitio
 
           # Object containing GPS information.
           sig do
-            params(
-              gps_altitude: Float,
-              gps_altitude_ref: Integer,
-              gps_date_stamp: String,
-              gps_img_direction: Float,
-              gps_img_direction_ref: String,
-              gps_latitude: T::Array[Float],
-              gps_latitude_ref: String,
-              gps_longitude: T::Array[Float],
-              gps_longitude_ref: String,
-              gps_time_stamp: T::Array[Float],
-              gps_version_id: T::Array[Integer]
-            ).returns(T.attached_class)
+            params(gps_version_id: T::Array[Integer]).returns(T.attached_class)
           end
-          def self.new(
-            gps_altitude: nil,
-            gps_altitude_ref: nil,
-            gps_date_stamp: nil,
-            gps_img_direction: nil,
-            gps_img_direction_ref: nil,
-            gps_latitude: nil,
-            gps_latitude_ref: nil,
-            gps_longitude: nil,
-            gps_longitude_ref: nil,
-            gps_time_stamp: nil,
-            gps_version_id: nil
-          )
+          def self.new(gps_version_id: nil)
           end
 
-          sig do
-            override.returns(
-              {
-                gps_altitude: Float,
-                gps_altitude_ref: Integer,
-                gps_date_stamp: String,
-                gps_img_direction: Float,
-                gps_img_direction_ref: String,
-                gps_latitude: T::Array[Float],
-                gps_latitude_ref: String,
-                gps_longitude: T::Array[Float],
-                gps_longitude_ref: String,
-                gps_time_stamp: T::Array[Float],
-                gps_version_id: T::Array[Integer]
-              }
-            )
-          end
+          sig { override.returns({ gps_version_id: T::Array[Integer] }) }
           def to_hash
           end
         end
@@ -743,18 +571,6 @@ module Imagekitio
               )
             end
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :artist
-
-          sig { params(artist: String).void }
-          attr_writer :artist
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :copyright
-
-          sig { params(copyright: String).void }
-          attr_writer :copyright
-
           sig { returns(T.nilable(Integer)) }
           attr_reader :exif_offset
 
@@ -766,12 +582,6 @@ module Imagekitio
 
           sig { params(gps_info: Integer).void }
           attr_writer :gps_info
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :image_description
-
-          sig { params(image_description: String).void }
-          attr_writer :image_description
 
           sig { returns(T.nilable(String)) }
           attr_reader :make
@@ -809,10 +619,10 @@ module Imagekitio
           sig { params(software: String).void }
           attr_writer :software
 
-          sig { returns(T.nilable(Float)) }
+          sig { returns(T.nilable(Integer)) }
           attr_reader :x_resolution
 
-          sig { params(x_resolution: Float).void }
+          sig { params(x_resolution: Integer).void }
           attr_writer :x_resolution
 
           sig { returns(T.nilable(Integer)) }
@@ -821,37 +631,31 @@ module Imagekitio
           sig { params(y_cb_cr_positioning: Integer).void }
           attr_writer :y_cb_cr_positioning
 
-          sig { returns(T.nilable(Float)) }
+          sig { returns(T.nilable(Integer)) }
           attr_reader :y_resolution
 
-          sig { params(y_resolution: Float).void }
+          sig { params(y_resolution: Integer).void }
           attr_writer :y_resolution
 
           # Object containing EXIF image information.
           sig do
             params(
-              artist: String,
-              copyright: String,
               exif_offset: Integer,
               gps_info: Integer,
-              image_description: String,
               make: String,
               model: String,
               modify_date: String,
               orientation: Integer,
               resolution_unit: Integer,
               software: String,
-              x_resolution: Float,
+              x_resolution: Integer,
               y_cb_cr_positioning: Integer,
-              y_resolution: Float
+              y_resolution: Integer
             ).returns(T.attached_class)
           end
           def self.new(
-            artist: nil,
-            copyright: nil,
             exif_offset: nil,
             gps_info: nil,
-            image_description: nil,
             make: nil,
             model: nil,
             modify_date: nil,
@@ -867,20 +671,17 @@ module Imagekitio
           sig do
             override.returns(
               {
-                artist: String,
-                copyright: String,
                 exif_offset: Integer,
                 gps_info: Integer,
-                image_description: String,
                 make: String,
                 model: String,
                 modify_date: String,
                 orientation: Integer,
                 resolution_unit: Integer,
                 software: String,
-                x_resolution: Float,
+                x_resolution: Integer,
                 y_cb_cr_positioning: Integer,
-                y_resolution: Float
+                y_resolution: Integer
               }
             )
           end
@@ -958,16 +759,16 @@ module Imagekitio
           sig { params(thumbnail_offset: Integer).void }
           attr_writer :thumbnail_offset
 
-          sig { returns(T.nilable(Float)) }
+          sig { returns(T.nilable(Integer)) }
           attr_reader :x_resolution
 
-          sig { params(x_resolution: Float).void }
+          sig { params(x_resolution: Integer).void }
           attr_writer :x_resolution
 
-          sig { returns(T.nilable(Float)) }
+          sig { returns(T.nilable(Integer)) }
           attr_reader :y_resolution
 
-          sig { params(y_resolution: Float).void }
+          sig { params(y_resolution: Integer).void }
           attr_writer :y_resolution
 
           # Object containing Thumbnail information.
@@ -977,8 +778,8 @@ module Imagekitio
               resolution_unit: Integer,
               thumbnail_length: Integer,
               thumbnail_offset: Integer,
-              x_resolution: Float,
-              y_resolution: Float
+              x_resolution: Integer,
+              y_resolution: Integer
             ).returns(T.attached_class)
           end
           def self.new(
@@ -998,8 +799,8 @@ module Imagekitio
                 resolution_unit: Integer,
                 thumbnail_length: Integer,
                 thumbnail_offset: Integer,
-                x_resolution: Float,
-                y_resolution: Float
+                x_resolution: Integer,
+                y_resolution: Integer
               }
             )
           end
