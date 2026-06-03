@@ -175,6 +175,7 @@ module Imagekitio
         type exif =
           {
             aperture_value: Float,
+            brightness_value: Float,
             color_space: Integer,
             create_date: String,
             custom_rendered: Integer,
@@ -189,16 +190,23 @@ module Imagekitio
             flash: Integer,
             flashpix_version: String,
             f_number: Float,
-            focal_length: Integer,
+            focal_length: Float,
+            :focal_length_in35mm_format => Integer,
             focal_plane_resolution_unit: Integer,
             focal_plane_x_resolution: Float,
             focal_plane_y_resolution: Float,
             interop_offset: Integer,
             iso: Integer,
+            lens_model: String,
+            light_source: Integer,
+            max_aperture_value: Float,
             metering_mode: Integer,
             scene_capture_type: Integer,
+            scene_type: String,
+            sensing_method: Integer,
             shutter_speed_value: Float,
             sub_sec_time: String,
+            user_comment: String,
             white_balance: Integer
           }
 
@@ -206,6 +214,10 @@ module Imagekitio
           attr_reader aperture_value: Float?
 
           def aperture_value=: (Float) -> Float
+
+          attr_reader brightness_value: Float?
+
+          def brightness_value=: (Float) -> Float
 
           attr_reader color_space: Integer?
 
@@ -263,9 +275,13 @@ module Imagekitio
 
           def f_number=: (Float) -> Float
 
-          attr_reader focal_length: Integer?
+          attr_reader focal_length: Float?
 
-          def focal_length=: (Integer) -> Integer
+          def focal_length=: (Float) -> Float
+
+          attr_reader focal_length_in35mm_format: Integer?
+
+          def focal_length_in35mm_format=: (Integer) -> Integer
 
           attr_reader focal_plane_resolution_unit: Integer?
 
@@ -287,6 +303,18 @@ module Imagekitio
 
           def iso=: (Integer) -> Integer
 
+          attr_reader lens_model: String?
+
+          def lens_model=: (String) -> String
+
+          attr_reader light_source: Integer?
+
+          def light_source=: (Integer) -> Integer
+
+          attr_reader max_aperture_value: Float?
+
+          def max_aperture_value=: (Float) -> Float
+
           attr_reader metering_mode: Integer?
 
           def metering_mode=: (Integer) -> Integer
@@ -294,6 +322,14 @@ module Imagekitio
           attr_reader scene_capture_type: Integer?
 
           def scene_capture_type=: (Integer) -> Integer
+
+          attr_reader scene_type: String?
+
+          def scene_type=: (String) -> String
+
+          attr_reader sensing_method: Integer?
+
+          def sensing_method=: (Integer) -> Integer
 
           attr_reader shutter_speed_value: Float?
 
@@ -303,12 +339,17 @@ module Imagekitio
 
           def sub_sec_time=: (String) -> String
 
+          attr_reader user_comment: String?
+
+          def user_comment=: (String) -> String
+
           attr_reader white_balance: Integer?
 
           def white_balance=: (Integer) -> Integer
 
           def initialize: (
             ?aperture_value: Float,
+            ?brightness_value: Float,
             ?color_space: Integer,
             ?create_date: String,
             ?custom_rendered: Integer,
@@ -323,21 +364,29 @@ module Imagekitio
             ?flash: Integer,
             ?flashpix_version: String,
             ?f_number: Float,
-            ?focal_length: Integer,
+            ?focal_length: Float,
+            ?focal_length_in35mm_format: Integer,
             ?focal_plane_resolution_unit: Integer,
             ?focal_plane_x_resolution: Float,
             ?focal_plane_y_resolution: Float,
             ?interop_offset: Integer,
             ?iso: Integer,
+            ?lens_model: String,
+            ?light_source: Integer,
+            ?max_aperture_value: Float,
             ?metering_mode: Integer,
             ?scene_capture_type: Integer,
+            ?scene_type: String,
+            ?sensing_method: Integer,
             ?shutter_speed_value: Float,
             ?sub_sec_time: String,
+            ?user_comment: String,
             ?white_balance: Integer
           ) -> void
 
           def to_hash: -> {
             aperture_value: Float,
+            brightness_value: Float,
             color_space: Integer,
             create_date: String,
             custom_rendered: Integer,
@@ -352,48 +401,143 @@ module Imagekitio
             flash: Integer,
             flashpix_version: String,
             f_number: Float,
-            focal_length: Integer,
+            focal_length: Float,
+            :focal_length_in35mm_format => Integer,
             focal_plane_resolution_unit: Integer,
             focal_plane_x_resolution: Float,
             focal_plane_y_resolution: Float,
             interop_offset: Integer,
             iso: Integer,
+            lens_model: String,
+            light_source: Integer,
+            max_aperture_value: Float,
             metering_mode: Integer,
             scene_capture_type: Integer,
+            scene_type: String,
+            sensing_method: Integer,
             shutter_speed_value: Float,
             sub_sec_time: String,
+            user_comment: String,
             white_balance: Integer
           }
         end
 
-        type gps = { gps_version_id: ::Array[Integer] }
+        type gps =
+          {
+            gps_altitude: Float,
+            gps_altitude_ref: Integer,
+            gps_date_stamp: String,
+            gps_img_direction: Float,
+            gps_img_direction_ref: String,
+            gps_latitude: ::Array[Float],
+            gps_latitude_ref: String,
+            gps_longitude: ::Array[Float],
+            gps_longitude_ref: String,
+            gps_time_stamp: ::Array[Float],
+            gps_version_id: ::Array[Integer]
+          }
 
         class Gps < Imagekitio::Internal::Type::BaseModel
+          attr_reader gps_altitude: Float?
+
+          def gps_altitude=: (Float) -> Float
+
+          attr_reader gps_altitude_ref: Integer?
+
+          def gps_altitude_ref=: (Integer) -> Integer
+
+          attr_reader gps_date_stamp: String?
+
+          def gps_date_stamp=: (String) -> String
+
+          attr_reader gps_img_direction: Float?
+
+          def gps_img_direction=: (Float) -> Float
+
+          attr_reader gps_img_direction_ref: String?
+
+          def gps_img_direction_ref=: (String) -> String
+
+          attr_reader gps_latitude: ::Array[Float]?
+
+          def gps_latitude=: (::Array[Float]) -> ::Array[Float]
+
+          attr_reader gps_latitude_ref: String?
+
+          def gps_latitude_ref=: (String) -> String
+
+          attr_reader gps_longitude: ::Array[Float]?
+
+          def gps_longitude=: (::Array[Float]) -> ::Array[Float]
+
+          attr_reader gps_longitude_ref: String?
+
+          def gps_longitude_ref=: (String) -> String
+
+          attr_reader gps_time_stamp: ::Array[Float]?
+
+          def gps_time_stamp=: (::Array[Float]) -> ::Array[Float]
+
           attr_reader gps_version_id: ::Array[Integer]?
 
           def gps_version_id=: (::Array[Integer]) -> ::Array[Integer]
 
-          def initialize: (?gps_version_id: ::Array[Integer]) -> void
+          def initialize: (
+            ?gps_altitude: Float,
+            ?gps_altitude_ref: Integer,
+            ?gps_date_stamp: String,
+            ?gps_img_direction: Float,
+            ?gps_img_direction_ref: String,
+            ?gps_latitude: ::Array[Float],
+            ?gps_latitude_ref: String,
+            ?gps_longitude: ::Array[Float],
+            ?gps_longitude_ref: String,
+            ?gps_time_stamp: ::Array[Float],
+            ?gps_version_id: ::Array[Integer]
+          ) -> void
 
-          def to_hash: -> { gps_version_id: ::Array[Integer] }
+          def to_hash: -> {
+            gps_altitude: Float,
+            gps_altitude_ref: Integer,
+            gps_date_stamp: String,
+            gps_img_direction: Float,
+            gps_img_direction_ref: String,
+            gps_latitude: ::Array[Float],
+            gps_latitude_ref: String,
+            gps_longitude: ::Array[Float],
+            gps_longitude_ref: String,
+            gps_time_stamp: ::Array[Float],
+            gps_version_id: ::Array[Integer]
+          }
         end
 
         type image =
           {
+            artist: String,
+            copyright: String,
             exif_offset: Integer,
             gps_info: Integer,
+            image_description: String,
             make: String,
             model: String,
             modify_date: String,
             orientation: Integer,
             resolution_unit: Integer,
             software: String,
-            x_resolution: Integer,
+            x_resolution: Float,
             y_cb_cr_positioning: Integer,
-            y_resolution: Integer
+            y_resolution: Float
           }
 
         class Image < Imagekitio::Internal::Type::BaseModel
+          attr_reader artist: String?
+
+          def artist=: (String) -> String
+
+          attr_reader copyright: String?
+
+          def copyright=: (String) -> String
+
           attr_reader exif_offset: Integer?
 
           def exif_offset=: (Integer) -> Integer
@@ -401,6 +545,10 @@ module Imagekitio
           attr_reader gps_info: Integer?
 
           def gps_info=: (Integer) -> Integer
+
+          attr_reader image_description: String?
+
+          def image_description=: (String) -> String
 
           attr_reader make: String?
 
@@ -426,44 +574,50 @@ module Imagekitio
 
           def software=: (String) -> String
 
-          attr_reader x_resolution: Integer?
+          attr_reader x_resolution: Float?
 
-          def x_resolution=: (Integer) -> Integer
+          def x_resolution=: (Float) -> Float
 
           attr_reader y_cb_cr_positioning: Integer?
 
           def y_cb_cr_positioning=: (Integer) -> Integer
 
-          attr_reader y_resolution: Integer?
+          attr_reader y_resolution: Float?
 
-          def y_resolution=: (Integer) -> Integer
+          def y_resolution=: (Float) -> Float
 
           def initialize: (
+            ?artist: String,
+            ?copyright: String,
             ?exif_offset: Integer,
             ?gps_info: Integer,
+            ?image_description: String,
             ?make: String,
             ?model: String,
             ?modify_date: String,
             ?orientation: Integer,
             ?resolution_unit: Integer,
             ?software: String,
-            ?x_resolution: Integer,
+            ?x_resolution: Float,
             ?y_cb_cr_positioning: Integer,
-            ?y_resolution: Integer
+            ?y_resolution: Float
           ) -> void
 
           def to_hash: -> {
+            artist: String,
+            copyright: String,
             exif_offset: Integer,
             gps_info: Integer,
+            image_description: String,
             make: String,
             model: String,
             modify_date: String,
             orientation: Integer,
             resolution_unit: Integer,
             software: String,
-            x_resolution: Integer,
+            x_resolution: Float,
             y_cb_cr_positioning: Integer,
-            y_resolution: Integer
+            y_resolution: Float
           }
         end
 
@@ -493,8 +647,8 @@ module Imagekitio
             resolution_unit: Integer,
             thumbnail_length: Integer,
             thumbnail_offset: Integer,
-            x_resolution: Integer,
-            y_resolution: Integer
+            x_resolution: Float,
+            y_resolution: Float
           }
 
         class Thumbnail < Imagekitio::Internal::Type::BaseModel
@@ -514,21 +668,21 @@ module Imagekitio
 
           def thumbnail_offset=: (Integer) -> Integer
 
-          attr_reader x_resolution: Integer?
+          attr_reader x_resolution: Float?
 
-          def x_resolution=: (Integer) -> Integer
+          def x_resolution=: (Float) -> Float
 
-          attr_reader y_resolution: Integer?
+          attr_reader y_resolution: Float?
 
-          def y_resolution=: (Integer) -> Integer
+          def y_resolution=: (Float) -> Float
 
           def initialize: (
             ?compression: Integer,
             ?resolution_unit: Integer,
             ?thumbnail_length: Integer,
             ?thumbnail_offset: Integer,
-            ?x_resolution: Integer,
-            ?y_resolution: Integer
+            ?x_resolution: Float,
+            ?y_resolution: Float
           ) -> void
 
           def to_hash: -> {
@@ -536,8 +690,8 @@ module Imagekitio
             resolution_unit: Integer,
             thumbnail_length: Integer,
             thumbnail_offset: Integer,
-            x_resolution: Integer,
-            y_resolution: Integer
+            x_resolution: Float,
+            y_resolution: Float
           }
         end
       end
