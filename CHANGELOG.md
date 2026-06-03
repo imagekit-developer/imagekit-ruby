@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.6.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.5.1...v4.6.0) (2026-06-03)
+
+
+### Features
+
+* initial stlc build ([a2757e4](https://github.com/imagekit-developer/imagekit-ruby/commit/a2757e46e00bd414fd2de73c11eb53e01a7633dc))
+
+
+### Bug Fixes
+
+* metadata response shape ([34e58cd](https://github.com/imagekit-developer/imagekit-ruby/commit/34e58cd2b3d0923881fc15d38e5dfbb32bef2991))
+
+
+### Chores
+
+* Update webhook description ([1581227](https://github.com/imagekit-developer/imagekit-ruby/commit/15812270ccbe7e45a61ee94a4006fb5d02cf9921))
+* Update webhook description ([7e2d29e](https://github.com/imagekit-developer/imagekit-ruby/commit/7e2d29e79c23729d2c2bf5ecbc0439ce53f66099))
+
 ## 4.5.1 (2026-05-17)
 
 Full Changelog: [v4.5.0...v4.5.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.5.0...v4.5.1)
