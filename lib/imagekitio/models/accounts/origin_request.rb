@@ -27,7 +27,7 @@ module Imagekitio
 
         class S3 < Imagekitio::Internal::Type::BaseModel
           # @!attribute access_key
-          #   Access key for the bucket.
+          #   Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @return [String]
           required :access_key, String, api_name: :accessKey
@@ -45,7 +45,7 @@ module Imagekitio
           required :name, String
 
           # @!attribute secret_key
-          #   Secret key for the bucket.
+          #   Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @return [String]
           required :secret_key, String, api_name: :secretKey
@@ -75,20 +75,32 @@ module Imagekitio
           #   @return [String, nil]
           optional :prefix, String
 
-          # @!method initialize(access_key:, bucket:, name:, secret_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :S3)
-          #   @param access_key [String] Access key for the bucket.
+          # @!attribute use_iam_role
+          #   Use IAM role for authentication instead of access/secret keys. When set to
+          #   `true`, send an empty string for both `accessKey` and `secretKey`.
+          #
+          #   @return [Boolean, nil]
+          optional :use_iam_role, Imagekitio::Internal::Type::Boolean, api_name: :useIAMRole
+
+          # @!method initialize(access_key:, bucket:, name:, secret_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, use_iam_role: nil, type: :S3)
+          #   Some parameter documentations has been truncated, see
+          #   {Imagekitio::Models::Accounts::OriginRequest::S3} for more details.
+          #
+          #   @param access_key [String] Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @param bucket [String] S3 bucket name.
           #
           #   @param name [String] Display name of the origin.
           #
-          #   @param secret_key [String] Secret key for the bucket.
+          #   @param secret_key [String] Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
           #   @param include_canonical_header [Boolean] Whether to send a Canonical header.
           #
           #   @param prefix [String] Path prefix inside the bucket.
+          #
+          #   @param use_iam_role [Boolean] Use IAM role for authentication instead of access/secret keys. When set to `true
           #
           #   @param type [Symbol, :S3]
         end
@@ -179,7 +191,7 @@ module Imagekitio
 
         class CloudinaryBackup < Imagekitio::Internal::Type::BaseModel
           # @!attribute access_key
-          #   Access key for the bucket.
+          #   Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @return [String]
           required :access_key, String, api_name: :accessKey
@@ -197,7 +209,7 @@ module Imagekitio
           required :name, String
 
           # @!attribute secret_key
-          #   Secret key for the bucket.
+          #   Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @return [String]
           required :secret_key, String, api_name: :secretKey
@@ -227,20 +239,33 @@ module Imagekitio
           #   @return [String, nil]
           optional :prefix, String
 
-          # @!method initialize(access_key:, bucket:, name:, secret_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, type: :CLOUDINARY_BACKUP)
-          #   @param access_key [String] Access key for the bucket.
+          # @!attribute use_iam_role
+          #   Use IAM role for authentication instead of access/secret keys. When set to
+          #   `true`, send an empty string for both `accessKey` and `secretKey`.
+          #
+          #   @return [Boolean, nil]
+          optional :use_iam_role, Imagekitio::Internal::Type::Boolean, api_name: :useIAMRole
+
+          # @!method initialize(access_key:, bucket:, name:, secret_key:, base_url_for_canonical_header: nil, include_canonical_header: nil, prefix: nil, use_iam_role: nil, type: :CLOUDINARY_BACKUP)
+          #   Some parameter documentations has been truncated, see
+          #   {Imagekitio::Models::Accounts::OriginRequest::CloudinaryBackup} for more
+          #   details.
+          #
+          #   @param access_key [String] Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @param bucket [String] S3 bucket name.
           #
           #   @param name [String] Display name of the origin.
           #
-          #   @param secret_key [String] Secret key for the bucket.
+          #   @param secret_key [String] Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
           #
           #   @param base_url_for_canonical_header [String] URL used in the Canonical header (if enabled).
           #
           #   @param include_canonical_header [Boolean] Whether to send a Canonical header.
           #
           #   @param prefix [String] Path prefix inside the bucket.
+          #
+          #   @param use_iam_role [Boolean] Use IAM role for authentication instead of access/secret keys. When set to `true
           #
           #   @param type [Symbol, :CLOUDINARY_BACKUP]
         end

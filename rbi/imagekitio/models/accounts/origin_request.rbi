@@ -30,7 +30,7 @@ module Imagekitio
               )
             end
 
-          # Access key for the bucket.
+          # Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
           sig { returns(String) }
           attr_accessor :access_key
 
@@ -42,7 +42,7 @@ module Imagekitio
           sig { returns(String) }
           attr_accessor :name
 
-          # Secret key for the bucket.
+          # Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
           sig { returns(String) }
           attr_accessor :secret_key
 
@@ -70,6 +70,14 @@ module Imagekitio
           sig { params(prefix: String).void }
           attr_writer :prefix
 
+          # Use IAM role for authentication instead of access/secret keys. When set to
+          # `true`, send an empty string for both `accessKey` and `secretKey`.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_reader :use_iam_role
+
+          sig { params(use_iam_role: T::Boolean).void }
+          attr_writer :use_iam_role
+
           sig do
             params(
               access_key: String,
@@ -79,17 +87,18 @@ module Imagekitio
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
+              use_iam_role: T::Boolean,
               type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
-            # Access key for the bucket.
+            # Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
             access_key:,
             # S3 bucket name.
             bucket:,
             # Display name of the origin.
             name:,
-            # Secret key for the bucket.
+            # Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
             secret_key:,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
@@ -97,6 +106,9 @@ module Imagekitio
             include_canonical_header: nil,
             # Path prefix inside the bucket.
             prefix: nil,
+            # Use IAM role for authentication instead of access/secret keys. When set to
+            # `true`, send an empty string for both `accessKey` and `secretKey`.
+            use_iam_role: nil,
             type: :S3
           )
           end
@@ -111,7 +123,8 @@ module Imagekitio
                 type: Symbol,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean,
-                prefix: String
+                prefix: String,
+                use_iam_role: T::Boolean
               }
             )
           end
@@ -245,7 +258,7 @@ module Imagekitio
               )
             end
 
-          # Access key for the bucket.
+          # Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
           sig { returns(String) }
           attr_accessor :access_key
 
@@ -257,7 +270,7 @@ module Imagekitio
           sig { returns(String) }
           attr_accessor :name
 
-          # Secret key for the bucket.
+          # Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
           sig { returns(String) }
           attr_accessor :secret_key
 
@@ -285,6 +298,14 @@ module Imagekitio
           sig { params(prefix: String).void }
           attr_writer :prefix
 
+          # Use IAM role for authentication instead of access/secret keys. When set to
+          # `true`, send an empty string for both `accessKey` and `secretKey`.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_reader :use_iam_role
+
+          sig { params(use_iam_role: T::Boolean).void }
+          attr_writer :use_iam_role
+
           sig do
             params(
               access_key: String,
@@ -294,17 +315,18 @@ module Imagekitio
               base_url_for_canonical_header: String,
               include_canonical_header: T::Boolean,
               prefix: String,
+              use_iam_role: T::Boolean,
               type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
-            # Access key for the bucket.
+            # Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
             access_key:,
             # S3 bucket name.
             bucket:,
             # Display name of the origin.
             name:,
-            # Secret key for the bucket.
+            # Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
             secret_key:,
             # URL used in the Canonical header (if enabled).
             base_url_for_canonical_header: nil,
@@ -312,6 +334,9 @@ module Imagekitio
             include_canonical_header: nil,
             # Path prefix inside the bucket.
             prefix: nil,
+            # Use IAM role for authentication instead of access/secret keys. When set to
+            # `true`, send an empty string for both `accessKey` and `secretKey`.
+            use_iam_role: nil,
             type: :CLOUDINARY_BACKUP
           )
           end
@@ -326,7 +351,8 @@ module Imagekitio
                 type: Symbol,
                 base_url_for_canonical_header: String,
                 include_canonical_header: T::Boolean,
-                prefix: String
+                prefix: String,
+                use_iam_role: T::Boolean
               }
             )
           end

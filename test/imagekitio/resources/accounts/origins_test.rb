@@ -43,7 +43,8 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
         include_canonical_header: Imagekitio::Internal::Type::Boolean,
         name: String,
         prefix: String,
-        base_url_for_canonical_header: String | nil
+        base_url_for_canonical_header: String | nil,
+        use_iam_role: Imagekitio::Internal::Type::Boolean | nil
       }
       in {
         type: :S3_COMPATIBLE,
@@ -63,7 +64,8 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
         include_canonical_header: Imagekitio::Internal::Type::Boolean,
         name: String,
         prefix: String,
-        base_url_for_canonical_header: String | nil
+        base_url_for_canonical_header: String | nil,
+        use_iam_role: Imagekitio::Internal::Type::Boolean | nil
       }
       in {
         type: :WEB_FOLDER,
@@ -154,7 +156,8 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
         include_canonical_header: Imagekitio::Internal::Type::Boolean,
         name: String,
         prefix: String,
-        base_url_for_canonical_header: String | nil
+        base_url_for_canonical_header: String | nil,
+        use_iam_role: Imagekitio::Internal::Type::Boolean | nil
       }
       in {
         type: :S3_COMPATIBLE,
@@ -174,7 +177,8 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
         include_canonical_header: Imagekitio::Internal::Type::Boolean,
         name: String,
         prefix: String,
-        base_url_for_canonical_header: String | nil
+        base_url_for_canonical_header: String | nil,
+        use_iam_role: Imagekitio::Internal::Type::Boolean | nil
       }
       in {
         type: :WEB_FOLDER,
@@ -275,7 +279,8 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
         include_canonical_header: Imagekitio::Internal::Type::Boolean,
         name: String,
         prefix: String,
-        base_url_for_canonical_header: String | nil
+        base_url_for_canonical_header: String | nil,
+        use_iam_role: Imagekitio::Internal::Type::Boolean | nil
       }
       in {
         type: :S3_COMPATIBLE,
@@ -295,7 +300,8 @@ class Imagekitio::Test::Resources::Accounts::OriginsTest < Imagekitio::Test::Res
         include_canonical_header: Imagekitio::Internal::Type::Boolean,
         name: String,
         prefix: String,
-        base_url_for_canonical_header: String | nil
+        base_url_for_canonical_header: String | nil,
+        use_iam_role: Imagekitio::Internal::Type::Boolean | nil
       }
       in {
         type: :WEB_FOLDER,
