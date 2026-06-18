@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.7.1 (2026-06-18)
+
+Full Changelog: [v4.7.0...v4.7.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.7.0...v4.7.1)
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([669c448](https://github.com/imagekit-developer/imagekit-ruby/commit/669c44838658032f9bd0c2e9a24e8b234d8936ce))
+
 ## [4.7.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.6.0...v4.7.0) (2026-06-18)
 
 
