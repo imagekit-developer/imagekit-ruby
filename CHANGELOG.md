@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.7.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.6.0...v4.7.0) (2026-06-18)
+
+
+### Features
+
+* **origins:** add useIAMRole for IAM role authentication ([c38cc1b](https://github.com/imagekit-developer/imagekit-ruby/commit/c38cc1bea8028c2c10ae543e027dc71a63170222))
+
+
+### Documentation
+
+* update default value in description for intensity in colorize transformation ([7b128c5](https://github.com/imagekit-developer/imagekit-ruby/commit/7b128c59d1da7435e6137ebad7a60251e941defa))
+
 ## [4.6.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.5.1...v4.6.0) (2026-06-03)
 
 
