@@ -203,7 +203,7 @@ module Imagekitio
       #
       # - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`). Default is gray
       #   color.
-      # - `in-intensity` - Intensity of the color (0-100). Default is 35. See
+      # - `in-intensity` - Intensity of the color (0-100). Default is 100. See
       #   [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
       sig { returns(T.nilable(String)) }
       attr_reader :colorize
@@ -804,7 +804,7 @@ module Imagekitio
         #
         # - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`). Default is gray
         #   color.
-        # - `in-intensity` - Intensity of the color (0-100). Default is 35. See
+        # - `in-intensity` - Intensity of the color (0-100). Default is 100. See
         #   [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
         colorize: nil,
         # Indicates whether the output image should retain the original color profile. See
