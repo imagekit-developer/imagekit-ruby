@@ -23,7 +23,8 @@ module Imagekitio
             type: :S3,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            prefix: String,
+            use_iam_role: bool
           }
 
         class S3 < Imagekitio::Internal::Type::BaseModel
@@ -49,6 +50,10 @@ module Imagekitio
 
           def prefix=: (String) -> String
 
+          attr_reader use_iam_role: bool?
+
+          def use_iam_role=: (bool) -> bool
+
           def initialize: (
             access_key: String,
             bucket: String,
@@ -57,6 +62,7 @@ module Imagekitio
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?prefix: String,
+            ?use_iam_role: bool,
             ?type: :S3
           ) -> void
 
@@ -68,7 +74,8 @@ module Imagekitio
             type: :S3,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            prefix: String,
+            use_iam_role: bool
           }
         end
 
@@ -151,7 +158,8 @@ module Imagekitio
             type: :CLOUDINARY_BACKUP,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            prefix: String,
+            use_iam_role: bool
           }
 
         class CloudinaryBackup < Imagekitio::Internal::Type::BaseModel
@@ -177,6 +185,10 @@ module Imagekitio
 
           def prefix=: (String) -> String
 
+          attr_reader use_iam_role: bool?
+
+          def use_iam_role=: (bool) -> bool
+
           def initialize: (
             access_key: String,
             bucket: String,
@@ -185,6 +197,7 @@ module Imagekitio
             ?base_url_for_canonical_header: String,
             ?include_canonical_header: bool,
             ?prefix: String,
+            ?use_iam_role: bool,
             ?type: :CLOUDINARY_BACKUP
           ) -> void
 
@@ -196,7 +209,8 @@ module Imagekitio
             type: :CLOUDINARY_BACKUP,
             base_url_for_canonical_header: String,
             include_canonical_header: bool,
-            prefix: String
+            prefix: String,
+            use_iam_role: bool
           }
         end
 
