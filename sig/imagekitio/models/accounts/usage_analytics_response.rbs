@@ -1,0 +1,785 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type usage_analytics_response =
+        {
+          bandwidth_bytes: Float,
+          browser: Imagekitio::Accounts::UsageAnalyticsResponse::Browser,
+          cache: Imagekitio::Accounts::UsageAnalyticsResponse::Cache,
+          country: Imagekitio::Accounts::UsageAnalyticsResponse::Country,
+          device: Imagekitio::Accounts::UsageAnalyticsResponse::Device,
+          end_date: Date,
+          error_reasons: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::ErrorReason],
+          extensions: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Extension],
+          format_: Imagekitio::Accounts::UsageAnalyticsResponse::Format,
+          generated_at: Time,
+          request_count: Float,
+          start_date: Date,
+          status_codes: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::StatusCode],
+          :top404_assets => ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Top404Asset],
+          top_images: Imagekitio::Accounts::UsageAnalyticsResponse::TopImages,
+          top_image_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms,
+          top_other_assets: Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets,
+          top_referrers: Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers,
+          top_user_agents: Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents,
+          top_videos: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos,
+          top_video_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms,
+          url_endpoints: Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints,
+          video_processing: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::VideoProcessing]
+        }
+
+      class UsageAnalyticsResponse < Imagekitio::Internal::Type::BaseModel
+        attr_accessor bandwidth_bytes: Float
+
+        attr_accessor browser: Imagekitio::Accounts::UsageAnalyticsResponse::Browser
+
+        attr_accessor cache: Imagekitio::Accounts::UsageAnalyticsResponse::Cache
+
+        attr_accessor country: Imagekitio::Accounts::UsageAnalyticsResponse::Country
+
+        attr_accessor device: Imagekitio::Accounts::UsageAnalyticsResponse::Device
+
+        attr_accessor end_date: Date
+
+        attr_accessor error_reasons: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::ErrorReason]
+
+        attr_accessor extensions: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Extension]
+
+        attr_accessor format_: Imagekitio::Accounts::UsageAnalyticsResponse::Format
+
+        attr_accessor generated_at: Time
+
+        attr_accessor request_count: Float
+
+        attr_accessor start_date: Date
+
+        attr_accessor status_codes: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::StatusCode]
+
+        attr_accessor top404_assets: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Top404Asset]
+
+        attr_accessor top_images: Imagekitio::Accounts::UsageAnalyticsResponse::TopImages
+
+        attr_accessor top_image_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms
+
+        attr_accessor top_other_assets: Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets
+
+        attr_accessor top_referrers: Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers
+
+        attr_accessor top_user_agents: Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents
+
+        attr_accessor top_videos: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos
+
+        attr_accessor top_video_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms
+
+        attr_accessor url_endpoints: Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints
+
+        attr_accessor video_processing: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::VideoProcessing]
+
+        def initialize: (
+          bandwidth_bytes: Float,
+          browser: Imagekitio::Accounts::UsageAnalyticsResponse::Browser,
+          cache: Imagekitio::Accounts::UsageAnalyticsResponse::Cache,
+          country: Imagekitio::Accounts::UsageAnalyticsResponse::Country,
+          device: Imagekitio::Accounts::UsageAnalyticsResponse::Device,
+          end_date: Date,
+          error_reasons: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::ErrorReason],
+          extensions: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Extension],
+          format_: Imagekitio::Accounts::UsageAnalyticsResponse::Format,
+          generated_at: Time,
+          request_count: Float,
+          start_date: Date,
+          status_codes: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::StatusCode],
+          top404_assets: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Top404Asset],
+          top_images: Imagekitio::Accounts::UsageAnalyticsResponse::TopImages,
+          top_image_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms,
+          top_other_assets: Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets,
+          top_referrers: Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers,
+          top_user_agents: Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents,
+          top_videos: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos,
+          top_video_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms,
+          url_endpoints: Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints,
+          video_processing: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::VideoProcessing]
+        ) -> void
+
+        def to_hash: -> {
+          bandwidth_bytes: Float,
+          browser: Imagekitio::Accounts::UsageAnalyticsResponse::Browser,
+          cache: Imagekitio::Accounts::UsageAnalyticsResponse::Cache,
+          country: Imagekitio::Accounts::UsageAnalyticsResponse::Country,
+          device: Imagekitio::Accounts::UsageAnalyticsResponse::Device,
+          end_date: Date,
+          error_reasons: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::ErrorReason],
+          extensions: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Extension],
+          format_: Imagekitio::Accounts::UsageAnalyticsResponse::Format,
+          generated_at: Time,
+          request_count: Float,
+          start_date: Date,
+          status_codes: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::StatusCode],
+          :top404_assets => ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Top404Asset],
+          top_images: Imagekitio::Accounts::UsageAnalyticsResponse::TopImages,
+          top_image_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms,
+          top_other_assets: Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets,
+          top_referrers: Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers,
+          top_user_agents: Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents,
+          top_videos: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos,
+          top_video_transforms: Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms,
+          url_endpoints: Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints,
+          video_processing: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::VideoProcessing]
+        }
+
+        type browser =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByRequest]
+          }
+
+        class Browser < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Browser::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type cache = { error_count: Float, hit_count: Float, miss_count: Float }
+
+        class Cache < Imagekitio::Internal::Type::BaseModel
+          attr_accessor error_count: Float
+
+          attr_accessor hit_count: Float
+
+          attr_accessor miss_count: Float
+
+          def initialize: (
+            error_count: Float,
+            hit_count: Float,
+            miss_count: Float
+          ) -> void
+
+          def to_hash: -> {
+            error_count: Float,
+            hit_count: Float,
+            miss_count: Float
+          }
+        end
+
+        type country =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByRequest]
+          }
+
+        class Country < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Country::ByRequest]
+          }
+
+          type by_bandwidth = { code: String, name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def code: -> String
+
+            def code=: (String _) -> String
+
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (code: String, name: String) -> void
+
+            def to_hash: -> { code: String, name: String }
+          end
+
+          type by_request = { code: String, name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def code: -> String
+
+            def code=: (String _) -> String
+
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (code: String, name: String) -> void
+
+            def to_hash: -> { code: String, name: String }
+          end
+        end
+
+        type device =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByRequest]
+          }
+
+        class Device < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Device::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type error_reason = { name: String, request_count: Float }
+
+        class ErrorReason < Imagekitio::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor request_count: Float
+
+          def initialize: (name: String, request_count: Float) -> void
+
+          def to_hash: -> { name: String, request_count: Float }
+        end
+
+        type extension = { name: String, operation_count: Float }
+
+        class Extension < Imagekitio::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor operation_count: Float
+
+          def initialize: (name: String, operation_count: Float) -> void
+
+          def to_hash: -> { name: String, operation_count: Float }
+        end
+
+        type format_ =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByRequest]
+          }
+
+        class Format < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::Format::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type status_code = { name: String, request_count: Float }
+
+        class StatusCode < Imagekitio::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor request_count: Float
+
+          def initialize: (name: String, request_count: Float) -> void
+
+          def to_hash: -> { name: String, request_count: Float }
+        end
+
+        type top404_asset = { name: String, request_count: Float }
+
+        class Top404Asset < Imagekitio::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor request_count: Float
+
+          def initialize: (name: String, request_count: Float) -> void
+
+          def to_hash: -> { name: String, request_count: Float }
+        end
+
+        type top_images =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByRequest]
+          }
+
+        class TopImages < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImages::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type top_image_transforms =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByRequest]
+          }
+
+        class TopImageTransforms < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopImageTransforms::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type top_other_assets =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByRequest]
+          }
+
+        class TopOtherAssets < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopOtherAssets::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type top_referrers =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByRequest]
+          }
+
+        class TopReferrers < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopReferrers::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type top_user_agents =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByRequest]
+          }
+
+        class TopUserAgents < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopUserAgents::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type top_videos =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByRequest]
+          }
+
+        class TopVideos < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideos::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type top_video_transforms =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByRequest]
+          }
+
+        class TopVideoTransforms < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::TopVideoTransforms::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type url_endpoints =
+          {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByRequest]
+          }
+
+        class URLEndpoints < Imagekitio::Internal::Type::BaseModel
+          attr_accessor by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByBandwidth]
+
+          attr_accessor by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByRequest]
+
+          def initialize: (
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByRequest]
+          ) -> void
+
+          def to_hash: -> {
+            by_bandwidth: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByBandwidth],
+            by_requests: ::Array[Imagekitio::Accounts::UsageAnalyticsResponse::URLEndpoints::ByRequest]
+          }
+
+          type by_bandwidth = { name: String }
+
+          class ByBandwidth < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+
+          type by_request = { name: String }
+
+          class ByRequest < Imagekitio::Models::Accounts::RequestBandwidthEntry
+            def name: -> String
+
+            def name=: (String _) -> String
+
+            def initialize: (name: String) -> void
+
+            def to_hash: -> { name: String }
+          end
+        end
+
+        type video_processing =
+          { codec: String, duration_seconds: Float, resolution: String }
+
+        class VideoProcessing < Imagekitio::Internal::Type::BaseModel
+          attr_accessor codec: String
+
+          attr_accessor duration_seconds: Float
+
+          attr_accessor resolution: String
+
+          def initialize: (
+            codec: String,
+            duration_seconds: Float,
+            resolution: String
+          ) -> void
+
+          def to_hash: -> {
+            codec: String,
+            duration_seconds: Float,
+            resolution: String
+          }
+        end
+      end
+    end
+  end
+end

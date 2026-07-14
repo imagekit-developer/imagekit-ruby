@@ -1,0 +1,18 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type request_bandwidth_entry =
+        { bandwidth_bytes: Float, request_count: Float }
+
+      class RequestBandwidthEntry < Imagekitio::Internal::Type::BaseModel
+        attr_accessor bandwidth_bytes: Float
+
+        attr_accessor request_count: Float
+
+        def initialize: (bandwidth_bytes: Float, request_count: Float) -> void
+
+        def to_hash: -> { bandwidth_bytes: Float, request_count: Float }
+      end
+    end
+  end
+end

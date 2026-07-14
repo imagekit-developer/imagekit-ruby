@@ -12,6 +12,12 @@ module Imagekitio
         # other words, the data covers the period starting from the specified start date
         # up to, but not including, the end date.
         #
+        # For an agency account, the returned usage is aggregated across the agency and
+        # all of its child accounts that are billed to it.
+        #
+        # The response is cached for 6 hours per account, date range and requested
+        # metrics.
+        #
         # @overload get(end_date:, start_date:, request_options: {})
         #
         # @param end_date [Date] Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`.
