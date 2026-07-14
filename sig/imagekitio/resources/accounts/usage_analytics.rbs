@@ -1,0 +1,15 @@
+module Imagekitio
+  module Resources
+    class Accounts
+      class UsageAnalytics
+        def get: (
+          end_date: Date,
+          start_date: Date,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Accounts::UsageAnalyticsResponse
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end

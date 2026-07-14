@@ -6,6 +6,9 @@ module Imagekitio
       # @return [Imagekitio::Resources::Accounts::Usage]
       attr_reader :usage
 
+      # @return [Imagekitio::Resources::Accounts::UsageAnalytics]
+      attr_reader :usage_analytics
+
       # @return [Imagekitio::Resources::Accounts::Origins]
       attr_reader :origins
 
@@ -18,6 +21,7 @@ module Imagekitio
       def initialize(client:)
         @client = client
         @usage = Imagekitio::Resources::Accounts::Usage.new(client: client)
+        @usage_analytics = Imagekitio::Resources::Accounts::UsageAnalytics.new(client: client)
         @origins = Imagekitio::Resources::Accounts::Origins.new(client: client)
         @url_endpoints = Imagekitio::Resources::Accounts::URLEndpoints.new(client: client)
       end
