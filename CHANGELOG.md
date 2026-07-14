@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.8.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.7.0...v4.8.0) (2026-07-14)
+
+
+### Features
+
+* **api:** add usage analytics breakdown endpoint ([82b2909](https://github.com/imagekit-developer/imagekit-ruby/commit/82b29099bc232601ad99dd3b304be8edf59e2179))
+
 ## [4.7.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.6.0...v4.7.0) (2026-06-18)
 
 
