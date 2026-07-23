@@ -24,7 +24,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "imagekitio", "~> 4.5.1"
+gem "imagekitio", "~> 4.8.0"
 ```
 
 <!-- x-release-please-end -->
@@ -286,4 +286,4 @@ Ruby 3.2.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/imagekit-developer/imagekit-ruby/tree/master/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/imagekit-developer/imagekit-ruby/tree/main/CONTRIBUTING.md).
