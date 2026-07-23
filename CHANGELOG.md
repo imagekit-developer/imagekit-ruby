@@ -1,0 +1,333 @@
+# Changelog
+
+## [4.8.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.7.0...v4.8.0) (2026-07-14)
+
+
+### Features
+
+* **api:** add usage analytics breakdown endpoint ([82b2909](https://github.com/imagekit-developer/imagekit-ruby/commit/82b29099bc232601ad99dd3b304be8edf59e2179))
+
+## [4.7.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.6.0...v4.7.0) (2026-06-18)
+
+
+### Features
+
+* **origins:** add useIAMRole for IAM role authentication ([c38cc1b](https://github.com/imagekit-developer/imagekit-ruby/commit/c38cc1bea8028c2c10ae543e027dc71a63170222))
+
+
+### Documentation
+
+* update default value in description for intensity in colorize transformation ([7b128c5](https://github.com/imagekit-developer/imagekit-ruby/commit/7b128c59d1da7435e6137ebad7a60251e941defa))
+
+## [4.6.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.5.1...v4.6.0) (2026-06-03)
+
+
+### Features
+
+* initial stlc build ([a2757e4](https://github.com/imagekit-developer/imagekit-ruby/commit/a2757e46e00bd414fd2de73c11eb53e01a7633dc))
+
+
+### Bug Fixes
+
+* metadata response shape ([34e58cd](https://github.com/imagekit-developer/imagekit-ruby/commit/34e58cd2b3d0923881fc15d38e5dfbb32bef2991))
+
+
+### Chores
+
+* Update webhook description ([1581227](https://github.com/imagekit-developer/imagekit-ruby/commit/15812270ccbe7e45a61ee94a4006fb5d02cf9921))
+* Update webhook description ([7e2d29e](https://github.com/imagekit-developer/imagekit-ruby/commit/7e2d29e79c23729d2c2bf5ecbc0439ce53f66099))
+
+## 4.5.1 (2026-05-17)
+
+Full Changelog: [v4.5.0...v4.5.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.5.0...v4.5.1)
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([9ae7bf6](https://github.com/imagekit-developer/imagekit-ruby/commit/9ae7bf673a15fc01cf7e25b6c508dd20fa6a38f7))
+
+## 4.5.0 (2026-05-13)
+
+Full Changelog: [v4.4.1...v4.5.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.4.1...v4.5.0)
+
+### Features
+
+* **api:** add no-enlarge crop modes and colorize transformation ([1b56303](https://github.com/imagekit-developer/imagekit-ruby/commit/1b56303ef5c67cb1a4b36d4a1c06b147f22c5987))
+* support setting headers via env ([cd32783](https://github.com/imagekit-developer/imagekit-ruby/commit/cd32783efe49d795b8a5de49eb44039cda375d2e))
+* **transformation:** add colorize transformation support in URL generation ([3454064](https://github.com/imagekit-developer/imagekit-ruby/commit/34540646f7ee8a1deabeea629f366d28bc71f734))
+
+
+### Chores
+
+* **internal:** codegen related update ([7e0543d](https://github.com/imagekit-developer/imagekit-ruby/commit/7e0543d8714ff251de1a32f471dc7bd8bfa17dab))
+
+## 4.4.1 (2026-04-24)
+
+Full Changelog: [v4.4.0...v4.4.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.4.0...v4.4.1)
+
+### Features
+
+* **api:** manual updates ([7b8cad3](https://github.com/imagekit-developer/imagekit-ruby/commit/7b8cad330f21f2e8f94fc6fbee3a70fe87bc30a1))
+* **api:** manual updates ([f462715](https://github.com/imagekit-developer/imagekit-ruby/commit/f462715e564b25253986276423572442c1d20d29))
+
+
+### Chores
+
+* configure new SDK language ([6e8aa01](https://github.com/imagekit-developer/imagekit-ruby/commit/6e8aa014bbf00f69237d9a787de2c03f27b19c56))
+* **internal:** more robust bootstrap script ([3192433](https://github.com/imagekit-developer/imagekit-ruby/commit/31924332fb8e956f8dc2c2c72c0285122197522f))
+
+## 4.4.0 (2026-04-13)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* **api:** add missing types in ruby ([6a074df](https://github.com/imagekit-developer/imagekit-ruby/commit/6a074df0249e9ac9969c2bc4b8d12d9abbd1e233))
+* **api:** dam related webhook events ([d2ffbf3](https://github.com/imagekit-developer/imagekit-ruby/commit/d2ffbf33cabaddffbb97d4c7bc7e54be100a3c67))
+* **api:** fix spec indentation ([74e7a6a](https://github.com/imagekit-developer/imagekit-ruby/commit/74e7a6ae49a83d6faa29796443309f20633b430d))
+* **api:** indentation fix ([fae3b74](https://github.com/imagekit-developer/imagekit-ruby/commit/fae3b74e0de1bdd3e5a29c6061f546aacfc423cb))
+* **api:** merge with main to bring back missing parameters ([78377b5](https://github.com/imagekit-developer/imagekit-ruby/commit/78377b55c03f7818a5f2ae57d19464dfae58763a))
+* **api:** update webhook event names and remove DAM prefix ([c621b14](https://github.com/imagekit-developer/imagekit-ruby/commit/c621b14ca3a92b3428bd3a41156539aba3668097))
+
+
+### Bug Fixes
+
+* **api:** extract shared schemas to prevent Go webhook union breaking changes ([0325862](https://github.com/imagekit-developer/imagekit-ruby/commit/032586298410662b5f45b9b4189cc23ef74c1e40))
+* **api:** fix references of schema ([3d07367](https://github.com/imagekit-developer/imagekit-ruby/commit/3d073676557eaac1a3ce9447866936e707f45566))
+* **api:** rename DamFile events to File for consistency ([5998787](https://github.com/imagekit-developer/imagekit-ruby/commit/5998787a6607eb936b51b46b92e24679ac2dd321))
+* **docs:** remove redundant information about versioning in README ([a546963](https://github.com/imagekit-developer/imagekit-ruby/commit/a546963ec88a011e18426a2a9ad46893e8e45eec))
+* **docs:** remove redundant sub-item for webhook signature verification in README ([03f4b45](https://github.com/imagekit-developer/imagekit-ruby/commit/03f4b4580157f6c5a81905b549801e9abb2f3c2c))
+* **docs:** remove unnecessary password parameter from example ([77c9134](https://github.com/imagekit-developer/imagekit-ruby/commit/77c9134775b106ac5107579f3059390870ced790))
+* multipart encoding for file arrays ([5f02f3a](https://github.com/imagekit-developer/imagekit-ruby/commit/5f02f3a700d92bdcba063ce82d64c82fc70d37f8))
+* **webhooks:** encode webhook key in Base64 before verification ([db0b711](https://github.com/imagekit-developer/imagekit-ruby/commit/db0b711f50b3e992f36dd3f30ef74dac502a44a2))
+
+
+### Documentation
+
+* add webhook verification section to README ([ceb1927](https://github.com/imagekit-developer/imagekit-ruby/commit/ceb1927213edf8467e8e584a4b43999f0cedcf20))
+
+
+### Refactors
+
+* AITags to singular AITag schema with array items pattern ([01a4f00](https://github.com/imagekit-developer/imagekit-ruby/commit/01a4f00f0ce0b7f308f8f84351327c2a25a77408))
+
+## 4.3.0 (2026-04-06)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** add support for x_center, y_center, and anchor_point in overlay positioning ([dcbcf76](https://github.com/imagekit-developer/imagekit-ruby/commit/dcbcf7610f2a484689f5c83a8779ab3dd4c5b092))
+* **api:** dpr type update ([650aa0f](https://github.com/imagekit-developer/imagekit-ruby/commit/650aa0f905b4a586c036ae2f019bd7cfb7775d40))
+* **api:** Introduce lxc, lyc, lap parameters in overlays. ([5a87ef0](https://github.com/imagekit-developer/imagekit-ruby/commit/5a87ef064bc9c14d1d62bbd338b64d7718888460))
+* **api:** revert dpr breaking change ([525e6a8](https://github.com/imagekit-developer/imagekit-ruby/commit/525e6a8a59f0f4a17ab17468aebc4b8ccdce182c))
+* **client:** add webhook support ([2a65217](https://github.com/imagekit-developer/imagekit-ruby/commit/2a65217314672d643372aafed4c83adf19c0566f))
+
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([88f5590](https://github.com/imagekit-developer/imagekit-ruby/commit/88f5590fc3bb8b7766d4698892aff762f80d3629))
+* **client:** add types for path params, and update structure of unions nested in params ([dd1e1ec](https://github.com/imagekit-developer/imagekit-ruby/commit/dd1e1ec791f563877bc2262b0aea91f4df9b2ced))
+* **client:** always add content-length to post body, even when empty ([e156b70](https://github.com/imagekit-developer/imagekit-ruby/commit/e156b70c82c9b38de49307218fb3f687f651aa5b))
+* **client:** loosen json header parsing ([9fc1fc6](https://github.com/imagekit-developer/imagekit-ruby/commit/9fc1fc60c60173f92f1f99fabe38f9ec826d940d))
+* **client:** serialize query parameters properly ([bbfc6e0](https://github.com/imagekit-developer/imagekit-ruby/commit/bbfc6e0d80da5661600a888e8c915d336919fe36))
+* **internal:** correct multipart form field name encoding ([f3c20a9](https://github.com/imagekit-developer/imagekit-ruby/commit/f3c20a9740682cb96e90eecfd617f204cd28a491))
+* properly mock time in ruby ci tests ([8f0a0a9](https://github.com/imagekit-developer/imagekit-ruby/commit/8f0a0a93ebc66d8d56d5e47950607f8d67f37514))
+* variable name typo ([1d32dc3](https://github.com/imagekit-developer/imagekit-ruby/commit/1d32dc3ec09c80961cc58ecfd40b2449957a2ac9))
+
+
+### Chores
+
+* **ci:** add build step ([c213724](https://github.com/imagekit-developer/imagekit-ruby/commit/c213724d793c735b09c784a5a285cf394f79d528))
+* **ci:** skip lint on metadata-only changes ([62e401f](https://github.com/imagekit-developer/imagekit-ruby/commit/62e401f6fc35fa3bc0e16593bab8e4a477536d4f))
+* **ci:** skip uploading artifacts on stainless-internal branches ([fbc0465](https://github.com/imagekit-developer/imagekit-ruby/commit/fbc0465b3c2fc05da7a61fe74fab19189be90305))
+* **ci:** support opting out of skipping builds on metadata-only commits ([af71b49](https://github.com/imagekit-developer/imagekit-ruby/commit/af71b4919ea7eb3bf704ed6a83eaa9301b5201f9))
+* **docs:** remove www prefix ([a4b9610](https://github.com/imagekit-developer/imagekit-ruby/commit/a4b961058ac8967dcfef109421dbca9ee3eedf0b))
+* **internal:** remove mock server code ([c8aa3b8](https://github.com/imagekit-developer/imagekit-ruby/commit/c8aa3b8c2320102d8e29941f78f1f1ade06cab00))
+* **internal:** tweak CI branches ([125e8b4](https://github.com/imagekit-developer/imagekit-ruby/commit/125e8b4b0f3676378a863bacfc3cc93bf7b3f6ee))
+* **internal:** update gitignore ([741331c](https://github.com/imagekit-developer/imagekit-ruby/commit/741331c210a1af49f43ff77f593293e42882c15b))
+* update mock server docs ([1e5ed9e](https://github.com/imagekit-developer/imagekit-ruby/commit/1e5ed9ea31388b76995c292fc22f9ed773ad6f40))
+* update placeholder string ([cff7f1b](https://github.com/imagekit-developer/imagekit-ruby/commit/cff7f1b4cf7a249e7dd6f426c992472238a8c6e1))
+
+## 4.2.0 (2026-02-02)
+
+Full Changelog: [v4.1.2...v4.2.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.2...v4.2.0)
+
+### Features
+
+* **api:** add customMetadata property to folder schema ([8038b9e](https://github.com/imagekit-developer/imagekit-ruby/commit/8038b9ecc161c7d25c65a35c2d54149ace184479))
+
+
+### Bug Fixes
+
+* **api:** add missing embeddedMetadata and video properties to FileDetails ([898add4](https://github.com/imagekit-developer/imagekit-ruby/commit/898add425e5839e85fc8cca8bd8035923ec39463))
+
+## 4.1.2 (2026-01-29)
+
+Full Changelog: [v4.1.1...v4.1.2](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.1...v4.1.2)
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([84672e6](https://github.com/imagekit-developer/imagekit-ruby/commit/84672e63bc4b4621e1c35ce3d1a9029566b0e1e7))
+* update overlay parameter from 'l-subtitle' to 'l-subtitles' in URL generation ([2acbe47](https://github.com/imagekit-developer/imagekit-ruby/commit/2acbe47f75d0235bd8bfc6213acac361e0b3a07e))
+
+## 4.1.1 (2026-01-20)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.1.0...v4.1.1)
+
+### Bug Fixes
+
+* vocab field is required ([1ebdd2d](https://github.com/imagekit-developer/imagekit-ruby/commit/1ebdd2dff81b620d7d7dd7dea842424790b503f4))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([1e2d69e](https://github.com/imagekit-developer/imagekit-ruby/commit/1e2d69e80f0550dc26aea92609f1a355f5335270))
+
+## 4.1.0 (2026-01-16)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* add layer_mode property to overlays and new transformation options ([97042ce](https://github.com/imagekit-developer/imagekit-ruby/commit/97042ce9bffaf101ab98dd7394caaf4df9a873ea))
+* **api:** Add saved extensions API and enhance transformation options ([f1dc75e](https://github.com/imagekit-developer/imagekit-ruby/commit/f1dc75ecbe0a4a39472fdc10e9dc8f02e75ddc07))
+
+
+### Bug Fixes
+
+* add ai-tasks property to response schemas with enum values ([aad5e54](https://github.com/imagekit-developer/imagekit-ruby/commit/aad5e5413676af916e8149f07ae78aaff7c5c313))
+* better thread safety via early initializing SSL store during HTTP client creation ([2bc0835](https://github.com/imagekit-developer/imagekit-ruby/commit/2bc0835981c29b717f0ad3a7d78c3c78027874e0))
+* calling `break` out of streams should be instantaneous ([55bf4a9](https://github.com/imagekit-developer/imagekit-ruby/commit/55bf4a9b768f18f4adad903b2c9d93178a670151))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([dd32cb1](https://github.com/imagekit-developer/imagekit-ruby/commit/dd32cb1572bc155db85ed898011374889996b3fd))
+* remove redundant base64 require statement ([4c73b42](https://github.com/imagekit-developer/imagekit-ruby/commit/4c73b425564e980b21dfd1f3554f8a2e45aaeecf))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([8d89fb2](https://github.com/imagekit-developer/imagekit-ruby/commit/8d89fb2c1654420f83bb7efedcc9056c5a7e3c79))
+* **client:** send user-agent header ([796027d](https://github.com/imagekit-developer/imagekit-ruby/commit/796027d185c93067c32bac98323d8a82aeaf9bfe))
+* explicitly require "base64" gem ([1b4181d](https://github.com/imagekit-developer/imagekit-ruby/commit/1b4181d4e57d2c12306f6d3f43b832f63ab68053))
+* **internal:** codegen related update ([3a93def](https://github.com/imagekit-developer/imagekit-ruby/commit/3a93def2d09609b359824a627183833ae59d74e1))
+* **internal:** codegen related update ([4c161f0](https://github.com/imagekit-developer/imagekit-ruby/commit/4c161f048927df137a12d33a5a1b79af1c561b8b))
+* move `cgi` into dependencies for ruby 4 ([54261ef](https://github.com/imagekit-developer/imagekit-ruby/commit/54261ef9f24e206d2180dc0a205464154af4c3ed))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([777f8cf](https://github.com/imagekit-developer/imagekit-ruby/commit/777f8cf5cc692eed3e8f6217caf25a85d17201f7))
+* remove MCP Server section from README ([db0f71c](https://github.com/imagekit-developer/imagekit-ruby/commit/db0f71cce159f4c395fe8c7c0526d4108934fc6b))
+
+## 4.0.0 (2025-11-03)
+
+Full Changelog: [v0.0.1...v4.0.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v0.0.1...v4.0.0)
+
+### Features
+
+* add get_responsive_image_attributes method with options parameter ([766ded9](https://github.com/imagekit-developer/imagekit-ruby/commit/766ded9f6644cdc0f4638980ca78b51a877fe309))
+* add responsive image attributes generation for HTML &lt;img&gt; tags ([13edc3d](https://github.com/imagekit-developer/imagekit-ruby/commit/13edc3d82f92d19869f672bd955a9045a13e0a16))
+* **api:** add BaseWebhookEvent ([b4c2a83](https://github.com/imagekit-developer/imagekit-ruby/commit/b4c2a8398c1b8bfa1df7da222ede418b047fe0b1))
+* **api:** add GetImageAttributesOptions and ResponsiveImageAttributes schemas; update resource references in main.yaml; remove dummy endpoint ([08560d4](https://github.com/imagekit-developer/imagekit-ruby/commit/08560d45c6390460f14c8b76ce42292ed3303047))
+* **api:** add path policy related non-breaking changes ([b24e025](https://github.com/imagekit-developer/imagekit-ruby/commit/b24e025ed565cd1a0f3906838c24d1fc5588f3fd))
+* **api:** add selectedFieldsSchema in upload and list API response ([557f058](https://github.com/imagekit-developer/imagekit-ruby/commit/557f0588a6352568ca0b7be28fe1759717c59aa5))
+* **api:** extract UpdateFileDetailsRequest to model ([9aaa659](https://github.com/imagekit-developer/imagekit-ruby/commit/9aaa6599d67f4d077d34d0afec3c08baef271b9b))
+* **api:** fix go sdk breaking changes ([525a5aa](https://github.com/imagekit-developer/imagekit-ruby/commit/525a5aa25dba80a109fc5d53535cf2f8fa2250dd))
+* **api:** fix upload API request params ([0ac922a](https://github.com/imagekit-developer/imagekit-ruby/commit/0ac922a79db6de564a0ec9dc5405a5171c1d7109))
+* **api:** manual updates ([eaa294e](https://github.com/imagekit-developer/imagekit-ruby/commit/eaa294e74f32dea948ceaec8a5e44223075dabf8))
+* **api:** manual updates ([9604a8e](https://github.com/imagekit-developer/imagekit-ruby/commit/9604a8eb40f6e4947075d6ff80bf919062a1556f))
+* **api:** manual updates ([0682128](https://github.com/imagekit-developer/imagekit-ruby/commit/0682128a78d935ba01979783050d66aac099504a))
+* **api:** manual updates ([f9bee87](https://github.com/imagekit-developer/imagekit-ruby/commit/f9bee8789b20c3ae42a177e8e7adc086fd6b734a))
+* **api:** manual updates ([2f5a40a](https://github.com/imagekit-developer/imagekit-ruby/commit/2f5a40ab9e7c3ffc0755c8c8cbf26bcfe69ab5b0))
+* **api:** manual updates ([428829b](https://github.com/imagekit-developer/imagekit-ruby/commit/428829bb7d7a3e01621dcb6d9901a1b440481f7c))
+* **api:** manual updates ([54e5bdf](https://github.com/imagekit-developer/imagekit-ruby/commit/54e5bdf49a3a67eb494e7aecfd4f5300f8c07772))
+* **api:** manual updates ([8c970ed](https://github.com/imagekit-developer/imagekit-ruby/commit/8c970ed1b42cfb40e05cedf4f643096918097f67))
+* **api:** manual updates ([e33d6ed](https://github.com/imagekit-developer/imagekit-ruby/commit/e33d6ed379d8d298f049edcf5b5b4d2ecfdd82bd))
+* **api:** manual updates ([4c04de9](https://github.com/imagekit-developer/imagekit-ruby/commit/4c04de93766bb15aad1784f5a4a594036fdce827))
+* **api:** manual updates ([e9bad22](https://github.com/imagekit-developer/imagekit-ruby/commit/e9bad2213d947539b07f4c71622c6bee2e826274))
+* **api:** manual updates ([c0417fb](https://github.com/imagekit-developer/imagekit-ruby/commit/c0417fbd4286fb47cbdfc154a696fcd2d34b1b5d))
+* **api:** manual updates ([bddb2fa](https://github.com/imagekit-developer/imagekit-ruby/commit/bddb2faecc78b22888d44aeda6896bdeff0f7cf8))
+* **api:** manual updates ([24f9f11](https://github.com/imagekit-developer/imagekit-ruby/commit/24f9f11ca39e3611c621a1d5383d763a4acd87b4))
+* **api:** manual updates ([8ac0ad3](https://github.com/imagekit-developer/imagekit-ruby/commit/8ac0ad3ff00d4036d52ec31777d74cb19f8d4379))
+* **api:** manual updates ([c64d558](https://github.com/imagekit-developer/imagekit-ruby/commit/c64d558fc172b4c1768d59731dc2a0e2c71de2fb))
+* **api:** manual updates ([453e942](https://github.com/imagekit-developer/imagekit-ruby/commit/453e942ec2c25f3720305dcd564ca22b85815336))
+* **api:** modify upload options serialization for backend API compatibility ([2d9cda5](https://github.com/imagekit-developer/imagekit-ruby/commit/2d9cda5fd408c5359f455c989585a8a8e3528676))
+* **api:** remove Stainless attribution from readme ([45e7793](https://github.com/imagekit-developer/imagekit-ruby/commit/45e7793eae012f4fcd05a30aa1ff4ef695793792))
+* **api:** update api docs link ([03ecbdf](https://github.com/imagekit-developer/imagekit-ruby/commit/03ecbdffb5dddc16aeace01e5b86a7e525263d7b))
+* **api:** Update env var name ([db61f60](https://github.com/imagekit-developer/imagekit-ruby/commit/db61f6089520c631dccbc618453d018634e53e63))
+* **api:** update gem name ([a966137](https://github.com/imagekit-developer/imagekit-ruby/commit/a966137abb937faa25451baafcd41e32c0d16b7e))
+* **api:** updated docs ([c2d983e](https://github.com/imagekit-developer/imagekit-ruby/commit/c2d983ed07adab3c0031f18174b0dcf95a5ba26d))
+* expose response headers for both streams and errors ([72c02c3](https://github.com/imagekit-developer/imagekit-ruby/commit/72c02c37a42bddc4e191b43145a562fab9e01dc7))
+* handle thread interrupts in the core HTTP client ([4d258e9](https://github.com/imagekit-developer/imagekit-ruby/commit/4d258e9d5fc3cb2d2e74e26d605e87b7852736a4))
+* pass all test cases ([1cfd9cb](https://github.com/imagekit-developer/imagekit-ruby/commit/1cfd9cb2229352e8d2ba4a005fc214fbfd73c1ba))
+* **tests:** add support for plain hashes in various helper methods and tests ([f7a8f2d](https://github.com/imagekit-developer/imagekit-ruby/commit/f7a8f2d0cdb258abbc04d73eb7458d371948f2d8))
+* **tests:** add test for generating signed URLs in responsive image attributes ([41b17ab](https://github.com/imagekit-developer/imagekit-ruby/commit/41b17abff1fdd1dc63e7b5cb1b3eff765f8955f4))
+* **tests:** add tests to ensure integer descriptors in srcset for responsive image attributes ([fab9156](https://github.com/imagekit-developer/imagekit-ruby/commit/fab915681615569c608439025992325210391e61))
+
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([eebaf5e](https://github.com/imagekit-developer/imagekit-ruby/commit/eebaf5ef3d7b60eb051d4e1a146dee8e0eae66ec))
+* add examples/temp* to .gitignore ([2e76262](https://github.com/imagekit-developer/imagekit-ruby/commit/2e762620a6e8179d3f873306596ea623bd6e539d))
+* always send `filename=...` for multipart requests where a file is expected ([9cf2e92](https://github.com/imagekit-developer/imagekit-ruby/commit/9cf2e92f6bd271a6ffa538176d836786f9ae72bc))
+* carrierwave bump to rm mimemagic dep ([ab4c2cf](https://github.com/imagekit-developer/imagekit-ruby/commit/ab4c2cf5856de50a9cb9deb7fb2168d67258083d))
+* change to dev dep ([22b98f8](https://github.com/imagekit-developer/imagekit-ruby/commit/22b98f8a9f482f11c0e6c3cfe9650a75e62d7f17))
+* coroutine leaks from connection pool ([62e54e5](https://github.com/imagekit-developer/imagekit-ruby/commit/62e54e54eaa2201beeedbacd41452e7eb7d6b1d7))
+* **deps:** update gem dependencies to latest versions in Gemfile.lock ([0cfea18](https://github.com/imagekit-developer/imagekit-ruby/commit/0cfea1897d6c71f8a24bf4795b46553d5d937693))
+* **docs:** enhance README to clarify features and integration with Ruby on Rails ([22c2cec](https://github.com/imagekit-developer/imagekit-ruby/commit/22c2cec88e2c6a37f10dce061eb555e70fe7715d))
+* **docs:** remove unnecessary Bundler setup requirement from usage example in README ([b3355da](https://github.com/imagekit-developer/imagekit-ruby/commit/b3355dad701bb557b5f93281330cc68b6b49011c))
+* **docs:** streamline documentation for Ruby on Rails integration and remove redundant sections ([855c7f9](https://github.com/imagekit-developer/imagekit-ruby/commit/855c7f95644f493d5d670a76c571b9c245493e73))
+* **docs:** update README examples for file uploads and remove obsolete parameters ([17a776a](https://github.com/imagekit-developer/imagekit-ruby/commit/17a776a445401889f0624bf05de2317408f9c1e1))
+* **docs:** update README examples to use File.read instead of StringIO for file uploads ([ca62b83](https://github.com/imagekit-developer/imagekit-ruby/commit/ca62b8326f92b584d805bbe22f133b46f3f84423))
+* **docs:** update README to enhance clarity on Ruby documentation and Rails integration ([e5f64f1](https://github.com/imagekit-developer/imagekit-ruby/commit/e5f64f1a20cb2fb02f23378636053bc0e1bf4957))
+* **docs:** update README to enhance documentation for Ruby on Rails integration and remove outdated sections ([d1760a3](https://github.com/imagekit-developer/imagekit-ruby/commit/d1760a31d0cde39067114c1d913d4c0d0ce8d1c1))
+* **docs:** update README to reflect gem name change from imagekit to imagekitio ([6beb35d](https://github.com/imagekit-developer/imagekit-ruby/commit/6beb35d38eb07ae157a000b953380f948a550c5f))
+* README.md linking sections ([9101ca2](https://github.com/imagekit-developer/imagekit-ruby/commit/9101ca2f3676a28d92c84c3b1b2c1c78ab5d027d))
+* shorten multipart boundary sep to less than RFC specificed max length ([b2ffa6a](https://github.com/imagekit-developer/imagekit-ruby/commit/b2ffa6a8b489b151c50f76f56ad79376aabbcbcb))
+* should not reuse buffers for `IO.copy_stream` interop ([80dcda6](https://github.com/imagekit-developer/imagekit-ruby/commit/80dcda667c50f379514018fbf9db84b1a624fc2e))
+* spelling typo ([8debe83](https://github.com/imagekit-developer/imagekit-ruby/commit/8debe8379dbebdc7aad334acd1d8ac69283b0f94))
+* standardize naming from "Image Kit" to "ImageKit" across documentation and gemspec ([c427415](https://github.com/imagekit-developer/imagekit-ruby/commit/c427415b3424b544bd0b61188d95b1fa90846a38))
+* update namespace for coerce_hash! method in file upload parameters ([f3e7216](https://github.com/imagekit-developer/imagekit-ruby/commit/f3e72163a0000d8f526ad67f1183c1d185772cf4))
+
+
+### Performance Improvements
+
+* faster code formatting ([8005df1](https://github.com/imagekit-developer/imagekit-ruby/commit/8005df172660b8610889bd2a478774c38b26cb7d))
+
+
+### Chores
+
+* allow fast-format to use bsd sed as well ([81093a0](https://github.com/imagekit-developer/imagekit-ruby/commit/81093a0420de0f10a331fb8d878cc2d9322ca1ec))
+* do not install brew dependencies in ./scripts/bootstrap by default ([14104e2](https://github.com/imagekit-developer/imagekit-ruby/commit/14104e2b691d586fe0e978a6c6e4232d2e6db650))
+* ignore linter error for tests having large collections ([86d5b43](https://github.com/imagekit-developer/imagekit-ruby/commit/86d5b4308f574b456e7f4fd8f094cf02fba39114))
+* **internal:** codegen related update ([d13a1d7](https://github.com/imagekit-developer/imagekit-ruby/commit/d13a1d73432f2ed5a54a7ad624cdc8237b15eb81))
+* remove example upload script ([efe2092](https://github.com/imagekit-developer/imagekit-ruby/commit/efe2092315ca68b4d9b7ede16ba4e624ec1f3adc))
+* sync repo ([0200fb8](https://github.com/imagekit-developer/imagekit-ruby/commit/0200fb885ff82f4960f401169d728b48c9d900cf))
+* update SDK settings ([15d893e](https://github.com/imagekit-developer/imagekit-ruby/commit/15d893e96bc5ae52e5e0cefe24818c248a047d3e))
+* update SDK settings ([5ce5d1f](https://github.com/imagekit-developer/imagekit-ruby/commit/5ce5d1f2370b6b31c1d2927856bfeac5eb592a23))
+
+
+### Documentation
+
+* correct typo in default value description for custom metadata field ([c16e257](https://github.com/imagekit-developer/imagekit-ruby/commit/c16e257b541f1fd5063f8feeac74ba7b214d0507))
+* update README to enhance URL generation section with detailed examples and new features ([f1687c0](https://github.com/imagekit-developer/imagekit-ruby/commit/f1687c0784b4633a3e55165f62f14ef7d8bbd5c8))
+
+
+### Refactors
+
+* consolidate handling of tags and responseFields for improved clarity ([2b7d54e](https://github.com/imagekit-developer/imagekit-ruby/commit/2b7d54e8592d36f8db8eaebffdae65aa4f1527e7))
+* format and fix all lint issues ([091e6d2](https://github.com/imagekit-developer/imagekit-ruby/commit/091e6d29618ee8337f4fe4ea6d82c77748520b65))
+* remove unnecessary require statements for improved clarity ([75820cd](https://github.com/imagekit-developer/imagekit-ruby/commit/75820cdc78cae2383c7e6061f359b1cc40a93d52))
+* rename generateTransformationString to buildTransformationString for consistency ([028871e](https://github.com/imagekit-developer/imagekit-ruby/commit/028871e9aa23e61b7ba1432874ed99943aec4c0f))
+* simplify overlay processing and enhance safe property access ([f35d7eb](https://github.com/imagekit-developer/imagekit-ruby/commit/f35d7eb50bd2eafd74f355d9a6edd992ae9b995c))
+* standardize method naming for URL and transformation string generation ([f736fef](https://github.com/imagekit-developer/imagekit-ruby/commit/f736fefcd85bf65204fce105969671608551ee89))
+* streamline model object handling and enhance safe property access ([ebf5887](https://github.com/imagekit-developer/imagekit-ruby/commit/ebf5887fb945ae99807327e2361263612a734c00))
+* **tests:** remove password parameter from client setup in URL generation tests ([3cf2616](https://github.com/imagekit-developer/imagekit-ruby/commit/3cf26166baf9369b3e32203c202b3d44f68d177b))
+* unify helper attribute naming across client and test files ([67d2ecb](https://github.com/imagekit-developer/imagekit-ruby/commit/67d2ecb8de8f2889c7473d2635a172b5346bcfde))
+* update method calls to use fully qualified names for clarity ([a45cc83](https://github.com/imagekit-developer/imagekit-ruby/commit/a45cc83d04301758db54a1cfa96364ddb7002959))
+* update parameter naming for build_url method to use options ([cd3618c](https://github.com/imagekit-developer/imagekit-ruby/commit/cd3618c5bb747640da0b255d46206bdd6ee0d300))
+
+
+### Build System
+
+* **deps:** bump addressable from 2.7.0 to 2.8.0 in /samples/rails_app ([db074cc](https://github.com/imagekit-developer/imagekit-ruby/commit/db074cc81e5aa59fa962b5e26c25d327bb4cac87))
+* **deps:** bump carrierwave from 2.1.0 to 2.1.1 in /samples/rails_app ([c109b9b](https://github.com/imagekit-developer/imagekit-ruby/commit/c109b9bd0effff643b8062dbe9d1157dad0210d8))
+* **deps:** bump nokogiri from 1.10.10 to 1.11.4 in /samples/rails_app ([9497849](https://github.com/imagekit-developer/imagekit-ruby/commit/9497849e1caa72bc5bbc582da3fc5f6575f2b455))
