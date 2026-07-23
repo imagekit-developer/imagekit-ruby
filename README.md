@@ -748,4 +748,4 @@ Ruby 3.2.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/imagekit-developer/imagekit-ruby/tree/master/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/imagekit-developer/imagekit-ruby/tree/main/CONTRIBUTING.md).
