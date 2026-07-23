@@ -6,8 +6,7 @@ class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response =
-      @image_kit.custom_metadata_fields.create(label: "price", name: "price", schema: {type: :Number})
+    response = @image_kit.custom_metadata_fields.create(label: "price", name: "price", schema: {})
 
     assert_pattern do
       response => Imagekitio::CustomMetadataField
