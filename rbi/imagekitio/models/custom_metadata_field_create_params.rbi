@@ -80,14 +80,6 @@ module Imagekitio
             )
           end
 
-        # Type of the custom metadata field.
-        sig do
-          returns(
-            Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::OrSymbol
-          )
-        end
-        attr_accessor :type
-
         # The default value for this custom metadata field. This property is only required
         # if `isValueRequired` property is set to `true`. The value should match the
         # `type` of custom metadata field.
@@ -196,10 +188,26 @@ module Imagekitio
         end
         attr_writer :select_options
 
+        # Type of the custom metadata field.
+        sig do
+          returns(
+            T.nilable(
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::OrSymbol
+            )
+          )
+        end
+        attr_reader :type
+
         sig do
           params(
             type:
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::OrSymbol,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::OrSymbol
+          ).void
+        end
+        attr_writer :type
+
+        sig do
+          params(
             default_value:
               Imagekitio::CustomMetadataFieldCreateParams::Schema::DefaultValue::Variants,
             is_value_required: T::Boolean,
@@ -212,12 +220,12 @@ module Imagekitio
             select_options:
               T::Array[
                 Imagekitio::CustomMetadataFieldCreateParams::Schema::SelectOption::Variants
-              ]
+              ],
+            type:
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
-          # Type of the custom metadata field.
-          type:,
           # The default value for this custom metadata field. This property is only required
           # if `isValueRequired` property is set to `true`. The value should match the
           # `type` of custom metadata field.
@@ -242,15 +250,15 @@ module Imagekitio
           min_value: nil,
           # An array of allowed values. This property is only required if `type` property is
           # set to `SingleSelect` or `MultiSelect`.
-          select_options: nil
+          select_options: nil,
+          # Type of the custom metadata field.
+          type: nil
         )
         end
 
         sig do
           override.returns(
             {
-              type:
-                Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::OrSymbol,
               default_value:
                 Imagekitio::CustomMetadataFieldCreateParams::Schema::DefaultValue::Variants,
               is_value_required: T::Boolean,
@@ -263,71 +271,13 @@ module Imagekitio
               select_options:
                 T::Array[
                   Imagekitio::CustomMetadataFieldCreateParams::Schema::SelectOption::Variants
-                ]
+                ],
+              type:
+                Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::OrSymbol
             }
           )
         end
         def to_hash
-        end
-
-        # Type of the custom metadata field.
-        module Type
-          extend Imagekitio::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Imagekitio::CustomMetadataFieldCreateParams::Schema::Type
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          TEXT =
-            T.let(
-              :Text,
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-            )
-          TEXTAREA =
-            T.let(
-              :Textarea,
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-            )
-          NUMBER =
-            T.let(
-              :Number,
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-            )
-          DATE =
-            T.let(
-              :Date,
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-            )
-          BOOLEAN =
-            T.let(
-              :Boolean,
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-            )
-          SINGLE_SELECT =
-            T.let(
-              :SingleSelect,
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-            )
-          MULTI_SELECT =
-            T.let(
-              :MultiSelect,
-              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         # The default value for this custom metadata field. This property is only required
@@ -435,6 +385,66 @@ module Imagekitio
             )
           end
           def self.variants
+          end
+        end
+
+        # Type of the custom metadata field.
+        module Type
+          extend Imagekitio::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Imagekitio::CustomMetadataFieldCreateParams::Schema::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          TEXT =
+            T.let(
+              :Text,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+            )
+          TEXTAREA =
+            T.let(
+              :Textarea,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+            )
+          NUMBER =
+            T.let(
+              :Number,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+            )
+          DATE =
+            T.let(
+              :Date,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+            )
+          BOOLEAN =
+            T.let(
+              :Boolean,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+            )
+          SINGLE_SELECT =
+            T.let(
+              :SingleSelect,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+            )
+          MULTI_SELECT =
+            T.let(
+              :MultiSelect,
+              Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Imagekitio::CustomMetadataFieldCreateParams::Schema::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
       end

@@ -34,19 +34,17 @@ module Imagekitio
 
       type schema =
         {
-          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_,
           default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value,
           is_value_required: bool,
           max_length: Float,
           max_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value,
           min_length: Float,
           min_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value,
-          select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+          select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option],
+          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_
         }
 
       class Schema < Imagekitio::Internal::Type::BaseModel
-        attr_accessor type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_
-
         attr_reader default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value?
 
         def default_value=: (
@@ -83,50 +81,33 @@ module Imagekitio
           ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
         ) -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
 
+        attr_reader type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_?
+
+        def type=: (
+          Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_
+        ) -> Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_
+
         def initialize: (
-          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_,
           ?default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value,
           ?is_value_required: bool,
           ?max_length: Float,
           ?max_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value,
           ?min_length: Float,
           ?min_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value,
-          ?select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+          ?select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option],
+          ?type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_
         ) -> void
 
         def to_hash: -> {
-          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_,
           default_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::default_value,
           is_value_required: bool,
           max_length: Float,
           max_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::max_value,
           min_length: Float,
           min_value: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::min_value,
-          select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+          select_options: ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option],
+          type: Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_
         }
-
-        type type_ =
-          :Text
-          | :Textarea
-          | :Number
-          | :Date
-          | :Boolean
-          | :SingleSelect
-          | :MultiSelect
-
-        module Type
-          extend Imagekitio::Internal::Type::Enum
-
-          TEXT: :Text
-          TEXTAREA: :Textarea
-          NUMBER: :Number
-          DATE: :Date
-          BOOLEAN: :Boolean
-          SINGLE_SELECT: :SingleSelect
-          MULTI_SELECT: :MultiSelect
-
-          def self?.values: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_]
-        end
 
         type default_value =
           String
@@ -172,6 +153,29 @@ module Imagekitio
           extend Imagekitio::Internal::Type::Union
 
           def self?.variants: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::select_option]
+        end
+
+        type type_ =
+          :Text
+          | :Textarea
+          | :Number
+          | :Date
+          | :Boolean
+          | :SingleSelect
+          | :MultiSelect
+
+        module Type
+          extend Imagekitio::Internal::Type::Enum
+
+          TEXT: :Text
+          TEXTAREA: :Textarea
+          NUMBER: :Number
+          DATE: :Date
+          BOOLEAN: :Boolean
+          SINGLE_SELECT: :SingleSelect
+          MULTI_SELECT: :MultiSelect
+
+          def self?.values: -> ::Array[Imagekitio::Models::CustomMetadataFieldCreateParams::Schema::type_]
         end
       end
     end
