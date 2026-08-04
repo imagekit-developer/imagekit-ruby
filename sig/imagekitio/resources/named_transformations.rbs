@@ -1,0 +1,36 @@
+module Imagekitio
+  module Resources
+    class NamedTransformations
+      def create: (
+        name: String,
+        transformation: String,
+        ?disabled: bool,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::NamedTransformation
+
+      def update: (
+        String id,
+        ?disabled: bool,
+        ?name: String,
+        ?transformation: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::NamedTransformation
+
+      def list: (
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::named_transformation_list_response
+
+      def delete: (
+        String id,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::NamedTransformation
+
+      def get: (
+        String id,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::NamedTransformation
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end
