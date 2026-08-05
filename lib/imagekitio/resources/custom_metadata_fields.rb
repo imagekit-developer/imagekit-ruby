@@ -11,13 +11,15 @@ module Imagekitio
       # on the assets. The value of a field for an asset can be set using the media
       # library UI or programmatically through upload or update assets API.
       #
-      # @overload create(label:, name:, schema:, request_options: {})
+      # @overload create(label:, name:, schema:, description: nil, request_options: {})
       #
       # @param label [String] Human readable name of the custom metadata field. This should be unique across a
       #
       # @param name [String] API name of the custom metadata field. This should be unique across all (includi
       #
       # @param schema [Imagekitio::Models::CustomMetadataFieldCreateParams::Schema]
+      #
+      # @param description [String] Optional description for the custom metadata field. Can be up to 500 characters.
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -38,11 +40,14 @@ module Imagekitio
       # Some parameter documentations has been truncated, see
       # {Imagekitio::Models::CustomMetadataFieldUpdateParams} for more details.
       #
-      # This API updates the label or schema of an existing custom metadata field.
+      # This API updates the label, description, or schema of an existing custom
+      # metadata field.
       #
-      # @overload update(id, label: nil, schema: nil, request_options: {})
+      # @overload update(id, description: nil, label: nil, schema: nil, request_options: {})
       #
       # @param id [String] Should be a valid custom metadata field id.
+      #
+      # @param description [String] Optional description for the custom metadata field. Can be up to 500 characters.
       #
       # @param label [String] Human readable name of the custom metadata field. This should be unique across a
       #

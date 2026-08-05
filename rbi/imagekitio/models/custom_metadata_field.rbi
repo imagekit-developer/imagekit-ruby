@@ -32,13 +32,23 @@ module Imagekitio
       end
       attr_writer :schema
 
+      # Optional description of the custom metadata field. Only present when a
+      # description has been set. Shown as a hint to the users while setting the field's
+      # value on an asset in the media library UI.
+      sig { returns(T.nilable(String)) }
+      attr_reader :description
+
+      sig { params(description: String).void }
+      attr_writer :description
+
       # Object containing details of a custom metadata field.
       sig do
         params(
           id: String,
           label: String,
           name: String,
-          schema: Imagekitio::CustomMetadataField::Schema::OrHash
+          schema: Imagekitio::CustomMetadataField::Schema::OrHash,
+          description: String
         ).returns(T.attached_class)
       end
       def self.new(
@@ -52,7 +62,11 @@ module Imagekitio
         # `customMetadata` (key-value object) for an asset using upload or update API.
         name:,
         # An object that describes the rules for the custom metadata field value.
-        schema:
+        schema:,
+        # Optional description of the custom metadata field. Only present when a
+        # description has been set. Shown as a hint to the users while setting the field's
+        # value on an asset in the media library UI.
+        description: nil
       )
       end
 
@@ -62,7 +76,8 @@ module Imagekitio
             id: String,
             label: String,
             name: String,
-            schema: Imagekitio::CustomMetadataField::Schema
+            schema: Imagekitio::CustomMetadataField::Schema,
+            description: String
           }
         )
       end
