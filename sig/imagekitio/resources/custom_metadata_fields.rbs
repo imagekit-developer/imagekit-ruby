@@ -5,11 +5,13 @@ module Imagekitio
         label: String,
         name: String,
         schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+        ?description: String,
         ?request_options: Imagekitio::request_opts
       ) -> Imagekitio::CustomMetadataField
 
       def update: (
         String id,
+        ?description: String,
         ?label: String,
         ?schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema,
         ?request_options: Imagekitio::request_opts
