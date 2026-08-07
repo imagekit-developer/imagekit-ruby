@@ -14,26 +14,22 @@ module Imagekitio
           )
         end
 
-      # Name of the named transformation. This is the alias used to refer to the
-      # transformation string in image and video URLs, for example `tr:n-<name>`. Can
-      # only contain alphanumeric characters or `_` (hyphens are not allowed), and must
-      # be unique for your account. Name matching is case-sensitive, so
-      # `Small_Thumbnail` and `small_thumbnail` are treated as different names.
+      # Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
+      # only alphanumeric characters or `_` (no hyphens), and be unique for your
+      # account. Name matching is case-sensitive.
       sig { returns(String) }
       attr_accessor :name
 
-      # The transformation this name refers to, expressed as one or more comma-separated
-      # transformation parameters, for example `w-150,h-150,fo-center,cm-resize`. You do
-      # not need to prefix this with `tr:` — it is added automatically. If you do
-      # include it, it must appear in lowercase at the start of the string, or the
-      # request is rejected. Learn more about the
+      # The transformation string this name refers to, for example
+      # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
+      # automatically if missing, and validated if present. Learn more about the
       # [transformation syntax](https://imagekit.io/docs/transformations).
       sig { returns(String) }
       attr_accessor :transformation
 
-      # Whether this named transformation is enabled. Set to `false` to temporarily
-      # disable it without deleting it — requests using a disabled named transformation
-      # fail at delivery time.
+      # Whether the named transformation is enabled. Set to `false` to disable it
+      # without deleting it; requests using a disabled named transformation fail at
+      # delivery time.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :enabled
 
@@ -49,22 +45,18 @@ module Imagekitio
         ).returns(T.attached_class)
       end
       def self.new(
-        # Name of the named transformation. This is the alias used to refer to the
-        # transformation string in image and video URLs, for example `tr:n-<name>`. Can
-        # only contain alphanumeric characters or `_` (hyphens are not allowed), and must
-        # be unique for your account. Name matching is case-sensitive, so
-        # `Small_Thumbnail` and `small_thumbnail` are treated as different names.
+        # Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
+        # only alphanumeric characters or `_` (no hyphens), and be unique for your
+        # account. Name matching is case-sensitive.
         name:,
-        # The transformation this name refers to, expressed as one or more comma-separated
-        # transformation parameters, for example `w-150,h-150,fo-center,cm-resize`. You do
-        # not need to prefix this with `tr:` — it is added automatically. If you do
-        # include it, it must appear in lowercase at the start of the string, or the
-        # request is rejected. Learn more about the
+        # The transformation string this name refers to, for example
+        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
+        # automatically if missing, and validated if present. Learn more about the
         # [transformation syntax](https://imagekit.io/docs/transformations).
         transformation:,
-        # Whether this named transformation is enabled. Set to `false` to temporarily
-        # disable it without deleting it — requests using a disabled named transformation
-        # fail at delivery time.
+        # Whether the named transformation is enabled. Set to `false` to disable it
+        # without deleting it; requests using a disabled named transformation fail at
+        # delivery time.
         enabled: nil,
         request_options: {}
       )

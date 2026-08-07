@@ -17,28 +17,27 @@ module Imagekitio
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether this named transformation is enabled. If omitted, the existing value is
-      # left unchanged.
+      # Whether the named transformation is enabled. Omit to leave the current value
+      # unchanged.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :enabled
 
       sig { params(enabled: T::Boolean).void }
       attr_writer :enabled
 
-      # Updated name of the named transformation. Can only contain alphanumeric
-      # characters and `_`, and must be unique for your account. Name matching is
-      # case-sensitive, so `Small_Thumbnail` and `small_thumbnail` are treated as
-      # different names.
+      # Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
+      # only alphanumeric characters or `_` (no hyphens), and be unique for your
+      # account. Name matching is case-sensitive.
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
       sig { params(name: String).void }
       attr_writer :name
 
-      # Updated transformation, expressed as one or more comma-separated transformation
-      # parameters. You do not need to prefix this with `tr:` — it is added
-      # automatically. If you do include it, it must appear in lowercase at the start of
-      # the string, or the request is rejected.
+      # The transformation string this name refers to, for example
+      # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
+      # automatically if missing, and validated if present. Learn more about the
+      # [transformation syntax](https://imagekit.io/docs/transformations).
       sig { returns(T.nilable(String)) }
       attr_reader :transformation
 
@@ -56,18 +55,17 @@ module Imagekitio
       end
       def self.new(
         id:,
-        # Whether this named transformation is enabled. If omitted, the existing value is
-        # left unchanged.
+        # Whether the named transformation is enabled. Omit to leave the current value
+        # unchanged.
         enabled: nil,
-        # Updated name of the named transformation. Can only contain alphanumeric
-        # characters and `_`, and must be unique for your account. Name matching is
-        # case-sensitive, so `Small_Thumbnail` and `small_thumbnail` are treated as
-        # different names.
+        # Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
+        # only alphanumeric characters or `_` (no hyphens), and be unique for your
+        # account. Name matching is case-sensitive.
         name: nil,
-        # Updated transformation, expressed as one or more comma-separated transformation
-        # parameters. You do not need to prefix this with `tr:` — it is added
-        # automatically. If you do include it, it must appear in lowercase at the start of
-        # the string, or the request is rejected.
+        # The transformation string this name refers to, for example
+        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
+        # automatically if missing, and validated if present. Learn more about the
+        # [transformation syntax](https://imagekit.io/docs/transformations).
         transformation: nil,
         request_options: {}
       )

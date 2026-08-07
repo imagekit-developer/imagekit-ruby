@@ -8,23 +8,20 @@ module Imagekitio
       #
       # Creates a new named transformation and returns the created object.
       #
-      # Named transformations let you assign a short, reusable name to a complex
-      # transformation string, so it can be applied in image and video URLs as
-      # `tr:n-<name>` and later updated without changing any existing URLs.
-      #
-      # Learn more about
+      # A named transformation is a short, reusable name for a transformation string.
+      # Use it in image and video URLs as `tr:n-<name>`, and update the underlying
+      # transformation later without changing existing URLs. Learn more about
       # [named transformations](https://imagekit.io/docs/transformations#named-transformations).
       #
-      # **Note:** You can create up to 250 named transformations per account. Once this
-      # limit is reached, the request fails with a `400` error.
+      # You can create up to 250 named transformations per account.
       #
       # @overload create(name:, transformation:, enabled: nil, request_options: {})
       #
-      # @param name [String] Name of the named transformation. This is the alias used to refer to the transfo
+      # @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
       #
-      # @param transformation [String] The transformation this name refers to, expressed as one or more comma-separated
+      # @param transformation [String] The transformation string this name refers to, for example `w-150,h-150,fo-cente
       #
-      # @param enabled [Boolean] Whether this named transformation is enabled. Set to `false` to temporarily disa
+      # @param enabled [Boolean] Whether the named transformation is enabled. Set to `false` to disable it withou
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -46,29 +43,25 @@ module Imagekitio
       # {Imagekitio::Models::NamedTransformationUpdateParams} for more details.
       #
       # Updates the named transformation identified by `id` and returns the updated
-      # object. Only the fields present in the request body are updated; omitted fields
-      # are left unchanged.
+      # object. Only the fields present in the request body are updated; other fields
+      # stay unchanged.
       #
-      # **Note:**
-      #
-      # - If you rename this named transformation, or set `enabled` to `false`, and
-      #   another _enabled_ named transformation, or your account's upload
-      #   pre-transformation/post-transformation settings, reference it (via the
-      #   `n-<name>` token), the request fails with a `409` error whose `message`
-      #   describes what it is referenced by. A reference from a named transformation
-      #   that is itself disabled does not block this request. Remove or disable those
-      #   references first, then retry. This is a best-effort check and cannot detect
-      #   references baked into your own application code or previously generated URLs.
+      # Renaming or disabling a named transformation fails with a `409` error if it is
+      # still referenced (via the `n-<name>` token) by another enabled named
+      # transformation, or by an upload pre-transformation/post-transformation setting.
+      # References from disabled named transformations don't count. This check is
+      # best-effort and can't detect references in your own application code or in
+      # previously generated URLs.
       #
       # @overload update(id, enabled: nil, name: nil, transformation: nil, request_options: {})
       #
       # @param id [String] Unique identifier of the named transformation. This is the `id` returned when th
       #
-      # @param enabled [Boolean] Whether this named transformation is enabled. If omitted, the existing value is
+      # @param enabled [Boolean] Whether the named transformation is enabled. Omit to leave the current value unc
       #
-      # @param name [String] Updated name of the named transformation. Can only contain alphanumeric characte
+      # @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
       #
-      # @param transformation [String] Updated transformation, expressed as one or more comma-separated transformation
+      # @param transformation [String] The transformation string this name refers to, for example `w-150,h-150,fo-cente
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -110,16 +103,11 @@ module Imagekitio
       # Permanently deletes the named transformation identified by `id` and returns the
       # deleted object.
       #
-      # **Note:**
-      #
-      # - If another _enabled_ named transformation, or your account's upload
-      #   pre-transformation/post-transformation settings, reference this named
-      #   transformation (via the `n-<name>` token), the request fails with a `409`
-      #   error whose `message` describes what it is referenced by. A reference from a
-      #   named transformation that is itself disabled does not block this request.
-      #   Remove or disable those references first, then retry the deletion. This is a
-      #   best-effort check and cannot detect references baked into your own application
-      #   code or previously generated URLs.
+      # Deletion fails with a `409` error if the named transformation is still
+      # referenced (via the `n-<name>` token) by another enabled named transformation,
+      # or by an upload pre-transformation/post-transformation setting. References from
+      # disabled named transformations don't count. This check is best-effort and can't
+      # detect references in your own application code or in previously generated URLs.
       #
       # @overload delete(id, request_options: {})
       #
