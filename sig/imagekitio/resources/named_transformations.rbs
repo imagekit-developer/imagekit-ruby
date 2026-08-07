@@ -4,13 +4,13 @@ module Imagekitio
       def create: (
         name: String,
         transformation: String,
-        ?disabled: bool,
+        ?enabled: bool,
         ?request_options: Imagekitio::request_opts
       ) -> Imagekitio::NamedTransformation
 
       def update: (
         String id,
-        ?disabled: bool,
+        ?enabled: bool,
         ?name: String,
         ?transformation: String,
         ?request_options: Imagekitio::request_opts

@@ -17,23 +17,28 @@ module Imagekitio
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether this named transformation is disabled.
+      # Whether this named transformation is enabled. If omitted, the existing value is
+      # left unchanged.
       sig { returns(T.nilable(T::Boolean)) }
-      attr_reader :disabled
+      attr_reader :enabled
 
-      sig { params(disabled: T::Boolean).void }
-      attr_writer :disabled
+      sig { params(enabled: T::Boolean).void }
+      attr_writer :enabled
 
       # Updated name of the named transformation. Can only contain alphanumeric
-      # characters, `_` and `-`, and must be unique for your account (case-insensitive).
+      # characters and `_`, and must be unique for your account. Name matching is
+      # case-sensitive, so `Small_Thumbnail` and `small_thumbnail` are treated as
+      # different names.
       sig { returns(T.nilable(String)) }
       attr_reader :name
 
       sig { params(name: String).void }
       attr_writer :name
 
-      # Updated transformation string. It must start with `tr:` followed by one or more
-      # transformation parameters.
+      # Updated transformation, expressed as one or more comma-separated transformation
+      # parameters. You do not need to prefix this with `tr:` — it is added
+      # automatically. If you do include it, it must appear in lowercase at the start of
+      # the string, or the request is rejected.
       sig { returns(T.nilable(String)) }
       attr_reader :transformation
 
@@ -43,7 +48,7 @@ module Imagekitio
       sig do
         params(
           id: String,
-          disabled: T::Boolean,
+          enabled: T::Boolean,
           name: String,
           transformation: String,
           request_options: Imagekitio::RequestOptions::OrHash
@@ -51,13 +56,18 @@ module Imagekitio
       end
       def self.new(
         id:,
-        # Whether this named transformation is disabled.
-        disabled: nil,
+        # Whether this named transformation is enabled. If omitted, the existing value is
+        # left unchanged.
+        enabled: nil,
         # Updated name of the named transformation. Can only contain alphanumeric
-        # characters, `_` and `-`, and must be unique for your account (case-insensitive).
+        # characters and `_`, and must be unique for your account. Name matching is
+        # case-sensitive, so `Small_Thumbnail` and `small_thumbnail` are treated as
+        # different names.
         name: nil,
-        # Updated transformation string. It must start with `tr:` followed by one or more
-        # transformation parameters.
+        # Updated transformation, expressed as one or more comma-separated transformation
+        # parameters. You do not need to prefix this with `tr:` — it is added
+        # automatically. If you do include it, it must appear in lowercase at the start of
+        # the string, or the request is rejected.
         transformation: nil,
         request_options: {}
       )
@@ -67,7 +77,7 @@ module Imagekitio
         override.returns(
           {
             id: String,
-            disabled: T::Boolean,
+            enabled: T::Boolean,
             name: String,
             transformation: String,
             request_options: Imagekitio::RequestOptions

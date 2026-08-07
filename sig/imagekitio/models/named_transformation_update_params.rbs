@@ -1,7 +1,7 @@
 module Imagekitio
   module Models
     type named_transformation_update_params =
-      { id: String, disabled: bool, name: String, transformation: String }
+      { id: String, enabled: bool, name: String, transformation: String }
       & Imagekitio::Internal::Type::request_parameters
 
     class NamedTransformationUpdateParams < Imagekitio::Internal::Type::BaseModel
@@ -10,9 +10,9 @@ module Imagekitio
 
       attr_accessor id: String
 
-      attr_reader disabled: bool?
+      attr_reader enabled: bool?
 
-      def disabled=: (bool) -> bool
+      def enabled=: (bool) -> bool
 
       attr_reader name: String?
 
@@ -24,7 +24,7 @@ module Imagekitio
 
       def initialize: (
         id: String,
-        ?disabled: bool,
+        ?enabled: bool,
         ?name: String,
         ?transformation: String,
         ?request_options: Imagekitio::request_opts
@@ -32,7 +32,7 @@ module Imagekitio
 
       def to_hash: -> {
         id: String,
-        disabled: bool,
+        enabled: bool,
         name: String,
         transformation: String,
         request_options: Imagekitio::RequestOptions

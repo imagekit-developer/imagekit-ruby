@@ -15,13 +15,16 @@ module Imagekitio
       # Learn more about
       # [named transformations](https://imagekit.io/docs/transformations#named-transformations).
       #
-      # @overload create(name:, transformation:, disabled: nil, request_options: {})
+      # **Note:** You can create up to 250 named transformations per account. Once this
+      # limit is reached, the request fails with a `400` error.
+      #
+      # @overload create(name:, transformation:, enabled: nil, request_options: {})
       #
       # @param name [String] Name of the named transformation. This is the alias used to refer to the transfo
       #
-      # @param transformation [String] The transformation string this name refers to. It must start with `tr:` followed
+      # @param transformation [String] The transformation this name refers to, expressed as one or more comma-separated
       #
-      # @param disabled [Boolean] Whether this named transformation is disabled. Set to `true` to temporarily disa
+      # @param enabled [Boolean] Whether this named transformation is enabled. Set to `false` to temporarily disa
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -46,15 +49,26 @@ module Imagekitio
       # object. Only the fields present in the request body are updated; omitted fields
       # are left unchanged.
       #
-      # @overload update(id, disabled: nil, name: nil, transformation: nil, request_options: {})
+      # **Note:**
+      #
+      # - If you rename this named transformation, or set `enabled` to `false`, and
+      #   another _enabled_ named transformation, or your account's upload
+      #   pre-transformation/post-transformation settings, reference it (via the
+      #   `n-<name>` token), the request fails with a `409` error whose `message`
+      #   describes what it is referenced by. A reference from a named transformation
+      #   that is itself disabled does not block this request. Remove or disable those
+      #   references first, then retry. This is a best-effort check and cannot detect
+      #   references baked into your own application code or previously generated URLs.
+      #
+      # @overload update(id, enabled: nil, name: nil, transformation: nil, request_options: {})
       #
       # @param id [String] Unique identifier of the named transformation. This is the `id` returned when th
       #
-      # @param disabled [Boolean] Whether this named transformation is disabled.
+      # @param enabled [Boolean] Whether this named transformation is enabled. If omitted, the existing value is
       #
       # @param name [String] Updated name of the named transformation. Can only contain alphanumeric characte
       #
-      # @param transformation [String] Updated transformation string. It must start with `tr:` followed by one or more
+      # @param transformation [String] Updated transformation, expressed as one or more comma-separated transformation
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -98,13 +112,14 @@ module Imagekitio
       #
       # **Note:**
       #
-      # - If another named transformation, or your account's upload
+      # - If another _enabled_ named transformation, or your account's upload
       #   pre-transformation/post-transformation settings, reference this named
       #   transformation (via the `n-<name>` token), the request fails with a `409`
-      #   error whose `message` describes what it is referenced by. Remove those
-      #   references first, then retry the deletion. This is a best-effort check and
-      #   cannot detect references baked into your own application code or previously
-      #   generated URLs.
+      #   error whose `message` describes what it is referenced by. A reference from a
+      #   named transformation that is itself disabled does not block this request.
+      #   Remove or disable those references first, then retry the deletion. This is a
+      #   best-effort check and cannot detect references baked into your own application
+      #   code or previously generated URLs.
       #
       # @overload delete(id, request_options: {})
       #

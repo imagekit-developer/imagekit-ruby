@@ -9,7 +9,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
     response =
       @image_kit.named_transformations.create(
         name: "small_thumbnail",
-        transformation: "tr:w-150,h-150,fo-center,cm-resize"
+        transformation: "w-150,h-150,fo-center,cm-resize"
       )
 
     assert_pattern do
@@ -20,7 +20,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
       response => {
         id: String | nil,
         created_at: Time | nil,
-        disabled: Imagekitio::Internal::Type::Boolean | nil,
+        enabled: Imagekitio::Internal::Type::Boolean | nil,
         name: String | nil,
         transformation: String | nil
       }
@@ -40,7 +40,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
       response => {
         id: String | nil,
         created_at: Time | nil,
-        disabled: Imagekitio::Internal::Type::Boolean | nil,
+        enabled: Imagekitio::Internal::Type::Boolean | nil,
         name: String | nil,
         transformation: String | nil
       }
@@ -70,7 +70,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
       response => {
         id: String | nil,
         created_at: Time | nil,
-        disabled: Imagekitio::Internal::Type::Boolean | nil,
+        enabled: Imagekitio::Internal::Type::Boolean | nil,
         name: String | nil,
         transformation: String | nil
       }
@@ -90,7 +90,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
       response => {
         id: String | nil,
         created_at: Time | nil,
-        disabled: Imagekitio::Internal::Type::Boolean | nil,
+        enabled: Imagekitio::Internal::Type::Boolean | nil,
         name: String | nil,
         transformation: String | nil
       }

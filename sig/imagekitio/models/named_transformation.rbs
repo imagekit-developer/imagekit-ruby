@@ -4,7 +4,7 @@ module Imagekitio
       {
         id: String,
         created_at: Time,
-        disabled: bool,
+        enabled: bool,
         name: String,
         transformation: String
       }
@@ -18,9 +18,9 @@ module Imagekitio
 
       def created_at=: (Time) -> Time
 
-      attr_reader disabled: bool?
+      attr_reader enabled: bool?
 
-      def disabled=: (bool) -> bool
+      def enabled=: (bool) -> bool
 
       attr_reader name: String?
 
@@ -33,7 +33,7 @@ module Imagekitio
       def initialize: (
         ?id: String,
         ?created_at: Time,
-        ?disabled: bool,
+        ?enabled: bool,
         ?name: String,
         ?transformation: String
       ) -> void
@@ -41,7 +41,7 @@ module Imagekitio
       def to_hash: -> {
         id: String,
         created_at: Time,
-        disabled: bool,
+        enabled: bool,
         name: String,
         transformation: String
       }
