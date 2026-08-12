@@ -1,0 +1,50 @@
+module Imagekitio
+  module Models
+    type named_transformation =
+      {
+        id: String,
+        created_at: Time,
+        enabled: bool,
+        name: String,
+        transformation: String
+      }
+
+    class NamedTransformation < Imagekitio::Internal::Type::BaseModel
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader created_at: Time?
+
+      def created_at=: (Time) -> Time
+
+      attr_reader enabled: bool?
+
+      def enabled=: (bool) -> bool
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader transformation: String?
+
+      def transformation=: (String) -> String
+
+      def initialize: (
+        ?id: String,
+        ?created_at: Time,
+        ?enabled: bool,
+        ?name: String,
+        ?transformation: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        enabled: bool,
+        name: String,
+        transformation: String
+      }
+    end
+  end
+end
