@@ -47,11 +47,9 @@ module Imagekitio
       # stay unchanged.
       #
       # Renaming or disabling a named transformation fails with a `409` error if it is
-      # still referenced (via the `n-<name>` token) by another enabled named
-      # transformation, or by an upload pre-transformation/post-transformation setting.
-      # References from disabled named transformations don't count. This check is
-      # best-effort and can't detect references in your own application code or in
-      # previously generated URLs.
+      # still referenced (via the `n-<name>` token) by an upload pre-transformation or
+      # post-transformation setting. This check is best-effort and can't detect
+      # references in your own application code or in previously generated URLs.
       #
       # @overload update(id, enabled: nil, name: nil, transformation: nil, request_options: {})
       #
@@ -104,10 +102,9 @@ module Imagekitio
       # deleted object.
       #
       # Deletion fails with a `409` error if the named transformation is still
-      # referenced (via the `n-<name>` token) by another enabled named transformation,
-      # or by an upload pre-transformation/post-transformation setting. References from
-      # disabled named transformations don't count. This check is best-effort and can't
-      # detect references in your own application code or in previously generated URLs.
+      # referenced (via the `n-<name>` token) by an upload pre-transformation or
+      # post-transformation setting. This check is best-effort and can't detect
+      # references in your own application code or in previously generated URLs.
       #
       # @overload delete(id, request_options: {})
       #

@@ -36,7 +36,9 @@ module Imagekitio
 
       # The transformation string this name refers to, for example
       # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
-      # automatically if missing, and validated if present. Learn more about the
+      # automatically if missing, and validated if present. The string must be a valid
+      # ImageKit transformation and cannot itself reference another named transformation
+      # (no nesting). Learn more about the
       # [transformation syntax](https://imagekit.io/docs/transformations).
       sig { returns(T.nilable(String)) }
       attr_reader :transformation
@@ -64,7 +66,9 @@ module Imagekitio
         name: nil,
         # The transformation string this name refers to, for example
         # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
-        # automatically if missing, and validated if present. Learn more about the
+        # automatically if missing, and validated if present. The string must be a valid
+        # ImageKit transformation and cannot itself reference another named transformation
+        # (no nesting). Learn more about the
         # [transformation syntax](https://imagekit.io/docs/transformations).
         transformation: nil,
         request_options: {}
