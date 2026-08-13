@@ -14,23 +14,19 @@ module Imagekitio
           )
         end
 
-      # Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
-      # only alphanumeric characters or `_` (no hyphens), and be unique for your
-      # account. Name matching is case-sensitive.
+      # Alias for the transformation string, used in URLs as `tr:n-<name>`. This is
+      # case-sensitive, contains only alphanumeric characters or `_` (underscore), and
+      # is unique across all named transformations for your account.
       sig { returns(String) }
       attr_accessor :name
 
-      # The transformation string this name refers to, for example
-      # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
-      # is validated. The string must be a valid ImageKit transformation and cannot
-      # itself reference another named transformation (no nesting). Learn more about the
-      # [transformation syntax](https://imagekit.io/docs/transformations).
+      # The transformation string this named transformation refers to. Learn more about
+      # the [transformation string syntax](https://imagekit.io/docs/transformations).
       sig { returns(String) }
       attr_accessor :transformation
 
-      # Whether the named transformation is currently enabled. When this is set to
-      # `false`, requests using such disabled named transformations fail at delivery
-      # time.
+      # Whether the named transformation is currently enabled. When set to `false`,
+      # requests using this named transformation fail at delivery time.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :enabled
 
@@ -46,19 +42,15 @@ module Imagekitio
         ).returns(T.attached_class)
       end
       def self.new(
-        # Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
-        # only alphanumeric characters or `_` (no hyphens), and be unique for your
-        # account. Name matching is case-sensitive.
+        # Alias for the transformation string, used in URLs as `tr:n-<name>`. This is
+        # case-sensitive, contains only alphanumeric characters or `_` (underscore), and
+        # is unique across all named transformations for your account.
         name:,
-        # The transformation string this name refers to, for example
-        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
-        # is validated. The string must be a valid ImageKit transformation and cannot
-        # itself reference another named transformation (no nesting). Learn more about the
-        # [transformation syntax](https://imagekit.io/docs/transformations).
+        # The transformation string this named transformation refers to. Learn more about
+        # the [transformation string syntax](https://imagekit.io/docs/transformations).
         transformation:,
-        # Whether the named transformation is currently enabled. When this is set to
-        # `false`, requests using such disabled named transformations fail at delivery
-        # time.
+        # Whether the named transformation is currently enabled. When set to `false`,
+        # requests using this named transformation fail at delivery time.
         enabled: nil,
         request_options: {}
       )

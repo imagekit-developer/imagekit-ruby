@@ -16,27 +16,23 @@ module Imagekitio
       optional :created_at, Time, api_name: :createdAt
 
       # @!attribute enabled
-      #   Whether the named transformation is currently enabled. When this is set to
-      #   `false`, requests using such disabled named transformations fail at delivery
-      #   time.
+      #   Whether the named transformation is currently enabled. When set to `false`,
+      #   requests using this named transformation fail at delivery time.
       #
       #   @return [Boolean, nil]
       optional :enabled, Imagekitio::Internal::Type::Boolean
 
       # @!attribute name
-      #   Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
-      #   only alphanumeric characters or `_` (no hyphens), and be unique for your
-      #   account. Name matching is case-sensitive.
+      #   Alias for the transformation string, used in URLs as `tr:n-<name>`. This is
+      #   case-sensitive, contains only alphanumeric characters or `_` (underscore), and
+      #   is unique across all named transformations for your account.
       #
       #   @return [String, nil]
       optional :name, String
 
       # @!attribute transformation
-      #   The transformation string this name refers to, for example
-      #   `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
-      #   is validated. The string must be a valid ImageKit transformation and cannot
-      #   itself reference another named transformation (no nesting). Learn more about the
-      #   [transformation syntax](https://imagekit.io/docs/transformations).
+      #   The transformation string this named transformation refers to. Learn more about
+      #   the [transformation string syntax](https://imagekit.io/docs/transformations).
       #
       #   @return [String, nil]
       optional :transformation, String
@@ -54,11 +50,11 @@ module Imagekitio
       #
       #   @param created_at [Time] ISO 8601 timestamp of when the named transformation was created.
       #
-      #   @param enabled [Boolean] Whether the named transformation is currently enabled. When this is set to `fals
+      #   @param enabled [Boolean] Whether the named transformation is currently enabled. When set to `false`, requ
       #
-      #   @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
+      #   @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. This is case
       #
-      #   @param transformation [String] The transformation string this name refers to, for example `w-150,h-150,fo-cente
+      #   @param transformation [String] The transformation string this named transformation refers to. Learn more about
     end
   end
 end

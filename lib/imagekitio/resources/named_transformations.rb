@@ -17,11 +17,11 @@ module Imagekitio
       #
       # @overload create(name:, transformation:, enabled: nil, request_options: {})
       #
-      # @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
+      # @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. This is case
       #
-      # @param transformation [String] The transformation string this name refers to, for example `w-150,h-150,fo-cente
+      # @param transformation [String] The transformation string this named transformation refers to. Learn more about
       #
-      # @param enabled [Boolean] Whether the named transformation is currently enabled. When this is set to `fals
+      # @param enabled [Boolean] Whether the named transformation is currently enabled. When set to `false`, requ
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -57,9 +57,9 @@ module Imagekitio
       #
       # @param enabled [Boolean] Whether the named transformation is enabled. Omit to leave the current value unc
       #
-      # @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. Must contain
+      # @param name [String] Alias for the transformation string, used in URLs as `tr:n-<name>`. This is case
       #
-      # @param transformation [String] The transformation string this name refers to, for example `w-150,h-150,fo-cente
+      # @param transformation [String] The transformation string this named transformation refers to. Learn more about
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
