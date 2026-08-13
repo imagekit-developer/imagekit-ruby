@@ -12,6 +12,15 @@ module Imagekitio
       #   @return [String]
       required :id, String
 
+      # @!attribute description
+      #   Optional description for the custom metadata field. Can be up to 500 characters.
+      #   Send an empty string to clear an existing description. This is shown as a hint
+      #   to the users while setting the field's value on an asset in the media library
+      #   UI.
+      #
+      #   @return [String, nil]
+      optional :description, String
+
       # @!attribute label
       #   Human readable name of the custom metadata field. This should be unique across
       #   all non deleted custom metadata fields. This name is displayed as form field
@@ -30,11 +39,13 @@ module Imagekitio
       #   @return [Imagekitio::Models::CustomMetadataFieldUpdateParams::Schema, nil]
       optional :schema, -> { Imagekitio::CustomMetadataFieldUpdateParams::Schema }
 
-      # @!method initialize(id:, label: nil, schema: nil, request_options: {})
+      # @!method initialize(id:, description: nil, label: nil, schema: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::CustomMetadataFieldUpdateParams} for more details.
       #
       #   @param id [String]
+      #
+      #   @param description [String] Optional description for the custom metadata field. Can be up to 500 characters.
       #
       #   @param label [String] Human readable name of the custom metadata field. This should be unique across a
       #

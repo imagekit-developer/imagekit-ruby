@@ -5,7 +5,8 @@ module Imagekitio
         id: String,
         label: String,
         name: String,
-        schema: Imagekitio::CustomMetadataField::Schema
+        schema: Imagekitio::CustomMetadataField::Schema,
+        description: String
       }
 
     class CustomMetadataField < Imagekitio::Internal::Type::BaseModel
@@ -17,18 +18,24 @@ module Imagekitio
 
       attr_accessor schema: Imagekitio::CustomMetadataField::Schema
 
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
       def initialize: (
         id: String,
         label: String,
         name: String,
-        schema: Imagekitio::CustomMetadataField::Schema
+        schema: Imagekitio::CustomMetadataField::Schema,
+        ?description: String
       ) -> void
 
       def to_hash: -> {
         id: String,
         label: String,
         name: String,
-        schema: Imagekitio::CustomMetadataField::Schema
+        schema: Imagekitio::CustomMetadataField::Schema,
+        description: String
       }
 
       type schema =

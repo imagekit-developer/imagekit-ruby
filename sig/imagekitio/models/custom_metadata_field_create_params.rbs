@@ -4,7 +4,8 @@ module Imagekitio
       {
         label: String,
         name: String,
-        schema: Imagekitio::CustomMetadataFieldCreateParams::Schema
+        schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+        description: String
       }
       & Imagekitio::Internal::Type::request_parameters
 
@@ -18,10 +19,15 @@ module Imagekitio
 
       attr_accessor schema: Imagekitio::CustomMetadataFieldCreateParams::Schema
 
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
       def initialize: (
         label: String,
         name: String,
         schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+        ?description: String,
         ?request_options: Imagekitio::request_opts
       ) -> void
 
@@ -29,6 +35,7 @@ module Imagekitio
         label: String,
         name: String,
         schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+        description: String,
         request_options: Imagekitio::RequestOptions
       }
 

@@ -17,6 +17,16 @@ module Imagekitio
       sig { returns(String) }
       attr_accessor :id
 
+      # Optional description for the custom metadata field. Can be up to 500 characters.
+      # Send an empty string to clear an existing description. This is shown as a hint
+      # to the users while setting the field's value on an asset in the media library
+      # UI.
+      sig { returns(T.nilable(String)) }
+      attr_reader :description
+
+      sig { params(description: String).void }
+      attr_writer :description
+
       # Human readable name of the custom metadata field. This should be unique across
       # all non deleted custom metadata fields. This name is displayed as form field
       # label to the users while setting field value on an asset in the media library
@@ -46,6 +56,7 @@ module Imagekitio
       sig do
         params(
           id: String,
+          description: String,
           label: String,
           schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema::OrHash,
           request_options: Imagekitio::RequestOptions::OrHash
@@ -53,6 +64,11 @@ module Imagekitio
       end
       def self.new(
         id:,
+        # Optional description for the custom metadata field. Can be up to 500 characters.
+        # Send an empty string to clear an existing description. This is shown as a hint
+        # to the users while setting the field's value on an asset in the media library
+        # UI.
+        description: nil,
         # Human readable name of the custom metadata field. This should be unique across
         # all non deleted custom metadata fields. This name is displayed as form field
         # label to the users while setting field value on an asset in the media library
@@ -71,6 +87,7 @@ module Imagekitio
         override.returns(
           {
             id: String,
+            description: String,
             label: String,
             schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema,
             request_options: Imagekitio::RequestOptions

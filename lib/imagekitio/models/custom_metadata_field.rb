@@ -31,7 +31,15 @@ module Imagekitio
       #   @return [Imagekitio::Models::CustomMetadataField::Schema]
       required :schema, -> { Imagekitio::CustomMetadataField::Schema }
 
-      # @!method initialize(id:, label:, name:, schema:)
+      # @!attribute description
+      #   Optional description of the custom metadata field. Only present when a
+      #   description has been set. Shown as a hint to the users while setting the field's
+      #   value on an asset in the media library UI.
+      #
+      #   @return [String, nil]
+      optional :description, String
+
+      # @!method initialize(id:, label:, name:, schema:, description: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::CustomMetadataField} for more details.
       #
@@ -44,6 +52,8 @@ module Imagekitio
       #   @param name [String] API name of the custom metadata field. This becomes the key while setting `custo
       #
       #   @param schema [Imagekitio::Models::CustomMetadataField::Schema] An object that describes the rules for the custom metadata field value.
+      #
+      #   @param description [String] Optional description of the custom metadata field. Only present when a descripti
 
       # @see Imagekitio::Models::CustomMetadataField#schema
       class Schema < Imagekitio::Internal::Type::BaseModel

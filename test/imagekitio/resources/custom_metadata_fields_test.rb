@@ -18,7 +18,8 @@ class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::
         id: String,
         label: String,
         name: String,
-        schema: Imagekitio::CustomMetadataField::Schema
+        schema: Imagekitio::CustomMetadataField::Schema,
+        description: String | nil
       }
     end
   end
@@ -37,7 +38,8 @@ class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::
         id: String,
         label: String,
         name: String,
-        schema: Imagekitio::CustomMetadataField::Schema
+        schema: Imagekitio::CustomMetadataField::Schema,
+        description: String | nil
       }
     end
   end
