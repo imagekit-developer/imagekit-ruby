@@ -36,11 +36,21 @@ module Imagekitio
       end
       attr_writer :schema
 
+      # Optional description for the custom metadata field. Can be up to 500 characters.
+      # This is shown as a hint to the users while setting the field's value on an asset
+      # in the media library UI.
+      sig { returns(T.nilable(String)) }
+      attr_reader :description
+
+      sig { params(description: String).void }
+      attr_writer :description
+
       sig do
         params(
           label: String,
           name: String,
           schema: Imagekitio::CustomMetadataFieldCreateParams::Schema::OrHash,
+          description: String,
           request_options: Imagekitio::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -54,6 +64,10 @@ module Imagekitio
         # (including deleted) custom metadata fields.
         name:,
         schema:,
+        # Optional description for the custom metadata field. Can be up to 500 characters.
+        # This is shown as a hint to the users while setting the field's value on an asset
+        # in the media library UI.
+        description: nil,
         request_options: {}
       )
       end
@@ -64,6 +78,7 @@ module Imagekitio
             label: String,
             name: String,
             schema: Imagekitio::CustomMetadataFieldCreateParams::Schema,
+            description: String,
             request_options: Imagekitio::RequestOptions
           }
         )

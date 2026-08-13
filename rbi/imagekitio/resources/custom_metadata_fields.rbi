@@ -12,6 +12,7 @@ module Imagekitio
           label: String,
           name: String,
           schema: Imagekitio::CustomMetadataFieldCreateParams::Schema::OrHash,
+          description: String,
           request_options: Imagekitio::RequestOptions::OrHash
         ).returns(Imagekitio::CustomMetadataField)
       end
@@ -25,14 +26,20 @@ module Imagekitio
         # (including deleted) custom metadata fields.
         name:,
         schema:,
+        # Optional description for the custom metadata field. Can be up to 500 characters.
+        # This is shown as a hint to the users while setting the field's value on an asset
+        # in the media library UI.
+        description: nil,
         request_options: {}
       )
       end
 
-      # This API updates the label or schema of an existing custom metadata field.
+      # This API updates the label, description, or schema of an existing custom
+      # metadata field.
       sig do
         params(
           id: String,
+          description: String,
           label: String,
           schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema::OrHash,
           request_options: Imagekitio::RequestOptions::OrHash
@@ -41,6 +48,11 @@ module Imagekitio
       def update(
         # Should be a valid custom metadata field id.
         id,
+        # Optional description for the custom metadata field. Can be up to 500 characters.
+        # Send an empty string to clear an existing description. This is shown as a hint
+        # to the users while setting the field's value on an asset in the media library
+        # UI.
+        description: nil,
         # Human readable name of the custom metadata field. This should be unique across
         # all non deleted custom metadata fields. This name is displayed as form field
         # label to the users while setting field value on an asset in the media library

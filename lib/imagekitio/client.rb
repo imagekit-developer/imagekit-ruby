@@ -41,9 +41,6 @@ module Imagekitio
     # @return [Imagekitio::Resources::SavedExtensions]
     attr_reader :saved_extensions
 
-    # @return [Imagekitio::Resources::NamedTransformations]
-    attr_reader :named_transformations
-
     # @return [Imagekitio::Resources::Assets]
     attr_reader :assets
 
@@ -152,7 +149,6 @@ module Imagekitio
       @custom_metadata_fields = Imagekitio::Resources::CustomMetadataFields.new(client: self)
       @files = Imagekitio::Resources::Files.new(client: self)
       @saved_extensions = Imagekitio::Resources::SavedExtensions.new(client: self)
-      @named_transformations = Imagekitio::Resources::NamedTransformations.new(client: self)
       @assets = Imagekitio::Resources::Assets.new(client: self)
       @cache = Imagekitio::Resources::Cache.new(client: self)
       @folders = Imagekitio::Resources::Folders.new(client: self)

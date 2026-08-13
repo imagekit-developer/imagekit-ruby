@@ -3,6 +3,7 @@ module Imagekitio
     type custom_metadata_field_update_params =
       {
         id: String,
+        description: String,
         label: String,
         schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema
       }
@@ -13,6 +14,10 @@ module Imagekitio
       include Imagekitio::Internal::Type::RequestParameters
 
       attr_accessor id: String
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
 
       attr_reader label: String?
 
@@ -26,6 +31,7 @@ module Imagekitio
 
       def initialize: (
         id: String,
+        ?description: String,
         ?label: String,
         ?schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema,
         ?request_options: Imagekitio::request_opts
@@ -33,6 +39,7 @@ module Imagekitio
 
       def to_hash: -> {
         id: String,
+        description: String,
         label: String,
         schema: Imagekitio::CustomMetadataFieldUpdateParams::Schema,
         request_options: Imagekitio::RequestOptions
