@@ -21,7 +21,7 @@ module Imagekitio
       #
       # @param transformation [String] The transformation string this name refers to, for example `w-150,h-150,fo-cente
       #
-      # @param enabled [Boolean] Whether the named transformation is enabled. Set to `false` to disable it withou
+      # @param enabled [Boolean] Whether the named transformation is currently enabled. When this is set to `fals
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -53,7 +53,7 @@ module Imagekitio
       #
       # @overload update(id, enabled: nil, name: nil, transformation: nil, request_options: {})
       #
-      # @param id [String] Unique identifier of the named transformation. This is the `id` returned when th
+      # @param id [String] Unique identifier for a named transformation.
       #
       # @param enabled [Boolean] Whether the named transformation is enabled. Omit to leave the current value unc
       #
@@ -95,11 +95,7 @@ module Imagekitio
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Imagekitio::Models::NamedTransformationDeleteParams} for more details.
-      #
-      # Permanently deletes the named transformation identified by `id` and returns the
-      # deleted object.
+      # Permanently deletes the named transformation identified by `id`.
       #
       # Deletion fails with a `409` error if the named transformation is still
       # referenced (via the `n-<name>` token) by an upload pre-transformation or
@@ -108,30 +104,27 @@ module Imagekitio
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] Unique identifier of the named transformation. This is the `id` returned when th
+      # @param id [String] Unique identifier for a named transformation.
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekitio::Models::NamedTransformation]
+      # @return [Imagekitio::Models::NamedTransformationDeleteResponse]
       #
       # @see Imagekitio::Models::NamedTransformationDeleteParams
       def delete(id, params = {})
         @client.request(
           method: :delete,
           path: ["v1/named-transformations/%1$s", id],
-          model: Imagekitio::NamedTransformation,
+          model: Imagekitio::Models::NamedTransformationDeleteResponse,
           options: params[:request_options]
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Imagekitio::Models::NamedTransformationGetParams} for more details.
-      #
       # Retrieves the named transformation identified by `id`.
       #
       # @overload get(id, request_options: {})
       #
-      # @param id [String] Unique identifier of the named transformation. This is the `id` returned when th
+      # @param id [String] Unique identifier for a named transformation.
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #

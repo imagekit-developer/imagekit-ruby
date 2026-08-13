@@ -14,6 +14,7 @@ module Imagekitio
           )
         end
 
+      # Unique identifier for a named transformation.
       sig { returns(String) }
       attr_accessor :id
 
@@ -23,7 +24,11 @@ module Imagekitio
           request_options: Imagekitio::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(id:, request_options: {})
+      def self.new(
+        # Unique identifier for a named transformation.
+        id:,
+        request_options: {}
+      )
       end
 
       sig do

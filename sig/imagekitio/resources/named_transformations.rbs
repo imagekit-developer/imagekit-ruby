@@ -23,7 +23,7 @@ module Imagekitio
       def delete: (
         String id,
         ?request_options: Imagekitio::request_opts
-      ) -> Imagekitio::NamedTransformation
+      ) -> Imagekitio::Models::NamedTransformationDeleteResponse
 
       def get: (
         String id,

@@ -1,0 +1,11 @@
+module Imagekitio
+  module Models
+    type named_transformation_delete_response = {  }
+
+    class NamedTransformationDeleteResponse < Imagekitio::Internal::Type::BaseModel
+      def initialize: -> void
+
+      def to_hash: -> {  }
+    end
+  end
+end

@@ -8,12 +8,14 @@ module Imagekitio
       include Imagekitio::Internal::Type::RequestParameters
 
       # @!attribute id
+      #   Unique identifier for a named transformation.
       #
       #   @return [String]
       required :id, String
 
       # @!method initialize(id:, request_options: {})
-      #   @param id [String]
+      #   @param id [String] Unique identifier for a named transformation.
+      #
       #   @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}]
     end
   end

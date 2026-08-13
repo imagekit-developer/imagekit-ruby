@@ -25,15 +25,14 @@ module Imagekitio
         # account. Name matching is case-sensitive.
         name:,
         # The transformation string this name refers to, for example
-        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
-        # automatically if missing, and validated if present. The string must be a valid
-        # ImageKit transformation and cannot itself reference another named transformation
-        # (no nesting). Learn more about the
+        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
+        # is validated. The string must be a valid ImageKit transformation and cannot
+        # itself reference another named transformation (no nesting). Learn more about the
         # [transformation syntax](https://imagekit.io/docs/transformations).
         transformation:,
-        # Whether the named transformation is enabled. Set to `false` to disable it
-        # without deleting it; requests using a disabled named transformation fail at
-        # delivery time.
+        # Whether the named transformation is currently enabled. When this is set to
+        # `false`, requests using such disabled named transformations fail at delivery
+        # time.
         enabled: nil,
         request_options: {}
       )
@@ -57,8 +56,7 @@ module Imagekitio
         ).returns(Imagekitio::NamedTransformation)
       end
       def update(
-        # Unique identifier of the named transformation. This is the `id` returned when
-        # the named transformation was created.
+        # Unique identifier for a named transformation.
         id,
         # Whether the named transformation is enabled. Omit to leave the current value
         # unchanged.
@@ -68,10 +66,9 @@ module Imagekitio
         # account. Name matching is case-sensitive.
         name: nil,
         # The transformation string this name refers to, for example
-        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
-        # automatically if missing, and validated if present. The string must be a valid
-        # ImageKit transformation and cannot itself reference another named transformation
-        # (no nesting). Learn more about the
+        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
+        # is validated. The string must be a valid ImageKit transformation and cannot
+        # itself reference another named transformation (no nesting). Learn more about the
         # [transformation syntax](https://imagekit.io/docs/transformations).
         transformation: nil,
         request_options: {}
@@ -87,8 +84,7 @@ module Imagekitio
       def list(request_options: {})
       end
 
-      # Permanently deletes the named transformation identified by `id` and returns the
-      # deleted object.
+      # Permanently deletes the named transformation identified by `id`.
       #
       # Deletion fails with a `409` error if the named transformation is still
       # referenced (via the `n-<name>` token) by an upload pre-transformation or
@@ -98,11 +94,10 @@ module Imagekitio
         params(
           id: String,
           request_options: Imagekitio::RequestOptions::OrHash
-        ).returns(Imagekitio::NamedTransformation)
+        ).returns(Imagekitio::Models::NamedTransformationDeleteResponse)
       end
       def delete(
-        # Unique identifier of the named transformation. This is the `id` returned when
-        # the named transformation was created.
+        # Unique identifier for a named transformation.
         id,
         request_options: {}
       )
@@ -116,8 +111,7 @@ module Imagekitio
         ).returns(Imagekitio::NamedTransformation)
       end
       def get(
-        # Unique identifier of the named transformation. This is the `id` returned when
-        # the named transformation was created.
+        # Unique identifier for a named transformation.
         id,
         request_options: {}
       )

@@ -30,7 +30,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
   def test_update
     skip("Mock server tests are disabled")
 
-    response = @image_kit.named_transformations.update("id")
+    response = @image_kit.named_transformations.update("6bZ9x2ZUx")
 
     assert_pattern do
       response => Imagekitio::NamedTransformation
@@ -60,19 +60,15 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
   def test_delete
     skip("Mock server tests are disabled")
 
-    response = @image_kit.named_transformations.delete("id")
+    response = @image_kit.named_transformations.delete("6bZ9x2ZUx")
 
     assert_pattern do
-      response => Imagekitio::NamedTransformation
+      response => Imagekitio::Models::NamedTransformationDeleteResponse
     end
 
     assert_pattern do
       response => {
-        id: String | nil,
-        created_at: Time | nil,
-        enabled: Imagekitio::Internal::Type::Boolean | nil,
-        name: String | nil,
-        transformation: String | nil
+        **_
       }
     end
   end
@@ -80,7 +76,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
   def test_get
     skip("Mock server tests are disabled")
 
-    response = @image_kit.named_transformations.get("id")
+    response = @image_kit.named_transformations.get("6bZ9x2ZUx")
 
     assert_pattern do
       response => Imagekitio::NamedTransformation

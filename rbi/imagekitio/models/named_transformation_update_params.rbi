@@ -14,6 +14,7 @@ module Imagekitio
           )
         end
 
+      # Unique identifier for a named transformation.
       sig { returns(String) }
       attr_accessor :id
 
@@ -35,10 +36,9 @@ module Imagekitio
       attr_writer :name
 
       # The transformation string this name refers to, for example
-      # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
-      # automatically if missing, and validated if present. The string must be a valid
-      # ImageKit transformation and cannot itself reference another named transformation
-      # (no nesting). Learn more about the
+      # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
+      # is validated. The string must be a valid ImageKit transformation and cannot
+      # itself reference another named transformation (no nesting). Learn more about the
       # [transformation syntax](https://imagekit.io/docs/transformations).
       sig { returns(T.nilable(String)) }
       attr_reader :transformation
@@ -56,6 +56,7 @@ module Imagekitio
         ).returns(T.attached_class)
       end
       def self.new(
+        # Unique identifier for a named transformation.
         id:,
         # Whether the named transformation is enabled. Omit to leave the current value
         # unchanged.
@@ -65,10 +66,9 @@ module Imagekitio
         # account. Name matching is case-sensitive.
         name: nil,
         # The transformation string this name refers to, for example
-        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
-        # automatically if missing, and validated if present. The string must be a valid
-        # ImageKit transformation and cannot itself reference another named transformation
-        # (no nesting). Learn more about the
+        # `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
+        # is validated. The string must be a valid ImageKit transformation and cannot
+        # itself reference another named transformation (no nesting). Learn more about the
         # [transformation syntax](https://imagekit.io/docs/transformations).
         transformation: nil,
         request_options: {}

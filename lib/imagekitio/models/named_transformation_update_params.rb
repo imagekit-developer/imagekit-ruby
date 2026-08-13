@@ -8,6 +8,7 @@ module Imagekitio
       include Imagekitio::Internal::Type::RequestParameters
 
       # @!attribute id
+      #   Unique identifier for a named transformation.
       #
       #   @return [String]
       required :id, String
@@ -29,10 +30,9 @@ module Imagekitio
 
       # @!attribute transformation
       #   The transformation string this name refers to, for example
-      #   `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional — it's added
-      #   automatically if missing, and validated if present. The string must be a valid
-      #   ImageKit transformation and cannot itself reference another named transformation
-      #   (no nesting). Learn more about the
+      #   `w-150,h-150,fo-center,cm-resize`. The `tr:` prefix is optional; if present, it
+      #   is validated. The string must be a valid ImageKit transformation and cannot
+      #   itself reference another named transformation (no nesting). Learn more about the
       #   [transformation syntax](https://imagekit.io/docs/transformations).
       #
       #   @return [String, nil]
@@ -42,7 +42,7 @@ module Imagekitio
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::NamedTransformationUpdateParams} for more details.
       #
-      #   @param id [String]
+      #   @param id [String] Unique identifier for a named transformation.
       #
       #   @param enabled [Boolean] Whether the named transformation is enabled. Omit to leave the current value unc
       #

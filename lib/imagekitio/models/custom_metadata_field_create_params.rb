@@ -28,7 +28,15 @@ module Imagekitio
       #   @return [Imagekitio::Models::CustomMetadataFieldCreateParams::Schema]
       required :schema, -> { Imagekitio::CustomMetadataFieldCreateParams::Schema }
 
-      # @!method initialize(label:, name:, schema:, request_options: {})
+      # @!attribute description
+      #   Optional description for the custom metadata field. Can be up to 500 characters.
+      #   This is shown as a hint to the users while setting the field's value on an asset
+      #   in the media library UI.
+      #
+      #   @return [String, nil]
+      optional :description, String
+
+      # @!method initialize(label:, name:, schema:, description: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::CustomMetadataFieldCreateParams} for more details.
       #
@@ -37,6 +45,8 @@ module Imagekitio
       #   @param name [String] API name of the custom metadata field. This should be unique across all (includi
       #
       #   @param schema [Imagekitio::Models::CustomMetadataFieldCreateParams::Schema]
+      #
+      #   @param description [String] Optional description for the custom metadata field. Can be up to 500 characters.
       #
       #   @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}]
 
