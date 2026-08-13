@@ -87,7 +87,7 @@ module Imagekitio
         params(
           id: String,
           request_options: Imagekitio::RequestOptions::OrHash
-        ).returns(Imagekitio::Models::NamedTransformationDeleteResponse)
+        ).void
       end
       def delete(
         # Unique identifier for a named transformation.

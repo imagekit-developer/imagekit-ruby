@@ -63,13 +63,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
     response = @image_kit.named_transformations.delete("6bZ9x2ZUx")
 
     assert_pattern do
-      response => Imagekitio::Models::NamedTransformationDeleteResponse
-    end
-
-    assert_pattern do
-      response => {
-        **_
-      }
+      response => nil
     end
   end
 

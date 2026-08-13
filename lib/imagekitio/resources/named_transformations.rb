@@ -108,14 +108,14 @@ module Imagekitio
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekitio::Models::NamedTransformationDeleteResponse]
+      # @return [nil]
       #
       # @see Imagekitio::Models::NamedTransformationDeleteParams
       def delete(id, params = {})
         @client.request(
           method: :delete,
           path: ["v1/named-transformations/%1$s", id],
-          model: Imagekitio::Models::NamedTransformationDeleteResponse,
+          model: NilClass,
           options: params[:request_options]
         )
       end
