@@ -81,6 +81,18 @@ module Imagekitio
 
   class Metadata = Imagekitio::Models::Metadata
 
+  class NamedTransformation = Imagekitio::Models::NamedTransformation
+
+  class NamedTransformationCreateParams = Imagekitio::Models::NamedTransformationCreateParams
+
+  class NamedTransformationDeleteParams = Imagekitio::Models::NamedTransformationDeleteParams
+
+  class NamedTransformationGetParams = Imagekitio::Models::NamedTransformationGetParams
+
+  class NamedTransformationListParams = Imagekitio::Models::NamedTransformationListParams
+
+  class NamedTransformationUpdateParams = Imagekitio::Models::NamedTransformationUpdateParams
+
   module Overlay = Imagekitio::Models::Overlay
 
   class OverlayPosition = Imagekitio::Models::OverlayPosition
