@@ -9,7 +9,7 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
     response =
       @image_kit.named_transformations.create(
         name: "small_thumbnail",
-        transformation: "w-150,h-150,fo-center,cm-resize"
+        transformation: "w-150,h-150,fo-center,cm-pad_resize"
       )
 
     assert_pattern do
