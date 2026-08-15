@@ -9,43 +9,28 @@ module Imagekitio
         end
 
       # Unique identifier for a named transformation.
-      sig { returns(T.nilable(String)) }
-      attr_reader :id
-
-      sig { params(id: String).void }
-      attr_writer :id
+      sig { returns(String) }
+      attr_accessor :id
 
       # ISO 8601 timestamp of when the named transformation was created.
-      sig { returns(T.nilable(Time)) }
-      attr_reader :created_at
-
-      sig { params(created_at: Time).void }
-      attr_writer :created_at
+      sig { returns(Time) }
+      attr_accessor :created_at
 
       # Whether the named transformation is currently enabled. When set to `false`,
       # requests using this named transformation fail at delivery time.
-      sig { returns(T.nilable(T::Boolean)) }
-      attr_reader :enabled
-
-      sig { params(enabled: T::Boolean).void }
-      attr_writer :enabled
+      sig { returns(T::Boolean) }
+      attr_accessor :enabled
 
       # Alias for the transformation string, used in URLs as `tr:n-<name>`. This is
       # case-sensitive, contains only alphanumeric characters or `_` (underscore), and
       # is unique across all named transformations for your account.
-      sig { returns(T.nilable(String)) }
-      attr_reader :name
-
-      sig { params(name: String).void }
-      attr_writer :name
+      sig { returns(String) }
+      attr_accessor :name
 
       # The transformation string this named transformation refers to. Learn more about
       # the [transformation string syntax](https://imagekit.io/docs/transformations).
-      sig { returns(T.nilable(String)) }
-      attr_reader :transformation
-
-      sig { params(transformation: String).void }
-      attr_writer :transformation
+      sig { returns(String) }
+      attr_accessor :transformation
 
       # A named transformation is an alias for a transformation string, letting you
       # apply and later update complex transformations without changing your image or
@@ -62,19 +47,19 @@ module Imagekitio
       end
       def self.new(
         # Unique identifier for a named transformation.
-        id: nil,
+        id:,
         # ISO 8601 timestamp of when the named transformation was created.
-        created_at: nil,
+        created_at:,
         # Whether the named transformation is currently enabled. When set to `false`,
         # requests using this named transformation fail at delivery time.
-        enabled: nil,
+        enabled:,
         # Alias for the transformation string, used in URLs as `tr:n-<name>`. This is
         # case-sensitive, contains only alphanumeric characters or `_` (underscore), and
         # is unique across all named transformations for your account.
-        name: nil,
+        name:,
         # The transformation string this named transformation refers to. Learn more about
         # the [transformation string syntax](https://imagekit.io/docs/transformations).
-        transformation: nil
+        transformation:
       )
       end
 

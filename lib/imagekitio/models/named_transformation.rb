@@ -6,38 +6,38 @@ module Imagekitio
       # @!attribute id
       #   Unique identifier for a named transformation.
       #
-      #   @return [String, nil]
-      optional :id, String
+      #   @return [String]
+      required :id, String
 
       # @!attribute created_at
       #   ISO 8601 timestamp of when the named transformation was created.
       #
-      #   @return [Time, nil]
-      optional :created_at, Time, api_name: :createdAt
+      #   @return [Time]
+      required :created_at, Time, api_name: :createdAt
 
       # @!attribute enabled
       #   Whether the named transformation is currently enabled. When set to `false`,
       #   requests using this named transformation fail at delivery time.
       #
-      #   @return [Boolean, nil]
-      optional :enabled, Imagekitio::Internal::Type::Boolean
+      #   @return [Boolean]
+      required :enabled, Imagekitio::Internal::Type::Boolean
 
       # @!attribute name
       #   Alias for the transformation string, used in URLs as `tr:n-<name>`. This is
       #   case-sensitive, contains only alphanumeric characters or `_` (underscore), and
       #   is unique across all named transformations for your account.
       #
-      #   @return [String, nil]
-      optional :name, String
+      #   @return [String]
+      required :name, String
 
       # @!attribute transformation
       #   The transformation string this named transformation refers to. Learn more about
       #   the [transformation string syntax](https://imagekit.io/docs/transformations).
       #
-      #   @return [String, nil]
-      optional :transformation, String
+      #   @return [String]
+      required :transformation, String
 
-      # @!method initialize(id: nil, created_at: nil, enabled: nil, name: nil, transformation: nil)
+      # @!method initialize(id:, created_at:, enabled:, name:, transformation:)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::NamedTransformation} for more details.
       #

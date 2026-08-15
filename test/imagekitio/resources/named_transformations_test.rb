@@ -18,11 +18,11 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
 
     assert_pattern do
       response => {
-        id: String | nil,
-        created_at: Time | nil,
-        enabled: Imagekitio::Internal::Type::Boolean | nil,
-        name: String | nil,
-        transformation: String | nil
+        id: String,
+        created_at: Time,
+        enabled: Imagekitio::Internal::Type::Boolean,
+        name: String,
+        transformation: String
       }
     end
   end
@@ -38,11 +38,11 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
 
     assert_pattern do
       response => {
-        id: String | nil,
-        created_at: Time | nil,
-        enabled: Imagekitio::Internal::Type::Boolean | nil,
-        name: String | nil,
-        transformation: String | nil
+        id: String,
+        created_at: Time,
+        enabled: Imagekitio::Internal::Type::Boolean,
+        name: String,
+        transformation: String
       }
     end
   end
@@ -78,11 +78,11 @@ class Imagekitio::Test::Resources::NamedTransformationsTest < Imagekitio::Test::
 
     assert_pattern do
       response => {
-        id: String | nil,
-        created_at: Time | nil,
-        enabled: Imagekitio::Internal::Type::Boolean | nil,
-        name: String | nil,
-        transformation: String | nil
+        id: String,
+        created_at: Time,
+        enabled: Imagekitio::Internal::Type::Boolean,
+        name: String,
+        transformation: String
       }
     end
   end

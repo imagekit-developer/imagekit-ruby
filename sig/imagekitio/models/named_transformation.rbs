@@ -10,32 +10,22 @@ module Imagekitio
       }
 
     class NamedTransformation < Imagekitio::Internal::Type::BaseModel
-      attr_reader id: String?
+      attr_accessor id: String
 
-      def id=: (String) -> String
+      attr_accessor created_at: Time
 
-      attr_reader created_at: Time?
+      attr_accessor enabled: bool
 
-      def created_at=: (Time) -> Time
+      attr_accessor name: String
 
-      attr_reader enabled: bool?
-
-      def enabled=: (bool) -> bool
-
-      attr_reader name: String?
-
-      def name=: (String) -> String
-
-      attr_reader transformation: String?
-
-      def transformation=: (String) -> String
+      attr_accessor transformation: String
 
       def initialize: (
-        ?id: String,
-        ?created_at: Time,
-        ?enabled: bool,
-        ?name: String,
-        ?transformation: String
+        id: String,
+        created_at: Time,
+        enabled: bool,
+        name: String,
+        transformation: String
       ) -> void
 
       def to_hash: -> {
