@@ -1,0 +1,8 @@
+module Imagekitio
+  module Models
+    type named_transformation_list_response =
+      ::Array[Imagekitio::NamedTransformation]
+
+    NamedTransformationListResponse: Imagekitio::Internal::Type::Converter
+  end
+end

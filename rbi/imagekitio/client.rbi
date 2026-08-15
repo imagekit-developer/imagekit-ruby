@@ -36,6 +36,9 @@ module Imagekitio
     sig { returns(Imagekitio::Resources::SavedExtensions) }
     attr_reader :saved_extensions
 
+    sig { returns(Imagekitio::Resources::NamedTransformations) }
+    attr_reader :named_transformations
+
     sig { returns(Imagekitio::Resources::Assets) }
     attr_reader :assets
 

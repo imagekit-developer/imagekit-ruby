@@ -20,6 +20,8 @@ module Imagekitio
 
     attr_reader saved_extensions: Imagekitio::Resources::SavedExtensions
 
+    attr_reader named_transformations: Imagekitio::Resources::NamedTransformations
+
     attr_reader assets: Imagekitio::Resources::Assets
 
     attr_reader cache: Imagekitio::Resources::Cache
