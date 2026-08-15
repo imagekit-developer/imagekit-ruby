@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.9.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.8.0...v4.9.0) (2026-08-15)
+
+
+### Features
+
+* add description field in custom metadata field api ([f86bf8e](https://github.com/imagekit-developer/imagekit-ruby/commit/f86bf8e78a5fc75323bfeb1a529b2e4045a62729))
+* **api:** Named Transformations ([512b517](https://github.com/imagekit-developer/imagekit-ruby/commit/512b517e3c7c7fa22c9a20e0a20715f3381c66ac))
+
+
+### Chores
+
+* change default branch name ([9b3e035](https://github.com/imagekit-developer/imagekit-ruby/commit/9b3e0352461524f45131bc23b5a466116cc26745))
+* move to one repo structure ([c5b6c51](https://github.com/imagekit-developer/imagekit-ruby/commit/c5b6c513b4da32c2426a699c27f90225aae7e346))
+* pin next release ([431111b](https://github.com/imagekit-developer/imagekit-ruby/commit/431111b97b244e213eb0ba6de36a9255c125cbfc))
+
 ## [4.8.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.7.0...v4.8.0) (2026-07-14)
 
 
