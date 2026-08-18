@@ -1,0 +1,52 @@
+module Imagekitio
+  module Models
+    type ai_filter_search_create_response =
+      {
+        file_type: Imagekitio::Models::AIFilterSearchCreateResponse::file_type,
+        is_version_included_in_search: bool,
+        search_query: String
+      }
+
+    class AIFilterSearchCreateResponse < Imagekitio::Internal::Type::BaseModel
+      attr_reader file_type: Imagekitio::Models::AIFilterSearchCreateResponse::file_type?
+
+      def file_type=: (
+        Imagekitio::Models::AIFilterSearchCreateResponse::file_type
+      ) -> Imagekitio::Models::AIFilterSearchCreateResponse::file_type
+
+      attr_reader is_version_included_in_search: bool?
+
+      def is_version_included_in_search=: (bool) -> bool
+
+      attr_reader search_query: String?
+
+      def search_query=: (String) -> String
+
+      def initialize: (
+        ?file_type: Imagekitio::Models::AIFilterSearchCreateResponse::file_type,
+        ?is_version_included_in_search: bool,
+        ?search_query: String
+      ) -> void
+
+      def to_hash: -> {
+        file_type: Imagekitio::Models::AIFilterSearchCreateResponse::file_type,
+        is_version_included_in_search: bool,
+        search_query: String
+      }
+
+      type file_type = :"" | :images | :videos | :cssJs | :others
+
+      module FileType
+        extend Imagekitio::Internal::Type::Enum
+
+        EMPTY: :""
+        IMAGES: :images
+        VIDEOS: :videos
+        CSS_JS: :cssJs
+        OTHERS: :others
+
+        def self?.values: -> ::Array[Imagekitio::Models::AIFilterSearchCreateResponse::file_type]
+      end
+    end
+  end
+end

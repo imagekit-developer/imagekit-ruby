@@ -1,0 +1,14 @@
+module Imagekitio
+  module Resources
+    class AIFilterSearch
+      def create: (
+        prompt: String,
+        ?current_folder: String,
+        ?timezone: String,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Models::AIFilterSearchCreateResponse
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end

@@ -47,6 +47,9 @@ module Imagekitio
     # @return [Imagekitio::Resources::Assets]
     attr_reader :assets
 
+    # @return [Imagekitio::Resources::AIFilterSearch]
+    attr_reader :ai_filter_search
+
     # @return [Imagekitio::Resources::Cache]
     attr_reader :cache
 
@@ -154,6 +157,7 @@ module Imagekitio
       @saved_extensions = Imagekitio::Resources::SavedExtensions.new(client: self)
       @named_transformations = Imagekitio::Resources::NamedTransformations.new(client: self)
       @assets = Imagekitio::Resources::Assets.new(client: self)
+      @ai_filter_search = Imagekitio::Resources::AIFilterSearch.new(client: self)
       @cache = Imagekitio::Resources::Cache.new(client: self)
       @folders = Imagekitio::Resources::Folders.new(client: self)
       @accounts = Imagekitio::Resources::Accounts.new(client: self)
