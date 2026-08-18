@@ -24,6 +24,8 @@ module Imagekitio
 
     attr_reader assets: Imagekitio::Resources::Assets
 
+    attr_reader ai_filter_search: Imagekitio::Resources::AIFilterSearch
+
     attr_reader cache: Imagekitio::Resources::Cache
 
     attr_reader folders: Imagekitio::Resources::Folders

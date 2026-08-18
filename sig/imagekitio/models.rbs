@@ -1,6 +1,8 @@
 module Imagekitio
   module Accounts = Imagekitio::Models::Accounts
 
+  class AIFilterSearchCreateParams = Imagekitio::Models::AIFilterSearchCreateParams
+
   class AITag = Imagekitio::Models::AITag
 
   class AssetListParams = Imagekitio::Models::AssetListParams

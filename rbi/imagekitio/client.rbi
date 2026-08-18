@@ -42,6 +42,9 @@ module Imagekitio
     sig { returns(Imagekitio::Resources::Assets) }
     attr_reader :assets
 
+    sig { returns(Imagekitio::Resources::AIFilterSearch) }
+    attr_reader :ai_filter_search
+
     sig { returns(Imagekitio::Resources::Cache) }
     attr_reader :cache
 
