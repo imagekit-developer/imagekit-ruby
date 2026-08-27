@@ -39,7 +39,14 @@ module Imagekitio
       #   @return [String, nil]
       optional :description, String
 
-      # @!method initialize(id:, label:, name:, schema:, description: nil)
+      # @!attribute reserved
+      #   Present and set to `true` when the field is reserved. Omitted for regular
+      #   fields. Reserved fields cannot be deleted.
+      #
+      #   @return [Boolean, nil]
+      optional :reserved, Imagekitio::Internal::Type::Boolean
+
+      # @!method initialize(id:, label:, name:, schema:, description: nil, reserved: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::CustomMetadataField} for more details.
       #
@@ -54,6 +61,8 @@ module Imagekitio
       #   @param schema [Imagekitio::Models::CustomMetadataField::Schema] An object that describes the rules for the custom metadata field value.
       #
       #   @param description [String] Optional description of the custom metadata field. Only present when a descripti
+      #
+      #   @param reserved [Boolean] Present and set to `true` when the field is reserved. Omitted for regular fields
 
       # @see Imagekitio::Models::CustomMetadataField#schema
       class Schema < Imagekitio::Internal::Type::BaseModel

@@ -236,6 +236,20 @@ module Imagekitio
             :DESC_RELEVANCE,
             Imagekitio::AssetListParams::Sort::TaggedSymbol
           )
+        ASC_DURATION =
+          T.let(:ASC_DURATION, Imagekitio::AssetListParams::Sort::TaggedSymbol)
+        DESC_DURATION =
+          T.let(:DESC_DURATION, Imagekitio::AssetListParams::Sort::TaggedSymbol)
+        ASC_ORIGINAL_CREATION_DATE =
+          T.let(
+            :ASC_ORIGINAL_CREATION_DATE,
+            Imagekitio::AssetListParams::Sort::TaggedSymbol
+          )
+        DESC_ORIGINAL_CREATION_DATE =
+          T.let(
+            :DESC_ORIGINAL_CREATION_DATE,
+            Imagekitio::AssetListParams::Sort::TaggedSymbol
+          )
 
         sig do
           override.returns(
