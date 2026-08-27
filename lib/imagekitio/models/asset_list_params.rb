@@ -131,6 +131,10 @@ module Imagekitio
         DESC_SIZE = :DESC_SIZE
         ASC_RELEVANCE = :ASC_RELEVANCE
         DESC_RELEVANCE = :DESC_RELEVANCE
+        ASC_DURATION = :ASC_DURATION
+        DESC_DURATION = :DESC_DURATION
+        ASC_ORIGINAL_CREATION_DATE = :ASC_ORIGINAL_CREATION_DATE
+        DESC_ORIGINAL_CREATION_DATE = :DESC_ORIGINAL_CREATION_DATE
 
         # @!method self.values
         #   @return [Array<Symbol>]
