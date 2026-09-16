@@ -93,6 +93,7 @@ module Imagekitio
       "color_profile" => "cp",
       "colorProfile" => "cp",
       "metadata" => "md",
+      "density" => "dn",
       "opacity" => "o",
       "trim" => "t",
       "zoom" => "z",
