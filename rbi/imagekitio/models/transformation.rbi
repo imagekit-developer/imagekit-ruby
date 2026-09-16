@@ -277,6 +277,20 @@ module Imagekitio
       sig { params(default_image: String).void }
       attr_writer :default_image
 
+      # Sets the output image density in dots per inch (DPI). Accepts an integer from 1
+      # to 1200 or an arithmetic expression using the `idn` variable, such as
+      # `idn_mul_2`. For raster images, this updates density metadata without changing
+      # dimensions. For vector images, it controls the DPI used during rasterization.
+      # Cannot be used inside layers. See
+      # [Density](https://imagekit.io/docs/image-optimization#density---dn).
+      sig { returns(T.nilable(Imagekitio::Transformation::Density::Variants)) }
+      attr_reader :density
+
+      sig do
+        params(density: Imagekitio::Transformation::Density::Variants).void
+      end
+      attr_writer :density
+
       # Distorts the shape of an image. Supports two modes:
       #
       # - Perspective distortion: `p-x1_y1_x2_y2_x3_y3_x4_y4` changes the position of
@@ -685,6 +699,7 @@ module Imagekitio
           crop: Imagekitio::Transformation::Crop::OrSymbol,
           crop_mode: Imagekitio::Transformation::CropMode::OrSymbol,
           default_image: String,
+          density: Imagekitio::Transformation::Density::Variants,
           distort: String,
           dpr: Float,
           duration: Imagekitio::Transformation::Duration::Variants,
@@ -832,6 +847,13 @@ module Imagekitio
         # path. See
         # [Default image](https://imagekit.io/docs/image-transformation#default-image---di).
         default_image: nil,
+        # Sets the output image density in dots per inch (DPI). Accepts an integer from 1
+        # to 1200 or an arithmetic expression using the `idn` variable, such as
+        # `idn_mul_2`. For raster images, this updates density metadata without changing
+        # dimensions. For vector images, it controls the DPI used during rasterization.
+        # Cannot be used inside layers. See
+        # [Density](https://imagekit.io/docs/image-optimization#density---dn).
+        density: nil,
         # Distorts the shape of an image. Supports two modes:
         #
         # - Perspective distortion: `p-x1_y1_x2_y2_x3_y3_x4_y4` changes the position of
@@ -1028,6 +1050,7 @@ module Imagekitio
             crop: Imagekitio::Transformation::Crop::OrSymbol,
             crop_mode: Imagekitio::Transformation::CropMode::OrSymbol,
             default_image: String,
+            density: Imagekitio::Transformation::Density::Variants,
             distort: String,
             dpr: Float,
             duration: Imagekitio::Transformation::Duration::Variants,
@@ -1358,6 +1381,26 @@ module Imagekitio
           )
         end
         def self.values
+        end
+      end
+
+      # Sets the output image density in dots per inch (DPI). Accepts an integer from 1
+      # to 1200 or an arithmetic expression using the `idn` variable, such as
+      # `idn_mul_2`. For raster images, this updates density metadata without changing
+      # dimensions. For vector images, it controls the DPI used during rasterization.
+      # Cannot be used inside layers. See
+      # [Density](https://imagekit.io/docs/image-optimization#density---dn).
+      module Density
+        extend Imagekitio::Internal::Type::Union
+
+        Variants = T.type_alias { T.any(Integer, String) }
+
+        sig do
+          override.returns(
+            T::Array[Imagekitio::Transformation::Density::Variants]
+          )
+        end
+        def self.variants
         end
       end
 

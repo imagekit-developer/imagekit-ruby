@@ -41,6 +41,14 @@ module Imagekitio
       sig { params(description: String).void }
       attr_writer :description
 
+      # Present and set to `true` when the field is reserved. Omitted for regular
+      # fields. Reserved fields cannot be deleted.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :reserved
+
+      sig { params(reserved: T::Boolean).void }
+      attr_writer :reserved
+
       # Object containing details of a custom metadata field.
       sig do
         params(
@@ -48,7 +56,8 @@ module Imagekitio
           label: String,
           name: String,
           schema: Imagekitio::CustomMetadataField::Schema::OrHash,
-          description: String
+          description: String,
+          reserved: T::Boolean
         ).returns(T.attached_class)
       end
       def self.new(
@@ -66,7 +75,10 @@ module Imagekitio
         # Optional description of the custom metadata field. Only present when a
         # description has been set. Shown as a hint to the users while setting the field's
         # value on an asset in the media library UI.
-        description: nil
+        description: nil,
+        # Present and set to `true` when the field is reserved. Omitted for regular
+        # fields. Reserved fields cannot be deleted.
+        reserved: nil
       )
       end
 
@@ -77,7 +89,8 @@ module Imagekitio
             label: String,
             name: String,
             schema: Imagekitio::CustomMetadataField::Schema,
-            description: String
+            description: String,
+            reserved: T::Boolean
           }
         )
       end

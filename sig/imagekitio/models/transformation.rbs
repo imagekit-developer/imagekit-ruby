@@ -22,6 +22,7 @@ module Imagekitio
         crop: Imagekitio::Models::Transformation::crop,
         crop_mode: Imagekitio::Models::Transformation::crop_mode,
         default_image: String,
+        density: Imagekitio::Models::Transformation::density,
         distort: String,
         dpr: Float,
         duration: Imagekitio::Models::Transformation::duration,
@@ -161,6 +162,12 @@ module Imagekitio
       attr_reader default_image: String?
 
       def default_image=: (String) -> String
+
+      attr_reader density: Imagekitio::Models::Transformation::density?
+
+      def density=: (
+        Imagekitio::Models::Transformation::density
+      ) -> Imagekitio::Models::Transformation::density
 
       attr_reader distort: String?
 
@@ -367,6 +374,7 @@ module Imagekitio
         ?crop: Imagekitio::Models::Transformation::crop,
         ?crop_mode: Imagekitio::Models::Transformation::crop_mode,
         ?default_image: String,
+        ?density: Imagekitio::Models::Transformation::density,
         ?distort: String,
         ?dpr: Float,
         ?duration: Imagekitio::Models::Transformation::duration,
@@ -425,6 +433,7 @@ module Imagekitio
         crop: Imagekitio::Models::Transformation::crop,
         crop_mode: Imagekitio::Models::Transformation::crop_mode,
         default_image: String,
+        density: Imagekitio::Models::Transformation::density,
         distort: String,
         dpr: Float,
         duration: Imagekitio::Models::Transformation::duration,
@@ -588,6 +597,14 @@ module Imagekitio
         PAD_EXTRACT_NO_SHRINK: :pad_extract_no_shrink
 
         def self?.values: -> ::Array[Imagekitio::Models::Transformation::crop_mode]
+      end
+
+      type density = Integer | String
+
+      module Density
+        extend Imagekitio::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Imagekitio::Models::Transformation::density]
       end
 
       type duration = Float | String
