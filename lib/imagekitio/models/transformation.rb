@@ -201,6 +201,17 @@ module Imagekitio
       #   @return [String, nil]
       optional :default_image, String, api_name: :defaultImage
 
+      # @!attribute density
+      #   Sets the output image density in dots per inch (DPI). Accepts an integer from 1
+      #   to 1200 or an arithmetic expression using the `idn` variable, such as
+      #   `idn_mul_2`. For raster images, this updates density metadata without changing
+      #   dimensions. For vector images, it controls the DPI used during rasterization.
+      #   Cannot be used inside layers. See
+      #   [Density](https://imagekit.io/docs/image-optimization#density---dn).
+      #
+      #   @return [Integer, String, nil]
+      optional :density, union: -> { Imagekitio::Transformation::Density }
+
       # @!attribute distort
       #   Distorts the shape of an image. Supports two modes:
       #
@@ -510,7 +521,7 @@ module Imagekitio
       #   @return [Float, nil]
       optional :zoom, Float
 
-      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, colorize: nil, color_profile: nil, color_replace: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, distort: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
+      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, colorize: nil, color_profile: nil, color_replace: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, density: nil, distort: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::Transformation} for more details.
       #
@@ -560,6 +571,8 @@ module Imagekitio
       #   @param crop_mode [Symbol, Imagekitio::Models::Transformation::CropMode] Additional crop modes for image resizing. See [Crop modes & focus](https://image
       #
       #   @param default_image [String] Specifies a fallback image if the resource is not found, e.g., a URL or file pat
+      #
+      #   @param density [Integer, String] Sets the output image density in dots per inch (DPI). Accepts an integer from 1
       #
       #   @param distort [String] Distorts the shape of an image. Supports two modes:
       #
@@ -800,6 +813,25 @@ module Imagekitio
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # Sets the output image density in dots per inch (DPI). Accepts an integer from 1
+      # to 1200 or an arithmetic expression using the `idn` variable, such as
+      # `idn_mul_2`. For raster images, this updates density metadata without changing
+      # dimensions. For vector images, it controls the DPI used during rasterization.
+      # Cannot be used inside layers. See
+      # [Density](https://imagekit.io/docs/image-optimization#density---dn).
+      #
+      # @see Imagekitio::Models::Transformation#density
+      module Density
+        extend Imagekitio::Internal::Type::Union
+
+        variant Integer
+
+        variant String
+
+        # @!method self.variants
+        #   @return [Array(Integer, String)]
       end
 
       # Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
