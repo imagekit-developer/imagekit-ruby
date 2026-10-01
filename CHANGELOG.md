@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.10.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.9.0...v4.10.0) (2026-09-16)
+
+
+### Features
+
+* serialize density as dn in SDK URL builders ([7815ad6](https://github.com/imagekit-developer/imagekit-ruby/commit/7815ad6897fc4ed6bd943443a87aede62ed354d9))
+
 ## [4.9.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.8.0...v4.9.0) (2026-08-15)
 
 
