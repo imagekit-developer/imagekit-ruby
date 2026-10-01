@@ -23,6 +23,11 @@ module Imagekitio
         #   value for that key. Before setting any custom metadata on an asset you have to
         #   create the field using custom metadata fields API.
         #
+        #   To preserve the original creation date of an asset migrated from another system,
+        #   set the reserved `_internal_original_created_datetime` key to an ISO 8601 date
+        #   string. This key is available once the original creation date setting is enabled
+        #   in the media library settings.
+        #
         #   @return [Hash{Symbol=>Object}, nil]
         optional :custom_metadata,
                  Imagekitio::Internal::Type::HashOf[Imagekitio::Internal::Type::Unknown],

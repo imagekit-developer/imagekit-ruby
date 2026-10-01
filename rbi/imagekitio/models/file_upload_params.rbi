@@ -70,7 +70,11 @@ module Imagekitio
       attr_writer :custom_coordinates
 
       # JSON key-value pairs to associate with the asset. Create the custom metadata
-      # fields before setting these values.
+      # fields before setting these values. To preserve the original creation date of an
+      # asset migrated from another system, set the reserved
+      # `_internal_original_created_datetime` key to an ISO 8601 date string. This key
+      # is available once the original creation date setting is enabled in the media
+      # library settings.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_reader :custom_metadata
 
@@ -371,7 +375,11 @@ module Imagekitio
         #   customCoordinates will be removed.
         custom_coordinates: nil,
         # JSON key-value pairs to associate with the asset. Create the custom metadata
-        # fields before setting these values.
+        # fields before setting these values. To preserve the original creation date of an
+        # asset migrated from another system, set the reserved
+        # `_internal_original_created_datetime` key to an ISO 8601 date string. This key
+        # is available once the original creation date setting is enabled in the media
+        # library settings.
         custom_metadata: nil,
         # Optional text to describe the contents of the file.
         description: nil,
