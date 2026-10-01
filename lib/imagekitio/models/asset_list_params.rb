@@ -62,6 +62,15 @@ module Imagekitio
       #   Sort the results by one of the supported fields in ascending or descending
       #   order.
       #
+      #   `ASC_ORIGINAL_CREATION_DATE` and `DESC_ORIGINAL_CREATION_DATE` sort files by the
+      #   value of the reserved `_internal_original_created_datetime` custom metadata
+      #   field (labelled "Original creation date" in the dashboard). This field exists
+      #   only after you enable the original creation date setting under the Custom
+      #   Metadata tab of the media library settings. Files that have no value set for
+      #   this field fall back to their upload time, so migrated assets carrying a
+      #   preserved original date and natively uploaded assets are ordered together in a
+      #   single timeline.
+      #
       #   @return [Symbol, Imagekitio::Models::AssetListParams::Sort, nil]
       optional :sort, enum: -> { Imagekitio::AssetListParams::Sort }
 
@@ -114,6 +123,15 @@ module Imagekitio
 
       # Sort the results by one of the supported fields in ascending or descending
       # order.
+      #
+      # `ASC_ORIGINAL_CREATION_DATE` and `DESC_ORIGINAL_CREATION_DATE` sort files by the
+      # value of the reserved `_internal_original_created_datetime` custom metadata
+      # field (labelled "Original creation date" in the dashboard). This field exists
+      # only after you enable the original creation date setting under the Custom
+      # Metadata tab of the media library settings. Files that have no value set for
+      # this field fall back to their upload time, so migrated assets carrying a
+      # preserved original date and natively uploaded assets are ordered together in a
+      # single timeline.
       module Sort
         extend Imagekitio::Internal::Type::Enum
 
