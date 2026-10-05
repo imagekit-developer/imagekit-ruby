@@ -62,13 +62,7 @@ class Imagekitio::Test::Resources::CustomMetadataFieldsTest < Imagekitio::Test::
     response = @image_kit.custom_metadata_fields.delete("id")
 
     assert_pattern do
-      response => Imagekitio::Models::CustomMetadataFieldDeleteResponse
-    end
-
-    assert_pattern do
-      response => {
-        **_
-      }
+      response => nil
     end
   end
 end
