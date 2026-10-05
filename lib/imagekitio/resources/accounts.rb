@@ -15,6 +15,9 @@ module Imagekitio
       # @return [Imagekitio::Resources::Accounts::URLEndpoints]
       attr_reader :url_endpoints
 
+      # @return [Imagekitio::Resources::Accounts::Webhooks]
+      attr_reader :webhooks
+
       # @api private
       #
       # @param client [Imagekitio::Client]
@@ -24,6 +27,7 @@ module Imagekitio
         @usage_analytics = Imagekitio::Resources::Accounts::UsageAnalytics.new(client: client)
         @origins = Imagekitio::Resources::Accounts::Origins.new(client: client)
         @url_endpoints = Imagekitio::Resources::Accounts::URLEndpoints.new(client: client)
+        @webhooks = Imagekitio::Resources::Accounts::Webhooks.new(client: client)
       end
     end
   end

@@ -9,6 +9,8 @@ module Imagekitio
 
       attr_reader url_endpoints: Imagekitio::Resources::Accounts::URLEndpoints
 
+      attr_reader webhooks: Imagekitio::Resources::Accounts::Webhooks
+
       def initialize: (client: Imagekitio::Client) -> void
     end
   end

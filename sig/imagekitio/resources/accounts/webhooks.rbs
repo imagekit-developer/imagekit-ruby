@@ -1,0 +1,38 @@
+module Imagekitio
+  module Resources
+    class Accounts
+      class Webhooks
+        def create: (
+          endpoint: String,
+          events: ::Array[Imagekitio::Models::Accounts::webhook_event_type],
+          ?enabled: bool,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Accounts::Webhook
+
+        def update: (
+          String id,
+          ?enabled: bool,
+          ?endpoint: String,
+          ?events: ::Array[Imagekitio::Models::Accounts::webhook_event_type],
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Accounts::Webhook
+
+        def list: (
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Accounts::webhook_list_response
+
+        def delete: (
+          String id,
+          ?request_options: Imagekitio::request_opts
+        ) -> nil
+
+        def get: (
+          String id,
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Accounts::Webhook
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end
