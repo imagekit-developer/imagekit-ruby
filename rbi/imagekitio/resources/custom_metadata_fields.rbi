@@ -104,7 +104,7 @@ module Imagekitio
         params(
           id: String,
           request_options: Imagekitio::RequestOptions::OrHash
-        ).returns(Imagekitio::Models::CustomMetadataFieldDeleteResponse)
+        ).void
       end
       def delete(
         # Should be a valid custom metadata field id.
