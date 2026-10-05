@@ -12,7 +12,7 @@ module Imagekitio
       def delete: (
         folder_path: String,
         ?request_options: Imagekitio::request_opts
-      ) -> Imagekitio::Models::FolderDeleteResponse
+      ) -> nil
 
       def copy: (
         destination_path: String,

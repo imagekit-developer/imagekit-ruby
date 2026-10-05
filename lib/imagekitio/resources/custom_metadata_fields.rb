@@ -116,14 +116,14 @@ module Imagekitio
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekitio::Models::CustomMetadataFieldDeleteResponse]
+      # @return [nil]
       #
       # @see Imagekitio::Models::CustomMetadataFieldDeleteParams
       def delete(id, params = {})
         @client.request(
           method: :delete,
           path: ["v1/customMetadataFields/%1$s", id],
-          model: Imagekitio::Models::CustomMetadataFieldDeleteResponse,
+          model: NilClass,
           options: params[:request_options]
         )
       end
