@@ -66,7 +66,7 @@ module Imagekitio
           source_file_path: String,
           include_file_versions: T::Boolean,
           request_options: Imagekitio::RequestOptions::OrHash
-        ).returns(Imagekitio::Models::FileCopyResponse)
+        ).void
       end
       def copy(
         # Full path to the folder you want to copy the above file into.
@@ -106,7 +106,7 @@ module Imagekitio
           destination_path: String,
           source_file_path: String,
           request_options: Imagekitio::RequestOptions::OrHash
-        ).returns(Imagekitio::Models::FileMoveResponse)
+        ).void
       end
       def move(
         # Full path to the folder you want to move the above file into.

@@ -1,0 +1,38 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type webhook_event_type =
+        :"video.transformation.accepted"
+        | :"video.transformation.ready"
+        | :"video.transformation.error"
+        | :"upload.pre-transform.success"
+        | :"upload.pre-transform.error"
+        | :"upload.post-transform.success"
+        | :"upload.post-transform.error"
+        | :"file.created"
+        | :"file.updated"
+        | :"file.deleted"
+        | :"file-version.created"
+        | :"file-version.deleted"
+
+      module WebhookEventType
+        extend Imagekitio::Internal::Type::Enum
+
+        VIDEO_TRANSFORMATION_ACCEPTED: :"video.transformation.accepted"
+        VIDEO_TRANSFORMATION_READY: :"video.transformation.ready"
+        VIDEO_TRANSFORMATION_ERROR: :"video.transformation.error"
+        UPLOAD_PRE_TRANSFORM_SUCCESS: :"upload.pre-transform.success"
+        UPLOAD_PRE_TRANSFORM_ERROR: :"upload.pre-transform.error"
+        UPLOAD_POST_TRANSFORM_SUCCESS: :"upload.post-transform.success"
+        UPLOAD_POST_TRANSFORM_ERROR: :"upload.post-transform.error"
+        FILE_CREATED: :"file.created"
+        FILE_UPDATED: :"file.updated"
+        FILE_DELETED: :"file.deleted"
+        FILE_VERSION_CREATED: :"file-version.created"
+        FILE_VERSION_DELETED: :"file-version.deleted"
+
+        def self?.values: -> ::Array[Imagekitio::Models::Accounts::webhook_event_type]
+      end
+    end
+  end
+end

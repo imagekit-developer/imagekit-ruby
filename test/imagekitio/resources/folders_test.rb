@@ -25,13 +25,7 @@ class Imagekitio::Test::Resources::FoldersTest < Imagekitio::Test::ResourceTest
     response = @image_kit.folders.delete(folder_path: "/folder/to/delete/")
 
     assert_pattern do
-      response => Imagekitio::Models::FolderDeleteResponse
-    end
-
-    assert_pattern do
-      response => {
-        **_
-      }
+      response => nil
     end
   end
 
