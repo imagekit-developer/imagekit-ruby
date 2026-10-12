@@ -46,8 +46,17 @@ module Imagekitio
       # Triggered when a file version is deleted.
       variant -> { Imagekitio::FileVersionDeleteEvent }
 
+      # Triggered when a folder is created.
+      variant -> { Imagekitio::FolderCreateEvent }
+
+      # Triggered when a folder is updated.
+      variant -> { Imagekitio::FolderUpdateEvent }
+
+      # Triggered when a folder is deleted.
+      variant -> { Imagekitio::FolderDeleteEvent }
+
       # @!method self.variants
-      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreateEvent, Imagekitio::Models::FileUpdateEvent, Imagekitio::Models::FileDeleteEvent, Imagekitio::Models::FileVersionCreateEvent, Imagekitio::Models::FileVersionDeleteEvent)]
+      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreateEvent, Imagekitio::Models::FileUpdateEvent, Imagekitio::Models::FileDeleteEvent, Imagekitio::Models::FileVersionCreateEvent, Imagekitio::Models::FileVersionDeleteEvent, Imagekitio::Models::FolderCreateEvent, Imagekitio::Models::FolderUpdateEvent, Imagekitio::Models::FolderDeleteEvent)]
     end
   end
 end

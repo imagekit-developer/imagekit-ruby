@@ -16,6 +16,14 @@ module Imagekitio
       sig { params(created_at: Time).void }
       attr_writer :created_at
 
+      # Details of the user who created the folder. Present only when this information
+      # is available. The `name` is the name of the user at the time of folder creation.
+      sig { returns(T.nilable(Imagekitio::Folder::CreatedBy)) }
+      attr_reader :created_by
+
+      sig { params(created_by: Imagekitio::Folder::CreatedBy::OrHash).void }
+      attr_writer :created_by
+
       # An object with custom metadata for the folder. Returns empty object if no custom
       # metadata is set.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
@@ -66,6 +74,7 @@ module Imagekitio
       sig do
         params(
           created_at: Time,
+          created_by: Imagekitio::Folder::CreatedBy::OrHash,
           custom_metadata: T::Hash[Symbol, T.anything],
           folder_id: String,
           folder_path: String,
@@ -78,6 +87,9 @@ module Imagekitio
         # Date and time when the folder was created. The date and time is in ISO8601
         # format.
         created_at: nil,
+        # Details of the user who created the folder. Present only when this information
+        # is available. The `name` is the name of the user at the time of folder creation.
+        created_by: nil,
         # An object with custom metadata for the folder. Returns empty object if no custom
         # metadata is set.
         custom_metadata: nil,
@@ -102,6 +114,7 @@ module Imagekitio
         override.returns(
           {
             created_at: Time,
+            created_by: Imagekitio::Folder::CreatedBy,
             custom_metadata: T::Hash[Symbol, T.anything],
             folder_id: String,
             folder_path: String,
@@ -112,6 +125,42 @@ module Imagekitio
         )
       end
       def to_hash
+      end
+
+      class CreatedBy < Imagekitio::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Imagekitio::Folder::CreatedBy, Imagekitio::Internal::AnyHash)
+          end
+
+        # Email of the user who created the folder.
+        sig { returns(T.nilable(String)) }
+        attr_reader :email
+
+        sig { params(email: String).void }
+        attr_writer :email
+
+        # Name of the user who created the folder.
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        # Details of the user who created the folder. Present only when this information
+        # is available. The `name` is the name of the user at the time of folder creation.
+        sig { params(email: String, name: String).returns(T.attached_class) }
+        def self.new(
+          # Email of the user who created the folder.
+          email: nil,
+          # Name of the user who created the folder.
+          name: nil
+        )
+        end
+
+        sig { override.returns({ email: String, name: String }) }
+        def to_hash
+        end
       end
 
       # Type of the asset.
