@@ -1,0 +1,32 @@
+module Imagekitio
+  module Models
+    type folder_create_event =
+      { created_at: Time, data: Imagekitio::Folder, type: :"folder.created" }
+
+    class FolderCreateEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::Folder
+
+      def data=: (Imagekitio::Folder _) -> Imagekitio::Folder
+
+      def `type`: -> :"folder.created"
+
+      def type=: (:"folder.created" _) -> :"folder.created"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::Folder,
+        ?type: :"folder.created"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::Folder,
+        type: :"folder.created"
+      }
+    end
+  end
+end
