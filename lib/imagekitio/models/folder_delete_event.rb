@@ -30,14 +30,14 @@ module Imagekitio
       #   @param type [Symbol, :"folder.deleted"] Type of the webhook event.
 
       class Data < Imagekitio::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier of the deleted folder.
+        # @!attribute folder_id
+        #   The unique `folderId` of the deleted folder.
         #
         #   @return [String]
-        required :id, String
+        required :folder_id, String, api_name: :folderId
 
-        # @!method initialize(id:)
-        #   @param id [String] The unique identifier of the deleted folder.
+        # @!method initialize(folder_id:)
+        #   @param folder_id [String] The unique `folderId` of the deleted folder.
       end
     end
   end

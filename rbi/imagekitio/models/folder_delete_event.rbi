@@ -60,18 +60,18 @@ module Imagekitio
             )
           end
 
-        # The unique identifier of the deleted folder.
+        # The unique `folderId` of the deleted folder.
         sig { returns(String) }
-        attr_accessor :id
+        attr_accessor :folder_id
 
-        sig { params(id: String).returns(T.attached_class) }
+        sig { params(folder_id: String).returns(T.attached_class) }
         def self.new(
-          # The unique identifier of the deleted folder.
-          id:
+          # The unique `folderId` of the deleted folder.
+          folder_id:
         )
         end
 
-        sig { override.returns({ id: String }) }
+        sig { override.returns({ folder_id: String }) }
         def to_hash
         end
       end

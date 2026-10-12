@@ -3,6 +3,7 @@ module Imagekitio
     type folder =
       {
         created_at: Time,
+        created_by: Imagekitio::Folder::CreatedBy,
         custom_metadata: ::Hash[Symbol, top],
         folder_id: String,
         folder_path: String,
@@ -15,6 +16,12 @@ module Imagekitio
       attr_reader created_at: Time?
 
       def created_at=: (Time) -> Time
+
+      attr_reader created_by: Imagekitio::Folder::CreatedBy?
+
+      def created_by=: (
+        Imagekitio::Folder::CreatedBy
+      ) -> Imagekitio::Folder::CreatedBy
 
       attr_reader custom_metadata: ::Hash[Symbol, top]?
 
@@ -44,6 +51,7 @@ module Imagekitio
 
       def initialize: (
         ?created_at: Time,
+        ?created_by: Imagekitio::Folder::CreatedBy,
         ?custom_metadata: ::Hash[Symbol, top],
         ?folder_id: String,
         ?folder_path: String,
@@ -54,6 +62,7 @@ module Imagekitio
 
       def to_hash: -> {
         created_at: Time,
+        created_by: Imagekitio::Folder::CreatedBy,
         custom_metadata: ::Hash[Symbol, top],
         folder_id: String,
         folder_path: String,
@@ -61,6 +70,22 @@ module Imagekitio
         type: Imagekitio::Models::Folder::type_,
         updated_at: Time
       }
+
+      type created_by = { email: String, name: String }
+
+      class CreatedBy < Imagekitio::Internal::Type::BaseModel
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?email: String, ?name: String) -> void
+
+        def to_hash: -> { email: String, name: String }
+      end
 
       type type_ = :folder
 
