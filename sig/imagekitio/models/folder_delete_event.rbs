@@ -1,0 +1,48 @@
+module Imagekitio
+  module Models
+    type folder_delete_event =
+      {
+        created_at: Time,
+        data: Imagekitio::FolderDeleteEvent::Data,
+        type: :"folder.deleted"
+      }
+
+    class FolderDeleteEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::FolderDeleteEvent::Data
+
+      def data=: (
+        Imagekitio::FolderDeleteEvent::Data _
+      ) -> Imagekitio::FolderDeleteEvent::Data
+
+      def `type`: -> :"folder.deleted"
+
+      def type=: (:"folder.deleted" _) -> :"folder.deleted"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::FolderDeleteEvent::Data,
+        ?type: :"folder.deleted"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::FolderDeleteEvent::Data,
+        type: :"folder.deleted"
+      }
+
+      type data = { folder_id: String }
+
+      class Data < Imagekitio::Internal::Type::BaseModel
+        attr_accessor folder_id: String
+
+        def initialize: (folder_id: String) -> void
+
+        def to_hash: -> { folder_id: String }
+      end
+    end
+  end
+end
