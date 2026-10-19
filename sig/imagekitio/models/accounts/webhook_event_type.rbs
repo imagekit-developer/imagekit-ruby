@@ -14,6 +14,9 @@ module Imagekitio
         | :"file.deleted"
         | :"file-version.created"
         | :"file-version.deleted"
+        | :"folder.created"
+        | :"folder.updated"
+        | :"folder.deleted"
 
       module WebhookEventType
         extend Imagekitio::Internal::Type::Enum
@@ -30,6 +33,9 @@ module Imagekitio
         FILE_DELETED: :"file.deleted"
         FILE_VERSION_CREATED: :"file-version.created"
         FILE_VERSION_DELETED: :"file-version.deleted"
+        FOLDER_CREATED: :"folder.created"
+        FOLDER_UPDATED: :"folder.updated"
+        FOLDER_DELETED: :"folder.deleted"
 
         def self?.values: -> ::Array[Imagekitio::Models::Accounts::webhook_event_type]
       end

@@ -20,6 +20,9 @@ module Imagekitio
         FILE_DELETED = :"file.deleted"
         FILE_VERSION_CREATED = :"file-version.created"
         FILE_VERSION_DELETED = :"file-version.deleted"
+        FOLDER_CREATED = :"folder.created"
+        FOLDER_UPDATED = :"folder.updated"
+        FOLDER_DELETED = :"folder.deleted"
 
         # @!method self.values
         #   @return [Array<Symbol>]

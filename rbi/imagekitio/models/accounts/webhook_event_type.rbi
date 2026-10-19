@@ -72,6 +72,21 @@ module Imagekitio
             :"file-version.deleted",
             Imagekitio::Accounts::WebhookEventType::TaggedSymbol
           )
+        FOLDER_CREATED =
+          T.let(
+            :"folder.created",
+            Imagekitio::Accounts::WebhookEventType::TaggedSymbol
+          )
+        FOLDER_UPDATED =
+          T.let(
+            :"folder.updated",
+            Imagekitio::Accounts::WebhookEventType::TaggedSymbol
+          )
+        FOLDER_DELETED =
+          T.let(
+            :"folder.deleted",
+            Imagekitio::Accounts::WebhookEventType::TaggedSymbol
+          )
 
         sig do
           override.returns(
