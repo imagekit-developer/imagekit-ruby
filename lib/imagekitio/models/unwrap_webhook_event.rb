@@ -52,7 +52,7 @@ module Imagekitio
       # Triggered when a folder is updated, for example when its custom metadata changes or it is renamed. Renaming a folder sends one event per folder in the tree, each with its new `folderPath`.
       variant -> { Imagekitio::FolderUpdateEvent }
 
-      # Triggered when a folder is deleted. Deleting a folder tree sends one event per folder in the tree; the files inside it send `file.deleted` events. Moving a folder sends this event for the old `folderId` and `folder.created` for the new one.
+      # Triggered when a folder is deleted. Deleting a folder tree sends one event per folder in the tree; the files inside it send `file.deleted` events and their versions send `file-version.deleted` events. Moving a folder sends this event for the old `folderId` and `folder.created` for the new one.
       variant -> { Imagekitio::FolderDeleteEvent }
 
       # @!method self.variants
