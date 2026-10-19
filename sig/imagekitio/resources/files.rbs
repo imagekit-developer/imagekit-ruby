@@ -23,7 +23,7 @@ module Imagekitio
         source_file_path: String,
         ?include_file_versions: bool,
         ?request_options: Imagekitio::request_opts
-      ) -> Imagekitio::Models::FileCopyResponse
+      ) -> nil
 
       def get: (
         String file_id,
@@ -34,7 +34,7 @@ module Imagekitio
         destination_path: String,
         source_file_path: String,
         ?request_options: Imagekitio::request_opts
-      ) -> Imagekitio::Models::FileMoveResponse
+      ) -> nil
 
       def rename: (
         file_path: String,

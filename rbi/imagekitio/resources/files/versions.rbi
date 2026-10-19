@@ -28,7 +28,7 @@ module Imagekitio
             version_id: String,
             file_id: String,
             request_options: Imagekitio::RequestOptions::OrHash
-          ).returns(Imagekitio::Models::Files::VersionDeleteResponse)
+          ).void
         end
         def delete(
           # The unique `versionId` of the uploaded file. `versionId` is returned in list and

@@ -1,0 +1,52 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type webhook =
+        {
+          id: String,
+          created_at: Time,
+          enabled: bool,
+          endpoint: String,
+          events: ::Array[Imagekitio::Models::Accounts::webhook_event_type],
+          secret: String,
+          updated_at: Time
+        }
+
+      class Webhook < Imagekitio::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor enabled: bool
+
+        attr_accessor endpoint: String
+
+        attr_accessor events: ::Array[Imagekitio::Models::Accounts::webhook_event_type]
+
+        attr_accessor secret: String
+
+        attr_accessor updated_at: Time
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          enabled: bool,
+          endpoint: String,
+          events: ::Array[Imagekitio::Models::Accounts::webhook_event_type],
+          secret: String,
+          updated_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          enabled: bool,
+          endpoint: String,
+          events: ::Array[Imagekitio::Models::Accounts::webhook_event_type],
+          secret: String,
+          updated_at: Time
+        }
+      end
+    end
+  end
+end

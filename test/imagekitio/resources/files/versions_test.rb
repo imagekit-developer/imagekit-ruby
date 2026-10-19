@@ -19,13 +19,7 @@ class Imagekitio::Test::Resources::Files::VersionsTest < Imagekitio::Test::Resou
     response = @image_kit.files.versions.delete("versionId", file_id: "fileId")
 
     assert_pattern do
-      response => Imagekitio::Models::Files::VersionDeleteResponse
-    end
-
-    assert_pattern do
-      response => {
-        **_
-      }
+      response => nil
     end
   end
 
