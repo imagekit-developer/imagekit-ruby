@@ -13,6 +13,9 @@ module Imagekitio
       | Imagekitio::FileDeleteEvent
       | Imagekitio::FileVersionCreateEvent
       | Imagekitio::FileVersionDeleteEvent
+      | Imagekitio::FolderCreateEvent
+      | Imagekitio::FolderUpdateEvent
+      | Imagekitio::FolderDeleteEvent
 
     module UnwrapWebhookEvent
       extend Imagekitio::Internal::Type::Union
