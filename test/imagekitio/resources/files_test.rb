@@ -30,13 +30,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
       @image_kit.files.copy(destination_path: "/folder/to/copy/into/", source_file_path: "/path/to/file.jpg")
 
     assert_pattern do
-      response => Imagekitio::Models::FileCopyResponse
-    end
-
-    assert_pattern do
-      response => {
-        **_
-      }
+      response => nil
     end
   end
 
@@ -90,13 +84,7 @@ class Imagekitio::Test::Resources::FilesTest < Imagekitio::Test::ResourceTest
       @image_kit.files.move(destination_path: "/folder/to/move/into/", source_file_path: "/path/to/file.jpg")
 
     assert_pattern do
-      response => Imagekitio::Models::FileMoveResponse
-    end
-
-    assert_pattern do
-      response => {
-        **_
-      }
+      response => nil
     end
   end
 

@@ -43,7 +43,7 @@ module Imagekitio
         #
         # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Imagekitio::Models::Files::VersionDeleteResponse]
+        # @return [nil]
         #
         # @see Imagekitio::Models::Files::VersionDeleteParams
         def delete(version_id, params)
@@ -55,7 +55,7 @@ module Imagekitio
           @client.request(
             method: :delete,
             path: ["v1/files/%1$s/versions/%2$s", file_id, version_id],
-            model: Imagekitio::Models::Files::VersionDeleteResponse,
+            model: NilClass,
             options: options
           )
         end

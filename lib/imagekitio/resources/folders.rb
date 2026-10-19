@@ -46,18 +46,12 @@ module Imagekitio
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekitio::Models::FolderDeleteResponse]
+      # @return [nil]
       #
       # @see Imagekitio::Models::FolderDeleteParams
       def delete(params)
         parsed, options = Imagekitio::FolderDeleteParams.dump_request(params)
-        @client.request(
-          method: :delete,
-          path: "v1/folder",
-          body: parsed,
-          model: Imagekitio::Models::FolderDeleteResponse,
-          options: options
-        )
+        @client.request(method: :delete, path: "v1/folder", body: parsed, model: NilClass, options: options)
       end
 
       # Some parameter documentations has been truncated, see

@@ -40,7 +40,7 @@ module Imagekitio
         params(
           folder_path: String,
           request_options: Imagekitio::RequestOptions::OrHash
-        ).returns(Imagekitio::Models::FolderDeleteResponse)
+        ).void
       end
       def delete(
         # Full path to the folder you want to delete. For example `/folder/to/delete/`.

@@ -87,18 +87,12 @@ module Imagekitio
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekitio::Models::FileCopyResponse]
+      # @return [nil]
       #
       # @see Imagekitio::Models::FileCopyParams
       def copy(params)
         parsed, options = Imagekitio::FileCopyParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "v1/files/copy",
-          body: parsed,
-          model: Imagekitio::Models::FileCopyResponse,
-          options: options
-        )
+        @client.request(method: :post, path: "v1/files/copy", body: parsed, model: NilClass, options: options)
       end
 
       # Some parameter documentations has been truncated, see
@@ -141,18 +135,12 @@ module Imagekitio
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekitio::Models::FileMoveResponse]
+      # @return [nil]
       #
       # @see Imagekitio::Models::FileMoveParams
       def move(params)
         parsed, options = Imagekitio::FileMoveParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "v1/files/move",
-          body: parsed,
-          model: Imagekitio::Models::FileMoveResponse,
-          options: options
-        )
+        @client.request(method: :post, path: "v1/files/move", body: parsed, model: NilClass, options: options)
       end
 
       # Some parameter documentations has been truncated, see
