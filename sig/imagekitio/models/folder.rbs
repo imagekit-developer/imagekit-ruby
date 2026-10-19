@@ -4,7 +4,7 @@ module Imagekitio
       {
         created_at: Time,
         created_by: Imagekitio::Folder::CreatedBy,
-        custom_metadata: ::Hash[Symbol, top],
+        custom_metadata: Imagekitio::Models::custom_metadata,
         folder_id: String,
         folder_path: String,
         name: String,
@@ -23,9 +23,11 @@ module Imagekitio
         Imagekitio::Folder::CreatedBy
       ) -> Imagekitio::Folder::CreatedBy
 
-      attr_reader custom_metadata: ::Hash[Symbol, top]?
+      attr_reader custom_metadata: Imagekitio::Models::custom_metadata?
 
-      def custom_metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+      def custom_metadata=: (
+        Imagekitio::Models::custom_metadata
+      ) -> Imagekitio::Models::custom_metadata
 
       attr_reader folder_id: String?
 
@@ -52,7 +54,7 @@ module Imagekitio
       def initialize: (
         ?created_at: Time,
         ?created_by: Imagekitio::Folder::CreatedBy,
-        ?custom_metadata: ::Hash[Symbol, top],
+        ?custom_metadata: Imagekitio::Models::custom_metadata,
         ?folder_id: String,
         ?folder_path: String,
         ?name: String,
@@ -63,7 +65,7 @@ module Imagekitio
       def to_hash: -> {
         created_at: Time,
         created_by: Imagekitio::Folder::CreatedBy,
-        custom_metadata: ::Hash[Symbol, top],
+        custom_metadata: Imagekitio::Models::custom_metadata,
         folder_id: String,
         folder_path: String,
         name: String,
