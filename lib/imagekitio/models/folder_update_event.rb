@@ -21,7 +21,9 @@ module Imagekitio
       required :type, const: :"folder.updated"
 
       # @!method initialize(created_at:, data:, type: :"folder.updated")
-      #   Triggered when a folder is updated.
+      #   Triggered when a folder is updated, for example when its custom metadata changes
+      #   or it is renamed. Renaming a folder sends one event per folder in the tree, each
+      #   with its new `folderPath`.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #

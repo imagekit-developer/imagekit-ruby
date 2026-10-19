@@ -21,7 +21,10 @@ module Imagekitio
       required :type, const: :"folder.deleted"
 
       # @!method initialize(created_at:, data:, type: :"folder.deleted")
-      #   Triggered when a folder is deleted.
+      #   Triggered when a folder is deleted. Deleting a folder tree sends one event per
+      #   folder in the tree; the files inside it send `file.deleted` events and their
+      #   versions send `file-version.deleted` events. Moving a folder sends this event
+      #   for the old `folderId` and `folder.created` for the new one.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #

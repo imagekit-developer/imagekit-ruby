@@ -21,7 +21,9 @@ module Imagekitio
       required :type, const: :"folder.created"
 
       # @!method initialize(created_at:, data:, type: :"folder.created")
-      #   Triggered when a folder is created.
+      #   Triggered when a folder is created, whether explicitly, by copying or moving a
+      #   folder, or implicitly when an upload creates missing parent folders. Copying or
+      #   moving a folder tree sends one event per folder in the tree.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #

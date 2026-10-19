@@ -22,7 +22,9 @@ module Imagekitio
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Triggered when a folder is updated.
+      # Triggered when a folder is updated, for example when its custom metadata changes
+      # or it is renamed. Renaming a folder sends one event per folder in the tree, each
+      # with its new `folderPath`.
       sig do
         params(
           created_at: Time,
