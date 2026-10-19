@@ -10,6 +10,13 @@ module Imagekitio
       #   @return [Time, nil]
       optional :created_at, Time, api_name: :createdAt
 
+      # @!attribute created_by
+      #   Details of the user who created the folder. Present only when this information
+      #   is available. The `name` is the name of the user at the time of folder creation.
+      #
+      #   @return [Imagekitio::Models::Folder::CreatedBy, nil]
+      optional :created_by, -> { Imagekitio::Folder::CreatedBy }, api_name: :createdBy
+
       # @!attribute custom_metadata
       #   An object with custom metadata for the folder. Returns empty object if no custom
       #   metadata is set.
@@ -53,11 +60,13 @@ module Imagekitio
       #   @return [Time, nil]
       optional :updated_at, Time, api_name: :updatedAt
 
-      # @!method initialize(created_at: nil, custom_metadata: nil, folder_id: nil, folder_path: nil, name: nil, type: nil, updated_at: nil)
+      # @!method initialize(created_at: nil, created_by: nil, custom_metadata: nil, folder_id: nil, folder_path: nil, name: nil, type: nil, updated_at: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::Folder} for more details.
       #
       #   @param created_at [Time] Date and time when the folder was created. The date and time is in ISO8601 forma
+      #
+      #   @param created_by [Imagekitio::Models::Folder::CreatedBy] Details of the user who created the folder. Present only when this information i
       #
       #   @param custom_metadata [Hash{Symbol=>Object}] An object with custom metadata for the folder. Returns empty object if no custom
       #
@@ -70,6 +79,29 @@ module Imagekitio
       #   @param type [Symbol, Imagekitio::Models::Folder::Type] Type of the asset.
       #
       #   @param updated_at [Time] Date and time when the folder was last updated. The date and time is in ISO8601
+
+      # @see Imagekitio::Models::Folder#created_by
+      class CreatedBy < Imagekitio::Internal::Type::BaseModel
+        # @!attribute email
+        #   Email of the user who created the folder.
+        #
+        #   @return [String, nil]
+        optional :email, String
+
+        # @!attribute name
+        #   Name of the user who created the folder.
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!method initialize(email: nil, name: nil)
+        #   Details of the user who created the folder. Present only when this information
+        #   is available. The `name` is the name of the user at the time of folder creation.
+        #
+        #   @param email [String] Email of the user who created the folder.
+        #
+        #   @param name [String] Name of the user who created the folder.
+      end
 
       # Type of the asset.
       #

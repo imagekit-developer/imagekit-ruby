@@ -15,6 +15,9 @@ module Imagekitio
       sig { returns(Imagekitio::Resources::Accounts::URLEndpoints) }
       attr_reader :url_endpoints
 
+      sig { returns(Imagekitio::Resources::Accounts::Webhooks) }
+      attr_reader :webhooks
+
       # @api private
       sig { params(client: Imagekitio::Client).returns(T.attached_class) }
       def self.new(client:)
