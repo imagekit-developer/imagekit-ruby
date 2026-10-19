@@ -108,7 +108,11 @@ module Imagekitio
 
   FolderCopyParams = Imagekitio::Models::FolderCopyParams
 
+  FolderCreateEvent = Imagekitio::Models::FolderCreateEvent
+
   FolderCreateParams = Imagekitio::Models::FolderCreateParams
+
+  FolderDeleteEvent = Imagekitio::Models::FolderDeleteEvent
 
   FolderDeleteParams = Imagekitio::Models::FolderDeleteParams
 
@@ -117,6 +121,8 @@ module Imagekitio
   FolderRenameParams = Imagekitio::Models::FolderRenameParams
 
   Folders = Imagekitio::Models::Folders
+
+  FolderUpdateEvent = Imagekitio::Models::FolderUpdateEvent
 
   GetImageAttributesOptions = Imagekitio::Models::GetImageAttributesOptions
 

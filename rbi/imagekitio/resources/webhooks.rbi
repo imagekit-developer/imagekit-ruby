@@ -17,7 +17,10 @@ module Imagekitio
             Imagekitio::FileUpdateEvent,
             Imagekitio::FileDeleteEvent,
             Imagekitio::FileVersionCreateEvent,
-            Imagekitio::FileVersionDeleteEvent
+            Imagekitio::FileVersionDeleteEvent,
+            Imagekitio::FolderCreateEvent,
+            Imagekitio::FolderUpdateEvent,
+            Imagekitio::FolderDeleteEvent
           )
         )
       end
@@ -45,7 +48,10 @@ module Imagekitio
             Imagekitio::FileUpdateEvent,
             Imagekitio::FileDeleteEvent,
             Imagekitio::FileVersionCreateEvent,
-            Imagekitio::FileVersionDeleteEvent
+            Imagekitio::FileVersionDeleteEvent,
+            Imagekitio::FolderCreateEvent,
+            Imagekitio::FolderUpdateEvent,
+            Imagekitio::FolderDeleteEvent
           )
         )
       end
