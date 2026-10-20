@@ -1,5 +1,28 @@
 # Changelog
 
+## [4.11.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.10.0...v4.11.0) (2026-10-19)
+
+
+### Features
+
+* webhook crud api ([a3fb0a0](https://github.com/imagekit-developer/imagekit-ruby/commit/a3fb0a0e157c5b9d815b54a5e7adf2f3c9b5b8b5))
+
+
+### Bug Fixes
+
+* don't parse empty 204 responses for copy, move and delete methods ([0e04d20](https://github.com/imagekit-developer/imagekit-ruby/commit/0e04d2029befbcd689b7c01699c6675cc1c93af8))
+* **openapi:** reference shared CustomMetadata schema from FolderDetail ([56c04d2](https://github.com/imagekit-developer/imagekit-ruby/commit/56c04d2f29703ed1cf613f097162622ec34dd37b))
+
+
+### Chores
+
+* pin next release ([68b9912](https://github.com/imagekit-developer/imagekit-ruby/commit/68b9912fbf73117ddb2c7966d2100c3a63384573))
+
+
+### Documentation
+
+* describe reserved original creation date field ([b7512b8](https://github.com/imagekit-developer/imagekit-ruby/commit/b7512b8bced102a82f256d674e1eaf2bdf9d1722))
+
 ## [4.10.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.9.0...v4.10.0) (2026-09-16)
 
 
