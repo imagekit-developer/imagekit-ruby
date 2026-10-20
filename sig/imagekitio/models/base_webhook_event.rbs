@@ -1,15 +1,13 @@
 module Imagekitio
   module Models
-    type base_webhook_event = { id: String, type: String }
+    type base_webhook_event = { id: String }
 
     class BaseWebhookEvent < Imagekitio::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor type: String
+      def initialize: (id: String) -> void
 
-      def initialize: (id: String, type: String) -> void
-
-      def to_hash: -> { id: String, type: String }
+      def to_hash: -> { id: String }
     end
   end
 end
