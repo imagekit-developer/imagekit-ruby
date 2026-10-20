@@ -12,20 +12,14 @@ module Imagekitio
       sig { returns(String) }
       attr_accessor :id
 
-      # The type of webhook event.
-      sig { returns(String) }
-      attr_accessor :type
-
-      sig { params(id: String, type: String).returns(T.attached_class) }
+      sig { params(id: String).returns(T.attached_class) }
       def self.new(
         # Unique identifier for the event.
-        id:,
-        # The type of webhook event.
-        type:
+        id:
       )
       end
 
-      sig { override.returns({ id: String, type: String }) }
+      sig { override.returns({ id: String }) }
       def to_hash
       end
     end

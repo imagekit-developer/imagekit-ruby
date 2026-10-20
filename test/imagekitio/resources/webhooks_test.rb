@@ -9,7 +9,7 @@ class Imagekitio::Test::Resources::WebhooksTest < Imagekitio::Test::ResourceTest
     webhook = StandardWebhooks::Webhook.new(key)
 
     data =
-      "{\"id\":\"id\",\"type\":\"video.transformation.accepted\",\"created_at\":\"2019-12-27T18:11:19.117Z\",\"data\":{\"asset\":{\"url\":\"https://example.com\"},\"transformation\":{\"type\":\"video-transformation\",\"options\":{\"audio_codec\":\"aac\",\"auto_rotate\":true,\"format\":\"mp4\",\"quality\":0,\"stream_protocol\":\"HLS\",\"variants\":[\"string\"],\"video_codec\":\"h264\"}}},\"request\":{\"url\":\"https://example.com\",\"x_request_id\":\"x_request_id\",\"user_agent\":\"user_agent\"}}"
+      "{\"id\":\"id\",\"created_at\":\"2019-12-27T18:11:19.117Z\",\"data\":{\"asset\":{\"url\":\"https://example.com\"},\"transformation\":{\"type\":\"video-transformation\",\"options\":{\"audio_codec\":\"aac\",\"auto_rotate\":true,\"format\":\"mp4\",\"quality\":0,\"stream_protocol\":\"HLS\",\"variants\":[\"string\"],\"video_codec\":\"h264\"}}},\"request\":{\"url\":\"https://example.com\",\"x_request_id\":\"x_request_id\",\"user_agent\":\"user_agent\"},\"type\":\"video.transformation.accepted\"}"
     message_id = "1"
     timestamp = Time.now.to_i.to_s
     signature = webhook.sign(message_id, timestamp, data)

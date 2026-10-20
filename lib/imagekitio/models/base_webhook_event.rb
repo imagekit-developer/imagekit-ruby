@@ -9,16 +9,8 @@ module Imagekitio
       #   @return [String]
       required :id, String
 
-      # @!attribute type
-      #   The type of webhook event.
-      #
-      #   @return [String]
-      required :type, String
-
-      # @!method initialize(id:, type:)
+      # @!method initialize(id:)
       #   @param id [String] Unique identifier for the event.
-      #
-      #   @param type [String] The type of webhook event.
     end
   end
 end
