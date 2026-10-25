@@ -50,21 +50,31 @@ module Imagekitio
           extend Imagekitio::Internal::Type::Union
 
           type cloudinary =
-            { preserve_asset_delivery_types: bool, type: :CLOUDINARY }
+            {
+              preserve_asset_delivery_types: bool,
+              type: :CLOUDINARY,
+              use_improved_layer_spec: bool
+            }
 
           class Cloudinary < Imagekitio::Internal::Type::BaseModel
             attr_accessor preserve_asset_delivery_types: bool
 
             attr_accessor type: :CLOUDINARY
 
+            attr_reader use_improved_layer_spec: bool?
+
+            def use_improved_layer_spec=: (bool) -> bool
+
             def initialize: (
               preserve_asset_delivery_types: bool,
+              ?use_improved_layer_spec: bool,
               ?type: :CLOUDINARY
             ) -> void
 
             def to_hash: -> {
               preserve_asset_delivery_types: bool,
-              type: :CLOUDINARY
+              type: :CLOUDINARY,
+              use_improved_layer_spec: bool
             }
           end
 
