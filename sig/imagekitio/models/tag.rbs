@@ -1,0 +1,30 @@
+module Imagekitio
+  module Models
+    type tag =
+      { asset_count: Integer, label: String, last_used_at: Time, name: String }
+
+    class Tag < Imagekitio::Internal::Type::BaseModel
+      attr_accessor asset_count: Integer
+
+      attr_accessor label: String
+
+      attr_accessor last_used_at: Time
+
+      attr_accessor name: String
+
+      def initialize: (
+        asset_count: Integer,
+        label: String,
+        last_used_at: Time,
+        name: String
+      ) -> void
+
+      def to_hash: -> {
+        asset_count: Integer,
+        label: String,
+        last_used_at: Time,
+        name: String
+      }
+    end
+  end
+end

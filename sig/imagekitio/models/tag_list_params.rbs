@@ -1,0 +1,114 @@
+module Imagekitio
+  module Models
+    type tag_list_params =
+      {
+        cursor: String,
+        file_type: Imagekitio::Models::TagListParams::file_type,
+        limit: Integer,
+        prefix: String,
+        search: String,
+        sort: Imagekitio::Models::TagListParams::sort,
+        tag_source: Imagekitio::Models::TagListParams::tag_source
+      }
+      & Imagekitio::Internal::Type::request_parameters
+
+    class TagListParams < Imagekitio::Internal::Type::BaseModel
+      extend Imagekitio::Internal::Type::RequestParameters::Converter
+      include Imagekitio::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader file_type: Imagekitio::Models::TagListParams::file_type?
+
+      def file_type=: (
+        Imagekitio::Models::TagListParams::file_type
+      ) -> Imagekitio::Models::TagListParams::file_type
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader prefix: String?
+
+      def prefix=: (String) -> String
+
+      attr_reader search: String?
+
+      def search=: (String) -> String
+
+      attr_reader sort: Imagekitio::Models::TagListParams::sort?
+
+      def sort=: (
+        Imagekitio::Models::TagListParams::sort
+      ) -> Imagekitio::Models::TagListParams::sort
+
+      attr_reader tag_source: Imagekitio::Models::TagListParams::tag_source?
+
+      def tag_source=: (
+        Imagekitio::Models::TagListParams::tag_source
+      ) -> Imagekitio::Models::TagListParams::tag_source
+
+      def initialize: (
+        ?cursor: String,
+        ?file_type: Imagekitio::Models::TagListParams::file_type,
+        ?limit: Integer,
+        ?prefix: String,
+        ?search: String,
+        ?sort: Imagekitio::Models::TagListParams::sort,
+        ?tag_source: Imagekitio::Models::TagListParams::tag_source,
+        ?request_options: Imagekitio::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        file_type: Imagekitio::Models::TagListParams::file_type,
+        limit: Integer,
+        prefix: String,
+        search: String,
+        sort: Imagekitio::Models::TagListParams::sort,
+        tag_source: Imagekitio::Models::TagListParams::tag_source,
+        request_options: Imagekitio::RequestOptions
+      }
+
+      type file_type = :image | :video | :static | :all
+
+      module FileType
+        extend Imagekitio::Internal::Type::Enum
+
+        IMAGE: :image
+        VIDEO: :video
+        STATIC: :static
+        ALL: :all
+
+        def self?.values: -> ::Array[Imagekitio::Models::TagListParams::file_type]
+      end
+
+      type sort = :ASC_NAME | :DESC_NAME | :ASC_LAST_USED | :DESC_LAST_USED
+
+      module Sort
+        extend Imagekitio::Internal::Type::Enum
+
+        ASC_NAME: :ASC_NAME
+        DESC_NAME: :DESC_NAME
+        ASC_LAST_USED: :ASC_LAST_USED
+        DESC_LAST_USED: :DESC_LAST_USED
+
+        def self?.values: -> ::Array[Imagekitio::Models::TagListParams::sort]
+      end
+
+      type tag_source = :user | :ai | :all
+
+      module TagSource
+        extend Imagekitio::Internal::Type::Enum
+
+        USER: :user
+        AI: :ai
+        ALL: :all
+
+        def self?.values: -> ::Array[Imagekitio::Models::TagListParams::tag_source]
+      end
+    end
+  end
+end

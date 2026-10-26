@@ -1,0 +1,19 @@
+module Imagekitio
+  module Models
+    type tag_list_response =
+      { next_cursor: String?, tags: ::Array[Imagekitio::Tag] }
+
+    class TagListResponse < Imagekitio::Internal::Type::BaseModel
+      attr_accessor next_cursor: String?
+
+      attr_accessor tags: ::Array[Imagekitio::Tag]
+
+      def initialize: (
+        next_cursor: String?,
+        tags: ::Array[Imagekitio::Tag]
+      ) -> void
+
+      def to_hash: -> { next_cursor: String?, tags: ::Array[Imagekitio::Tag] }
+    end
+  end
+end
