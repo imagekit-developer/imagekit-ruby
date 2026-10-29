@@ -16,6 +16,10 @@ module Imagekitio
       # filters, while `assetCount` always counts every asset carrying the tag. Use
       # `search` or `prefix` to narrow the listing and `cursor` to page through it.
       #
+      # Tag counts are updated asynchronously. Changes to a file's tags usually appear
+      # in this list within about a minute, but can take longer during heavy tagging
+      # activity, so a tag you just added or removed may not be reflected immediately.
+      #
       # @overload list(cursor: nil, file_type: nil, limit: nil, prefix: nil, search: nil, sort: nil, tag_source: nil, request_options: {})
       #
       # @param cursor [String] The `nextCursor` value from the previous response, to fetch the next page. A cur
