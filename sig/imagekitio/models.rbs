@@ -135,6 +135,10 @@ module Imagekitio
 
   class SubtitleOverlayTransformation = Imagekitio::Models::SubtitleOverlayTransformation
 
+  class Tag = Imagekitio::Models::Tag
+
+  class TagListParams = Imagekitio::Models::TagListParams
+
   class TextOverlay = Imagekitio::Models::TextOverlay
 
   class TextOverlayTransformation = Imagekitio::Models::TextOverlayTransformation
