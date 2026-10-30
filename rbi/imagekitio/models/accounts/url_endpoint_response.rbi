@@ -133,22 +133,40 @@ module Imagekitio
             sig { returns(Symbol) }
             attr_accessor :type
 
+            # Whether to always rewrite Cloudinary layers to the improved ImageKit layer
+            # specification (`l-image`, `l-text`, ..., `l-end`). When `false` or omitted, the
+            # improved specification is used only for transformations that require it.
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :use_improved_layer_spec
+
+            sig { params(use_improved_layer_spec: T::Boolean).void }
+            attr_writer :use_improved_layer_spec
+
             sig do
               params(
                 preserve_asset_delivery_types: T::Boolean,
+                use_improved_layer_spec: T::Boolean,
                 type: Symbol
               ).returns(T.attached_class)
             end
             def self.new(
               # Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
               preserve_asset_delivery_types:,
+              # Whether to always rewrite Cloudinary layers to the improved ImageKit layer
+              # specification (`l-image`, `l-text`, ..., `l-end`). When `false` or omitted, the
+              # improved specification is used only for transformations that require it.
+              use_improved_layer_spec: nil,
               type: :CLOUDINARY
             )
             end
 
             sig do
               override.returns(
-                { preserve_asset_delivery_types: T::Boolean, type: Symbol }
+                {
+                  preserve_asset_delivery_types: T::Boolean,
+                  type: Symbol,
+                  use_improved_layer_spec: T::Boolean
+                }
               )
             end
             def to_hash

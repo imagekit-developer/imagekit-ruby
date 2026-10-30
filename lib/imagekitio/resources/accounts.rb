@@ -9,6 +9,9 @@ module Imagekitio
       # @return [Imagekitio::Resources::Accounts::UsageAnalytics]
       attr_reader :usage_analytics
 
+      # @return [Imagekitio::Resources::Accounts::Contract]
+      attr_reader :contract
+
       # @return [Imagekitio::Resources::Accounts::Origins]
       attr_reader :origins
 
@@ -25,6 +28,7 @@ module Imagekitio
         @client = client
         @usage = Imagekitio::Resources::Accounts::Usage.new(client: client)
         @usage_analytics = Imagekitio::Resources::Accounts::UsageAnalytics.new(client: client)
+        @contract = Imagekitio::Resources::Accounts::Contract.new(client: client)
         @origins = Imagekitio::Resources::Accounts::Origins.new(client: client)
         @url_endpoints = Imagekitio::Resources::Accounts::URLEndpoints.new(client: client)
         @webhooks = Imagekitio::Resources::Accounts::Webhooks.new(client: client)

@@ -1,0 +1,37 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type contract_units =
+        {
+          bandwidth_bytes: Integer,
+          extension_units_count: Integer,
+          purge_cache_requests: Integer,
+          video_processing_units_count: Integer
+        }
+
+      class ContractUnits < Imagekitio::Internal::Type::BaseModel
+        attr_accessor bandwidth_bytes: Integer
+
+        attr_accessor extension_units_count: Integer
+
+        attr_accessor purge_cache_requests: Integer
+
+        attr_accessor video_processing_units_count: Integer
+
+        def initialize: (
+          bandwidth_bytes: Integer,
+          extension_units_count: Integer,
+          purge_cache_requests: Integer,
+          video_processing_units_count: Integer
+        ) -> void
+
+        def to_hash: -> {
+          bandwidth_bytes: Integer,
+          extension_units_count: Integer,
+          purge_cache_requests: Integer,
+          video_processing_units_count: Integer
+        }
+      end
+    end
+  end
+end

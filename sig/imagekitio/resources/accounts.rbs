@@ -5,6 +5,8 @@ module Imagekitio
 
       attr_reader usage_analytics: Imagekitio::Resources::Accounts::UsageAnalytics
 
+      attr_reader contract: Imagekitio::Resources::Accounts::Contract
+
       attr_reader origins: Imagekitio::Resources::Accounts::Origins
 
       attr_reader url_endpoints: Imagekitio::Resources::Accounts::URLEndpoints
