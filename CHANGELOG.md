@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.12.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.11.0...v4.12.0) (2026-10-30)
+
+
+### Features
+
+* **api:** add accounts.contract.get() for contract consumption ([c80613e](https://github.com/imagekit-developer/imagekit-ruby/commit/c80613eab38b19ecebdfa21574fa31efa9e82033))
+* **api:** add useImprovedLayerSpec to the Cloudinary URL rewriter ([c80613e](https://github.com/imagekit-developer/imagekit-ruby/commit/c80613eab38b19ecebdfa21574fa31efa9e82033))
+
 ## [4.11.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.10.0...v4.11.0) (2026-10-19)
 
 
