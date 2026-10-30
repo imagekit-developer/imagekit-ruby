@@ -2,6 +2,7 @@
 
 module Imagekitio
   module Models
+    # @see Imagekitio::Resources::Tags#list
     class Tag < Imagekitio::Internal::Type::BaseModel
       # @!attribute asset_count
       #   The number of assets carrying the tag, counted across both tag sources

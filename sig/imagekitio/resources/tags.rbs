@@ -10,7 +10,7 @@ module Imagekitio
         ?sort: Imagekitio::Models::TagListParams::sort,
         ?tag_source: Imagekitio::Models::TagListParams::tag_source,
         ?request_options: Imagekitio::request_opts
-      ) -> Imagekitio::Models::TagListResponse
+      ) -> Imagekitio::Internal::Cursor[Imagekitio::Tag]
 
       def initialize: (client: Imagekitio::Client) -> void
     end

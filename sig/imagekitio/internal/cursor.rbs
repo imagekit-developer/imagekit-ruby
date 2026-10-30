@@ -1,0 +1,13 @@
+module Imagekitio
+  module Internal
+    class Cursor[Elem]
+      include Imagekitio::Internal::Type::BasePage[Elem]
+
+      attr_accessor tags: ::Array[Elem]?
+
+      attr_accessor next_cursor: String?
+
+      def inspect: -> String
+    end
+  end
+end

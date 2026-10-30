@@ -26,7 +26,7 @@ module Imagekitio
           sort: Imagekitio::TagListParams::Sort::OrSymbol,
           tag_source: Imagekitio::TagListParams::TagSource::OrSymbol,
           request_options: Imagekitio::RequestOptions::OrHash
-        ).returns(Imagekitio::Models::TagListResponse)
+        ).returns(Imagekitio::Internal::Cursor[Imagekitio::Tag])
       end
       def list(
         # The `nextCursor` value from the previous response, to fetch the next page. A
