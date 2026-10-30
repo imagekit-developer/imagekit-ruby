@@ -88,8 +88,24 @@ module Imagekitio
             #   @return [Symbol, :CLOUDINARY]
             required :type, const: :CLOUDINARY
 
-            # @!method initialize(preserve_asset_delivery_types:, type: :CLOUDINARY)
+            # @!attribute use_improved_layer_spec
+            #   Whether to always rewrite Cloudinary layers to the improved ImageKit layer
+            #   specification (`l-image`, `l-text`, ..., `l-end`). When `false` or omitted, the
+            #   improved specification is used only for transformations that require it.
+            #
+            #   @return [Boolean, nil]
+            optional :use_improved_layer_spec,
+                     Imagekitio::Internal::Type::Boolean,
+                     api_name: :useImprovedLayerSpec
+
+            # @!method initialize(preserve_asset_delivery_types:, use_improved_layer_spec: nil, type: :CLOUDINARY)
+            #   Some parameter documentations has been truncated, see
+            #   {Imagekitio::Models::Accounts::URLEndpointResponse::URLRewriter::Cloudinary} for
+            #   more details.
+            #
             #   @param preserve_asset_delivery_types [Boolean] Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
+            #
+            #   @param use_improved_layer_spec [Boolean] Whether to always rewrite Cloudinary layers to the improved ImageKit layer speci
             #
             #   @param type [Symbol, :CLOUDINARY]
           end

@@ -1,0 +1,13 @@
+module Imagekitio
+  module Resources
+    class Accounts
+      class Contract
+        def get: (
+          ?request_options: Imagekitio::request_opts
+        ) -> Imagekitio::Models::Accounts::ContractGetResponse
+
+        def initialize: (client: Imagekitio::Client) -> void
+      end
+    end
+  end
+end
