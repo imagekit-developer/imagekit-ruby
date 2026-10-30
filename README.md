@@ -39,6 +39,34 @@ response = image_kit.files.upload(
 puts(response.videoCodec)
 ```
 
+### Pagination
+
+List methods in the Image Kit API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```ruby
+page = image_kit.tags.list
+
+# Fetch single item from page.
+tag = page.tags[0]
+puts(tag.assetCount)
+
+# Automatically fetches more pages as needed.
+page.auto_paging_each do |tag|
+  puts(tag.assetCount)
+end
+```
+
+Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+
+```ruby
+if page.next_page?
+  new_page = page.next_page
+  puts(new_page.tags[0].assetCount)
+end
+```
+
 ### File uploads
 
 Request parameters that correspond to file uploads can be passed as raw contents, a [`Pathname`](https://rubyapi.org/3.2/o/pathname) instance, [`StringIO`](https://rubyapi.org/3.2/o/stringio), or more.

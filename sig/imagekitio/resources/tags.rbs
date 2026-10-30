@@ -1,0 +1,18 @@
+module Imagekitio
+  module Resources
+    class Tags
+      def list: (
+        ?cursor: String,
+        ?file_type: Imagekitio::Models::TagListParams::file_type,
+        ?limit: Integer,
+        ?prefix: String,
+        ?search: String,
+        ?sort: Imagekitio::Models::TagListParams::sort,
+        ?tag_source: Imagekitio::Models::TagListParams::tag_source,
+        ?request_options: Imagekitio::request_opts
+      ) -> Imagekitio::Internal::Cursor[Imagekitio::Tag]
+
+      def initialize: (client: Imagekitio::Client) -> void
+    end
+  end
+end
