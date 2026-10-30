@@ -1,0 +1,73 @@
+module Imagekitio
+  module Models
+    module Accounts
+      type contract_get_response =
+        {
+          has_contract: bool,
+          as_of: Time?,
+          consumed: Imagekitio::Accounts::ContractUnits,
+          contract_months: Integer,
+          effective_contract_end_date: Date,
+          effective_contract_start_date: Date,
+          original_contract_start_date: Date,
+          quota: Imagekitio::Accounts::ContractUnits
+        }
+
+      class ContractGetResponse < Imagekitio::Internal::Type::BaseModel
+        attr_accessor has_contract: bool
+
+        attr_accessor as_of: Time?
+
+        attr_reader consumed: Imagekitio::Accounts::ContractUnits?
+
+        def consumed=: (
+          Imagekitio::Accounts::ContractUnits
+        ) -> Imagekitio::Accounts::ContractUnits
+
+        attr_reader contract_months: Integer?
+
+        def contract_months=: (Integer) -> Integer
+
+        attr_reader effective_contract_end_date: Date?
+
+        def effective_contract_end_date=: (Date) -> Date
+
+        attr_reader effective_contract_start_date: Date?
+
+        def effective_contract_start_date=: (Date) -> Date
+
+        attr_reader original_contract_start_date: Date?
+
+        def original_contract_start_date=: (Date) -> Date
+
+        attr_reader quota: Imagekitio::Accounts::ContractUnits?
+
+        def quota=: (
+          Imagekitio::Accounts::ContractUnits
+        ) -> Imagekitio::Accounts::ContractUnits
+
+        def initialize: (
+          has_contract: bool,
+          ?as_of: Time?,
+          ?consumed: Imagekitio::Accounts::ContractUnits,
+          ?contract_months: Integer,
+          ?effective_contract_end_date: Date,
+          ?effective_contract_start_date: Date,
+          ?original_contract_start_date: Date,
+          ?quota: Imagekitio::Accounts::ContractUnits
+        ) -> void
+
+        def to_hash: -> {
+          has_contract: bool,
+          as_of: Time?,
+          consumed: Imagekitio::Accounts::ContractUnits,
+          contract_months: Integer,
+          effective_contract_end_date: Date,
+          effective_contract_start_date: Date,
+          original_contract_start_date: Date,
+          quota: Imagekitio::Accounts::ContractUnits
+        }
+      end
+    end
+  end
+end

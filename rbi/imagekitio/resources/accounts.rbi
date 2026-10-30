@@ -9,6 +9,9 @@ module Imagekitio
       sig { returns(Imagekitio::Resources::Accounts::UsageAnalytics) }
       attr_reader :usage_analytics
 
+      sig { returns(Imagekitio::Resources::Accounts::Contract) }
+      attr_reader :contract
+
       sig { returns(Imagekitio::Resources::Accounts::Origins) }
       attr_reader :origins
 
