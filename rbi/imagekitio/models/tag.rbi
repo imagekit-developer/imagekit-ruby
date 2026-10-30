@@ -6,8 +6,9 @@ module Imagekitio
       OrHash =
         T.type_alias { T.any(Imagekitio::Tag, Imagekitio::Internal::AnyHash) }
 
-      # The number of assets carrying the tag, counted across both tag sources and all
-      # file types regardless of the request's filters.
+      # The number of assets carrying the tag, counted across both tag sources
+      # (user-generated tags and AI-generated tags) and all file types regardless of the
+      # request's filters.
       sig { returns(Integer) }
       attr_accessor :asset_count
 
@@ -37,8 +38,9 @@ module Imagekitio
         ).returns(T.attached_class)
       end
       def self.new(
-        # The number of assets carrying the tag, counted across both tag sources and all
-        # file types regardless of the request's filters.
+        # The number of assets carrying the tag, counted across both tag sources
+        # (user-generated tags and AI-generated tags) and all file types regardless of the
+        # request's filters.
         asset_count:,
         # The tag as it was spelled when it was last applied to any asset. Use it for
         # display.

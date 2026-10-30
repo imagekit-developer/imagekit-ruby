@@ -4,8 +4,9 @@ module Imagekitio
   module Models
     class Tag < Imagekitio::Internal::Type::BaseModel
       # @!attribute asset_count
-      #   The number of assets carrying the tag, counted across both tag sources and all
-      #   file types regardless of the request's filters.
+      #   The number of assets carrying the tag, counted across both tag sources
+      #   (user-generated tags and AI-generated tags) and all file types regardless of the
+      #   request's filters.
       #
       #   @return [Integer]
       required :asset_count, Integer, api_name: :assetCount
@@ -38,7 +39,7 @@ module Imagekitio
       #   A tag in use in your media library, aggregated case-insensitively across the
       #   assets that carry it.
       #
-      #   @param asset_count [Integer] The number of assets carrying the tag, counted across both tag sources and all f
+      #   @param asset_count [Integer] The number of assets carrying the tag, counted across both tag sources (user-gen
       #
       #   @param label [String] The tag as it was spelled when it was last applied to any asset. Use it for disp
       #
