@@ -42,6 +42,9 @@ module Imagekitio
     sig { returns(Imagekitio::Resources::Assets) }
     attr_reader :assets
 
+    sig { returns(Imagekitio::Resources::Tags) }
+    attr_reader :tags
+
     sig { returns(Imagekitio::Resources::Cache) }
     attr_reader :cache
 
