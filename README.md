@@ -13,6 +13,7 @@ If you're using Ruby on Rails, the [ImageKit Rails gem](https://github.com/image
 - [Documentation](#documentation)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Pagination](#pagination)
   - [File uploads](#file-uploads)
 - [URL Generation](#url-generation)
   - [Basic URL generation](#basic-url-generation)
@@ -70,20 +71,18 @@ puts(response.file_id)
 
 ### Pagination
 
-List methods in the Image Kit API are paginated.
-
-This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+The `tags.list` method is paginated. This library provides auto-paginating iterators, so you do not have to request successive pages manually:
 
 ```ruby
 page = image_kit.tags.list
 
 # Fetch single item from page.
 tag = page.tags[0]
-puts(tag.assetCount)
+puts(tag.asset_count)
 
 # Automatically fetches more pages as needed.
 page.auto_paging_each do |tag|
-  puts(tag.assetCount)
+  puts(tag.asset_count)
 end
 ```
 
@@ -92,35 +91,7 @@ Alternatively, you can use the `#next_page?` and `#next_page` methods for more g
 ```ruby
 if page.next_page?
   new_page = page.next_page
-  puts(new_page.tags[0].assetCount)
-end
-```
-
-### Pagination
-
-List methods in the Image Kit API are paginated.
-
-This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
-
-```ruby
-page = image_kit.tags.list
-
-# Fetch single item from page.
-tag = page.tags[0]
-puts(tag.assetCount)
-
-# Automatically fetches more pages as needed.
-page.auto_paging_each do |tag|
-  puts(tag.assetCount)
-end
-```
-
-Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
-
-```ruby
-if page.next_page?
-  new_page = page.next_page
-  puts(new_page.tags[0].assetCount)
+  puts(new_page.tags[0].asset_count)
 end
 ```
 
