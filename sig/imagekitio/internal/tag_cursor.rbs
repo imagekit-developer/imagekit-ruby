@@ -1,6 +1,6 @@
 module Imagekitio
   module Internal
-    class Cursor[Elem]
+    class TagCursor[Elem]
       include Imagekitio::Internal::Type::BasePage[Elem]
 
       attr_accessor tags: ::Array[Elem]?

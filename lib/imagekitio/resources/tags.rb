@@ -38,7 +38,7 @@ module Imagekitio
       #
       # @param request_options [Imagekitio::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Imagekitio::Internal::Cursor<Imagekitio::Models::Tag>]
+      # @return [Imagekitio::Internal::TagCursor<Imagekitio::Models::Tag>]
       #
       # @see Imagekitio::Models::TagListParams
       def list(params = {})
@@ -48,7 +48,7 @@ module Imagekitio
           method: :get,
           path: "v1/tags",
           query: query.transform_keys(file_type: "fileType", tag_source: "tagSource"),
-          page: Imagekitio::Internal::Cursor,
+          page: Imagekitio::Internal::TagCursor,
           model: Imagekitio::Tag,
           options: options
         )

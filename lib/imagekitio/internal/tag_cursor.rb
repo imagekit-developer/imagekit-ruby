@@ -5,15 +5,15 @@ module Imagekitio
     # @generic Elem
     #
     # @example
-    #   if cursor.has_next?
-    #     cursor = cursor.next_page
+    #   if tag_cursor.has_next?
+    #     tag_cursor = tag_cursor.next_page
     #   end
     #
     # @example
-    #   cursor.auto_paging_each do |tag|
+    #   tag_cursor.auto_paging_each do |tag|
     #     puts(tag)
     #   end
-    class Cursor
+    class TagCursor
       include Imagekitio::Internal::Type::BasePage
 
       # @return [Array<generic<Elem>>, nil]

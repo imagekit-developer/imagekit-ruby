@@ -9,7 +9,7 @@ class Imagekitio::Test::Resources::TagsTest < Imagekitio::Test::ResourceTest
     response = @image_kit.tags.list
 
     assert_pattern do
-      response => Imagekitio::Internal::Cursor
+      response => Imagekitio::Internal::TagCursor
     end
 
     row = response.to_enum.first

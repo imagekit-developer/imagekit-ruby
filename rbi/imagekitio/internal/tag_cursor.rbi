@@ -2,7 +2,7 @@
 
 module Imagekitio
   module Internal
-    class Cursor
+    class TagCursor
       include Imagekitio::Internal::Type::BasePage
 
       Elem = type_member
