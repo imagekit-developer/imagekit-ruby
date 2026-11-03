@@ -19,6 +19,15 @@ module Imagekitio
       # Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
       variant -> { Imagekitio::VideoTransformationErrorEvent }
 
+      # Triggered when a new asynchronous image transformation request is accepted for processing. This event confirms that ImageKit has received and queued your transformation request. Use this for debugging and tracking transformation lifecycle.
+      variant -> { Imagekitio::ImageAsyncTransformationAcceptedEvent }
+
+      # Triggered when an asynchronous image transformation is finished and the transformed image is ready to be served. Listen to this webhook and update any flags in your database or CMS so your application can start displaying the transformed image to users.
+      variant -> { Imagekitio::ImageAsyncTransformationReadyEvent }
+
+      # Triggered when an asynchronous image transformation fails. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
+      variant -> { Imagekitio::ImageAsyncTransformationErrorEvent }
+
       # Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.
       variant -> { Imagekitio::UploadPreTransformSuccessEvent }
 
@@ -56,7 +65,7 @@ module Imagekitio
       variant -> { Imagekitio::FolderDeleteEvent }
 
       # @!method self.variants
-      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreateEvent, Imagekitio::Models::FileUpdateEvent, Imagekitio::Models::FileDeleteEvent, Imagekitio::Models::FileVersionCreateEvent, Imagekitio::Models::FileVersionDeleteEvent, Imagekitio::Models::FolderCreateEvent, Imagekitio::Models::FolderUpdateEvent, Imagekitio::Models::FolderDeleteEvent)]
+      #   @return [Array(Imagekitio::Models::VideoTransformationAcceptedEvent, Imagekitio::Models::VideoTransformationReadyEvent, Imagekitio::Models::VideoTransformationErrorEvent, Imagekitio::Models::ImageAsyncTransformationAcceptedEvent, Imagekitio::Models::ImageAsyncTransformationReadyEvent, Imagekitio::Models::ImageAsyncTransformationErrorEvent, Imagekitio::Models::UploadPreTransformSuccessEvent, Imagekitio::Models::UploadPreTransformErrorEvent, Imagekitio::Models::UploadPostTransformSuccessEvent, Imagekitio::Models::UploadPostTransformErrorEvent, Imagekitio::Models::FileCreateEvent, Imagekitio::Models::FileUpdateEvent, Imagekitio::Models::FileDeleteEvent, Imagekitio::Models::FileVersionCreateEvent, Imagekitio::Models::FileVersionDeleteEvent, Imagekitio::Models::FolderCreateEvent, Imagekitio::Models::FolderUpdateEvent, Imagekitio::Models::FolderDeleteEvent)]
     end
   end
 end

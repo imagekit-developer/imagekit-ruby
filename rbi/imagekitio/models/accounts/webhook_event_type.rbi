@@ -27,6 +27,21 @@ module Imagekitio
             :"video.transformation.error",
             Imagekitio::Accounts::WebhookEventType::TaggedSymbol
           )
+        IMAGE_ASYNC_TRANSFORMATION_ACCEPTED =
+          T.let(
+            :"image.async-transformation.accepted",
+            Imagekitio::Accounts::WebhookEventType::TaggedSymbol
+          )
+        IMAGE_ASYNC_TRANSFORMATION_READY =
+          T.let(
+            :"image.async-transformation.ready",
+            Imagekitio::Accounts::WebhookEventType::TaggedSymbol
+          )
+        IMAGE_ASYNC_TRANSFORMATION_ERROR =
+          T.let(
+            :"image.async-transformation.error",
+            Imagekitio::Accounts::WebhookEventType::TaggedSymbol
+          )
         UPLOAD_PRE_TRANSFORM_SUCCESS =
           T.let(
             :"upload.pre-transform.success",
