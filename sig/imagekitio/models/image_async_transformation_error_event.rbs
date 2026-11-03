@@ -1,0 +1,203 @@
+module Imagekitio
+  module Models
+    type image_async_transformation_error_event =
+      {
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationErrorEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationErrorEvent::Request,
+        type: :"image.async-transformation.error"
+      }
+
+    class ImageAsyncTransformationErrorEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::ImageAsyncTransformationErrorEvent::Data
+
+      def data=: (
+        Imagekitio::ImageAsyncTransformationErrorEvent::Data _
+      ) -> Imagekitio::ImageAsyncTransformationErrorEvent::Data
+
+      def request: -> Imagekitio::ImageAsyncTransformationErrorEvent::Request
+
+      def request=: (
+        Imagekitio::ImageAsyncTransformationErrorEvent::Request _
+      ) -> Imagekitio::ImageAsyncTransformationErrorEvent::Request
+
+      def `type`: -> :"image.async-transformation.error"
+
+      def type=: (
+        :"image.async-transformation.error" _
+      ) -> :"image.async-transformation.error"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationErrorEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationErrorEvent::Request,
+        ?type: :"image.async-transformation.error"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationErrorEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationErrorEvent::Request,
+        type: :"image.async-transformation.error"
+      }
+
+      type data =
+        {
+          asset: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation
+        }
+
+      class Data < Imagekitio::Internal::Type::BaseModel
+        attr_accessor asset: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Asset
+
+        attr_accessor transformation: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation
+
+        def initialize: (
+          asset: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation
+        ) -> void
+
+        def to_hash: -> {
+          asset: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation
+        }
+
+        type asset = { url: String }
+
+        class Asset < Imagekitio::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
+
+        type transformation =
+          {
+            type: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::type_,
+            error: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Error,
+            options: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Options
+          }
+
+        class Transformation < Imagekitio::Internal::Type::BaseModel
+          attr_accessor type: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::type_
+
+          attr_reader error: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Error?
+
+          def error=: (
+            Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Error
+          ) -> Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Error
+
+          attr_reader options: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Options?
+
+          def options=: (
+            Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Options
+          ) -> Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Options
+
+          def initialize: (
+            type: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::type_,
+            ?error: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Error,
+            ?options: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Options
+          ) -> void
+
+          def to_hash: -> {
+            type: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::type_,
+            error: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Error,
+            options: Imagekitio::ImageAsyncTransformationErrorEvent::Data::Transformation::Options
+          }
+
+          type type_ = :"image-transformation"
+
+          module Type
+            extend Imagekitio::Internal::Type::Enum
+
+            IMAGE_TRANSFORMATION: :"image-transformation"
+
+            def self?.values: -> ::Array[Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::type_]
+          end
+
+          type error =
+            {
+              reason: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::Error::reason,
+              message: String
+            }
+
+          class Error < Imagekitio::Internal::Type::BaseModel
+            attr_accessor reason: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::Error::reason
+
+            attr_reader message: String?
+
+            def message=: (String) -> String
+
+            def initialize: (
+              reason: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::Error::reason,
+              ?message: String
+            ) -> void
+
+            def to_hash: -> {
+              reason: Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::Error::reason,
+              message: String
+            }
+
+            type reason =
+              :download_failed
+              | :invalid_transformation
+              | :limit_exceeded
+              | :internal_server_error
+
+            module Reason
+              extend Imagekitio::Internal::Type::Enum
+
+              DOWNLOAD_FAILED: :download_failed
+              INVALID_TRANSFORMATION: :invalid_transformation
+              LIMIT_EXCEEDED: :limit_exceeded
+              INTERNAL_SERVER_ERROR: :internal_server_error
+
+              def self?.values: -> ::Array[Imagekitio::Models::ImageAsyncTransformationErrorEvent::Data::Transformation::Error::reason]
+            end
+          end
+
+          type options = { transformation: String }
+
+          class Options < Imagekitio::Internal::Type::BaseModel
+            attr_reader transformation: String?
+
+            def transformation=: (String) -> String
+
+            def initialize: (?transformation: String) -> void
+
+            def to_hash: -> { transformation: String }
+          end
+        end
+      end
+
+      type request = { url: String, x_request_id: String, user_agent: String }
+
+      class Request < Imagekitio::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor x_request_id: String
+
+        attr_reader user_agent: String?
+
+        def user_agent=: (String) -> String
+
+        def initialize: (
+          url: String,
+          x_request_id: String,
+          ?user_agent: String
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          x_request_id: String,
+          user_agent: String
+        }
+      end
+    end
+  end
+end

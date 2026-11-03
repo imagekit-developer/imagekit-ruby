@@ -83,6 +83,12 @@ module Imagekitio
 
   class GetImageAttributesOptions = Imagekitio::Models::GetImageAttributesOptions
 
+  class ImageAsyncTransformationAcceptedEvent = Imagekitio::Models::ImageAsyncTransformationAcceptedEvent
+
+  class ImageAsyncTransformationErrorEvent = Imagekitio::Models::ImageAsyncTransformationErrorEvent
+
+  class ImageAsyncTransformationReadyEvent = Imagekitio::Models::ImageAsyncTransformationReadyEvent
+
   class ImageOverlay = Imagekitio::Models::ImageOverlay
 
   class Metadata = Imagekitio::Models::Metadata

@@ -1,0 +1,153 @@
+module Imagekitio
+  module Models
+    type image_async_transformation_accepted_event =
+      {
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationAcceptedEvent::Request,
+        type: :"image.async-transformation.accepted"
+      }
+
+    class ImageAsyncTransformationAcceptedEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::ImageAsyncTransformationAcceptedEvent::Data
+
+      def data=: (
+        Imagekitio::ImageAsyncTransformationAcceptedEvent::Data _
+      ) -> Imagekitio::ImageAsyncTransformationAcceptedEvent::Data
+
+      def request: -> Imagekitio::ImageAsyncTransformationAcceptedEvent::Request
+
+      def request=: (
+        Imagekitio::ImageAsyncTransformationAcceptedEvent::Request _
+      ) -> Imagekitio::ImageAsyncTransformationAcceptedEvent::Request
+
+      def `type`: -> :"image.async-transformation.accepted"
+
+      def type=: (
+        :"image.async-transformation.accepted" _
+      ) -> :"image.async-transformation.accepted"
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationAcceptedEvent::Request,
+        ?type: :"image.async-transformation.accepted"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationAcceptedEvent::Request,
+        type: :"image.async-transformation.accepted"
+      }
+
+      type data =
+        {
+          asset: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation
+        }
+
+      class Data < Imagekitio::Internal::Type::BaseModel
+        attr_accessor asset: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Asset
+
+        attr_accessor transformation: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation
+
+        def initialize: (
+          asset: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation
+        ) -> void
+
+        def to_hash: -> {
+          asset: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation
+        }
+
+        type asset = { url: String }
+
+        class Asset < Imagekitio::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
+
+        type transformation =
+          {
+            type: Imagekitio::Models::ImageAsyncTransformationAcceptedEvent::Data::Transformation::type_,
+            options: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation::Options
+          }
+
+        class Transformation < Imagekitio::Internal::Type::BaseModel
+          attr_accessor type: Imagekitio::Models::ImageAsyncTransformationAcceptedEvent::Data::Transformation::type_
+
+          attr_reader options: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation::Options?
+
+          def options=: (
+            Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation::Options
+          ) -> Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation::Options
+
+          def initialize: (
+            type: Imagekitio::Models::ImageAsyncTransformationAcceptedEvent::Data::Transformation::type_,
+            ?options: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation::Options
+          ) -> void
+
+          def to_hash: -> {
+            type: Imagekitio::Models::ImageAsyncTransformationAcceptedEvent::Data::Transformation::type_,
+            options: Imagekitio::ImageAsyncTransformationAcceptedEvent::Data::Transformation::Options
+          }
+
+          type type_ = :"image-transformation"
+
+          module Type
+            extend Imagekitio::Internal::Type::Enum
+
+            IMAGE_TRANSFORMATION: :"image-transformation"
+
+            def self?.values: -> ::Array[Imagekitio::Models::ImageAsyncTransformationAcceptedEvent::Data::Transformation::type_]
+          end
+
+          type options = { transformation: String }
+
+          class Options < Imagekitio::Internal::Type::BaseModel
+            attr_reader transformation: String?
+
+            def transformation=: (String) -> String
+
+            def initialize: (?transformation: String) -> void
+
+            def to_hash: -> { transformation: String }
+          end
+        end
+      end
+
+      type request = { url: String, x_request_id: String, user_agent: String }
+
+      class Request < Imagekitio::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor x_request_id: String
+
+        attr_reader user_agent: String?
+
+        def user_agent=: (String) -> String
+
+        def initialize: (
+          url: String,
+          x_request_id: String,
+          ?user_agent: String
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          x_request_id: String,
+          user_agent: String
+        }
+      end
+    end
+  end
+end

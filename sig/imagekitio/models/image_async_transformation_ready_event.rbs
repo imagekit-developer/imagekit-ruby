@@ -1,0 +1,233 @@
+module Imagekitio
+  module Models
+    type image_async_transformation_ready_event =
+      {
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationReadyEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationReadyEvent::Request,
+        type: :"image.async-transformation.ready",
+        timings: Imagekitio::ImageAsyncTransformationReadyEvent::Timings
+      }
+
+    class ImageAsyncTransformationReadyEvent < Imagekitio::Models::BaseWebhookEvent
+      def created_at: -> Time
+
+      def created_at=: (Time _) -> Time
+
+      def data: -> Imagekitio::ImageAsyncTransformationReadyEvent::Data
+
+      def data=: (
+        Imagekitio::ImageAsyncTransformationReadyEvent::Data _
+      ) -> Imagekitio::ImageAsyncTransformationReadyEvent::Data
+
+      def request: -> Imagekitio::ImageAsyncTransformationReadyEvent::Request
+
+      def request=: (
+        Imagekitio::ImageAsyncTransformationReadyEvent::Request _
+      ) -> Imagekitio::ImageAsyncTransformationReadyEvent::Request
+
+      def `type`: -> :"image.async-transformation.ready"
+
+      def type=: (
+        :"image.async-transformation.ready" _
+      ) -> :"image.async-transformation.ready"
+
+      def timings: -> Imagekitio::ImageAsyncTransformationReadyEvent::Timings?
+
+      def timings=: (
+        Imagekitio::ImageAsyncTransformationReadyEvent::Timings _
+      ) -> Imagekitio::ImageAsyncTransformationReadyEvent::Timings
+
+      def initialize: (
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationReadyEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationReadyEvent::Request,
+        ?timings: Imagekitio::ImageAsyncTransformationReadyEvent::Timings,
+        ?type: :"image.async-transformation.ready"
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Imagekitio::ImageAsyncTransformationReadyEvent::Data,
+        request: Imagekitio::ImageAsyncTransformationReadyEvent::Request,
+        type: :"image.async-transformation.ready",
+        timings: Imagekitio::ImageAsyncTransformationReadyEvent::Timings
+      }
+
+      type data =
+        {
+          asset: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation
+        }
+
+      class Data < Imagekitio::Internal::Type::BaseModel
+        attr_accessor asset: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Asset
+
+        attr_accessor transformation: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation
+
+        def initialize: (
+          asset: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation
+        ) -> void
+
+        def to_hash: -> {
+          asset: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Asset,
+          transformation: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation
+        }
+
+        type asset = { url: String }
+
+        class Asset < Imagekitio::Internal::Type::BaseModel
+          attr_accessor url: String
+
+          def initialize: (url: String) -> void
+
+          def to_hash: -> { url: String }
+        end
+
+        type transformation =
+          {
+            type: Imagekitio::Models::ImageAsyncTransformationReadyEvent::Data::Transformation::type_,
+            options: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Options,
+            output: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output
+          }
+
+        class Transformation < Imagekitio::Internal::Type::BaseModel
+          attr_accessor type: Imagekitio::Models::ImageAsyncTransformationReadyEvent::Data::Transformation::type_
+
+          attr_reader options: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Options?
+
+          def options=: (
+            Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Options
+          ) -> Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Options
+
+          attr_reader output: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output?
+
+          def output=: (
+            Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output
+          ) -> Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output
+
+          def initialize: (
+            type: Imagekitio::Models::ImageAsyncTransformationReadyEvent::Data::Transformation::type_,
+            ?options: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Options,
+            ?output: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output
+          ) -> void
+
+          def to_hash: -> {
+            type: Imagekitio::Models::ImageAsyncTransformationReadyEvent::Data::Transformation::type_,
+            options: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Options,
+            output: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output
+          }
+
+          type type_ = :"image-transformation"
+
+          module Type
+            extend Imagekitio::Internal::Type::Enum
+
+            IMAGE_TRANSFORMATION: :"image-transformation"
+
+            def self?.values: -> ::Array[Imagekitio::Models::ImageAsyncTransformationReadyEvent::Data::Transformation::type_]
+          end
+
+          type options = { transformation: String }
+
+          class Options < Imagekitio::Internal::Type::BaseModel
+            attr_reader transformation: String?
+
+            def transformation=: (String) -> String
+
+            def initialize: (?transformation: String) -> void
+
+            def to_hash: -> { transformation: String }
+          end
+
+          type output =
+            {
+              url: String,
+              image_metadata: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output::ImageMetadata
+            }
+
+          class Output < Imagekitio::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            attr_reader image_metadata: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output::ImageMetadata?
+
+            def image_metadata=: (
+              Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output::ImageMetadata
+            ) -> Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output::ImageMetadata
+
+            def initialize: (
+              url: String,
+              ?image_metadata: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output::ImageMetadata
+            ) -> void
+
+            def to_hash: -> {
+              url: String,
+              image_metadata: Imagekitio::ImageAsyncTransformationReadyEvent::Data::Transformation::Output::ImageMetadata
+            }
+
+            type image_metadata = { size: Integer, format_: String }
+
+            class ImageMetadata < Imagekitio::Internal::Type::BaseModel
+              attr_accessor size: Integer
+
+              attr_reader format_: String?
+
+              def format_=: (String) -> String
+
+              def initialize: (size: Integer, ?format_: String) -> void
+
+              def to_hash: -> { size: Integer, format_: String }
+            end
+          end
+        end
+      end
+
+      type request = { url: String, x_request_id: String, user_agent: String }
+
+      class Request < Imagekitio::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor x_request_id: String
+
+        attr_reader user_agent: String?
+
+        def user_agent=: (String) -> String
+
+        def initialize: (
+          url: String,
+          x_request_id: String,
+          ?user_agent: String
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          x_request_id: String,
+          user_agent: String
+        }
+      end
+
+      type timings = { processing_duration: Integer, queue_duration: Integer }
+
+      class Timings < Imagekitio::Internal::Type::BaseModel
+        attr_reader processing_duration: Integer?
+
+        def processing_duration=: (Integer) -> Integer
+
+        attr_reader queue_duration: Integer?
+
+        def queue_duration=: (Integer) -> Integer
+
+        def initialize: (
+          ?processing_duration: Integer,
+          ?queue_duration: Integer
+        ) -> void
+
+        def to_hash: -> {
+          processing_duration: Integer,
+          queue_duration: Integer
+        }
+      end
+    end
+  end
+end
