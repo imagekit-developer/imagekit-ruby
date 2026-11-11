@@ -67,14 +67,29 @@ module Imagekitio
         sig { returns(String) }
         attr_accessor :folder_id
 
-        sig { params(folder_id: String).returns(T.attached_class) }
+        # Path of the deleted folder. For a moved folder, this is its path before the
+        # move.
+        sig { returns(T.nilable(String)) }
+        attr_reader :folder_path
+
+        sig { params(folder_path: String).void }
+        attr_writer :folder_path
+
+        sig do
+          params(folder_id: String, folder_path: String).returns(
+            T.attached_class
+          )
+        end
         def self.new(
           # The unique `folderId` of the deleted folder.
-          folder_id:
+          folder_id:,
+          # Path of the deleted folder. For a moved folder, this is its path before the
+          # move.
+          folder_path: nil
         )
         end
 
-        sig { override.returns({ folder_id: String }) }
+        sig { override.returns({ folder_id: String, folder_path: String }) }
         def to_hash
         end
       end
