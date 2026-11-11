@@ -34,14 +34,18 @@ module Imagekitio
         type: :"folder.deleted"
       }
 
-      type data = { folder_id: String }
+      type data = { folder_id: String, folder_path: String }
 
       class Data < Imagekitio::Internal::Type::BaseModel
         attr_accessor folder_id: String
 
-        def initialize: (folder_id: String) -> void
+        attr_reader folder_path: String?
 
-        def to_hash: -> { folder_id: String }
+        def folder_path=: (String) -> String
+
+        def initialize: (folder_id: String, ?folder_path: String) -> void
+
+        def to_hash: -> { folder_id: String, folder_path: String }
       end
     end
   end
