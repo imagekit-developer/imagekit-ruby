@@ -39,8 +39,20 @@ module Imagekitio
         #   @return [String]
         required :folder_id, String, api_name: :folderId
 
-        # @!method initialize(folder_id:)
+        # @!attribute folder_path
+        #   Path of the deleted folder. For a moved folder, this is its path before the
+        #   move.
+        #
+        #   @return [String, nil]
+        optional :folder_path, String, api_name: :folderPath
+
+        # @!method initialize(folder_id:, folder_path: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Imagekitio::Models::FolderDeleteEvent::Data} for more details.
+        #
         #   @param folder_id [String] The unique `folderId` of the deleted folder.
+        #
+        #   @param folder_path [String] Path of the deleted folder. For a moved folder, this is its path before the move
       end
     end
   end
