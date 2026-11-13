@@ -45,6 +45,7 @@ module Imagekitio
         radius: Imagekitio::Models::Transformation::radius,
         raw: String,
         rotation: Imagekitio::Models::Transformation::rotation,
+        saturation: Integer,
         shadow: Imagekitio::Models::Transformation::shadow,
         sharpen: Imagekitio::Models::Transformation::sharpen,
         start_offset: Imagekitio::Models::Transformation::start_offset,
@@ -277,6 +278,10 @@ module Imagekitio
         Imagekitio::Models::Transformation::rotation
       ) -> Imagekitio::Models::Transformation::rotation
 
+      attr_reader saturation: Integer?
+
+      def saturation=: (Integer) -> Integer
+
       attr_reader shadow: Imagekitio::Models::Transformation::shadow?
 
       def shadow=: (
@@ -397,6 +402,7 @@ module Imagekitio
         ?radius: Imagekitio::Models::Transformation::radius,
         ?raw: String,
         ?rotation: Imagekitio::Models::Transformation::rotation,
+        ?saturation: Integer,
         ?shadow: Imagekitio::Models::Transformation::shadow,
         ?sharpen: Imagekitio::Models::Transformation::sharpen,
         ?start_offset: Imagekitio::Models::Transformation::start_offset,
@@ -456,6 +462,7 @@ module Imagekitio
         radius: Imagekitio::Models::Transformation::radius,
         raw: String,
         rotation: Imagekitio::Models::Transformation::rotation,
+        saturation: Integer,
         shadow: Imagekitio::Models::Transformation::shadow,
         sharpen: Imagekitio::Models::Transformation::sharpen,
         start_offset: Imagekitio::Models::Transformation::start_offset,

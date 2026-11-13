@@ -416,6 +416,16 @@ module Imagekitio
       #   @return [Float, String, nil]
       optional :rotation, union: -> { Imagekitio::Transformation::Rotation }
 
+      # @!attribute saturation
+      #   Adjusts the color saturation of the image. Accepts an integer from -100 to 100.
+      #   Negative values desaturate (`-100` is fully gray), positive values increase
+      #   saturation, and `0` leaves the image unchanged. Supported inside image overlays.
+      #   Not supported for animated images. See
+      #   [Saturation](https://imagekit.io/docs/effects-and-enhancements#saturation---e-saturation).
+      #
+      #   @return [Integer, nil]
+      optional :saturation, Integer
+
       # @!attribute shadow
       #   Adds a shadow beneath solid objects in an image with a transparent background.
       #   For AI-based drop shadows, refer to aiDropShadow. Pass `true` for a default
@@ -521,7 +531,7 @@ module Imagekitio
       #   @return [Float, nil]
       optional :zoom, Float
 
-      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, colorize: nil, color_profile: nil, color_replace: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, density: nil, distort: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
+      # @!method initialize(ai_change_background: nil, ai_drop_shadow: nil, ai_edit: nil, ai_remove_background: nil, ai_remove_background_external: nil, ai_retouch: nil, ai_upscale: nil, ai_variation: nil, aspect_ratio: nil, audio_codec: nil, background: nil, blur: nil, border: nil, colorize: nil, color_profile: nil, color_replace: nil, contrast_stretch: nil, crop: nil, crop_mode: nil, default_image: nil, density: nil, distort: nil, dpr: nil, duration: nil, end_offset: nil, flip: nil, focus: nil, format_: nil, gradient: nil, grayscale: nil, height: nil, lossless: nil, metadata: nil, named: nil, opacity: nil, original: nil, overlay: nil, page: nil, progressive: nil, quality: nil, radius: nil, raw: nil, rotation: nil, saturation: nil, shadow: nil, sharpen: nil, start_offset: nil, streaming_resolutions: nil, trim: nil, unsharp_mask: nil, video_codec: nil, width: nil, x: nil, x_center: nil, y_: nil, y_center: nil, zoom: nil)
       #   Some parameter documentations has been truncated, see
       #   {Imagekitio::Models::Transformation} for more details.
       #
@@ -617,6 +627,8 @@ module Imagekitio
       #   @param raw [String] Pass any transformation not directly supported by the SDK.
       #
       #   @param rotation [Float, String] Specifies the rotation angle in degrees. Positive values rotate the image clockw
+      #
+      #   @param saturation [Integer] Adjusts the color saturation of the image. Accepts an integer from -100 to 100.
       #
       #   @param shadow [Boolean, true, String] Adds a shadow beneath solid objects in an image with a transparent background.
       #
