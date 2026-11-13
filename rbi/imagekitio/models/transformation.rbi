@@ -529,6 +529,17 @@ module Imagekitio
       end
       attr_writer :rotation
 
+      # Adjusts the color saturation of the image. Accepts an integer from -100 to 100.
+      # Negative values desaturate (`-100` is fully gray), positive values increase
+      # saturation, and `0` leaves the image unchanged. Supported inside image overlays.
+      # Not supported for animated images. See
+      # [Saturation](https://imagekit.io/docs/effects-and-enhancements#saturation---e-saturation).
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :saturation
+
+      sig { params(saturation: Integer).void }
+      attr_writer :saturation
+
       # Adds a shadow beneath solid objects in an image with a transparent background.
       # For AI-based drop shadows, refer to aiDropShadow. Pass `true` for a default
       # shadow, or provide a string for a custom shadow. See
@@ -722,6 +733,7 @@ module Imagekitio
           radius: T.any(Float, Symbol, String),
           raw: String,
           rotation: Imagekitio::Transformation::Rotation::Variants,
+          saturation: Integer,
           shadow: T.any(T::Boolean, String),
           sharpen: T.any(T::Boolean, Float),
           start_offset: Imagekitio::Transformation::StartOffset::Variants,
@@ -970,6 +982,12 @@ module Imagekitio
         # only the following values are supported: 0, 90, 180, 270, or 360. See
         # [Rotate](https://imagekit.io/docs/effects-and-enhancements#rotate---rt).
         rotation: nil,
+        # Adjusts the color saturation of the image. Accepts an integer from -100 to 100.
+        # Negative values desaturate (`-100` is fully gray), positive values increase
+        # saturation, and `0` leaves the image unchanged. Supported inside image overlays.
+        # Not supported for animated images. See
+        # [Saturation](https://imagekit.io/docs/effects-and-enhancements#saturation---e-saturation).
+        saturation: nil,
         # Adds a shadow beneath solid objects in an image with a transparent background.
         # For AI-based drop shadows, refer to aiDropShadow. Pass `true` for a default
         # shadow, or provide a string for a custom shadow. See
@@ -1073,6 +1091,7 @@ module Imagekitio
             radius: T.any(Float, Symbol, String),
             raw: String,
             rotation: Imagekitio::Transformation::Rotation::Variants,
+            saturation: Integer,
             shadow: T.any(T::Boolean, String),
             sharpen: T.any(T::Boolean, Float),
             start_offset: Imagekitio::Transformation::StartOffset::Variants,
