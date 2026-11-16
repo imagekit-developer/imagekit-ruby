@@ -22,8 +22,8 @@ module Imagekitio
       sig { returns(Symbol) }
       attr_accessor :type
 
-      # Values the folder had before this update. Present only when the folder was
-      # renamed or its parent folder was renamed.
+      # Present only when the folder or one of its parent folders was renamed. Contains
+      # the folder's path before the rename.
       sig { returns(T.nilable(Imagekitio::FolderUpdateEvent::Previous)) }
       attr_reader :previous
 
@@ -33,8 +33,9 @@ module Imagekitio
       attr_writer :previous
 
       # Triggered when a folder is updated, for example when its custom metadata changes
-      # or it is renamed. Renaming a folder sends one event per folder in the tree, each
-      # with its new `folderPath` in `data` and its old `folderPath` in `previous`.
+      # or it is renamed. Renaming a folder sends one event per folder in the tree. In
+      # each of these events, `data.folderPath` is the folder's new path and
+      # `previous.folderPath` is its path before the rename.
       sig do
         params(
           created_at: Time,
@@ -47,8 +48,8 @@ module Imagekitio
         # Timestamp of when the event occurred in ISO8601 format.
         created_at:,
         data:,
-        # Values the folder had before this update. Present only when the folder was
-        # renamed or its parent folder was renamed.
+        # Present only when the folder or one of its parent folders was renamed. Contains
+        # the folder's path before the rename.
         previous: nil,
         # Type of the webhook event.
         type: :"folder.updated"
@@ -84,8 +85,8 @@ module Imagekitio
         sig { params(folder_path: String).void }
         attr_writer :folder_path
 
-        # Values the folder had before this update. Present only when the folder was
-        # renamed or its parent folder was renamed.
+        # Present only when the folder or one of its parent folders was renamed. Contains
+        # the folder's path before the rename.
         sig { params(folder_path: String).returns(T.attached_class) }
         def self.new(
           # Path of the folder before it was renamed.
