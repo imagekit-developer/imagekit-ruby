@@ -85,6 +85,7 @@ module Imagekitio
       "color_replace" => "cr",
       "colorReplace" => "cr",
       "colorize" => "e-colorize",
+      "saturation" => "e-saturation",
       "distort" => "e-distort",
 
       # Other flags & finishing

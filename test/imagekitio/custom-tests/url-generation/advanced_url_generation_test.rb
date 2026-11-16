@@ -436,6 +436,7 @@ class AdvancedURLGenerationTest < Minitest::Test
         color_replace: "FF0000_50_0000FF",
         distort: "p-100_50_200_150_300_250_400_350",
         colorize: "co-FF0000_in-15",
+        saturation: 50,
         original: true,
         page: "2_4",
         raw: "h-200,w-300,l-image,i-logo.png,l-end"
@@ -451,7 +452,7 @@ class AdvancedURLGenerationTest < Minitest::Test
       )
     )
 
-    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400,ar-4-3,q-40,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,rt-90,bl-10,n-some_name,pr-true,lo-true,t-5,md-true,cp-true,dn-72,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,fl-h,o-0.8,z-2,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-bgremove,e-contrast,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,cr-FF0000_50_0000FF,e-distort-p-100_50_200_150_300_250_400_350,e-colorize-co-FF0000_in-15,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end"
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=h-300,w-400,ar-4-3,q-40,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,rt-90,bl-10,n-some_name,pr-true,lo-true,t-5,md-true,cp-true,dn-72,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,fl-h,o-0.8,z-2,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-bgremove,e-contrast,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,cr-FF0000_50_0000FF,e-distort-p-100_50_200_150_300_250_400_350,e-colorize-co-FF0000_in-15,e-saturation-50,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end"
     assert_equal(expected, url)
   end
 
@@ -498,6 +499,52 @@ class AdvancedURLGenerationTest < Minitest::Test
     )
 
     expected = "https://ik.imagekit.io/test_url_endpoint/test_path1.jpg?tr=w-300,h-200,q-85,b-5_FF0000,e-bgremove,e-dropshadow"
+    assert_equal(expected, url)
+  end
+
+  def test_should_encode_negative_numbers_with_the_n_prefix_and_keep_n_prefixed_strings_as_is
+    transformation = [
+      Imagekitio::Models::Transformation.new(
+        rotation: -40,
+        x: -10,
+        y_: -20.5,
+        saturation: -50
+      ),
+      Imagekitio::Models::Transformation.new(
+        rotation: "N40",
+        x: "N10",
+        y_: 10,
+        saturation: 0
+      ),
+      Imagekitio::Models::Transformation.new(
+        overlay: Imagekitio::Models::ImageOverlay.new(
+          input: "logo.png",
+          position: Imagekitio::Models::OverlayPosition.new(
+            x: -10,
+            y_: "N20",
+            x_center: -30,
+            y_center: -40.5
+          ),
+          transformation: [
+            Imagekitio::Models::Transformation.new(
+              rotation: -15,
+              saturation: -100
+            )
+          ]
+        )
+      )
+    ]
+
+    url = @client.helper.build_url(
+      Imagekitio::Models::SrcOptions.new(
+        src: "/test_path.jpg",
+        url_endpoint: "https://ik.imagekit.io/test_url_endpoint",
+        transformation_position: :query,
+        transformation: transformation
+      )
+    )
+
+    expected = "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=rt-N40,x-N10,y-N20.5,e-saturation-N50:rt-N40,x-N10,y-10,e-saturation-0:l-image,i-logo.png,lx-N10,ly-N20,lxc-N30,lyc-N40.5,rt-N15,e-saturation-N100,l-end"
     assert_equal(expected, url)
   end
 end

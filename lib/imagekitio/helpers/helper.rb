@@ -209,6 +209,8 @@ module Imagekitio
             value = value.to_i if value == value.to_i
           end
 
+          value = encode_negative_number(value) if %w[rt x y e-saturation].include?(transform_key)
+
           parsed_transform_step << "#{transform_key}#{Imagekitio::TransformationUtils.get_transform_key_value_delimiter}#{value}"
         end
         # rubocop:enable Metrics/BlockLength
@@ -408,6 +410,16 @@ module Imagekitio
     def remove_trailing_slash(str)
       return str unless str.is_a?(String) && str.end_with?("/")
       str.chomp("/")
+    end
+
+    # Encode a negative number with the N prefix, because "-" separates a key from its value in the URL.
+    # For example, -40 becomes "N40". Other values are returned as is.
+    def encode_negative_number(value)
+      return value unless value.is_a?(Numeric) && value.negative?
+
+      magnitude = value.abs
+      magnitude = magnitude.to_i if magnitude == magnitude.to_i
+      "N#{magnitude}"
     end
 
     # Remove leading slash from string
@@ -633,6 +645,8 @@ module Imagekitio
       # Add position properties
       position = safe_get(overlay, :position)
       if position
+        # Read raw values: the typed accessors raise for strings that are not numeric, such as "N20" or "bw_mul_0.4".
+        position = position.to_h if position.respond_to?(:to_h)
         x = safe_get(position, :x)
         y = safe_get(position, :y_)
         x_center = safe_get(position, :x_center)
@@ -640,10 +654,10 @@ module Imagekitio
         focus = safe_get(position, :focus)
         anchor_point = safe_get(position, :anchor_point)
 
-        parts << "lx-#{x}" if x
-        parts << "ly-#{y}" if y
-        parts << "lxc-#{x_center}" if x_center
-        parts << "lyc-#{y_center}" if y_center
+        parts << "lx-#{encode_negative_number(x)}" if x
+        parts << "ly-#{encode_negative_number(y)}" if y
+        parts << "lxc-#{encode_negative_number(x_center)}" if x_center
+        parts << "lyc-#{encode_negative_number(y_center)}" if y_center
         parts << "lfo-#{focus}" if focus
         parts << "lap-#{anchor_point}" if anchor_point
       end
