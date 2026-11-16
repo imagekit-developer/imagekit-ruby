@@ -44,11 +44,9 @@ module Imagekitio
       type previous = { folder_path: String }
 
       class Previous < Imagekitio::Internal::Type::BaseModel
-        attr_reader folder_path: String?
+        attr_accessor folder_path: String
 
-        def folder_path=: (String) -> String
-
-        def initialize: (?folder_path: String) -> void
+        def initialize: (folder_path: String) -> void
 
         def to_hash: -> { folder_path: String }
       end

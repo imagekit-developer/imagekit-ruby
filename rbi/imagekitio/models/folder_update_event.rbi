@@ -79,18 +79,15 @@ module Imagekitio
           end
 
         # Path of the folder before it was renamed.
-        sig { returns(T.nilable(String)) }
-        attr_reader :folder_path
-
-        sig { params(folder_path: String).void }
-        attr_writer :folder_path
+        sig { returns(String) }
+        attr_accessor :folder_path
 
         # Present only when the folder or one of its parent folders was renamed. Contains
         # the folder's path before the rename.
         sig { params(folder_path: String).returns(T.attached_class) }
         def self.new(
           # Path of the folder before it was renamed.
-          folder_path: nil
+          folder_path:
         )
         end
 

@@ -48,10 +48,10 @@ module Imagekitio
         # @!attribute folder_path
         #   Path of the folder before it was renamed.
         #
-        #   @return [String, nil]
-        optional :folder_path, String, api_name: :folderPath
+        #   @return [String]
+        required :folder_path, String, api_name: :folderPath
 
-        # @!method initialize(folder_path: nil)
+        # @!method initialize(folder_path:)
         #   Present only when the folder or one of its parent folders was renamed. Contains
         #   the folder's path before the rename.
         #
