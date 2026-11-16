@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.13.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.12.0...v4.13.0) (2026-11-16)
+
+
+### Features
+
+* **transformation:** add saturation and encode negative numbers with the N prefix in URL generation ([512b775](https://github.com/imagekit-developer/imagekit-ruby/commit/512b77500a76de41b5a7b3ce8f9b09f5daffdc02))
+* **webhooks:** add folder paths to folder.deleted and folder.updated events ([7a9b990](https://github.com/imagekit-developer/imagekit-ruby/commit/7a9b9904fe4459e8dd48932f3c5f8d742dceb538))
+
 ## [4.12.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.11.0...v4.12.0) (2026-11-02)
 
 
