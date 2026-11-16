@@ -1,7 +1,12 @@
 module Imagekitio
   module Models
     type folder_update_event =
-      { created_at: Time, data: Imagekitio::Folder, type: :"folder.updated" }
+      {
+        created_at: Time,
+        data: Imagekitio::Folder,
+        type: :"folder.updated",
+        previous: Imagekitio::FolderUpdateEvent::Previous
+      }
 
     class FolderUpdateEvent < Imagekitio::Models::BaseWebhookEvent
       def created_at: -> Time
@@ -16,17 +21,37 @@ module Imagekitio
 
       def type=: (:"folder.updated" _) -> :"folder.updated"
 
+      def previous: -> Imagekitio::FolderUpdateEvent::Previous?
+
+      def previous=: (
+        Imagekitio::FolderUpdateEvent::Previous _
+      ) -> Imagekitio::FolderUpdateEvent::Previous
+
       def initialize: (
         created_at: Time,
         data: Imagekitio::Folder,
+        ?previous: Imagekitio::FolderUpdateEvent::Previous,
         ?type: :"folder.updated"
       ) -> void
 
       def to_hash: -> {
         created_at: Time,
         data: Imagekitio::Folder,
-        type: :"folder.updated"
+        type: :"folder.updated",
+        previous: Imagekitio::FolderUpdateEvent::Previous
       }
+
+      type previous = { folder_path: String }
+
+      class Previous < Imagekitio::Internal::Type::BaseModel
+        attr_reader folder_path: String?
+
+        def folder_path=: (String) -> String
+
+        def initialize: (?folder_path: String) -> void
+
+        def to_hash: -> { folder_path: String }
+      end
     end
   end
 end

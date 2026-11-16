@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.12.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.11.0...v4.12.0) (2026-11-02)
+
+
+### Features
+
+* add GET /v1/tags to list media library tags ([e1a42da](https://github.com/imagekit-developer/imagekit-ruby/commit/e1a42da77bb7da5541197d121437e36ef8d50216))
+* **api:** add accounts.contract.get() for contract consumption ([c80613e](https://github.com/imagekit-developer/imagekit-ruby/commit/c80613eab38b19ecebdfa21574fa31efa9e82033))
+* **api:** add useImprovedLayerSpec to the Cloudinary URL rewriter ([c80613e](https://github.com/imagekit-developer/imagekit-ruby/commit/c80613eab38b19ecebdfa21574fa31efa9e82033))
+
+
+### Documentation
+
+* add pagination example ([e77d60d](https://github.com/imagekit-developer/imagekit-ruby/commit/e77d60d1fc979b8c781298b7b6a64421c5033b6d))
+
 ## [4.11.0](https://github.com/imagekit-developer/imagekit-ruby/compare/v4.10.0...v4.11.0) (2026-10-19)
 
 
