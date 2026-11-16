@@ -20,16 +20,43 @@ module Imagekitio
       #   @return [Symbol, :"folder.updated"]
       required :type, const: :"folder.updated"
 
-      # @!method initialize(created_at:, data:, type: :"folder.updated")
+      # @!attribute previous
+      #   Present only when the folder or one of its parent folders was renamed. Contains
+      #   the folder's path before the rename.
+      #
+      #   @return [Imagekitio::Models::FolderUpdateEvent::Previous, nil]
+      optional :previous, -> { Imagekitio::FolderUpdateEvent::Previous }
+
+      # @!method initialize(created_at:, data:, previous: nil, type: :"folder.updated")
+      #   Some parameter documentations has been truncated, see
+      #   {Imagekitio::Models::FolderUpdateEvent} for more details.
+      #
       #   Triggered when a folder is updated, for example when its custom metadata changes
-      #   or it is renamed. Renaming a folder sends one event per folder in the tree, each
-      #   with its new `folderPath`.
+      #   or it is renamed. Renaming a folder sends one event per folder in the tree. In
+      #   each of these events, `data.folderPath` is the folder's new path and
+      #   `previous.folderPath` is its path before the rename.
       #
       #   @param created_at [Time] Timestamp of when the event occurred in ISO8601 format.
       #
       #   @param data [Imagekitio::Models::Folder]
       #
+      #   @param previous [Imagekitio::Models::FolderUpdateEvent::Previous] Present only when the folder or one of its parent folders was renamed. Contains
+      #
       #   @param type [Symbol, :"folder.updated"] Type of the webhook event.
+
+      class Previous < Imagekitio::Internal::Type::BaseModel
+        # @!attribute folder_path
+        #   Path of the folder before it was renamed.
+        #
+        #   @return [String]
+        required :folder_path, String, api_name: :folderPath
+
+        # @!method initialize(folder_path:)
+        #   Present only when the folder or one of its parent folders was renamed. Contains
+        #   the folder's path before the rename.
+        #
+        #   @param folder_path [String] Path of the folder before it was renamed.
+      end
     end
   end
 end
